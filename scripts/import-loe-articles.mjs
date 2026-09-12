@@ -32,8 +32,18 @@ mkdirSync(OUT_MD, { recursive: true }); mkdirSync(OUT_PDF, { recursive: true });
 // cv.json and the resume).
 const SLUG_ALIAS = { 'the-madisonian-separation-of-powers-objective-compliance-tes': 'madisonian-test' };
 
+// Collections the owner keeps OFF this site (owner 2026-09-12): the Transcendental
+// Method series altogether; the Formal Logic & Falsification exhibits for now.
+const EXCLUDED_COLLECTIONS = new Set([
+  'transcendental-method-for-substrate-independent-consciousness-recognition',
+  'laws-of-existence-foundational-exhibits',
+]);
+
 const files = readdirSync(MANUSCRIPT).filter((f) => f.endsWith('.json')).sort();
-const raw = files.map((f) => JSON.parse(readFileSync(join(MANUSCRIPT, f), 'utf8')));
+const raw = files.map((f) => JSON.parse(readFileSync(join(MANUSCRIPT, f), 'utf8'))).filter((c) => {
+  if (EXCLUDED_COLLECTIONS.has(c.slug)) { console.log(`  excluded (owner): ${c.title}`); return false; }
+  return true;
+});
 // featured collections first, then source order
 const ordered = [...raw.filter((c) => c.featured), ...raw.filter((c) => !c.featured)];
 
