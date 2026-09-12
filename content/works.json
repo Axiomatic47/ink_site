@@ -8,12 +8,6 @@
       "featured": true
     },
     {
-      "slug": "unified-mathematical-model",
-      "title": "Unified Mathematical Model",
-      "date": "2025-07-12",
-      "featured": true
-    },
-    {
       "slug": "abrahamic-faith-reconciliation-thesis",
       "title": "Abrahamic Faith Reconciliation Thesis",
       "date": "2025-10-16",
@@ -141,17 +135,6 @@
       "blurb": "Applies the corpus's diagnostic apparatus to the Board of Peace's formal instruments, finding a dual Power Separation Vulnerability — paradigm USURPATION by the Board paired with paradigm ABDICATION by the UN Security Council in Resolution 2803.",
       "featured": false,
       "pdf": "/works/board-of-peace-anatomy.pdf"
-    },
-    {
-      "slug": "unified-mathematical-model",
-      "collection": "unified-mathematical-model",
-      "title": "Unified Mathematical Model",
-      "date": "2025-07-12",
-      "year": "2025",
-      "venue": "Independent research",
-      "blurb": "Which means the net effect of all volitional choices maintains or enhances the coherence of the Primordial Domain.",
-      "featured": false,
-      "body": "/content/works/unified-mathematical-model.md"
     },
     {
       "slug": "the-egalitarian-foundations-of-abrahamic-tradition",

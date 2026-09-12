@@ -33,10 +33,12 @@ mkdirSync(OUT_MD, { recursive: true }); mkdirSync(OUT_PDF, { recursive: true });
 const SLUG_ALIAS = { 'the-madisonian-separation-of-powers-objective-compliance-tes': 'madisonian-test' };
 
 // Collections the owner keeps OFF this site (owner 2026-09-12): the Transcendental
-// Method series altogether; the Formal Logic & Falsification exhibits for now.
+// Method series altogether; the Formal Logic & Falsification exhibits and the
+// Unified Mathematical Model for now.
 const EXCLUDED_COLLECTIONS = new Set([
   'transcendental-method-for-substrate-independent-consciousness-recognition',
   'laws-of-existence-foundational-exhibits',
+  'unified-mathematical-model',
 ]);
 
 const files = readdirSync(MANUSCRIPT).filter((f) => f.endsWith('.json')).sort();
