@@ -1,0 +1,171 @@
+{
+  "$comment": "Single source of truth for kirchner.ink. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
+  "name": "Joseph Kirchner",
+  "headline": "Property Management and Consulting Services · Independent Researcher",
+  "location": "Edina, Minnesota",
+  "email": "joseph@kirchner.cv",
+  "pdf": "/resume/Joseph_Kirchner_Resume.pdf",
+  "pdf_print": "/resume/Joseph_Kirchner_Resume_Print.pdf",
+  "links": [],
+  "summary": "Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Since 2025, full-time independent research in social contract theory and the separation of powers, and the author of an independently published compliance test for separation-of-powers questions. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.",
+  "experience": [
+    {
+      "role": "Independent Researcher",
+      "organization": "Full-time independent study",
+      "location": "Edina, MN",
+      "start": "Aug 2025",
+      "end": "",
+      "summary": "Social contract theory and the separation of powers, with particular attention to the works of Thomas Hobbes and Immanuel Kant.",
+      "highlights": [
+        "Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years"
+      ]
+    },
+    {
+      "role": "Property Manager",
+      "organization": "Premier Management and Development (formerly Premier Housing Management)",
+      "location": "St. Paul, MN",
+      "start": "Jun 2024",
+      "end": "Jul 2025",
+      "summary": "Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.",
+      "highlights": [
+        "Hiring and training of on-site staff",
+        "Development and monitoring of annual budgets",
+        "Supervision of delinquent-rent collection",
+        "Resident annual recertifications and site maintenance, managed in Yardi"
+      ]
+    },
+    {
+      "role": "Regional Property Manager",
+      "organization": "Accessible Space, Inc.",
+      "location": "St. Paul, MN",
+      "start": "Feb 2023",
+      "end": "May 2024",
+      "summary": "Regional management of 24 HUD PRAC 202/811 properties, 525 units across five states.",
+      "highlights": [
+        "Hiring and training of on-site staff",
+        "Development and monitoring of annual budgets",
+        "Supervision of delinquent-rent collection",
+        "Resident annual recertifications and site maintenance"
+      ]
+    },
+    {
+      "role": "Property Manager",
+      "organization": "Premier Housing Management",
+      "location": "St. Paul, MN",
+      "start": "Nov 2022",
+      "end": "Feb 2023",
+      "highlights": [
+        "Team leadership; policy and procedure development",
+        "Section 8 and tax-credit compliance",
+        "Leasing, tenant relations, and maintenance coordination and scheduling"
+      ]
+    },
+    {
+      "role": "Owner",
+      "organization": "Operations Consulting LLC",
+      "location": "Minneapolis, MN",
+      "start": "Jan 2021",
+      "end": "",
+      "summary": "Small-business consulting for long-term and short-term clients; part-time since November 2022.",
+      "highlights": [
+        "Daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria",
+        "Operational analysis, licensing, fundraising, payroll, hiring, and training",
+        "Business organization and website construction for small-business owners"
+      ]
+    },
+    {
+      "role": "Lease Renewal Specialist",
+      "organization": "Housing Hub",
+      "location": "St. Paul, MN",
+      "start": "Oct 2019",
+      "end": "Nov 2021",
+      "highlights": [
+        "Market analyses for renewal rate increases",
+        "Renewal authorizations with third-party ownership",
+        "Drafting, sending, and processing lease renewals"
+      ]
+    },
+    {
+      "role": "Community Coordinator",
+      "organization": "Lion Rock Properties",
+      "location": "St. Louis Park, MN",
+      "start": "Mar 2019",
+      "end": "Oct 2019",
+      "highlights": [
+        "Scheduling and performing tours and lease signings",
+        "Conveying rights and responsibilities between clients and tenants",
+        "Maintenance scheduling and general office work"
+      ]
+    },
+    {
+      "role": "Instructor",
+      "organization": "École Française",
+      "location": "Hurghada, Egypt",
+      "start": "Jun 2017",
+      "end": "Jan 2018",
+      "highlights": [
+        "English instruction and curriculum composition for primary and secondary students"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "",
+      "institution": "Independent study",
+      "year": "2016 – present",
+      "detail": "Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant; full time since 2025."
+    },
+    {
+      "degree": "Associate of Arts with Emphasis in Philosophy",
+      "institution": "Normandale Community College",
+      "location": "Bloomington, MN",
+      "year": "2014 – 2016"
+    },
+    {
+      "degree": "",
+      "institution": "University of Minnesota Duluth",
+      "location": "Duluth, MN",
+      "year": "2009 – 2011"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Property management",
+      "items": [
+        "HUD PRAC 202/811",
+        "Section 8 and tax-credit compliance",
+        "Leasing and renewals",
+        "Budgeting",
+        "Recertifications"
+      ]
+    },
+    {
+      "group": "Software",
+      "items": [
+        "AppFolio",
+        "Yardi",
+        "OneSite",
+        "Standard office software"
+      ]
+    },
+    {
+      "group": "Operations",
+      "items": [
+        "Team leadership",
+        "Hiring and training",
+        "Policy and procedure development",
+        "Licensing",
+        "Payroll"
+      ]
+    }
+  ],
+  "works": [
+    {
+      "title": "The Madisonian Separation of Powers Objective Compliance Test",
+      "year": "2026",
+      "url": "https://kirchner.ink/work/madisonian-test"
+    }
+  ],
+  "availability": "Open to opportunities",
+  "portrait": "/portrait.jpg"
+}

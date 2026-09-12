@@ -1,0 +1,30 @@
+<!doctype html>
+<!--
+  public/__forms/open-reading.html — the static definition of the Open Readings
+  answer form. Netlify discovers forms from static HTML at deploy time, so this
+  file exists for that detection and as the POST target of the client form
+  (app/research/_readings/ReadingAnswerForm.tsx). It is not a page anyone reads.
+  Field names here MUST match the client form exactly; "bot-field" is the honeypot.
+-->
+<html lang="en"><head><meta charset="utf-8"><title>Open Readings answer form (definition)</title><meta name="robots" content="noindex"></head>
+<body>
+<form name="open-reading" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/__forms/open-reading.html">
+  <input type="hidden" name="form-name" value="open-reading">
+  <input type="hidden" name="item_id">
+  <input type="hidden" name="collection">
+  <input type="text" name="bot-field">
+  <input type="text" name="letter">
+  <textarea name="reading"></textarea>
+  <textarea name="note"></textarea>
+  <input type="text" name="name">
+  <input type="text" name="credentials">
+  <input type="email" name="contact">
+  <input type="checkbox" name="no_contact">
+  <input type="text" name="publish_choice">
+  <input type="checkbox" name="anonymous">
+  <input type="checkbox" name="credentials_public">
+  <input type="checkbox" name="ack_consent">
+  <input type="hidden" name="page">
+  <button type="submit">Submit</button>
+</form>
+</body></html>
