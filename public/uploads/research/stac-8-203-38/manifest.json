@@ -1,0 +1,318 @@
+{
+  "archive": {
+    "id": "stac-8-203-38",
+    "ref": "STAC 8/203/38",
+    "title": "Lloyd v. Barker (Star Chamber, 1607)",
+    "dated": "Trinity term, 5 Jac. I (1607)",
+    "source": "The National Archives (UK), Kew — series STAC 8 (Star Chamber Proceedings, James I)",
+    "pieces": 10
+  },
+  "images": {
+    "published": true,
+    "rightsHolder": "The National Archives (UK)",
+    "rightsNote": "Images reproduced by permission of The National Archives (UK) Image Library (web-publication licence; the underlying record copies were supplied under order RC8368179).",
+    "reuseNote": "Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”"
+  },
+  "leaves": [
+    {
+      "id": "001",
+      "image": "leaves/8368179_STAC_8_203_38_001.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_001.jpg",
+      "imageBytes": 1649090,
+      "sha256": "ee090a2477bd5098d71a4e915d4f9fed55c34aae489e35c1debecc459e658be0",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 1. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 001 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M001.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)",
+          "pdf": "pdfs/_WORKING_001_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
+          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "image": "leaves/8368179_STAC_8_203_38_002.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_002.jpg",
+      "imageBytes": 2543112,
+      "sha256": "3e81992d0e6e50c135bc4940aa101e6c15904b645e40304565fdfb05e6d402aa",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 2. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 002 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M002.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)",
+          "pdf": "pdfs/_WORKING_002_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
+          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "image": "leaves/8368179_STAC_8_203_38_003.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_003.jpg",
+      "imageBytes": 2398117,
+      "sha256": "9746f1142f1a979dca55ca42dca208e78a71d418a8f414f763ff5bb5ed6d97ba",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 3. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 003 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M003.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)",
+          "pdf": "pdfs/_WORKING_003_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "001–003L",
+          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
+        }
+      ]
+    },
+    {
+      "id": "004",
+      "image": "leaves/8368179_STAC_8_203_38_004.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_004.jpg",
+      "imageBytes": 2602090,
+      "sha256": "a94519159b28985360252e84154cc707918419ab8eb4944a83ec94e738266e38",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 4. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 004 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M004.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)",
+          "pdf": "pdfs/_WORKING_004_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        }
+      ]
+    },
+    {
+      "id": "005",
+      "image": "leaves/8368179_STAC_8_203_38_005.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_005.jpg",
+      "imageBytes": 2639609,
+      "sha256": "b0ce2627cd6240dd6e0cc9715f958eedad914941c332262a50467bd2ad93d364",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 5. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 005 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M005.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)",
+          "pdf": "pdfs/_WORKING_005_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        }
+      ]
+    },
+    {
+      "id": "006",
+      "image": "leaves/8368179_STAC_8_203_38_006.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_006.jpg",
+      "imageBytes": 2587819,
+      "sha256": "3c0577e937849ecc058338ad1044c5704455f1a454666c2ae2b3981662768910",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 6. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 006 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M006.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)",
+          "pdf": "pdfs/_WORKING_006_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        }
+      ]
+    },
+    {
+      "id": "007",
+      "image": "leaves/8368179_STAC_8_203_38_007.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_007.jpg",
+      "imageBytes": 1185353,
+      "sha256": "fb14e23bd7b6caa6def6ff0151ba8c8037f48759aaa1a5e303cd573ec88f3462",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 7. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 007 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M007.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)",
+          "pdf": "pdfs/_WORKING_007_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "003–007",
+          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
+          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
+        }
+      ]
+    },
+    {
+      "id": "008",
+      "image": "leaves/8368179_STAC_8_203_38_008.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_008.jpg",
+      "imageBytes": 2571361,
+      "sha256": "d4d9c3e71ea834963436efa1794d72a9101426051d6a1b87575c563fa0268f92",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 8. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 008 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M008.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)",
+          "pdf": "pdfs/_WORKING_008_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "008",
+          "title": "Working transcription — membrane 008 (the Articles/interrogatories vs Lloyd), dedicated line-by-line sweep",
+          "pdf": "pdfs/_WORKING_008_TRANSCRIPTION.pdf"
+        }
+      ]
+    },
+    {
+      "id": "009",
+      "image": "leaves/8368179_STAC_8_203_38_009.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_009.jpg",
+      "imageBytes": 2495156,
+      "sha256": "889cf85b563be6c1222d7c521f87af0c47f9a51b2392dd9a4d5866189db83d05",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 9. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 009 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M009.pdf"
+        },
+        {
+          "kind": "index",
+          "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)",
+          "pdf": "pdfs/_WORKING_009_LINE_INDEX.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "009",
+          "title": "Working transcription — membrane 009",
+          "pdf": "pdfs/_WORKING_009_TRANSCRIPTION.pdf"
+        }
+      ]
+    },
+    {
+      "id": "010",
+      "image": "leaves/8368179_STAC_8_203_38_010.jpg",
+      "thumb": "thumbs/8368179_STAC_8_203_38_010.jpg",
+      "web": "web/8368179_STAC_8_203_38_010.jpg",
+      "imageBytes": 45575855,
+      "sha256": "ccbaf25b529dd3c036e6de44ecd1eec52b5a95cce8867536a98d9d895f12daab",
+      "credit": "The National Archives, Kew, STAC 8/203/38, m. 10. Reproduced by permission of The National Archives.",
+      "docs": [
+        {
+          "kind": "transcript",
+          "title": "CANONICAL TRANSCRIPT — MEMBRANE 010 (TNA STAC 8/203/38)",
+          "pdf": "pdfs/TRANSCRIPT_M010.pdf"
+        },
+        {
+          "kind": "transcription",
+          "span": "010",
+          "title": "Working transcription — membrane 010 (defendant's Answer), full line-by-line pass",
+          "pdf": "pdfs/_WORKING_010_TRANSCRIPTION.pdf"
+        }
+      ]
+    }
+  ],
+  "workingPapers": [
+    {
+      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)",
+      "pdf": "pdfs/_WORKING_P4C_AUDIT.pdf"
+    },
+    {
+      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)",
+      "pdf": "pdfs/_WORKING_REZOOM_VERDICTS_2026-07-02.pdf"
+    },
+    {
+      "title": "CORRECTIONS LOG — the transcription's record of catching its own errors",
+      "pdf": "pdfs/CORRECTIONS_LOG.pdf"
+    },
+    {
+      "title": "QUOTATION CONCORDANCE — every STAC 8/203/38 reading quoted in print, traced to its evidence",
+      "pdf": "pdfs/QUOTATION_CONCORDANCE.pdf"
+    },
+    {
+      "title": "Reading Companion — TNA STAC 8/203/38 (*Floyd v. Barker* Star Chamber depositions, 1607)",
+      "pdf": "pdfs/READING_COMPANION_STAC_8_203_38.pdf"
+    },
+    {
+      "title": "FOR REVIEWERS — Independent verification of the STAC 8/203/38 transcription",
+      "pdf": "pdfs/README_FOR_REVIEWERS.pdf"
+    },
+    {
+      "title": "PRECISION PASS (third pass) — master gap ledger — opened 2026-07-02",
+      "pdf": "pdfs/_PRECISION_PASS_LEDGER.pdf"
+    },
+    {
+      "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",
+      "pdf": "pdfs/markdown_formatting_guide.pdf"
+    }
+  ],
+  "crops": {
+    "count": 0,
+    "index": {}
+  }
+}

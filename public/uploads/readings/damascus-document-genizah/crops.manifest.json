@@ -1,0 +1,248 @@
+{
+  "_generated": {
+    "by": "scripts/build-reading-crops.mjs",
+    "at": "2026-09-09"
+  },
+  "crops": {
+    "cd-a-v-4": {
+      "sha256": "b38a3fde6eab5a12c4532260c88b9335ab44c12b9c53b386207dea7b2aae321b",
+      "thumb_sha256": "bd3ee8e29bbea22037081fbac4cb1a2538b7cbca7a0c36d13e93aad10cfab66d",
+      "source_sha256": "3339a22f993c8fe79356f968adad721d42b0c4ff21ccd8fdd05855bb06a0f51d",
+      "source_kind": "shelf",
+      "source_actual_sha256": "3339a22f993c8fe79356f968adad721d42b0c4ff21ccd8fdd05855bb06a0f51d",
+      "region": {
+        "x": 998,
+        "y": 457,
+        "w": 443,
+        "h": 58
+      },
+      "zoom": 4,
+      "width": 1772,
+      "height": 232
+    },
+    "cd-a-vii-21": {
+      "sha256": "e8064cd732f1e0225ea75f6b8e8c45a0a8d8b2a9f4764cd95e1afae14c594f9f",
+      "thumb_sha256": "0f1547bfb492d33ed8d0d5cde8cbfedb751dee7ef8ec8019766aab2ba752b244",
+      "source_sha256": "35eec7aa15e32f33ba0140140b8acc474eb159fa2b2c2bcb83d68fd276cd61ad",
+      "source_kind": "shelf",
+      "source_actual_sha256": "35eec7aa15e32f33ba0140140b8acc474eb159fa2b2c2bcb83d68fd276cd61ad",
+      "region": {
+        "x": 1026,
+        "y": 1436,
+        "w": 524,
+        "h": 70
+      },
+      "zoom": 4,
+      "width": 2096,
+      "height": 280
+    },
+    "cd-a-viii-17": {
+      "sha256": "647e201cba74595c23006e4aa2989488c0f47673857931d7ff11fd1aa6b21d44",
+      "thumb_sha256": "8c2b987e51470805483887ae87f76c9e929705dd75781c42cce97d4a5c3debff",
+      "source_sha256": "042c0b6eceb229211546027c621b57a2cdc7e509a660658b69b663c2e080cea9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "042c0b6eceb229211546027c621b57a2cdc7e509a660658b69b663c2e080cea9",
+      "region": {
+        "x": 740,
+        "y": 1220,
+        "w": 573,
+        "h": 68
+      },
+      "zoom": 4,
+      "width": 2292,
+      "height": 272
+    },
+    "cd-a-xiv-20": {
+      "sha256": "ff952f999bb9aab74ba5b73784bede9f43b840541f268f72fb0bbc1ba9014b6c",
+      "thumb_sha256": "1d3f8c1f3e3f41f65780c8985c8f7ba327df6e35e643dd8e6e104bf9c5a41412",
+      "source_sha256": "1bba9663128936434cb4c29a7dc725c55bb10b11aefe6a5e4ccf924b0d23c496",
+      "source_kind": "shelf",
+      "source_actual_sha256": "1bba9663128936434cb4c29a7dc725c55bb10b11aefe6a5e4ccf924b0d23c496",
+      "region": {
+        "x": 312,
+        "y": 1347,
+        "w": 948,
+        "h": 53
+      },
+      "zoom": 4,
+      "width": 2400,
+      "height": 134
+    },
+    "cd-a-xv-1": {
+      "sha256": "b5bb050574225fe4ecf946a66aff7ced6a67a634f9c61fc4616a5b20e0c9824e",
+      "thumb_sha256": "f14201f952ba44abd9e6245cc76d103be6d9899bfc22bffb42191f68e3c8309a",
+      "source_sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905",
+      "source_kind": "shelf",
+      "source_actual_sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905",
+      "region": {
+        "x": 173,
+        "y": 250,
+        "w": 681,
+        "h": 48
+      },
+      "zoom": 4,
+      "width": 2400,
+      "height": 169
+    },
+    "cd-a-xv-11": {
+      "sha256": "9198201b6e605a96e18fe415f4a803a5af1310cf34542288de1abd8a9d3b2cce",
+      "thumb_sha256": "23c9fc909484561a5dddda1f515da03c62719c40d0b21d10b0d3e7e5e0fddc5c",
+      "source_sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905",
+      "source_kind": "shelf",
+      "source_actual_sha256": "1d24d15e03cf2c75bdc732b728337bf829d7956cbee2b101b9950a6d1467f905",
+      "region": {
+        "x": 173,
+        "y": 723,
+        "w": 1311,
+        "h": 44
+      },
+      "zoom": 4,
+      "width": 2400,
+      "height": 81
+    },
+    "cd-b-xix-2-a": {
+      "sha256": "8add562c5426c8e6b025957cbf78a4cf03514ed2efe34cd9b2f885f70b8a715d",
+      "thumb_sha256": "87648c0ba957275b881d4dd0223fbe032966f68338b1dccf87b490fb9b5e25bb",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 612,
+        "y": 200,
+        "w": 536,
+        "h": 43
+      },
+      "zoom": 4,
+      "width": 2144,
+      "height": 172
+    },
+    "cd-b-xix-2-b": {
+      "sha256": "8add562c5426c8e6b025957cbf78a4cf03514ed2efe34cd9b2f885f70b8a715d",
+      "thumb_sha256": "87648c0ba957275b881d4dd0223fbe032966f68338b1dccf87b490fb9b5e25bb",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 612,
+        "y": 200,
+        "w": 536,
+        "h": 43
+      },
+      "zoom": 4,
+      "width": 2144,
+      "height": 172
+    },
+    "cd-b-xix-12": {
+      "sha256": "d986a454d1a2dada321e8f59b6a5e6267b48a92115e9cf6d911e0531ac534902",
+      "thumb_sha256": "c515582392c5814d74922c8596a072521e18a2522179466b9251a0cf4d08a986",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 420,
+        "y": 646,
+        "w": 537,
+        "h": 43
+      },
+      "zoom": 4,
+      "width": 2148,
+      "height": 172
+    },
+    "cd-b-xix-29": {
+      "sha256": "5563be1452ceba0a5db54b0f653a43021d7b5e317fa77b422d74a1c156fbe883",
+      "thumb_sha256": "150d7179a23304dfa505224351feb930d08c4a791ce70cf7c2bfd0852e779e08",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 612,
+        "y": 1393,
+        "w": 546,
+        "h": 37
+      },
+      "zoom": 4,
+      "width": 2184,
+      "height": 148
+    },
+    "cd-b-xix-32-33": {
+      "sha256": "9588910de596460ed7e9ca03f0e9f51cf5b99e63fd03e4c8adf41035dbae84c3",
+      "thumb_sha256": "12c4b817ba0106f5c0e9e41aea2786a5f40d960527ee08cd09f82af65833dd00",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 210,
+        "y": 1515,
+        "w": 593,
+        "h": 73
+      },
+      "zoom": 4,
+      "width": 2372,
+      "height": 292
+    },
+    "cd-b-xix-35": {
+      "sha256": "d53e056c0c6463fa9e4e24988b8541ac29b9e7589b0b57f9ca30f81ff3ce1b82",
+      "thumb_sha256": "2ffbdf2f95cdc53996c094ab4a220e1470b13074d33d37510fab3c1e0c9c9c88",
+      "source_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "source_kind": "shelf",
+      "source_actual_sha256": "2fc761bb000d8b136fcc16154a0a6b94760802cb96b10a84f392c76e76edc0f9",
+      "region": {
+        "x": 238,
+        "y": 1641,
+        "w": 527,
+        "h": 38
+      },
+      "zoom": 4,
+      "width": 2108,
+      "height": 152
+    },
+    "cd-b-xx-1": {
+      "sha256": "4bc1917e111abea41cdd7ec8006849324fd100a6c53caaf9aae93f13382736b7",
+      "thumb_sha256": "f7b0b2ec49d77af68e1ea57bf1dc0dc6fa51f6ef9a08596126a54bfaab6b4565",
+      "source_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "source_kind": "shelf",
+      "source_actual_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "region": {
+        "x": 673,
+        "y": 201,
+        "w": 455,
+        "h": 41
+      },
+      "zoom": 4,
+      "width": 1820,
+      "height": 164
+    },
+    "cd-b-xx-15": {
+      "sha256": "9d4ff10cd393afd227ab70923b6d49a36aed7b09dd8f0248f786ad3724a11288",
+      "thumb_sha256": "822a51e94d4eb51271e54f3f536c29328836c42ed5433c568b61d83f7e6d5043",
+      "source_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "source_kind": "shelf",
+      "source_actual_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "region": {
+        "x": 345,
+        "y": 845,
+        "w": 676,
+        "h": 39
+      },
+      "zoom": 4,
+      "width": 2400,
+      "height": 138
+    },
+    "cd-b-xx-32": {
+      "sha256": "05b089e31675caacad7af217ecbbf67fc2f6c612c762809dc876f53761c793fb",
+      "thumb_sha256": "515bb724e9b0c052f24c910802f23b53c92768a170b53e809a332a711ebb95b9",
+      "source_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "source_kind": "shelf",
+      "source_actual_sha256": "465caaac9f26c23b6df87482842016de1a7d5adcd805ec64b202f93d29939a31",
+      "region": {
+        "x": 171,
+        "y": 1599,
+        "w": 502,
+        "h": 42
+      },
+      "zoom": 4,
+      "width": 2008,
+      "height": 168
+    }
+  }
+}

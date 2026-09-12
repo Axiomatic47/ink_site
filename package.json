@@ -1,0 +1,47 @@
+{
+  "name": "ink_site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "kirchner.ink \u2014 Joseph Kirchner's publishing and grant-funding site (static Next.js export on Netlify)",
+  "scripts": {
+    "dev": "next dev",
+    "validate-cv": "node scripts/validate-cv.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "build": "npm run readings:pull && npm run cv:check && npm run validate-cv && npm run validate-readings && npm run build:cv-pdf && npm run check:pdf && npm run typecheck && next build",
+    "start": "npx serve out",
+    "build:cv-pdf": "node scripts/build-cv-pdf.mjs",
+    "cv:sync": "node scripts/cv-from-resume.mjs",
+    "cv:check": "node scripts/cv-from-resume.mjs --check",
+    "readings:pull": "node scripts/pull-reading-answers.mjs",
+    "validate-readings": "node scripts/validate-readings.mjs",
+    "test:console": "node scripts/test-console.mjs",
+    "check:pdf": "node scripts/check-pdf-private.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.0.3",
+    "lucide-react": "^1.43.0",
+    "next": "^16.2.10",
+    "pdfjs-dist": "^6.3.289",
+    "pdfkit": "^0.20.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.17",
+    "esbuild": "^0.25.9",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "archive": {
+    "id": "hls-ms149-floyd",
+    "ref": "HLS MS 149, ff. 81r–83v",
+    "title": "Floyd v. Barker — the second account (Star Chamber, 1607)",
+    "dated": "Pasch. 5 Jac. I (1607)",
+    "source": "Harvard Law School Library, Historical & Special Collections — HLS MS 149 (Star Chamber Collection, 1607–1623)",
+    "pieces": 6
+  },
+  "images": {
+    "published": true,
+    "rightsHolder": "Harvard Law School Library",
+    "rightsNote": "Reproduced under Harvard Library’s Policy on Access to Digital Reproductions of Works in the Public Domain (2014) and HSC’s Permission to Publish policy — no permission or fee required.",
+    "reuseNote": "Full-resolution downloads are provided freely — the folios reproduce Harvard Law School Library’s open digital reproductions of public-domain material; credit as shown on each folio.",
+    "creditUrl": "https://nrs.lib.harvard.edu/URN-3:HLS.LIBR:29137268"
+  },
+  "leaves": [
+    {
+      "id": "f81r",
+      "image": "leaves/ms149_f81r.jpg",
+      "thumb": "thumbs/ms149_f81r.jpg",
+      "imageBytes": 1224416,
+      "sha256": "a68002de90b7a2bbc532fa720ea03bbf6ec479abd3b3916f6e0df6016fd4b334",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 81r, Seq. 166, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "f81r LINE INDEX — MS 149 (HLS), Floyd v. Barker report, first side",
+          "pdf": "pdfs/_WORKING_MS149_f81r_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f81v",
+      "image": "leaves/ms149_f81v.jpg",
+      "thumb": "thumbs/ms149_f81v.jpg",
+      "imageBytes": 1233366,
+      "sha256": "7d96a0de91ffa5033f346a95ddad2e3be3eb49293fb2a9ee257e5fc1cf4693b2",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 81v, Seq. 167, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 81v (Floyd v. Barker second account, side 2 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f81v_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f82r",
+      "image": "leaves/ms149_f82r.jpg",
+      "thumb": "thumbs/ms149_f82r.jpg",
+      "imageBytes": 1201727,
+      "sha256": "f0089182866690e9eaace1e602fde1f0c6691d816198ed68e57dd05c177a274f",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 82r, Seq. 168, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 82r (Floyd v. Barker second account, side 3 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f82r_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f82v",
+      "image": "leaves/ms149_f82v.jpg",
+      "thumb": "thumbs/ms149_f82v.jpg",
+      "imageBytes": 1209800,
+      "sha256": "62245e0613c91ef0b2cd18a3027c7ba60fd78158280dfed6799c31751e1d2174",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 82v, Seq. 169, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 82v (Floyd v. Barker second account, side 4 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f82v_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f83r",
+      "image": "leaves/ms149_f83r.jpg",
+      "thumb": "thumbs/ms149_f83r.jpg",
+      "imageBytes": 1127550,
+      "sha256": "96747e7901a2798883f1022ffdcd43a6eccde63435a38cbf1705240acca979ad",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 83r, Seq. 170, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 83r (Floyd v. Barker second account, side 5 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f83r_LINE_INDEX.pdf"
+        }
+      ]
+    },
+    {
+      "id": "f83v",
+      "image": "leaves/ms149_f83v.jpg",
+      "thumb": "thumbs/ms149_f83v.jpg",
+      "imageBytes": 1061451,
+      "sha256": "769019420820148e73ab6753cf4eaa01cfc8d0103458257354a6d8ce926fcb4c",
+      "credit": "Star Chamber collection, 1607–1623, HLS MS 149, fol. 83v, Seq. 171, Harvard Law School Library, Historical & Special Collections",
+      "docs": [
+        {
+          "kind": "index",
+          "title": "WORKING LINE INDEX — MS 149 f. 83v (term boundary: Trinitatis 5° Jac., *Brooke vers Oldfield*; side 6 of 6)",
+          "pdf": "pdfs/_WORKING_MS149_f83v_LINE_INDEX.pdf"
+        }
+      ]
+    }
+  ],
+  "workingPapers": [
+    {
+      "title": "WORKING — MS 149 ff. 81r–83v PASS-4 COMPLETENESS AUDIT (#25)",
+      "pdf": "pdfs/_WORKING_MS149_P4C_AUDIT.pdf"
+    },
+    {
+      "title": "WORKING — MS 149 P4D: CONSOLIDATED DELTA + THE_TWO_LOCKS QUOTED-READINGS AUDIT (task #26)",
+      "pdf": "pdfs/_WORKING_MS149_P4D_DELTA_AND_QUOTED_AUDIT.pdf"
+    },
+    {
+      "title": "MS 149 ff. 81r–83v — SURVEY CENSUS + PRECISION LEDGER (pass-4-grade campaign, opened 2026-07-08)",
+      "pdf": "pdfs/_WORKING_MS149_SURVEY_AND_LEDGER.pdf"
+    },
+    {
+      "title": "Reading Companion — HLS MS 149, ff. 81r–83v (*Floyd v. Barker*, the Second Account)",
+      "pdf": "pdfs/READING_COMPANION_ff81r-83v.pdf"
+    },
+    {
+      "title": "HLS MS 149, ff. 81r–83v — *Floyd v. Barker* Second Account (Manuscript Images)",
+      "pdf": "pdfs/README.pdf"
+    },
+    {
+      "title": "FOR REVIEWERS — Independent verification of the HLS MS 149 ff. 81r–83v transcription",
+      "pdf": "pdfs/README_FOR_REVIEWERS.pdf"
+    },
+    {
+      "title": "HAND ATLAS — MS 149 ff. 81r–83v (single later-17c round report hand)",
+      "pdf": "pdfs/_HAND_ATLAS_ms149.pdf"
+    },
+    {
+      "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",
+      "pdf": "pdfs/markdown_formatting_guide.pdf"
+    }
+  ],
+  "crops": {
+    "count": 0,
+    "index": {}
+  }
+}

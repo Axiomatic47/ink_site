@@ -1,0 +1,25 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+.netlify/
+
+# Source documents (personal data: address, phone, references) — never committed
+*.docx
+*.doc
+
+# Generated at build by scripts/build-cv-pdf.mjs
+public/cv/
+
+# Coordination ledgers (Studio signed-push card reads them locally; never committed — matches loe_website)
+.claude/
+
+# Open Readings local queue (dev stand-in for Netlify Blobs)
+.cache/
+
+# Owner Word exports beside the resume markdown (some carry the phone) — never committed;
+# the site PDFs are generated into public/cv/ or placed, phone-free, under public/resume/
+/*.pdf

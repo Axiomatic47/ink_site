@@ -1,0 +1,13 @@
+{
+  "$comment": "Selected pieces presented in the site viewer. PDFs live under public/works/. Order = display order. Owner 2026-09-09: Madisonian test only for now.",
+  "works": [
+    {
+      "slug": "madisonian-test",
+      "title": "The Madisonian Separation of Powers Objective Compliance Test",
+      "year": "2026",
+      "venue": "Independent research",
+      "blurb": "Recovers Madison's framework and derives a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years.",
+      "pdf": "/works/madisonian-separation-of-powers-test.pdf"
+    }
+  ]
+}
