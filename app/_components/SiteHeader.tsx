@@ -43,7 +43,7 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Primary" className="flex items-stretch h-full">
           <Link href="/" aria-current={path === '/' ? 'page' : undefined} className={itemClass(path === '/')}>About</Link>
-          <Link href="/work" aria-current={path.startsWith('/work') ? 'page' : undefined} className={itemClass(path.startsWith('/work'))}>Work</Link>
+          <Link href="/work" aria-current={path.startsWith('/work') ? 'page' : undefined} className={itemClass(path.startsWith('/work'))}>Articles</Link>
           <div ref={menuRef} className="relative flex items-stretch">
             <button type="button" onClick={() => setOpened(isOpen ? null : path)} aria-haspopup="menu" aria-expanded={isOpen} aria-current={onResearch ? 'page' : undefined} className={itemClass(onResearch)}>
               Research <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden />

@@ -7,7 +7,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 
 const cv = JSON.parse(readFileSync(new URL('../content/cv.json', import.meta.url), 'utf8'));
-const { works } = JSON.parse(readFileSync(new URL('../content/works.json', import.meta.url), 'utf8'));
+const { works, collections = [] } = JSON.parse(readFileSync(new URL('../content/works.json', import.meta.url), 'utf8'));
 const errors = [];
 const warnings = [];
 
@@ -64,8 +64,14 @@ for (const [i, w] of works.entries()) {
   if (!/^[a-z0-9-]+$/.test(w.slug ?? '')) errors.push(`works[${i}].slug must be lowercase-hyphen`);
   if (slugs.has(w.slug)) errors.push(`works[${i}].slug duplicate: ${w.slug}`); slugs.add(w.slug);
   if (!w.title?.trim()) errors.push(`works[${i}].title missing`);
-  if (!/^\/works\/[\w.-]+\.pdf$/.test(w.pdf ?? '')) errors.push(`works[${i}].pdf must be /works/<file>.pdf`);
-  else if (!existsSync(new URL(`../public${w.pdf}`, import.meta.url))) errors.push(`works[${i}].pdf ${w.pdf} is missing under public/`);
+  if (w.collection && !collections.some((c) => c.slug === w.collection)) errors.push(`works[${i}].collection ${w.collection} is not in collections`);
+  if (w.pdf) {
+    if (!/^\/works\/[\w.-]+\.pdf$/.test(w.pdf)) errors.push(`works[${i}].pdf must be /works/<file>.pdf`);
+    else if (!existsSync(new URL(`../public${w.pdf}`, import.meta.url))) errors.push(`works[${i}].pdf ${w.pdf} is missing under public/`);
+  } else if (w.body) {
+    if (!/^\/content\/works\/[a-z0-9-]+\.md$/.test(w.body)) errors.push(`works[${i}].body must be /content/works/<slug>.md`);
+    else if (!existsSync(new URL(`..${w.body}`, import.meta.url))) errors.push(`works[${i}].body ${w.body} is missing`);
+  } else errors.push(`works[${i}] needs a pdf or a body`);
   if (w.source && !/^https:\/\//.test(w.source)) errors.push(`works[${i}].source must start with https://`);
 }
 
