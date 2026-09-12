@@ -21,7 +21,7 @@ const outDir = new URL('../public/cv/', import.meta.url);
 mkdirSync(outDir, { recursive: true });
 
 const IN = 72;
-const NAVY = '#1b2540', PAPER = '#f4f1ea', BRASS = '#b08d57', BRASS_INK = '#8a6b3a', MUTED = '#5f6673', RULE = '#d8d2c4', INK = '#1b2540';
+const NAVY = "#1b2540", PAPER = "#f4f1ea", BRASS = "#b08d57", BRASS_INK = "#8a6b3a", MUTED = "#5f6673", INK = "#1b2540";
 const MARGIN = { top: 0.6 * IN, bottom: 0.7 * IN, left: 0.75 * IN, right: 0.75 * IN };
 
 const range = (e) => (!e.end ? `${e.start} – present` : e.end === e.start ? e.start : `${e.start} – ${e.end}`);
