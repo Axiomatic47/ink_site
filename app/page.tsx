@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Mail, MapPin, Link as LinkIcon } from 'lucide-react';
 import { cv } from '@/lib/cv';
 import { SiteShell } from './_components/SiteShell';
@@ -60,7 +61,8 @@ export default function About() {
             )}
           </div>
 
-          {cv.summary && <p className="font-serif text-lg leading-relaxed text-ink/90 max-w-3xl mb-8">{cv.summary}</p>}
+          {cv.summary && <p className="font-serif text-lg leading-relaxed text-ink/90 max-w-3xl mb-3">{cv.summary}</p>}
+          <p className="text-sm mb-8"><Link href="/bio" className="text-accent-ink underline">Read the biography</Link></p>
 
           {cv.pdf ? (
             <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} />
