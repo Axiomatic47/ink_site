@@ -1,7 +1,7 @@
 ---
-title: "Joseph Kirchner Resume"
+title: "Joseph Kirchner Resume (kirchner.ink)"
 output: "Joseph_Kirchner_Resume.docx"
-doc_id: kirchner_resume
+doc_id: kirchner_ink_resume
 formatter: resume
 print_output: "Joseph_Kirchner_Resume_Print.docx"
 web_output: "Joseph_Kirchner_Resume_Web.docx"
