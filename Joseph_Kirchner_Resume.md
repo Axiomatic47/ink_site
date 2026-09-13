@@ -37,7 +37,9 @@ Civil-rights action under 42 U.S.C. §§ 1983 and 1985, with sixteen further fed
 
 - Drafted the Third Amended Complaint (Apr 2026): eighteen counts, eighty-nine cited authorities, fifteen memoranda of law, twelve appendices, and an authenticated forensic exhibit record; briefed both Rule 12 motions (Aug 2026) in sixty-page oppositions on official immunity, Article III standing, and the merits
 
-- Twelve-month investigation of AI platforms and network infrastructure behind the pleading: behavior testing across 1,144 AI models and 15,405 collected artifacts, packet-level forensics across 2,200+ capture segments, and review of publicly disclosed source code; findings pleaded in the complaint and referred to the Minnesota Attorney General; seventeen provisional patent applications (USPTO, 2024 to 2025) on the underlying framework
+- Source-code forensics behind the pleading: the products' runtime behavior was verified against the vendors' own publicly disclosed application source and installed binaries with standard tools (strings, diff, shasum) and cited to file and line; no binary was modified, nothing was decompiled, and no protection measure was defeated
+
+- Network forensics across the Claude, ChatGPT, and Xcode Intelligence platforms: HTTPS interception on operator-owned machines and paid accounts through mitmproxy with an operator-trusted certificate authority, and, for Apple's certificate-pinned services, a pinning bypass by dynamic instrumentation (Frida) in a dedicated Mac Mini test environment; the captured traffic was searched for third-party data subprocessors not named in each platform's published privacy disclosures, and identified them, Datadog, Statsig, Sentry, and Segment among them; filed as Exhibits E through H and referred to the Minnesota Attorney General
 
 ### Plaintiff and Appellant, pro se: Kirchner v. Ellison
 
