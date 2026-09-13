@@ -23,7 +23,7 @@ Independent legal researcher and pro se civil-rights litigant. Independent resea
 
 - **Policy and advocacy:** Legislative testimony · Bill and fiscal-note analysis · Executive correspondence · Bipartisan legislator outreach · Press materials · Coalition-ready written products
 
-- **AI and technology:** Large-scale AI model testing · Network packet forensics · Source-code review · Python data pipelines · Document automation
+- **AI and technology:** System prompt auditing · Network packet forensics · Source-code review · Python data pipelines · Custom software development · Document automation
 
 - **Management:** Team leadership · Hiring and training · Budgets · HUD program compliance · Yardi · AppFolio · OneSite
 
@@ -165,13 +165,19 @@ Regional management of 24 HUD PRAC 202/811 properties, 525 units, across five st
 
 Operations Consulting LLC · Minneapolis, MN · Jan 2021 – Present
 
+Small-business consulting for long-term and short-term clients; part-time since November 2022. Daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for small-business owners.
+
 ### Leasing and Renewals
 
 Housing Hub; Lion Rock Properties · St. Paul and St. Louis Park, MN · Mar 2019 – Nov 2021
 
+Lease Renewal Specialist at Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rate increases, renewal authorizations with third-party ownership, and drafting, sending, and processing lease renewals. Community Coordinator at Lion Rock Properties (Mar 2019 – Oct 2019): tours and lease signings, conveying rights and responsibilities between clients and tenants, maintenance scheduling, and general office work.
+
 ### Instructor
 
 École Française · Hurghada, Egypt · Jun 2017 – Jan 2018
+
+English instruction and curriculum composition for primary and secondary students.
 
 ## Education
 
@@ -181,7 +187,7 @@ Housing Hub; Lion Rock Properties · St. Paul and St. Louis Park, MN · Mar 2019
 
 ### Associate of Arts with Emphasis in Philosophy
 
-Normandale Community College · Bloomington, MN · 2014 – 2016
+Normandale Community College · Bloomington, MN · 2015 – 2016
 
 ### University of Minnesota Duluth
 
