@@ -77,7 +77,7 @@ Feb 2026
 
 ### The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity
 
-Book, working draft · https://kirchner.ink/research · 2026
+Book, working draft · https://kirchner.ink/research · 2021 – 2026
 
 A history of sovereign, absolute, and qualified immunity as three names for one exemption, descended from the Star Chamber's decree in Floyd v. Barker (1607), read from the cause file in The National Archives (STAC 8/203/38) rather than from Coke's report, and followed node by node from Randall v. Brigham (1868) through Harlow v. Fitzgerald (1982) to Trump v. United States (2024).
 
@@ -89,9 +89,9 @@ A history of sovereign, absolute, and qualified immunity as three names for one 
 
 ### The Madisonian Separation of Powers Objective Compliance Test
 
-Independent research · https://kirchner.ink/work/madisonian-test · 2026
+Independent research · https://kirchner.ink/work/madisonian-test · 2025
 
-Recovers Madison's own framework and derives from it a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021). Filed in court format in Kirchner v. Johnson; the version published here is the academic version.
+Recovers Madison's own framework and derives from it a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021). Filed in court format in Kirchner v. Johnson.
 
 ### The Board of Peace: An Operational Anatomy of Usurpation at the International Scale
 
@@ -105,7 +105,7 @@ Applies the framework's diagnostic apparatus to the Board of Peace's formal inst
 
 ### Bodily Jurisdiction: The Floor of Constitutional Authority
 
-Independent research · https://kirchner.ink/work/bodily-jurisdiction-the-floor-of-constitutional-authority · 2026
+Independent research · https://kirchner.ink/work/bodily-jurisdiction-the-floor-of-constitutional-authority · 2024
 
 Restates bodily autonomy as jurisdiction rather than as a balanceable right: the body is a sovereign jurisdictional sphere analogous to a state's territory, so that regulation inside it is not an interference to be weighed but an act outside the state's jurisdiction altogether, a posture categorically different from the Roe, Casey, and Dobbs tradition.
 
