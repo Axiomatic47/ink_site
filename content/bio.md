@@ -1,6 +1,6 @@
 ---
 title: Biography
-updated: 2026-09-12
+updated: 2026-09-13
 ---
 
 Joseph Kirchner is an independent researcher in legal history, political philosophy, and the separation of powers, and a property-management professional in the Twin Cities of Minnesota. He is the author of the papers collected on this site and of a forthcoming history of immunity built on a seventeenth-century Star Chamber file that had never before been transcribed.
@@ -23,4 +23,6 @@ Kirchner is a member of the Selden Society, the learned society for the history 
 
 Alongside the research he has worked in property management since 2019: leasing, renewals, and site management in the Twin Cities, then regional management of a HUD-assisted portfolio of twenty-four properties across five states, and management of more than two hundred units across Minnesota until that portfolio's sale in 2025. He also owns a small consultancy serving small businesses.
 
-The degree he did not finish is answered by the work itself. What the interruption left uncertified, the research now demonstrates, in the papers, the archive, and the book.
+## Character and Ethic
+
+Kirchner brings a strong work ethic to complex, interdisciplinary problems, and he thinks and decides clearly in difficult, high-stakes situations. When the work requires that no stone be left unturned, he turns every stone. He holds a passion for history, culture, and language, and a firm belief in the quality of character their study builds. He holds it true that justice is a physical property of our world, subject only to the will of those who advocate for it.
