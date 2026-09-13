@@ -23,6 +23,3 @@ public/cv/
 # Owner Word exports beside the resume markdown (some carry the phone) — never committed;
 # the site PDFs are generated into public/cv/ or placed, phone-free, under public/resume/
 /*.pdf
-
-# Cover letters and other personal correspondence beside the resume (Studio-boarded, never committed)
-/letters/
