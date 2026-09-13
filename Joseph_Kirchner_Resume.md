@@ -165,19 +165,19 @@ Regional management of 24 HUD PRAC 202/811 properties, 525 units, across five st
 
 Operations Consulting LLC · Minneapolis, MN · Jan 2021 – Present
 
-Small-business consulting for long-term and short-term clients; part-time since November 2022. Daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for small-business owners.
+Small-business consulting, part time since November 2022: daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for owners.
 
 ### Leasing and Renewals
 
 Housing Hub; Lion Rock Properties · St. Paul and St. Louis Park, MN · Mar 2019 – Nov 2021
 
-Lease Renewal Specialist at Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rate increases, renewal authorizations with third-party ownership, and drafting, sending, and processing lease renewals. Community Coordinator at Lion Rock Properties (Mar 2019 – Oct 2019): tours and lease signings, conveying rights and responsibilities between clients and tenants, maintenance scheduling, and general office work.
+Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rates, renewal authorizations with third-party owners, and processing of lease renewals. Lion Rock (Mar – Oct 2019): tours, lease signings, tenant relations, and maintenance scheduling.
 
 ### Instructor
 
 École Française · Hurghada, Egypt · Jun 2017 – Jan 2018
 
-English instruction and curriculum composition for primary and secondary students.
+English instruction and curriculum for primary and secondary students.
 
 ## Education
 
