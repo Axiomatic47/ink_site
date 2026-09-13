@@ -25,6 +25,7 @@ export interface Work {
   venue?: string;
   url?: string;
   note?: string;        // the short description under the title (owner 2026-09-12)
+  highlights?: string[]; // bullets under a detailed entry
 }
 /** an entry of a resume section the fixed keys do not carry (Civil Rights and Legal Work, Research, ...) */
 export interface SectionEntry {

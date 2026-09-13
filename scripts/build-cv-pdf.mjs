@@ -157,6 +157,7 @@ function render(variant, outPath) {
       if (i) doc.y += 6;
       heading(w0.title, w0.venue || '', w0.url ? shortUrl(w0.url) : '', w0.year, 11);
       if (w0.note) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(w0.note, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
+      if (w0.highlights?.length) bullets(w0.highlights, L, W);
     });
   };
   const renderSkills = (title = 'Skills') => {

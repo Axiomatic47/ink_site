@@ -153,6 +153,7 @@ out.works = (works ? works.entries : []).map((e) => {
   if (m.rest[0]) o.venue = m.rest[0];
   if (m.links[0]) o.url = fullUrl(m.links[0]);
   if (e.paras.length) o.note = e.paras.join(' ');   // the short description (owner 2026-09-12)
+  if (e.bullets.length) o.highlights = e.bullets;   // the detailed entries (owner 2026-09-12)
   return o;
 });
 // Every section, in the resume's order, for renderers that follow the resume
