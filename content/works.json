@@ -13,12 +13,6 @@
       "date": "2026-09-12",
       "featured": true,
       "local": true
-    },
-    {
-      "slug": "abrahamic-faith-reconciliation-thesis",
-      "title": "Abrahamic Faith Reconciliation Thesis",
-      "date": "2025-10-16",
-      "featured": false
     }
   ],
   "works": [
@@ -142,28 +136,6 @@
       "blurb": "Applies the corpus's diagnostic apparatus to the Board of Peace's formal instruments, finding a dual Power Separation Vulnerability — paradigm USURPATION by the Board paired with paradigm ABDICATION by the UN Security Council in Resolution 2803.",
       "featured": false,
       "pdf": "/works/board-of-peace-anatomy.pdf"
-    },
-    {
-      "slug": "the-egalitarian-foundations-of-abrahamic-tradition",
-      "collection": "abrahamic-faith-reconciliation-thesis",
-      "title": "The Egalitarian Foundations of Abrahamic Tradition",
-      "date": "2025-10-16",
-      "year": "2025",
-      "venue": "Independent research",
-      "blurb": "For millennia, hierarchical gender relations and ethnic exclusivity have been justified as divinely ordained patterns established in Genesis and faithfully transmitted through Abrahamic religious traditions. This paper challenges that narrative through convergent evidence from three independent domains of inquiry.…",
-      "featured": false,
-      "body": "/content/works/the-egalitarian-foundations-of-abrahamic-tradition.md"
-    },
-    {
-      "slug": "thesis-outline",
-      "collection": "abrahamic-faith-reconciliation-thesis",
-      "title": "Thesis Outline",
-      "date": "2025-10-16",
-      "year": "2025",
-      "venue": "Independent research",
-      "blurb": "This research establishes three interconnected discoveries that fundamentally challenge traditional interpretations of Genesis and the development of Abrahamic religious traditions: (1) linguistic analysis of Hebrew temporal markers demonstrates Adam was created on the third day of creation, not the sixth, with…",
-      "featured": false,
-      "body": "/content/works/thesis-outline.md"
     },
     {
       "slug": "a-restorative-reading-of-genesis-1-3",
