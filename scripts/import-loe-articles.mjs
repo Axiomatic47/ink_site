@@ -42,11 +42,13 @@ const YEAR_OVERRIDES = {
 
 // Collections the owner keeps OFF this site (owner 2026-09-12): the Transcendental
 // Method series altogether; the Formal Logic & Falsification exhibits and the
-// Unified Mathematical Model for now.
+// Unified Mathematical Model for now. The Abrahamic Faith Reconciliation Thesis
+// (both articles) removed on the owner's word 2026-09-13.
 const EXCLUDED_COLLECTIONS = new Set([
   'transcendental-method-for-substrate-independent-consciousness-recognition',
   'laws-of-existence-foundational-exhibits',
   'unified-mathematical-model',
+  'abrahamic-faith-reconciliation-thesis',
 ]);
 
 const files = readdirSync(MANUSCRIPT).filter((f) => f.endsWith('.json')).sort();
