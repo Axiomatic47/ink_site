@@ -83,9 +83,14 @@ const normaliseMath = (md) => md.split('\n').flatMap((line) => {
 const clip = (s, n = 320) => (s.length <= n ? s : s.slice(0, n).replace(/\s+\S*$/, '') + '…');
 
 // stale outputs go first, so a removed source article does not linger
-for (const f of readdirSync(OUT_MD)) if (f.endsWith('.md')) rmSync(join(OUT_MD, f));
+// Manuscripts published from outside lawsofexistence.com (scripts/import-local-works.mjs)
+// are marked `local: true` and survive this rewrite, with their collections.
+const prior = existsSync(OUT_JSON) ? JSON.parse(readFileSync(OUT_JSON, 'utf8')) : { collections: [], works: [] };
+const localCollections = (prior.collections || []).filter((c) => c.local);
+const localWorks = (prior.works || []).filter((w) => w.local);
+const collections = [], works = [], seen = new Set(localWorks.map((w) => w.slug));
 
-const collections = [], works = [], seen = new Set();
+for (const f of readdirSync(OUT_MD)) if (f.endsWith('.md') && !localWorks.some((w) => w.body === `/content/works/${f}`)) rmSync(join(OUT_MD, f));
 let pdfs = 0, mds = 0;
 for (const c of ordered) {
   collections.push({ slug: c.slug, title: c.title, date: (c.date || '').slice(0, 10), featured: Boolean(c.featured) });
@@ -116,9 +121,10 @@ for (const c of ordered) {
   }
 }
 
+const featuredFirst = (a, b) => [...a.filter((c) => c.featured), ...b.filter((c) => c.featured), ...a.filter((c) => !c.featured), ...b.filter((c) => !c.featured)];
 const out = {
-  $comment: `Articles library — imported from lawsofexistence.com's manuscript collections by scripts/import-loe-articles.mjs (owner 2026-09-12). PDFs under public/works/, text articles under content/works/<slug>.md. Re-run the script to refresh; do not hand-edit imported entries.`,
-  collections, works,
+  $comment: `Articles library — imported from lawsofexistence.com's manuscript collections by scripts/import-loe-articles.mjs (owner 2026-09-12); entries marked local come from scripts/import-local-works.mjs. PDFs under public/works/, text articles under content/works/<slug>.md. Re-run the scripts to refresh; do not hand-edit imported entries.`,
+  collections: featuredFirst(collections, localCollections), works: [...works, ...localWorks],
 };
 writeFileSync(OUT_JSON, JSON.stringify(out, null, 2) + '\n');
 console.log(`import-loe-articles: ${collections.length} collections, ${works.length} articles (${pdfs} PDF, ${mds} text) → content/works.json`);

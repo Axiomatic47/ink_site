@@ -8,6 +8,13 @@
       "featured": true
     },
     {
+      "slug": "genesis",
+      "title": "Genesis",
+      "date": "2026-09-12",
+      "featured": true,
+      "local": true
+    },
+    {
       "slug": "abrahamic-faith-reconciliation-thesis",
       "title": "Abrahamic Faith Reconciliation Thesis",
       "date": "2025-10-16",
@@ -157,6 +164,19 @@
       "blurb": "This research establishes three interconnected discoveries that fundamentally challenge traditional interpretations of Genesis and the development of Abrahamic religious traditions: (1) linguistic analysis of Hebrew temporal markers demonstrates Adam was created on the third day of creation, not the sixth, with…",
       "featured": false,
       "body": "/content/works/thesis-outline.md"
+    },
+    {
+      "slug": "a-restorative-reading-of-genesis-1-3",
+      "collection": "genesis",
+      "title": "A Restorative Reading of Genesis 1–3",
+      "subtitle": "The Creation Narrative in the Hebrew and Its Versions",
+      "date": "2026-09-12",
+      "venue": "Book · working draft",
+      "blurb": "Genesis 1–3 is one narrative told twice. The first telling gives the frame, six days and a rest; the second goes back over the sixth day and gives the detail. A reading of the Hebrew and of its versions, from the Septuagint to the King James, cited at the leaf for every reading.",
+      "featured": true,
+      "year": "2026",
+      "body": "/content/works/a-restorative-reading-of-genesis-1-3.md",
+      "local": true
     }
   ]
 }

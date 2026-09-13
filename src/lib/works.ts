@@ -21,6 +21,7 @@ export interface Work {
   blurb?: string;
   pdf?: string;       // site-relative, under public/works/ — the article as a PDF
   body?: string;      // repo path of the article's markdown text (content/works/<slug>.md)
+  local?: boolean;    // published from the owner's manuscript tree by scripts/import-local-works.mjs (survives the LOE import)
   featured?: boolean;
   source?: string;    // where the piece was first published
 }
