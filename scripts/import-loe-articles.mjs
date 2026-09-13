@@ -32,6 +32,14 @@ mkdirSync(OUT_MD, { recursive: true }); mkdirSync(OUT_PDF, { recursive: true });
 // cv.json and the resume).
 const SLUG_ALIAS = { 'the-madisonian-separation-of-powers-objective-compliance-tes': 'madisonian-test' };
 
+// Authorship years the owner sets over lawsofexistence.com's publication dates
+// (owner 2026-09-13, from the resume's Word comments): the card and the reader
+// show the year alone (no day-level date) for these.
+const YEAR_OVERRIDES = {
+  'madisonian-test': '2025',
+  'bodily-jurisdiction-the-floor-of-constitutional-authority': '2024',
+};
+
 // Collections the owner keeps OFF this site (owner 2026-09-12): the Transcendental
 // Method series altogether; the Formal Logic & Falsification exhibits and the
 // Unified Mathematical Model for now.
@@ -101,7 +109,8 @@ for (const c of ordered) {
     const date = (s.date || c.date || '').slice(0, 10);
     const body = (s.content_level_1 || '').trim();
     const w = {
-      slug, collection: c.slug, title: s.title.trim(), date, year: date.slice(0, 4),
+      slug, collection: c.slug, title: s.title.trim(),
+      date: YEAR_OVERRIDES[slug] ? '' : date, year: YEAR_OVERRIDES[slug] || date.slice(0, 4),
       venue: 'Independent research',
       blurb: clip((s.description || firstParagraph(body) || '').replace(/^Joseph D\. Kirchner\.\s*/, '')),
       featured: Boolean(s.featured),

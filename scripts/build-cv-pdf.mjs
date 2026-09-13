@@ -104,13 +104,14 @@ function render(variant, outPath) {
   // a long organisation name never runs into them.
   const dateWidth = (s) => { doc.font('Helvetica').fontSize(9.5); return doc.widthOfString(s.toUpperCase(), { characterSpacing: 0.5 }) + 14; };
   const dates = (s, y) => doc.font('Helvetica').fontSize(9.5).fillColor(BRASS_INK).text(s.toUpperCase(), L, y, { width: W, align: 'right', characterSpacing: 0.5, lineBreak: false });
-  const heading = (title, left, muted, right, titleSize = 12) => {
+  const heading = (title, left, muted, right, titleSize = 12, link = '') => {
     doc.font('Helvetica').fontSize(10);
     const orgW = doc.widthOfString(left || '') + (muted ? doc.widthOfString(` · ${muted}`) : 0);
     const dW = right ? dateWidth(right) : 0;
     const datesOnOrg = Boolean(right) && orgW + dW <= W;
     const ty = doc.y;
-    doc.font('Times-Bold').fontSize(titleSize).fillColor(NAVY).text(title, L, ty, { width: datesOnOrg || !right ? W : W - dW });
+    // a linked title IS the hyperlink (owner 2026-09-13: no printed URLs — they were truncated slugs)
+    doc.font('Times-Bold').fontSize(titleSize).fillColor(NAVY).text(title, L, ty, { width: datesOnOrg || !right ? W : W - dW, ...(link ? { link, underline: false } : {}) });
     if (right && !datesOnOrg) dates(right, ty + (titleSize - 9.5));
     if (left || muted) {
       const ly = doc.y;
@@ -121,13 +122,14 @@ function render(variant, outPath) {
     } else if (right && datesOnOrg) { const ly = doc.y; dates(right, ly + 0.5); doc.y = ly + 14; }
   };
 
-  if (cv.summary) {
-    section('Summary');
+  const renderSummary = (title = 'Summary') => {
+    if (!cv.summary) return;
+    section(title);
     doc.font('Times-Roman').fontSize(10.5).fillColor(INK).text(cv.summary, L, doc.y, { width: W, lineGap: 2.2 });
-  }
-
-  if (cv.experience?.length) {
-    section('Experience');
+  };
+  const renderExperience = (title = 'Experience') => {
+    if (!cv.experience?.length) return;
+    section(title);
     cv.experience.forEach((e, i) => {
       need(110);
       if (i) doc.y += 9;
@@ -135,29 +137,32 @@ function render(variant, outPath) {
       if (e.summary) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(e.summary, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
       if (e.highlights?.length) bullets(e.highlights, L, W);
     });
-  }
-
-  if (cv.education?.length) {
-    section('Education');
+  };
+  const renderEducation = (title = 'Education') => {
+    if (!cv.education?.length) return;
+    section(title);
     cv.education.forEach((e, i) => {
       need(70);
       if (i) doc.y += 7;
       heading(e.degree || e.institution, e.degree ? e.institution : '', e.location, e.year);
       if (e.detail) doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(e.detail, L, doc.y, { width: W, lineGap: 1 });
     });
-  }
-
-  if (cv.works?.length) {
-    section('Selected Work');
+  };
+  // works: title · venue · url (muted) · year, then the short description
+  const renderWorks = (title = 'Selected Work') => {
+    if (!cv.works?.length) return;
+    section(title);
     cv.works.forEach((w0, i) => {
-      need(50);
+      need(60);
       if (i) doc.y += 6;
-      heading(w0.title, w0.venue || '', '', w0.year, 11);
+      heading(w0.title, w0.venue || '', '', w0.year, 11, w0.url || '');
+      if (w0.note) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(w0.note, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
+      if (w0.highlights?.length) bullets(w0.highlights, L, W);
     });
-  }
-
-  if (cv.skills?.length) {
-    section('Skills');
+  };
+  const renderSkills = (title = 'Skills') => {
+    if (!cv.skills?.length) return;
+    section(title);
     for (const g of cv.skills) {
       need(30);
       const sy = doc.y;
@@ -166,6 +171,34 @@ function render(variant, outPath) {
       doc.font('Times-Roman').fontSize(10.5).fillColor(INK).text(g.items.join(' · '), L + 1.6 * IN, sy, { width: W - 1.6 * IN, lineGap: 1 });
       doc.y = Math.max(doc.y, labelBottom) + 4;
     }
+  };
+  // a generic section (Civil Rights and Legal Work, Advocacy and Public Policy, Research, ...):
+  // entry title · organization (url muted) · dates, summary, bullets
+  const renderGeneric = (sec) => {
+    if (!sec.entries?.length && !sec.paras?.length) return;
+    section(sec.title);
+    for (const para of sec.paras ?? []) { doc.font('Times-Roman').fontSize(10.5).fillColor(INK).text(para, L, doc.y, { width: W, lineGap: 2.2 }); doc.y += 4; }
+    (sec.entries ?? []).forEach((e, i) => {
+      need(110);
+      if (i) doc.y += 9;
+      heading(e.title, e.organization || '', '', e.dates || '', 12, e.url || '');
+      if (e.summary) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(e.summary, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
+      if (e.highlights?.length) bullets(e.highlights, L, W);
+    });
+  };
+
+  if (cv.sections?.length) {
+    // the resume's own order and titles
+    for (const sec of cv.sections) {
+      if (sec.kind === 'summary') renderSummary(sec.title);
+      else if (sec.kind === 'skills') renderSkills(sec.title);
+      else if (sec.kind === 'experience') renderExperience(sec.title);
+      else if (sec.kind === 'education') renderEducation(sec.title);
+      else if (sec.kind === 'works') renderWorks(sec.title);
+      else renderGeneric(sec);
+    }
+  } else {
+    renderSummary(); renderExperience(); renderEducation(); renderWorks(); renderSkills();
   }
 
   doc.end();

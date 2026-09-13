@@ -1,13 +1,13 @@
 {
   "$comment": "Single source of truth for kirchner.ink. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
   "name": "Joseph Kirchner",
-  "headline": "Property Management and Consulting Services · Independent Researcher",
+  "headline": "Civil Rights and Rule of Law Advocacy · Independent Legal Researcher",
   "location": "Edina, Minnesota",
   "email": "joseph@kirchner.cv",
   "pdf": "/resume/Joseph_Kirchner_Resume.pdf",
   "pdf_print": "/resume/Joseph_Kirchner_Resume_Print.pdf",
   "links": [],
-  "summary": "Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Independent researcher since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity; full time since 2025, and the author of an independently published compliance test for separation-of-powers questions and of a history of the immunity doctrine now in draft. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.",
+  "summary": "Independent legal researcher and pro se civil-rights litigant. Independent research since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity, and full time since 2025. Two federal actions filed and briefed since 2025: in the District of Columbia against federal officials and technology companies, and in Minnesota and the Eighth Circuit over the Attorney General's statutory duty to investigate consumer fraud. Written testimony to a Minnesota House committee and a signing-statement request to the Governor on a $23 million fraud-oversight bill. Author of a published six-step compliance test for separation-of-powers questions and of a history of the immunity doctrine now in draft. Six earlier years managing HUD-assisted housing for seniors and persons with disabilities across five states.",
   "experience": [
     {
       "role": "Independent Researcher",
@@ -15,12 +15,8 @@
       "location": "Edina, MN",
       "start": "2016",
       "end": "",
-      "summary": "Part time from 2016, alongside property management; full time since August 2025. Linguistics, ethics, and social contract theory, with a focus on the Hobbesian and Kantian philosophies (2016–2020); the law, with a special focus on qualified immunity as applied to police officials (from 2020); and, from 2026, a complete genealogy of the doctrine from Floyd v. Barker (1607) to Trump v. United States (2024), with the recovery of its primary-source record at The National Archives (UK) and its commissioned transcription.",
-      "highlights": [
-        "Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years",
-        "Author of “A Restorative Reading of Genesis 1–3: The Creation Narrative in the Hebrew and Its Versions” (working draft, 2026), cataloguing the discrepancies between the Hebrew, Septuagint, and Vulgate accounts of the Genesis narrative",
-        "Commissioned the first transcription of The National Archives file STAC 8/203/38, the record of Floyd v. Barker (1607), by Christopher Whittick, MA FSA, former County Archivist of East Sussex (2026)"
-      ]
+      "summary": "Part time from 2016, alongside property management; full time since August 2025. The work is under Scholarship above.",
+      "highlights": []
     },
     {
       "role": "Property Manager",
@@ -28,13 +24,8 @@
       "location": "St. Paul, MN",
       "start": "Jun 2024",
       "end": "Jul 2025",
-      "summary": "Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.",
-      "highlights": [
-        "Hiring and training of on-site staff",
-        "Development and monitoring of annual budgets",
-        "Supervision of delinquent-rent collection",
-        "Resident annual recertifications and site maintenance, managed in Yardi"
-      ]
+      "summary": "Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale; earlier tenure Nov 2022 to Feb 2023.",
+      "highlights": []
     },
     {
       "role": "Regional Property Manager",
@@ -42,25 +33,8 @@
       "location": "St. Paul, MN",
       "start": "Feb 2023",
       "end": "May 2024",
-      "summary": "Regional management of 24 HUD PRAC 202/811 properties, 525 units across five states.",
-      "highlights": [
-        "Hiring and training of on-site staff",
-        "Development and monitoring of annual budgets",
-        "Supervision of delinquent-rent collection",
-        "Resident annual recertifications and site maintenance"
-      ]
-    },
-    {
-      "role": "Property Manager",
-      "organization": "Premier Housing Management",
-      "location": "St. Paul, MN",
-      "start": "Nov 2022",
-      "end": "Feb 2023",
-      "highlights": [
-        "Team leadership; policy and procedure development",
-        "Section 8 and tax-credit compliance",
-        "Leasing, tenant relations, and maintenance coordination and scheduling"
-      ]
+      "summary": "Regional management of 24 HUD PRAC 202/811 properties, 525 units, across five states.",
+      "highlights": []
     },
     {
       "role": "Owner",
@@ -68,36 +42,17 @@
       "location": "Minneapolis, MN",
       "start": "Jan 2021",
       "end": "",
-      "summary": "Small-business consulting for long-term and short-term clients; part-time since November 2022.",
-      "highlights": [
-        "Daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria",
-        "Operational analysis, licensing, fundraising, payroll, hiring, and training",
-        "Business organization and website construction for small-business owners"
-      ]
+      "summary": "Small-business consulting, part time since November 2022: daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for owners.",
+      "highlights": []
     },
     {
-      "role": "Lease Renewal Specialist",
-      "organization": "Housing Hub",
-      "location": "St. Paul, MN",
-      "start": "Oct 2019",
-      "end": "Nov 2021",
-      "highlights": [
-        "Market analyses for renewal rate increases",
-        "Renewal authorizations with third-party ownership",
-        "Drafting, sending, and processing lease renewals"
-      ]
-    },
-    {
-      "role": "Community Coordinator",
-      "organization": "Lion Rock Properties",
-      "location": "St. Louis Park, MN",
+      "role": "Leasing and Renewals",
+      "organization": "Housing Hub; Lion Rock Properties",
+      "location": "St. Paul and St. Louis Park, MN",
       "start": "Mar 2019",
-      "end": "Oct 2019",
-      "highlights": [
-        "Scheduling and performing tours and lease signings",
-        "Conveying rights and responsibilities between clients and tenants",
-        "Maintenance scheduling and general office work"
-      ]
+      "end": "Nov 2021",
+      "summary": "Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rates, renewal authorizations with third-party owners, and processing of lease renewals. Lion Rock (Mar – Oct 2019): tours, lease signings, tenant relations, and maintenance scheduling.",
+      "highlights": []
     },
     {
       "role": "Instructor",
@@ -105,23 +60,21 @@
       "location": "Hurghada, Egypt",
       "start": "Jun 2017",
       "end": "Jan 2018",
-      "highlights": [
-        "English instruction and curriculum composition for primary and secondary students"
-      ]
+      "summary": "English instruction and curriculum for primary and secondary students.",
+      "highlights": []
     }
   ],
   "education": [
     {
       "degree": "",
       "institution": "Independent study",
-      "year": "2016 – present",
-      "detail": "Part time from 2016, full time since 2025: linguistics, ethics, and social contract theory (Hobbes and Kant), then the law, qualified immunity, and the history of the immunity doctrine."
+      "year": "2016 – present"
     },
     {
       "degree": "Associate of Arts with Emphasis in Philosophy",
       "institution": "Normandale Community College",
       "location": "Bloomington, MN",
-      "year": "2014 – 2016"
+      "year": "2015 – 2016"
     },
     {
       "degree": "",
@@ -132,42 +85,185 @@
   ],
   "skills": [
     {
-      "group": "Property management",
+      "group": "Legal research and writing",
       "items": [
-        "HUD PRAC 202/811",
-        "Section 8 and tax-credit compliance",
-        "Leasing and renewals",
-        "Budgeting",
-        "Recertifications"
+        "Federal civil-rights pleading (42 U.S.C. §§ 1983, 1985)",
+        "Rule 12 briefing",
+        "Appellate briefing",
+        "Statutory and legislative history",
+        "Primary sources (National Archives, HathiTrust, Caselaw Access Project)",
+        "Early modern palaeography"
       ]
     },
     {
-      "group": "Software",
+      "group": "Policy and advocacy",
       "items": [
-        "AppFolio",
-        "Yardi",
-        "OneSite",
-        "Standard office software"
+        "Legislative testimony",
+        "Bill and fiscal-note analysis",
+        "Executive correspondence",
+        "Bipartisan legislator outreach",
+        "Press materials",
+        "Coalition-ready written products"
       ]
     },
     {
-      "group": "Operations",
+      "group": "AI and technology",
+      "items": [
+        "System prompt auditing",
+        "Network packet forensics",
+        "Source-code review",
+        "Python data pipelines",
+        "Custom software development",
+        "Document automation"
+      ]
+    },
+    {
+      "group": "Management",
       "items": [
         "Team leadership",
         "Hiring and training",
-        "Policy and procedure development",
-        "Licensing",
-        "Payroll"
+        "Budgets",
+        "HUD program compliance",
+        "HUD and city inspections",
+        "Yardi",
+        "AppFolio",
+        "OneSite"
       ]
     }
   ],
   "works": [
     {
+      "title": "The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity",
+      "year": "2021 – 2026",
+      "venue": "Book, working draft",
+      "url": "https://kirchner.ink/research",
+      "note": "A history of sovereign, absolute, and qualified immunity as three names for one exemption, descended from the Star Chamber's decree in Floyd v. Barker (1607), read from the cause file in The National Archives (STAC 8/203/38) rather than from Coke's report, and followed node by node from Randall v. Brigham (1868) through Harlow v. Fitzgerald (1982) to Trump v. United States (2024).",
+      "highlights": [
+        "Six parts: English origin and repudiation, 1591–1769; American reception and genealogy, 1761–2024; the constitutional case against the doctrine; the same question put to other sovereigns; the older record of remedies against the judge before 1607, from Babylon to the England of the dooms; and standing, the other door of the same courthouse",
+        "Restores the record the report displaced: first-hand diplomatic transcriptions of the cause file, ten membranes of examinations, interrogatories, and depositions, conformed to the verification transcription commissioned from Christopher Whittick, MA FSA, former County Archivist of East Sussex, against the originals at Kew; the second contemporaneous account in Harvard Law School Library MS 149; leaf images, line indexes, and working papers published for review at kirchner.ink/research",
+        "Argues that the restored 1607 record supplies a factual basis no receiving court ever considered, so that under Webster v. Fall (1925), which holds that questions merely lurking in the record are not decided, a bound district court may review the doctrine's foundation without overruling Harlow v. Fitzgerald or Trump v. United States"
+      ]
+    },
+    {
       "title": "The Madisonian Separation of Powers Objective Compliance Test",
+      "year": "2025",
+      "venue": "Independent research",
+      "url": "https://kirchner.ink/work/madisonian-test",
+      "note": "Recovers Madison's own framework and derives from it a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021). Filed in court format in Kirchner v. Johnson."
+    },
+    {
+      "title": "The Board of Peace: An Operational Anatomy of Usurpation at the International Scale",
       "year": "2026",
-      "url": "https://kirchner.ink/work/madisonian-test"
+      "venue": "Independent research",
+      "url": "https://kirchner.ink/work/the-board-of-peace-an-operational-anatomy-of-usurpation-at-t",
+      "note": "Applies the framework's diagnostic apparatus to the Board of Peace's formal instruments: the Charter of the Board of Peace (January 16, 2026), United Nations Security Council Resolution 2803 (November 17, 2025), the Declarations of the Founding Donors and of the Founding Contributors to the International Stabilization Force, the FIFA memorandum of understanding, and the Davos presentation.",
+      "highlights": [
+        "Finds a dual Power Separation Vulnerability: usurpation at the international scale by the Board, grounded in the Chairman position of Article 3.2 of its Charter, paired with abdication by the Security Council, whose Resolution 2803 supplied operational space rather than exercising the Council's own authority over transitional international administration",
+        "Measures the Board's Charter against the Charter of the United Nations article by article, showing the inversion of sovereign equality, deliberative membership, continuous function, judicial independence, and compliance with the International Court of Justice; tests the Charter against the Ratification Protocol's ten constitutional features and finds failure at every one"
+      ]
+    },
+    {
+      "title": "Bodily Jurisdiction: The Floor of Constitutional Authority",
+      "year": "2024",
+      "venue": "Independent research",
+      "url": "https://kirchner.ink/work/bodily-jurisdiction-the-floor-of-constitutional-authority",
+      "note": "Restates bodily autonomy as jurisdiction rather than as a balanceable right: the body is a sovereign jurisdictional sphere analogous to a state's territory, so that regulation inside it is not an interference to be weighed but an act outside the state's jurisdiction altogether, a posture categorically different from the Roe, Casey, and Dobbs tradition.",
+      "highlights": [
+        "Sets out the layered sovereignty from the individual floor through local, state, federal, and international authority, each level derivative of the floor and granted to protect it, none prior to or above it; the floor is symmetric, obliging the state to protect the individual against private encroachment as well",
+        "States an internal/external test for where the constitutional line falls, anchors the floor doctrinally in McFall v. Shimp, and reads the means-and-views distinction as a floor-protection doctrine resting on the Fundamental Laws of Supremacism and Egalitarianism"
+      ]
+    },
+    {
+      "title": "The Declaration of Humanity: An Inclusive Definition and Its Operational Necessity",
+      "year": "2026",
+      "venue": "Independent research",
+      "url": "https://kirchner.ink/work/the-declaration-of-humanity-an-inclusive-definition-and-its",
+      "note": "Moves the universal premise from assertion, \"all human beings are born free and equal,\" to definition: humanity is every person, every family, every people, and every nation, without exception, precondition, or diminution at any scale. An assertion can be defeated by redescribing the excluded group; a definition cannot, because to deny any member's humanity is to deny the definition itself.",
+      "highlights": [
+        "Eight articles: the definition of humanity, the universal claim at every scale, the purpose of government, the fractal obligation, the foreclosure of redescription, the deliberative form, the reciprocal obligation, and the foundational character",
+        "Traces the premise from the Declaration of Independence (1776) through the Reconstruction Amendments and the Universal Declaration of Human Rights (1948) to the codified order at the international scale, and completes what 1776 began by carrying it into definitional form"
+      ]
     }
   ],
   "availability": "Open to opportunities",
-  "portrait": "/portrait.jpg"
+  "portrait": "/portrait.jpg",
+  "sections": [
+    {
+      "title": "Summary",
+      "kind": "summary"
+    },
+    {
+      "title": "Skills",
+      "kind": "skills"
+    },
+    {
+      "title": "Civil Rights and Legal Work",
+      "kind": "generic",
+      "entries": [
+        {
+          "title": "Plaintiff, pro se: Kirchner v. Johnson, No. 1:25-cv-02735-ACR",
+          "organization": "U.S. District Court for the District of Columbia",
+          "dates": "Aug 2025 – present",
+          "summary": "Civil-rights action under 42 U.S.C. §§ 1983 and 1985, with sixteen further federal and state counts, against the Speaker of the House, the President, the Attorney General, the Chairman of the FCC, the House of Representatives, and five technology companies.",
+          "highlights": [
+            "Drafted the Third Amended Complaint (Apr 2026): eighteen counts, eighty-nine cited authorities, fifteen memoranda of law, twelve appendices, and an authenticated forensic exhibit record; briefed both Rule 12 motions (Aug 2026) in sixty-page oppositions on official immunity, Article III standing, and the merits",
+            "Source-code forensics behind the pleading: the products' runtime behavior was verified against the vendors' own publicly disclosed application source and installed binaries with standard tools (strings, diff, shasum) and cited to file and line; no binary was modified, nothing was decompiled, and no protection measure was defeated",
+            "Network forensics across the Claude, ChatGPT, and Xcode Intelligence platforms: HTTPS interception on operator-owned machines and paid accounts through mitmproxy with an operator-trusted certificate authority, and, for Apple's certificate-pinned services, a pinning bypass by dynamic instrumentation (Frida) in a dedicated Mac Mini test environment; the captured traffic was searched for third-party data subprocessors not named in each platform's published privacy disclosures, and identified them, Datadog, Statsig, Sentry, and Segment among them; filed as Exhibits E through H and referred to the Minnesota Attorney General"
+          ]
+        },
+        {
+          "title": "Plaintiff and Appellant, pro se: Kirchner v. Ellison",
+          "organization": "U.S. District Court for the District of Minnesota · U.S. Court of Appeals for the Eighth Circuit",
+          "dates": "Jan 2026 – present",
+          "summary": "Declaratory and injunctive action over the Minnesota Attorney General's written disclaimer of the duty to investigate consumer fraud that Minn. Stat. § 8.31 imposes, after the office denied a 285-exhibit criminal referral on that ground.",
+          "highlights": [
+            "Filed the original petition (No. 0:26-cv-00726, Jan 2026); after dismissal on pleading-form grounds, briefed the appeal (No. 26-1615, 8th Cir., opening brief May 2026) and refiled a narrowed four-count complaint (No. 0:26-cv-02594, May 2026), briefed through opposition and proposed surreply; dismissed Aug 2026, with a Rule 59(e) motion and appeal in preparation",
+            "Statutory-history research from the General Laws of 1905 to the Legislature's 2025 amendment of Minn. Stat. § 299C.061; a 50-state survey of attorney-general investigative authority; an 1860 to 2019 roster of the office's own criminal matters drawn from its biennial reports and opinions"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Advocacy and Public Policy",
+      "kind": "generic",
+      "entries": [
+        {
+          "title": "Written Testimony: Minnesota House Fraud Prevention and State Agency Oversight Policy Committee",
+          "organization": "S.F. 856 / H.F. 1338, Office of the Inspector General",
+          "dates": "May 2026",
+          "highlights": [
+            "Conditionally opposed a $23.01 million biennial fraud-investigation office built on the premise that the Attorney General lacks investigative authority; proposed a one-sentence corrective amendment preserving Minn. Stat. § 8.31",
+            "Traced the mandatory \"shall investigate\" duty from the General Laws of 1905 through the Legislature's 2025 savings clause, Minn. Stat. § 299C.061, subd. 4(c), and set it against the bill summary, the fiscal notes, and the Attorney General's testimony to Congress six days after the denial"
+          ]
+        },
+        {
+          "title": "Letter to Governor Tim Walz: Request for a Signing Statement on S.F. 856",
+          "organization": "Office of the Governor, Saint Paul",
+          "dates": "May 2026",
+          "highlights": [
+            "Hand-delivered with five enclosures and transmitted electronically to the Governor, the Chief of Staff, and the General Counsel; asked for a no-cost signing statement preserving Minn. Stat. § 8.31, not a veto"
+          ]
+        },
+        {
+          "title": "Criminal Referral: Office of the Minnesota Attorney General",
+          "dates": "Feb 2026",
+          "highlights": [
+            "Hand-delivered referral documenting consumer fraud, computer crimes, and corporate misconduct against Minnesota residents under the Prevention of Consumer Fraud Act, Minn. Stat. §§ 325F.68 to 325F.70, supported by approximately 285 exhibits; the written denial became the record for the federal action and the legislative testimony"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scholarship",
+      "kind": "works"
+    },
+    {
+      "title": "Professional Experience",
+      "kind": "experience"
+    },
+    {
+      "title": "Education",
+      "kind": "education"
+    }
+  ]
 }

@@ -59,6 +59,14 @@ for (const [i, w] of (cv.works ?? []).entries()) {
   if (!w.title?.trim()) errors.push(`works[${i}].title missing`);
   if (w.url && !/^https:\/\//.test(w.url)) errors.push(`works[${i}].url must start with https://`);
 }
+for (const [i, s] of (cv.sections ?? []).entries()) {
+  if (!s.title?.trim()) errors.push(`sections[${i}].title missing`);
+  if (!['summary', 'skills', 'experience', 'education', 'works', 'generic'].includes(s.kind)) errors.push(`sections[${i}].kind unknown: ${s.kind}`);
+  for (const [j, e] of (s.entries ?? []).entries()) {
+    if (!e.title?.trim()) errors.push(`sections[${i}].entries[${j}].title missing`);
+    if (e.url && !/^https:\/\//.test(e.url)) errors.push(`sections[${i}].entries[${j}].url must start with https://`);
+  }
+}
 // cv.pdf is either GENERATED (/cv/<name>.pdf, build-cv-pdf.mjs, gitignored) or
 // OWNER-RENDERED from Word (/resume/<name>.pdf, tracked). Its text is screened
 // for private contact at build by scripts/check-pdf-private.mjs.

@@ -8,7 +8,9 @@
 // the Word resume share one text. Site-only presentation keys (location,
 // email, pdf, links, availability, portrait, $comment) are preserved as they
 // are; the derived keys are name, headline, summary, skills, experience,
-// education, works.
+// education, works (title · venue · url · year, note = the description
+// paragraph) and sections (every section in resume order; generic sections
+// such as Civil Rights and Legal Work carry their entries there).
 //
 // Grammar (blank-line-separated blocks, every bullet its own block):
 //   # Name / headline paragraph / ## Section / ### Entry title /
@@ -121,7 +123,7 @@ const summary = sectionNamed(r, 'summary');
 out.summary = summary ? summary.paras.join('\n\n') : '';
 const skills = sectionNamed(r, 'skills');
 out.skills = skills ? skills.skills : [];
-const exp = sectionNamed(r, 'experience');
+const exp = sectionNamed(r, 'experience', 'professional experience');
 out.experience = (exp ? exp.entries : []).map((e) => {
   const m = e.meta ?? { rest: [], dates: '', links: [] };
   const { start, end } = range(m.dates);
@@ -142,12 +144,47 @@ out.education = (edu ? edu.entries : []).map((e) => {
   if (e.paras.length) o.detail = e.paras.join(' ');
   return o;
 });
-const works = sectionNamed(r, 'selected work', 'works', 'publications');
+const WORKS_NAMES = ['selected work', 'works', 'publications', 'articles', 'scholarship'];
+const fullUrl = (u) => (/^https?:\/\//i.test(u) ? u : `https://${u}`);
+const works = sectionNamed(r, ...WORKS_NAMES);
 out.works = (works ? works.entries : []).map((e) => {
   const m = e.meta ?? { rest: [], dates: '', links: [] };
   const o = { title: e.title, year: m.dates };
-  if (m.links[0]) o.url = /^https?:\/\//i.test(m.links[0]) ? m.links[0] : `https://${m.links[0]}`;
+  if (m.rest[0]) o.venue = m.rest[0];
+  if (m.links[0]) o.url = fullUrl(m.links[0]);
+  if (e.paras.length) o.note = e.paras.join(' ');   // the short description (owner 2026-09-12)
+  if (e.bullets.length) o.highlights = e.bullets;   // the detailed entries (owner 2026-09-12)
   return o;
+});
+// Every section, in the resume's order, for renderers that follow the resume
+// rather than the fixed keys (the generated PDF). `kind` names the fixed key a
+// section feeds; `generic` sections (Civil Rights and Legal Work, Advocacy and
+// Public Policy, Research, ...) carry their entries here and nowhere else.
+// Professional Memberships stay off the site (owner 2026-09-11).
+const kindOf = (t) => {
+  const k = t.toLowerCase();
+  if (k === 'summary') return 'summary';
+  if (k === 'skills') return 'skills';
+  if (['experience', 'professional experience'].includes(k)) return 'experience';
+  if (k === 'education') return 'education';
+  if (WORKS_NAMES.includes(k)) return 'works';
+  if (/membership/.test(k)) return null;
+  return 'generic';
+};
+out.sections = r.sections.filter((sec) => sec.title).map((sec) => ({ title: sec.title, kind: kindOf(sec.title) })).filter((x) => x.kind).map((x) => {
+  if (x.kind !== 'generic') return x;
+  const sec = r.sections.find((s) => s.title === x.title);
+  const entries = sec.entries.map((e) => {
+    const m = e.meta ?? { rest: [], dates: '', links: [] };
+    const o = { title: e.title };
+    if (m.rest[0]) o.organization = m.rest.join(' · ');
+    if (m.links[0]) o.url = fullUrl(m.links[0]);
+    if (m.dates) o.dates = m.dates.replace(/\bPresent\b/, 'present');
+    if (e.paras.length) o.summary = e.paras.join(' ');
+    if (e.bullets.length) o.highlights = e.bullets;
+    return o;
+  });
+  return sec.paras.length ? { ...x, paras: sec.paras, entries } : { ...x, entries };
 });
 
 const next = JSON.stringify(out, null, 2) + '\n';

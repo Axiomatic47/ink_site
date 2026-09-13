@@ -13,11 +13,16 @@ interface Props {
   alt: string;
   heightClass?: string;
   fitMode?: 'width' | 'contain';
+  /** header-bar label (the leaf); when set, the zoom controls move from a
+      floating overlay into a header bar so the card matches its neighbour */
+  title?: React.ReactNode;
+  /** one-line sub-bar under the header (provenance / credit) */
+  subtitle?: React.ReactNode;
 }
 
 const MIN = 0.1, MAX = 8, EDGE = 96;
 
-export function LeafImageViewer({ src, alt, heightClass = 'h-[62vh] lg:h-[74vh]', fitMode = 'width' }: Props) {
+export function LeafImageViewer({ src, alt, heightClass = 'h-[62vh] lg:h-[74vh]', fitMode = 'width', title, subtitle }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -122,19 +127,39 @@ export function LeafImageViewer({ src, alt, heightClass = 'h-[62vh] lg:h-[74vh]'
     const r = box.getBoundingClientRect();
     zoomAt(r.left + box.clientWidth / 2, r.top + box.clientHeight / 2, factor);
   };
-  const ib = 'h-8 w-8 inline-flex items-center justify-center rounded hover:bg-well';
+  const ib = 'h-7 w-7 inline-flex items-center justify-center rounded hover:bg-well text-ink';
+  const controls = (
+    <div className="flex items-center gap-0.5 rounded-md border border-rule bg-card p-0.5">
+      <button type="button" className={ib} onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out" title="Zoom out"><ZoomOut className="h-4 w-4" /></button>
+      <button type="button" className="h-7 min-w-[3rem] px-1 text-xs text-muted tabular-nums rounded hover:bg-well" onClick={fit} title="Fit to pane">{Math.round(t.scale * 100)}%</button>
+      <button type="button" className={ib} onClick={() => zoomCenter(1.25)} aria-label="Zoom in" title="Zoom in"><ZoomIn className="h-4 w-4" /></button>
+      <button type="button" className={ib} onClick={fit} aria-label="Fit to pane" title="Fit to pane"><Maximize2 className="h-4 w-4" /></button>
+    </div>
+  );
 
   return (
     <div ref={rootRef} className="relative h-full flex flex-col bg-well border border-rule rounded-lg overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
-      <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/95 border border-rule rounded-md shadow-card p-1 text-ink">
-        <button type="button" className={ib} onClick={() => zoomCenter(1 / 1.25)} aria-label="Zoom out"><ZoomOut className="h-4 w-4" /></button>
-        <span className="text-xs text-muted w-12 text-center tabular-nums">{Math.round(t.scale * 100)}%</span>
-        <button type="button" className={ib} onClick={() => zoomCenter(1.25)} aria-label="Zoom in"><ZoomIn className="h-4 w-4" /></button>
-        <button type="button" className={ib} onClick={fit} aria-label="Fit to pane"><Maximize2 className="h-4 w-4" /></button>
-      </div>
+      {title !== undefined ? (
+        <>
+          {/* header bar — mirrors the document pane's toolbar so both cards sit level */}
+          <div className="flex items-center justify-between gap-3 h-11 px-3 border-b border-rule bg-card shrink-0">
+            <div className="min-w-0 truncate font-serif text-[15px] text-ink" style={{ fontWeight: 620 }}>{title}</div>
+            {controls}
+          </div>
+          {subtitle !== undefined && (
+            <div className="h-8 px-3 flex items-center border-b border-rule bg-card/70 text-[11px] text-muted shrink-0">
+              <div className="min-w-0 truncate w-full">{subtitle}</div>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="absolute top-3 right-3 z-10 shadow-card">{controls}</div>
+      )}
       <div
         ref={boxRef}
-        className={cn('cursor-grab active:cursor-grabbing touch-none select-none', heightClass)}
+        // overflow-hidden: the transformed <img> is a stacking context and
+        // would otherwise paint over the footer bar below the pan box
+        className={cn('relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none', heightClass)}
         onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerLeave={onPointerUp}
         onDoubleClick={(e) => zoomAt(e.clientX, e.clientY, e.altKey || e.shiftKey ? 0.5 : 2)}
       >
@@ -142,8 +167,8 @@ export function LeafImageViewer({ src, alt, heightClass = 'h-[62vh] lg:h-[74vh]'
         <img ref={imgRef} src={src} alt={alt} draggable={false} onLoad={fit} className="origin-top-left max-w-none"
           style={{ transform: `translate(${t.x}px, ${t.y}px) scale(${t.scale})`, willChange: 'transform' }} />
       </div>
-      <div className="px-3 py-1.5 border-t border-rule bg-card/60 text-[11px] text-muted shrink-0">
-        Pinch or ⌃-scroll to zoom · double-click to zoom in (⇧-double-click out) · drag to pan · ⤢ refits the leaf
+      <div className="h-8 px-3 flex items-center border-t border-rule bg-card/70 text-[11px] text-muted shrink-0 truncate">
+        Pinch or ⌃-scroll to zoom · double-click zooms in (⇧ out) · drag to pan · ⤢ refits the leaf
       </div>
     </div>
   );

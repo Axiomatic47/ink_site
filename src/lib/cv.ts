@@ -24,7 +24,24 @@ export interface Work {
   year?: string;
   venue?: string;
   url?: string;
-  note?: string;
+  note?: string;        // the short description under the title (owner 2026-09-12)
+  highlights?: string[]; // bullets under a detailed entry
+}
+/** an entry of a resume section the fixed keys do not carry (Civil Rights and Legal Work, Research, ...) */
+export interface SectionEntry {
+  title: string;
+  organization?: string; // the meta line's non-date, non-URL segments joined with ' · '
+  url?: string;
+  dates?: string;
+  summary?: string;
+  highlights?: string[];
+}
+/** every resume section in order; `kind` names the fixed key it feeds, `generic` sections carry entries */
+export interface Section {
+  title: string;
+  kind: 'summary' | 'skills' | 'experience' | 'education' | 'works' | 'generic';
+  paras?: string[];
+  entries?: SectionEntry[];
 }
 export interface CV {
   name: string;
@@ -41,6 +58,7 @@ export interface CV {
   education: Education[];
   skills: SkillGroup[];
   works: Work[];
+  sections?: Section[];  // derived with the rest by scripts/cv-from-resume.mjs
 }
 
 export const cv: CV = raw as unknown as CV;
