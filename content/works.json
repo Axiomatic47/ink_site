@@ -1,5 +1,5 @@
 {
-  "$comment": "Articles library — imported from lawsofexistence.com's manuscript collections by scripts/import-loe-articles.mjs (owner 2026-09-12). PDFs under public/works/, text articles under content/works/<slug>.md. Re-run the script to refresh; do not hand-edit imported entries.",
+  "$comment": "Articles library — imported from lawsofexistence.com's manuscript collections by scripts/import-loe-articles.mjs (owner 2026-09-12); entries marked local come from scripts/import-local-works.mjs. PDFs under public/works/, text articles under content/works/<slug>.md. Re-run the scripts to refresh; do not hand-edit imported entries.",
   "collections": [
     {
       "slug": "codified-democratic-order",
@@ -37,8 +37,8 @@
       "slug": "madisonian-test",
       "collection": "codified-democratic-order",
       "title": "The Madisonian Separation of Powers Objective Compliance Test",
-      "date": "2026-05-26",
-      "year": "2026",
+      "date": "",
+      "year": "2025",
       "venue": "Independent research",
       "blurb": "Recovers Madison's actual framework and derives a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021) at a 100% correspondence rate.",
       "featured": false,
@@ -81,8 +81,8 @@
       "slug": "bodily-jurisdiction-the-floor-of-constitutional-authority",
       "collection": "codified-democratic-order",
       "title": "Bodily Jurisdiction: The Floor of Constitutional Authority",
-      "date": "2026-05-26",
-      "year": "2026",
+      "date": "",
+      "year": "2024",
       "venue": "Independent research",
       "blurb": "Restates bodily autonomy structurally rather than as a balanceable right: the body is a sovereign jurisdictional sphere and the floor of the constitutional architecture, the primary sovereignty from which all higher-level authority is derivative.",
       "featured": true,
