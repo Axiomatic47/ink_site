@@ -104,13 +104,14 @@ function render(variant, outPath) {
   // a long organisation name never runs into them.
   const dateWidth = (s) => { doc.font('Helvetica').fontSize(9.5); return doc.widthOfString(s.toUpperCase(), { characterSpacing: 0.5 }) + 14; };
   const dates = (s, y) => doc.font('Helvetica').fontSize(9.5).fillColor(BRASS_INK).text(s.toUpperCase(), L, y, { width: W, align: 'right', characterSpacing: 0.5, lineBreak: false });
-  const heading = (title, left, muted, right, titleSize = 12) => {
+  const heading = (title, left, muted, right, titleSize = 12, link = '') => {
     doc.font('Helvetica').fontSize(10);
     const orgW = doc.widthOfString(left || '') + (muted ? doc.widthOfString(` · ${muted}`) : 0);
     const dW = right ? dateWidth(right) : 0;
     const datesOnOrg = Boolean(right) && orgW + dW <= W;
     const ty = doc.y;
-    doc.font('Times-Bold').fontSize(titleSize).fillColor(NAVY).text(title, L, ty, { width: datesOnOrg || !right ? W : W - dW });
+    // a linked title IS the hyperlink (owner 2026-09-13: no printed URLs — they were truncated slugs)
+    doc.font('Times-Bold').fontSize(titleSize).fillColor(NAVY).text(title, L, ty, { width: datesOnOrg || !right ? W : W - dW, ...(link ? { link, underline: false } : {}) });
     if (right && !datesOnOrg) dates(right, ty + (titleSize - 9.5));
     if (left || muted) {
       const ly = doc.y;
@@ -148,14 +149,13 @@ function render(variant, outPath) {
     });
   };
   // works: title · venue · url (muted) · year, then the short description
-  const shortUrl = (u) => u.replace(/^https?:\/\//, '').replace(/\/$/, '');
   const renderWorks = (title = 'Selected Work') => {
     if (!cv.works?.length) return;
     section(title);
     cv.works.forEach((w0, i) => {
       need(60);
       if (i) doc.y += 6;
-      heading(w0.title, w0.venue || '', w0.url ? shortUrl(w0.url) : '', w0.year, 11);
+      heading(w0.title, w0.venue || '', '', w0.year, 11, w0.url || '');
       if (w0.note) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(w0.note, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
       if (w0.highlights?.length) bullets(w0.highlights, L, W);
     });
@@ -181,7 +181,7 @@ function render(variant, outPath) {
     (sec.entries ?? []).forEach((e, i) => {
       need(110);
       if (i) doc.y += 9;
-      heading(e.title, e.organization || '', e.url ? shortUrl(e.url) : '', e.dates || '');
+      heading(e.title, e.organization || '', '', e.dates || '', 12, e.url || '');
       if (e.summary) { doc.font('Times-Italic').fontSize(10.5).fillColor(MUTED).text(e.summary, L, doc.y, { width: W, lineGap: 1 }); doc.y += 2; }
       if (e.highlights?.length) bullets(e.highlights, L, W);
     });
