@@ -31,6 +31,13 @@ const walk = (v, path) => {
 };
 walk(cv, 'cv');
 walk(works, 'works');
+// content/bio.md — same rules as the JSON: no placeholders, no private contact.
+const bioFile = new URL('../content/bio.md', import.meta.url);
+if (existsSync(bioFile)) {
+  const bio = readFileSync(bioFile, 'utf8');
+  walk(bio, 'bio.md');
+  if (!/\S/.test(bio.replace(/^---[\s\S]*?---/, ''))) warnings.push('bio.md has no body');
+} else warnings.push('content/bio.md missing (Biography page renders a placeholder)');
 
 if (!cv.name?.trim()) errors.push('cv.name is required');
 if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(cv.email ?? '')) errors.push('cv.email must be an email address');
