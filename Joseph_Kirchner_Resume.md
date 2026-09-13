@@ -83,6 +83,8 @@ A history of sovereign, absolute, and qualified immunity as three names for one 
 
 - Restores the record the report displaced: first-hand diplomatic transcriptions of the cause file, ten membranes of examinations, interrogatories, and depositions, conformed to the verification transcription commissioned from Christopher Whittick, MA FSA, former County Archivist of East Sussex, against the originals at Kew; the second contemporaneous account in Harvard Law School Library MS 149; leaf images, line indexes, and working papers published for review at kirchner.ink/research
 
+- Argues that the restored 1607 record supplies a factual basis no receiving court ever considered, so that under Webster v. Fall (1925), which holds that questions merely lurking in the record are not decided, a bound district court may review the doctrine's foundation without overruling Harlow v. Fitzgerald or Trump v. United States
+
 ### The Madisonian Separation of Powers Objective Compliance Test
 
 Independent research · https://kirchner.ink/work/madisonian-test · 2026
@@ -119,12 +121,6 @@ Moves the universal premise from assertion, "all human beings are born free and 
 
 - Traces the premise from the Declaration of Independence (1776) through the Reconstruction Amendments and the Universal Declaration of Human Rights (1948) to the codified order at the international scale, and completes what 1776 began by carrying it into definitional form
 
-### A Restorative Reading of Genesis 1–3: The Creation Narrative in the Hebrew and Its Versions
-
-Book, working draft · https://kirchner.ink/work/a-restorative-reading-of-genesis-1-3 · 2026
-
-Reads Genesis 1–3 as one narrative told twice and sets the Hebrew of the Leningrad Codex beside the Septuagint, the 1592 Vulgate, and the English Bibles of 1535 to 1611, cited at the leaf for every reading; a catalogue, begun in 2023, of the discrepancies among the versions and their bearing on the narrative's chronology and on the patriarchal structures read into it.
-
 ### Further writing
 
 Independent research · https://kirchner.ink/work · 2025 – 2026
@@ -139,11 +135,7 @@ Independent research · https://kirchner.ink/work · 2025 – 2026
 
 - The Ratification Protocol: A Two-Stage Architecture for Member Commitment (2026)
 
-- Anchor and Bridge: A Three-Layer Architecture for Universal Deployment (2026)
-
-- Applied Diagnostics: Structural Analysis of Active Conflicts (2026)
-
-- The Centennial Betrayal: How the Supreme Court Nullified Congressional Jurisdiction Limits from the Judges' Bill (1925) to the Shadow Docket (2025); manuscript, approx. 21,000 words, full text on request
+- The Centennial Betrayal: How the Supreme Court Nullified Congressional Jurisdiction Limits from the Judges' Bill (1925) to the Shadow Docket (2025) (2026)
 
 - The Egalitarian Foundations of Abrahamic Tradition, with its thesis outline (2025)
 
