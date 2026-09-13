@@ -25,7 +25,7 @@ Independent legal researcher and pro se civil-rights litigant. Independent resea
 
 - **AI and technology:** System prompt auditing · Network packet forensics · Source-code review · Python data pipelines · Custom software development · Document automation
 
-- **Management:** Team leadership · Hiring and training · Budgets · HUD program compliance · Yardi · AppFolio · OneSite
+- **Management:** Team leadership · Hiring and training · Budgets · HUD program compliance · HUD and city inspections · Yardi · AppFolio · OneSite
 
 ## Civil Rights and Legal Work
 
