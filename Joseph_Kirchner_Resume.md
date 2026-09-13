@@ -123,24 +123,6 @@ Moves the universal premise from assertion, "all human beings are born free and 
 
 - Traces the premise from the Declaration of Independence (1776) through the Reconstruction Amendments and the Universal Declaration of Human Rights (1948) to the codified order at the international scale, and completes what 1776 began by carrying it into definitional form
 
-### Further writing
-
-Independent research · https://kirchner.ink/work · 2025 – 2026
-
-- Means, Not Views: The Constitutional Distinction Between Radicalism and Extremism (2026)
-
-- The Fundamental Laws of Supremacism and Egalitarianism (2026)
-
-- Torture in the Codified Democratic Order: The May 2026 Sumud Flotilla (2026)
-
-- The Rejection of Law: Treaty Defection, State Secession, and the Fractal Constitution (2026)
-
-- The Ratification Protocol: A Two-Stage Architecture for Member Commitment (2026)
-
-- The Centennial Betrayal: How the Supreme Court Nullified Congressional Jurisdiction Limits from the Judges' Bill (1925) to the Shadow Docket (2025) (2026)
-
-- The Egalitarian Foundations of Abrahamic Tradition, with its thesis outline (2025)
-
 ## Professional Experience
 
 ### Independent Researcher
