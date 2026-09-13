@@ -18,6 +18,13 @@ interface PdfViewerProps {
   /** 'page' (default): the well is one page tall at fit width. 'fill': the
       viewer stretches to its flex parent (review layouts). */
   height?: 'page' | 'fill';
+  /** 'standalone' (default): toolbar with the title at its right. 'pane':
+      the card sits beside another pane — `leading` (document tabs) takes the
+      toolbar's left, the actions compact to the right, and the title drops to
+      a one-line sub-bar so the two panes' bodies start level. */
+  chrome?: 'standalone' | 'pane';
+  /** toolbar-left content in pane chrome (the document tabs) */
+  leading?: React.ReactNode;
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -25,7 +32,7 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName, height = 'page' }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -153,35 +160,50 @@ export function PdfViewer({ src, title, downloadName, height = 'page' }: PdfView
     setZoom(next);
   };
 
-  const btn = 'inline-flex items-center gap-2 h-9 px-3 rounded-md text-sm border border-rule bg-card text-ink hover:bg-well transition-colors disabled:opacity-40 disabled:hover:bg-card no-underline';
+  const pane = chrome === 'pane';
+  // pane chrome is one notch tighter (h-7 controls in an h-11 bar, like the
+  // image pane's header) so the two cards read as a matched pair
+  const ctl = pane ? 'h-7 w-7' : 'h-9 w-9';
+  const btn = cn(
+    'inline-flex items-center gap-1.5 rounded-md text-sm border border-rule bg-card text-ink hover:bg-well transition-colors disabled:opacity-40 disabled:hover:bg-card no-underline shrink-0',
+    pane ? 'h-8 px-2.5' : 'h-9 px-3'
+  );
 
   const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   return (
     <div className={cn('flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')}>
       {/* toolbar */}
-      <div className="flex flex-wrap items-center gap-2 px-3 py-2 border-b border-rule bg-card no-print">
-        <div className="inline-flex items-center rounded-md border border-rule bg-well">
-          <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className="h-9 w-9 inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40" title="Zoom out" aria-label="Zoom out">
+      <div className={cn('flex items-center gap-2 px-3 border-b border-rule bg-card no-print', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
+        {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
+        <div className={cn('inline-flex items-center rounded-md border border-rule bg-well shrink-0', pane && 'ml-auto')}>
+          <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40')} title="Zoom out" aria-label="Zoom out">
             <ZoomOut className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => setZoom(100)} className="h-9 min-w-[3.75rem] text-sm tabular-nums hover:bg-card" title="Fit to width">
+          <button type="button" onClick={() => setZoom(100)} className={cn(pane ? 'h-7 min-w-[3rem] text-xs' : 'h-9 min-w-[3.75rem] text-sm', 'tabular-nums hover:bg-card')} title="Fit to width">
             {zoom}%
           </button>
-          <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className="h-9 w-9 inline-flex items-center justify-center hover:bg-card rounded-r-md disabled:opacity-40" title="Zoom in" aria-label="Zoom in">
+          <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-r-md disabled:opacity-40')} title="Zoom in" aria-label="Zoom in">
             <ZoomIn className="h-4 w-4" />
           </button>
         </div>
-        <a href={src} download={downloadName} className={btn}>
-          <Download className="h-4 w-4" /> Download
+        <a href={src} download={downloadName} className={btn} title="Download the PDF" aria-label="Download the PDF">
+          <Download className="h-4 w-4" /> <span className={cn(pane && 'hidden xl:inline')}>Download</span>
         </a>
-        <a href={src} target="_blank" rel="noopener noreferrer" className={btn}>
-          <ExternalLink className="h-4 w-4" /> Open in new tab
+        <a href={src} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
+          <ExternalLink className="h-4 w-4" /> <span className={cn(pane && 'hidden xl:inline')}>{pane ? 'New tab' : 'Open in new tab'}</span>
         </a>
-        <span className="ml-auto hidden sm:inline text-xs text-muted truncate max-w-[40%]" title={title}>
-          {title}
-        </span>
+        {!pane && (
+          <span className="ml-auto hidden sm:inline text-xs text-muted truncate max-w-[40%]" title={title}>
+            {title}
+          </span>
+        )}
       </div>
+      {pane && (
+        <div className="h-8 px-3 flex items-center border-b border-rule bg-card/70 text-[11px] text-ink/85 shrink-0" title={title}>
+          <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
+        </div>
+      )}
 
       {/* well */}
       {error ? (
@@ -213,7 +235,7 @@ export function PdfViewer({ src, title, downloadName, height = 'page' }: PdfView
       )}
 
       {/* hint bar */}
-      <div className="flex items-center gap-3 px-3 py-2 border-t border-rule text-xs text-muted no-print">
+      <div className={cn('flex items-center gap-3 px-3 border-t border-rule text-muted no-print shrink-0', pane ? 'h-8 text-[11px] bg-card/70' : 'py-2 text-xs')}>
         <FileText className="h-3.5 w-3.5 text-accent" />
         <span>PDF</span>
         <span className="text-rule">•</span>
