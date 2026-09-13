@@ -15,7 +15,7 @@ Civil Rights and Rule of Law Advocacy · Independent Legal Researcher
 
 ## Summary
 
-Independent legal researcher and pro se civil-rights litigant. Independent research since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity as applied to police officials, and full time since 2025. Three federal actions filed and briefed since 2025: in the District of Columbia against federal officials and technology companies; in Minnesota and the Eighth Circuit over the Attorney General's statutory duty to investigate consumer fraud; and in the Southern District of Florida in equity. Written testimony to a Minnesota House committee and a signing-statement request to the Governor on a $23 million fraud-oversight bill. Author of the articles listed below on the separation of powers, the shadow docket, First Amendment doctrine, and international human-rights law, including a published six-step compliance test for separation-of-powers questions, and of a history of the immunity doctrine and a reading of Genesis 1–3 now in draft. Twelve months of documented investigation into AI platforms and network infrastructure. Six earlier years managing HUD-assisted housing for seniors and persons with disabilities across five states.
+Independent legal researcher and pro se civil-rights litigant. Independent research since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity as applied to police officials, and full time since 2025. Two federal actions filed and briefed since 2025: in the District of Columbia against federal officials and technology companies, and in Minnesota and the Eighth Circuit over the Attorney General's statutory duty to investigate consumer fraud. Written testimony to a Minnesota House committee and a signing-statement request to the Governor on a $23 million fraud-oversight bill. Author of the articles listed below on the separation of powers, the shadow docket, First Amendment doctrine, and international human-rights law, including a published six-step compliance test for separation-of-powers questions, and of a history of the immunity doctrine and a reading of Genesis 1–3 now in draft. Twelve months of documented investigation into AI platforms and network infrastructure. Six earlier years managing HUD-assisted housing for seniors and persons with disabilities across five states.
 
 ## Skills
 
@@ -50,12 +50,6 @@ Declaratory and injunctive action over the Minnesota Attorney General's written 
 - Filed the original petition (No. 0:26-cv-00726, Jan 2026); after dismissal on pleading-form grounds, briefed the appeal (No. 26-1615, 8th Cir., opening brief May 2026) and refiled a narrowed four-count complaint (No. 0:26-cv-02594, May 2026), briefed through opposition and proposed surreply; dismissed Aug 2026, with a Rule 59(e) motion and appeal in preparation
 
 - Statutory-history research from the General Laws of 1905 to the Legislature's 2025 amendment of Minn. Stat. § 299C.061; a 50-state survey of attorney-general investigative authority; an 1860 to 2019 roster of the office's own criminal matters drawn from its biennial reports and opinions
-
-### Plaintiff, pro se: Kirchner v. Acosta, No. 9:26-cv-80296-DMM
-
-U.S. District Court for the Southern District of Florida · Mar 2026 – Jun 2026
-
-Complaint in equity for declaratory and injunctive relief against the Attorney General of the United States, filed with three memoranda of law, including the Madisonian compliance test as Memorandum B; dismissed without prejudice, June 2026.
 
 ## Advocacy and Public Policy
 
@@ -97,7 +91,7 @@ A history of sovereign, absolute, and qualified immunity as three names for one 
 
 Independent research · https://kirchner.ink/work/madisonian-test · 2026
 
-Recovers Madison's own framework and derives from it a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021); filed as Memorandum B in Kirchner v. Acosta.
+Recovers Madison's own framework and derives from it a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021). Filed in court format in Kirchner v. Johnson; the version published here is the academic version.
 
 ### The Board of Peace: An Operational Anatomy of Usurpation at the International Scale
 
