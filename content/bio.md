@@ -5,8 +5,6 @@ updated: 2026-09-13
 
 Joseph Kirchner is an independent researcher in legal history, political philosophy, and the separation of powers, and a property-management professional in the Twin Cities of Minnesota. He is the author of the papers collected on this site and of a forthcoming history of immunity built on a seventeenth-century Star Chamber file that had never before been transcribed.
 
-## Education
-
 Kirchner entered the University of Minnesota Duluth in 2009. In his first year he took fourth-year philosophy courses, and it was philosophy that held him. He left the university in 2011 after a family tragedy.
 
 The credits from those courses later transferred to Normandale Community College, where he completed an Associate of Arts with an emphasis in philosophy in 2016. From that year he continued the research on his own, part time alongside his work, and since 2025 it has been his full-time occupation.
