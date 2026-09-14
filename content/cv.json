@@ -3,7 +3,7 @@
   "name": "Joseph Kirchner",
   "headline": "Civil Rights and Rule of Law Advocacy · Independent Legal Researcher",
   "location": "Edina, Minnesota",
-  "email": "joseph@kirchner.cv",
+  "email": "joseph@kirchner.ink",
   "pdf": "/resume/Joseph_Kirchner_Resume.pdf",
   "pdf_print": "/resume/Joseph_Kirchner_Resume_Print.pdf",
   "links": [],
@@ -15,7 +15,7 @@
       "location": "Edina, MN",
       "start": "2016",
       "end": "",
-      "summary": "Part time from 2016, alongside property management; full time since August 2025. The work is under Scholarship above.",
+      "summary": "Part time from 2016, alongside property management; full time since August 2025. The work is under Scholarship below.",
       "highlights": []
     },
     {
@@ -254,12 +254,12 @@
       ]
     },
     {
-      "title": "Scholarship",
-      "kind": "works"
-    },
-    {
       "title": "Professional Experience",
       "kind": "experience"
+    },
+    {
+      "title": "Scholarship",
+      "kind": "works"
     },
     {
       "title": "Education",

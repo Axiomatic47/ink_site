@@ -5,8 +5,9 @@ writing, the research archives, and how to fund or publish it. Cloned from
 kirchner.cv (jk_website) on 2026-09-12 at the owner's word and sharing its
 code; CONTENT differs. SEPARATE from lawsofexistence.com (loe_website) and
 from kirchner.cv — different audience, different repo, different Netlify
-project. Contact is joseph@kirchner.cv until the owner sets up mail on this
-domain.
+project. Contact is joseph@kirchner.ink (Zoho Mail on this domain since 2026-09-14:
+MX mx/mx2/mx3.zoho.com, SPF include:zohomail.com, DKIM selector zmail, DMARC
+p=none, all on Netlify DNS).
 
 ## Branch law (mirrors midesk BRANCHING.md §11)
 - Agents work on and push `device/<host>` (this Mac: `device/macbook`).
