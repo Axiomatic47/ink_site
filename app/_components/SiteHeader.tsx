@@ -38,8 +38,9 @@ export function SiteHeader() {
   return (
     <header className="bg-ink text-on-ink no-print relative z-40">
       <div className="mx-auto max-w-site px-5 sm:px-8 h-16 flex items-center justify-between gap-6">
-        <Link href="/" className="font-serif text-xl tracking-tight no-underline" style={{ fontWeight: 560 }}>
-          {cv.name.split(' ').slice(-1)[0]}<span className="text-accent">.</span>ink
+        {/* the resume header's caption, in its style: brass small caps, letter-spaced (owner 2026-09-14) */}
+        <Link href="/" className="font-serif text-accent no-underline min-w-0 truncate tracking-[0.06em] text-base sm:text-lg" style={{ fontVariant: 'small-caps', fontWeight: 500 }} aria-label={`${cv.name} home`}>
+          {cv.headline || cv.name}
         </Link>
         <nav aria-label="Primary" className="flex items-stretch h-full">
           <Link href="/" aria-current={path === '/' ? 'page' : undefined} className={itemClass(path === '/')}>About</Link>
