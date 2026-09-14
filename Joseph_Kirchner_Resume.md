@@ -73,6 +73,44 @@ Feb 2026
 
 - Hand-delivered referral documenting consumer fraud, computer crimes, and corporate misconduct against Minnesota residents under the Prevention of Consumer Fraud Act, Minn. Stat. §§ 325F.68 to 325F.70, supported by approximately 285 exhibits; the written denial became the record for the federal action and the legislative testimony
 
+## Professional Experience
+
+### Independent Researcher
+
+Independent study · Edina, MN · 2016 – Present
+
+Part time from 2016, alongside property management; full time since August 2025. The work is under Scholarship below.
+
+### Property Manager
+
+Premier Management and Development (formerly Premier Housing Management) · St. Paul, MN · Jun 2024 – Jul 2025
+
+Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale; earlier tenure Nov 2022 to Feb 2023.
+
+### Regional Property Manager
+
+Accessible Space, Inc. · St. Paul, MN · Feb 2023 – May 2024
+
+Regional management of 24 HUD PRAC 202/811 properties, 525 units, across five states.
+
+### Owner
+
+Operations Consulting LLC · Minneapolis, MN · Jan 2021 – Present
+
+Small-business consulting, part time since November 2022: daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for owners.
+
+### Leasing and Renewals
+
+Housing Hub; Lion Rock Properties · St. Paul and St. Louis Park, MN · Mar 2019 – Nov 2021
+
+Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rates, renewal authorizations with third-party owners, and processing of lease renewals. Lion Rock (Mar – Oct 2019): tours, lease signings, tenant relations, and maintenance scheduling.
+
+### Instructor
+
+École Française · Hurghada, Egypt · Jun 2017 – Jan 2018
+
+English instruction and curriculum for primary and secondary students.
+
 ## Scholarship
 
 ### The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity
@@ -122,44 +160,6 @@ Moves the universal premise from assertion, "all human beings are born free and 
 - Eight articles: the definition of humanity, the universal claim at every scale, the purpose of government, the fractal obligation, the foreclosure of redescription, the deliberative form, the reciprocal obligation, and the foundational character
 
 - Traces the premise from the Declaration of Independence (1776) through the Reconstruction Amendments and the Universal Declaration of Human Rights (1948) to the codified order at the international scale, and completes what 1776 began by carrying it into definitional form
-
-## Professional Experience
-
-### Independent Researcher
-
-Independent study · Edina, MN · 2016 – Present
-
-Part time from 2016, alongside property management; full time since August 2025. The work is under Scholarship above.
-
-### Property Manager
-
-Premier Management and Development (formerly Premier Housing Management) · St. Paul, MN · Jun 2024 – Jul 2025
-
-Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale; earlier tenure Nov 2022 to Feb 2023.
-
-### Regional Property Manager
-
-Accessible Space, Inc. · St. Paul, MN · Feb 2023 – May 2024
-
-Regional management of 24 HUD PRAC 202/811 properties, 525 units, across five states.
-
-### Owner
-
-Operations Consulting LLC · Minneapolis, MN · Jan 2021 – Present
-
-Small-business consulting, part time since November 2022: daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria; operational analysis, licensing, fundraising, payroll, hiring, and training; business organization and website construction for owners.
-
-### Leasing and Renewals
-
-Housing Hub; Lion Rock Properties · St. Paul and St. Louis Park, MN · Mar 2019 – Nov 2021
-
-Housing Hub (Oct 2019 – Nov 2021): market analyses for renewal rates, renewal authorizations with third-party owners, and processing of lease renewals. Lion Rock (Mar – Oct 2019): tours, lease signings, tenant relations, and maintenance scheduling.
-
-### Instructor
-
-École Française · Hurghada, Egypt · Jun 2017 – Jan 2018
-
-English instruction and curriculum for primary and secondary students.
 
 ## Education
 
