@@ -35,6 +35,27 @@ p=none, all on Netlify DNS).
 - No lawsofexistence.com links or content on this site unless the owner
   says so.
 
+## Books from the research library, and REVIEW MODE (owner 2026-09-14)
+- Local manuscripts enter the Articles library by `scripts/import-local-works.mjs`
+  (content/works/<slug>.md + a `local` entry in content/works.json; the
+  working header comment and the H1 are stripped). Not part of the build;
+  run, `git diff`, commit.
+- A reviewed book (`/work/<slug>/review`) is the text beside the pages it
+  cites: `scripts/import-review-links.mjs` reads the research library's
+  **Pinned Citation Extracts** lane (the data seat's join: `_INDEX.tsv`,
+  `_SOURCES.tsv`, `_BOOK.json`, `_FIXITY_SHA256.txt` — plain TSV, split on
+  tabs only), wraps every citation unit in its note as `[unit](cite:<note>/<seq>)`,
+  copies the **public-domain pages only** to `public/uploads/research/<id>/sources/`
+  (sha-checked), and writes `content/review/<slug>.json`. Run it after
+  import-local-works; it refuses a book whose sha256 differs from the lane's.
+- Rights rule: nothing in copyright or licence-bound leaves the library; a
+  citation whose page is held but not published is MARKED on the site (source,
+  page, rights, holder link), never dropped. `Markdown.tsx` turns `cite:` hrefs
+  into `data-cite` anchors; `ReviewBody.tsx` is the dual pane (LeafBody's
+  card pattern). Deep link `#cite=<note>/<seq>`.
+- The book text and the lane are never edited here; a book edit re-runs the
+  lane (the drafter's seat), then both imports.
+
 ## Shared code with jk_website
 The app, the console (`netlify/`), the scripts and the design are the same
 code as jk_website. A fix that lands in one belongs in the other until the

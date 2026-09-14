@@ -24,8 +24,11 @@ mkdirSync(OUT_MD, { recursive: true });
 
 const MANUSCRIPT = join(homedir(), 'Git', 'work_station', 'manuscript', 'Axiomatic Framework For Human Experience');
 
+const LIBRARY = join(homedir(), 'Git', 'work_station', 'research_library');
+
 const LOCAL_COLLECTIONS = [
   { slug: 'genesis', title: 'Genesis', date: '2026-09-12', featured: true, local: true },
+  { slug: 'immunity', title: 'Immunity', date: '2026-09-14', featured: true, local: true },
 ];
 const LOCAL = [
   {
@@ -40,10 +43,31 @@ const LOCAL = [
     featured: true,
     src: join(MANUSCRIPT, '1. Theology', '1. Genesis', 'canonical', 'A_Restorative_Reading_of_Genesis_1-3.md'),
   },
+  {
+    // owner 2026-09-14: the immunity book goes up with a REVIEW MODE — the
+    // text beside the cited pages (scripts/import-review-links.mjs writes the
+    // linked body over this copy and content/review/<slug>.json; run it after
+    // this script). The working header (an HTML comment before the title) is
+    // stripped here as the academic converter strips it.
+    slug: 'the-subjects-unanswered-plea',
+    collection: 'immunity',
+    title: "The Subject's Unanswered Plea",
+    subtitle: 'A Restorative and Comparative History of Immunity',
+    date: '2026-09-14',
+    venue: 'Book · working draft',
+    // the book's own words (its Conclusion, on Part 1)
+    blurb: 'The case that founded official immunity was a documented miscarriage of justice, a death by drowning recast as murder, a conviction on examinations taken down in a language the witnesses did not speak, and a court that answered the surviving kinsman’s sworn complaint against the trial judge by defacing it. Six Parts put the question the decree reserved to every order that has answered it, cited at the page.',
+    featured: true,
+    src: join(LIBRARY, '2_Academic Articles', '11_Immunity and Standing Doctrine Geneology', 'BOOK', 'A_RESTORATIVE_AND_COMPARATIVE_HISTORY_OF_SOVEREIGN_ABSOLUTE_AND_QUALIFIED_IMMUNITY.md'),
+  },
 ];
 
 const stripLeadingTitle = (md) => {
-  const lines = md.split('\n');
+  // a working header is one HTML comment before the title — dropped, as the
+  // academic converter drops pre-title comments
+  let s = md.replace(/^﻿/, '');
+  if (s.startsWith('<!--')) { const m = /^-->[ \t]*$/m.exec(s); if (m) s = s.slice(m.index + m[0].length).replace(/^\s+/, ''); }
+  const lines = s.split('\n');
   if (/^#\s/.test(lines[0] ?? '')) lines.shift();
   return lines.join('\n').replace(/^\s+/, '');
 };

@@ -13,3 +13,8 @@ a { @apply underline-offset-[3px]; }
   .no-print { display: none !important; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* Review mode — a book's citation units link to the cited page (Markdown.tsx `cite:`) */
+.cite-link { @apply text-accent-ink no-underline border-b border-dotted border-accent/70 transition-colors; }
+.cite-link:hover { @apply bg-accent/10; }
+.cite-link.cite-active { @apply bg-accent/25 border-solid border-accent rounded-sm; }

@@ -5,11 +5,19 @@
 import 'katex/dist/katex.min.css';
 import { Md } from './Markdown';
 
-export function ArticleBody({ children }: { children: string }) {
+interface Props {
+  children: string;
+  /** where a book's `cite:` links point (see Md) */
+  citeBase?: string;
+  /** no card chrome — the caller supplies the card (the review pane) */
+  bare?: boolean;
+}
+
+export function ArticleBody({ children, citeBase, bare = false }: Props) {
   return (
     <article
       className={[
-        'rounded-lg border border-rule bg-card shadow-card px-6 py-8 sm:px-10 sm:py-10',
+        bare ? 'px-6 py-6 sm:px-8' : 'rounded-lg border border-rule bg-card shadow-card px-6 py-8 sm:px-10 sm:py-10',
         'font-serif text-[1.05rem] leading-relaxed text-ink/90 max-w-none',
         '[&>*:first-child]:mt-0',
         '[&_h1]:font-serif [&_h1]:text-3xl [&_h1]:leading-tight [&_h1]:mt-10 [&_h1]:mb-4 [&_h1]:text-ink',
@@ -22,9 +30,12 @@ export function ArticleBody({ children }: { children: string }) {
         '[&_table]:w-full [&_table]:text-sm [&_table]:my-6 [&_th]:text-left [&_th]:font-sans [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wider [&_th]:text-muted [&_th]:pb-2 [&_th]:border-b [&_th]:border-rule [&_td]:py-2 [&_td]:pr-4 [&_td]:border-b [&_td]:border-rule [&_td]:align-top',
         '[&_pre]:font-mono [&_pre]:text-sm [&_pre]:bg-well [&_pre]:rounded-md [&_pre]:p-4 [&_pre]:my-6 [&_pre]:overflow-x-auto',
         '[&_strong]:text-ink',
+        // footnotes (remark-gfm): a rule above, smaller type, room for the citation links
+        '[&_section.footnotes]:mt-12 [&_section.footnotes]:pt-6 [&_section.footnotes]:border-t [&_section.footnotes]:border-rule [&_section.footnotes]:text-[0.92rem] [&_section.footnotes]:leading-relaxed',
+        '[&_sup]:text-[0.72em] [&_sup_a]:no-underline [&_sup_a]:text-accent-ink [&_sup_a]:px-0.5',
       ].join(' ')}
     >
-      <Md math>{children}</Md>
+      <Md math citeBase={citeBase}>{children}</Md>
     </article>
   );
 }
