@@ -25,10 +25,14 @@ interface PdfViewerProps {
   chrome?: 'standalone' | 'pane';
   /** toolbar-left content in pane chrome (the document tabs) */
   leading?: React.ReactNode;
-  /** 'page' height only: a grip under the well lets the reader drag the
-      viewer taller or shorter, within the window (owner 2026-09-14: a large
-      display should be able to enlarge it in place instead of a new tab). */
+  /** a grip at the card's top-right corner scales the whole viewer: the
+      reader drags it outward and the card widens, the page refits to the new
+      width, and the well grows with it, so the text gets bigger in place
+      (owner 2026-09-14). The parent owns the width (`scaleWidth`) so it can
+      give the viewer the full row when it outgrows its column. */
   resizable?: boolean;
+  scaleWidth?: number | null;
+  onScale?: (width: number | null) => void;
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -36,14 +40,12 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [paneWidth, setPaneWidth] = useState(0);
   const [zoom, setZoom] = useState(100);
-  // reader-set well height (resizable); null = the one-page default
-  const [userHeight, setUserHeight] = useState<number | null>(null);
   const docRef = useRef<PDFDocumentProxy | null>(null);
   const canvasRefs = useRef(new Map<number, HTMLCanvasElement>());
   const renderedWidth = useRef(new Map<number, number>());
@@ -175,21 +177,35 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
     pane ? 'h-8 px-2.5' : 'h-9 px-3'
   );
 
-  const wellStyle = height === 'fill' ? undefined : { height: userHeight ?? wellHeight };
+  const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
 
-  // drag the grip: pointer capture, clamped to [320px, window height − chrome]
+  // corner grip: drag up-and-right to grow, down-and-left to shrink; the
+  // parent clamps and lays the card out at the requested width
+  const cardRef = useRef<HTMLDivElement>(null);
   const onGripDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const startY = e.clientY, startH = userHeight ?? wellHeight;
-    const maxH = Math.max(320, window.innerHeight - 96);
+    if (!onScale) return;
+    const startX = e.clientX, startY = e.clientY, startW = cardRef.current?.getBoundingClientRect().width ?? 0;
     const el = e.currentTarget;
     el.setPointerCapture(e.pointerId);
-    const move = (ev: PointerEvent) => setUserHeight(Math.round(Math.min(maxH, Math.max(320, startH + (ev.clientY - startY)))));
+    const move = (ev: PointerEvent) => onScale(Math.round(Math.max(360, startW + (ev.clientX - startX) - (ev.clientY - startY))));
     const up = () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerup', up); el.removeEventListener('pointercancel', up); };
     el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
   };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   return (
-    <div className={cn('flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')}>
+    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
+      {resizable && height === 'page' && (
+        <div
+          role="separator"
+          aria-label="Resize the viewer"
+          title="Drag the corner to resize; double-click to reset"
+          onPointerDown={onGripDown}
+          onDoubleClick={() => onScale?.(null)}
+          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
+        >
+          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+        </div>
+      )}
       {/* toolbar */}
       <div className={cn('flex items-center gap-2 px-3 border-b border-rule bg-card no-print', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
         {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
@@ -248,21 +264,6 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
               ))}
             </div>
           )}
-        </div>
-      )}
-
-      {/* resize grip (drag; double-click resets to one page) */}
-      {resizable && height === 'page' && !error && (
-        <div
-          role="separator"
-          aria-orientation="horizontal"
-          aria-label="Resize the viewer"
-          title="Drag to resize; double-click to reset"
-          onPointerDown={onGripDown}
-          onDoubleClick={() => setUserHeight(null)}
-          className="h-3 shrink-0 cursor-row-resize border-t border-rule bg-card hover:bg-well flex items-center justify-center touch-none select-none"
-        >
-          <span className="block h-1 w-10 rounded-full bg-rule" />
         </div>
       )}
 
