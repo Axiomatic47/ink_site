@@ -25,6 +25,10 @@ interface PdfViewerProps {
   chrome?: 'standalone' | 'pane';
   /** toolbar-left content in pane chrome (the document tabs) */
   leading?: React.ReactNode;
+  /** 'page' height only: a grip under the well lets the reader drag the
+      viewer taller or shorter, within the window (owner 2026-09-14: a large
+      display should be able to enlarge it in place instead of a new tab). */
+  resizable?: boolean;
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -32,12 +36,14 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [paneWidth, setPaneWidth] = useState(0);
   const [zoom, setZoom] = useState(100);
+  // reader-set well height (resizable); null = the one-page default
+  const [userHeight, setUserHeight] = useState<number | null>(null);
   const docRef = useRef<PDFDocumentProxy | null>(null);
   const canvasRefs = useRef(new Map<number, HTMLCanvasElement>());
   const renderedWidth = useRef(new Map<number, number>());
@@ -169,7 +175,18 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
     pane ? 'h-8 px-2.5' : 'h-9 px-3'
   );
 
-  const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
+  const wellStyle = height === 'fill' ? undefined : { height: userHeight ?? wellHeight };
+
+  // drag the grip: pointer capture, clamped to [320px, window height − chrome]
+  const onGripDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const startY = e.clientY, startH = userHeight ?? wellHeight;
+    const maxH = Math.max(320, window.innerHeight - 96);
+    const el = e.currentTarget;
+    el.setPointerCapture(e.pointerId);
+    const move = (ev: PointerEvent) => setUserHeight(Math.round(Math.min(maxH, Math.max(320, startH + (ev.clientY - startY)))));
+    const up = () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerup', up); el.removeEventListener('pointercancel', up); };
+    el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+  };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   return (
     <div className={cn('flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')}>
@@ -231,6 +248,21 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* resize grip (drag; double-click resets to one page) */}
+      {resizable && height === 'page' && !error && (
+        <div
+          role="separator"
+          aria-orientation="horizontal"
+          aria-label="Resize the viewer"
+          title="Drag to resize; double-click to reset"
+          onPointerDown={onGripDown}
+          onDoubleClick={() => setUserHeight(null)}
+          className="h-3 shrink-0 cursor-row-resize border-t border-rule bg-card hover:bg-well flex items-center justify-center touch-none select-none"
+        >
+          <span className="block h-1 w-10 rounded-full bg-rule" />
         </div>
       )}
 

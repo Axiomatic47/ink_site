@@ -18,7 +18,7 @@ export default function BioPage() {
   return (
     <SiteShell>
       <div className="grid gap-8 lg:grid-cols-[19rem_1fr] xl:grid-cols-[21rem_1fr] items-start">
-        <InfoCard />
+        <InfoCard link={{ href: '/', label: 'Curriculum vitae' }} />
         <section className="min-w-0">
           <header className="mb-6">
             <p className="text-muted text-lg mb-1">{bio?.title ?? 'Biography'}</p>

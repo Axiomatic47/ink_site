@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { cv } from '@/lib/cv';
 import { SiteShell } from './_components/SiteShell';
 import { InfoCard } from './_components/InfoCard';
@@ -12,15 +11,14 @@ export default function About() {
     <SiteShell>
       <div className="grid gap-8 lg:grid-cols-[19rem_1fr] xl:grid-cols-[21rem_1fr] items-start">
         {/* left column: portrait + general information */}
-        <InfoCard />
+        <InfoCard link={{ href: '/bio', label: 'Read the biography' }} />
 
         {/* right column: the CV viewer takes the main space (owner 2026-09-14) */}
         <section className="min-w-0">
           <h1 className="sr-only">{cv.name}</h1>
-          <p className="text-sm mb-8"><Link href="/bio" className="text-accent-ink underline">Read the biography</Link></p>
 
           {cv.pdf ? (
-            <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} />
+            <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} resizable />
           ) : null}
         </section>
       </div>
