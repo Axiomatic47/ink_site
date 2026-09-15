@@ -65,6 +65,14 @@ p=none, all on Netlify DNS).
   the on-disk extract set against the rows — extra 0, missing 0 — or aborts.
 - The book text and the lane are never edited here; a book edit re-runs the
   lane (the drafter's seat), then both imports.
+- **Search within a pane** (owner 2026-09-15): the viewer's magnifier opens a
+  search row; the query is matched, case- and accent-folded, against each
+  page's text layer, read once per page and cached; hits are boxed as
+  fractions of the page; an image-only scan says "no text layer". Read the
+  text layer with `page.streamTextContent(...).getReader()` and a plain
+  `reader.read()` loop — `getTextContent()` uses `for await` on a
+  ReadableStream, which WebKit (Safari, the Studio shell) does not support,
+  and every page throws. Verify hit counts against `pdftotext | grep -o | wc -l`.
 
 ## Dark mode (owner 2026-09-15, as lawsofexistence.com)
 Tailwind `darkMode: ['class']`; every colour token is an RGB triple variable in
