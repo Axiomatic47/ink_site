@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
   // host is listed, and the PDF viewer then never gets its worker (studio-spec finding,
   // 2026-09-15). Dev only; the static export has no dev origin.
   allowedDevOrigins: ['127.0.0.1', 'localhost'],
+  // `next dev` otherwise appends a vendor 'agent rules' block to CLAUDE.md on every start — the
+  // realm charter is the owner's document, not a build artefact (2026-09-15)
+  agentRules: false,
 };
 
 export default nextConfig;
