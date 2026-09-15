@@ -17,7 +17,11 @@ if (!targets.length) { console.log('check-pdf-private: no PDF referenced — not
 async function textOf(rel) {
   const file = new URL(`public${rel}`, ROOT);
   if (!existsSync(file)) { console.error(`check-pdf-private: ${rel} is not under public/`); process.exit(1); }
-  const doc = await getDocument({ data: new Uint8Array(readFileSync(file)), standardFontDataUrl: new URL('node_modules/pdfjs-dist/standard_fonts/', ROOT).pathname }).promise;
+  // verbosity 0 = errors only: this script reads TEXT, and pdf.js's font sanitizer otherwise logs a
+  // "TT: undefined function" note for every hinting program in the owner's Word-embedded TrueType fonts
+  // (8 per résumé PDF) — harmless to text extraction, but the Studio's issue capture read the 16 lines
+  // in the build log as a site problem (owner-directed issue 2026-09-15 07:19)
+  const doc = await getDocument({ data: new Uint8Array(readFileSync(file)), standardFontDataUrl: new URL('node_modules/pdfjs-dist/standard_fonts/', ROOT).pathname, verbosity: 0 }).promise;
   let text = '';
   for (let i = 1; i <= doc.numPages; i++) text += (await (await doc.getPage(i)).getTextContent()).items.map(x => x.str).join(' ') + '\n';
   return { text, pages: doc.numPages };
