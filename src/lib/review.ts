@@ -13,6 +13,10 @@ export interface ReviewPage {
       run's offset · null: a verso with nothing to read */
   verified: boolean | null;
   sha256: string | null;
+  /** the page's own source key and rights — a unit cut from two sources
+      (the 1611 facsimile and the Bodleian leaves) has pages of each */
+  source: string | null;
+  rights: string;
 }
 
 export interface ReviewUnit {

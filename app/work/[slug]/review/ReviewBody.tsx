@@ -43,7 +43,10 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
-  const source = active?.source ? manifest.sources[active.source] : undefined;
+  // the page's own source when a unit spans two sources; else the unit's
+  const sourceKey = page?.source ?? active?.source ?? null;
+  const source = sourceKey ? manifest.sources[sourceKey] : undefined;
+  const rights = page?.rights || active?.rights || '';
 
   // layout (LeafBody's pattern): side by side by default on large screens
   const [layout, setLayout] = useState<Layout>('side');
@@ -149,7 +152,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
 
   const tog = (on: boolean) => cn('h-7 w-7 inline-flex items-center justify-center rounded', on ? 'bg-accent/20 text-accent-ink' : 'text-muted hover:bg-well');
   const ctl = 'h-7 min-w-7 px-1.5 inline-flex items-center justify-center gap-1 rounded text-xs text-accent-ink hover:bg-well disabled:opacity-35 disabled:hover:bg-transparent tabular-nums';
-  const sourceTitle = source?.title ?? active?.source ?? '';
+  const sourceTitle = source?.title ?? sourceKey ?? '';
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
 
   // toolbar-left of the source pane: previous · citation i/N · next · to the note · page stepper
@@ -197,7 +200,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
                 <p className="font-serif text-lg text-ink mt-3 leading-snug" style={{ fontWeight: 620 }}>{sourceTitle}</p>
                 {active.pages.length > 0 && <p className="mt-1 text-ink/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
                 <p className="mt-4 text-ink/85">
-                  {active.rights && RIGHTS_LABEL[active.rights] ? <>{RIGHTS_LABEL[active.rights]}. </> : null}
+                  {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
                   {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
                   {active.status === 'NO_PIN' && 'The note cites the work without a page, so no page is opened.'}
                   {active.status === 'UNMAPPED' && 'The cited page could not be located in the held scan.'}
@@ -270,7 +273,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
                   {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
                   {active?.status === 'CUT_FIRST' && ' · the note cites the work without a page: its first page is shown'}
                   {page.file && <> · <a href={page.file} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
-                  {active?.rights && RIGHTS_LABEL[active.rights] && <> · {RIGHTS_LABEL[active.rights]}</>}
+                  {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
               </>
