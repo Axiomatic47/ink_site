@@ -96,7 +96,7 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
   useEffect(() => {
     let cancelled = false;
     let loadingTask: { destroy(): Promise<void> } | null = null;
-    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current;
+    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current;
     (async () => {
       // reset inside the async tick — the lint rule forbids synchronous
       // setState in an effect body, and a src change is the only trigger
@@ -135,7 +135,7 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     return () => {
       cancelled = true;
       taskMap.forEach((t) => t.cancel());
-      taskMap.clear(); widthMap.clear(); visibleSet.clear();
+      taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear();
       docRef.current = null;
       void loadingTask?.destroy();
     };
@@ -154,37 +154,59 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     return () => { clearTimeout(settle); ro.disconnect(); };
   }, []);
 
-  const renderPage = useCallback(async (num: number, cssWidth: number) => {
+  // one render at a time per page: a new request for a page whose render is still in flight
+  // cancels it and WAITS for the cancellation to settle before drawing again — pdf.js refuses a
+  // second render() on a canvas until the first has finished or been cancelled ("Cannot use the
+  // same canvas during multiple render() operations", seen by the owner 2026-09-15 when a resize
+  // and the page-size correction fired together). The latest request wins; a superseded one
+  // simply returns. A per-page failure is logged and retried once, never shown as the whole
+  // document failing.
+  const pending = useRef(new Map<number, Promise<void>>());
+  const wanted = useRef(new Map<number, number>()); // page → the css width last asked for
+  const renderPage = useCallback((num: number, cssWidth: number) => {
     const doc = docRef.current, canvas = canvasRefs.current.get(num);
     if (!doc || !canvas || cssWidth <= 0) return;
-    if (renderedWidth.current.get(num) === cssWidth) return;
-    tasks.current.get(num)?.cancel();
-    try {
-      const page = await doc.getPage(num);
-      const base = page.getViewport({ scale: 1 });
-      // correct the assumed size once the page is in hand (a plate, a fold-out, a different volume)
-      setPages((prev) => {
-        const cur = prev.find((p) => p.num === num);
-        if (!cur || (Math.abs(cur.w - base.width) < 0.5 && Math.abs(cur.h - base.height) < 0.5)) return prev;
-        return prev.map((p) => (p.num === num ? { num, aspect: base.height / base.width, w: base.width, h: base.height } : p));
-      });
-      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_BACKING_WIDTH / cssWidth));
-      const vp = page.getViewport({ scale: cssWidth / base.width });
-      canvas.width = Math.floor(vp.width * dpr);
-      canvas.height = Math.floor(vp.height * dpr);
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      const task = page.render({ canvas, canvasContext: ctx, viewport: vp, transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : undefined });
-      tasks.current.set(num, task);
-      await task.promise;
-      renderedWidth.current.set(num, cssWidth);
-    } catch (e) {
-      if (e instanceof Error && e.name === 'RenderingCancelledException') return;
-      console.error('PdfViewer: page render failed', num, e);
-      setError(e instanceof Error ? e.message : String(e));
-    } finally {
-      tasks.current.delete(num);
-    }
+    if (renderedWidth.current.get(num) === cssWidth && !tasks.current.has(num)) return;
+    wanted.current.set(num, cssWidth);
+    if (pending.current.has(num)) { tasks.current.get(num)?.cancel(); return; } // the chain below re-reads `wanted`
+    const run = (async () => {
+      let attempt = 0;
+      // loop while a newer width was requested during the render
+      for (;;) {
+        const width = wanted.current.get(num);
+        const cv = canvasRefs.current.get(num);
+        if (!docRef.current || !cv || !width) return;
+        if (renderedWidth.current.get(num) === width) return;
+        try {
+          const page = await docRef.current.getPage(num);
+          const base = page.getViewport({ scale: 1 });
+          // correct the assumed size once the page is in hand (a plate, a fold-out, a different volume)
+          setPages((prev) => {
+            const cur = prev.find((p) => p.num === num);
+            if (!cur || (Math.abs(cur.w - base.width) < 0.5 && Math.abs(cur.h - base.height) < 0.5)) return prev;
+            return prev.map((p) => (p.num === num ? { num, aspect: base.height / base.width, w: base.width, h: base.height } : p));
+          });
+          const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_BACKING_WIDTH / width));
+          const vp = page.getViewport({ scale: width / base.width });
+          cv.width = Math.floor(vp.width * dpr);
+          cv.height = Math.floor(vp.height * dpr);
+          const ctx = cv.getContext('2d');
+          if (!ctx) return;
+          const task = page.render({ canvas: cv, canvasContext: ctx, viewport: vp, transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : undefined });
+          tasks.current.set(num, task);
+          try { await task.promise; renderedWidth.current.set(num, width); }
+          catch (e) { if (!(e instanceof Error && e.name === 'RenderingCancelledException')) throw e; }
+          finally { tasks.current.delete(num); }
+        } catch (e) {
+          if (++attempt > 1) { console.error('PdfViewer: page render failed', num, e); return; }
+          await new Promise((r) => setTimeout(r, 120)); // let a colliding render settle, then try once more
+          continue;
+        }
+        if (wanted.current.get(num) === width) return; // nothing newer asked for
+      }
+    })();
+    pending.current.set(num, run);
+    void run.finally(() => { if (pending.current.get(num) === run) pending.current.delete(num); });
   }, []);
 
   useEffect(() => {
