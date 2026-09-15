@@ -91,6 +91,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const [dragging, setDragging] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
+  const headRef = useRef<HTMLDivElement | null>(null);
   const belowRef = useRef<HTMLDivElement | null>(null);
   const bookRef = useRef<HTMLDivElement | null>(null);
   const sourceRef = useRef<HTMLDivElement | null>(null);
@@ -136,6 +137,14 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     const t = setTimeout(measure, 0);
     window.addEventListener('resize', measure);
     return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
+  }, [review, measure]);
+  // the header row carries the page strip in side-by-side: when it appears, changes or wraps, the
+  // panes' top edge moves and the fill height must follow
+  useEffect(() => {
+    if (!review || !headRef.current) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(headRef.current);
+    return () => ro.disconnect();
   }, [review, measure]);
 
   const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => { e.preventDefault(); (e.target as HTMLElement).setPointerCapture(e.pointerId); setDragging(true); };
@@ -272,7 +281,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   // past CHIP_MAX the strip becomes a scrubber — first page · slider · last page · the page in hand
   const CHIP_MAX = 14;
   const pageStrip = active && active.pages.length > CHIP_MAX ? (
-    <div className="shrink-0 mb-2 rounded-lg border border-rule bg-card shadow-card px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+    <div className="shrink-0 rounded-lg border border-rule bg-card shadow-card px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
       <span className="text-[11px] uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}>{active.pages.length} pages · {active.pages.some((p) => p.begins) ? 'the whole case' : 'the cited range'}</span>
       <span className="text-xs tabular-nums text-ink/85">{active.pages[0].label}</span>
       <input type="range" min={0} max={active.pages.length - 1} value={pageIdx} onChange={(e) => goPage(Number(e.target.value))}
@@ -308,7 +317,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
 
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
-      {pageStrip}
+      {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
       {paneSrc && page ? (
         <PdfViewer key={paneSrc} src={paneSrc} bytes={ctx?.bytes} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
@@ -382,15 +391,22 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 py-4' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <Link href={backHref ?? textTo} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />{backLabel ?? `${work.title} — the reader`}</Link>
-          <div className="flex items-center gap-2">
+        {/* header row (owner 2026-09-15): back link · review-mode badge · layout toggle sit together over
+            the LEFT pane; in side-by-side the page strip takes the right half, over the source pane, on the
+            same column grid as the panes so the divider lines up and follows the drag */}
+        <div ref={headRef}
+          className={cn('mb-3', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
+          style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
+            <Link href={backHref ?? textTo} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />{backLabel ?? `${work.title} — the reader`}</Link>
             <span className="text-xs uppercase tracking-[0.06em] text-accent-ink border border-accent/40 bg-accent/15 rounded-md px-2 py-0.5" style={{ fontWeight: 600 }}>Review mode</span>
             <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-rule rounded-md shadow-card p-0.5">
               <button type="button" className={tog(layout === 'side')} onClick={() => changeLayout('side')} aria-pressed={layout === 'side'} title="Side by side — book beside the cited page" aria-label="Side-by-side layout"><Columns className="h-4 w-4" /></button>
               <button type="button" className={tog(layout === 'stacked')} onClick={() => changeLayout('stacked')} aria-pressed={layout === 'stacked'} title="Stacked — cited page above, book below" aria-label="Stacked layout"><Rows className="h-4 w-4" /></button>
             </span>
           </div>
+          {review && <div aria-hidden />}
+          {review && <div className="min-w-0">{pageStrip}</div>}
         </div>
 
         <div ref={rowRef}
