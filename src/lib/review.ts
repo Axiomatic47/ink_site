@@ -30,7 +30,28 @@ export interface ReviewUnit {
   status: string;
   rights: string;
   pages: ReviewPage[];
+  /** where the unit stands in the book's PDF (absent for the two units the overlay could not place) */
+  box?: ReviewBox;
 }
+
+/** a box over one line of a citation unit in the book's PDF — PDF points, origin top-left */
+export type Rect = [number, number, number, number];
+export interface ReviewBox {
+  /** the unit's lines; a unit split across a page break has two parts */
+  parts: { page: number; rects: Rect[] }[];
+  approx?: boolean;
+}
+export interface ReviewPdf {
+  file: string;
+  sha256: string;
+  bytes: number;
+  pages: number;
+  producer: string;
+  origin: string;
+  /** a copy with the citation links written in as PDF annotations, for download */
+  linked: { file: string; sha256: string } | null;
+}
+export interface ReviewMarker { note: string; page: number; rect: Rect }
 
 export interface ReviewSource {
   title: string;
@@ -48,6 +69,10 @@ export interface ReviewManifest {
   book: { file: string; sha256: string; bytes: number };
   rightsRule: string;
   sources: Record<string, ReviewSource>;
+  /** the book as a PDF, bound to the boxes by sha256; null until the lane emits _WEB/overlay.json */
+  pdf: ReviewPdf | null;
+  /** in-text superscripts that were matched to their note */
+  markers: ReviewMarker[];
   /** in book order (definition line, then unit order) */
   units: ReviewUnit[];
 }

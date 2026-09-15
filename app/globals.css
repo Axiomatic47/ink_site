@@ -18,3 +18,9 @@ a { @apply underline-offset-[3px]; }
 .cite-link { @apply text-accent-ink no-underline border-b border-dotted border-accent/70 transition-colors; }
 .cite-link:hover { @apply bg-accent/10; }
 .cite-link.cite-active { @apply bg-accent/25 border-solid border-accent rounded-sm; }
+
+/* Review mode — transparent hit boxes over the book PDF's citation lines (PdfViewer hotBoxes) */
+.pdf-hot { @apply absolute block rounded-[2px] bg-transparent p-0 border-0 cursor-pointer transition-colors; }
+.pdf-hot:hover { @apply bg-accent/20; }
+.pdf-hot-marker { @apply bg-accent/10; }
+.pdf-hot.pdf-hot-active { @apply bg-accent/30; box-shadow: 0 0 0 1px rgb(176 141 87 / 0.9); }

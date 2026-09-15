@@ -53,6 +53,16 @@ p=none, all on Netlify DNS).
   page, rights, holder link), never dropped. `Markdown.tsx` turns `cite:` hrefs
   into `data-cite` anchors; `ReviewBody.tsx` is the dual pane (LeafBody's
   card pattern). Deep link `#cite=<note>/<seq>`.
+- **The review pane's book is the book's PDF** (owner 2026-09-14, v2), not the
+  rendered text: the lane's `_WEB/overlay.json` binds a render (sha256) to
+  boxes over every citation unit's lines (PDF points, origin top-left, one
+  rect per line; split units carry a tail). The import copies the render to
+  `public/uploads/research/<id>/book.pdf` and the annotated copy (URI links
+  to the deep links) to `book_linked.pdf`, refusing either on a sha mismatch;
+  `PdfViewer` lays the boxes as percent-of-page hit buttons (`hotBoxes`) and
+  scrolls by `focus`. The text reader at `/work/<slug>` stays as the text
+  version. Rights are judged PER PAGE (per index row), and the import asserts
+  the on-disk extract set against the rows — extra 0, missing 0 — or aborts.
 - The book text and the lane are never edited here; a book edit re-runs the
   lane (the drafter's seat), then both imports.
 

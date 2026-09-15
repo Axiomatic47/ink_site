@@ -241,6 +241,41 @@ function importOne(cfg) {
   const extra = onDisk.filter((f) => !expected.has(f)), missing = [...expected].filter((f) => !onDisk.includes(f));
   if (extra.length || missing.length) throw new Error(`rights gate: ${extra.length} file(s) on the site are not public-domain rows of the index (${extra.slice(0, 5).join(', ')}) and ${missing.length} expected file(s) are missing — nothing written`);
 
+  // ---- 2b. the book as a PDF with the citation boxes (v2, owner 2026-09-14 via the data seat) ----
+  // _WEB/overlay.json binds a render of the book (sha256) to boxes over each citation unit's lines,
+  // PyMuPDF coordinates: PDF points, origin top-left. The PDF is copied like the extracts; a render
+  // whose hash differs from the manifest's, or a manifest built from another book, is refused.
+  let pdf = null; const boxes = new Map(); let markers = [];
+  const overlayFile = join(cfg.lane, '_WEB', 'overlay.json');
+  if (existsSync(overlayFile)) {
+    const o = JSON.parse(readFileSync(overlayFile, 'utf8'));
+    if (o.book?.sha256 && o.book.sha256 !== bookSha) throw new Error(`overlay.json was built from another book: ${o.book.sha256.slice(0, 12)} ≠ ${bookSha.slice(0, 12)}`);
+    const src = join(cfg.lane, '_WEB', basename(o.pdf.path));
+    if (!existsSync(src)) throw new Error(`overlay.json names a render that is not in the lane: ${basename(o.pdf.path)}`);
+    const got = sha256(src);
+    if (got !== o.pdf.sha256) throw new Error(`the book render on disk (${got.slice(0, 12)}) is not the one overlay.json was built on (${o.pdf.sha256.slice(0, 12)})`);
+    const dst = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'book.pdf');
+    if (!existsSync(dst) || sha256(dst) !== got) copyFileSync(src, dst);
+    let linked = null;
+    if (o.pdf.linked?.path) {
+      const lsrc = join(cfg.lane, '_WEB', basename(o.pdf.linked.path));
+      if (existsSync(lsrc) && sha256(lsrc) === o.pdf.linked.sha256) {
+        const ldst = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'book_linked.pdf');
+        if (!existsSync(ldst) || sha256(ldst) !== o.pdf.linked.sha256) copyFileSync(lsrc, ldst);
+        linked = { file: `/uploads/research/${cfg.id}/book_linked.pdf`, sha256: o.pdf.linked.sha256 };
+      } else unwrappable.push('overlay.json names a linked copy that is missing or differs — download stays the plain render');
+    }
+    pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', linked };
+    for (const b of o.units) {
+      const parts = [{ page: b.page, rects: b.rects }];
+      if (b.tail) parts.push({ page: b.tail.page, rects: b.tail.rects });
+      boxes.set(`${b.note}/${b.seq}`, { parts, approx: !!b.approx });
+    }
+    markers = (o.markers || []).map((m) => ({ note: m.note, page: m.page, rect: m.rect }));
+    counts.boxed = [...units.values()].filter((u) => u.wrapped && boxes.has(u.id)).length;
+    counts.unboxed = [...units.values()].filter((u) => u.wrapped && !boxes.has(u.id)).map((u) => u.id);
+  }
+
   // ---- 3. the manifest ---------------------------------------------------
   const order = [...units.values()].filter((u) => u.wrapped).sort((a, b) => a.line - b.line || a.seq - b.seq).map((u) => u.id);
   const usedSources = new Set([...units.values()].filter((u) => u.wrapped).flatMap((u) => [u.source, ...u.pages.map((p) => p.source)]).filter(Boolean));
@@ -252,6 +287,8 @@ function importOne(cfg) {
     feed,
     book: { file: basename(cfg.book), sha256: bookSha, bytes: Buffer.byteLength(raw) },
     rightsRule: 'Only public-domain pages are published; every other citation is marked as held in the library.',
+    pdf,
+    markers,
     sources: Object.fromEntries([...usedSources].sort().map((k) => {
       const s = sources[k] ?? {};
       return [k, { title: s.title || k, rights: s.rights || '', pinkind: s.pinkind || 'page', ...(s.holder_url ? { holderUrl: s.holder_url } : {}) }];
@@ -262,6 +299,7 @@ function importOne(cfg) {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
         pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights })),
+        ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),
   };
@@ -273,6 +311,8 @@ function importOne(cfg) {
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
+  if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
+  else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
   for (const w of unwrappable) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);

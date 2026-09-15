@@ -10,9 +10,21 @@ import { Download, ExternalLink, FileText, Loader2, ZoomIn, ZoomOut } from 'luci
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { cn } from '@/lib/cn';
 
+/** a clickable box over the page — PDF points, origin top-left, `page` 1-based */
+export interface PdfHotBox { id: string; page: number; rect: [number, number, number, number]; kind?: 'unit' | 'marker'; title?: string }
+/** scroll so that `y` (PDF points from the top of `page`, 1-based) is near the top of the well; a new `nonce` re-fires */
+export interface PdfFocus { page: number; y: number; nonce: number }
+
 interface PdfViewerProps {
   src: string;
   title: string;
+  /** the file the Download / New-tab buttons serve when it differs from `src` (a copy with link annotations) */
+  downloadSrc?: string;
+  /** transparent hit boxes laid over the pages (review mode: the book's citations) */
+  hotBoxes?: PdfHotBox[];
+  activeHot?: string | null;
+  onHot?: (box: PdfHotBox) => void;
+  focus?: PdfFocus | null;
   /** file name offered by the Download button */
   downloadName?: string;
   /** 'page' (default): the well is one page tall at fit width. 'fill': the
@@ -38,9 +50,16 @@ interface PdfViewerProps {
 const MAX_BACKING_WIDTH = 3000;
 const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
-type PageMeta = { num: number; aspect: number };
+type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null }: PdfViewerProps) {
+  const fileHref = downloadSrc ?? src;
+  // hit boxes by page, positioned as percentages of the page box so they ride every zoom
+  const hotByPage = React.useMemo(() => {
+    const m = new Map<number, PdfHotBox[]>();
+    for (const b of hotBoxes ?? []) (m.get(b.page) ?? m.set(b.page, []).get(b.page)!).push(b);
+    return m;
+  }, [hotBoxes]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -80,7 +99,7 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
         const metas: PageMeta[] = [];
         for (let n = 1; n <= doc.numPages; n++) {
           const vp = (await doc.getPage(n)).getViewport({ scale: 1 });
-          metas.push({ num: n, aspect: vp.height / vp.width });
+          metas.push({ num: n, aspect: vp.height / vp.width, w: vp.width, h: vp.height });
           if (cancelled) return;
         }
         setPages(metas);
@@ -162,6 +181,17 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
     visible.current.forEach((num) => void renderPage(num, pageWidth));
   }, [pageWidth, renderPage]);
 
+  // scroll the well so the focused point sits a little below the top
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!focus || !root || pages.length === 0) return;
+    const el = root.querySelector<HTMLElement>(`[data-page="${focus.page}"]`);
+    const meta = pages.find((p) => p.num === focus.page);
+    if (!el || !meta) return;
+    const top = el.offsetTop + (focus.y / meta.h) * el.offsetHeight - 72;
+    root.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }, [focus, pages]);
+
   const step = (dir: 1 | -1) => {
     const i = ZOOMS.indexOf(zoom);
     const next = ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, i + dir))];
@@ -220,10 +250,10 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
             <ZoomIn className="h-4 w-4" />
           </button>
         </div>
-        <a href={src} download={downloadName} className={btn} title="Download the PDF" aria-label="Download the PDF">
+        <a href={fileHref} download={downloadName} className={btn} title="Download the PDF" aria-label="Download the PDF">
           <Download className="h-4 w-4" /> <span className={cn(pane && 'hidden xl:inline')}>Download</span>
         </a>
-        <a href={src} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
+        <a href={fileHref} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
           <ExternalLink className="h-4 w-4" /> <span className={cn(pane && 'hidden xl:inline')}>{pane ? 'New tab' : 'Open in new tab'}</span>
         </a>
         {!pane && (
@@ -247,7 +277,7 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
           </span>
         </div>
       ) : (
-        <div ref={scrollRef} className={cn('overflow-auto overscroll-contain bg-well', wellFill)} style={wellStyle}>
+        <div ref={scrollRef} className={cn('relative overflow-auto overscroll-contain bg-well', wellFill)} style={wellStyle}>
           {pages.length === 0 ? (
             <div className="flex items-center justify-center h-full min-h-[16rem]">
               <Loader2 className="h-6 w-6 animate-spin text-accent" />
@@ -255,11 +285,26 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
           ) : (
             <div className="flex flex-col items-center gap-3 p-3">
               {pages.map((p) => (
-                <div key={p.num} data-page={p.num} className="bg-white shadow-card shrink-0" style={{ width: pageWidth, aspectRatio: `1 / ${p.aspect}` }}>
+                <div key={p.num} data-page={p.num} className="relative bg-white shadow-card shrink-0" style={{ width: pageWidth, aspectRatio: `1 / ${p.aspect}` }}>
                   <canvas
                     ref={(el) => { if (el) canvasRefs.current.set(p.num, el); else canvasRefs.current.delete(p.num); }}
                     className="w-full h-auto block"
                   />
+                  {hotByPage.get(p.num)?.map((b, i) => {
+                    const [x0, y0, x1, y1] = b.rect;
+                    return (
+                      <button
+                        key={`${b.id}-${i}`}
+                        type="button"
+                        data-hot={b.id}
+                        title={b.title}
+                        aria-label={b.title ?? b.id}
+                        onClick={() => onHot?.(b)}
+                        className={cn('pdf-hot', b.kind === 'marker' && 'pdf-hot-marker', activeHot === b.id && 'pdf-hot-active')}
+                        style={{ left: `${(x0 / p.w) * 100}%`, top: `${(y0 / p.h) * 100}%`, width: `${((x1 - x0) / p.w) * 100}%`, height: `${((y1 - y0) / p.h) * 100}%` }}
+                      />
+                    );
+                  })}
                 </div>
               ))}
             </div>
