@@ -373,8 +373,8 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
             )}
           </div>
           <p className="ml-auto text-right">
-            {pdf ? <>Book PDF sha256 <span className="font-mono">{pdf.sha256.slice(0, 16)}…</span> ({pdf.pages} pp.) · text </> : <>Book text </>}
-            sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 16)}…</span> · pages joined {manifest.generated.slice(0, 10)}
+            {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
+            text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
           </p>
         </div>
       </main>
