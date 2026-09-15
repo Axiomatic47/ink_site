@@ -12,7 +12,7 @@ import { Send, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 const ENDPOINT = '/__forms/contact.html';
-const field = 'w-full rounded-md border border-rule bg-card px-3 py-2 text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25';
+const field = 'w-full min-h-11 rounded-md border border-rule bg-card px-3 py-2 text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25';
 const label = 'block text-xs uppercase tracking-[0.08em] text-muted mb-1.5';
 
 export function ContactForm() {
@@ -46,7 +46,7 @@ export function ContactForm() {
         <div>
           <p className="font-serif text-lg text-ink" style={{ fontWeight: 600 }}>Thank you — your message has been sent.</p>
           <p className="text-sm text-ink/80 mt-1">I read everything that arrives here and reply by e-mail.</p>
-          <button type="button" onClick={() => setState('idle')} className="mt-3 text-sm text-accent-ink underline">Send another message</button>
+          <button type="button" onClick={() => setState('idle')} className="mt-3 inline-flex items-center min-h-11 lg:min-h-0 text-sm text-accent-ink underline">Send another message</button>
         </div>
       </div>
     );
@@ -76,7 +76,7 @@ export function ContactForm() {
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-muted">Sent to my inbox through the site\u2019s form service; nothing is stored beyond the message itself.</p>
-        <button type="submit" disabled={state === 'sending'} className="inline-flex items-center gap-2 rounded-md bg-ink text-on-ink px-4 py-2 text-sm hover:bg-ink-2 disabled:opacity-60" style={{ fontWeight: 600 }}>
+        <button type="submit" disabled={state === 'sending'} className="inline-flex items-center gap-2 min-h-11 lg:min-h-0 rounded-md bg-ink text-on-ink px-4 py-2 text-sm hover:bg-ink-2 disabled:opacity-60" style={{ fontWeight: 600 }}>
           {state === 'sending' ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : <Send className="h-4 w-4" aria-hidden />} Send message
         </button>
       </div>

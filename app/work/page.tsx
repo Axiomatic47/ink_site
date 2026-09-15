@@ -23,7 +23,7 @@ export default function WorkIndex() {
         </p>
         <nav aria-label="Collections" className="mt-6 flex flex-wrap gap-2 text-sm">
           {collections.map((c) => (
-            <a key={c.slug} href={`#${c.slug}`} className="rounded-full border border-rule bg-card px-3 py-1 no-underline text-ink/80 hover:border-accent hover:text-ink">
+            <a key={c.slug} href={`#${c.slug}`} className="inline-flex items-center min-h-11 lg:min-h-0 rounded-full border border-rule bg-card px-3 py-1 no-underline text-ink/80 hover:border-accent hover:text-ink">
               {c.title} <span className="text-muted">· {worksIn(c.slug).length}</span>
             </a>
           ))}
