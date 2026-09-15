@@ -3,7 +3,7 @@ import { cv } from '@/lib/cv';
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink text-on-ink/80 no-print mt-16">
+    <footer className="bg-chrome text-on-chrome/80 no-print mt-16">
       <div className="mx-auto max-w-site px-5 sm:px-8 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
         <span>
           © {new Date().getFullYear()} {cv.name}
