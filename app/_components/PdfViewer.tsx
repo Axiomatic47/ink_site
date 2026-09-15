@@ -27,6 +27,9 @@ interface PdfViewerProps {
   focus?: PdfFocus | null;
   /** pages (1-based) to mark in the margin — review mode: the cited pages within a reading copy */
   markedPages?: number[];
+  /** 'top' (default) or 'bottom': where the zoom / Download / New-tab bar sits (standalone chrome;
+      the home-page CV viewer puts it under the document, owner 2026-09-15) */
+  toolbar?: 'top' | 'bottom';
   /** the page in hand among the marked ones */
   currentPage?: number | null;
   /** fires with the page (1-based) under the well's reading line as the reader scrolls */
@@ -54,11 +57,17 @@ interface PdfViewerProps {
 }
 
 const MAX_BACKING_WIDTH = 3000;
+type PdfjsModule = typeof import('pdfjs-dist');
+let workerSingleton: InstanceType<PdfjsModule['PDFWorker']> | null = null;
+function sharedWorker(pdfjs: PdfjsModule) {
+  if (!workerSingleton || workerSingleton.destroyed) workerSingleton = new pdfjs.PDFWorker(); // the typings admit no name
+  return workerSingleton;
+}
 const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView, toolbar = 'top' }: PdfViewerProps) {
   const marked = React.useMemo(() => new Set(markedPages ?? []), [markedPages]);
   const fileHref = downloadSrc ?? src;
   // hit boxes by page, positioned as percentages of the page box so they ride every zoom
@@ -98,21 +107,26 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
       try {
         const pdfjs = await import('pdfjs-dist');
         pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-        // pdf.js 6 decodes JBIG2 and JPEG 2000 images only through WebAssembly
-        // modules fetched from wasmUrl; without it those pages paint white
-        // (drafter 0b43895f, 2026-09-14: 521 of the 838 cited pages are JBIG2/JPX
-        // scans). The cmaps serve the few Type0 fonts (Loeb, Digesta pages).
-        const task = pdfjs.getDocument({ url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true });
+        // LOADING (owner 2026-09-15, "serious trouble loading"): the served files are linearized at
+        // import and Netlify answers byte ranges, so the viewer fetches only the chunks the visible
+        // pages need — never the whole file up front (a 16 MB case, a 3 MB register). One worker is
+        // shared by every viewer on the page instead of a fresh one per document.
+        const task = pdfjs.getDocument({
+          url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true,
+          disableAutoFetch: true, disableStream: true, rangeChunkSize: 256 * 1024,
+          worker: sharedWorker(pdfjs),
+        });
         loadingTask = task;
         const doc = await task.promise;
         if (cancelled) return;
         docRef.current = doc;
+        // page sizes: read the FIRST page and assume its shape for the rest (books and reporters
+        // are uniform); each page's true size is read when it is rendered. Reading every page's
+        // dictionary before the first paint cost a round trip per page on long documents.
+        const first = (await doc.getPage(1)).getViewport({ scale: 1 });
+        if (cancelled) return;
         const metas: PageMeta[] = [];
-        for (let n = 1; n <= doc.numPages; n++) {
-          const vp = (await doc.getPage(n)).getViewport({ scale: 1 });
-          metas.push({ num: n, aspect: vp.height / vp.width, w: vp.width, h: vp.height });
-          if (cancelled) return;
-        }
+        for (let n = 1; n <= doc.numPages; n++) metas.push({ num: n, aspect: first.height / first.width, w: first.width, h: first.height });
         setPages(metas);
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
@@ -148,6 +162,12 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     try {
       const page = await doc.getPage(num);
       const base = page.getViewport({ scale: 1 });
+      // correct the assumed size once the page is in hand (a plate, a fold-out, a different volume)
+      setPages((prev) => {
+        const cur = prev.find((p) => p.num === num);
+        if (!cur || (Math.abs(cur.w - base.width) < 0.5 && Math.abs(cur.h - base.height) < 0.5)) return prev;
+        return prev.map((p) => (p.num === num ? { num, aspect: base.height / base.width, w: base.width, h: base.height } : p));
+      });
       const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_BACKING_WIDTH / cssWidth));
       const vp = page.getViewport({ scale: cssWidth / base.width });
       canvas.width = Math.floor(vp.width * dpr);
@@ -256,22 +276,9 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
   };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
-  return (
-    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
-      {resizable && height === 'page' && (
-        <div
-          role="separator"
-          aria-label="Resize the viewer"
-          title="Drag the corner to resize; double-click to reset"
-          onPointerDown={onGripDown}
-          onDoubleClick={() => onScale?.(null)}
-          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
-        >
-          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-        </div>
-      )}
-      {/* toolbar */}
-      <div className={cn('flex items-center gap-2 px-3 border-b border-rule bg-card no-print', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
+  const bottom = toolbar === 'bottom' && !pane;
+  const toolbarBar = (
+      <div className={cn('flex items-center gap-2 px-3 bg-card no-print', bottom ? 'border-t border-rule' : 'border-b border-rule', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
         {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
         <div className={cn('inline-flex items-center rounded-md border border-rule bg-well shrink-0', pane && 'ml-auto')}>
           <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40')} title="Zoom out" aria-label="Zoom out">
@@ -296,6 +303,23 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
           </span>
         )}
       </div>
+  );
+  return (
+    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
+      {resizable && height === 'page' && (
+        <div
+          role="separator"
+          aria-label="Resize the viewer"
+          title="Drag the corner to resize; double-click to reset"
+          onPointerDown={onGripDown}
+          onDoubleClick={() => onScale?.(null)}
+          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
+        >
+          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+        </div>
+      )}
+      {/* toolbar (standalone chrome may carry it at the bottom) */}
+      {!bottom && toolbarBar}
       {pane && (
         <div className="h-8 px-3 flex items-center border-b border-rule bg-card/70 text-[11px] text-ink/85 shrink-0" title={title}>
           <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
@@ -346,6 +370,8 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
           )}
         </div>
       )}
+
+      {bottom && toolbarBar}
 
       {/* hint bar */}
       <div className={cn('flex items-center gap-3 px-3 border-t border-rule text-muted no-print shrink-0', pane ? 'h-8 text-[11px] bg-card/70' : 'py-2 text-xs')}>

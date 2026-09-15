@@ -23,7 +23,7 @@ export interface ReviewPage {
       whole case, else the cited page with the neighbours its quotation needs — and the cited page's
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
       hash-verified single-page audit copy. */
-  context?: { file: string; page: number; sha256: string | null };
+  context?: { file: string; page: number; sha256: string | null; served?: string | null };
 }
 
 export interface ReviewUnit {
@@ -50,7 +50,10 @@ export interface ReviewBox {
 }
 export interface ReviewPdf {
   file: string;
+  /** the lane's render (what the overlay is bound to) */
   sha256: string;
+  /** the served copy — linearized at import for progressive loading */
+  served?: string;
   bytes: number;
   pages: number;
   producer: string;
@@ -59,7 +62,7 @@ export interface ReviewPdf {
   rendered: string;
   renderName: string;
   /** a copy with the citation links written in as PDF annotations, for download */
-  linked: { file: string; sha256: string } | null;
+  linked: { file: string; sha256: string; served?: string } | null;
 }
 export interface ReviewMarker { note: string; page: number; rect: Rect }
 

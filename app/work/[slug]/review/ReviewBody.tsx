@@ -211,7 +211,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
   // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
   const ctx = page?.context ?? null;
-  const paneSrc = ctx ? v(ctx.file, ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
+  const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
   // (no memo: a unit cites at most a few hundred pages)
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
   const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
@@ -351,7 +351,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   );
   const bookPane = pdf ? (
     <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
-      <PdfViewer src={v(pdf.file, pdf.sha256)} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.sha256) : undefined} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
+      <PdfViewer src={v(pdf.file, pdf.served ?? pdf.sha256)} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.served ?? pdf.linked.sha256) : undefined} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
         height={review ? 'fill' : 'page'} chrome="pane" leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
     </div>
   ) : (

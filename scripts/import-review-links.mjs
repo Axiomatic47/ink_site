@@ -34,6 +34,27 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, statS
 import { createHash } from 'node:crypto';
 import { join, resolve, dirname, basename } from 'node:path';
 import { homedir } from 'node:os';
+import { execFileSync } from 'node:child_process';
+
+// The served copy of a MULTI-PAGE file is linearized (qpdf) so pdf.js can paint the first page from
+// the first byte-range instead of downloading the whole file; content and page count are unchanged,
+// bytes and sha differ from the lane's. `_SERVED.json` beside the files maps lane sha → served sha so a
+// re-run copies only what moved. Single-page extracts (the audit copies) stay byte-identical.
+function linearizeInto(src, dst, laneSha, served) {
+  const key = dst.split('/uploads/')[1];
+  const rec = served[key];
+  if (rec && rec.source === laneSha && existsSync(dst) && sha256(dst) === rec.served) return rec.served;
+  mkdirSync(dirname(dst), { recursive: true });
+  try {
+    execFileSync('qpdf', ['--linearize', '--object-streams=generate', src, dst], { stdio: ['ignore', 'ignore', 'pipe'] });
+  } catch (e) {
+    // qpdf exits 3 on warnings with the output written; anything else is a real failure
+    if (!(e.status === 3 && existsSync(dst))) throw new Error(`qpdf failed on ${basename(src)}: ${e.stderr?.toString().slice(0, 200) || e.message}`);
+  }
+  const got = sha256(dst);
+  served[key] = { source: laneSha, served: got };
+  return got;
+}
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
 const LIB = join(homedir(), 'Git', 'work_station', 'research_library');
@@ -143,6 +164,20 @@ function importOne(cfg) {
   if (feedSha && feedSha !== bookSha) {
     throw new Error(`the feed was built from another book: feed bookSha ${feedSha.slice(0, 12)} ≠ book ${bookSha.slice(0, 12)} — re-run the lane first`);
   }
+  // every refusal happens HERE, before a byte is written: a lane caught mid-regeneration (index at one
+  // book, overlay at another; a render missing or renamed) must leave the site's tree exactly as it was
+  const overlayFile = join(cfg.lane, '_WEB', 'overlay.json');
+  const overlay = existsSync(overlayFile) ? JSON.parse(readFileSync(overlayFile, 'utf8')) : null;
+  if (overlay) {
+    if (overlay.book?.sha256 && overlay.book.sha256 !== bookSha) throw new Error(`overlay.json was built from another book: ${overlay.book.sha256.slice(0, 12)} ≠ ${bookSha.slice(0, 12)} — the lane is mid-regeneration; nothing written`);
+    const rsrc = join(cfg.lane, '_WEB', basename(overlay.pdf.path));
+    if (!existsSync(rsrc)) throw new Error(`overlay.json names a render that is not in the lane: ${basename(overlay.pdf.path)}; nothing written`);
+    if (sha256(rsrc) !== overlay.pdf.sha256) throw new Error(`the book render on disk is not the one overlay.json was built on; nothing written`);
+  }
+  for (const r of rows) {
+    if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST' || r.status === 'CUT_CASE') && PUBLISHABLE.has(r.rights) && !existsSync(join(cfg.lane, r.extract))) throw new Error(`${r.extract} is named by the index but missing on disk — the lane is mid-write; nothing written`);
+    if (r.context && PUBLISHABLE.has(r.rights) && !existsSync(join(cfg.lane, r.context))) throw new Error(`${r.context} is named by the index but missing on disk — the lane is mid-write; nothing written`);
+  }
 
   // ---- 1. the book: header off, endnotes → footnotes, units wrapped -------
   let md = stripHeader(raw).replace(/\[\^\^([A-Za-z0-9_]+)\]/g, '[^$1]');
@@ -211,6 +246,9 @@ function importOne(cfg) {
   }
   md = lines.join('\n').trimEnd() + '\n';
 
+  const servedFile = join(ROOT, 'public', 'uploads', 'research', cfg.id, '_SERVED.json');
+  const served = existsSync(servedFile) ? JSON.parse(readFileSync(servedFile, 'utf8')) : {};
+
   // ---- 2. the extracts: public-domain only, sha-checked ------------------
   const outDir = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'sources');
   mkdirSync(outDir, { recursive: true });
@@ -242,7 +280,7 @@ function importOne(cfg) {
   // the reading copies: one multi-page file per work, shared by its citations; public-domain only, sha-checked
   const ctxDir = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'context');
   mkdirSync(ctxDir, { recursive: true });
-  const ctxCopied = new Set(); let ctxBytes = 0, ctxNew = 0, ctxKept = 0; const ctxWanted = new Set();
+  const ctxCopied = new Set(); let ctxBytes = 0, ctxNew = 0, ctxKept = 0; const ctxWanted = new Set(); const ctxServed = new Map();
   for (const u of units.values()) {
     for (const p of u.pages) {
       if (!p.ctx) continue;
@@ -255,10 +293,13 @@ function importOne(cfg) {
         const got = sha256(src);
         if (p.ctx.sha256 && p.ctx.sha256 !== got) throw new Error(`${p.ctx.extract}: sha256 on disk ${got.slice(0, 12)} ≠ fixity ${p.ctx.sha256.slice(0, 12)} — the lane is mid-write`);
         p.ctx.sha256 = got;
-        if (existsSync(dst) && sha256(dst) === got) ctxKept += 1;
-        else { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(src, dst); ctxNew += 1; }
+        const before = served[dst.split('/uploads/')[1]]?.served;
+        const now = linearizeInto(src, dst, got, served);
+        if (before === now) ctxKept += 1; else ctxNew += 1;
+        ctxServed.set(rel, now);
         ctxBytes += statSync(dst).size; ctxCopied.add(rel);
       } else if (!p.ctx.sha256) p.ctx.sha256 = sha256(src);
+      p.ctx.served = ctxServed.get(rel) ?? null;
       p.ctx.file = `/uploads/research/${cfg.id}/context/${rel.split('/').map(encodeURIComponent).join('/')}`;
     }
   }
@@ -270,6 +311,8 @@ function importOne(cfg) {
   listCtx(ctxDir);
   const ctxExtra = ctxOnDisk.filter((f) => !ctxExpected.has(f)), ctxMissing = [...ctxExpected].filter((f) => !ctxOnDisk.includes(f));
   if (ctxExtra.length || ctxMissing.length) throw new Error(`rights gate (context): ${ctxExtra.length} extra (${ctxExtra.slice(0, 5).join(', ')}), ${ctxMissing.length} missing — nothing written`);
+  for (const k of Object.keys(served)) if (!existsSync(join(ROOT, 'public', 'uploads', k))) delete served[k];
+  writeFileSync(servedFile, JSON.stringify(served) + '\n');
 
   // a page the lane no longer cites leaves the site with it
   let removed = 0;
@@ -290,30 +333,26 @@ function importOne(cfg) {
   // PyMuPDF coordinates: PDF points, origin top-left. The PDF is copied like the extracts; a render
   // whose hash differs from the manifest's, or a manifest built from another book, is refused.
   let pdf = null; const boxes = new Map(); let markers = [];
-  const overlayFile = join(cfg.lane, '_WEB', 'overlay.json');
-  if (existsSync(overlayFile)) {
-    const o = JSON.parse(readFileSync(overlayFile, 'utf8'));
-    if (o.book?.sha256 && o.book.sha256 !== bookSha) throw new Error(`overlay.json was built from another book: ${o.book.sha256.slice(0, 12)} ≠ ${bookSha.slice(0, 12)}`);
+  if (overlay) {
+    const o = overlay;
     const src = join(cfg.lane, '_WEB', basename(o.pdf.path));
-    if (!existsSync(src)) throw new Error(`overlay.json names a render that is not in the lane: ${basename(o.pdf.path)}`);
-    const got = sha256(src);
-    if (got !== o.pdf.sha256) throw new Error(`the book render on disk (${got.slice(0, 12)}) is not the one overlay.json was built on (${o.pdf.sha256.slice(0, 12)})`);
+    const got = o.pdf.sha256; // verified above
     const dst = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'book.pdf');
-    if (!existsSync(dst) || sha256(dst) !== got) copyFileSync(src, dst);
+    const bookServed = linearizeInto(src, dst, got, served);
     let linked = null;
     if (o.pdf.linked?.path) {
       const lsrc = join(cfg.lane, '_WEB', basename(o.pdf.linked.path));
       if (existsSync(lsrc) && sha256(lsrc) === o.pdf.linked.sha256) {
         const ldst = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'book_linked.pdf');
-        if (!existsSync(ldst) || sha256(ldst) !== o.pdf.linked.sha256) copyFileSync(lsrc, ldst);
-        linked = { file: `/uploads/research/${cfg.id}/book_linked.pdf`, sha256: o.pdf.linked.sha256 };
+        const linkedServed = linearizeInto(lsrc, ldst, o.pdf.linked.sha256, served);
+        linked = { file: `/uploads/research/${cfg.id}/book_linked.pdf`, sha256: o.pdf.linked.sha256, served: linkedServed };
       } else unwrappable.push('overlay.json names a linked copy that is missing or differs — download stays the plain render');
     }
     // the render's date: the lane names it in the file (…_YYYY-MM-DD…), else the file's mtime — shown on the
     // page beside the text's import date so a render that lags the text is visible, not silent
     const dateInName = /(\d{4}-\d{2}-\d{2})/.exec(basename(o.pdf.path))?.[1];
     const rendered = dateInName || statSync(src).mtime.toISOString().slice(0, 10);
-    pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', rendered, renderName: basename(o.pdf.path), linked };
+    pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, served: bookServed, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', rendered, renderName: basename(o.pdf.path), linked };
     for (const b of o.units) {
       const parts = [{ page: b.page, rects: b.rects }];
       if (b.tail) parts.push({ page: b.tail.page, rects: b.tail.rects });
@@ -347,7 +386,7 @@ function importOne(cfg) {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
         pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
-          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256 } } : {}) })),
+          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),
@@ -362,7 +401,7 @@ function importOne(cfg) {
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
-  console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB) — ${ctxNew} copied, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
+  console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
   for (const w of unwrappable) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);
