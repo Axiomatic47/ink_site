@@ -59,7 +59,7 @@ interface PdfViewerProps {
   onScale?: (width: number | null) => void;
 }
 
-const MAX_BACKING_WIDTH = 3000;
+const MAX_BACKING_WIDTH = 2400;
 type PdfjsModule = typeof import('pdfjs-dist');
 let workerSingleton: InstanceType<PdfjsModule['PDFWorker']> | null = null;
 function sharedWorker(pdfjs: PdfjsModule) {
@@ -180,13 +180,14 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     wanted.current.set(num, cssWidth);
     if (pending.current.has(num)) { tasks.current.get(num)?.cancel(); return; } // the chain below re-reads `wanted`
     const run = (async () => {
-      let attempt = 0;
+      let attempt = 0, blankRedraws = 0;
       // loop while a newer width was requested during the render
       for (;;) {
         const width = wanted.current.get(num);
         const cv = canvasRefs.current.get(num);
         if (!docRef.current || !cv || !width) return;
-        if (renderedWidth.current.get(num) === width) return;
+        // a page marked rendered whose canvas is empty was cleared while it was off-screen: draw again
+        if (renderedWidth.current.get(num) === width && cv.width > 0) return;
         try {
           const page = await docRef.current.getPage(num);
           const base = page.getViewport({ scale: 1 });
@@ -204,7 +205,14 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           if (!ctx) return;
           const task = page.render({ canvas: cv, canvasContext: ctx, viewport: vp, transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : undefined });
           tasks.current.set(num, task);
-          try { await task.promise; renderedWidth.current.set(num, width); }
+          try {
+            await task.promise;
+            // the page may have scrolled out (canvas cleared) while this drew — never mark a blank canvas
+            // as rendered, or it would stay blank when it scrolls back (the owner's "some pages give up",
+            // 2026-09-15)
+            if (visible.current.has(num) && cv.width > 0) renderedWidth.current.set(num, width);
+            else { renderedWidth.current.delete(num); if (!visible.current.has(num)) { cv.width = 0; cv.height = 0; } }
+          }
           catch (e) { if (!(e instanceof Error && e.name === 'RenderingCancelledException')) throw e; }
           finally { tasks.current.delete(num); }
         } catch (e) {
@@ -212,7 +220,8 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           await new Promise((r) => setTimeout(r, 120)); // let a colliding render settle, then try once more
           continue;
         }
-        if (wanted.current.get(num) === width) return; // nothing newer asked for
+        if (wanted.current.get(num) === width && (!visible.current.has(num) || cv.width > 0)) return; // done, or off-screen
+        if (cv.width === 0 && ++blankRedraws > 3) return; // never spin on a canvas something keeps clearing
       }
     })();
     pending.current.set(num, run);
@@ -231,10 +240,13 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           void renderPage(num, pageWidth);
         } else {
           visible.current.delete(num);
+          tasks.current.get(num)?.cancel();
           if (canvas) { canvas.width = 0; canvas.height = 0; renderedWidth.current.delete(num); }
         }
       }
-    }, { root: rootEl, rootMargin: '100% 0px' });
+      // one screen of margin either side: enough to have the next page ready, few enough live
+      // canvases to stay inside Safari's canvas-memory budget with two panes open
+    }, { root: rootEl, rootMargin: '60% 0px' });
     canvasRefs.current.forEach((c) => io.observe(c.parentElement as Element));
     return () => io.disconnect();
   }, [pages, renderPage, pageWidth]);
