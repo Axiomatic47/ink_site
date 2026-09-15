@@ -17,6 +17,8 @@ export interface ReviewPage {
       (the 1611 facsimile and the Bodleian leaves) has pages of each */
   source: string | null;
   rights: string;
+  /** the case's first page — the note cited the case without a pin, so the whole case is served (owner 2026-09-15) */
+  begins?: boolean;
 }
 
 export interface ReviewUnit {
