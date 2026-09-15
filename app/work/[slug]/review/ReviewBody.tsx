@@ -50,6 +50,9 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   // each citation unit's lines; the rendered text (children) is the fallback
   // until the lane emits the overlay
   const pdf = manifest.pdf;
+  // the files keep their names across renders and re-cuts, so a browser could
+  // serve a cached copy after a deploy: every PDF URL carries its content hash
+  const v = (file: string, sha: string | null | undefined) => (sha ? `${file}?v=${sha.slice(0, 12)}` : file);
   const [focus, setFocus] = useState<PdfFocus | null>(null);
   const hotBoxes = useMemo<PdfHotBox[]>(() => {
     const out: PdfHotBox[] = [];
@@ -220,7 +223,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0', review ? 'h-full min-h-0 flex flex-col' : 'lg:sticky lg:top-3 z-10')}>
       {page?.file ? (
-        <PdfViewer key={page.file} src={page.file} title={pageTitle} downloadName={page.file.split('/').pop()}
+        <PdfViewer key={page.file} src={v(page.file, page.sha256)} title={pageTitle} downloadName={page.file.split('/').pop()}
           height={review ? 'fill' : 'page'} chrome="pane" leading={controls} />
       ) : (
         <div className={cn(paneShell, review ? 'h-full' : 'min-h-[24rem]')}>
@@ -265,7 +268,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   );
   const bookPane = pdf ? (
     <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
-      <PdfViewer src={pdf.file} downloadSrc={pdf.linked?.file} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
+      <PdfViewer src={v(pdf.file, pdf.sha256)} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.sha256) : undefined} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
         height={review ? 'fill' : 'page'} chrome="pane" leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
     </div>
   ) : (
@@ -322,7 +325,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                   <span className="text-ink/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
                   {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
                   {active?.status === 'CUT_FIRST' && ' · the note cites the work without a page: its first page is shown'}
-                  {page.file && <> · <a href={page.file} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
+                  {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
