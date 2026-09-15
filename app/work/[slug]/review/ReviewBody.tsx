@@ -101,15 +101,17 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
       } catch { /* storage unavailable */ }
       onMq();
       // deep link: select the unit and bring its link into view in the book
-      const id = citeFromHash(window.location.hash);
-      if (id && byId.has(id)) {
+      const c = citeFromHash(window.location.hash);
+      if (c && byId.has(c.id)) {
+        const id = c.id;
         setActiveId(id);
+        setPageIdx(Math.min(c.page, Math.max(0, (byId.get(id)?.pages.length ?? 1) - 1)));
         if (pdf) setTimeout(() => focusUnit(byId.get(id)), 400); // after the PDF's pages exist
         else setTimeout(() => bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center' }), 50);
       }
     }, 0);
     mq.addEventListener('change', onMq);
-    const onHash = () => { const id = citeFromHash(window.location.hash); if (id && byId.has(id)) { setActiveId(id); setPageIdx(0); } };
+    const onHash = () => { const c = citeFromHash(window.location.hash); if (c && byId.has(c.id)) { setActiveId(c.id); setPageIdx(Math.min(c.page, Math.max(0, (byId.get(c.id)?.pages.length ?? 1) - 1))); } };
     window.addEventListener('hashchange', onHash);
     return () => { clearTimeout(t); mq.removeEventListener('change', onMq); window.removeEventListener('hashchange', onHash); };
   }, [byId, pdf, focusUnit]);
@@ -143,11 +145,11 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   };
   const resetSplit = () => { setSplit(50); try { localStorage.setItem(SPLIT_KEY, '50'); } catch { /* ignore */ } };
 
-  /** select a unit; `reveal` scrolls its link into view in the book */
-  const select = useCallback((id: string, reveal: boolean) => {
+  /** select a unit and one of its cited pages; `reveal` scrolls its link into view in the book */
+  const select = useCallback((id: string, reveal: boolean, pageIndex = 0) => {
     setActiveId(id);
-    setPageIdx(0);
-    try { history.replaceState(null, '', hashForCite(id)); } catch { /* ignore */ }
+    setPageIdx(pageIndex);
+    try { history.replaceState(null, '', hashForCite(id, pageIndex)); } catch { /* ignore */ }
     if (reveal) {
       if (pdf) focusUnit(byId.get(id));
       else bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -185,7 +187,16 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     if (activeId) root.querySelector(`a[data-cite="${activeId}"]`)?.classList.add('cite-active');
   }, [activeId]);
 
-  const step = (d: -1 | 1) => { const n = units[idx + d]; if (n) select(n.id, true); };
+  /** previous / next walks THROUGH the unit's cited pages before moving to the neighbouring citation */
+  const step = (d: -1 | 1) => {
+    if (active && active.pages.length > 1) {
+      const next = pageIdx + d;
+      if (next >= 0 && next < active.pages.length) { setPageIdx(next); try { history.replaceState(null, '', hashForCite(active.id, next)); } catch { /* ignore */ } return; }
+    }
+    const n = units[idx + d];
+    if (n) select(n.id, true, d < 0 ? Math.max(0, n.pages.length - 1) : 0);
+  };
+  const goPage = (i: number) => { if (!active) return; setPageIdx(i); try { history.replaceState(null, '', hashForCite(active.id, i)); } catch { /* ignore */ } };
   const toNote = () => {
     if (!active) return;
     if (pdf) { focusUnit(active); return; }
@@ -202,26 +213,53 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const controls = (
     <div className="flex items-center gap-1 min-w-0 whitespace-nowrap">
       <button type="button" className={ctl} onClick={() => step(-1)} disabled={idx <= 0} title="Previous citation" aria-label="Previous citation"><ChevronLeft className="h-4 w-4" /></button>
-      <span className="text-xs text-muted tabular-nums px-0.5" style={{ fontWeight: 500 }}>{idx >= 0 ? `${idx + 1} / ${units.length}` : `${units.length} citations`}</span>
-      <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || idx >= units.length - 1} title="Next citation" aria-label="Next citation"><ChevronRight className="h-4 w-4" /></button>
+      <span className="text-xs text-muted tabular-nums px-0.5" style={{ fontWeight: 500 }}>
+        {idx >= 0 ? `${idx + 1} / ${units.length}` : `${units.length} citations`}
+        {active && active.pages.length > 1 && <> · page {pageIdx + 1}/{active.pages.length}</>}
+      </span>
+      <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
       {active && (
         <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
-      {active && active.pages.length > 1 && (
-        <span className="ml-1 inline-flex items-center gap-0.5 border-l border-rule pl-2">
-          <button type="button" className={ctl} onClick={() => setPageIdx((i) => Math.max(0, i - 1))} disabled={pageIdx === 0} title="Previous cited page" aria-label="Previous cited page"><ArrowLeft className="h-3.5 w-3.5" /></button>
-          <span className="text-xs tabular-nums" style={{ fontWeight: 500 }}>{page?.label} <span className="text-muted">({pageIdx + 1}/{active.pages.length})</span></span>
-          <button type="button" className={ctl} onClick={() => setPageIdx((i) => Math.min(active.pages.length - 1, i + 1))} disabled={pageIdx >= active.pages.length - 1} title="Next cited page" aria-label="Next cited page"><ArrowRight className="h-3.5 w-3.5" /></button>
-        </span>
-      )}
     </div>
   );
+
+  // the page strip: every page the unit cites, grouped by source when it draws on two,
+  // the active page marked, a held page shown as a marked label rather than dropped
+  // (no memo: a unit cites at most a couple of dozen pages)
+  const groups: { source: string | null; title: string; items: { i: number; label: string; file: string | null }[] }[] = [];
+  active?.pages.forEach((p, i) => {
+    const src = p.source ?? active.source;
+    let g = groups[groups.length - 1];
+    if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
+    g.items.push({ i, label: p.label, file: p.file });
+  });
+  const pageStrip = active && active.pages.length > 1 ? (
+    <div className="shrink-0 mb-2 rounded-lg border border-rule bg-card shadow-card px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5" role="tablist" aria-label="Pages cited by this citation">
+      <span className="text-[11px] uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}>{active.pages.length} pages cited</span>
+      {groups.map((g, gi) => (
+        <span key={`${g.source}-${gi}`} className="inline-flex flex-wrap items-center gap-1">
+          {groups.length > 1 && <span className="text-xs text-muted mr-0.5 truncate max-w-[16rem]" title={g.title}>{g.title}</span>}
+          {g.items.map((it) => (
+            <button key={it.i} type="button" role="tab" aria-selected={pageIdx === it.i} onClick={() => goPage(it.i)}
+              title={it.file ? `Open ${it.label}` : `${it.label} — held in the library, not published`}
+              className={cn('h-7 px-2 rounded-md text-xs tabular-nums transition-colors inline-flex items-center gap-1',
+                pageIdx === it.i ? 'bg-ink text-on-ink' : it.file ? 'border border-rule text-ink/85 hover:bg-well' : 'border border-dashed border-rule text-muted hover:bg-well')}
+              style={{ fontWeight: pageIdx === it.i ? 600 : 500 }}>
+              {!it.file && <Lock className="h-3 w-3" aria-hidden />}{it.label}
+            </button>
+          ))}
+        </span>
+      ))}
+    </div>
+  ) : null;
 
   const paneShell = 'bg-card border border-rule rounded-lg shadow-card flex flex-col min-h-0';
   const barTitle = 'font-serif text-[15px] leading-none';
 
   const sourcePane = (
-    <div ref={sourceRef} className={cn('min-w-0', review ? 'h-full min-h-0 flex flex-col' : 'lg:sticky lg:top-3 z-10')}>
+    <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
+      {pageStrip}
       {page?.file ? (
         <PdfViewer key={page.file} src={v(page.file, page.sha256)} title={pageTitle} downloadName={page.file.split('/').pop()}
           height={review ? 'fill' : 'page'} chrome="pane" leading={controls} />
@@ -241,7 +279,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
               <>
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}><Lock className="h-3.5 w-3.5" /> Held in the library, not published</p>
                 <p className="font-serif text-lg text-ink mt-3 leading-snug" style={{ fontWeight: 620 }}>{sourceTitle}</p>
-                {active.pages.length > 0 && <p className="mt-1 text-ink/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
+                {page ? <p className="mt-1 text-ink/85">{page.label}</p> : active.pages.length > 0 && <p className="mt-1 text-ink/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
                 <p className="mt-4 text-ink/85">
                   {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
                   {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
