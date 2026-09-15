@@ -370,9 +370,10 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   const bottom = toolbar === 'bottom' && !pane;
-  const toolbarBar = (
-      <div className={cn('flex items-center gap-2 px-3 bg-card no-print', bottom ? 'border-t border-rule' : 'border-b border-rule', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
-        {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
+  // the document actions — zoom · Download · New tab; the standalone chrome carries them in its
+  // toolbar (top or bottom), the pane chrome in its footer bar under the well (owner 2026-09-15)
+  const actions = (
+    <>
         <div className={cn('inline-flex items-center rounded-md border border-rule bg-well shrink-0', pane && 'ml-auto')}>
           <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40')} title="Zoom out" aria-label="Zoom out">
             <ZoomOut className="h-4 w-4" />
@@ -390,11 +391,20 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
         <a href={fileHref} target="_blank" rel="noopener noreferrer" className={btn} title="Open in new tab" aria-label="Open in new tab">
           <ExternalLink className="h-4 w-4" /> <span className={cn(pane && 'hidden xl:inline')}>{pane ? 'New tab' : 'Open in new tab'}</span>
         </a>
-        {!pane && (
-          <span className="ml-auto hidden sm:inline text-xs text-muted truncate max-w-[40%]" title={title}>
-            {title}
-          </span>
-        )}
+    </>
+  );
+  const toolbarBar = (
+      <div className={cn('flex items-center gap-2 px-3 bg-card no-print flex-wrap py-2', bottom ? 'border-t border-rule' : 'border-b border-rule')}>
+        {actions}
+        <span className="ml-auto hidden sm:inline text-xs text-muted truncate max-w-[40%]" title={title}>
+          {title}
+        </span>
+      </div>
+  );
+  // pane chrome: the h-11 header bar carries only the pane's own controls (citation stepper, text link)
+  const paneHeader = (
+      <div className="flex items-center gap-2 px-3 bg-card border-b border-rule h-11 shrink-0 no-print">
+        {leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
       </div>
   );
   return (
@@ -411,8 +421,8 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
         </div>
       )}
-      {/* toolbar (standalone chrome may carry it at the bottom) */}
-      {!bottom && toolbarBar}
+      {/* toolbar (standalone chrome, top or bottom) · the pane chrome's header bar */}
+      {pane ? paneHeader : !bottom && toolbarBar}
       {pane && (
         <div className="h-8 px-3 flex items-center border-b border-rule bg-card/70 text-[11px] text-ink/85 shrink-0" title={title}>
           <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
@@ -464,14 +474,19 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
         </div>
       )}
 
-      {bottom && toolbarBar}
+      {!pane && bottom && toolbarBar}
 
-      {/* hint bar */}
-      <div className={cn('flex items-center gap-3 px-3 border-t border-rule text-muted no-print shrink-0', pane ? 'h-8 text-[11px] bg-card/70' : 'py-2 text-xs')}>
-        <FileText className="h-3.5 w-3.5 text-accent" />
-        <span>PDF</span>
-        <span className="text-rule">•</span>
-        <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
+      {/* hint bar — the document's record; in the pane chrome it is an h-11 footer that also carries
+          zoom · Download · New tab at its right (owner 2026-09-15: the actions moved under the well;
+          both panes share this component so their edges stay level) */}
+      <div className={cn('flex items-center gap-2 px-3 border-t border-rule no-print shrink-0', pane ? 'h-11 bg-card/70' : 'py-2')}>
+        <div className={cn('flex items-center gap-3 text-muted min-w-0 truncate', pane ? 'text-[11px]' : 'text-xs')}>
+          <FileText className="h-3.5 w-3.5 text-accent shrink-0" />
+          <span>PDF</span>
+          <span className="text-rule">•</span>
+          <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
+        </div>
+        {pane && actions}
       </div>
     </div>
   );
