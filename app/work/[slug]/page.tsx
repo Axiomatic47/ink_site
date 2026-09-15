@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Columns } from 'lucide-react';
 import { works, workBySlug, collectionBySlug, worksIn } from '@/lib/works';
 import { readWorkBody } from '@/lib/works.server';
+import { readReview } from '@/lib/review.server';
+import { publishedUnits } from '@/lib/review';
 import { SiteShell } from '../../_components/SiteShell';
 import { PdfViewer } from '../../_components/PdfViewer';
 import { ArticleBody } from '../../_components/ArticleBody';
@@ -33,6 +35,9 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const i = siblings.findIndex((x) => x.slug === w.slug);
   const prev = siblings[i - 1], next = siblings[i + 1];
   const body = w.pdf ? null : readWorkBody(w);
+  // a reviewed book: its citations open the cited page on the review route
+  const review = body ? readReview(w.slug) : null;
+  const reviewHref = review ? `/work/${w.slug}/review` : undefined;
   return (
     <SiteShell>
       <Link href={`/work#${w.collection}`} className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink no-underline mb-6">
@@ -44,6 +49,14 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           <h1 className="font-serif text-3xl leading-tight" style={{ fontWeight: 620 }}>{w.title}</h1>
           {w.subtitle && <p className="font-serif text-xl text-muted mt-2 leading-snug">{w.subtitle}</p>}
           {w.blurb && <p className="text-sm leading-relaxed text-ink/85 mt-4">{w.blurb}</p>}
+          {review && (
+            <Link href={reviewHref!} className="mt-5 flex items-start gap-2.5 rounded-md border border-accent/40 bg-accent/10 px-3 py-2.5 no-underline hover:bg-accent/20 transition-colors">
+              <Columns className="h-4 w-4 mt-0.5 shrink-0 text-accent-ink" />
+              <span className="text-sm leading-snug text-ink">
+                <span style={{ fontWeight: 600 }}>Review mode</span> — the text beside the cited pages: {publishedUnits(review).length.toLocaleString('en-US')} citations open the page they cite, from {Object.keys(review.sources).length} sources.
+              </span>
+            </Link>
+          )}
           {collection && (
             <p className="text-xs text-muted mt-4">
               Part of <Link href={`/work#${collection.slug}`} className="text-accent-ink underline">{collection.title}</Link>
@@ -61,7 +74,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           {w.pdf ? (
             <PdfViewer src={w.pdf} title={w.title} downloadName={w.pdf.split('/').pop()} />
           ) : body ? (
-            <ArticleBody>{body}</ArticleBody>
+            <ArticleBody citeBase={reviewHref}>{body}</ArticleBody>
           ) : (
             <p className="text-muted">This article is not yet available in the reader.</p>
           )}

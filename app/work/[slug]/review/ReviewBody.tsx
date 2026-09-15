@@ -1,0 +1,292 @@
+// ReviewBody — a book beside the pages it cites. The book (server-rendered,
+// passed as children) scrolls in the left card; every citation unit in its
+// notes is an <a data-cite="note/seq"> written by the import, and a click on
+// one opens that unit's pinned page in the right card (PdfViewer, one-page
+// PDF cut from the held source). Same matched-card pattern as the archive
+// leaf pages (LeafBody): h-11 header bars, h-8 sub-bars, a draggable divider
+// in side-by-side, the layout choice remembered. Deep link: #cite=<note>/<seq>.
+//
+// Rights: only public-domain pages are published. A citation whose page is
+// held in the library but not published opens a card that SAYS so (source,
+// page, rights, holder link) — show-and-mark, never a silent gap.
+'use client';
+
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Lock, Rows } from 'lucide-react';
+import { cn } from '@/lib/cn';
+import { RIGHTS_LABEL, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit } from '@/lib/review';
+import { SiteHeader } from '../../../_components/SiteHeader';
+import { SiteFooter } from '../../../_components/SiteFooter';
+import { PdfViewer } from '../../../_components/PdfViewer';
+
+type Layout = 'stacked' | 'side';
+const LAYOUT_KEY = 'jk-review-layout';
+const SPLIT_KEY = 'jk-review-split';
+const SPLIT_MIN = 30, SPLIT_MAX = 70;
+const DIVIDER_PX = 14;
+const BOTTOM_PAD_PX = 16;
+
+interface Props {
+  work: { slug: string; title: string; subtitle?: string; venue?: string };
+  manifest: ReviewManifest;
+  /** count of units that open a published page */
+  published: number;
+  children: React.ReactNode;
+}
+
+export function ReviewBody({ work, manifest, published, children }: Props) {
+  const units = manifest.units;
+  const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [pageIdx, setPageIdx] = useState(0);
+  const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
+  const idx = active ? units.indexOf(active) : -1;
+  const page = active?.pages[pageIdx] ?? null;
+  // the page's own source when a unit spans two sources; else the unit's
+  const sourceKey = page?.source ?? active?.source ?? null;
+  const source = sourceKey ? manifest.sources[sourceKey] : undefined;
+  const rights = page?.rights || active?.rights || '';
+
+  // layout (LeafBody's pattern): side by side by default on large screens
+  const [layout, setLayout] = useState<Layout>('side');
+  const [split, setSplit] = useState(50);
+  const [isLg, setIsLg] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [fillHeight, setFillHeight] = useState<number | null>(null);
+  const rowRef = useRef<HTMLDivElement | null>(null);
+  const belowRef = useRef<HTMLDivElement | null>(null);
+  const bookRef = useRef<HTMLDivElement | null>(null);
+  const sourceRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onMq = () => setIsLg(mq.matches);
+    const t = setTimeout(() => {
+      try {
+        const l = localStorage.getItem(LAYOUT_KEY);
+        if (l === 'side' || l === 'stacked') setLayout(l);
+        const stored = Number(localStorage.getItem(SPLIT_KEY));
+        if (stored >= SPLIT_MIN && stored <= SPLIT_MAX) setSplit(stored);
+      } catch { /* storage unavailable */ }
+      onMq();
+      // deep link: select the unit and bring its link into view in the book
+      const id = citeFromHash(window.location.hash);
+      if (id && byId.has(id)) {
+        setActiveId(id);
+        setTimeout(() => bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center' }), 50);
+      }
+    }, 0);
+    mq.addEventListener('change', onMq);
+    const onHash = () => { const id = citeFromHash(window.location.hash); if (id && byId.has(id)) { setActiveId(id); setPageIdx(0); } };
+    window.addEventListener('hashchange', onHash);
+    return () => { clearTimeout(t); mq.removeEventListener('change', onMq); window.removeEventListener('hashchange', onHash); };
+  }, [byId]);
+
+  const changeLayout = (l: Layout) => { setLayout(l); try { localStorage.setItem(LAYOUT_KEY, l); } catch { /* ignore */ } };
+  const review = layout === 'side' && isLg;
+
+  const measure = useCallback(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    const below = belowRef.current ? belowRef.current.offsetHeight + 12 : 48;
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX));
+  }, []);
+  useEffect(() => {
+    if (!review) return;
+    const t = setTimeout(measure, 0);
+    window.addEventListener('resize', measure);
+    return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
+  }, [review, measure]);
+
+  const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => { e.preventDefault(); (e.target as HTMLElement).setPointerCapture(e.pointerId); setDragging(true); };
+  const onHandleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging || !rowRef.current) return;
+    const rect = rowRef.current.getBoundingClientRect();
+    setSplit(Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, ((e.clientX - rect.left) / rect.width) * 100)));
+  };
+  const onHandleUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    setDragging(false);
+    setSplit((s) => { try { localStorage.setItem(SPLIT_KEY, String(Math.round(s))); } catch { /* ignore */ } return s; });
+  };
+  const resetSplit = () => { setSplit(50); try { localStorage.setItem(SPLIT_KEY, '50'); } catch { /* ignore */ } };
+
+  /** select a unit; `reveal` scrolls its link into view in the book */
+  const select = useCallback((id: string, reveal: boolean) => {
+    setActiveId(id);
+    setPageIdx(0);
+    try { history.replaceState(null, '', hashForCite(id)); } catch { /* ignore */ }
+    if (reveal) {
+      const el = bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`);
+      el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    // stacked / small screens: bring the source pane into view
+    if (!(layout === 'side' && isLg) && sourceRef.current) sourceRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }, [layout, isLg]);
+
+  // clicks on citation links inside the server-rendered book
+  const onBookClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-cite]');
+    if (!a) return;
+    const id = a.dataset.cite;
+    if (!id || !byId.has(id)) return;
+    e.preventDefault();
+    select(id, false);
+  };
+
+  // highlight the active unit's link
+  useEffect(() => {
+    const root = bookRef.current;
+    if (!root) return;
+    root.querySelectorAll('.cite-active').forEach((el) => el.classList.remove('cite-active'));
+    if (activeId) root.querySelector(`a[data-cite="${activeId}"]`)?.classList.add('cite-active');
+  }, [activeId]);
+
+  const step = (d: -1 | 1) => { const n = units[idx + d]; if (n) select(n.id, true); };
+  const toNote = () => {
+    if (!active) return;
+    const el = bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${active.id}"]`) ?? bookRef.current?.querySelector<HTMLElement>(`#user-content-fn-${active.note.toLowerCase()}`);
+    el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+
+  const tog = (on: boolean) => cn('h-7 w-7 inline-flex items-center justify-center rounded', on ? 'bg-accent/20 text-accent-ink' : 'text-muted hover:bg-well');
+  const ctl = 'h-7 min-w-7 px-1.5 inline-flex items-center justify-center gap-1 rounded text-xs text-accent-ink hover:bg-well disabled:opacity-35 disabled:hover:bg-transparent tabular-nums';
+  const sourceTitle = source?.title ?? sourceKey ?? '';
+  const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
+
+  // toolbar-left of the source pane: previous · citation i/N · next · to the note · page stepper
+  const controls = (
+    <div className="flex items-center gap-1 min-w-0 whitespace-nowrap">
+      <button type="button" className={ctl} onClick={() => step(-1)} disabled={idx <= 0} title="Previous citation" aria-label="Previous citation"><ChevronLeft className="h-4 w-4" /></button>
+      <span className="text-xs text-muted tabular-nums px-0.5" style={{ fontWeight: 500 }}>{idx >= 0 ? `${idx + 1} / ${units.length}` : `${units.length} citations`}</span>
+      <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || idx >= units.length - 1} title="Next citation" aria-label="Next citation"><ChevronRight className="h-4 w-4" /></button>
+      {active && (
+        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
+      )}
+      {active && active.pages.length > 1 && (
+        <span className="ml-1 inline-flex items-center gap-0.5 border-l border-rule pl-2">
+          <button type="button" className={ctl} onClick={() => setPageIdx((i) => Math.max(0, i - 1))} disabled={pageIdx === 0} title="Previous cited page" aria-label="Previous cited page"><ArrowLeft className="h-3.5 w-3.5" /></button>
+          <span className="text-xs tabular-nums" style={{ fontWeight: 500 }}>{page?.label} <span className="text-muted">({pageIdx + 1}/{active.pages.length})</span></span>
+          <button type="button" className={ctl} onClick={() => setPageIdx((i) => Math.min(active.pages.length - 1, i + 1))} disabled={pageIdx >= active.pages.length - 1} title="Next cited page" aria-label="Next cited page"><ArrowRight className="h-3.5 w-3.5" /></button>
+        </span>
+      )}
+    </div>
+  );
+
+  const paneShell = 'bg-card border border-rule rounded-lg shadow-card flex flex-col min-h-0';
+  const barTitle = 'font-serif text-[15px] leading-none';
+
+  const sourcePane = (
+    <div ref={sourceRef} className={cn('min-w-0', review ? 'h-full min-h-0 flex flex-col' : 'lg:sticky lg:top-3 z-10')}>
+      {page?.file ? (
+        <PdfViewer key={page.file} src={page.file} title={pageTitle} downloadName={page.file.split('/').pop()}
+          height={review ? 'fill' : 'page'} chrome="pane" leading={controls} />
+      ) : (
+        <div className={cn(paneShell, review ? 'h-full' : 'min-h-[24rem]')}>
+          <div className="h-11 px-3 flex items-center justify-between gap-3 border-b border-rule">{controls}</div>
+          <div className="h-8 px-4 flex items-center text-xs text-muted truncate border-b border-rule">{active ? pageTitle : 'No citation selected'}</div>
+          <div className="flex-1 min-h-0 overflow-y-auto p-6 sm:p-8 text-sm leading-relaxed">
+            {!active ? (
+              <>
+                <p className="font-serif text-xl text-ink" style={{ fontWeight: 620 }}>Check the work at the page.</p>
+                <p className="mt-3 text-ink/85">Every citation in the notes is a link. Click one and the page it cites opens here, cut from the held copy of the source, so the quotation and the pin can be read against the original without leaving this screen.</p>
+                <p className="mt-3 text-ink/85">{published.toLocaleString('en-US')} citations open a published page, from {Object.keys(manifest.sources).length} sources. Pages still in copyright, or reproduced under a licence, are held in the library and marked here rather than shown.</p>
+                <p className="mt-5"><button type="button" onClick={() => units[0] && select(units[0].id, true)} className="inline-flex items-center gap-1.5 rounded-md bg-ink text-on-ink px-3 py-1.5 text-sm no-underline hover:bg-ink/90" style={{ fontWeight: 600 }}>Start at the first citation <ArrowRight className="h-4 w-4" /></button></p>
+              </>
+            ) : (
+              <>
+                <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}><Lock className="h-3.5 w-3.5" /> Held in the library, not published</p>
+                <p className="font-serif text-lg text-ink mt-3 leading-snug" style={{ fontWeight: 620 }}>{sourceTitle}</p>
+                {active.pages.length > 0 && <p className="mt-1 text-ink/85">{active.pages.map((p) => p.label).join(' · ')}</p>}
+                <p className="mt-4 text-ink/85">
+                  {rights && RIGHTS_LABEL[rights] ? <>{RIGHTS_LABEL[rights]}. </> : null}
+                  {active.status === 'NO_SOURCE' && 'The cited edition is not held in the library; nothing is shown that was not read.'}
+                  {active.status === 'NO_PIN' && 'The note cites the work without a page, so no page is opened.'}
+                  {active.status === 'UNMAPPED' && 'The cited page could not be located in the held scan.'}
+                  {(active.status === 'CUT' || active.status === 'CUT_FIRST') && 'The page is held and was read for this book; its reproduction is not the author’s to publish.'}
+                </p>
+                {source?.holderUrl && (
+                  <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline text-accent-ink break-all">The holder’s copy <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
+                )}
+              </>
+            )}
+          </div>
+          <div className="h-8 border-t border-rule" />
+        </div>
+      )}
+    </div>
+  );
+
+  const bookPane = (
+    <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
+      <div className={cn(paneShell, review && 'h-full')}>
+        <div className="h-11 px-4 flex items-center justify-between gap-3 border-b border-rule">
+          <span className={cn(barTitle, 'truncate')} style={{ fontWeight: 620 }}>{work.title}{work.subtitle ? <span className="text-muted font-sans text-xs ml-2" style={{ fontWeight: 500 }}>{work.subtitle}</span> : null}</span>
+          <span className="text-xs text-muted shrink-0">{work.venue ?? 'Working draft'}</span>
+        </div>
+        <div className="h-8 px-4 flex items-center text-xs text-muted truncate border-b border-rule">Citations in the notes are links — click one to open the cited page beside the text.</div>
+        <div ref={bookRef} onClick={onBookClick} className={cn('min-h-0', review ? 'flex-1 overflow-y-auto' : '')}>
+          {children}
+        </div>
+        <div className="h-8 border-t border-rule" />
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <SiteHeader />
+      <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 py-4' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <Link href={`/work/${work.slug}`} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />{work.title} — the reader</Link>
+          <div className="flex items-center gap-2">
+            <span className="text-xs uppercase tracking-[0.06em] text-accent-ink border border-accent/40 bg-accent/15 rounded-md px-2 py-0.5" style={{ fontWeight: 600 }}>Review mode</span>
+            <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-rule rounded-md shadow-card p-0.5">
+              <button type="button" className={tog(layout === 'side')} onClick={() => changeLayout('side')} aria-pressed={layout === 'side'} title="Side by side — book beside the cited page" aria-label="Side-by-side layout"><Columns className="h-4 w-4" /></button>
+              <button type="button" className={tog(layout === 'stacked')} onClick={() => changeLayout('stacked')} aria-pressed={layout === 'stacked'} title="Stacked — cited page above, book below" aria-label="Stacked layout"><Rows className="h-4 w-4" /></button>
+            </span>
+          </div>
+        </div>
+
+        <div ref={rowRef}
+          className={cn('grid grid-cols-1 gap-4', layout === 'side' ? 'lg:grid-cols-2 lg:items-stretch' : 'items-start max-w-5xl mx-auto', review && 'lg:gap-0')}
+          style={review && fillHeight ? { height: fillHeight, gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
+          {review ? bookPane : sourcePane}
+          {review && (
+            <div role="separator" aria-orientation="vertical" aria-label="Resize the book/source split" title="Drag to resize · double-click to recenter"
+              onPointerDown={onHandleDown} onPointerMove={onHandleMove} onPointerUp={onHandleUp} onDoubleClick={resetSplit}
+              className={cn('h-full cursor-col-resize touch-none select-none flex items-center justify-center group', dragging && 'bg-accent/10')}>
+              <div className={cn('w-1 h-16 rounded-full bg-rule group-hover:bg-accent transition-colors', dragging && 'bg-accent')} />
+            </div>
+          )}
+          {review ? sourcePane : bookPane}
+        </div>
+
+        {/* below the panes — the cited page's record (left) · the book's record (right) */}
+        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', layout !== 'side' && 'max-w-5xl mx-auto')}>
+          <div className="min-w-0 space-y-0.5">
+            {page ? (
+              <>
+                <p>
+                  <span className="text-ink/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
+                  {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
+                  {active?.status === 'CUT_FIRST' && ' · the note cites the work without a page: its first page is shown'}
+                  {page.file && <> · <a href={page.file} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
+                  {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
+                </p>
+                {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
+              </>
+            ) : (
+              <p>{manifest.rightsRule}</p>
+            )}
+          </div>
+          <p className="ml-auto text-right">
+            Book text sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 16)}…</span> · pages joined {manifest.generated.slice(0, 10)}
+          </p>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
