@@ -83,6 +83,8 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     return m;
   }, [hotBoxes]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const appliedFocus = useRef<number | null>(null); // nonce of the focus last scrolled to (see the focus effect)
+  const readerMoved = useRef(false); // the reader scrolled by hand since that focus
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [paneWidth, setPaneWidth] = useState(0);
@@ -110,6 +112,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
       if (cancelled) return;
       setPages([]);
       setError(null);
+      appliedFocus.current = null; // a new document takes the current focus afresh
       try {
         const pdfjs = await import('pdfjs-dist');
         pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
@@ -303,16 +306,36 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     return () => { root.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, [pages, !!onPageInView]); // eslint-disable-line react-hooks/exhaustive-deps -- the callback is read through the ref
 
-  // scroll the well so the focused point sits a little below the top
+  // scroll the well so the focused point sits a little below the top — ONCE per focus. `pages` is also
+  // a dependency because a page's assumed size is corrected when it renders, which moves the target;
+  // that correction is followed only while the reader has not moved. Before, every correction (each
+  // newly rendered page below, as the reader scrolled) re-ran the smooth scroll back to the cited page
+  // — the owner's "the pane jumps back up when you try to scroll down" (2026-09-15).
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root) return;
+    const mark = () => { readerMoved.current = true; };
+    const events = ['wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
+    events.forEach((e) => root.addEventListener(e, mark, { passive: true }));
+    return () => events.forEach((e) => root.removeEventListener(e, mark));
+  }, []);
   useEffect(() => {
     const root = scrollRef.current;
     if (!focus || !root || pages.length === 0) return;
+    const fresh = appliedFocus.current !== focus.nonce;
+    if (!fresh && readerMoved.current) return; // the reader has moved on: a size correction must not pull them back
     const el = root.querySelector<HTMLElement>(`[data-page="${focus.page}"]`);
     const meta = pages.find((p) => p.num === focus.page);
     if (!el || !meta) return;
-    const top = el.offsetTop + (focus.y / meta.h) * el.offsetHeight - 72;
+    const top = Math.max(0, el.offsetTop + (focus.y / meta.h) * el.offsetHeight - 72);
     inViewRef.current = focus.page; // the programmatic scroll is not a reader's move
-    root.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    if (fresh) {
+      appliedFocus.current = focus.nonce;
+      readerMoved.current = false;
+      root.scrollTo({ top, behavior: 'smooth' });
+    } else if (Math.abs(root.scrollTop - top) > 2) {
+      root.scrollTo({ top, behavior: 'auto' }); // the target moved under a size correction: settle on it without a second animation
+    }
   }, [focus, pages]);
 
   const step = (dir: 1 | -1) => {

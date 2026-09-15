@@ -13,7 +13,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Columns, Rows } from 'lucide-react';
-import { type ArchiveDoc, type ArchiveLeafEntry, type ArchiveManifest, archiveBase, imagesPublished } from '@/lib/research-archive';
+import { type ArchiveDoc, type ArchiveLeafEntry, type ArchiveManifest, archiveBase, imagesPublished, publishedDocs } from '@/lib/research-archive';
 import { cn } from '@/lib/cn';
 import { SiteHeader } from '../../../../_components/SiteHeader';
 import { SiteFooter } from '../../../../_components/SiteFooter';
@@ -44,7 +44,7 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
   const tabs = useMemo(() => {
     const t: Array<{ key: string; label: string; doc: ArchiveDoc }> = [];
     const seen = new Set<string>();
-    for (const d of leaf.docs) {
+    for (const d of publishedDocs(leaf)) {
       if (seen.has(d.pdf)) continue;
       seen.add(d.pdf);
       t.push({ key: d.pdf, label: d.kind === 'transcript' ? 'Transcript' : d.kind === 'index' ? 'Line index' : `Transcription ${d.span || ''}`.trim(), doc: d });
@@ -185,7 +185,7 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
           {/* documents */}
           <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
             {tabs.length === 0 || !pdfUrl || !activeTab ? (
-              <div className="bg-card border border-rule rounded-lg shadow-card p-8 text-sm text-muted">No line index or transcription PDF has been published for this leaf yet.</div>
+              <div className="bg-card border border-rule rounded-lg shadow-card p-8 text-sm text-muted">The transcript of this leaf is not yet published — the image stands alone until it is.</div>
             ) : (
               <PdfViewer key={pdfUrl} src={pdfUrl} title={activeTab.doc.title} downloadName={pdfUrl.split('/').pop()}
                 height={review ? 'fill' : 'page'} chrome="pane" leading={docTabs} />

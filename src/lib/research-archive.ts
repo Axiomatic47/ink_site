@@ -79,18 +79,17 @@ export const RESEARCH_ARCHIVES: Record<string, ResearchArchiveConfig> = {
 
 export const ARCHIVE_IDS = Object.keys(RESEARCH_ARCHIVES);
 export const archiveBase = (id: string) => `/uploads/research/${id}`;
+/** What the site PUBLISHES of a leaf's documents (owner 2026-09-15, all three sites): the transcripts
+    only — the owner's own transcription of each leaf, which the commissioned professional
+    transcription will replace. The line indexes, the working transcription spans and the working
+    papers stay in the library as the audit stratum and are not served. */
+export const PUBLISHED_KINDS: ReadonlySet<string> = new Set(['transcript']);
+export const publishedDocs = (leaf: ArchiveLeafEntry): ArchiveDoc[] => leaf.docs.filter((d) => PUBLISHED_KINDS.has(d.kind));
+
 export const imagesPublished = (m: ArchiveManifest | null) => m?.images?.published === true;
 
-export const leafStatus = (leaf: ArchiveLeafEntry): string => {
-  const hasCanon = leaf.docs.some((d) => d.kind === 'transcript');
-  const hasIndex = leaf.docs.some((d) => d.kind === 'index');
-  const spans = [...new Set(leaf.docs.filter((d) => d.kind === 'transcription').map((d) => d.span))];
-  const parts: string[] = [];
-  if (hasCanon) parts.push('Transcript');
-  parts.push(hasIndex ? (hasCanon ? 'line index' : 'Line index') : '—');
-  if (!hasCanon && spans.length) parts.push(`transcribed (${spans.join(', ')})`);
-  return parts.join(' · ');
-};
+export const leafStatus = (leaf: ArchiveLeafEntry): string =>
+  publishedDocs(leaf).length ? 'Transcript' : 'Image — transcript to follow';
 
 export const CONVENTIONS: Array<[string, string]> = [
   ['[?]', 'uncertain reading'],

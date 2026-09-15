@@ -26,17 +26,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 001 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M001.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "MEMBRANE 001 — LINE-INDEXED RE-SWEEP (Phase 4D, Fable 5, first-hand)",
-          "pdf": "pdfs/_WORKING_001_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "001–003L",
-          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
@@ -52,17 +41,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 002 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M002.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "WORKING — MEMBRANE 002 LINE INDEX (Phase 4D-2)",
-          "pdf": "pdfs/_WORKING_002_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "001–003L",
-          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
@@ -78,23 +56,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 003 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M003.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "WORKING LINE INDEX — MEMBRANE 003 (P4D-3)",
-          "pdf": "pdfs/_WORKING_003_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "003–007",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "001–003L",
-          "title": "Working transcription — the TOWNELEY deposition (membranes 001, 002L, 002R, 003L), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_TOWNELEY_DEPOSITION_001-003L.pdf"
         }
       ]
     },
@@ -110,17 +71,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 004 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M004.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "WORKING LINE INDEX — MEMBRANE 004 (P4D-4)",
-          "pdf": "pdfs/_WORKING_004_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "003–007",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
@@ -136,17 +86,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 005 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M005.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "WORKING LINE INDEX — MEMBRANE 005 (P4D-5)",
-          "pdf": "pdfs/_WORKING_005_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "003–007",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
@@ -162,17 +101,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 006 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M006.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "WORKING LINE INDEX — MEMBRANE 006 (P4D-6)",
-          "pdf": "pdfs/_WORKING_006_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "003–007",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
@@ -188,17 +116,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 007 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M007.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "MEMBRANE 007 — PHASE 4D-7 LINE INDEX (native+ sweep, 2026-07-08)",
-          "pdf": "pdfs/_WORKING_007_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "003–007",
-          "title": "Working transcription — the LLOYD deposition (membranes 003R → 007), full line-by-line re-sweep",
-          "pdf": "pdfs/_WORKING_LLOYD_DEPOSITION_003R-007.pdf"
         }
       ]
     },
@@ -214,17 +131,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 008 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M008.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "Membrane 008 — LINE INDEX (Pass 4, native+ half-column re-sweep, 2026-07-07)",
-          "pdf": "pdfs/_WORKING_008_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "008",
-          "title": "Working transcription — membrane 008 (the Articles/interrogatories vs Lloyd), dedicated line-by-line sweep",
-          "pdf": "pdfs/_WORKING_008_TRANSCRIPTION.pdf"
         }
       ]
     },
@@ -240,17 +146,6 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 009 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M009.pdf"
-        },
-        {
-          "kind": "index",
-          "title": "Membrane 009 — LINE INDEX (Pass 4B, native+ half-column re-sweep, 2026-07-07)",
-          "pdf": "pdfs/_WORKING_009_LINE_INDEX.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "009",
-          "title": "Working transcription — membrane 009",
-          "pdf": "pdfs/_WORKING_009_TRANSCRIPTION.pdf"
         }
       ]
     },
@@ -267,50 +162,11 @@
           "kind": "transcript",
           "title": "CANONICAL TRANSCRIPT — MEMBRANE 010 (TNA STAC 8/203/38)",
           "pdf": "pdfs/TRANSCRIPT_M010.pdf"
-        },
-        {
-          "kind": "transcription",
-          "span": "010",
-          "title": "Working transcription — membrane 010 (defendant's Answer), full line-by-line pass",
-          "pdf": "pdfs/_WORKING_010_TRANSCRIPTION.pdf"
         }
       ]
     }
   ],
-  "workingPapers": [
-    {
-      "title": "PHASE 4C AUDIT — completeness + fidelity closure, STAC 8/203/38 (2026-07-07)",
-      "pdf": "pdfs/_WORKING_P4C_AUDIT.pdf"
-    },
-    {
-      "title": "RE-ZOOM VERDICTS — 2026-07-02 (Fable-5 re-sweep, verification zooms)",
-      "pdf": "pdfs/_WORKING_REZOOM_VERDICTS_2026-07-02.pdf"
-    },
-    {
-      "title": "CORRECTIONS LOG — the transcription's record of catching its own errors",
-      "pdf": "pdfs/CORRECTIONS_LOG.pdf"
-    },
-    {
-      "title": "QUOTATION CONCORDANCE — every STAC 8/203/38 reading quoted in print, traced to its evidence",
-      "pdf": "pdfs/QUOTATION_CONCORDANCE.pdf"
-    },
-    {
-      "title": "Reading Companion — TNA STAC 8/203/38 (*Floyd v. Barker* Star Chamber depositions, 1607)",
-      "pdf": "pdfs/READING_COMPANION_STAC_8_203_38.pdf"
-    },
-    {
-      "title": "FOR REVIEWERS — Independent verification of the STAC 8/203/38 transcription",
-      "pdf": "pdfs/README_FOR_REVIEWERS.pdf"
-    },
-    {
-      "title": "PRECISION PASS (third pass) — master gap ledger — opened 2026-07-02",
-      "pdf": "pdfs/_PRECISION_PASS_LEDGER.pdf"
-    },
-    {
-      "title": "MARKDOWN FORMATTING GUIDE — authoring for the DOCX renderer",
-      "pdf": "pdfs/markdown_formatting_guide.pdf"
-    }
-  ],
+  "workingPapers": [],
   "crops": {
     "count": 0,
     "index": {}
