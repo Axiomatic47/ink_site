@@ -28,7 +28,8 @@ const LIBRARY = join(homedir(), 'Git', 'work_station', 'research_library');
 
 const LOCAL_COLLECTIONS = [
   { slug: 'genesis', title: 'Genesis', date: '2026-09-12', featured: true, local: true },
-  { slug: 'immunity', title: 'Immunity', date: '2026-09-14', featured: true, local: true },
+  // owner 2026-09-14: the Immunity collection leads the articles page
+  { slug: 'immunity', title: 'Immunity', date: '2026-09-14', featured: true, local: true, lead: true },
 ];
 const LOCAL = [
   {
@@ -85,8 +86,11 @@ for (const w of LOCAL) {
   n += 1;
 }
 for (const c of LOCAL_COLLECTIONS) {
+  const { lead, ...entry } = c;
   const i = data.collections.findIndex((x) => x.slug === c.slug);
-  if (i >= 0) data.collections[i] = c; else data.collections.splice(data.collections.filter((x) => x.featured).length, 0, c);
+  if (i >= 0) data.collections.splice(i, 1);
+  // `lead` puts the collection at the top of the articles page (the page renders collections in file order)
+  data.collections.splice(lead ? 0 : data.collections.filter((x) => x.featured).length, 0, entry);
 }
 writeFileSync(OUT_JSON, JSON.stringify(data, null, 2) + '\n');
 console.log(`import-local-works: ${n} manuscripts → content/works.json`);
