@@ -25,6 +25,12 @@ interface PdfViewerProps {
   activeHot?: string | null;
   onHot?: (box: PdfHotBox) => void;
   focus?: PdfFocus | null;
+  /** pages (1-based) to mark in the margin — review mode: the cited pages within a reading copy */
+  markedPages?: number[];
+  /** the page in hand among the marked ones */
+  currentPage?: number | null;
+  /** fires with the page (1-based) under the well's reading line as the reader scrolls */
+  onPageInView?: (page: number) => void;
   /** file name offered by the Download button */
   downloadName?: string;
   /** 'page' (default): the well is one page tall at fit width. 'fill': the
@@ -52,7 +58,8 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: PdfViewerProps) {
+  const marked = React.useMemo(() => new Set(markedPages ?? []), [markedPages]);
   const fileHref = downloadSrc ?? src;
   // hit boxes by page, positioned as percentages of the page box so they ride every zoom
   const hotByPage = React.useMemo(() => {
@@ -185,6 +192,28 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     visible.current.forEach((num) => void renderPage(num, pageWidth));
   }, [pageWidth, renderPage]);
 
+  // which page is under the reading line (a third of the way down the well) — reported as it changes
+  const inViewRef = useRef<number | null>(null);
+  const onPageInViewRef = useRef(onPageInView);
+  useEffect(() => { onPageInViewRef.current = onPageInView; }, [onPageInView]);
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root || !onPageInView || pages.length === 0) return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const line = root.scrollTop + root.clientHeight * 0.33;
+      let best: number | null = null;
+      for (const el of root.querySelectorAll<HTMLElement>('[data-page]')) {
+        if (el.offsetTop <= line && el.offsetTop + el.offsetHeight > line) { best = Number(el.dataset.page); break; }
+      }
+      if (best != null && best !== inViewRef.current) { inViewRef.current = best; onPageInViewRef.current?.(best); }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    root.addEventListener('scroll', onScroll, { passive: true });
+    return () => { root.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, [pages, !!onPageInView]); // eslint-disable-line react-hooks/exhaustive-deps -- the callback is read through the ref
+
   // scroll the well so the focused point sits a little below the top
   useEffect(() => {
     const root = scrollRef.current;
@@ -193,6 +222,7 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     const meta = pages.find((p) => p.num === focus.page);
     if (!el || !meta) return;
     const top = el.offsetTop + (focus.y / meta.h) * el.offsetHeight - 72;
+    inViewRef.current = focus.page; // the programmatic scroll is not a reader's move
     root.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }, [focus, pages]);
 
@@ -289,7 +319,8 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
           ) : (
             <div className="flex flex-col items-center gap-3 p-3">
               {pages.map((p) => (
-                <div key={p.num} data-page={p.num} className="relative bg-white shadow-card shrink-0" style={{ width: pageWidth, aspectRatio: `1 / ${p.aspect}` }}>
+                <div key={p.num} data-page={p.num} className={cn('relative bg-white shadow-card shrink-0', marked.has(p.num) && 'pdf-page-cited', currentPage === p.num && 'pdf-page-current')} style={{ width: pageWidth, aspectRatio: `1 / ${p.aspect}` }}>
+                  {marked.has(p.num) && <span className="pdf-page-tag">{currentPage === p.num ? 'cited page' : 'cited'}</span>}
                   <canvas
                     ref={(el) => { if (el) canvasRefs.current.set(p.num, el); else canvasRefs.current.delete(p.num); }}
                     className="w-full h-auto block"
