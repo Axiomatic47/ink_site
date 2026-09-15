@@ -86,9 +86,9 @@ export const RIGHTS_LABEL: Record<string, string> = {
 /** the units that open a published page */
 export const publishedUnits = (m: ReviewManifest) => m.units.filter((u) => u.pages.some((p) => p.file));
 
-/** `#cite=<note>/<seq>` ⇄ unit id */
-export const citeFromHash = (hash: string): string | null => {
-  const m = /(?:^|[#&])cite=([A-Za-z0-9_]+\/\d+)/.exec(hash);
-  return m ? m[1] : null;
+/** `#cite=<note>/<seq>[/<page index>]` ⇄ unit id + which of its cited pages (0-based) */
+export const citeFromHash = (hash: string): { id: string; page: number } | null => {
+  const m = /(?:^|[#&])cite=([A-Za-z0-9_]+\/\d+)(?:\/(\d+))?/.exec(hash);
+  return m ? { id: m[1], page: m[2] ? Number(m[2]) : 0 } : null;
 };
-export const hashForCite = (id: string) => `#cite=${id}`;
+export const hashForCite = (id: string, page = 0) => (page > 0 ? `#cite=${id}/${page}` : `#cite=${id}`);
