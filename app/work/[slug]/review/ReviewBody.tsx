@@ -27,15 +27,7 @@ type Mode = 'review' | 'reading';
 const SPLIT_KEY = 'jk-review-split';
 const SPLIT_MIN = 30, SPLIT_MAX = 70;
 const DIVIDER_PX = 14;
-const BOTTOM_PAD_PX = 4; // the panes run to the record line (owner 2026-09-15: "a little longer")
-// THE PANE REACHES HALF-WAY TO A WHOLE PAGE (owner 2026-09-15: "make the actual view panes longer" — not
-// a smaller zoom; then "now it's too long, make it about half that increase"): the row's fill height is
-// what the viewport allows plus PAGE_REACH of the distance from there to the height the book's first
-// page needs at fit-width. A short display's row runs past the fold and the page scrolls down to the
-// pane's foot; a tall one has the whole page in view already.
-const BOOK_PAGE_ASPECT = 792 / 612; // US letter, height / width
-const PAGE_REACH = 0.5; // the share of the way from the viewport fill to a whole page
-const VIEWER_CHROME_PX = 44 + 32 + 44 + 24 + 2; // h-11 header bar · h-8 title bar · h-11 footer bar · well padding · border
+const BOTTOM_PAD_PX = 16;
 
 interface Props {
   work: { slug: string; title: string; subtitle?: string; venue?: string };
@@ -148,13 +140,9 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
-    const below = belowRef.current ? belowRef.current.offsetHeight + 8 : 44;
-    const viewportFill = window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX;
-    // the book pane's width: its share of the row side by side, the whole column in reading mode
-    const bookPaneWidth = review ? (el.clientWidth * split) / 100 : el.clientWidth;
-    const wholePage = Math.round((bookPaneWidth - 24) * BOOK_PAGE_ASPECT) + VIEWER_CHROME_PX;
-    setFillHeight(Math.max(480, viewportFill + Math.max(0, wholePage - viewportFill) * PAGE_REACH));
-  }, [review, split]);
+    const below = belowRef.current ? belowRef.current.offsetHeight + 12 : 48;
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX));
+  }, []);
   useEffect(() => {
     if (!fills) return;
     const t = setTimeout(measure, 0);
@@ -414,12 +402,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
-      <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 pt-2 pb-3' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
+      <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 py-4' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
         {/* header row (owner 2026-09-15): back link · review-mode badge · layout toggle sit together over
             the LEFT pane; in side-by-side the page strip takes the right half, over the source pane, on the
             same column grid as the panes so the divider lines up and follows the drag */}
         <div ref={headRef}
-          className={cn(review ? 'mb-2 grid items-center' : 'mb-3 flex flex-wrap items-center gap-3')}
+          className={cn('mb-3', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
           style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
           <div className="flex flex-wrap items-center gap-2 min-w-0">
             <Link href={backHref ?? textTo} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />{backLabel ?? `${work.title} — the reader`}</Link>
@@ -455,7 +443,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         </div>
 
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
-        <div ref={belowRef} className={cn(review ? 'mt-2' : 'mt-3', 'flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
+        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
             {reading ? (
               <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>
