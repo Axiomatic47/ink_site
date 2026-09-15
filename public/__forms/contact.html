@@ -1,0 +1,24 @@
+<!doctype html>
+<!--
+  public/__forms/contact.html — the static definition of the Contact form
+  ("Get in touch", owner 2026-09-15). Netlify discovers forms from static HTML
+  at deploy time; this file exists for that detection and as the POST target of
+  the client form (app/contact/ContactForm.tsx). Not a page anyone reads.
+  Field names here MUST match the client form exactly; "bot-field" is the honeypot.
+  Delivery: Netlify Forms keeps every submission in the site's Forms dashboard;
+  the e-mail notification to joseph@kirchner.ink is set in the Netlify UI
+  (Site → Forms → Form notifications), not in this repo.
+-->
+<html lang="en"><head><meta charset="utf-8"><title>Contact form (definition)</title><meta name="robots" content="noindex"></head>
+<body>
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/__forms/contact.html">
+  <input type="hidden" name="form-name" value="contact">
+  <input type="text" name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="subject">
+  <textarea name="message"></textarea>
+  <input type="hidden" name="page">
+  <button type="submit">Send</button>
+</form>
+</body></html>

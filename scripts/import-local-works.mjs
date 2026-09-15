@@ -30,6 +30,7 @@ const LOCAL_COLLECTIONS = [
   { slug: 'genesis', title: 'Genesis', date: '2026-09-12', featured: true, local: true },
   // owner 2026-09-14: the Immunity collection leads the articles page
   { slug: 'immunity', title: 'Immunity', date: '2026-09-14', featured: true, local: true, lead: true },
+  { slug: 'holy-seed', title: 'The Holy Seed', date: '2026-09-15', featured: true, local: true },
 ];
 const LOCAL = [
   {
@@ -61,6 +62,19 @@ const LOCAL = [
     featured: true,
     src: join(LIBRARY, '2_Academic Articles', '11_Immunity and Standing Doctrine Geneology', 'BOOK', 'A_RESTORATIVE_AND_COMPARATIVE_HISTORY_OF_SOVEREIGN_ABSOLUTE_AND_QUALIFIED_IMMUNITY.md'),
   },
+  {
+    // owner 2026-09-15 (Phase 3 opened via drafter 60f85bca): the second book in review mode
+    slug: 'the-holy-seed',
+    collection: 'holy-seed',
+    title: 'The Holy Seed',
+    subtitle: 'The Fall of Babylon and the Making of Jewish Identity',
+    date: '2026-09-15',
+    venue: 'Book · working draft',
+    // the book's own words (its Abstract)
+    blurb: 'Ezra 9:2 calls the returned exiles "the holy seed" and says they have mingled it with the peoples of the lands. The phrase occurs nowhere else in the Hebrew Bible in that sense, and within a generation of its first use the community at Jerusalem had put away its foreign wives and their children and had begun to keep its membership by written pedigree. This book asks where the idiom and the programme came from.',
+    featured: true,
+    src: join(LIBRARY, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'THE_HOLY_SEED.md'),
+  },
 ];
 
 const stripLeadingTitle = (md) => {
@@ -73,9 +87,14 @@ const stripLeadingTitle = (md) => {
   return lines.join('\n').replace(/^\s+/, '');
 };
 
+// `node scripts/import-local-works.mjs <slug>` imports one manuscript; without it, all. A reviewed
+// book's text is re-imported only together with its review links (import-review-links refuses a
+// moved book until its lane catches up), so run BOTH scripts with the same slug.
+const ONLY = process.argv[2] || null;
 const data = JSON.parse(readFileSync(OUT_JSON, 'utf8'));
 let n = 0;
 for (const w of LOCAL) {
+  if (ONLY && w.slug !== ONLY) continue;
   if (!existsSync(w.src)) { console.error(`import-local-works: source missing: ${w.src}`); process.exitCode = 1; continue; }
   const md = readFileSync(w.src, 'utf8');
   writeFileSync(join(OUT_MD, `${w.slug}.md`), stripLeadingTitle(md).trimEnd() + '\n');

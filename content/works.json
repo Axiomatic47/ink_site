@@ -20,6 +20,13 @@
       "date": "2026-09-12",
       "featured": true,
       "local": true
+    },
+    {
+      "slug": "holy-seed",
+      "title": "The Holy Seed",
+      "date": "2026-09-15",
+      "featured": true,
+      "local": true
     }
   ],
   "works": [
@@ -168,6 +175,19 @@
       "featured": true,
       "year": "2026",
       "body": "/content/works/the-subjects-unanswered-plea.md",
+      "local": true
+    },
+    {
+      "slug": "the-holy-seed",
+      "collection": "holy-seed",
+      "title": "The Holy Seed",
+      "subtitle": "The Fall of Babylon and the Making of Jewish Identity",
+      "date": "2026-09-15",
+      "venue": "Book · working draft",
+      "blurb": "Ezra 9:2 calls the returned exiles \"the holy seed\" and says they have mingled it with the peoples of the lands. The phrase occurs nowhere else in the Hebrew Bible in that sense, and within a generation of its first use the community at Jerusalem had put away its foreign wives and their children and had begun to keep its membership by written pedigree. This book asks where the idiom and the programme came from.",
+      "featured": true,
+      "year": "2026",
+      "body": "/content/works/the-holy-seed.md",
       "local": true
     }
   ]
