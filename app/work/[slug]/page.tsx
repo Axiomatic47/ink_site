@@ -9,6 +9,7 @@ import { publishedUnits } from '@/lib/review';
 import { SiteShell } from '../../_components/SiteShell';
 import { PdfViewer } from '../../_components/PdfViewer';
 import { ArticleBody } from '../../_components/ArticleBody';
+import { ReviewBody } from './review/ReviewBody';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -37,7 +38,16 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const body = w.pdf ? null : readWorkBody(w);
   // a reviewed book: its citations open the cited page on the review route
   const review = body ? readReview(w.slug) : null;
-  const reviewHref = review ? `/work/${w.slug}/review` : undefined;
+  // owner 2026-09-14: a reviewed book opens STRAIGHT into review mode; the
+  // rendered text is one click away at /work/<slug>/text
+  if (review && body) {
+    return (
+      <ReviewBody work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} manifest={review} published={publishedUnits(review).length} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel={collection ? collection.title : 'All articles'}>
+        <ArticleBody bare citeBase="">{body}</ArticleBody>
+      </ReviewBody>
+    );
+  }
+  const reviewHref = undefined;
   return (
     <SiteShell>
       <Link href={`/work#${w.collection}`} className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink no-underline mb-6">

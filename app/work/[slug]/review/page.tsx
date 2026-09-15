@@ -35,7 +35,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
   const body = w ? readWorkBody(w) : null;
   if (!w || !manifest || !body) notFound();
   return (
-    <ReviewBody work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} manifest={manifest} published={publishedUnits(manifest).length}>
+    <ReviewBody work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} manifest={manifest} published={publishedUnits(manifest).length} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel="Articles">
       <ArticleBody bare citeBase="">{body}</ArticleBody>
     </ReviewBody>
   );

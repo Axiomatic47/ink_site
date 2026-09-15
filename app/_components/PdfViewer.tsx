@@ -91,7 +91,11 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
       try {
         const pdfjs = await import('pdfjs-dist');
         pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-        const task = pdfjs.getDocument({ url: src, standardFontDataUrl: '/pdfjs/standard_fonts/' });
+        // pdf.js 6 decodes JBIG2 and JPEG 2000 images only through WebAssembly
+        // modules fetched from wasmUrl; without it those pages paint white
+        // (drafter 0b43895f, 2026-09-14: 521 of the 838 cited pages are JBIG2/JPX
+        // scans). The cmaps serve the few Type0 fonts (Loeb, Digesta pages).
+        const task = pdfjs.getDocument({ url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true });
         loadingTask = task;
         const doc = await task.promise;
         if (cancelled) return;

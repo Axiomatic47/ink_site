@@ -32,10 +32,16 @@ interface Props {
   manifest: ReviewManifest;
   /** count of units that open a published page */
   published: number;
+  /** where the "Text version" button leads (default: the plain reader) */
+  textHref?: string;
+  /** the header's back link */
+  backHref?: string;
+  backLabel?: string;
   children: React.ReactNode;
 }
 
-export function ReviewBody({ work, manifest, published, children }: Props) {
+export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children }: Props) {
+  const textTo = textHref ?? `/work/${work.slug}`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -253,7 +259,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
   );
 
   const textLink = (
-    <Link href={`/work/${work.slug}`} className="h-7 px-2 inline-flex items-center gap-1 rounded text-xs text-accent-ink hover:bg-well no-underline whitespace-nowrap" title="The book as text, with the same citation links">
+    <Link href={textTo} className="h-7 px-2 inline-flex items-center gap-1 rounded text-xs text-accent-ink hover:bg-well no-underline whitespace-nowrap" title="The book as text, with the same citation links">
       <AlignLeft className="h-3.5 w-3.5" /> Text version
     </Link>
   );
@@ -283,7 +289,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
       <SiteHeader />
       <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 py-4' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <Link href={`/work/${work.slug}`} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />{work.title} — the reader</Link>
+          <Link href={backHref ?? textTo} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline"><ArrowLeft className="h-4 w-4 mr-1.5" />{backLabel ?? `${work.title} — the reader`}</Link>
           <div className="flex items-center gap-2">
             <span className="text-xs uppercase tracking-[0.06em] text-accent-ink border border-accent/40 bg-accent/15 rounded-md px-2 py-0.5" style={{ fontWeight: 600 }}>Review mode</span>
             <span className="hidden lg:inline-flex items-center gap-0.5 bg-card border border-rule rounded-md shadow-card p-0.5">
