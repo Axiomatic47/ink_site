@@ -27,7 +27,7 @@ type Mode = 'review' | 'reading';
 const SPLIT_KEY = 'jk-review-split';
 const SPLIT_MIN = 30, SPLIT_MAX = 70;
 const DIVIDER_PX = 14;
-const BOTTOM_PAD_PX = 16;
+const BOTTOM_PAD_PX = 4; // the panes run to the record line (owner 2026-09-15: "a little longer")
 
 interface Props {
   work: { slug: string; title: string; subtitle?: string; venue?: string };
@@ -140,7 +140,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
-    const below = belowRef.current ? belowRef.current.offsetHeight + 12 : 48;
+    const below = belowRef.current ? belowRef.current.offsetHeight + 8 : 44;
     setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX));
   }, []);
   useEffect(() => {
