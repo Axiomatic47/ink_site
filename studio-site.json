@@ -1,0 +1,37 @@
+{
+  "$comment": "Read by the OurStudio SITES preview mode (spec: agent_notes/studio-spec/20260914_sites_preview_mode_spec.md; contract agreed website-developer f28bb754 <-> studio-spec a62261ad, 2026-09-15). The Studio launches `dev` or `static` from this repo root and frames http://localhost:<port><ready_path> once it answers 200. Ports are pinned so the three sites never collide: jk 3100/3101, ink 3200/3201, loe 3300/3301.",
+  "name": "kirchner.ink",
+  "dev": {
+    "argv": [
+      "npx",
+      "next",
+      "dev",
+      "-p",
+      "3200"
+    ],
+    "port": 3200,
+    "ready_path": "/"
+  },
+  "static": {
+    "build_argv": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "serve_argv": [
+      "npx",
+      "serve",
+      "out",
+      "-l",
+      "3201",
+      "--no-clipboard"
+    ],
+    "port": 3201,
+    "ready_path": "/"
+  },
+  "env": {
+    "BROWSER": "none",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "notes": "Static Next export (output: 'export'). No env file, no backend: every page renders from content/*.json and markdown at build time. Netlify-only features (Open Readings answer form, admin console) post to Netlify functions and are inert locally. No X-Frame-Options or basePath in dev; the SAMEORIGIN/CSP headers in netlify.toml apply only on Netlify. `npx serve out` serves clean URLs (/work/x -> work/x.html) and byte ranges (the PDF viewers range-load). The review mode (/work/the-subjects-unanswered-plea) serves ~1 GB of PDFs from public/uploads; the static build takes ~1 min."
+}
