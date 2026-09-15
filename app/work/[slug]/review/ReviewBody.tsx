@@ -13,12 +13,12 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { RIGHTS_LABEL, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit } from '@/lib/review';
 import { SiteHeader } from '../../../_components/SiteHeader';
 import { SiteFooter } from '../../../_components/SiteFooter';
-import { PdfViewer } from '../../../_components/PdfViewer';
+import { PdfViewer, type PdfFocus, type PdfHotBox } from '../../../_components/PdfViewer';
 
 type Layout = 'stacked' | 'side';
 const LAYOUT_KEY = 'jk-review-layout';
@@ -40,6 +40,27 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [pageIdx, setPageIdx] = useState(0);
+  // v2 (owner 2026-09-14): the book pane is the book's PDF with hit boxes over
+  // each citation unit's lines; the rendered text (children) is the fallback
+  // until the lane emits the overlay
+  const pdf = manifest.pdf;
+  const [focus, setFocus] = useState<PdfFocus | null>(null);
+  const hotBoxes = useMemo<PdfHotBox[]>(() => {
+    const out: PdfHotBox[] = [];
+    for (const u of units) {
+      if (!u.box) continue;
+      const title = `Open the cited page — n. ${u.note}`;
+      for (const part of u.box.parts) for (const rect of part.rects) out.push({ id: u.id, page: part.page + 1, rect, kind: 'unit', title });
+    }
+    for (const m of manifest.markers) out.push({ id: `marker:${m.note}`, page: m.page + 1, rect: m.rect, kind: 'marker', title: `Go to note ${m.note}` });
+    return out;
+  }, [units, manifest.markers]);
+  /** scroll the book PDF to a unit's first line */
+  const focusUnit = useCallback((u: ReviewUnit | undefined) => {
+    const part = u?.box?.parts[0];
+    if (!part || !part.rects[0]) return;
+    setFocus({ page: part.page + 1, y: part.rects[0][1], nonce: Date.now() });
+  }, []);
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
@@ -74,14 +95,15 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
       const id = citeFromHash(window.location.hash);
       if (id && byId.has(id)) {
         setActiveId(id);
-        setTimeout(() => bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center' }), 50);
+        if (pdf) setTimeout(() => focusUnit(byId.get(id)), 400); // after the PDF's pages exist
+        else setTimeout(() => bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center' }), 50);
       }
     }, 0);
     mq.addEventListener('change', onMq);
     const onHash = () => { const id = citeFromHash(window.location.hash); if (id && byId.has(id)) { setActiveId(id); setPageIdx(0); } };
     window.addEventListener('hashchange', onHash);
     return () => { clearTimeout(t); mq.removeEventListener('change', onMq); window.removeEventListener('hashchange', onHash); };
-  }, [byId]);
+  }, [byId, pdf, focusUnit]);
 
   const changeLayout = (l: Layout) => { setLayout(l); try { localStorage.setItem(LAYOUT_KEY, l); } catch { /* ignore */ } };
   const review = layout === 'side' && isLg;
@@ -118,12 +140,23 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
     setPageIdx(0);
     try { history.replaceState(null, '', hashForCite(id)); } catch { /* ignore */ }
     if (reveal) {
-      const el = bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`);
-      el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      if (pdf) focusUnit(byId.get(id));
+      else bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${id}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
     // stacked / small screens: bring the source pane into view
     if (!(layout === 'side' && isLg) && sourceRef.current) sourceRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }, [layout, isLg]);
+  }, [layout, isLg, pdf, focusUnit, byId]);
+
+  // a hit box in the book PDF: a unit opens its page; a marker goes to its note
+  const onHot = (b: PdfHotBox) => {
+    if (b.kind === 'marker') {
+      const note = b.id.slice('marker:'.length);
+      const first = units.find((u) => u.note === note && u.box);
+      if (first) { select(first.id, true); }
+      return;
+    }
+    if (byId.has(b.id)) select(b.id, false);
+  };
 
   // clicks on citation links inside the server-rendered book
   const onBookClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -146,6 +179,7 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
   const step = (d: -1 | 1) => { const n = units[idx + d]; if (n) select(n.id, true); };
   const toNote = () => {
     if (!active) return;
+    if (pdf) { focusUnit(active); return; }
     const el = bookRef.current?.querySelector<HTMLElement>(`a[data-cite="${active.id}"]`) ?? bookRef.current?.querySelector<HTMLElement>(`#user-content-fn-${active.note.toLowerCase()}`);
     el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
   };
@@ -218,7 +252,17 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
     </div>
   );
 
-  const bookPane = (
+  const textLink = (
+    <Link href={`/work/${work.slug}`} className="h-7 px-2 inline-flex items-center gap-1 rounded text-xs text-accent-ink hover:bg-well no-underline whitespace-nowrap" title="The book as text, with the same citation links">
+      <AlignLeft className="h-3.5 w-3.5" /> Text version
+    </Link>
+  );
+  const bookPane = pdf ? (
+    <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
+      <PdfViewer src={pdf.file} downloadSrc={pdf.linked?.file} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
+        height={review ? 'fill' : 'page'} chrome="pane" leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
+    </div>
+  ) : (
     <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
       <div className={cn(paneShell, review && 'h-full')}>
         <div className="h-11 px-4 flex items-center justify-between gap-3 border-b border-rule">
@@ -282,7 +326,8 @@ export function ReviewBody({ work, manifest, published, children }: Props) {
             )}
           </div>
           <p className="ml-auto text-right">
-            Book text sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 16)}…</span> · pages joined {manifest.generated.slice(0, 10)}
+            {pdf ? <>Book PDF sha256 <span className="font-mono">{pdf.sha256.slice(0, 16)}…</span> ({pdf.pages} pp.) · text </> : <>Book text </>}
+            sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 16)}…</span> · pages joined {manifest.generated.slice(0, 10)}
           </p>
         </div>
       </main>

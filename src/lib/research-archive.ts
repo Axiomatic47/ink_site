@@ -34,6 +34,8 @@ export interface ResearchArchiveConfig {
   dated: string;
   intro: string[];     // markdown paragraphs
   summary: string;     // one plain sentence for cards + metadata
+  /** the home-page "From the archives" card (owner 2026-09-14, as on lawsofexistence.com) */
+  shelf: { holder: string; blurb: string };
 }
 
 export const RESEARCH_ARCHIVES: Record<string, ResearchArchiveConfig> = {
@@ -46,6 +48,10 @@ export const RESEARCH_ARCHIVES: Record<string, ResearchArchiveConfig> = {
     dated: 'Trinity term, 5 Jac. I (1607)',
     summary:
       'Ten membranes of Star Chamber examinations, interrogatories, answer, and depositions behind Floyd v. Barker (1607), transcribed first-hand from The National Archives.',
+    shelf: {
+      holder: 'The National Archives (UK), Kew',
+      blurb: 'The original Star Chamber proceedings — leaf images reproduced by permission of The National Archives, with diplomatic transcriptions, line indexes, and working papers.',
+    },
     intro: [
       'This is the working record of a first-hand diplomatic transcription of **STAC 8/203/38** — the Star Chamber examinations, interrogatories, answer, and depositions arising from the proceedings against Justice Barker and others, the factual matrix behind *Floyd v. Barker*, 12 Co. Rep. 23 (1607), the foundation of judicial immunity doctrine. The file self-dates to Trinity term, 5 Jac. I; the TNA catalogue styles the cause *Lloyde v. Lewys*, the leaf-001 caption styles it *Lloyd v. Barker & others*, and the membrane-009 endorsement reads *ad sect[am] Barker* — the three styling strata are themselves an open research question.',
     ],
@@ -60,6 +66,10 @@ export const RESEARCH_ARCHIVES: Record<string, ResearchArchiveConfig> = {
     dated: 'Pasch. 5 Jac. I (1607) · this copy in a later seventeenth-century hand',
     summary:
       'Six folios carrying an independent manuscript report of Floyd v. Barker (1607), from Harvard Law School Library’s Star Chamber collection, with line indexes and transcriptions.',
+    shelf: {
+      holder: 'Harvard Law School Library',
+      blurb: 'The second manuscript account of the case behind judicial immunity — folio images courtesy of Harvard Law School Library, with line indexes and working papers.',
+    },
     intro: [
       'These folios carry the “second account with supplementary details” of *Floyd v. Barker* (Star Chamber, Pasch. 5 Jac. I, 1607) — a contemporaneously compiled collection of Jacobean Star Chamber reports, **independent of Coke\'s printed report** (12 Co. Rep. 23, 77 Eng. Rep. 1305), cited at K.J. Kesselring, *Conspiracy, Crime, and Conflict in the Court of Star Chamber*, 43 Law & Hist. Rev. 693, 705 n.47 (2025). The *Floyd* report runs ff. 81r–83r; f. 83v opens the next term (*Brooke v. Oldfield*), confirming the report\'s end.',
       'Images were retrieved 2026-06-10 from the Harvard Library IIIF Image API (manifest `URN-3:HLS.LIBR:29137268`), at 2400-pixel width, and are hash-recorded below. The corroborating Star Chamber file — TNA **STAC 8/203/38**, transcribed in [the companion archive](/research/stac-8-203-38) — independently confirms the parties, the sheriff, the packed grand jury, and the missing bill.',
