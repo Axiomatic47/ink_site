@@ -27,6 +27,9 @@ interface PdfViewerProps {
   focus?: PdfFocus | null;
   /** pages (1-based) to mark in the margin — review mode: the cited pages within a reading copy */
   markedPages?: number[];
+  /** 'top' (default) or 'bottom': where the zoom / Download / New-tab bar sits (standalone chrome;
+      the home-page CV viewer puts it under the document, owner 2026-09-15) */
+  toolbar?: 'top' | 'bottom';
   /** the page in hand among the marked ones */
   currentPage?: number | null;
   /** fires with the page (1-based) under the well's reading line as the reader scrolls */
@@ -64,7 +67,7 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView, toolbar = 'top' }: PdfViewerProps) {
   const marked = React.useMemo(() => new Set(markedPages ?? []), [markedPages]);
   const fileHref = downloadSrc ?? src;
   // hit boxes by page, positioned as percentages of the page box so they ride every zoom
@@ -273,22 +276,9 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
   };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
-  return (
-    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
-      {resizable && height === 'page' && (
-        <div
-          role="separator"
-          aria-label="Resize the viewer"
-          title="Drag the corner to resize; double-click to reset"
-          onPointerDown={onGripDown}
-          onDoubleClick={() => onScale?.(null)}
-          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
-        >
-          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-        </div>
-      )}
-      {/* toolbar */}
-      <div className={cn('flex items-center gap-2 px-3 border-b border-rule bg-card no-print', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
+  const bottom = toolbar === 'bottom' && !pane;
+  const toolbarBar = (
+      <div className={cn('flex items-center gap-2 px-3 bg-card no-print', bottom ? 'border-t border-rule' : 'border-b border-rule', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
         {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
         <div className={cn('inline-flex items-center rounded-md border border-rule bg-well shrink-0', pane && 'ml-auto')}>
           <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40')} title="Zoom out" aria-label="Zoom out">
@@ -313,6 +303,23 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
           </span>
         )}
       </div>
+  );
+  return (
+    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
+      {resizable && height === 'page' && (
+        <div
+          role="separator"
+          aria-label="Resize the viewer"
+          title="Drag the corner to resize; double-click to reset"
+          onPointerDown={onGripDown}
+          onDoubleClick={() => onScale?.(null)}
+          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
+        >
+          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+        </div>
+      )}
+      {/* toolbar (standalone chrome may carry it at the bottom) */}
+      {!bottom && toolbarBar}
       {pane && (
         <div className="h-8 px-3 flex items-center border-b border-rule bg-card/70 text-[11px] text-ink/85 shrink-0" title={title}>
           <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
@@ -363,6 +370,8 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
           )}
         </div>
       )}
+
+      {bottom && toolbarBar}
 
       {/* hint bar */}
       <div className={cn('flex items-center gap-3 px-3 border-t border-rule text-muted no-print shrink-0', pane ? 'h-8 text-[11px] bg-card/70' : 'py-2 text-xs')}>

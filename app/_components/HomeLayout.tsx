@@ -40,7 +40,7 @@ export function HomeLayout() {
       <section className={expanded ? 'w-full min-w-0 order-1' : 'min-w-0 lg:order-2'}>
         <h1 className="sr-only">{cv.name}</h1>
         {cv.pdf ? (
-          <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} resizable scaleWidth={clamped} onScale={setWidth} />
+          <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} resizable scaleWidth={clamped} onScale={setWidth} toolbar="bottom" />
         ) : null}
       </section>
       <div className={expanded ? 'order-2 w-full max-w-[21rem]' : 'lg:order-1'}>

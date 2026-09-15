@@ -1,5 +1,6 @@
-// ArchivesShelf — the Prynne epigraph and the two manuscript archives as
-// thumbnail cards, below the CV on the home page (owner 2026-09-14: "the from
+// ArchivesShelf — the two manuscript archives as thumbnail cards below the CV
+// on the home page, with the Prynne epigraph BENEATH the cards, above the
+// footer (owner 2026-09-15) (owner 2026-09-14: "the from
 // the archives manuscript thumbnail links with the quote below my resume like
 // we have on my loe site"). Server component: reads each archive manifest at
 // build time for the first-leaf thumbnail and the leaf count. Card facts come
@@ -13,16 +14,7 @@ import { Md } from './Markdown';
 export function ArchivesShelf() {
   return (
     <div className="mt-16">
-      <figure className="text-center px-4 max-w-3xl mx-auto">
-        <blockquote>
-          <p className="font-serif italic text-ink/90 text-xl sm:text-2xl leading-snug">
-            “how unsafe it is to take Records upon trust, from the reports of learned Judges, who never read nor perused their originals.”
-          </p>
-        </blockquote>
-        <figcaption className="text-sm text-muted mt-4">— William Prynne (1669), Keeper of His Majesties Records in the Tower of London</figcaption>
-      </figure>
-
-      <section className="mt-12" aria-labelledby="from-the-archives">
+      <section aria-labelledby="from-the-archives">
         <p id="from-the-archives" className="text-xs uppercase tracking-[0.14em] text-muted mb-3" style={{ fontWeight: 600 }}>From the archives</p>
         <ul className="grid gap-4 md:grid-cols-2">
           {ARCHIVE_IDS.map((id) => {
@@ -64,6 +56,14 @@ export function ArchivesShelf() {
           })}
         </ul>
       </section>
+      <figure className="text-center px-4 max-w-3xl mx-auto mt-14">
+        <blockquote>
+          <p className="font-serif italic text-ink/90 text-xl sm:text-2xl leading-snug">
+            “how unsafe it is to take Records upon trust, from the reports of learned Judges, who never read nor perused their originals.”
+          </p>
+        </blockquote>
+        <figcaption className="text-sm text-muted mt-4">— William Prynne (1669), Keeper of His Majesties Records in the Tower of London</figcaption>
+      </figure>
     </div>
   );
 }
