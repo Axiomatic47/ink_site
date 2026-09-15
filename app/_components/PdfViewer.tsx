@@ -54,6 +54,12 @@ interface PdfViewerProps {
 }
 
 const MAX_BACKING_WIDTH = 3000;
+type PdfjsModule = typeof import('pdfjs-dist');
+let workerSingleton: InstanceType<PdfjsModule['PDFWorker']> | null = null;
+function sharedWorker(pdfjs: PdfjsModule) {
+  if (!workerSingleton || workerSingleton.destroyed) workerSingleton = new pdfjs.PDFWorker(); // the typings admit no name
+  return workerSingleton;
+}
 const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
@@ -98,21 +104,26 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
       try {
         const pdfjs = await import('pdfjs-dist');
         pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-        // pdf.js 6 decodes JBIG2 and JPEG 2000 images only through WebAssembly
-        // modules fetched from wasmUrl; without it those pages paint white
-        // (drafter 0b43895f, 2026-09-14: 521 of the 838 cited pages are JBIG2/JPX
-        // scans). The cmaps serve the few Type0 fonts (Loeb, Digesta pages).
-        const task = pdfjs.getDocument({ url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true });
+        // LOADING (owner 2026-09-15, "serious trouble loading"): the served files are linearized at
+        // import and Netlify answers byte ranges, so the viewer fetches only the chunks the visible
+        // pages need — never the whole file up front (a 16 MB case, a 3 MB register). One worker is
+        // shared by every viewer on the page instead of a fresh one per document.
+        const task = pdfjs.getDocument({
+          url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true,
+          disableAutoFetch: true, disableStream: true, rangeChunkSize: 256 * 1024,
+          worker: sharedWorker(pdfjs),
+        });
         loadingTask = task;
         const doc = await task.promise;
         if (cancelled) return;
         docRef.current = doc;
+        // page sizes: read the FIRST page and assume its shape for the rest (books and reporters
+        // are uniform); each page's true size is read when it is rendered. Reading every page's
+        // dictionary before the first paint cost a round trip per page on long documents.
+        const first = (await doc.getPage(1)).getViewport({ scale: 1 });
+        if (cancelled) return;
         const metas: PageMeta[] = [];
-        for (let n = 1; n <= doc.numPages; n++) {
-          const vp = (await doc.getPage(n)).getViewport({ scale: 1 });
-          metas.push({ num: n, aspect: vp.height / vp.width, w: vp.width, h: vp.height });
-          if (cancelled) return;
-        }
+        for (let n = 1; n <= doc.numPages; n++) metas.push({ num: n, aspect: first.height / first.width, w: first.width, h: first.height });
         setPages(metas);
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
@@ -148,6 +159,12 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
     try {
       const page = await doc.getPage(num);
       const base = page.getViewport({ scale: 1 });
+      // correct the assumed size once the page is in hand (a plate, a fold-out, a different volume)
+      setPages((prev) => {
+        const cur = prev.find((p) => p.num === num);
+        if (!cur || (Math.abs(cur.w - base.width) < 0.5 && Math.abs(cur.h - base.height) < 0.5)) return prev;
+        return prev.map((p) => (p.num === num ? { num, aspect: base.height / base.width, w: base.width, h: base.height } : p));
+      });
       const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, MAX_BACKING_WIDTH / cssWidth));
       const vp = page.getViewport({ scale: cssWidth / base.width });
       canvas.width = Math.floor(vp.width * dpr);
