@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   // `next dev` otherwise appends a vendor 'agent rules' block to CLAUDE.md on every start — the
   // realm charter is the owner's document, not a build artefact (2026-09-15)
   agentRules: false,
+  // dev only: forwarded '[browser]' console lines carry file:line, for the Studio's issue capture
+  // (studio-spec ask, 2026-09-15). In Next 16.3 the key lives under `experimental` (16.2 had it at
+  // the top level); the successor `logging.browserToTerminal` has no source-location option yet.
+  experimental: { browserDebugInfoInTerminal: { showSourceLocation: true } },
 };
 
 export default nextConfig;
