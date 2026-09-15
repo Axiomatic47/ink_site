@@ -6,7 +6,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Download, ExternalLink, FileText, Loader2, ZoomIn, ZoomOut } from 'lucide-react';
+import { ChevronDown, ChevronUp, Download, ExternalLink, FileText, Loader2, Search, X, ZoomIn, ZoomOut } from 'lucide-react';
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { cn } from '@/lib/cn';
 
@@ -70,6 +70,26 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
+// ---- search within the pane (owner 2026-09-15: "add the ability to search within each pane") -------
+const SEARCH_MIN_CHARS = 2;
+const SEARCH_DEBOUNCE_MS = 250;
+const SEARCH_MAX_HITS = 1000;
+/** one text item of a page: its character range in the page's joined text and its baseline geometry in
+    PDF user space — (x, y) the baseline start, (dx, dy) the unit baseline direction, w the advance, h the size */
+type TextSpan = { start: number; end: number; x: number; y: number; dx: number; dy: number; w: number; h: number };
+type PageText = { norm: string; spans: TextSpan[]; toViewport: (x: number, y: number) => [number, number]; width: number; height: number };
+/** a match: its page and the boxes that cover it, as FRACTIONS of the page (origin top-left) so they ride every zoom and need no page size */
+type SearchHit = { page: number; boxes: [number, number, number, number][] };
+/** fold a character for matching — case and accents dropped, one character in → one character out, so offsets hold */
+function foldChar(ch: string): string {
+  if (ch === '\n' || ch === '\u00a0' || ch === '\t') return ' ';
+  const d = ch.normalize('NFD');
+  const base = d[0] ?? ch;
+  if (/\p{M}/u.test(ch)) return '\u0001'; // a lone combining mark: never matches
+  return base.toLowerCase();
+}
+function foldText(t: string): string { let o = ''; for (const ch of t) o += foldChar(ch); return o; }
+
 const RANGE_MIN_BYTES = 3 * 1024 * 1024;
 const RANGE_CHUNK = 1024 * 1024;
 
@@ -105,6 +125,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     let cancelled = false;
     let loadingTask: { destroy(): Promise<void> } | null = null;
     const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current, restartMap = restarts.current;
+    const textMap = textCache.current, genBox = searchGen;
     (async () => {
       // reset inside the async tick — the lint rule forbids synchronous
       // setState in an effect body, and a src change is the only trigger
@@ -149,6 +170,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
       cancelled = true;
       taskMap.forEach((t) => t.cancel());
       taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear(); restartMap.clear();
+      textMap.clear(); genBox.current++; // a new document: forget the old text layer, stop a search in flight
       docRef.current = null;
       void loadingTask?.destroy();
     };
@@ -177,6 +199,17 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   const pending = useRef(new Map<number, Promise<void>>());
   const wanted = useRef(new Map<number, number>()); // page → the css width last asked for
   const restarts = useRef(new Map<number, number>()); // page → chains restarted by the tail without a draw landing
+
+  // search state — see the SEARCH block above the component
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [hits, setHits] = useState<SearchHit[]>([]);
+  const [hitIdx, setHitIdx] = useState(0);
+  const [searching, setSearching] = useState<{ page: number; of: number } | null>(null);
+  const [textless, setTextless] = useState(false); // the pass found no text layer at all
+  const textCache = useRef(new Map<number, PageText>());
+  const searchGen = useRef(0);
+  const searchInput = useRef<HTMLInputElement>(null);
   const renderPage = useCallback((num: number, cssWidth: number) => {
     const doc = docRef.current, canvas = canvasRefs.current.get(num);
     if (!doc || !canvas || cssWidth <= 0) return;
@@ -338,6 +371,147 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     }
   }, [focus, pages]);
 
+  // ---- search ----
+  // a page's text layer, read once: pdf.js text items joined in reading order, folded for matching,
+  // each item keeping its baseline geometry so a hit can be boxed at the characters it covers
+  const readPageText = useCallback(async (num: number): Promise<PageText | null> => {
+    const cached = textCache.current.get(num);
+    if (cached) return cached;
+    const doc = docRef.current;
+    if (!doc) return null;
+    const page = await doc.getPage(num);
+    const vp = page.getViewport({ scale: 1 });
+    // read the text layer through streamTextContent + a plain reader loop: getTextContent() drives its
+    // stream with `for await`, and WebKit (Safari, the Studio shell) has no async iteration on
+    // ReadableStream — every page threw "undefined is not a function" and the book read as textless
+    const reader = page.streamTextContent({ includeMarkedContent: false }).getReader();
+    const items: Awaited<ReturnType<typeof page.getTextContent>>['items'] = [];
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      items.push(...value.items);
+    }
+    let text = '';
+    const spans: TextSpan[] = [];
+    for (const it of items) {
+      if (!('str' in it)) continue;
+      const str = it.str;
+      if (str.length) {
+        const [a, b, , , e, f] = it.transform;
+        const len = Math.hypot(a, b) || 1;
+        spans.push({ start: text.length, end: text.length + str.length, x: e, y: f, dx: a / len, dy: b / len, w: it.width, h: it.height || len });
+        text += str;
+      }
+      if (it.hasEOL) text += '\n';
+    }
+    const pt: PageText = { norm: foldText(text), spans, toViewport: (x, y) => vp.convertToViewportPoint(x, y) as [number, number], width: vp.width, height: vp.height };
+    textCache.current.set(num, pt);
+    return pt;
+  }, []);
+
+  // the boxes of one match on one page: for every item the match touches, the slice of its baseline
+  // the matched characters cover, lifted to a box (0.25 of the size below the baseline, 0.8 above),
+  // mapped through the page's viewport (so a rotated page still boxes right) and kept as fractions
+  const boxesFor = (pt: PageText, s: number, e: number): [number, number, number, number][] => {
+    const out: [number, number, number, number][] = [];
+    for (const sp of pt.spans) {
+      if (sp.end <= s || sp.start >= e) continue;
+      const n = sp.end - sp.start;
+      const t0 = (Math.max(s, sp.start) - sp.start) / n, t1 = (Math.min(e, sp.end) - sp.start) / n;
+      const ux = -sp.dy, uy = sp.dx; // up, perpendicular to the baseline
+      const pts: [number, number][] = [];
+      for (const t of [t0, t1]) {
+        const bx = sp.x + sp.dx * sp.w * t, by = sp.y + sp.dy * sp.w * t;
+        pts.push(pt.toViewport(bx - ux * sp.h * 0.25, by - uy * sp.h * 0.25));
+        pts.push(pt.toViewport(bx + ux * sp.h * 0.8, by + uy * sp.h * 0.8));
+      }
+      const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+      out.push([Math.min(...xs) / pt.width, Math.min(...ys) / pt.height, Math.max(...xs) / pt.width, Math.max(...ys) / pt.height]);
+    }
+    return out;
+  };
+
+  const runSearch = useCallback(async (raw: string) => {
+    const gen = ++searchGen.current;
+    const q = foldText(raw).replace(/\s+/g, ' ').trim();
+    setHits([]); setHitIdx(0); setTextless(false);
+    if (q.length < SEARCH_MIN_CHARS || !docRef.current) { setSearching(null); return; }
+    const total = docRef.current.numPages;
+    const found: SearchHit[] = [];
+    let withText = 0;
+    for (let n = 1; n <= total; n++) {
+      if (searchGen.current !== gen) return; // a newer query or a new document
+      setSearching({ page: n, of: total });
+      let pt: PageText | null = null;
+      try { pt = await readPageText(n); } catch (e) { console.warn('PdfViewer: text layer unreadable on page', n, e); pt = null; }
+      if (searchGen.current !== gen) return;
+      if (pt && pt.norm.trim().length) withText++;
+      if (pt) {
+        let i = pt.norm.indexOf(q);
+        while (i !== -1 && found.length < SEARCH_MAX_HITS) {
+          found.push({ page: n, boxes: boxesFor(pt, i, i + q.length) });
+          i = pt.norm.indexOf(q, i + 1);
+        }
+      }
+      if (n % 20 === 0) setHits(found.slice());
+      if (found.length >= SEARCH_MAX_HITS) break;
+    }
+    if (searchGen.current !== gen) return;
+    setHits(found);
+    setTextless(withText === 0);
+    setSearching(null);
+  }, [readPageText]);
+
+  // debounce the typed query; re-run when the document lands (a query typed while it loads)
+  const docReady = pages.length > 0;
+  useEffect(() => {
+    if (!searchOpen || !docReady) return;
+    const t = setTimeout(() => { void runSearch(query); }, SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(t);
+  }, [query, searchOpen, docReady, runSearch]);
+
+  // hits by page, and the current hit's position on its page
+  const hitsByPage = React.useMemo(() => {
+    const m = new Map<number, { idx: number; boxes: SearchHit['boxes'] }[]>();
+    hits.forEach((h, idx) => (m.get(h.page) ?? m.set(h.page, []).get(h.page)!).push({ idx, boxes: h.boxes }));
+    return m;
+  }, [hits]);
+
+  // scroll the well to the current hit — a third of the way down, like a citation focus
+  const gotoHit = useCallback((idx: number) => {
+    const root = scrollRef.current, h = hits[idx];
+    if (!root || !h) return;
+    const el = root.querySelector<HTMLElement>(`[data-page="${h.page}"]`);
+    if (!el) return;
+    const fy = h.boxes.length ? Math.min(...h.boxes.map((b) => b[1])) : 0;
+    inViewRef.current = h.page;
+    readerMoved.current = true; // a hit walk is the reader's move: a later size correction must not pull back to the citation
+    root.scrollTo({ top: Math.max(0, el.offsetTop + fy * el.offsetHeight - root.clientHeight * 0.33), behavior: 'smooth' });
+  }, [hits]);
+  const stepHit = (dir: 1 | -1) => {
+    if (!hits.length) return;
+    const next = (hitIdx + dir + hits.length) % hits.length;
+    setHitIdx(next);
+    gotoHit(next);
+  };
+  // the first hit of a fresh result set is brought into view once
+  const shownFor = useRef<SearchHit[] | null>(null);
+  useEffect(() => {
+    if (hits.length && shownFor.current !== hits && !searching) { shownFor.current = hits; gotoHit(0); }
+  }, [hits, searching, gotoHit]);
+
+  const openSearch = () => { setSearchOpen(true); setTimeout(() => searchInput.current?.select(), 0); };
+  const closeSearch = () => { searchGen.current++; setSearchOpen(false); setQuery(''); setHits([]); setHitIdx(0); setSearching(null); setTextless(false); };
+  const onSearchKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') { e.preventDefault(); stepHit(e.shiftKey ? -1 : 1); }
+    else if (e.key === 'Escape') { e.preventDefault(); closeSearch(); }
+  };
+  const searchStatus = searching ? `page ${searching.page} of ${searching.of}`
+    : query.trim().length < SEARCH_MIN_CHARS ? ''
+    : textless ? 'no text layer in this document'
+    : hits.length === 0 ? 'no matches'
+    : `${hitIdx + 1} of ${hits.length >= SEARCH_MAX_HITS ? `${SEARCH_MAX_HITS}+` : hits.length}`;
+
   const step = (dir: 1 | -1) => {
     const i = ZOOMS.indexOf(zoom);
     const next = ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, i + dir))];
@@ -393,9 +567,18 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
         </a>
     </>
   );
+  // the magnifier: opens the search row (pane header at the right; standalone toolbar beside the actions)
+  const searchButton = (
+      <button type="button" onClick={searchOpen ? closeSearch : openSearch} aria-pressed={searchOpen} aria-label="Search in this document" title="Search in this document"
+        className={cn('inline-flex items-center justify-center rounded-md border transition-colors shrink-0', pane ? 'ml-auto h-8 w-8' : 'h-11 w-11 lg:h-9 lg:w-9',
+          searchOpen ? 'border-accent/40 bg-accent/15 text-accent-ink' : 'border-rule bg-card text-ink hover:bg-well')}>
+        <Search className="h-4 w-4" />
+      </button>
+  );
   const toolbarBar = (
       <div className={cn('flex items-center gap-2 px-3 bg-card no-print flex-wrap py-2', bottom ? 'border-t border-rule' : 'border-b border-rule')}>
         {actions}
+        {searchButton}
         <span className="ml-auto hidden sm:inline text-xs text-muted truncate max-w-[40%]" title={title}>
           {title}
         </span>
@@ -405,6 +588,25 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   const paneHeader = (
       <div className="flex items-center gap-2 px-3 bg-card border-b border-rule h-11 shrink-0 no-print">
         {leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
+        {searchButton}
+      </div>
+  );
+  // the search row — the query, its status, prev / next, close; sits over the well in either chrome
+  const sctl = cn(ctl, 'inline-flex items-center justify-center hover:bg-card disabled:opacity-40');
+  const searchRow = searchOpen && (
+      <div className="flex items-center gap-2 px-3 h-10 border-b border-rule bg-card shrink-0 no-print" role="search">
+        <Search className="h-3.5 w-3.5 text-muted shrink-0" aria-hidden />
+        <input ref={searchInput} type="search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={onSearchKey} autoFocus
+          placeholder="Search this document" aria-label="Search this document" autoComplete="off" spellCheck={false}
+          className="flex-1 min-w-0 h-7 bg-transparent text-sm text-ink placeholder:text-muted outline-none" />
+        <span className="text-xs text-muted tabular-nums whitespace-nowrap shrink-0" aria-live="polite">
+          {searching ? <Loader2 className="inline h-3 w-3 animate-spin mr-1 align-[-1px]" aria-hidden /> : null}{searchStatus}
+        </span>
+        <span className="inline-flex items-center rounded-md border border-rule bg-well shrink-0">
+          <button type="button" onClick={() => stepHit(-1)} disabled={hits.length === 0} className={cn(sctl, 'rounded-l-md')} title="Previous match (Shift+Enter)" aria-label="Previous match"><ChevronUp className="h-4 w-4" /></button>
+          <button type="button" onClick={() => stepHit(1)} disabled={hits.length === 0} className={cn(sctl, 'rounded-r-md border-l border-rule')} title="Next match (Enter)" aria-label="Next match"><ChevronDown className="h-4 w-4" /></button>
+        </span>
+        <button type="button" onClick={closeSearch} className={sctl} title="Close search (Esc)" aria-label="Close search"><X className="h-4 w-4" /></button>
       </div>
   );
   return (
@@ -428,6 +630,8 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           <div className="min-w-0 truncate w-full" style={{ fontWeight: 550 }}>{title}</div>
         </div>
       )}
+      {/* search row (owner 2026-09-15: search within each pane) */}
+      {searchRow}
 
       {/* well */}
       {error ? (
@@ -452,6 +656,10 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
                     ref={(el) => { if (el) canvasRefs.current.set(p.num, el); else canvasRefs.current.delete(p.num); }}
                     className="w-full h-auto block"
                   />
+                  {hitsByPage.get(p.num)?.map((h) => h.boxes.map((b, j) => (
+                    <span key={`s${h.idx}-${j}`} aria-hidden className={cn('pdf-search-hit', h.idx === hitIdx && 'pdf-search-hit-current')}
+                      style={{ left: `${b[0] * 100}%`, top: `${b[1] * 100}%`, width: `${(b[2] - b[0]) * 100}%`, height: `${(b[3] - b[1]) * 100}%` }} />
+                  )))}
                   {hotByPage.get(p.num)?.map((b, i) => {
                     const [x0, y0, x1, y1] = b.rect;
                     return (

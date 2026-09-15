@@ -58,6 +58,10 @@ a { @apply underline-offset-[3px]; }
 .pdf-hot { @apply absolute block rounded-[2px] bg-transparent p-0 border-0 cursor-pointer transition-colors; }
 .pdf-hot:hover { @apply bg-accent/20; }
 .pdf-hot-marker { @apply bg-accent/10; }
+
+/* search hits within a pane (PdfViewer search): every match tinted, the current one outlined */
+.pdf-search-hit { @apply absolute block rounded-[2px] pointer-events-none; background-color: rgb(250 204 21 / 0.45); mix-blend-mode: multiply; }
+.pdf-search-hit-current { background-color: rgb(var(--c-accent) / 0.35); box-shadow: 0 0 0 1.5px rgb(var(--c-accent) / 0.9); }
 .pdf-hot.pdf-hot-active { @apply bg-accent/30; box-shadow: 0 0 0 1px rgb(var(--c-accent) / 0.9); }
 
 /* Review mode — cited pages inside a reading copy (PdfViewer markedPages / currentPage) */
