@@ -67,7 +67,9 @@ const tsv = (file) => {
 const pinLabel = (kind, pin, file, status, sourceKey) => {
   const suf = file ? /_([a-z])[^_/]*\.pdf$/.exec(file)?.[1] : null;
   if (sourceKey === 'POLLARD_1911') return `1611 facsimile p. ${pin}`; // the reprint's PDF page: the 1611 is unpaginated
-  if (status === 'CUT_FIRST') return pin ? `first page, p. ${pin}` : 'first page'; // the note gave no pin
+  // owner rule 2026-09-15: a case cited by its first page means the WHOLE case — the lane cuts every page of
+  // the case (CUT_CASE rows follow the CUT_FIRST row); the first page is labelled as the case's beginning
+  if (status === 'CUT_FIRST') return pin ? `case begins, p. ${pin}` : 'case begins';
   if (kind === 'col') return `col. ${pin}`;
   if (kind === 'folio' || suf === 'f') return `f. ${pin}`;
   if (kind === 'memb' || suf === 'm') return `m. ${pin.replace(/^0+/, '')}`;
@@ -151,7 +153,7 @@ function importOne(cfg) {
         start: r.unit_start === '' || r.unit_start == null ? null : Number(r.unit_start), end: r.unit_end === '' || r.unit_end == null ? null : Number(r.unit_end) };
       units.set(key, u);
     }
-    if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST')) {
+    if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST' || r.status === 'CUT_CASE')) {
       const kind = sources[r.source_key]?.pinkind || 'page';
       // verified: Y = the page number was read on the page · N = placed by the run's offset · '-' = a verso with nothing to read
       // rights and source are PER PAGE: a unit matched by several sources carries rows from each (a
@@ -159,7 +161,7 @@ function importOne(cfg) {
       // rights decide whether it is published — the 2026-09-14 unit-level test let 8 licence-bound and
       // owner-use leaves onto the device branch
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
-        verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null });
+        verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}) });
     }
   }
 
@@ -303,7 +305,7 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights })),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),

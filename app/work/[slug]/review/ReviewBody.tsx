@@ -234,7 +234,22 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     if (!g || g.source !== src) { g = { source: src, title: (src && manifest.sources[src]?.title) || src || '', items: [] }; groups.push(g); }
     g.items.push({ i, label: p.label, file: p.file });
   });
-  const pageStrip = active && active.pages.length > 1 ? (
+  // a whole case can run to 160 pages (owner rule: a case cited by its first page is served whole):
+  // past CHIP_MAX the strip becomes a scrubber — first page · slider · last page · the page in hand
+  const CHIP_MAX = 14;
+  const pageStrip = active && active.pages.length > CHIP_MAX ? (
+    <div className="shrink-0 mb-2 rounded-lg border border-rule bg-card shadow-card px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+      <span className="text-[11px] uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}>{active.pages.length} pages · {active.pages.some((p) => p.begins) ? 'the whole case' : 'the cited range'}</span>
+      <span className="text-xs tabular-nums text-ink/85">{active.pages[0].label}</span>
+      <input type="range" min={0} max={active.pages.length - 1} value={pageIdx} onChange={(e) => goPage(Number(e.target.value))}
+        aria-label="Page within the case" className="flex-1 min-w-[8rem] max-w-[24rem] accent-[#b08d57]" />
+      <span className="text-xs tabular-nums text-ink/85">{active.pages[active.pages.length - 1].label}</span>
+      <span className="text-xs tabular-nums rounded-md bg-ink text-on-ink px-2 h-7 inline-flex items-center gap-1" style={{ fontWeight: 600 }}>
+        {!page?.file && <Lock className="h-3 w-3" aria-hidden />}{page?.label}
+      </span>
+      <span className="text-xs text-muted">page {pageIdx + 1} of {active.pages.length}{groups.length > 1 ? ` · ${groups.find((g) => g.items.some((it) => it.i === pageIdx))?.title ?? ''}` : ''}</span>
+    </div>
+  ) : active && active.pages.length > 1 ? (
     <div className="shrink-0 mb-2 rounded-lg border border-rule bg-card shadow-card px-3 py-2 flex flex-wrap items-center gap-x-3 gap-y-1.5" role="tablist" aria-label="Pages cited by this citation">
       <span className="text-[11px] uppercase tracking-[0.08em] text-muted" style={{ fontWeight: 600 }}>{active.pages.length} pages cited</span>
       {groups.map((g, gi) => (
@@ -362,7 +377,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                 <p>
                   <span className="text-ink/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
                   {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
-                  {active?.status === 'CUT_FIRST' && ' · the note cites the work without a page: its first page is shown'}
+                  {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
