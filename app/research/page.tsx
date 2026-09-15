@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase } from '@/lib/research-archive';
-import { readArchiveManifest } from '@/lib/research-archive.server';
+import { imageSize, readArchiveManifest } from '@/lib/research-archive.server';
 import { loadAllReadings } from '@/lib/open-readings.server';
 import { SiteShell } from '../_components/SiteShell';
 import { Md } from '../_components/Markdown';
@@ -39,7 +39,7 @@ export default function ResearchIndex() {
                 {first && (
                   <div className="w-36 sm:w-44 shrink-0 bg-well overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-                    <img src={`${archiveBase(id)}/${first.thumb ?? first.image}`} alt="" className="h-full w-full object-cover object-top" loading="lazy" />
+                    <img src={`${archiveBase(id)}/${first.thumb ?? first.image}`} alt="" {...(imageSize(`${archiveBase(id)}/${first.thumb ?? first.image}`) ?? {})} className="h-full w-full object-cover object-top" loading="lazy" />
                   </div>
                 )}
                 <div className="p-6 min-w-0">

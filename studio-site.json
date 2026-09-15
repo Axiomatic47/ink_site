@@ -33,5 +33,16 @@
     "BROWSER": "none",
     "NEXT_TELEMETRY_DISABLED": "1"
   },
-  "notes": "Static Next export (output: 'export'). No env file, no backend: every page renders from content/*.json and markdown at build time. Netlify-only features (Open Readings answer form, admin console) post to Netlify functions and are inert locally. No X-Frame-Options or basePath in dev; the SAMEORIGIN/CSP headers in netlify.toml apply only on Netlify. `npx serve out` serves clean URLs (/work/x -> work/x.html) and byte ranges (the PDF viewers range-load). The review mode (/work/the-subjects-unanswered-plea) serves ~1 GB of PDFs from public/uploads; the static build takes ~1 min."
+  "notes": "Static Next export (output: 'export'). No env file, no backend: every page renders from content/*.json and markdown at build time. Netlify-only features (Open Readings answer form, admin console) post to Netlify functions and are inert locally. No X-Frame-Options or basePath in dev; the SAMEORIGIN/CSP headers in netlify.toml apply only on Netlify. `npx serve out` serves clean URLs (/work/x -> work/x.html) and byte ranges (the PDF viewers range-load). The review mode (/work/the-subjects-unanswered-plea) serves ~1 GB of PDFs from public/uploads; the static build takes ~1 min. `pages` (additive, read by the Studio's DEVICES run, frontend-developer a168bcf6 2026-09-15): `exclude` = owner console, Netlify functions and the raw per-PDF viewer chrome; `heavy` = pages that fetch a manifest and a PDF (the work/review pages, the archive leaves) and get the run's longer settle.",
+  "pages": {
+    "exclude": [
+      "/admin/*",
+      "/api/*",
+      "/research/*/doc/*"
+    ],
+    "heavy": [
+      "/work/*",
+      "/research/*/leaf/*"
+    ]
+  }
 }

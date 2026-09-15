@@ -12,7 +12,7 @@ export function Portrait() {
     <div className="aspect-[4/5] w-full overflow-hidden bg-ink">
       {cv.portrait ? (
         // eslint-disable-next-line @next/next/no-img-element -- static export; no image optimizer
-        <img src={cv.portrait} alt={cv.name} className="h-full w-full object-cover" />
+        <img src={cv.portrait} alt={cv.name} width={1200} height={1500} className="h-full w-full object-cover" />
       ) : (
         <div className="h-full w-full flex items-center justify-center">
           <span className="font-serif text-7xl text-accent" style={{ fontWeight: 560 }}>

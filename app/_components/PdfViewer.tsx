@@ -324,10 +324,11 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   const pane = chrome === 'pane';
   // pane chrome is one notch tighter (h-7 controls in an h-11 bar, like the
   // image pane's header) so the two cards read as a matched pair
-  const ctl = pane ? 'h-7 w-7' : 'h-9 w-9';
+  // full-size controls are 44-px targets on phones and tablets (device run 2026-09-15); from lg the 36-px desktop size
+  const ctl = pane ? 'h-7 w-7' : 'h-11 w-11 lg:h-9 lg:w-9';
   const btn = cn(
     'inline-flex items-center gap-1.5 rounded-md text-sm border border-rule bg-card text-ink hover:bg-well transition-colors disabled:opacity-40 disabled:hover:bg-card no-underline shrink-0',
-    pane ? 'h-8 px-2.5' : 'h-9 px-3'
+    pane ? 'h-8 px-2.5' : 'h-11 lg:h-9 px-3'
   );
 
   const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
@@ -353,7 +354,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           <button type="button" onClick={() => step(-1)} disabled={zoom === ZOOMS[0]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-l-md disabled:opacity-40')} title="Zoom out" aria-label="Zoom out">
             <ZoomOut className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => setZoom(100)} className={cn(pane ? 'h-7 min-w-[3rem] text-xs' : 'h-9 min-w-[3.75rem] text-sm', 'tabular-nums hover:bg-card')} title="Fit to width">
+          <button type="button" onClick={() => setZoom(100)} className={cn(pane ? 'h-7 min-w-[3rem] text-xs' : 'h-11 lg:h-9 min-w-[3.75rem] text-sm', 'tabular-nums hover:bg-card')} title="Fit to width">
             {zoom}%
           </button>
           <button type="button" onClick={() => step(1)} disabled={zoom === ZOOMS[ZOOMS.length - 1]} className={cn(ctl, 'inline-flex items-center justify-center hover:bg-card rounded-r-md disabled:opacity-40')} title="Zoom in" aria-label="Zoom in">

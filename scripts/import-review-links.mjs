@@ -360,6 +360,9 @@ function importOne(cfg) {
     const dateInName = /(\d{4}-\d{2}-\d{2})/.exec(basename(o.pdf.path))?.[1];
     const rendered = dateInName || statSync(src).mtime.toISOString().slice(0, 10);
     pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, served: bookServed, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', rendered, renderName: basename(o.pdf.path), linked };
+    // the map is written again here: the book's two copies are linearized AFTER the first write, and an
+    // unrecorded copy was re-linearized (new bytes, new ?v=) on every import (2026-09-15)
+    writeFileSync(servedFile, JSON.stringify(served) + '\n');
     for (const b of o.units) {
       const parts = [{ page: b.page, rects: b.rects }];
       if (b.tail) parts.push({ page: b.tail.page, rects: b.tail.rects });

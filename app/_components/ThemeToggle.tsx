@@ -45,7 +45,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   };
 
   // before hydration the button keeps its box but shows nothing, so the header does not jump
-  if (!choice) return <span className={cn('inline-block h-9 w-9', className)} aria-hidden />;
+  if (!choice) return <span className={cn('inline-block h-11 w-11 lg:h-9 lg:w-9', className)} aria-hidden />;
   const Icon = choice === 'dark' ? Moon : choice === 'light' ? Sun : Monitor;
   const label = choice === 'dark' ? 'Dark' : choice === 'light' ? 'Light' : 'System';
   return (
@@ -54,7 +54,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={next}
       title={`Theme: ${label} — click for ${ORDER[(ORDER.indexOf(choice) + 1) % ORDER.length]}`}
       aria-label={`Theme: ${label}. Switch theme`}
-      className={cn('h-9 w-9 inline-flex items-center justify-center rounded-md text-on-chrome/80 hover:text-white hover:bg-chrome-2 transition-colors', className)}
+      className={cn('h-11 w-11 lg:h-9 lg:w-9 inline-flex items-center justify-center rounded-md text-on-chrome/80 hover:text-white hover:bg-chrome-2 transition-colors', className)}
     >
       <Icon className="h-4 w-4" aria-hidden />
     </button>

@@ -8,7 +8,7 @@
 import Link from 'next/link';
 import { ArrowRight, ScrollText } from 'lucide-react';
 import { ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase } from '@/lib/research-archive';
-import { readArchiveManifest } from '@/lib/research-archive.server';
+import { imageSize, readArchiveManifest } from '@/lib/research-archive.server';
 import { Md } from './Markdown';
 
 export function ArchivesShelf() {
@@ -23,6 +23,7 @@ export function ArchivesShelf() {
             const first = m?.leaves[0];
             const thumb = first ? `${archiveBase(id)}/${first.thumb ?? first.image}` : null;
             const leaves = m?.leaves.length ?? 0;
+            const size = thumb ? imageSize(thumb) : null;
             return (
               <li key={id}>
                 <Link href={`/research/${id}`} className="group flex h-full flex-col rounded-lg border border-rule bg-card shadow-card p-5 no-underline hover:border-accent transition-colors">
@@ -42,7 +43,7 @@ export function ArchivesShelf() {
                   {thumb && (
                     <div className="mt-4 rounded-md border border-rule overflow-hidden bg-well">
                       {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-                      <img src={thumb} alt={`${c.ref} — first leaf`} loading="lazy" className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity" />
+                      <img src={thumb} alt={`${c.ref} — first leaf`} loading="lazy" width={size?.width} height={size?.height} className="w-full h-44 object-cover object-top group-hover:opacity-90 transition-opacity" />
                     </div>
                   )}
                   <p className="text-sm leading-relaxed text-ink/85 mt-3 flex-grow">{c.shelf.blurb}</p>
