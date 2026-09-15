@@ -28,6 +28,12 @@ const SPLIT_KEY = 'jk-review-split';
 const SPLIT_MIN = 30, SPLIT_MAX = 70;
 const DIVIDER_PX = 14;
 const BOTTOM_PAD_PX = 4; // the panes run to the record line (owner 2026-09-15: "a little longer")
+// THE PANE IS AT LEAST ONE WHOLE PAGE TALL (owner 2026-09-15: "make the actual view panes longer" — not
+// a smaller zoom): the row's fill height is the larger of what the viewport allows and what the book's
+// first page needs at fit-width, so on a tall display the page stands whole with room below, and on a
+// short one the row runs past the fold and the page scrolls down to the pane's foot.
+const BOOK_PAGE_ASPECT = 792 / 612; // US letter, height / width
+const VIEWER_CHROME_PX = 44 + 32 + 44 + 24 + 2; // h-11 header bar · h-8 title bar · h-11 footer bar · well padding · border
 
 interface Props {
   work: { slug: string; title: string; subtitle?: string; venue?: string };
@@ -141,8 +147,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     const el = rowRef.current;
     if (!el) return;
     const below = belowRef.current ? belowRef.current.offsetHeight + 8 : 44;
-    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX));
-  }, []);
+    const viewportFill = window.innerHeight - el.getBoundingClientRect().top - below - BOTTOM_PAD_PX;
+    // the book pane's width: its share of the row side by side, the whole column in reading mode
+    const bookPaneWidth = review ? (el.clientWidth * split) / 100 : el.clientWidth;
+    const wholePage = Math.round((bookPaneWidth - 24) * BOOK_PAGE_ASPECT) + VIEWER_CHROME_PX;
+    setFillHeight(Math.max(480, viewportFill, wholePage));
+  }, [review, split]);
   useEffect(() => {
     if (!fills) return;
     const t = setTimeout(measure, 0);
