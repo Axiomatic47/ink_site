@@ -208,6 +208,20 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const ctl = 'h-7 min-w-7 px-1.5 inline-flex items-center justify-center gap-1 rounded text-xs text-accent-ink hover:bg-well disabled:opacity-35 disabled:hover:bg-transparent tabular-nums';
   const sourceTitle = source?.title ?? sourceKey ?? '';
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
+  // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
+  // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
+  const ctx = page?.context ?? null;
+  const paneSrc = ctx ? v(ctx.file, ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
+  // (no memo: a unit cites at most a few hundred pages)
+  const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
+  const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
+  const [ctxFocus, setCtxFocus] = useState<PdfFocus | null>(null);
+  useEffect(() => {
+    if (!ctxFile || !ctxPage) return;
+    // scroll the reading copy to the cited page whenever the page in hand changes (the file may be the same)
+    const t = setTimeout(() => setCtxFocus({ page: ctxPage, y: 0, nonce: Date.now() }), 250);
+    return () => clearTimeout(t);
+  }, [ctxFile, ctxPage]);
 
   // toolbar-left of the source pane: previous · citation i/N · next · to the note · page stepper
   const controls = (
@@ -275,9 +289,11 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
       {pageStrip}
-      {page?.file ? (
-        <PdfViewer key={page.file} src={v(page.file, page.sha256)} title={pageTitle} downloadName={page.file.split('/').pop()}
-          height={review ? 'fill' : 'page'} chrome="pane" leading={controls} />
+      {paneSrc && page ? (
+        <PdfViewer key={paneSrc} src={paneSrc} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
+          downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
+          height={review ? 'fill' : 'page'} chrome="pane" leading={controls}
+          focus={ctx ? ctxFocus : null} markedPages={citedInCtx} currentPage={ctx?.page ?? null} />
       ) : (
         <div className={cn(paneShell, review ? 'h-full' : 'min-h-[24rem]')}>
           <div className="h-11 px-3 flex items-center justify-between gap-3 border-b border-rule">{controls}</div>
@@ -379,6 +395,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                   {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
+                  {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}

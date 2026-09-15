@@ -59,3 +59,8 @@ a { @apply underline-offset-[3px]; }
 .pdf-hot:hover { @apply bg-accent/20; }
 .pdf-hot-marker { @apply bg-accent/10; }
 .pdf-hot.pdf-hot-active { @apply bg-accent/30; box-shadow: 0 0 0 1px rgb(var(--c-accent) / 0.9); }
+
+/* Review mode — cited pages inside a reading copy (PdfViewer markedPages / currentPage) */
+.pdf-page-cited { box-shadow: -4px 0 0 0 rgb(var(--c-accent) / 0.55), var(--shadow-card); }
+.pdf-page-current { box-shadow: -4px 0 0 0 rgb(var(--c-accent)), 0 0 0 1px rgb(var(--c-accent) / 0.6), var(--shadow-card); }
+.pdf-page-tag { @apply absolute -top-0 right-0 z-10 rounded-bl-md bg-accent text-on-ink text-[10px] uppercase tracking-[0.08em] px-1.5 py-0.5 pointer-events-none; font-weight: 600; }

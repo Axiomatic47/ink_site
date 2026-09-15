@@ -19,6 +19,11 @@ export interface ReviewPage {
   rights: string;
   /** the case's first page — the note cited the case without a pin, so the whole case is served (owner 2026-09-15) */
   begins?: boolean;
+  /** the READING COPY (owner rule 2026-09-15): a multi-page PDF of the work — whole when ≤10 pages or a
+      whole case, else the cited page with the neighbours its quotation needs — and the cited page's
+      1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
+      hash-verified single-page audit copy. */
+  context?: { file: string; page: number; sha256: string | null };
 }
 
 export interface ReviewUnit {

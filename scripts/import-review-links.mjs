@@ -121,7 +121,15 @@ function loadFeed(lane) {
       if (m) fixity[m[2]] = m[1];
     }
   }
-  for (const r of rows) r.sha256 = fixity[r.extract] ?? '';
+  // the reading copies (owner rule 2026-09-15): `context` = a multi-page PDF under _CONTEXT/, `context_page` = the
+  // cited page's 1-based position inside it; fixity in _CONTEXT/_FIXITY_SHA256.txt
+  if (existsSync(join(lane, '_CONTEXT', '_FIXITY_SHA256.txt'))) {
+    for (const l of readFileSync(join(lane, '_CONTEXT', '_FIXITY_SHA256.txt'), 'utf8').split('\n')) {
+      const m = /^([0-9a-f]{64})\s+\*?(.+)$/.exec(l.trim());
+      if (m) fixity[m[2]] = m[1];
+    }
+  }
+  for (const r of rows) { r.sha256 = fixity[r.extract] ?? ''; r.context_sha = r.context ? (fixity[r.context] ?? '') : ''; }
   return { feed: `_INDEX.tsv + _SOURCES.tsv${bookSha ? ' (_BOOK.json ' + bookSha.slice(0, 8) + ')' : ''}`, rows, sources, bookSha, bookMeta: { commit: bookMeta.git_head || bookMeta.commit || bookMeta.head || bookMeta.git_blob || null, parsed: bookMeta.parsed || bookMeta.generated || bookMeta.date || null } };
 }
 
@@ -161,7 +169,8 @@ function importOne(cfg) {
       // rights decide whether it is published — the 2026-09-14 unit-level test let 8 licence-bound and
       // owner-use leaves onto the device branch
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
-        verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}) });
+        verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}),
+        ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}) });
     }
   }
 
@@ -230,6 +239,38 @@ function importOne(cfg) {
     if (u.pages.some((p) => p.file)) counts.published += 1;
     else if (u.pages.length || u.source) counts.held += 1;
   }
+  // the reading copies: one multi-page file per work, shared by its citations; public-domain only, sha-checked
+  const ctxDir = join(ROOT, 'public', 'uploads', 'research', cfg.id, 'context');
+  mkdirSync(ctxDir, { recursive: true });
+  const ctxCopied = new Set(); let ctxBytes = 0, ctxNew = 0, ctxKept = 0; const ctxWanted = new Set();
+  for (const u of units.values()) {
+    for (const p of u.pages) {
+      if (!p.ctx) continue;
+      if (!PUBLISHABLE.has(p.rights)) { p.ctx.file = null; continue; }
+      const rel = p.ctx.extract.replace(/^_CONTEXT\//, '');
+      const src = join(cfg.lane, p.ctx.extract), dst = join(ctxDir, rel);
+      if (!existsSync(src)) { p.ctx.file = null; unwrappable.push(`${u.id}: context missing on disk ${p.ctx.extract}`); continue; }
+      ctxWanted.add(rel);
+      if (!ctxCopied.has(rel)) {
+        const got = sha256(src);
+        if (p.ctx.sha256 && p.ctx.sha256 !== got) throw new Error(`${p.ctx.extract}: sha256 on disk ${got.slice(0, 12)} ≠ fixity ${p.ctx.sha256.slice(0, 12)} — the lane is mid-write`);
+        p.ctx.sha256 = got;
+        if (existsSync(dst) && sha256(dst) === got) ctxKept += 1;
+        else { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(src, dst); ctxNew += 1; }
+        ctxBytes += statSync(dst).size; ctxCopied.add(rel);
+      } else if (!p.ctx.sha256) p.ctx.sha256 = sha256(src);
+      p.ctx.file = `/uploads/research/${cfg.id}/context/${rel.split('/').map(encodeURIComponent).join('/')}`;
+    }
+  }
+  let ctxRemoved = 0;
+  const walkCtx = (d) => { for (const e of readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name); if (e.isDirectory()) walkCtx(f); else if (f.endsWith('.pdf') && !ctxWanted.has(f.slice(ctxDir.length + 1))) { unlinkSync(f); ctxRemoved += 1; } } };
+  walkCtx(ctxDir);
+  const ctxExpected = new Set(rows.filter((r) => r.context && PUBLISHABLE.has(r.rights)).map((r) => r.context.replace(/^_CONTEXT\//, '')));
+  const ctxOnDisk = []; const listCtx = (d, rel = '') => { for (const e of readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name), r = rel ? `${rel}/${e.name}` : e.name; if (e.isDirectory()) listCtx(f, r); else if (r.endsWith('.pdf')) ctxOnDisk.push(r); } };
+  listCtx(ctxDir);
+  const ctxExtra = ctxOnDisk.filter((f) => !ctxExpected.has(f)), ctxMissing = [...ctxExpected].filter((f) => !ctxOnDisk.includes(f));
+  if (ctxExtra.length || ctxMissing.length) throw new Error(`rights gate (context): ${ctxExtra.length} extra (${ctxExtra.slice(0, 5).join(', ')}), ${ctxMissing.length} missing — nothing written`);
+
   // a page the lane no longer cites leaves the site with it
   let removed = 0;
   const walk = (d) => { for (const e of readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (f.endsWith('.pdf') && !wanted.has(f.slice(outDir.length + 1))) { unlinkSync(f); removed += 1; } } };
@@ -305,7 +346,8 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}) })),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
+          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256 } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),
@@ -320,6 +362,7 @@ function importOne(cfg) {
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
+  console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB) — ${ctxNew} copied, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
   for (const w of unwrappable) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);
