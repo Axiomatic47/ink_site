@@ -13,7 +13,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Lock, Rows } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { RIGHTS_LABEL, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit } from '@/lib/review';
 import { SiteHeader } from '../../../_components/SiteHeader';
@@ -37,10 +37,16 @@ interface Props {
   /** the header's back link */
   backHref?: string;
   backLabel?: string;
-  children: React.ReactNode;
+  /** the rendered text — only when there is no PDF pane (it is the fallback, never shipped beside a PDF) */
+  children?: React.ReactNode;
+  /** the manifest is still on its way (ReviewLoader) */
+  loading?: boolean;
+  loadError?: string | null;
+  /** source count for the intro card (the stub manifest has none) */
+  sourceCount?: number;
 }
 
-export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children }: Props) {
+export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount }: Props) {
   const textTo = textHref ?? `/work/${work.slug}`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -242,7 +248,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     <div className="flex items-center gap-1 min-w-0 whitespace-nowrap">
       <button type="button" className={ctl} onClick={() => step(-1)} disabled={idx <= 0} title="Previous citation" aria-label="Previous citation"><ChevronLeft className="h-4 w-4" /></button>
       <span className="text-xs text-muted tabular-nums px-0.5" style={{ fontWeight: 500 }}>
-        {idx >= 0 ? `${idx + 1} / ${units.length}` : `${units.length} citations`}
+        {loading ? 'loading citations…' : idx >= 0 ? `${idx + 1} / ${units.length}` : `${units.length} citations`}
         {active && active.pages.length > 1 && <> · page {pageIdx + 1}/{active.pages.length}</>}
       </span>
       <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
@@ -304,7 +310,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
       {pageStrip}
       {paneSrc && page ? (
-        <PdfViewer key={paneSrc} src={paneSrc} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
+        <PdfViewer key={paneSrc} src={paneSrc} bytes={ctx?.bytes} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
           height={review ? 'fill' : 'page'} chrome="pane" leading={controls}
           focus={ctx ? ctxFocus : null} markedPages={citedInCtx} currentPage={ctx?.page ?? null} onPageInView={ctx ? onPageInView : undefined} />
@@ -317,8 +323,10 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
               <>
                 <p className="font-serif text-xl text-ink" style={{ fontWeight: 620 }}>Check the work at the page.</p>
                 <p className="mt-3 text-ink/85">Every citation in the notes is a link. Click one and the page it cites opens here, cut from the held copy of the source, so the quotation and the pin can be read against the original without leaving this screen.</p>
-                <p className="mt-3 text-ink/85">{published.toLocaleString('en-US')} citations open a published page, from {Object.keys(manifest.sources).length} sources. Pages still in copyright, or reproduced under a licence, are held in the library and marked here rather than shown.</p>
-                <p className="mt-5"><button type="button" onClick={() => units[0] && select(units[0].id, true)} className="inline-flex items-center gap-1.5 rounded-md bg-ink text-on-ink px-3 py-1.5 text-sm no-underline hover:bg-ink/90" style={{ fontWeight: 600 }}>Start at the first citation <ArrowRight className="h-4 w-4" /></button></p>
+                <p className="mt-3 text-ink/85">{published.toLocaleString('en-US')} citations open a published page, from {(sourceCount ?? Object.keys(manifest.sources).length).toLocaleString('en-US')} sources. Pages still in copyright, or reproduced under a licence, are held in the library and marked here rather than shown.</p>
+                {loading && <p className="mt-3 text-xs text-muted inline-flex items-center gap-1.5"><Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden /> Loading the citation index…</p>}
+                {loadError && <p className="mt-3 text-sm text-red-700 dark:text-red-400" role="alert">The citation index could not be loaded ({loadError}). Reload the page to try again.</p>}
+                <p className="mt-5"><button type="button" disabled={loading || units.length === 0} onClick={() => units[0] && select(units[0].id, true)} className="inline-flex items-center gap-1.5 rounded-md bg-ink text-on-ink px-3 py-1.5 text-sm no-underline hover:bg-ink/90" style={{ fontWeight: 600 }}>Start at the first citation <ArrowRight className="h-4 w-4" /></button></p>
               </>
             ) : (
               <>
@@ -351,7 +359,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   );
   const bookPane = pdf ? (
     <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
-      <PdfViewer src={v(pdf.file, pdf.served ?? pdf.sha256)} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.served ?? pdf.linked.sha256) : undefined} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
+      <PdfViewer src={v(pdf.file, pdf.served ?? pdf.sha256)} bytes={pdf.bytes} downloadSrc={pdf.linked ? v(pdf.linked.file, pdf.linked.served ?? pdf.linked.sha256) : undefined} downloadName={`${work.slug}.pdf`} title={`${work.title}${work.subtitle ? `: ${work.subtitle}` : ''} — ${work.venue ?? 'working draft'}; the citations in the notes are clickable`}
         height={review ? 'fill' : 'page'} chrome="pane" leading={textLink} hotBoxes={hotBoxes} activeHot={activeId} onHot={onHot} focus={focus} />
     </div>
   ) : (
@@ -363,7 +371,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         </div>
         <div className="h-8 px-4 flex items-center text-xs text-muted truncate border-b border-rule">Citations in the notes are links — click one to open the cited page beside the text.</div>
         <div ref={bookRef} onClick={onBookClick} className={cn('min-h-0', review ? 'flex-1 overflow-y-auto' : '')}>
-          {children}
+          {children ?? <p className="p-6 text-sm text-muted">The book’s text is at <Link href={textTo} className="underline text-accent-ink">the text version</Link>.</p>}
         </div>
         <div className="h-8 border-t border-rule" />
       </div>

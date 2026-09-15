@@ -5,11 +5,11 @@ import { ArrowLeft, Columns } from 'lucide-react';
 import { works, workBySlug, collectionBySlug, worksIn } from '@/lib/works';
 import { readWorkBody } from '@/lib/works.server';
 import { readReview } from '@/lib/review.server';
-import { publishedUnits } from '@/lib/review';
+import { publishedUnits, reviewMeta } from '@/lib/review';
 import { SiteShell } from '../../_components/SiteShell';
 import { PdfViewer } from '../../_components/PdfViewer';
 import { ArticleBody } from '../../_components/ArticleBody';
-import { ReviewBody } from './review/ReviewBody';
+import { ReviewLoader } from './review/ReviewLoader';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -42,9 +42,9 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   // rendered text is one click away at /work/<slug>/text
   if (review && body) {
     return (
-      <ReviewBody work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} manifest={review} published={publishedUnits(review).length} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel={collection ? collection.title : 'All articles'}>
-        <ArticleBody bare citeBase="">{body}</ArticleBody>
-      </ReviewBody>
+      <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} meta={reviewMeta(review)} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel={collection ? collection.title : 'All articles'}>
+        {review.pdf ? undefined : <ArticleBody bare citeBase="">{body}</ArticleBody>}
+      </ReviewLoader>
     );
   }
   const reviewHref = undefined;

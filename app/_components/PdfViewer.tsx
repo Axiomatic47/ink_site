@@ -18,6 +18,9 @@ export interface PdfFocus { page: number; y: number; nonce: number }
 interface PdfViewerProps {
   src: string;
   title: string;
+  /** the file's size when known: a file under RANGE_MIN_BYTES is fetched whole (one request beats a
+      dozen 0.3 s round trips), a larger one by 1 MB ranges */
+  bytes?: number;
   /** the file the Download / New-tab buttons serve when it differs from `src` (a copy with link annotations) */
   downloadSrc?: string;
   /** transparent hit boxes laid over the pages (review mode: the book's citations) */
@@ -67,7 +70,10 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
-export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView, toolbar = 'top' }: PdfViewerProps) {
+const RANGE_MIN_BYTES = 3 * 1024 * 1024;
+const RANGE_CHUNK = 1024 * 1024;
+
+export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale, hotBoxes, activeHot = null, onHot, focus = null, markedPages, currentPage = null, onPageInView, toolbar = 'top' }: PdfViewerProps) {
   const marked = React.useMemo(() => new Set(markedPages ?? []), [markedPages]);
   const fileHref = downloadSrc ?? src;
   // hit boxes by page, positioned as percentages of the page box so they ride every zoom
@@ -113,7 +119,11 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
         // shared by every viewer on the page instead of a fresh one per document.
         const task = pdfjs.getDocument({
           url: src, standardFontDataUrl: '/pdfjs/standard_fonts/', wasmUrl: '/pdfjs/wasm/', cMapUrl: '/pdfjs/cmaps/', cMapPacked: true,
-          disableAutoFetch: true, disableStream: true, rangeChunkSize: 256 * 1024,
+          // measured on the live CDN 2026-09-15: ~0.3 s per range round trip, ~2.4 MB/s in one stream —
+          // so a file under 3 MB is fastest whole, and a big one in 1 MB chunks
+          ...(bytes !== undefined && bytes < RANGE_MIN_BYTES
+            ? { disableRange: true, disableStream: false, disableAutoFetch: false }
+            : { disableAutoFetch: true, disableStream: true, rangeChunkSize: RANGE_CHUNK }),
           worker: sharedWorker(pdfjs),
         });
         loadingTask = task;
@@ -139,7 +149,7 @@ export function PdfViewer({ src, title, downloadSrc, downloadName, height = 'pag
       docRef.current = null;
       void loadingTask?.destroy();
     };
-  }, [src]);
+  }, [src, bytes]);
 
   useEffect(() => {
     const el = scrollRef.current;

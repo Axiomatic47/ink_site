@@ -306,6 +306,7 @@ function importOne(cfg) {
         ctxBytes += statSync(dst).size; ctxCopied.add(rel);
       } else if (!p.ctx.sha256) p.ctx.sha256 = sha256(src);
       p.ctx.served = ctxServed.get(rel) ?? null;
+      p.ctx.bytes = statSync(dst).size; // the served (linearized) size — the viewer fetches small files whole
       p.ctx.file = `/uploads/research/${cfg.id}/context/${rel.split('/').map(encodeURIComponent).join('/')}`;
     }
   }
@@ -392,11 +393,23 @@ function importOne(cfg) {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
         pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
-          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served } } : {}) })),
+          ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
     }),
   };
+  // The manifest is served to the browser as its own hashed, immutable JSON (public/review/<slug>.<hash>.json),
+  // fetched by the review page — never inlined in the page's HTML: inlined, the immunity book's 2 MB manifest
+  // rode in every page load beside the server-rendered text (a 4.2 MB page, owner 2026-09-15 "loads very slowly").
+  // content/review/<slug>.json keeps the full manifest for the build (counts, static params) plus `publicUrl`.
+  const body = JSON.stringify(manifest);
+  const hash = createHash('sha256').update(body).digest('hex').slice(0, 12);
+  const pubDir = join(ROOT, 'public', 'review');
+  mkdirSync(pubDir, { recursive: true });
+  for (const f of readdirSync(pubDir)) if (f.startsWith(`${cfg.slug}.`) && f.endsWith('.json') && f !== `${cfg.slug}.${hash}.json`) unlinkSync(join(pubDir, f));
+  writeFileSync(join(pubDir, `${cfg.slug}.${hash}.json`), body + '\n');
+  manifest.publicUrl = `/review/${cfg.slug}.${hash}.json`;
+  manifest.publicBytes = Buffer.byteLength(body);
   mkdirSync(join(ROOT, 'content', 'review'), { recursive: true });
   writeFileSync(join(ROOT, 'content', 'review', `${cfg.slug}.json`), JSON.stringify(manifest) + '\n');
   writeFileSync(join(ROOT, 'content', 'works', `${cfg.slug}.md`), md);

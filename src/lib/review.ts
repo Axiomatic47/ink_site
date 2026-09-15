@@ -23,7 +23,7 @@ export interface ReviewPage {
       whole case, else the cited page with the neighbours its quotation needs — and the cited page's
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
       hash-verified single-page audit copy. */
-  context?: { file: string; page: number; sha256: string | null; served?: string | null };
+  context?: { file: string; page: number; sha256: string | null; served?: string | null; bytes?: number };
 }
 
 export interface ReviewUnit {
@@ -88,7 +88,32 @@ export interface ReviewManifest {
   markers: ReviewMarker[];
   /** in book order (definition line, then unit order) */
   units: ReviewUnit[];
+  /** the same manifest as a hashed static JSON the browser fetches (set in content/review/<slug>.json only) */
+  publicUrl?: string;
+  publicBytes?: number;
 }
+
+/** what the page ships inline: enough to start the book pane and show the counts while the manifest fetches */
+export interface ReviewMeta {
+  slug: string;
+  publicUrl: string;
+  unitCount: number;
+  published: number;
+  sourceCount: number;
+  pdf: ReviewPdf | null;
+  book: ReviewManifest['book'];
+  generated: string;
+  rightsRule: string;
+}
+export const reviewMeta = (m: ReviewManifest): ReviewMeta => ({
+  slug: m.slug, publicUrl: m.publicUrl ?? '', unitCount: m.units.length, published: publishedUnits(m).length,
+  sourceCount: Object.keys(m.sources).length, pdf: m.pdf, book: m.book, generated: m.generated, rightsRule: m.rightsRule,
+});
+/** an empty manifest carrying the pdf, so the book pane starts before the units arrive */
+export const stubManifest = (meta: ReviewMeta): ReviewManifest => ({
+  slug: meta.slug, id: '', generated: meta.generated, feed: '', book: meta.book, rightsRule: meta.rightsRule,
+  sources: {}, pdf: meta.pdf, markers: [], units: [],
+});
 
 export const RIGHTS_LABEL: Record<string, string> = {
   'public-domain': 'Public domain',
