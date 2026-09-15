@@ -102,7 +102,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   useEffect(() => {
     let cancelled = false;
     let loadingTask: { destroy(): Promise<void> } | null = null;
-    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current;
+    const taskMap = tasks.current, widthMap = renderedWidth.current, visibleSet = visible.current, pendingMap = pending.current, wantedMap = wanted.current, restartMap = restarts.current;
     (async () => {
       // reset inside the async tick — the lint rule forbids synchronous
       // setState in an effect body, and a src change is the only trigger
@@ -145,7 +145,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     return () => {
       cancelled = true;
       taskMap.forEach((t) => t.cancel());
-      taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear();
+      taskMap.clear(); widthMap.clear(); visibleSet.clear(); pendingMap.clear(); wantedMap.clear(); restartMap.clear();
       docRef.current = null;
       void loadingTask?.destroy();
     };
@@ -173,15 +173,24 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   // document failing.
   const pending = useRef(new Map<number, Promise<void>>());
   const wanted = useRef(new Map<number, number>()); // page → the css width last asked for
+  const restarts = useRef(new Map<number, number>()); // page → chains restarted by the tail without a draw landing
   const renderPage = useCallback((num: number, cssWidth: number) => {
     const doc = docRef.current, canvas = canvasRefs.current.get(num);
     if (!doc || !canvas || cssWidth <= 0) return;
-    if (renderedWidth.current.get(num) === cssWidth && !tasks.current.has(num)) return;
+    if (renderedWidth.current.get(num) === cssWidth && canvas.width > 0 && !tasks.current.has(num)) return;
+    // A chain already drawing THIS width is left alone. Cancelling it was the owner's "the page you are
+    // viewing gets stuck until you scroll up and down" (2026-09-15): the IntersectionObserver is rebuilt
+    // whenever a page's true size corrects the layout, and a rebuilt observer reports every visible page
+    // again at the same width — the cancel then landed on a half-drawn canvas that nothing redrew until
+    // the page left the viewport and came back. Only a NEW width interrupts a draw in flight.
+    if (pending.current.has(num)) {
+      if (wanted.current.get(num) !== cssWidth) { wanted.current.set(num, cssWidth); tasks.current.get(num)?.cancel(); }
+      return; // the chain below re-reads `wanted`
+    }
     wanted.current.set(num, cssWidth);
-    if (pending.current.has(num)) { tasks.current.get(num)?.cancel(); return; } // the chain below re-reads `wanted`
     const run = (async () => {
       let attempt = 0, blankRedraws = 0;
-      // loop while a newer width was requested during the render
+      // loop while a newer width was requested during the render, or a draw was cancelled before it landed
       for (;;) {
         const width = wanted.current.get(num);
         const cv = canvasRefs.current.get(num);
@@ -205,27 +214,42 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           if (!ctx) return;
           const task = page.render({ canvas: cv, canvasContext: ctx, viewport: vp, transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : undefined });
           tasks.current.set(num, task);
+          let landed = false;
           try {
             await task.promise;
             // the page may have scrolled out (canvas cleared) while this drew — never mark a blank canvas
             // as rendered, or it would stay blank when it scrolls back (the owner's "some pages give up",
             // 2026-09-15)
-            if (visible.current.has(num) && cv.width > 0) renderedWidth.current.set(num, width);
+            if (visible.current.has(num) && cv.width > 0) { renderedWidth.current.set(num, width); landed = true; restarts.current.delete(num); }
             else { renderedWidth.current.delete(num); if (!visible.current.has(num)) { cv.width = 0; cv.height = 0; } }
           }
           catch (e) { if (!(e instanceof Error && e.name === 'RenderingCancelledException')) throw e; }
           finally { tasks.current.delete(num); }
+          if (!visible.current.has(num)) return; // scrolled away: the exit handler cleared the canvas; re-entry redraws
+          if (landed && wanted.current.get(num) === width) return; // drawn at the width still wanted
+          // cancelled before it landed (or a newer width arrived): draw again — a sized canvas with a
+          // half-finished draw on it is NOT a rendered page
         } catch (e) {
           if (++attempt > 1) { console.error('PdfViewer: page render failed', num, e); return; }
           await new Promise((r) => setTimeout(r, 120)); // let a colliding render settle, then try once more
           continue;
         }
-        if (wanted.current.get(num) === width && (!visible.current.has(num) || cv.width > 0)) return; // done, or off-screen
-        if (cv.width === 0 && ++blankRedraws > 3) return; // never spin on a canvas something keeps clearing
+        if (++blankRedraws > 4) return; // never spin on a canvas something keeps clearing
       }
     })();
     pending.current.set(num, run);
-    void run.finally(() => { if (pending.current.get(num) === run) pending.current.delete(num); });
+    void run.finally(() => {
+      if (pending.current.get(num) !== run) return;
+      pending.current.delete(num);
+      // the tail: a chain that ended while the page is on screen and not drawn at the wanted width
+      // (a re-entry that raced the chain's exit) starts one more, bounded so a failing page cannot spin
+      const w = wanted.current.get(num);
+      if (w && visible.current.has(num) && (renderedWidth.current.get(num) !== w || (canvasRefs.current.get(num)?.width ?? 0) === 0)) {
+        const n = (restarts.current.get(num) ?? 0) + 1;
+        restarts.current.set(num, n);
+        if (n <= 3) renderPage(num, w);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -240,6 +264,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
           void renderPage(num, pageWidth);
         } else {
           visible.current.delete(num);
+          restarts.current.delete(num);
           tasks.current.get(num)?.cancel();
           if (canvas) { canvas.width = 0; canvas.height = 0; renderedWidth.current.delete(num); }
         }
