@@ -26,8 +26,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ...(cv.headline ? { jobTitle: cv.headline } : {}),
     ...(cv.links.length ? { sameAs: cv.links.map((l) => l.url) } : {}),
   };
+  // applied before first paint so a dark visitor never sees a light flash;
+  // the same rule as ThemeToggle.applyTheme (CSP allows inline script)
+  const themeScript = `(function(){try{var t=localStorage.getItem('jk-theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }} />

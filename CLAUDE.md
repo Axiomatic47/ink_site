@@ -66,6 +66,16 @@ p=none, all on Netlify DNS).
 - The book text and the lane are never edited here; a book edit re-runs the
   lane (the drafter's seat), then both imports.
 
+## Dark mode (owner 2026-09-15, as lawsofexistence.com)
+Tailwind `darkMode: ['class']`; every colour token is an RGB triple variable in
+`app/globals.css` (`:root` light, `.dark` dark) so `/opacity` modifiers work
+and components never name a hex. Header/footer/info panel use the `chrome`
+tokens (navy in both modes); `ink` is the foreground and flips, so a `bg-ink
+text-on-ink` button inverts in dark. The header `ThemeToggle` cycles light /
+dark / system, remembered in localStorage `jk-theme`; the inline script in
+`app/layout.tsx` applies the class before first paint. Check a change in both
+modes (Safari via safaridriver screenshots work on this Mac).
+
 ## Shared code with jk_website
 The app, the console (`netlify/`), the scripts and the design are the same
 code as jk_website. A fix that lands in one belongs in the other until the

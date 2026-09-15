@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
 import { cv } from '@/lib/cv';
 import { Monogram } from './Monogram';
+import { ThemeToggle } from './ThemeToggle';
 import { RESEARCH_ARCHIVES, ARCHIVE_IDS } from '@/lib/research-archive';
 
 // Research is a menu (like the other site's header): the archives, Open
@@ -17,7 +18,7 @@ const RESEARCH_MENU = [
 ];
 
 const itemClass = (on: boolean) =>
-  `flex items-center gap-1 px-4 sm:px-5 text-sm tracking-wide no-underline border-b-2 transition-colors ${on ? 'border-accent text-white' : 'border-transparent text-on-ink/75 hover:text-white hover:bg-ink-2'}`;
+  `flex items-center gap-1 px-4 sm:px-5 text-sm tracking-wide no-underline border-b-2 transition-colors ${on ? 'border-accent text-white' : 'border-transparent text-on-chrome/75 hover:text-white hover:bg-chrome-2'}`;
 
 export function SiteHeader() {
   const path = usePathname() ?? '/';
@@ -37,11 +38,11 @@ export function SiteHeader() {
 
   const onResearch = path.startsWith('/research');
   return (
-    <header className="bg-ink text-on-ink no-print relative z-40">
+    <header className="bg-chrome text-on-chrome no-print relative z-40">
       <div className="mx-auto max-w-site px-5 sm:px-8 h-16 flex items-center justify-between gap-6">
         {/* JK monogram, linking home (owner 2026-09-14) */}
         <Link href="/" className="flex items-center no-underline shrink-0" aria-label={`${cv.name} home`}>
-          <Monogram className="text-on-ink" />
+          <Monogram className="text-on-chrome" />
         </Link>
         <nav aria-label="Primary" className="flex items-stretch h-full">
           <Link href="/" aria-current={path === '/' ? 'page' : undefined} className={itemClass(path === '/')}>About</Link>
@@ -62,6 +63,7 @@ export function SiteHeader() {
             )}
           </div>
           <Link href="/contact" aria-current={path.startsWith('/contact') ? 'page' : undefined} className={itemClass(path.startsWith('/contact'))}>Contact</Link>
+          <ThemeToggle className="ml-2 self-center" />
         </nav>
       </div>
     </header>

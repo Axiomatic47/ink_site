@@ -10,7 +10,7 @@ export function Monogram({ className = '' }: { className?: string }) {
       {/* J, brass, its stem laid against the K's stem; hook curls below */}
       <text x="9.5" y="33.5" fontSize="34" fill="#b08d57" style={{ fontWeight: 600 }}>J</text>
       {/* hairline of navy between the two stems so the overlap reads as a join, not a smear */}
-      <line x1="18.4" y1="8" x2="18.4" y2="31" stroke="#1b2540" strokeWidth="1" />
+      <line x1="18.4" y1="8" x2="18.4" y2="31" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1" />
     </svg>
   );
 }
