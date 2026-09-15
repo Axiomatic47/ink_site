@@ -1,6 +1,6 @@
 **Author:** Joseph D. Kirchner
 
-**Date:** Working draft, September 2026
+**Date:** Pre-publishing Edition, September 2026
 
 # Preface
 
