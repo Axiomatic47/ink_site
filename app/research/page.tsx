@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase } from '@/lib/research-archive';
+import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase, publishedDocs } from '@/lib/research-archive';
 import { imageSize, readArchiveManifest } from '@/lib/research-archive.server';
 import { loadAllReadings } from '@/lib/open-readings.server';
 import { SiteShell } from '../_components/SiteShell';
@@ -49,7 +49,7 @@ export default function ResearchIndex() {
                   </h2>
                   <p className="text-sm leading-relaxed text-ink/80 mt-3">{c.summary}</p>
                   <p className="text-sm text-muted mt-3">
-                    {m ? `${m.leaves.length} ${c.leafLabel.toLowerCase()}s · ${m.workingPapers.length} working papers` : ''}
+                    {m ? `${m.leaves.length} ${c.leafLabel.toLowerCase()}s · ${m.leaves.filter((l) => publishedDocs(l).length > 0).length} transcripts` : ''}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1 text-sm text-accent-ink">Open the archive <ArrowRight className="h-4 w-4" /></span>
                 </div>

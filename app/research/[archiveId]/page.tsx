@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, FileText, ScrollText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { cv } from '@/lib/cv';
 import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase, imagesPublished, leafStatus, CONVENTIONS } from '@/lib/research-archive';
 import { readArchiveManifest } from '@/lib/research-archive.server';
@@ -64,9 +64,8 @@ export default async function ResearchArchivePage({ params }: Params) {
             <Eyebrow>How to review</Eyebrow>
             <ol className="text-sm space-y-2 list-decimal ml-4 leading-relaxed">
               <li>Open a {c.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
-              <li>Compare the image against the <strong>transcript</strong> (continuous text with editorial notes) and the <strong>line index</strong> (line-by-line census).</li>
+              <li>Compare the image against the <strong>transcript</strong> (continuous text with editorial notes) — the author’s own transcription, which the commissioned professional transcription will replace.</li>
               <li>Readings marked <code className="font-mono bg-well px-1 rounded">[?]</code> are uncertain; <code className="font-mono bg-well px-1 rounded">⟦…⟧</code> notes record what later passes changed and why.</li>
-              <li>The working papers below track every open question and delta across passes.</li>
             </ol>
           </Card>
           <Card>
@@ -100,20 +99,6 @@ export default async function ResearchArchivePage({ params }: Params) {
           </div>
         </div>
 
-        {manifest && manifest.workingPapers.length > 0 && (
-          <div className="mt-12">
-            <Eyebrow>Working papers</Eyebrow>
-            <div className="bg-card border border-rule rounded-lg shadow-card p-2">
-              {manifest.workingPapers.map((p) => (
-                <Link key={p.pdf} href={`/research/${archiveId}/doc/${encodeURIComponent(p.pdf.replace(/^pdfs\//, ''))}`} className="group flex items-start gap-3 rounded-md px-3 py-2.5 hover:bg-well transition-colors no-underline">
-                  <ScrollText className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                  <span className="text-sm leading-snug group-hover:text-accent-ink" style={{ fontWeight: 550 }}>{p.title}</span>
-                  <ArrowRight className="ml-auto h-3.5 w-3.5 text-muted mt-0.5 shrink-0" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div className="mt-12 bg-well border border-rule border-l-4 border-l-accent rounded-md px-5 py-4">
           <div className="flex items-start gap-3">
