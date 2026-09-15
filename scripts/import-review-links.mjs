@@ -104,13 +104,14 @@ function loadFeed(lane) {
       status: u.status ?? (u.file ? 'CUT' : 'NO_SOURCE'), rights: u.rights ?? sources[u.sourceKey]?.rights ?? '', text: u.unitText,
       sha256: u.sha256 ?? '',
     }));
-    return { feed: `_WEB/links.json (${j.generated ?? 'undated'})`, rows, sources, bookSha: j.bookSha ?? null };
+    return { feed: `_WEB/links.json (${j.generated ?? 'undated'})`, rows, sources, bookSha: j.bookSha ?? null, bookMeta: {} };
   }
   const rows = tsv(join(lane, '_INDEX.tsv'));
   const sources = Object.fromEntries(tsv(join(lane, '_SOURCES.tsv')).map((s) => [s.key, s]));
   // _BOOK.json names the book the rows were parsed from (path, bytes, sha256, git blob)
   const bookJson = join(lane, '_BOOK.json');
-  const bookSha = existsSync(bookJson) ? (JSON.parse(readFileSync(bookJson, 'utf8')).sha256 ?? null) : null;
+  const bookMeta = existsSync(bookJson) ? JSON.parse(readFileSync(bookJson, 'utf8')) : {};
+  const bookSha = bookMeta.sha256 ?? null;
   const fixity = {};
   if (existsSync(join(lane, '_FIXITY_SHA256.txt'))) {
     for (const l of readFileSync(join(lane, '_FIXITY_SHA256.txt'), 'utf8').split('\n')) {
@@ -119,7 +120,7 @@ function loadFeed(lane) {
     }
   }
   for (const r of rows) r.sha256 = fixity[r.extract] ?? '';
-  return { feed: `_INDEX.tsv + _SOURCES.tsv${bookSha ? ' (_BOOK.json ' + bookSha.slice(0, 8) + ')' : ''}`, rows, sources, bookSha };
+  return { feed: `_INDEX.tsv + _SOURCES.tsv${bookSha ? ' (_BOOK.json ' + bookSha.slice(0, 8) + ')' : ''}`, rows, sources, bookSha, bookMeta: { commit: bookMeta.git_head || bookMeta.commit || bookMeta.head || bookMeta.git_blob || null, parsed: bookMeta.parsed || bookMeta.generated || bookMeta.date || null } };
 }
 
 function importOne(cfg) {
@@ -128,7 +129,7 @@ function importOne(cfg) {
   if (!existsSync(cfg.lane)) throw new Error(`lane missing: ${cfg.lane}`);
   const raw = readFileSync(cfg.book, 'utf8');
   const bookSha = createHash('sha256').update(raw).digest('hex');
-  const { feed, rows, sources, bookSha: feedSha } = loadFeed(cfg.lane);
+  const { feed, rows, sources, bookSha: feedSha, bookMeta } = loadFeed(cfg.lane);
   if (feedSha && feedSha !== bookSha) {
     throw new Error(`the feed was built from another book: feed bookSha ${feedSha.slice(0, 12)} ≠ book ${bookSha.slice(0, 12)} — re-run the lane first`);
   }
@@ -265,7 +266,11 @@ function importOne(cfg) {
         linked = { file: `/uploads/research/${cfg.id}/book_linked.pdf`, sha256: o.pdf.linked.sha256 };
       } else unwrappable.push('overlay.json names a linked copy that is missing or differs — download stays the plain render');
     }
-    pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', linked };
+    // the render's date: the lane names it in the file (…_YYYY-MM-DD…), else the file's mtime — shown on the
+    // page beside the text's import date so a render that lags the text is visible, not silent
+    const dateInName = /(\d{4}-\d{2}-\d{2})/.exec(basename(o.pdf.path))?.[1];
+    const rendered = dateInName || statSync(src).mtime.toISOString().slice(0, 10);
+    pdf = { file: `/uploads/research/${cfg.id}/book.pdf`, sha256: got, bytes: statSync(dst).size, pages: o.pdf.pages, producer: o.pdf.producer || '', origin: o.pdf.origin || 'top-left, PDF points', rendered, renderName: basename(o.pdf.path), linked };
     for (const b of o.units) {
       const parts = [{ page: b.page, rects: b.rects }];
       if (b.tail) parts.push({ page: b.tail.page, rects: b.tail.rects });
@@ -285,7 +290,7 @@ function importOne(cfg) {
     id: cfg.id,
     generated: new Date().toISOString(),
     feed,
-    book: { file: basename(cfg.book), sha256: bookSha, bytes: Buffer.byteLength(raw) },
+    book: { file: basename(cfg.book), sha256: bookSha, bytes: Buffer.byteLength(raw), ...(bookMeta.commit ? { commit: bookMeta.commit } : {}), ...(bookMeta.parsed ? { parsed: bookMeta.parsed } : {}) },
     rightsRule: 'Only public-domain pages are published; every other citation is marked as held in the library.',
     pdf,
     markers,

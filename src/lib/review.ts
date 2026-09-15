@@ -48,6 +48,9 @@ export interface ReviewPdf {
   pages: number;
   producer: string;
   origin: string;
+  /** the render's date (from the lane's file name, else its mtime) — the PDF can lag the text */
+  rendered: string;
+  renderName: string;
   /** a copy with the citation links written in as PDF annotations, for download */
   linked: { file: string; sha256: string } | null;
 }
@@ -66,7 +69,7 @@ export interface ReviewManifest {
   id: string;
   generated: string;
   feed: string;
-  book: { file: string; sha256: string; bytes: number };
+  book: { file: string; sha256: string; bytes: number; commit?: string; parsed?: string };
   rightsRule: string;
   sources: Record<string, ReviewSource>;
   /** the book as a PDF, bound to the boxes by sha256; null until the lane emits _WEB/overlay.json */
