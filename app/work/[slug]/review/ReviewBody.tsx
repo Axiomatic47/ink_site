@@ -402,12 +402,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
-      <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 py-4' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
+      <main id="main-content" className={cn('flex-grow w-full', review ? 'max-w-none px-4 pt-2 pb-3' : 'mx-auto max-w-site px-5 sm:px-8 py-6')}>
         {/* header row (owner 2026-09-15): back link · review-mode badge · layout toggle sit together over
             the LEFT pane; in side-by-side the page strip takes the right half, over the source pane, on the
             same column grid as the panes so the divider lines up and follows the drag */}
         <div ref={headRef}
-          className={cn('mb-3', review ? 'grid items-center' : 'flex flex-wrap items-center gap-3')}
+          className={cn(review ? 'mb-2 grid items-center' : 'mb-3 flex flex-wrap items-center gap-3')}
           style={review ? { gridTemplateColumns: `${split}% ${DIVIDER_PX}px minmax(0, 1fr)` } : undefined}>
           <div className="flex flex-wrap items-center gap-2 min-w-0">
             <Link href={backHref ?? textTo} className="inline-flex items-center text-sm text-muted hover:text-ink no-underline mr-1"><ArrowLeft className="h-4 w-4 mr-1.5" />{backLabel ?? `${work.title} — the reader`}</Link>
@@ -443,7 +443,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         </div>
 
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
-        <div ref={belowRef} className={cn('mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
+        <div ref={belowRef} className={cn(review ? 'mt-2' : 'mt-3', 'flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
             {reading ? (
               <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>

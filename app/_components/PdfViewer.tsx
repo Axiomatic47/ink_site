@@ -68,7 +68,7 @@ function sharedWorker(pdfjs: PdfjsModule) {
 }
 const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
-const FIT_PAGE_MIN = 72; // fit-page is the default only while the page keeps ≥ 72 % of the pane's width
+const FIT_PAGE_MIN = 50; // fit-page is the default while the page keeps ≥ 50 % of the pane's width (owner 2026-09-15: a full page on a wide display — a 1150-px pane 870 tall fits a letter page at 58 %; a 1280×800 laptop at 44 % stays fit-width)
 type PageMeta = { num: number; aspect: number; w: number; h: number };
 
 const RANGE_MIN_BYTES = 3 * 1024 * 1024;
@@ -92,7 +92,7 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   const [paneHeight, setPaneHeight] = useState(0);
   // ZOOM (owner 2026-09-15: "see a full page if you have the display size"): until the reader
   // chooses, a filled well opens at FIT-PAGE — the whole first page visible — when that keeps the
-  // page at least FIT_PAGE_MIN of the pane's width (a tall display); otherwise at fit-width (100 %).
+  // page at least FIT_PAGE_MIN of the pane's width (a display tall enough); otherwise at fit-width (100 %).
   // The % label toggles between the two; the − / + steps walk the fixed ladder from wherever it is.
   const [zoomChoice, setZoomChoice] = useState<number | 'auto'>('auto');
   const docRef = useRef<PDFDocumentProxy | null>(null);
