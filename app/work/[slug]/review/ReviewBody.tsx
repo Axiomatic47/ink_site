@@ -216,12 +216,26 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const citedInCtx: number[] = active && ctx ? active.pages.filter((p) => p.context?.file === ctx.file).map((p) => p.context!.page) : [];
   const ctxFile = ctx?.file ?? null, ctxPage = ctx?.page ?? null;
   const [ctxFocus, setCtxFocus] = useState<PdfFocus | null>(null);
+  // a page change that came from the reader's own scrolling must not scroll the viewer back
+  const fromScroll = useRef(false);
   useEffect(() => {
     if (!ctxFile || !ctxPage) return;
+    if (fromScroll.current) { fromScroll.current = false; return; }
     // scroll the reading copy to the cited page whenever the page in hand changes (the file may be the same)
     const t = setTimeout(() => setCtxFocus({ page: ctxPage, y: 0, nonce: Date.now() }), 250);
     return () => clearTimeout(t);
   }, [ctxFile, ctxPage]);
+  // owner 2026-09-15: consecutive cited pages in one reading copy are read by scrolling; the chip
+  // highlight follows the page in view (and the hash with it) instead of waiting for a click
+  // (a plain function: the compiler's memo rule refuses a manual memo over `active`)
+  const onPageInView = (pdfPage: number) => {
+    if (!active || !ctxFile) return;
+    const i = active.pages.findIndex((p) => p.context?.file === ctxFile && p.context.page === pdfPage);
+    if (i < 0 || i === pageIdx) return;
+    fromScroll.current = true;
+    setPageIdx(i);
+    try { history.replaceState(null, '', hashForCite(active.id, i)); } catch { /* ignore */ }
+  };
 
   // toolbar-left of the source pane: previous · citation i/N · next · to the note · page stepper
   const controls = (
@@ -293,7 +307,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         <PdfViewer key={paneSrc} src={paneSrc} title={ctx ? `${pageTitle} — reading copy, ${citedInCtx.length > 1 ? `${citedInCtx.length} cited pages marked` : 'the cited page marked'}` : pageTitle}
           downloadSrc={page.file ? v(page.file, page.sha256) : undefined} downloadName={(page.file ?? ctx?.file ?? '').split('/').pop()}
           height={review ? 'fill' : 'page'} chrome="pane" leading={controls}
-          focus={ctx ? ctxFocus : null} markedPages={citedInCtx} currentPage={ctx?.page ?? null} />
+          focus={ctx ? ctxFocus : null} markedPages={citedInCtx} currentPage={ctx?.page ?? null} onPageInView={ctx ? onPageInView : undefined} />
       ) : (
         <div className={cn(paneShell, review ? 'h-full' : 'min-h-[24rem]')}>
           <div className="h-11 px-3 flex items-center justify-between gap-3 border-b border-rule">{controls}</div>
