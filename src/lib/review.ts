@@ -44,6 +44,9 @@ export interface ReviewUnit {
   rights: string;
   /** the register id of the work the unit's first row cites — what a unit with no page still cites */
   work?: string;
+  /** the distinct register ids of ALL the unit's live rows, in row order (a pinless row carries no page chip
+      to hold its work; the card lists these) */
+  works?: string[];
   pages: ReviewPage[];
   /** where the unit stands in the book's PDF (absent for the two units the overlay could not place) */
   box?: ReviewBox;

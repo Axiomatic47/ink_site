@@ -226,9 +226,13 @@ function importOne(cfg) {
     if (!u) {
       u = { id: key, note: r.note, seq: Number(r.seq), line: Number(r.line) || 0, text: r.text, cls: r.cls, status: r.status, rights: r.rights || sources[r.source_key]?.rights || '', source: r.source_key || null, pages: [],
         start: r.unit_start === '' || r.unit_start == null ? null : Number(r.unit_start), end: r.unit_end === '' || r.unit_end == null ? null : Number(r.unit_end),
-        ...(r.work ? { work: r.work } : {}) }; // the first row's work: what a unit with no page (NO_SOURCE, NO_PIN) still cites
+        ...(r.work ? { work: r.work } : {}), works: [] }; // the first row's work: what a unit with no page (NO_SOURCE, NO_PIN) still cites
       units.set(key, u);
     }
+    // contract refinement (2026-09-16): the unit carries `works` = the distinct work ids of ALL its live rows in
+    // row order — a NO_PIN row yields no page chip to carry its work, so a pinless unit citing two works
+    // (Rushworth's Appendix and its volume) would otherwise reach the card with the first only
+    if (r.work && !u.works.includes(r.work)) u.works.push(r.work);
     if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST' || r.status === 'CUT_CASE')) {
       const kind = sources[r.source_key]?.pinkind || 'page';
       // verified: Y = the page number was read on the page · N = placed by the run's offset · '-' = a verso with nothing to read
@@ -254,7 +258,7 @@ function importOne(cfg) {
   }
   // every `work` the manifest will carry must be a register work — fail closed, naming the id
   const workIds = new Set();
-  for (const u of units.values()) { if (u.work) workIds.add(u.work); for (const p of u.pages) if (p.work) workIds.add(p.work); }
+  for (const u of units.values()) { if (u.work) workIds.add(u.work); for (const id of u.works) workIds.add(id); for (const p of u.pages) if (p.work) workIds.add(p.work); }
   const unknownWorks = [...workIds].filter((id) => !register.has(id));
   if (unknownWorks.length) throw new Error(`${unknownWorks.length} work id(s) in the index are not is_work rows of _REGISTER.tsv: ${unknownWorks.slice(0, 5).join(', ')} — nothing written`);
   const works = Object.fromEntries([...workIds].sort().map((id) => {
@@ -443,7 +447,7 @@ function importOne(cfg) {
       const u = units.get(id);
       return {
         // slim: this JSON travels to the reader's browser with the page
-        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}),
+        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}), ...(u.works.length ? { works: u.works } : {}),
         pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
@@ -471,7 +475,7 @@ function importOne(cfg) {
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
   { let withUrl = 0, external = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) withUrl += 1; if (!p.extract && p.url) external += 1; }
     console.log(`  links: ${withUrl} page chips carry a url (${withUrl - external} held leaves on this site, ${external} external records)`); }
-  { let pw = 0, uw = 0, live = 0; for (const u of units.values()) { live += 1; if (u.work || u.pages.some((p) => p.work)) uw += 1; for (const p of u.pages) if (p.work) pw += 1; }
+  { let pw = 0, uw = 0, live = 0; for (const u of units.values()) { live += 1; if (u.works.length) uw += 1; for (const p of u.pages) if (p.work) pw += 1; }
     console.log(`  works: ${workIds.size} cited works from the register (${register.size} is_work rows); ${uw} of ${live} units and ${pw} pages carry one`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);

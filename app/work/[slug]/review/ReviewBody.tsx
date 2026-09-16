@@ -275,7 +275,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     if (!active || !manifest.works) return [];
     const ids: string[] = [];
     const push = (id?: string) => { if (id && manifest.works?.[id] && !ids.includes(id)) ids.push(id); };
-    push(page?.work); active.pages.forEach((p) => push(p.work)); push(active.work);
+    push(page?.work); (active.works ?? []).forEach(push); active.pages.forEach((p) => push(p.work)); push(active.work);
     return ids.map((id) => manifest.works![id]);
   })();
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
