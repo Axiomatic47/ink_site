@@ -55,12 +55,12 @@ The Method comes first, in three sections cited by letter, because everything af
 
 Every chapter that reads a span of verses closes with a lettered section on the witnesses at that span, and every claim about a version cites the leaf of the copy read. The reader who wishes to check the book against its sources will find the leaf in the note, and the Method states how far each witness was examined and what the author can and cannot read.
 
-[^ni1]: *The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge, 1568), the argument to "The .ij. Chapter," Princeton copy, leaves 52–53 of the images on the shelf; chapter 1.3 § B and chapter 4.3 § D.
-[^ni2]: Bishops' Bible, 1574, 1575, 1577 and 1578, the arguments to chapter 2; Bodleian Library, Arch. A b.18 (1602), canvas 44; A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611* (Oxford, 1911), p. 226; the leaves and frames are given in chapter 1.3 § B, note nb13o.
+[^ni1]: [*The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge, 1568), the argument to "The .ij. Chapter," Princeton copy, leaves 52–53 of the images on the shelf](cite:ni1/1); chapter 1.3 § B and chapter 4.3 § D.
+[^ni2]: [Bishops' Bible, 1574, 1575, 1577 and 1578, the arguments to chapter 2](cite:ni2/1); [Bodleian Library, Arch. A b.18 (1602), canvas 44](cite:ni2/2); [A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611* (Oxford, 1911), p. 226](cite:ni2/3); the leaves and frames are given in chapter 1.3 § B, note nb13o.
 [^ni3]: Method § B; chapters 2.1 § B, 3.1 § A, 4.1 § A, 4.2 § A, 4.3 § A, 4.4 § B; Appendix B.
 [^ni4]: Chapters 1.3 § B and 4.3 § D.
-[^ni5]: H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, 3rd ed. (Cambridge, 1901), pp. 3–4 (2:9 ἔτι; 2:19 ἔτι); *Biblia Sacra Vulgatæ editionis* (Rome, 1592), p. 2 (*Plantauerat autem*; *Formatis igitur*); chapters 2.2 § B, 2.3 § B, 4.1 § B, 4.2 § B, 4.4 § D.
-[^ni6]: Leningrad Codex, pp. 8–10 (2:7, 3:14, 3:19 עָפָר); chapters 2.2 § A, 3.3 §§ A, C, 4.1 § C, 4.2 § C, 4.3 § B; Appendix C.
+[^ni5]: [H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, 3rd ed. (Cambridge, 1901), pp. 3–4 (2:9 ἔτι; 2:19 ἔτι)](cite:ni5/1); [*Biblia Sacra Vulgatæ editionis* (Rome, 1592), p. 2 (*Plantauerat autem*; *Formatis igitur*)](cite:ni5/2); chapters 2.2 § B, 2.3 § B, 4.1 § B, 4.2 § B, 4.4 § D.
+[^ni6]: [Leningrad Codex, pp. 8–10 (2:7, 3:14, 3:19 עָפָר)](cite:ni6/1); chapters 2.2 § A, 3.3 §§ A, C, 4.1 § C, 4.2 § C, 4.3 § B; Appendix C.
 
 # Method
 
@@ -76,8 +76,8 @@ Translations are set beside their originals and never beside one another alone. 
 
 The English text of record is the King James of 1611, quoted as printed, and the English Bibles before it are read beside it in the order of their age. The Septuagint and the Vulgate are the two ancient witnesses. The versions of the nineteenth and twentieth centuries are witnesses to the modern reader's text and to nothing else; the book quotes none of them as its own text, and chapter 4.4 states how the thirteen it consulted were read.
 
-[^ma1]: Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A, AD 1008), pp. 7–10 of the page images on the shelf: 1:1–1:26 (p. 7), 1:26–2:19 (p. 8), 2:19–3:18 (p. 9), 3:18–4:12 (p. 10); three columns to the page, read from the right. The page numbers are those of the image set and not folio numbers.
-[^ma2]: The copies, with the leaves that carry Genesis 1–3, are tabulated in § C below. Swete's edition prints the Vaticanus text where that codex survives and supplies its lost first forty-six chapters of Genesis from Alexandrinus, with the Cotton Genesis and the Bodleian Genesis in the apparatus; the book's "Septuagint" is therefore a fifth-century manuscript's text in a 1901 edition, and chapter 4.1 § A states what follows from that.
+[^ma1]: [Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A, AD 1008), pp. 7–10 of the page images on the shelf: 1:1–1:26 (p. 7), 1:26–2:19 (p. 8), 2:19–3:18 (p. 9), 3:18–4:12 (p. 10)](cite:ma1/1); three columns to the page, read from the right. The page numbers are those of the image set and not folio numbers.
+[^ma2]: [The copies, with the leaves that carry Genesis 1–3, are tabulated in § C below. Swete's edition prints the Vaticanus text where that codex survives and supplies its lost first forty-six chapters of Genesis from Alexandrinus, with the Cotton Genesis and the Bodleian Genesis in the apparatus](cite:ma2/1); the book's "Septuagint" is therefore a fifth-century manuscript's text in a 1901 edition, and chapter 4.1 § A states what follows from that.
 
 ### B. The Connective and the Clause
 
@@ -95,13 +95,13 @@ Two consequences follow, and the book relies on both. First, a "now" placed at a
 
 Nothing in this rule is peculiar to this book; it is the grammar of the language as any grammar of it states. What is the book's own is the application: reading the two tellings of Genesis 1–3 clause by clause under it, and finding that the versions divide at exactly the places the rule marks.
 
-[^mb1]: Counted in the King James text (Pure Cambridge Edition): 210 occurrences of "and" in Genesis 1–3; verse-initial "And" at 29 of 31 verses in chapter 1, 19 of 25 in chapter 2, 15 of 24 in chapter 3. The 1611 printing was read at the page for every verse cited in this book (A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611*, Oxford, 1911, pp. 225–228 of the facsimile).
-[^mb2]: Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A, AD 1008), pp. 7–10 of the page images on the shelf: 1:2 וְהָאָרֶץ and 1:5 וְלַחֹשֶׁךְ and 1:10 וּלְמִקְוֵה (p. 7); 2:5 וְכֹל שִׂיחַ, 2:6 וְאֵד, 2:10 וְנָהָר, 2:20 וּלְאָדָם, and the verbless 2:12 וּזֲהַב, 2:13 וְשֵׁם, 2:14 וְשֵׁם … וְהַנָּהָר (p. 8); 3:1 וְהַנָּחָשׁ, 3:17 וּלְאָדָם (p. 9); 4:1 וְהָאָדָם (p. 10). The codex is the oldest complete manuscript of the Hebrew Bible and the base of the printed Hebrew text; the reading of its consonants and points here is the author's from the image and awaits professional review.
-[^mb3]: Leningrad Codex, p. 8 (the gap before 2:4) and p. 9 (the gaps before 3:16 and 3:17). The codex also leaves an open gap after each of the six days of chapter 1 (after 1:5, 1:8, 1:13, 1:19 and 1:23) and before 3:22 and 4:1.
-[^mb4]: H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, 3rd ed. (Cambridge, 1901), pp. 1–6 (Genesis 1–4 in the text of Codex Alexandrinus, Vaticanus wanting): ἡ δὲ γῆ (1:2), πηγὴ δέ (2:6), ποταμὸς δέ (2:10), ὁ δὲ ὄφις (3:1), τῷ δὲ Ἀδάμ (3:17), Ἀδὰμ δέ (4:1); καὶ πᾶν χλωρὸν ἀγροῦ (2:5); καὶ τὸ σκότος ἐκάλεσεν νύκτα (1:5); καὶ τὰ συστέματα τῶν ὑδάτων ἐκάλεσεν θαλάσσας (1:10); τῷ τε Ἀδάμ (2:20).
-[^mb5]: *Biblia Sacra Vulgatæ editionis* (Rome: Typographia Apostolica Vaticana, 1592), pp. 1–3: *Terra autem* (1:2), *Sed fons* (2:6), *Sed & serpens* (3:1), *Adæ vero* (2:20, 3:17), *Adam vero* (4:1); *Et omne virgultum* (2:5), *Et fluuius egrediebatur* (2:10); *Dixitque, Dixit quoque, Dixit vero, Dixit autem, Dixit etiam, Et ait* for the speeches of chapter 1; *Formauit igitur* (2:7), *Plantauerat autem* (2:8), *Immisit ergo* (2:21), *Vidit igitur* (3:6).
-[^mb6]: 1611, Pollard pp. 225–228: "And the earth" (1:2), "And euery plant" (2:5), "But there went vp a mist" (2:6), "And a riuer went out" (2:10), "Now the serpent" (3:1), "And vnto Adam" (3:17), "And Adam knew" (4:1); "but for Adam" (2:20). Coverdale (1535): "But" at 2:6 and 3:1, "Morouer" at 4:1. Great Bible (1540): "The earth was" (1:2), "But the serpent" (3:1). Geneva (1560): "But" at 2:6, "Now" at 3:1, "Also" at 3:17, "Afterwarde" at 4:1, "but for Adám" (2:20). Bishops' (1568): "But" at 2:6. The verse-by-verse table is Appendix B.
-[^mb7]: Swete, vol. I, p. 3 (2:12 τὸ δὲ χρυσίον; 2:13 καὶ ὄνομα τῷ ποταμῷ τῷ δευτέρῳ; 2:14 καὶ ὁ ποταμὸς ὁ τρίτος … ὁ δὲ ποταμὸς ὁ τέταρτος); Vulgate 1592, p. 2 (*Et aurum terræ illius*; *Et nomen fluuij secundi*; *Nomen vero fluminis tertij*; *Fluuius autem quartus*).
+[^mb1]: Counted in the King James text (Pure Cambridge Edition): 210 occurrences of "and" in Genesis 1–3; [verse-initial "And" at 29 of 31 verses in chapter 1, 19 of 25 in chapter 2, 15 of 24 in chapter 3. The 1611 printing was read at the page for every verse cited in this book (A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611*, Oxford, 1911, pp. 225–228 of the facsimile).](cite:mb1/2)
+[^mb2]: [Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A, AD 1008), pp. 7–10 of the page images on the shelf: 1:2 וְהָאָרֶץ and 1:5 וְלַחֹשֶׁךְ and 1:10 וּלְמִקְוֵה (p. 7)](cite:mb2/1); [2:5 וְכֹל שִׂיחַ, 2:6 וְאֵד, 2:10 וְנָהָר, 2:20 וּלְאָדָם, and the verbless 2:12 וּזֲהַב, 2:13 וְשֵׁם, 2:14 וְשֵׁם … וְהַנָּהָר (p. 8)](cite:mb2/2); [3:1 וְהַנָּחָשׁ, 3:17 וּלְאָדָם (p. 9)](cite:mb2/3); [4:1 וְהָאָדָם (p. 10). The codex is the oldest complete manuscript of the Hebrew Bible and the base of the printed Hebrew text](cite:mb2/4); the reading of its consonants and points here is the author's from the image and awaits professional review.
+[^mb3]: [Leningrad Codex, p. 8 (the gap before 2:4) and p. 9 (the gaps before 3:16 and 3:17). The codex also leaves an open gap after each of the six days of chapter 1 (after 1:5, 1:8, 1:13, 1:19 and 1:23) and before 3:22 and 4:1.](cite:mb3/1)
+[^mb4]: [H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, 3rd ed. (Cambridge, 1901), pp. 1–6 (Genesis 1–4 in the text of Codex Alexandrinus, Vaticanus wanting): ἡ δὲ γῆ (1:2), πηγὴ δέ (2:6), ποταμὸς δέ (2:10), ὁ δὲ ὄφις (3:1), τῷ δὲ Ἀδάμ (3:17), Ἀδὰμ δέ (4:1)](cite:mb4/1); καὶ πᾶν χλωρὸν ἀγροῦ (2:5); καὶ τὸ σκότος ἐκάλεσεν νύκτα (1:5); καὶ τὰ συστέματα τῶν ὑδάτων ἐκάλεσεν θαλάσσας (1:10); τῷ τε Ἀδάμ (2:20).
+[^mb5]: [*Biblia Sacra Vulgatæ editionis* (Rome: Typographia Apostolica Vaticana, 1592), pp. 1–3: *Terra autem* (1:2), *Sed fons* (2:6), *Sed & serpens* (3:1), *Adæ vero* (2:20, 3:17), *Adam vero* (4:1)](cite:mb5/1); [*Et omne virgultum* (2:5), *Et fluuius egrediebatur* (2:10)](cite:mb5/2); [*Dixitque, Dixit quoque, Dixit vero, Dixit autem, Dixit etiam, Et ait* for the speeches of chapter 1](cite:mb5/3); [*Formauit igitur* (2:7), *Plantauerat autem* (2:8), *Immisit ergo* (2:21), *Vidit igitur* (3:6).](cite:mb5/4)
+[^mb6]: [1611, Pollard pp. 225–228: "And the earth" (1:2), "And euery plant" (2:5), "But there went vp a mist" (2:6), "And a riuer went out" (2:10), "Now the serpent" (3:1), "And vnto Adam" (3:17), "And Adam knew" (4:1)](cite:mb6/1); ["but for Adam" (2:20). Coverdale (1535): "But" at 2:6 and 3:1, "Morouer" at 4:1. Great Bible (1540): "The earth was" (1:2), "But the serpent" (3:1). Geneva (1560): "But" at 2:6, "Now" at 3:1, "Also" at 3:17, "Afterwarde" at 4:1, "but for Adám" (2:20). Bishops' (1568): "But" at 2:6. The verse-by-verse table is Appendix B.](cite:mb6/2)
+[^mb7]: [Swete, vol. I, p. 3 (2:12 τὸ δὲ χρυσίον; 2:13 καὶ ὄνομα τῷ ποταμῷ τῷ δευτέρῳ; 2:14 καὶ ὁ ποταμὸς ὁ τρίτος … ὁ δὲ ποταμὸς ὁ τέταρτος)](cite:mb7/1); [Vulgate 1592, p. 2 (*Et aurum terræ illius*; *Et nomen fluuij secundi*; *Nomen vero fluminis tertij*; *Fluuius autem quartus*).](cite:mb7/2)
 
 ### C. Degree of Examination
 
@@ -133,8 +133,8 @@ Outside these four stand the versions the book names but did not read: the New I
 
 Two second copies were used to check readings and are not cited: a second Geneva of 1560 in a later facsimile, and a set of first-folio images of the 1611 assembled by the author.[^mc2] The 1881 Tournai printing of the Vulgate was on the shelf and was consulted for the Latin only where the 1592's letterpress was doubtful; it is not cited.
 
-[^mc1]: Bishops' Bible, 1574, 1575, 1577 and 1578, microfilm copies on the shelf, frames 58, 62, 78 and 60; the frames are those of the film and not leaves of the books. See chapter 1.3 § B, note nb13o, for what was read on them.
-[^mc2]: Geneva, 1560, a 2004 facsimile in a second image set (leaves 7–9 at Genesis, two fewer than the Huntington set); 1611, the author's first-folio images (pp. 79–82 at Genesis, 146 fewer than Pollard's pagination).
+[^mc1]: [Bishops' Bible, 1574, 1575, 1577 and 1578, microfilm copies on the shelf, frames 58, 62, 78 and 60](cite:mc1/1); the frames are those of the film and not leaves of the books. See chapter 1.3 § B, note nb13o, for what was read on them.
+[^mc2]: [Geneva, 1560, a 2004 facsimile in a second image set (leaves 7–9 at Genesis, two fewer than the Huntington set)](cite:mc2/1); [1611, the author's first-folio images (pp. 79–82 at Genesis, 146 fewer than Pollard's pagination).](cite:mc2/2)
 
 # Part 1 — The First Telling: Genesis 1:1–2:3
 
@@ -206,28 +206,28 @@ The second word is רֶמֶשׂ, the creeping thing, with its verb רָמַשׂ,
 
 Six days, told in one order, with one scene-clause at the head and a verb of sequence at every verse after it: light, the firmament, the dry land and then the vegetation, the lights, the creatures of the water and the air, the creatures of the land. The codex divides the days with open spaces and the versions with margins and pilcrows, and no version disturbs the order. The words the frame supplies to the second telling are three: seed, which the plants have and the woman will have; living soul, which the animals and the man are alike; and creeping thing, the class the serpent belongs to and the word his sentence does not use. The next chapter reads the sixth day's last work and the seventh day's rest, which are the first telling's account of what the second telling will spend twenty-three verses on.
 
-[^nb11a]: Leningrad Codex, p. 7, right column (1:1–5); 1611, Pollard p. 225.
-[^nb11b]: Leningrad Codex, p. 7 (1:1 בְּרֵאשִׁית at the head of the column) and p. 8 (2:4 אֵלֶּה תוֹלְדוֹת after an open space). See Method § B.
-[^nb11c]: Swete, vol. I, p. 1; Vulgate 1592, p. 1; Great Bible, opening 10 R.
-[^nb11d]: Coverdale, opening 9 R; Geneva, leaf 9; Bishops', leaf 51; 1611, Pollard p. 225. The five are 1:2, 2:5, 2:10, 3:17 and 4:1; see Method § B.
-[^nb11e]: Swete, vol. I, p. 1 (πνεῦμα θεοῦ); Vulgate 1592, p. 1 (*Spiritus Dei*); Coverdale, opening 9 R ("ȳ sprete of God"); Great Bible, opening 10 R ("the sprete of God"); Geneva, leaf 9 ("the Spirit of God"); Bishops', leaf 51 ("the spirite of God"); 1611, Pollard p. 225 ("the Spirit of God"). For 3:8 see chapter 3.2 § C.
-[^nb11f]: Leningrad Codex, p. 7 (1:5 וְלַחֹשֶׁךְ קָרָא לָיְלָה; 1:10 וּלְמִקְוֵה הַמַּיִם קָרָא יַמִּים); Swete, vol. I, p. 1 (καὶ τὸ σκότος ἐκάλεσεν νύκτα; καὶ τὰ συστέματα τῶν ὑδάτων ἐκάλεσεν θαλάσσας).
-[^nb11g]: Leningrad Codex, p. 7, all three columns: open spaces after יוֹם אֶחָד (1:5), יוֹם שֵׁנִי (1:8), יוֹם שְׁלִישִׁי (1:13), יוֹם רְבִיעִי (1:19) and יוֹם חֲמִישִׁי (1:23); none between 1:25 and 1:26. The space after 1:31 and before 2:1 is on p. 8 and is treated in chapter 1.3.
-[^nb11h]: Geneva, leaves 9–10, the days numbered in the margin ("The 3. day," "The 5 day," "The 6 day" legible in the copy read); Bishops', leaves 51–52, margins "The 2. day" to "The 6. day"; 1611, Pollard pp. 225–226, pilcrows at 1:6, 1:9, 1:14, 1:24, 1:26 and 1:29, none at 1:20; Vulgate 1592, pp. 1–2.
-[^nb11i]: Vulgate 1592, p. 1.
-[^nb11j]: Coverdale, opening 9 R and 10 L; Great Bible, opening 10 R.
-[^nb11k]: Geneva, leaves 9–10.
-[^nb11l]: Bishops', leaves 51–52 (1:25 "God made the beast of the earth"; 1:26 "God saide: let vs make man"); 1611, Pollard pp. 225–226.
-[^nb11m]: 1611, Pollard p. 225.
-[^nb11n]: Leningrad Codex, p. 7 (1:11 מַזְרִיעַ זֶרַע; 1:12 מַזְרִיעַ זֶרַע לְמִינֵהוּ … אֲשֶׁר זַרְעוֹ־בוֹ); Swete, vol. I, p. 1 (σπεῖρον σπέρμα); Vulgate 1592, p. 1 (*facientem semen*); Coverdale, opening 9 R ("herbe, that beareth sede"); Great Bible, opening 10 R ("grene herbe, which maye engendre seed"); Geneva, leaf 9 ("the herbe, that sedeth sede"); Bishops', leaf 51 ("hearbe apt to seede"); 1611, Pollard p. 225 ("the herbe yeelding seed") and margin at 1:29 "† Hebr. seeding seed."
-[^nb11o]: Leningrad Codex, p. 7, middle column (1:16 וְאֵת הַכּוֹכָבִים); Swete, vol. I, p. 1 (καὶ τοὺς ἀστέρας); Vulgate 1592, p. 1 (*& stellas*).
-[^nb11p]: Coverdale, opening 10 L ("and (he made) starres also"); Great Bible, opening 10 R ("(And he made) sterres also"); Bishops', leaf 52 ("and [he made] starres also"); Geneva, leaf 9 ("he made also ȳ starres"); 1611, Pollard p. 225 ("he made the starres also").
-[^nb11q]: Leningrad Codex, p. 7, left column (1:24–25); 1611, Pollard p. 226.
-[^nb11r]: Leningrad Codex, pp. 7–8 (1:20, 1:24, 1:30, 2:7, 2:19 נֶפֶשׁ חַיָּה); Swete, vol. I, pp. 1–4 (ψυχὴ ζῶσα at each); Vulgate 1592, pp. 1–2 (*anima viuens* at each); Coverdale, openings 9 R–10 L (1:20 "creatures that moue and haue life"; 1:24 "lyuynge soules"; 2:7 "a lyuynge soule").
-[^nb11s]: Great Bible, openings 10 R (1:20 "mouynge creature that hath lyfe"; 1:24 "lyuing creature") and 11 L (2:7 "a lyuing soule"); Geneva, leaves 9–10 (1:20 "euerie creping thing that hathe life"; 1:24 "the liuing thing"; 2:7 "a liuing soule"); Bishops', leaves 52–53 (1:20 "mouyng creature that hath lyfe"; 1:24 "lyuyng creature"; 2:7 "a lyuyng soule"); 1611, Pollard pp. 225–226 (1:20 "mouing creature that hath life"; 1:24 "the liuing creature"; 2:7 "a liuing soule").
-[^nb11t]: Geneva, leaf 9, margin at 1:20; 1611, Pollard pp. 225–226, margins at 1:20 ("† Heb. soule") and 1:30 ("† Hebr. a liuing soule").
-[^nb11u]: Leningrad Codex, p. 7 (1:24 וָרֶמֶשׂ; 1:25 כָּל־רֶמֶשׂ הָאֲדָמָה) and p. 8 (1:26 וּבְכָל־הָרֶמֶשׂ הָרֹמֵשׂ; 1:28 הָרֹמֶשֶׂת); Swete, vol. I, pp. 1–2 (ἑρπετά; 1:26 πάντων τῶν ἑρπετῶν τῶν ἑρπόντων); Vulgate 1592, pp. 1–2 (1:24 *reptilia*; 1:25 *reptile terræ*; 1:26 *omni reptili, quod mouetur in terra*); Coverdale, opening 10 L (1:24 "wormes"; 1:25 "all maner wormes of the earth"); Great Bible, opening 10 R (1:24 "worme"; 1:25 "euery thynge that crepeth"); Geneva, leaf 10 (1:24 "that which crepeth"; 1:25 "euerie creping thing"); Bishops', leaf 52 (1:24 "worme"; 1:25 "euery thyng that creepeth"); 1611, Pollard p. 226 (1:24 "creeping thing"; 1:25 "euery thing that creepeth").
-[^nb11v]: 1611, Pollard pp. 225–226, margins at 1:20 ("‖ Or, creeping") and 1:28 ("† Heb. creepeth").
+[^nb11a]: [Leningrad Codex, p. 7, right column (1:1–5)](cite:nb11a/1); [1611, Pollard p. 225.](cite:nb11a/2)
+[^nb11b]: [Leningrad Codex, p. 7 (1:1 בְּרֵאשִׁית at the head of the column) and p. 8 (2:4 אֵלֶּה תוֹלְדוֹת after an open space). See Method § B.](cite:nb11b/1)
+[^nb11c]: [Swete, vol. I, p. 1](cite:nb11c/1); [Vulgate 1592, p. 1](cite:nb11c/2); [Great Bible, opening 10 R.](cite:nb11c/3)
+[^nb11d]: [Coverdale, opening 9 R](cite:nb11d/1); [Geneva, leaf 9](cite:nb11d/2); [Bishops', leaf 51](cite:nb11d/3); [1611, Pollard p. 225. The five are 1:2, 2:5, 2:10, 3:17 and 4:1](cite:nb11d/4); see Method § B.
+[^nb11e]: [Swete, vol. I, p. 1 (πνεῦμα θεοῦ)](cite:nb11e/1); [Vulgate 1592, p. 1 (*Spiritus Dei*)](cite:nb11e/2); [Coverdale, opening 9 R ("ȳ sprete of God")](cite:nb11e/3); [Great Bible, opening 10 R ("the sprete of God")](cite:nb11e/4); [Geneva, leaf 9 ("the Spirit of God")](cite:nb11e/5); [Bishops', leaf 51 ("the spirite of God")](cite:nb11e/6); [1611, Pollard p. 225 ("the Spirit of God"). For 3:8 see chapter 3.2 § C.](cite:nb11e/7)
+[^nb11f]: [Leningrad Codex, p. 7 (1:5 וְלַחֹשֶׁךְ קָרָא לָיְלָה; 1:10 וּלְמִקְוֵה הַמַּיִם קָרָא יַמִּים)](cite:nb11f/1); [Swete, vol. I, p. 1 (καὶ τὸ σκότος ἐκάλεσεν νύκτα; καὶ τὰ συστέματα τῶν ὑδάτων ἐκάλεσεν θαλάσσας).](cite:nb11f/2)
+[^nb11g]: [Leningrad Codex, p. 7, all three columns: open spaces after יוֹם אֶחָד (1:5), יוֹם שֵׁנִי (1:8), יוֹם שְׁלִישִׁי (1:13), יוֹם רְבִיעִי (1:19) and יוֹם חֲמִישִׁי (1:23)](cite:nb11g/1); none between 1:25 and 1:26. The space after 1:31 and before 2:1 is on p. 8 and is treated in chapter 1.3.
+[^nb11h]: [Geneva, leaves 9–10, the days numbered in the margin ("The 3. day," "The 5 day," "The 6 day" legible in the copy read)](cite:nb11h/1); [Bishops', leaves 51–52, margins "The 2. day" to "The 6. day"](cite:nb11h/2); [1611, Pollard pp. 225–226, pilcrows at 1:6, 1:9, 1:14, 1:24, 1:26 and 1:29, none at 1:20](cite:nb11h/3); [Vulgate 1592, pp. 1–2.](cite:nb11h/4)
+[^nb11i]: [Vulgate 1592, p. 1.](cite:nb11i/1)
+[^nb11j]: [Coverdale, opening 9 R and 10 L](cite:nb11j/1); [Great Bible, opening 10 R.](cite:nb11j/2)
+[^nb11k]: [Geneva, leaves 9–10.](cite:nb11k/1)
+[^nb11l]: [Bishops', leaves 51–52 (1:25 "God made the beast of the earth"; 1:26 "God saide: let vs make man")](cite:nb11l/1); [1611, Pollard pp. 225–226.](cite:nb11l/2)
+[^nb11m]: [1611, Pollard p. 225.](cite:nb11m/1)
+[^nb11n]: [Leningrad Codex, p. 7 (1:11 מַזְרִיעַ זֶרַע; 1:12 מַזְרִיעַ זֶרַע לְמִינֵהוּ … אֲשֶׁר זַרְעוֹ־בוֹ)](cite:nb11n/1); [Swete, vol. I, p. 1 (σπεῖρον σπέρμα)](cite:nb11n/2); [Vulgate 1592, p. 1 (*facientem semen*)](cite:nb11n/3); [Coverdale, opening 9 R ("herbe, that beareth sede")](cite:nb11n/4); [Great Bible, opening 10 R ("grene herbe, which maye engendre seed")](cite:nb11n/5); [Geneva, leaf 9 ("the herbe, that sedeth sede")](cite:nb11n/6); [Bishops', leaf 51 ("hearbe apt to seede")](cite:nb11n/7); [1611, Pollard p. 225 ("the herbe yeelding seed") and margin at 1:29 "† Hebr. seeding seed."](cite:nb11n/8)
+[^nb11o]: [Leningrad Codex, p. 7, middle column (1:16 וְאֵת הַכּוֹכָבִים)](cite:nb11o/1); [Swete, vol. I, p. 1 (καὶ τοὺς ἀστέρας)](cite:nb11o/2); [Vulgate 1592, p. 1 (*& stellas*).](cite:nb11o/3)
+[^nb11p]: [Coverdale, opening 10 L ("and (he made) starres also")](cite:nb11p/1); [Great Bible, opening 10 R ("(And he made) sterres also")](cite:nb11p/2); [Bishops', leaf 52 ("and \[he made\] starres also")](cite:nb11p/3); [Geneva, leaf 9 ("he made also ȳ starres")](cite:nb11p/4); [1611, Pollard p. 225 ("he made the starres also").](cite:nb11p/5)
+[^nb11q]: [Leningrad Codex, p. 7, left column (1:24–25)](cite:nb11q/1); [1611, Pollard p. 226.](cite:nb11q/2)
+[^nb11r]: [Leningrad Codex, pp. 7–8 (1:20, 1:24, 1:30, 2:7, 2:19 נֶפֶשׁ חַיָּה)](cite:nb11r/1); [Swete, vol. I, pp. 1–4 (ψυχὴ ζῶσα at each)](cite:nb11r/2); [Vulgate 1592, pp. 1–2 (*anima viuens* at each)](cite:nb11r/3); [Coverdale, openings 9 R–10 L (1:20 "creatures that moue and haue life"; 1:24 "lyuynge soules"; 2:7 "a lyuynge soule").](cite:nb11r/4)
+[^nb11s]: [Great Bible, openings 10 R (1:20 "mouynge creature that hath lyfe"; 1:24 "lyuing creature") and 11 L (2:7 "a lyuing soule")](cite:nb11s/1); [Geneva, leaves 9–10 (1:20 "euerie creping thing that hathe life"; 1:24 "the liuing thing"; 2:7 "a liuing soule")](cite:nb11s/2); [Bishops', leaves 52–53 (1:20 "mouyng creature that hath lyfe"; 1:24 "lyuyng creature"; 2:7 "a lyuyng soule")](cite:nb11s/3); [1611, Pollard pp. 225–226 (1:20 "mouing creature that hath life"; 1:24 "the liuing creature"; 2:7 "a liuing soule").](cite:nb11s/4)
+[^nb11t]: [Geneva, leaf 9, margin at 1:20](cite:nb11t/1); [1611, Pollard pp. 225–226, margins at 1:20 ("† Heb. soule") and 1:30 ("† Hebr. a liuing soule").](cite:nb11t/2)
+[^nb11u]: [Leningrad Codex, p. 7 (1:24 וָרֶמֶשׂ; 1:25 כָּל־רֶמֶשׂ הָאֲדָמָה) and p. 8 (1:26 וּבְכָל־הָרֶמֶשׂ הָרֹמֵשׂ; 1:28 הָרֹמֶשֶׂת)](cite:nb11u/1); [Swete, vol. I, pp. 1–2 (ἑρπετά; 1:26 πάντων τῶν ἑρπετῶν τῶν ἑρπόντων)](cite:nb11u/2); [Vulgate 1592, pp. 1–2 (1:24 *reptilia*; 1:25 *reptile terræ*; 1:26 *omni reptili, quod mouetur in terra*)](cite:nb11u/3); [Coverdale, opening 10 L (1:24 "wormes"; 1:25 "all maner wormes of the earth")](cite:nb11u/4); [Great Bible, opening 10 R (1:24 "worme"; 1:25 "euery thynge that crepeth")](cite:nb11u/5); [Geneva, leaf 10 (1:24 "that which crepeth"; 1:25 "euerie creping thing")](cite:nb11u/6); [Bishops', leaf 52 (1:24 "worme"; 1:25 "euery thyng that creepeth")](cite:nb11u/7); [1611, Pollard p. 226 (1:24 "creeping thing"; 1:25 "euery thing that creepeth").](cite:nb11u/8)
+[^nb11v]: [1611, Pollard pp. 225–226, margins at 1:20 ("‖ Or, creeping") and 1:28 ("† Heb. creepeth").](cite:nb11v/1)
 
 ## 1.2 The Image and the Mandate (1:26–31)
 
@@ -272,21 +272,21 @@ Then the judgement on the whole. וַיַּרְא אֱלֹהִים אֶת־כָ�
 
 The first telling gives the sixth day six verses and the making of man three of them. It says that God deliberated, that he made man in his image, male and female, that he blessed them and gave them the earth and its food, and that he saw it all and it was very good. It does not say how the man was made, or the woman, or in what order, or what passed between their making and the evening; it does not mention a garden, or a tree, or a commandment, or a serpent. The second telling supplies all of that, and the reading this book has argued from the second telling's own clauses is that it supplies it as the content of the sixth day and of the days before it, told again from the ground. The first telling's "let us make man in our image" is the intention; its "male and female created he them" is the summary; its "very good" is the verdict. The second telling's "the man has become as one of us, to know good and evil" is the same verdict in the words of the intention, and it is spoken when the second telling has finished telling how the intention was carried out. The next chapter reads the rest that follows both.
 
-[^nb12a]: Leningrad Codex, p. 8, right column (1:26–28); 1611, Pollard p. 226.
-[^nb12b]: Swete, vol. I, p. 2 (1:26) and p. 4 (2:18 ποιήσωμεν); Vulgate 1592, p. 1 (1:26 *Faciamus*) and p. 4 (2:18 *faciamus*). See chapter 2.3 § A.
-[^nb12c]: Coverdale, opening 10 L ("let vs make man"); Great Bible, opening 10 R ("let vs make man"); Geneva, leaf 10 ("Let vs make man"); Bishops', leaf 52 ("let vs make man"); 1611, Pollard p. 226 ("Let vs make man").
-[^nb12d]: Geneva, leaf 10, note s at 1:26.
-[^nb12e]: Bishops', leaf 52, note (l) at 1:26.
-[^nb12f]: Leningrad Codex, p. 8 (1:27 בְּצַלְמוֹ בְּצֶלֶם אֱלֹהִים); Swete, vol. I, p. 2 (καὶ ἐποίησεν ὁ θεὸς τὸν ἄνθρωπον, κατ᾿ εἰκόνα θεοῦ ἐποίησεν αὐτόν).
-[^nb12g]: Vulgate 1592, p. 2; Great Bible, opening 10 R ("in his awne ymage: in the ymage of God"); Geneva, leaf 10 ("in his image: in the image of God"); Bishops', leaf 52 ("in his owne image, in the image of God"); 1611, Pollard p. 226 ("in his owne Image, in the Image of God").
-[^nb12h]: Coverdale, opening 10 L.
-[^nb12i]: Geneva, leaf 10, note t at 1:27; Bishops', leaf 52, notes (m) and (n) at 1:27.
-[^nb12j]: Swete, vol. I, p. 2 (1:26 καὶ ἀρχέτωσαν; 1:28 κατακυριεύσατε αὐτῆς καὶ ἄρχετε).
-[^nb12k]: Vulgate 1592, pp. 1–2 (1:26 *& præsit piscibus maris*; 1:28 *& subiicite eam, & dominamini piscibus maris*).
-[^nb12l]: Coverdale, opening 10 L ("Growe, and multiplie, and fyll the earth, and subdue it, & haue domynion"); Great Bible, opening 10 R ("Growe and increace and replenyshe the erth, and subdue it: and haue dominion"); Geneva, leaf 10 ("Bring forthe frute and multiplie, and fil the earth, and subdue it, and rule ouer"); Bishops', leaf 52 ("be fruitefull, & multiplie, and replenishe the earth, & subdue it, and haue dominion"); 1611, Pollard p. 226.
-[^nb12m]: 1611, Pollard p. 226, with the margins at 1:29 "† Hebr. seeding seed" and at 1:30 "† Hebr. a liuing soule."
-[^nb12n]: Leningrad Codex, p. 8 (1:30 אֲשֶׁר־בּוֹ נֶפֶשׁ חַיָּה); 1611, Pollard p. 226, margin at 1:30. The other two confessions are at 1:20 (Pollard p. 225, "† Heb. soule") and 2:7 (Pollard p. 226, where the text itself has "a liuing soule").
-[^nb12o]: Leningrad Codex, p. 8 (1:31 וְהִנֵּה־טוֹב מְאֹד) and p. 10 (3:22 הֵן הָאָדָם); Swete, vol. I, p. 2 (καὶ ἰδοὺ καλὰ λίαν); Vulgate 1592, p. 2 (*Viditque Deus cuncta quæ fecerat: & erant valde bona*); Coverdale, opening 10 L; Great Bible, opening 10 R; Geneva, leaf 10; Bishops', leaf 52; 1611, Pollard p. 226.
+[^nb12a]: [Leningrad Codex, p. 8, right column (1:26–28)](cite:nb12a/1); [1611, Pollard p. 226.](cite:nb12a/2)
+[^nb12b]: [Swete, vol. I, p. 2 (1:26) and p. 4 (2:18 ποιήσωμεν)](cite:nb12b/1); [Vulgate 1592, p. 1 (1:26 *Faciamus*) and p. 4 (2:18 *faciamus*). See chapter 2.3 § A.](cite:nb12b/2)
+[^nb12c]: [Coverdale, opening 10 L ("let vs make man")](cite:nb12c/1); [Great Bible, opening 10 R ("let vs make man")](cite:nb12c/2); [Geneva, leaf 10 ("Let vs make man")](cite:nb12c/3); [Bishops', leaf 52 ("let vs make man")](cite:nb12c/4); [1611, Pollard p. 226 ("Let vs make man").](cite:nb12c/5)
+[^nb12d]: [Geneva, leaf 10, note s at 1:26.](cite:nb12d/1)
+[^nb12e]: [Bishops', leaf 52, note (l) at 1:26.](cite:nb12e/1)
+[^nb12f]: [Leningrad Codex, p. 8 (1:27 בְּצַלְמוֹ בְּצֶלֶם אֱלֹהִים)](cite:nb12f/1); [Swete, vol. I, p. 2 (καὶ ἐποίησεν ὁ θεὸς τὸν ἄνθρωπον, κατ᾿ εἰκόνα θεοῦ ἐποίησεν αὐτόν).](cite:nb12f/2)
+[^nb12g]: [Vulgate 1592, p. 2](cite:nb12g/1); [Great Bible, opening 10 R ("in his awne ymage: in the ymage of God")](cite:nb12g/2); [Geneva, leaf 10 ("in his image: in the image of God")](cite:nb12g/3); [Bishops', leaf 52 ("in his owne image, in the image of God")](cite:nb12g/4); [1611, Pollard p. 226 ("in his owne Image, in the Image of God").](cite:nb12g/5)
+[^nb12h]: [Coverdale, opening 10 L.](cite:nb12h/1)
+[^nb12i]: [Geneva, leaf 10, note t at 1:27](cite:nb12i/1); [Bishops', leaf 52, notes (m) and (n) at 1:27.](cite:nb12i/2)
+[^nb12j]: [Swete, vol. I, p. 2 (1:26 καὶ ἀρχέτωσαν; 1:28 κατακυριεύσατε αὐτῆς καὶ ἄρχετε).](cite:nb12j/1)
+[^nb12k]: [Vulgate 1592, pp. 1–2 (1:26 *& præsit piscibus maris*; 1:28 *& subiicite eam, & dominamini piscibus maris*).](cite:nb12k/1)
+[^nb12l]: [Coverdale, opening 10 L ("Growe, and multiplie, and fyll the earth, and subdue it, & haue domynion")](cite:nb12l/1); [Great Bible, opening 10 R ("Growe and increace and replenyshe the erth, and subdue it: and haue dominion")](cite:nb12l/2); [Geneva, leaf 10 ("Bring forthe frute and multiplie, and fil the earth, and subdue it, and rule ouer")](cite:nb12l/3); [Bishops', leaf 52 ("be fruitefull, & multiplie, and replenishe the earth, & subdue it, and haue dominion")](cite:nb12l/4); [1611, Pollard p. 226.](cite:nb12l/5)
+[^nb12m]: [1611, Pollard p. 226, with the margins at 1:29 "† Hebr. seeding seed" and at 1:30 "† Hebr. a liuing soule."](cite:nb12m/1)
+[^nb12n]: [Leningrad Codex, p. 8 (1:30 אֲשֶׁר־בּוֹ נֶפֶשׁ חַיָּה)](cite:nb12n/1); [1611, Pollard p. 226, margin at 1:30. The other two confessions are at 1:20 (Pollard p. 225, "† Heb. soule") and 2:7 (Pollard p. 226, where the text itself has "a liuing soule").](cite:nb12n/2)
+[^nb12o]: [Leningrad Codex, p. 8 (1:31 וְהִנֵּה־טוֹב מְאֹד) and p. 10 (3:22 הֵן הָאָדָם)](cite:nb12o/1); [Swete, vol. I, p. 2 (καὶ ἰδοὺ καλὰ λίαν)](cite:nb12o/2); [Vulgate 1592, p. 2 (*Viditque Deus cuncta quæ fecerat: & erant valde bona*)](cite:nb12o/3); [Coverdale, opening 10 L](cite:nb12o/4); [Great Bible, opening 10 R](cite:nb12o/5); [Geneva, leaf 10](cite:nb12o/6); [Bishops', leaf 52](cite:nb12o/7); [1611, Pollard p. 226.](cite:nb12o/8)
 
 ## 1.3 The Seventh Day and the Seam (2:1–3)
 
@@ -326,21 +326,21 @@ The book does not claim that the Bishops' translators held the reading this book
 
 The first telling is a frame of six days and a rest, told as sequence from its second verse, closed by the codex with an open space at each day, and ended with a man and a woman made in the image of God and judged very good. It supplies the second telling with its order and with three words, seed, living soul and creeping thing, and it leaves to the second telling everything about how the last work was done. The seam between the two is a gap in the manuscript and a heading in the text, and the one English Bible that told its readers what the heading meant let the telling go in its own later printings, so that the King James never had it to keep. Parts 2 and 3 have read what follows the seam. Part 4 now reads the versions as wholes.
 
-[^nb13a]: Leningrad Codex, p. 8, right and middle columns (2:1–3); 1611, Pollard p. 226, with the margin at 2:3 "† Heb. created to make."
-[^nb13b]: Leningrad Codex, p. 8: the space after 1:31 (end of the right column's text of the sixth day) and the larger space after 2:3, before אֵלֶּה תוֹלְדוֹת, in the middle column.
-[^nb13c]: Swete, vol. I, p. 3 (2:2 ἐν τῇ ἡμέρᾳ τῇ ἕκτῃ; Swete prints the Alexandrinus reading and records no variant at the word).
-[^nb13d]: Vulgate 1592, p. 2; Coverdale, opening 10 L ("in the seuenth daye God ended his worke"); Great Bible, opening 11 L ("in the seuenth daye God ended his worcke"); Geneva, leaf 10 ("in the seuenth day God ended his worke"); Bishops', leaf 52 ("in the seuenth day God ended his worke"); 1611, Pollard p. 226.
-[^nb13e]: 1611, Pollard p. 226, text and margin at 2:3.
-[^nb13f]: Great Bible, opening 11 L; Bishops', leaf 52; Coverdale, opening 10 L; Geneva, leaf 10 ("which God had created and made"); Swete, vol. I, p. 3; Vulgate 1592, p. 2.
-[^nb13g]: Swete, vol. I, p. 3; Vulgate 1592, p. 2; Coverdale, opening 10 L; Great Bible, opening 11 L; Geneva, leaf 10; Bishops', leaf 52; 1611, Pollard p. 226.
-[^nb13h]: Geneva, leaf 10, notes b and c at 2:2–3.
-[^nb13i]: Bishops', leaf 52, note (b) at 2:3, the opening words read at the inner margin of the Princeton copy.
-[^nb13j]: Leningrad Codex, p. 8, middle column. See chapter 2.1 § A and note a there.
-[^nb13k]: Great Bible, opening 10 R, the argument to "The seconde Chapter."
-[^nb13l]: Geneva, leaf 10, the argument to chapter II.
-[^nb13m]: Bishops', leaves 52–53, the argument to "The .ij. Chapter," which runs across the foot of leaf 52 and the head of leaf 53 in the Princeton copy.
-[^nb13n]: 1611, Pollard p. 226, the argument to "CHAP. II."
-[^nb13o]: Bishops' Bible, 1574 folio (EEBO film on the shelf), frame 58, the argument to "The .ii. Chapter"; 1575, frame 62; 1578, frame 60: each "2. The day of rest is blessed. 4. A repeating of things foretolde in the first. 6. The cloude from the earth, is a wel to water it. 7. He rehearseth agayne the fashionyng of man …". Bishops' Bible, 1577 (EEBO film), frame 78: "3. The halowyng of the Sabboth day. 17. The tree of knowledge is forbydden. 19. Adam nameth all creatures. 22. Heua is created. 23. And marriage is ordeyned." Bodleian Library, Arch. A b.18, the Bishops' Bible of 1602 (London: Robert Barker) annotated by the King James translators, canvas 44 (fol. A1v of the text): "3 The hallowing of the Sabboth day. 17 The tree of knowledge is forbidden. 19 Adam nameth all creatures. 22 Heua is created, 23 And marriage is ordeined." The 1577 and 1602 lists descend from the Great Bible's (opening 10 R). The frames and canvases were read at the image; the editions' formats and printers are not stated beyond what the leaves show.
+[^nb13a]: [Leningrad Codex, p. 8, right and middle columns (2:1–3)](cite:nb13a/1); [1611, Pollard p. 226, with the margin at 2:3 "† Heb. created to make."](cite:nb13a/2)
+[^nb13b]: [Leningrad Codex, p. 8: the space after 1:31 (end of the right column's text of the sixth day) and the larger space after 2:3, before אֵלֶּה תוֹלְדוֹת, in the middle column.](cite:nb13b/1)
+[^nb13c]: [Swete, vol. I, p. 3 (2:2 ἐν τῇ ἡμέρᾳ τῇ ἕκτῃ; Swete prints the Alexandrinus reading and records no variant at the word).](cite:nb13c/1)
+[^nb13d]: [Vulgate 1592, p. 2](cite:nb13d/1); [Coverdale, opening 10 L ("in the seuenth daye God ended his worke")](cite:nb13d/2); [Great Bible, opening 11 L ("in the seuenth daye God ended his worcke")](cite:nb13d/3); [Geneva, leaf 10 ("in the seuenth day God ended his worke")](cite:nb13d/4); [Bishops', leaf 52 ("in the seuenth day God ended his worke")](cite:nb13d/5); [1611, Pollard p. 226.](cite:nb13d/6)
+[^nb13e]: [1611, Pollard p. 226, text and margin at 2:3.](cite:nb13e/1)
+[^nb13f]: [Great Bible, opening 11 L](cite:nb13f/1); [Bishops', leaf 52](cite:nb13f/2); [Coverdale, opening 10 L](cite:nb13f/3); [Geneva, leaf 10 ("which God had created and made")](cite:nb13f/4); [Swete, vol. I, p. 3](cite:nb13f/5); [Vulgate 1592, p. 2.](cite:nb13f/6)
+[^nb13g]: [Swete, vol. I, p. 3](cite:nb13g/1); [Vulgate 1592, p. 2](cite:nb13g/2); [Coverdale, opening 10 L](cite:nb13g/3); [Great Bible, opening 11 L](cite:nb13g/4); [Geneva, leaf 10](cite:nb13g/5); [Bishops', leaf 52](cite:nb13g/6); [1611, Pollard p. 226.](cite:nb13g/7)
+[^nb13h]: [Geneva, leaf 10, notes b and c at 2:2–3.](cite:nb13h/1)
+[^nb13i]: [Bishops', leaf 52, note (b) at 2:3, the opening words read at the inner margin of the Princeton copy.](cite:nb13i/1)
+[^nb13j]: [Leningrad Codex, p. 8, middle column. See chapter 2.1 § A and note a there.](cite:nb13j/1)
+[^nb13k]: [Great Bible, opening 10 R, the argument to "The seconde Chapter."](cite:nb13k/1)
+[^nb13l]: [Geneva, leaf 10, the argument to chapter II.](cite:nb13l/1)
+[^nb13m]: [Bishops', leaves 52–53, the argument to "The .ij. Chapter," which runs across the foot of leaf 52 and the head of leaf 53 in the Princeton copy.](cite:nb13m/1)
+[^nb13n]: [1611, Pollard p. 226, the argument to "CHAP. II."](cite:nb13n/1)
+[^nb13o]: [Bishops' Bible, 1574 folio (EEBO film on the shelf), frame 58, the argument to "The .ii. Chapter"](cite:nb13o/1); [1575, frame 62](cite:nb13o/2); [1578, frame 60: each "2. The day of rest is blessed. 4. A repeating of things foretolde in the first. 6. The cloude from the earth, is a wel to water it. 7. He rehearseth agayne the fashionyng of man …". Bishops' Bible, 1577 (EEBO film), frame 78: "3. The halowyng of the Sabboth day. 17. The tree of knowledge is forbydden. 19. Adam nameth all creatures. 22. Heua is created. 23. And marriage is ordeyned." Bodleian Library, Arch. A b.18, the Bishops' Bible of 1602 (London: Robert Barker) annotated by the King James translators, canvas 44 (fol. A1v of the text): "3 The hallowing of the Sabboth day. 17 The tree of knowledge is forbidden. 19 Adam nameth all creatures. 22 Heua is created, 23 And marriage is ordeined." The 1577 and 1602 lists descend from the Great Bible's (opening 10 R). The frames and canvases were read at the image](cite:nb13o/3); the editions' formats and printers are not stated beyond what the leaves show.
 
 # Part 2 — The Second Telling: Genesis 2:4–25
 
@@ -384,20 +384,20 @@ The word the mist is made of, אֵד, occurs once more in the Bible, and its sen
 
 A heading, and two conditions. The heading says a new account begins and that it concerns the heavens and the earth already made. The first condition says the earth of this account has nothing growing on it and no man. The second says it is watered from below. Then, at 2:7, the first verb: וַיִּיצֶר, "and the LORD God formed." Everything the second telling narrates is narrated as following that verb, and everything the versions did to rearrange the order of the second telling they did to the verbs after it, not to the scene before it. The scene they left alone, and the scene is where the man is placed: on the third day's earth, before the third day's plants.
 
-[^nb21a]: Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A), p. 8 of the page images on the shelf, middle column: the line carrying the end of 2:3 (בָּרָא אֱלֹהִים לַעֲשׂוֹת) ends short, an open space follows, and 2:4 begins on a fresh line. Read at the image; for professional review.
-[^nb21b]: Hebrew as above. 1611: A. W. Pollard, ed., *The Holy Bible … 1611* (Oxford, 1911), p. 226 of the facsimile, spelling and pointing as printed, the long s normalised.
+[^nb21a]: [Leningrad Codex (St Petersburg, National Library of Russia, Firkovich B 19 A), p. 8 of the page images on the shelf, middle column: the line carrying the end of 2:3 (בָּרָא אֱלֹהִים לַעֲשׂוֹת) ends short, an open space follows, and 2:4 begins on a fresh line. Read at the image](cite:nb21a/1); for professional review.
+[^nb21b]: [Hebrew as above. 1611: A. W. Pollard, ed., *The Holy Bible … 1611* (Oxford, 1911), p. 226 of the facsimile, spelling and pointing as printed, the long s normalised.](cite:nb21b/1)
 [^nb21c]: The eleven occurrences were located in the King James text (Pure Cambridge Edition) and not read at the page for this book; the count is of the English formula "the generations of" and "the book of the generations of" in Genesis, and the Hebrew formula behind each was not separately verified.
-[^nb21d]: *The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge, 1568), Princeton copy, leaves 52–53 of the images on the shelf, the argument to chapter ii. The Geneva Bible's argument to the same chapter reads "God resteth the seuenth day, and sanctifieth it. 15 He setteth man in the garden. 22 He createth the womā. 29 Mariage is ordeined." (Geneva, 1560, leaf 10).
-[^nb21e]: Swete, *The Old Testament in Greek*, vol. I, p. 3.
-[^nb21f]: *Biblia Sacra Vulgatæ editionis* (Rome, 1592), p. 2; Coverdale (1535), opening 10 L; Great Bible (1540), opening 11 L; Geneva (1560), leaf 10; Bishops' (1568), leaf 53; 1611, Pollard p. 226.
-[^nb21g]: Vulgate 1592, p. 2, where 2:4 follows 2:3 mid-paragraph with only a verse number in the margin; Coverdale, opening 10 L; Great Bible, opening 11 L; 1611, Pollard p. 226 (¶ at verse 4).
-[^nb21h]: Swete, vol. I, p. 3. The six are 1:2, 2:6, 2:10, 3:1, 3:17 and 4:1; see Method § B.
-[^nb21i]: Vulgate 1592, p. 2.
-[^nb21j]: Coverdale, opening 10 L; Great Bible, opening 11 L.
-[^nb21k]: Geneva, leaf 10 ("And euerie plant of the field, before it was in the earth"); Bishops', leaf 53 ("And euery plant of the fielde before it was in the earth"); 1611, Pollard p. 226.
-[^nb21l]: Swete, vol. I, p. 3; Vulgate 1592, p. 2; Coverdale, opening 10 L; Great Bible, opening 11 L ("And there went vp a myste frō of the earth"); Geneva, leaf 10 ("But a myst went vp from the earth"); Bishops', leaf 53 ("But there went vp a miste from the earth"); 1611, Pollard p. 226.
-[^nb21m]: 1611, Pollard p. 226, margin at 2:6: "‖ Or, a mist which went vp from, &c."
-[^nb21n]: The second occurrence is Job 36:27; it was not read for this book. The renderings: πηγή (Swete, p. 3), *fons* (Vulgate 1592, p. 2), "myst / mist" in every English witness cited above.
+[^nb21d]: [*The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge, 1568), Princeton copy, leaves 52–53 of the images on the shelf, the argument to chapter ii. The Geneva Bible's argument to the same chapter reads "God resteth the seuenth day, and sanctifieth it. 15 He setteth man in the garden. 22 He createth the womā. 29 Mariage is ordeined." (Geneva, 1560, leaf 10).](cite:nb21d/1)
+[^nb21e]: [Swete, *The Old Testament in Greek*, vol. I, p. 3.](cite:nb21e/1)
+[^nb21f]: [*Biblia Sacra Vulgatæ editionis* (Rome, 1592), p. 2](cite:nb21f/1); [Coverdale (1535), opening 10 L](cite:nb21f/2); [Great Bible (1540), opening 11 L](cite:nb21f/3); [Geneva (1560), leaf 10](cite:nb21f/4); [Bishops' (1568), leaf 53](cite:nb21f/5); [1611, Pollard p. 226.](cite:nb21f/6)
+[^nb21g]: [Vulgate 1592, p. 2, where 2:4 follows 2:3 mid-paragraph with only a verse number in the margin](cite:nb21g/1); [Coverdale, opening 10 L](cite:nb21g/2); [Great Bible, opening 11 L](cite:nb21g/3); [1611, Pollard p. 226 (¶ at verse 4).](cite:nb21g/4)
+[^nb21h]: [Swete, vol. I, p. 3. The six are 1:2, 2:6, 2:10, 3:1, 3:17 and 4:1](cite:nb21h/1); see Method § B.
+[^nb21i]: [Vulgate 1592, p. 2.](cite:nb21i/1)
+[^nb21j]: [Coverdale, opening 10 L](cite:nb21j/1); [Great Bible, opening 11 L.](cite:nb21j/2)
+[^nb21k]: [Geneva, leaf 10 ("And euerie plant of the field, before it was in the earth")](cite:nb21k/1); [Bishops', leaf 53 ("And euery plant of the fielde before it was in the earth")](cite:nb21k/2); [1611, Pollard p. 226.](cite:nb21k/3)
+[^nb21l]: [Swete, vol. I, p. 3](cite:nb21l/1); [Vulgate 1592, p. 2](cite:nb21l/2); [Coverdale, opening 10 L](cite:nb21l/3); [Great Bible, opening 11 L ("And there went vp a myste frō of the earth")](cite:nb21l/4); [Geneva, leaf 10 ("But a myst went vp from the earth")](cite:nb21l/5); [Bishops', leaf 53 ("But there went vp a miste from the earth")](cite:nb21l/6); [1611, Pollard p. 226.](cite:nb21l/7)
+[^nb21m]: [1611, Pollard p. 226, margin at 2:6: "‖ Or, a mist which went vp from, &c."](cite:nb21m/1)
+[^nb21n]: The second occurrence is Job 36:27; [it was not read for this book. The renderings: πηγή (Swete, p. 3), *fons* (Vulgate 1592, p. 2), "myst / mist" in every English witness cited above.](cite:nb21n/2)
 
 ## 2.2 The Man Formed, Then the Garden Planted (2:7–17)
 
@@ -465,29 +465,29 @@ The tree's name was read two ways in antiquity. The Hebrew is עֵץ הַדַּ�
 
 From 2:7 to 2:17 the Hebrew is a chain of sequence verbs with two descriptive pauses (2:10–14 and the tree's name in 2:9), and every link in the chain is the next event: the man formed, the garden planted, the trees grown, the river described, the man placed, the man commanded. The chain is broken in one ancient version at one link, the Vulgate's *plantauerat* at 2:8, and bent in one early English version at another, the Geneva's parenthesis at 2:9. The Septuagint not only keeps the chain but adds ἔτι at 2:9 to say that the trees came after. The King James keeps it whole. The modern versions that print "Now the LORD God had planted" have chosen Jerome's link over the Hebrew's, and the reader who follows them is placed in a garden that the text says was planted around a man already there.
 
-[^nb22a]: Leningrad Codex, p. 8, middle column (2:7–9); 1611, Pollard p. 226, with the margin at 2:7 "† Heb. dust of the ground."
-[^nb22b]: Swete, vol. I, p. 3 (2:7 χοῦν ἀπὸ τῆς γῆς), p. 5 (3:14 γῆν φάγῃ), p. 5 (3:19 γῆ εἶ καὶ εἰς γῆν ἀπελεύσῃ).
-[^nb22c]: Vulgate 1592, p. 2 (2:7 *de limo terræ*), p. 5 (3:14 *terram comedes*; 3:19 *puluis es, & in puluerem reuerteris*).
-[^nb22d]: Coverdale, opening 10 L (2:7 "of ȳ moulde of the earth") and 10 R–11 L (3:14 "earth shalt thou eate"; 3:19 "earth thou art, and vnto earth shalt thou be turned agayne"); Great Bible, opening 11 L (2:7 "euen dust from of the grounde") and 11 R (3:14 "dust shalt thou eate"; 3:19 "thou art dust, & into dust shalt thou be turned agayne"); Geneva, leaf 10 (2:7 "of the dust of the grounde"), leaf 12 (3:14, 3:19 "dust"); Bishops', leaf 53 (2:7 "[euen] dust frō of the grounde"), leaf 56 (3:14, 3:19 "dust"); 1611, Pollard pp. 226, 228.
-[^nb22e]: Leningrad, p. 7 (1:20 נֶפֶשׁ חַיָּה; 1:24; 1:30) and p. 8 (2:7, 2:19); Swete, vol. I, pp. 2–3 (ψυχὴ ζῶσα at 1:20, 1:24, 1:30, 2:7, 2:19); Vulgate 1592, pp. 1–2 (*anima viuens* at 1:20, 1:24, 1:30, 2:7, 2:19); Coverdale, openings 9 R–10 L ("lyuynge soules," 1:24; "a lyuynge soule," 2:7).
-[^nb22f]: Great Bible, opening 10 R (1:24 "lyuing creature") and 11 L (2:7 "a lyuing soule"); Geneva, leaf 9, margin at 1:20 "Ebr. the soule of life"; 1611, Pollard p. 225, margins at 1:20 "† Heb. soule" and at 1:30 "† Hebr. a liuing soule."
-[^nb22g]: Swete, vol. I, p. 3; Vulgate 1592, p. 2; Coverdale, opening 10 L ("And ȳ LORDE God shope man"); Great Bible, opening 11 L ("The Lorde God also shope man"); Geneva, leaf 10 ("The Lord God also made the mā"); Bishops', leaf 53 ("The Lorde God also dyd shape man"); 1611, Pollard p. 226.
-[^nb22h]: Vulgate 1592, p. 2, *Formauit igitur*; the "also" of the Great Bible and the Geneva at 2:7 answers it.
-[^nb22i]: Swete, vol. I, p. 3.
-[^nb22j]: Vulgate 1592, p. 2.
-[^nb22k]: Leningrad, p. 8, middle column: גַּן־בְּעֵדֶן מִקֶּדֶם. The Septuagint has κατὰ ἀνατολάς, "toward the east" (Swete, p. 3); every English Bible has "eastward" or "towarde the east."
-[^nb22l]: Coverdale, opening 10 L; Great Bible, opening 11 L; Bishops', leaf 53; 1611, Pollard p. 226 (¶ at verse 8).
-[^nb22m]: Geneva, leaf 10, verses 8–9. The parenthesis opens at "(For out of the grounde"; its closing mark is not legible in the copy read, and the sense closes with verse 9.
+[^nb22a]: [Leningrad Codex, p. 8, middle column (2:7–9)](cite:nb22a/1); [1611, Pollard p. 226, with the margin at 2:7 "† Heb. dust of the ground."](cite:nb22a/2)
+[^nb22b]: [Swete, vol. I, p. 3 (2:7 χοῦν ἀπὸ τῆς γῆς), p. 5 (3:14 γῆν φάγῃ), p. 5 (3:19 γῆ εἶ καὶ εἰς γῆν ἀπελεύσῃ).](cite:nb22b/1)
+[^nb22c]: [Vulgate 1592, p. 2 (2:7 *de limo terræ*), p. 5 (3:14 *terram comedes*; 3:19 *puluis es, & in puluerem reuerteris*).](cite:nb22c/1)
+[^nb22d]: [Coverdale, opening 10 L (2:7 "of ȳ moulde of the earth") and 10 R–11 L (3:14 "earth shalt thou eate"; 3:19 "earth thou art, and vnto earth shalt thou be turned agayne")](cite:nb22d/1); [Great Bible, opening 11 L (2:7 "euen dust from of the grounde") and 11 R (3:14 "dust shalt thou eate"; 3:19 "thou art dust, & into dust shalt thou be turned agayne")](cite:nb22d/2); [Geneva, leaf 10 (2:7 "of the dust of the grounde"), leaf 12 (3:14, 3:19 "dust")](cite:nb22d/3); [Bishops', leaf 53 (2:7 "\[euen\] dust frō of the grounde"), leaf 56 (3:14, 3:19 "dust")](cite:nb22d/4); [1611, Pollard pp. 226, 228.](cite:nb22d/5)
+[^nb22e]: [Leningrad, p. 7 (1:20 נֶפֶשׁ חַיָּה; 1:24; 1:30) and p. 8 (2:7, 2:19)](cite:nb22e/1); [Swete, vol. I, pp. 2–3 (ψυχὴ ζῶσα at 1:20, 1:24, 1:30, 2:7, 2:19)](cite:nb22e/2); [Vulgate 1592, pp. 1–2 (*anima viuens* at 1:20, 1:24, 1:30, 2:7, 2:19)](cite:nb22e/3); [Coverdale, openings 9 R–10 L ("lyuynge soules," 1:24; "a lyuynge soule," 2:7).](cite:nb22e/4)
+[^nb22f]: [Great Bible, opening 10 R (1:24 "lyuing creature") and 11 L (2:7 "a lyuing soule")](cite:nb22f/1); [Geneva, leaf 9, margin at 1:20 "Ebr. the soule of life"](cite:nb22f/2); [1611, Pollard p. 225, margins at 1:20 "† Heb. soule" and at 1:30 "† Hebr. a liuing soule."](cite:nb22f/3)
+[^nb22g]: [Swete, vol. I, p. 3](cite:nb22g/1); [Vulgate 1592, p. 2](cite:nb22g/2); [Coverdale, opening 10 L ("And ȳ LORDE God shope man")](cite:nb22g/3); [Great Bible, opening 11 L ("The Lorde God also shope man")](cite:nb22g/4); [Geneva, leaf 10 ("The Lord God also made the mā")](cite:nb22g/5); [Bishops', leaf 53 ("The Lorde God also dyd shape man")](cite:nb22g/6); [1611, Pollard p. 226.](cite:nb22g/7)
+[^nb22h]: [Vulgate 1592, p. 2, *Formauit igitur*](cite:nb22h/1); [the "also" of the Great Bible and the Geneva at 2:7 answers it.](cite:nb22h/2)
+[^nb22i]: [Swete, vol. I, p. 3.](cite:nb22i/1)
+[^nb22j]: [Vulgate 1592, p. 2.](cite:nb22j/1)
+[^nb22k]: [Leningrad, p. 8, middle column: גַּן־בְּעֵדֶן מִקֶּדֶם. The Septuagint has κατὰ ἀνατολάς, "toward the east" (Swete, p. 3)](cite:nb22k/1); every English Bible has "eastward" or "towarde the east."
+[^nb22l]: [Coverdale, opening 10 L](cite:nb22l/1); [Great Bible, opening 11 L](cite:nb22l/2); [Bishops', leaf 53](cite:nb22l/3); [1611, Pollard p. 226 (¶ at verse 8).](cite:nb22l/4)
+[^nb22m]: [Geneva, leaf 10, verses 8–9. The parenthesis opens at "(For out of the grounde"; its closing mark is not legible in the copy read, and the sense closes with verse 9.](cite:nb22m/1)
 [^nb22n]: The New International Version is quoted from the predecessor essay's text and was not read on this shelf; its rendering of 2:8 is the one under discussion.
-[^nb22o]: Leningrad, p. 8, left column: וְנָהָר יֹצֵא מֵעֵדֶן.
-[^nb22p]: Swete, vol. I, p. 3 (ποταμὸς δὲ ἐκπορεύεται ἐξ Ἔδεμ); Vulgate 1592, p. 2 (*Et fluuius egrediebatur de loco voluptatis*); Coverdale, opening 10 L ("And out of Eden there wente a ryuer"); Great Bible, opening 11 L ("And out of Eden, there went forth a riuer"); Geneva, leaf 10 ("And out of Eden went a riuer"); Bishops', leaf 53 ("And out of Eden there went foorth a flood"); 1611, Pollard p. 226 ("And a riuer went out of Eden").
-[^nb22q]: Leningrad, p. 8, left column (2:15–17); 1611, Pollard p. 227.
-[^nb22r]: Swete, vol. I, p. 3 (2:17 ἀπὸ δὲ τοῦ ξύλου τοῦ γινώσκειν καλὸν καὶ πονηρόν); Vulgate 1592, p. 2 (*De ligno autem scientiæ boni & mali*); Coverdale, opening 10 L–R ("But of ȳ tre of knowlege of good and euell"); Great Bible, opening 11 L ("But as touchynge the tre of knowledge"); Geneva, leaf 10 ("But as touching the tre of knowledge"); Bishops', leaf 53 ("But as touching the tree of knowlege"); 1611, Pollard p. 227 ("But of the tree of the knowledge").
-[^nb22s]: Swete, vol. I, p. 3; Vulgate 1592, p. 2 (*Ex omni ligno paradisi comede: De ligno autem … ne comedas: in quocumque enim die comederis ex eo, morte morieris*); Coverdale, opening 10 R ("thou shalt dye the death"); Great Bible, opening 11 L ("thou shalt dye the death"); Geneva, leaf 10 ("thou shalt dye the death"); Bishops', leaf 53 ("thou shalt dye the death").
-[^nb22t]: 1611, Pollard p. 227, margins at 2:16 "† Hebr. eating thou shalt eate" and 2:17 "† Hebr. dying thou shalt die."
-[^nb22u]: Swete, vol. I, p. 3.
-[^nb22v]: Geneva, leaf 10, notes h (at 2:9) and m (at 2:17).
-[^nb22w]: Swete, vol. I, pp. 3–4 (2:16 βρώσει φάγῃ; 2:17 οὐ φάγεσθε ἀπ᾿ αὐτοῦ· ᾗ δ᾿ ἂν ἡμέρᾳ φάγησθε ἀπ᾿ αὐτοῦ, θανάτῳ ἀποθανεῖσθε). Swete's apparatus records that Codex E reads the singular φάγῃ at the first of the three; Alexandrinus, the text printed, has the plural throughout the verse.
+[^nb22o]: [Leningrad, p. 8, left column: וְנָהָר יֹצֵא מֵעֵדֶן.](cite:nb22o/1)
+[^nb22p]: [Swete, vol. I, p. 3 (ποταμὸς δὲ ἐκπορεύεται ἐξ Ἔδεμ)](cite:nb22p/1); [Vulgate 1592, p. 2 (*Et fluuius egrediebatur de loco voluptatis*)](cite:nb22p/2); [Coverdale, opening 10 L ("And out of Eden there wente a ryuer")](cite:nb22p/3); [Great Bible, opening 11 L ("And out of Eden, there went forth a riuer")](cite:nb22p/4); [Geneva, leaf 10 ("And out of Eden went a riuer")](cite:nb22p/5); [Bishops', leaf 53 ("And out of Eden there went foorth a flood")](cite:nb22p/6); [1611, Pollard p. 226 ("And a riuer went out of Eden").](cite:nb22p/7)
+[^nb22q]: [Leningrad, p. 8, left column (2:15–17)](cite:nb22q/1); [1611, Pollard p. 227.](cite:nb22q/2)
+[^nb22r]: [Swete, vol. I, p. 3 (2:17 ἀπὸ δὲ τοῦ ξύλου τοῦ γινώσκειν καλὸν καὶ πονηρόν)](cite:nb22r/1); [Vulgate 1592, p. 2 (*De ligno autem scientiæ boni & mali*)](cite:nb22r/2); [Coverdale, opening 10 L–R ("But of ȳ tre of knowlege of good and euell")](cite:nb22r/3); [Great Bible, opening 11 L ("But as touchynge the tre of knowledge")](cite:nb22r/4); [Geneva, leaf 10 ("But as touching the tre of knowledge")](cite:nb22r/5); [Bishops', leaf 53 ("But as touching the tree of knowlege")](cite:nb22r/6); [1611, Pollard p. 227 ("But of the tree of the knowledge").](cite:nb22r/7)
+[^nb22s]: [Swete, vol. I, p. 3](cite:nb22s/1); [Vulgate 1592, p. 2 (*Ex omni ligno paradisi comede: De ligno autem … ne comedas: in quocumque enim die comederis ex eo, morte morieris*)](cite:nb22s/2); [Coverdale, opening 10 R ("thou shalt dye the death")](cite:nb22s/3); [Great Bible, opening 11 L ("thou shalt dye the death")](cite:nb22s/4); [Geneva, leaf 10 ("thou shalt dye the death")](cite:nb22s/5); [Bishops', leaf 53 ("thou shalt dye the death").](cite:nb22s/6)
+[^nb22t]: [1611, Pollard p. 227, margins at 2:16 "† Hebr. eating thou shalt eate" and 2:17 "† Hebr. dying thou shalt die."](cite:nb22t/1)
+[^nb22u]: [Swete, vol. I, p. 3.](cite:nb22u/1)
+[^nb22v]: [Geneva, leaf 10, notes h (at 2:9) and m (at 2:17).](cite:nb22v/1)
+[^nb22w]: [Swete, vol. I, pp. 3–4 (2:16 βρώσει φάγῃ; 2:17 οὐ φάγεσθε ἀπ᾿ αὐτοῦ· ᾗ δ᾿ ἂν ἡμέρᾳ φάγησθε ἀπ᾿ αὐτοῦ, θανάτῳ ἀποθανεῖσθε). Swete's apparatus records that Codex E reads the singular φάγῃ at the first of the three](cite:nb22w/1); Alexandrinus, the text printed, has the plural throughout the verse.
 
 ## 2.3 The Animals Formed, Then Named (2:18–20)
 
@@ -535,23 +535,23 @@ Then the clause the search was for. וּלְאָדָם לֹא־מָצָא עֵז
 
 A last matter of the versions belongs here, because it begins in this passage. The Hebrew of Genesis 2 calls the man הָאָדָם, "the man," with the definite article, throughout; it is a description, not yet a name. The versions begin to write "Adam" at different points. The Septuagint has τῷ Ἀδάμ from 2:16 and Ἀδάμ at 2:19, 2:20 and after; the Vulgate *Adam* from 2:19; Coverdale keeps "man" through the chapter; the Great Bible has "Adam" at 2:18 and 2:21 and "man" between; the Geneva keeps "the man" but has "Adám" at 2:20 in the clause "but for Adám"; the Bishops' "man" to 2:20 and "Adam" at 2:21; the 1611 "the man" at 2:15–18, "Adam" at 2:19–21 and 2:23, and "the man" again at 2:22 and 2:25, with the margin at 2:15 "Or, Adam" and at 2:19 "Or, the man," which is the translators telling the reader that the Hebrew is the same word in both places and that the choice between "the man" and "Adam" is theirs.[^nb23q] The book follows the 1611's margin rather than its text, and calls him the man until the text names him.
 
-[^nb23a]: Leningrad Codex, p. 8, left column (2:18–19) and p. 9, right column (2:19–20); 1611, Pollard p. 227.
-[^nb23b]: Swete, vol. I, p. 4 (2:18 βοηθὸν κατ᾿ αὐτόν; 2:20 βοηθὸς ὅμοιος αὐτῷ); Vulgate 1592, p. 2 (2:18 *adiutorium simile sibi*; 2:20 *adiutor similis eius*); Coverdale, opening 10 R (2:18 "an helpe, to beare him cōpany"; 2:20 "no helpe, to beare him company"); Great Bible, opening 11 L (2:18 "an helpe, which maye be present wt him"; 2:20 "an helpe that myght be present with him"); Bishops', leaf 53 (2:18 "an helpe lyke vnto hym"; 2:20 "an helpe lyke vnto hym"), with the margin at 2:18 "Heb. As before hym."
-[^nb23c]: Geneva, leaf 10, 2:18 and margin.
-[^nb23d]: 1611, Pollard p. 227, 2:18 and margin "† Hebr. as before him." The later history of "helpmeet" and "helpmate" as nouns is a matter of English usage after 1611 and was not researched for this book beyond the observation that no Bible on the shelf prints either word.
-[^nb23e]: Swete, vol. I, p. 4 (2:18 ποιήσωμεν αὐτῷ βοηθὸν κατ᾿ αὐτόν; compare 1:26 ποιήσωμεν ἄνθρωπον, p. 2); Vulgate 1592, p. 2 (2:18 *faciamus ei adiutorium simile sibi*; compare 1:26 *Faciamus hominem*, p. 3); Leningrad, p. 8, left column (2:18 אֶעֱשֶׂה־לּוֹ).
-[^nb23f]: Swete, vol. I, p. 4.
-[^nb23g]: Vulgate 1592, p. 2.
-[^nb23h]: Coverdale, opening 10 R.
-[^nb23i]: Great Bible, opening 11 L.
-[^nb23j]: Geneva, leaf 10.
-[^nb23k]: Bishops', leaf 53.
-[^nb23l]: 1611, Pollard p. 227.
-[^nb23m]: 1611, Pollard p. 227 (2:19 "euery liuing creature") and p. 226 (2:7 "a liuing soule"). The Hebrew is נֶפֶשׁ חַיָּה at both (Leningrad, p. 8).
-[^nb23n]: Leningrad, p. 7: 1:5 וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם; 1:8 וַיִּקְרָא אֱלֹהִים לָרָקִיעַ שָׁמָיִם; 1:10 וַיִּקְרָא אֱלֹהִים לַיַּבָּשָׁה אֶרֶץ.
-[^nb23o]: Swete, vol. I, p. 4 (τῷ τε Ἀδὰμ οὐχ εὑρέθη βοηθὸς ὅμοιος αὐτῷ); Vulgate 1592, p. 2 (*Adæ vero non inueniebatur adiutor similis eius*); Coverdale, opening 10 R ("But vnto man there was founde no helpe"); Great Bible, opening 11 L ("And for man founde he not an helpe"); Geneva, leaf 10 ("but for Adám founde he not an helpe mete for him"); Bishops', leaf 53 ("but for man founde he not an helpe lyke vnto hym"); 1611, Pollard p. 227 ("but for Adam there was not found an helpe meet for him").
-[^nb23p]: As the preceding note. The Hebrew לֹא־מָצָא is third person singular active (Leningrad, p. 9, right column).
-[^nb23q]: Swete, vol. I, pp. 3–4 (τῷ Ἀδάμ at 2:16; Ἀδάμ at 2:19, 2:20, 2:21, 2:22, 2:23, 2:25); Vulgate 1592, p. 2 (*hominem* at 2:7, 2:8, 2:15; *ei* at 2:16; *Adam* from 2:19); Coverdale, opening 10 L–R ("man" throughout chapter 2); Great Bible, opening 11 L ("Adam" at 2:18 and 2:21; "man" at 2:19–20); Geneva, leaf 10 ("the man" throughout; "Adám" at 2:20b); Bishops', leaf 53 ("man" to 2:20; "Adam" at 2:21); 1611, Pollard pp. 226–227 ("the man" at 2:15, 2:16, 2:18, 2:22, 2:25; "Adam" at 2:19, 2:20, 2:21, 2:23; margins at 2:15 "‖ Or, Adam" and at 2:19 "‖ Or, the man").
+[^nb23a]: [Leningrad Codex, p. 8, left column (2:18–19) and p. 9, right column (2:19–20)](cite:nb23a/1); [1611, Pollard p. 227.](cite:nb23a/2)
+[^nb23b]: [Swete, vol. I, p. 4 (2:18 βοηθὸν κατ᾿ αὐτόν; 2:20 βοηθὸς ὅμοιος αὐτῷ)](cite:nb23b/1); [Vulgate 1592, p. 2 (2:18 *adiutorium simile sibi*; 2:20 *adiutor similis eius*)](cite:nb23b/2); [Coverdale, opening 10 R (2:18 "an helpe, to beare him cōpany"; 2:20 "no helpe, to beare him company")](cite:nb23b/3); [Great Bible, opening 11 L (2:18 "an helpe, which maye be present wt him"; 2:20 "an helpe that myght be present with him")](cite:nb23b/4); [Bishops', leaf 53 (2:18 "an helpe lyke vnto hym"; 2:20 "an helpe lyke vnto hym"), with the margin at 2:18 "Heb. As before hym."](cite:nb23b/5)
+[^nb23c]: [Geneva, leaf 10, 2:18 and margin.](cite:nb23c/1)
+[^nb23d]: [1611, Pollard p. 227, 2:18 and margin "† Hebr. as before him." The later history of "helpmeet" and "helpmate" as nouns is a matter of English usage after 1611 and was not researched for this book beyond the observation that no Bible on the shelf prints either word.](cite:nb23d/1)
+[^nb23e]: [Swete, vol. I, p. 4 (2:18 ποιήσωμεν αὐτῷ βοηθὸν κατ᾿ αὐτόν; compare 1:26 ποιήσωμεν ἄνθρωπον, p. 2)](cite:nb23e/1); [Vulgate 1592, p. 2 (2:18 *faciamus ei adiutorium simile sibi*; compare 1:26 *Faciamus hominem*, p. 3)](cite:nb23e/2); [Leningrad, p. 8, left column (2:18 אֶעֱשֶׂה־לּוֹ).](cite:nb23e/3)
+[^nb23f]: [Swete, vol. I, p. 4.](cite:nb23f/1)
+[^nb23g]: [Vulgate 1592, p. 2.](cite:nb23g/1)
+[^nb23h]: [Coverdale, opening 10 R.](cite:nb23h/1)
+[^nb23i]: [Great Bible, opening 11 L.](cite:nb23i/1)
+[^nb23j]: [Geneva, leaf 10.](cite:nb23j/1)
+[^nb23k]: [Bishops', leaf 53.](cite:nb23k/1)
+[^nb23l]: [1611, Pollard p. 227.](cite:nb23l/1)
+[^nb23m]: [1611, Pollard p. 227 (2:19 "euery liuing creature") and p. 226 (2:7 "a liuing soule"). The Hebrew is נֶפֶשׁ חַיָּה at both (Leningrad, p. 8).](cite:nb23m/1)
+[^nb23n]: [Leningrad, p. 7: 1:5 וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם](cite:nb23n/1); 1:8 וַיִּקְרָא אֱלֹהִים לָרָקִיעַ שָׁמָיִם; 1:10 וַיִּקְרָא אֱלֹהִים לַיַּבָּשָׁה אֶרֶץ.
+[^nb23o]: [Swete, vol. I, p. 4 (τῷ τε Ἀδὰμ οὐχ εὑρέθη βοηθὸς ὅμοιος αὐτῷ)](cite:nb23o/1); [Vulgate 1592, p. 2 (*Adæ vero non inueniebatur adiutor similis eius*)](cite:nb23o/2); [Coverdale, opening 10 R ("But vnto man there was founde no helpe")](cite:nb23o/3); [Great Bible, opening 11 L ("And for man founde he not an helpe")](cite:nb23o/4); [Geneva, leaf 10 ("but for Adám founde he not an helpe mete for him")](cite:nb23o/5); [Bishops', leaf 53 ("but for man founde he not an helpe lyke vnto hym")](cite:nb23o/6); [1611, Pollard p. 227 ("but for Adam there was not found an helpe meet for him").](cite:nb23o/7)
+[^nb23p]: [As the preceding note. The Hebrew לֹא־מָצָא is third person singular active (Leningrad, p. 9, right column).](cite:nb23p/1)
+[^nb23q]: [Swete, vol. I, pp. 3–4 (τῷ Ἀδάμ at 2:16; Ἀδάμ at 2:19, 2:20, 2:21, 2:22, 2:23, 2:25)](cite:nb23q/1); [Vulgate 1592, p. 2 (*hominem* at 2:7, 2:8, 2:15; *ei* at 2:16; *Adam* from 2:19)](cite:nb23q/2); [Coverdale, opening 10 L–R ("man" throughout chapter 2)](cite:nb23q/3); [Great Bible, opening 11 L ("Adam" at 2:18 and 2:21; "man" at 2:19–20)](cite:nb23q/4); [Geneva, leaf 10 ("the man" throughout; "Adám" at 2:20b)](cite:nb23q/5); [Bishops', leaf 53 ("man" to 2:20; "Adam" at 2:21)](cite:nb23q/6); [1611, Pollard pp. 226–227 ("the man" at 2:15, 2:16, 2:18, 2:22, 2:25; "Adam" at 2:19, 2:20, 2:21, 2:23; margins at 2:15 "‖ Or, Adam" and at 2:19 "‖ Or, the man").](cite:nb23q/7)
 
 ## 2.4 The Woman Made, and the Man Speaks (2:21–25)
 
@@ -607,24 +607,24 @@ The versions do one small thing to the verse. The Septuagint adds "the two" once
 
 From 2:4 to 2:25 the second telling has run in one order: a heading; a scene, the earth bare and unmanned; the man formed; the garden planted and the trees grown; the river; the man placed and commanded; the animals formed and named; the woman built and brought; the man's recognition and his law; the two naked and unashamed. Every act is a verb of sequence and the Hebrew marks no act as prior to the one before it. The Septuagint reads the order so and twice adds a word to say so. The Vulgate moves the garden before the man and the animals into the background. Coverdale and the Bishops' follow the Latin at 2:19; the Great Bible, the Geneva and the 1611 follow the Hebrew at every verb. The man has been alone with God, has been commanded, has named the creation, and has spoken a law; the woman has been made and named and has heard none of it. That is the state of things when the third chapter opens without a break, and it is the state Part 3 reads the Fall against.
 
-[^nb24a]: Leningrad Codex, p. 9, right column (2:21–25); 1611, Pollard p. 227.
-[^nb24b]: Swete, vol. I, p. 4; Vulgate 1592, p. 2 (2:21 *Immisit ergo Dominus Deus soporem in Adam: cumq. obdormisset, tulit vnam de costis eius, & repleuit carnem pro ea*; 2:22 *Et ædificauit … & adduxit*); Coverdale, opening 10 R; Great Bible, opening 11 L; Bishops', leaf 53; 1611, Pollard p. 227.
-[^nb24c]: Geneva, leaf 10 (2:21 "¶Therefore the Lord God caused an heauie slepe to fall vpon the man"); Great Bible, opening 11 L (2:21 "The Lorde God also caused a slomber to fall vpon Adam").
-[^nb24d]: Swete, vol. I, p. 4 (2:22 καὶ ᾠκοδόμησεν Κύριος ὁ θεὸς τὴν πλευράν … εἰς γυναῖκα); Vulgate 1592, p. 2 (*Et ædificauit Dominus Deus costā … in mulierem*); Coverdale, opening 10 R ("made a woman"); Great Bible, opening 11 L ("made he a woman"); Geneva, leaf 10 ("made he a woman"); Bishops', leaf 53 ("made he a woman," margin "Hebre. buylded"); 1611, Pollard p. 227 ("† made hee a woman," margin "Hebr. builded").
-[^nb24e]: Swete, vol. I, p. 4.
-[^nb24f]: Vulgate 1592, p. 2.
-[^nb24g]: Coverdale, opening 10 R ("She shalbe called woman, because she was takē of man"); Great Bible, opening 11 L ("She shalbe called woman, because she was takē out of man"); Geneva, leaf 11 ("She shalbe called woman, because she was taken out of man"); Bishops', leaf 54 ("she shalbe called woman, because she was taken out of man"); 1611, Pollard p. 227.
-[^nb24h]: Geneva, leaf 11, margin at 2:23.
-[^nb24i]: Matthew 19:5, Mark 10:7–8, Ephesians 5:31; also 1 Corinthians 6:16. The New Testament texts were not read for this book beyond the 1611's marginal references to them; the observation that they quote the verse in the Septuagint's form ("the two") rests on the 1611's own text of those places, which was not checked at the page for this chapter.
-[^nb24j]: 1611, Pollard p. 227, margin at 2:24: "* Matt. 19.5. mar. 10.7. 1. corin. 6.16. ephe. 5.31."; Bishops', leaf 54, margin at 2:24: "Mark. x. b. 1 Cor. vi. c. Ephes. v. c."
-[^nb24k]: Swete, vol. I, p. 4 (ἕνεκεν τούτου καταλείψει ἄνθρωπος); Vulgate 1592, p. 2 (*Quamobrem relinquet homo*); Coverdale, opening 10 R ("For this cause shal a man leaue"); Great Bible, opening 11 L ("For this cause shall a man leaue"); Geneva, leaf 11 ("Therefore shal man leaue"); Bishops', leaf 54 ("For this cause shall man leaue"); 1611, Pollard p. 227 ("Therefore shall a man leaue").
-[^nb24l]: Swete, vol. I, p. 4 (προσκολληθήσεται); Vulgate 1592, p. 2 (*adhærebit vxori suæ*); Coverdale, opening 10 R ("cleue vnto his wife"); Great Bible, opening 11 L ("shalbe ioyned with hys wyfe"); Geneva, leaf 11 ("shal cleaue to his wife"); Bishops', leaf 54 ("shalbe ioyned with his wyfe"); 1611, Pollard p. 227 ("shall cleaue vnto his wife"). The modern rendering "be united to" is the New International Version's and was not read on this shelf.
-[^nb24m]: Swete, vol. I, p. 4; Vulgate 1592, p. 2.
-[^nb24n]: Coverdale, opening 10 R ("they two shalbe one flesh"); Great Bible, opening 11 L ("they shall become one flesh"); Geneva, leaf 11 ("they shalbe one flesh"); Bishops', leaf 54 ("they shall become one fleshe"); 1611, Pollard p. 227 ("they shalbe one flesh").
-[^nb24o]: Leningrad Codex, p. 9, right column: 2:25 עֲרוּמִּים and 3:1 עָרוּם on consecutive lines with no open space between them. The gaps of the codex in these chapters are before 2:4 (p. 8), 3:16 and 3:17 (p. 9), and 3:22 (p. 10).
-[^nb24p]: Swete, vol. I, p. 4 (2:25 γυμνοί; 3:1 φρονιμώτατος); Vulgate 1592, p. 2 (*nudus*; *callidior*); Coverdale, opening 10 R ("naked"; "sotyller"); Great Bible, opening 11 L–R ("naked"; "sotyller"); Geneva, leaf 11 ("naked"; "more subtil"); Bishops', leaves 54–55 ("naked"; "suttiller"); 1611, Pollard p. 227 ("naked"; "more subtill").
-[^nb24q]: Swete, vol. I, p. 4 (καὶ ἦσαν οἱ δύο γυμνοί, ὅ τε Ἀδὰμ καὶ ἡ γυνὴ αὐτοῦ); Leningrad, p. 9 (שְׁנֵיהֶם).
-[^nb24r]: Geneva, leaf 11, note q at 2:25; Bishops', leaf 54, note (r) at 2:25.
+[^nb24a]: [Leningrad Codex, p. 9, right column (2:21–25)](cite:nb24a/1); [1611, Pollard p. 227.](cite:nb24a/2)
+[^nb24b]: [Swete, vol. I, p. 4](cite:nb24b/1); [Vulgate 1592, p. 2 (2:21 *Immisit ergo Dominus Deus soporem in Adam: cumq. obdormisset, tulit vnam de costis eius, & repleuit carnem pro ea*; 2:22 *Et ædificauit … & adduxit*)](cite:nb24b/2); [Coverdale, opening 10 R](cite:nb24b/3); [Great Bible, opening 11 L](cite:nb24b/4); [Bishops', leaf 53](cite:nb24b/5); [1611, Pollard p. 227.](cite:nb24b/6)
+[^nb24c]: [Geneva, leaf 10 (2:21 "¶Therefore the Lord God caused an heauie slepe to fall vpon the man")](cite:nb24c/1); [Great Bible, opening 11 L (2:21 "The Lorde God also caused a slomber to fall vpon Adam").](cite:nb24c/2)
+[^nb24d]: [Swete, vol. I, p. 4 (2:22 καὶ ᾠκοδόμησεν Κύριος ὁ θεὸς τὴν πλευράν … εἰς γυναῖκα)](cite:nb24d/1); [Vulgate 1592, p. 2 (*Et ædificauit Dominus Deus costā … in mulierem*)](cite:nb24d/2); [Coverdale, opening 10 R ("made a woman")](cite:nb24d/3); [Great Bible, opening 11 L ("made he a woman")](cite:nb24d/4); [Geneva, leaf 10 ("made he a woman")](cite:nb24d/5); [Bishops', leaf 53 ("made he a woman," margin "Hebre. buylded")](cite:nb24d/6); [1611, Pollard p. 227 ("† made hee a woman," margin "Hebr. builded").](cite:nb24d/7)
+[^nb24e]: [Swete, vol. I, p. 4.](cite:nb24e/1)
+[^nb24f]: [Vulgate 1592, p. 2.](cite:nb24f/1)
+[^nb24g]: [Coverdale, opening 10 R ("She shalbe called woman, because she was takē of man")](cite:nb24g/1); [Great Bible, opening 11 L ("She shalbe called woman, because she was takē out of man")](cite:nb24g/2); [Geneva, leaf 11 ("She shalbe called woman, because she was taken out of man")](cite:nb24g/3); [Bishops', leaf 54 ("she shalbe called woman, because she was taken out of man")](cite:nb24g/4); [1611, Pollard p. 227.](cite:nb24g/5)
+[^nb24h]: [Geneva, leaf 11, margin at 2:23.](cite:nb24h/1)
+[^nb24i]: Matthew 19:5, Mark 10:7–8, Ephesians 5:31; [also 1 Corinthians 6:16. The New Testament texts were not read for this book beyond the 1611's marginal references to them](cite:nb24i/2); [the observation that they quote the verse in the Septuagint's form ("the two") rests on the 1611's own text of those places, which was not checked at the page for this chapter.](cite:nb24i/3)
+[^nb24j]: [1611, Pollard p. 227, margin at 2:24: "* Matt. 19.5. mar. 10.7. 1. corin. 6.16. ephe. 5.31."](cite:nb24j/1); [Bishops', leaf 54, margin at 2:24: "Mark. x. b. 1 Cor. vi. c. Ephes. v. c."](cite:nb24j/2)
+[^nb24k]: [Swete, vol. I, p. 4 (ἕνεκεν τούτου καταλείψει ἄνθρωπος)](cite:nb24k/1); [Vulgate 1592, p. 2 (*Quamobrem relinquet homo*)](cite:nb24k/2); [Coverdale, opening 10 R ("For this cause shal a man leaue")](cite:nb24k/3); [Great Bible, opening 11 L ("For this cause shall a man leaue")](cite:nb24k/4); [Geneva, leaf 11 ("Therefore shal man leaue")](cite:nb24k/5); [Bishops', leaf 54 ("For this cause shall man leaue")](cite:nb24k/6); [1611, Pollard p. 227 ("Therefore shall a man leaue").](cite:nb24k/7)
+[^nb24l]: [Swete, vol. I, p. 4 (προσκολληθήσεται)](cite:nb24l/1); [Vulgate 1592, p. 2 (*adhærebit vxori suæ*)](cite:nb24l/2); [Coverdale, opening 10 R ("cleue vnto his wife")](cite:nb24l/3); [Great Bible, opening 11 L ("shalbe ioyned with hys wyfe")](cite:nb24l/4); [Geneva, leaf 11 ("shal cleaue to his wife")](cite:nb24l/5); [Bishops', leaf 54 ("shalbe ioyned with his wyfe")](cite:nb24l/6); [1611, Pollard p. 227 ("shall cleaue vnto his wife"). The modern rendering "be united to" is the New International Version's and was not read on this shelf.](cite:nb24l/7)
+[^nb24m]: [Swete, vol. I, p. 4](cite:nb24m/1); [Vulgate 1592, p. 2.](cite:nb24m/2)
+[^nb24n]: [Coverdale, opening 10 R ("they two shalbe one flesh")](cite:nb24n/1); [Great Bible, opening 11 L ("they shall become one flesh")](cite:nb24n/2); [Geneva, leaf 11 ("they shalbe one flesh")](cite:nb24n/3); [Bishops', leaf 54 ("they shall become one fleshe")](cite:nb24n/4); [1611, Pollard p. 227 ("they shalbe one flesh").](cite:nb24n/5)
+[^nb24o]: [Leningrad Codex, p. 9, right column: 2:25 עֲרוּמִּים and 3:1 עָרוּם on consecutive lines with no open space between them. The gaps of the codex in these chapters are before 2:4 (p. 8), 3:16 and 3:17 (p. 9), and 3:22 (p. 10).](cite:nb24o/1)
+[^nb24p]: [Swete, vol. I, p. 4 (2:25 γυμνοί; 3:1 φρονιμώτατος)](cite:nb24p/1); [Vulgate 1592, p. 2 (*nudus*; *callidior*)](cite:nb24p/2); [Coverdale, opening 10 R ("naked"; "sotyller")](cite:nb24p/3); [Great Bible, opening 11 L–R ("naked"; "sotyller")](cite:nb24p/4); [Geneva, leaf 11 ("naked"; "more subtil")](cite:nb24p/5); [Bishops', leaves 54–55 ("naked"; "suttiller")](cite:nb24p/6); [1611, Pollard p. 227 ("naked"; "more subtill").](cite:nb24p/7)
+[^nb24q]: [Swete, vol. I, p. 4 (καὶ ἦσαν οἱ δύο γυμνοί, ὅ τε Ἀδὰμ καὶ ἡ γυνὴ αὐτοῦ)](cite:nb24q/1); [Leningrad, p. 9 (שְׁנֵיהֶם).](cite:nb24q/2)
+[^nb24r]: [Geneva, leaf 11, note q at 2:25](cite:nb24r/1); [Bishops', leaf 54, note (r) at 2:25.](cite:nb24r/2)
 
 # Part 3 — The Knowledge: Genesis 3:1–24
 
@@ -674,22 +674,22 @@ The versions did, and they did not agree. The Septuagint has ἔσεσθε ὡς
 
 The serpent's promise is accurate in every particular. The eyes will be opened (3:7); the two will know good and evil (3:22, in God's own words); and they will not die on the day they eat. The tradition has called him a liar, and the Geneva's note on 3:4 calls the denial "Satans chiefest subtiltie, to cause vs not to feare Gods threatenings"; but the text gives him one falsehood at most, the denial of death, and even that the sequel does not straightforwardly refute, since the man lives nine hundred and thirty years (5:5). What the serpent does is tell the woman what the man was told and she was not, in the plural she uses, and add to it what God will confirm. The reading this book carries is that the serpent's speech is the first account of the knowledge of good and evil that either human being hears from anyone, that it is given to the one who was not present when the commandment was given, and that it is true. Chapter 3.2 reads the eating in that light.
 
-[^nb31a]: Leningrad Codex, p. 9, right column (3:1) and middle column (3:1–5); 1611, Pollard p. 227.
-[^nb31b]: Leningrad Codex, p. 9, right column: 2:25 עֲרוּמִּים and 3:1 עָרוּם on consecutive lines; no open space. The word at 2:25 carries the plural ending and the dagesh in the mem; the consonants of the stem are the same.
-[^nb31c]: Swete, vol. I, p. 4; Vulgate 1592, p. 2 (the chapter begins *Sed & serpēs erat callidior cunctis animantibus terræ quæ fecerat Dominus Deus*); Coverdale, opening 10 R ("BVt the serpent was sotyller then all the beastes of the felde"); Great Bible, opening 11 L ("BUt the serpent was sotyller then euery beast of the felde"); Bishops', leaf 55 ("AND the serpent was suttiller then euery beast of the fielde"); Geneva, leaf 11 ("NOw the serpent was more subtil then anie beast of the field"); 1611, Pollard p. 227.
-[^nb31d]: Swete, vol. I, p. 4 (φρονιμώτατος; Swete's apparatus records φρονιμώτερος, "more prudent," in Codex D, the Cotton Genesis). The New Testament uses of φρόνιμος (Matthew 25:2, Luke 12:42) were not read at the page for this book.
-[^nb31e]: Vulgate 1592, p. 2 (*callidior*); the English as in note c. The sense-history of "subtle" in English is stated from general knowledge and was not researched for this book.
+[^nb31a]: [Leningrad Codex, p. 9, right column (3:1) and middle column (3:1–5)](cite:nb31a/1); [1611, Pollard p. 227.](cite:nb31a/2)
+[^nb31b]: [Leningrad Codex, p. 9, right column: 2:25 עֲרוּמִּים and 3:1 עָרוּם on consecutive lines](cite:nb31b/1); no open space. The word at 2:25 carries the plural ending and the dagesh in the mem; the consonants of the stem are the same.
+[^nb31c]: [Swete, vol. I, p. 4](cite:nb31c/1); [Vulgate 1592, p. 2 (the chapter begins *Sed & serpēs erat callidior cunctis animantibus terræ quæ fecerat Dominus Deus*)](cite:nb31c/2); [Coverdale, opening 10 R ("BVt the serpent was sotyller then all the beastes of the felde")](cite:nb31c/3); [Great Bible, opening 11 L ("BUt the serpent was sotyller then euery beast of the felde")](cite:nb31c/4); [Bishops', leaf 55 ("AND the serpent was suttiller then euery beast of the fielde")](cite:nb31c/5); [Geneva, leaf 11 ("NOw the serpent was more subtil then anie beast of the field")](cite:nb31c/6); [1611, Pollard p. 227.](cite:nb31c/7)
+[^nb31d]: [Swete, vol. I, p. 4 (φρονιμώτατος; Swete's apparatus records φρονιμώτερος, "more prudent," in Codex D, the Cotton Genesis). The New Testament uses of φρόνιμος (Matthew 25:2, Luke 12:42) were not read at the page for this book.](cite:nb31d/1)
+[^nb31e]: [Vulgate 1592, p. 2 (*callidior*)](cite:nb31e/1); the English as in note c. The sense-history of "subtle" in English is stated from general knowledge and was not researched for this book.
 [^nb31f]: The Proverbs passages (12:16, 12:23, 13:16, 14:8, 22:3, 27:12) were not read at the page for this book; the statement rests on the concordance sense of עָרוּם and is offered as background, not as a finding.
-[^nb31g]: Geneva, leaf 11, notes a and b at 3:1; Bishops', leaf 55, notes (a) and (b) at 3:1 and 3:3, the opening words of each cut at the inner margin in the Princeton copy read.
-[^nb31h]: Swete, vol. I, p. 4 (2:17 οὐ φάγεσθε; 3:1 Οὐ μὴ φάγητε; 3:3 Οὐ φάγεσθε … οὐδὲ μὴ ἅψησθε … ἵνα μὴ ἀποθάνητε); Leningrad, pp. 8–9 (2:17 תֹאכַל, singular; 3:1, 3:3 תֹאכְלוּ, plural).
-[^nb31i]: 1611, Pollard p. 227 (2:16–17 "thou mayest … thou shalt not … thou shalt"; 3:1–5 "Ye … We … Ye … ye … ye … yee"); the same distribution in Coverdale, the Great, the Geneva and the Bishops' at the leaves cited above.
-[^nb31j]: Swete, vol. I, p. 4; Vulgate 1592, pp. 2–3 (*Cur præcepit vobis Deus vt non comederetis de omni ligno paradisi?*); Coverdale, opening 10 R; Great Bible, opening 11 L; Geneva, leaf 11; Bishops', leaf 55; 1611, Pollard p. 227, margin at 3:1 "† Heb. Yea, because, &c."
-[^nb31k]: Leningrad, p. 9, middle column: לֹא־מוֹת תְּמֻתוּן.
-[^nb31l]: Swete, vol. I, p. 4; Vulgate 1592, p. 3; Coverdale, opening 10 R ("Tush, ye shall not dye the death"); Great Bible, opening 11 L ("ye shall not dye the death"); Geneva, leaf 11 ("Ye shal not dye at all"); Bishops', leaf 55 ("ye shall not dye the death"); 1611, Pollard p. 227. The Geneva's "at all" is its own departure from the idiom at this verse.
-[^nb31m]: Swete, vol. I, p. 4 (καὶ ἔσεσθε ὡς θεοί, γινώσκοντες καλὸν καὶ πονηρόν); Vulgate 1592, p. 3 (*& eritis sicut dij, scientes bonum & malum*).
-[^nb31n]: Coverdale, opening 10 R ("and ye shal be as God, and knowe both good and euell").
-[^nb31o]: Great Bible, opening 11 L; Geneva, leaf 11; Bishops', leaf 55; 1611, Pollard p. 227.
-[^nb31p]: Geneva, leaf 11, note e at 3:5; note d at 3:4 is the one quoted in § D.
+[^nb31g]: [Geneva, leaf 11, notes a and b at 3:1](cite:nb31g/1); [Bishops', leaf 55, notes (a) and (b) at 3:1 and 3:3, the opening words of each cut at the inner margin in the Princeton copy read.](cite:nb31g/2)
+[^nb31h]: [Swete, vol. I, p. 4 (2:17 οὐ φάγεσθε; 3:1 Οὐ μὴ φάγητε; 3:3 Οὐ φάγεσθε … οὐδὲ μὴ ἅψησθε … ἵνα μὴ ἀποθάνητε)](cite:nb31h/1); [Leningrad, pp. 8–9 (2:17 תֹאכַל, singular; 3:1, 3:3 תֹאכְלוּ, plural).](cite:nb31h/2)
+[^nb31i]: [1611, Pollard p. 227 (2:16–17 "thou mayest … thou shalt not … thou shalt"; 3:1–5 "Ye … We … Ye … ye … ye … yee")](cite:nb31i/1); [the same distribution in Coverdale, the Great, the Geneva and the Bishops' at the leaves cited above.](cite:nb31i/2)
+[^nb31j]: [Swete, vol. I, p. 4](cite:nb31j/1); [Vulgate 1592, pp. 2–3 (*Cur præcepit vobis Deus vt non comederetis de omni ligno paradisi?*)](cite:nb31j/2); [Coverdale, opening 10 R](cite:nb31j/3); [Great Bible, opening 11 L](cite:nb31j/4); [Geneva, leaf 11](cite:nb31j/5); [Bishops', leaf 55](cite:nb31j/6); [1611, Pollard p. 227, margin at 3:1 "† Heb. Yea, because, &c."](cite:nb31j/7)
+[^nb31k]: [Leningrad, p. 9, middle column: לֹא־מוֹת תְּמֻתוּן.](cite:nb31k/1)
+[^nb31l]: [Swete, vol. I, p. 4](cite:nb31l/1); [Vulgate 1592, p. 3](cite:nb31l/2); [Coverdale, opening 10 R ("Tush, ye shall not dye the death")](cite:nb31l/3); [Great Bible, opening 11 L ("ye shall not dye the death")](cite:nb31l/4); [Geneva, leaf 11 ("Ye shal not dye at all")](cite:nb31l/5); [Bishops', leaf 55 ("ye shall not dye the death")](cite:nb31l/6); [1611, Pollard p. 227. The Geneva's "at all" is its own departure from the idiom at this verse.](cite:nb31l/7)
+[^nb31m]: [Swete, vol. I, p. 4 (καὶ ἔσεσθε ὡς θεοί, γινώσκοντες καλὸν καὶ πονηρόν)](cite:nb31m/1); [Vulgate 1592, p. 3 (*& eritis sicut dij, scientes bonum & malum*).](cite:nb31m/2)
+[^nb31n]: [Coverdale, opening 10 R ("and ye shal be as God, and knowe both good and euell").](cite:nb31n/1)
+[^nb31o]: [Great Bible, opening 11 L](cite:nb31o/1); [Geneva, leaf 11](cite:nb31o/2); [Bishops', leaf 55](cite:nb31o/3); [1611, Pollard p. 227.](cite:nb31o/4)
+[^nb31p]: [Geneva, leaf 11, note e at 3:5](cite:nb31p/1); note d at 3:4 is the one quoted in § D.
 
 ## 3.2 The Eating and the Opening of the Eyes (3:6–13)
 
@@ -753,31 +753,31 @@ The woman's answer is shorter and blames what deceived her: הַנָּחָשׁ �
 
 Three things, and each is a matter of the text's own order. The man was present at the eating, and every witness that reads the Hebrew says so; the two that do not, the Vulgate and Coverdale, are the two that lost the word. The man was examined first and on the commandment, the woman second and on the act, in the order in which the commandment had reached them. And the man's speech at 3:12 is the reverse of his speeches at 2:23–24: the one who named the woman his own flesh and spoke the law of cleaving now names her the woman God gave and lets the fault pass through her to God. The sentences of 3:14–19, which the next chapter reads, fall in the order the examination has set, and the word "because" falls where the examination has put the responsibility.
 
-[^nb32a]: Leningrad Codex, p. 9, middle column (3:6–8); 1611, Pollard p. 227.
-[^nb32b]: Swete, vol. I, p. 4.
-[^nb32c]: Vulgate 1592, p. 3.
-[^nb32d]: Coverdale, opening 10 R.
-[^nb32e]: Great Bible, opening 11 L.
-[^nb32f]: Bishops', leaf 55 ("gaue also vnto her husbande beyng with her, and he dyd eate"); Geneva, leaf 11 ("gaue also to her housband with her, and he did eat"); 1611, Pollard p. 227.
-[^nb32g]: Swete, vol. I, p. 4; Vulgate 1592, p. 3; Coverdale, opening 10 R ("And the woman sawe that ȳ tre was good to eate of"); Great Bible, opening 11 L ("And so the woman (seynge that the same tre was good to eate of)"); Bishops', leaf 55 ("And so the woman (seing that the same tree was good to eate of)"); Geneva, leaf 11 ("So the woman (seing that the tre was good for meat …)").
-[^nb32h]: 1611, Pollard p. 227.
-[^nb32i]: Geneva, leaf 11, note f at 3:6; 1611, Pollard p. 227, margin at 3:6 "† Heb. a desire."
-[^nb32j]: Leningrad Codex, p. 9: 2:25 עֲרוּמִּים (right column); 3:7 עֵירֻמִּם, 3:10 עֵירֹם, 3:11 עֵירֹם (middle and left columns). The reading of the pointing is the author's from the image; the presence of the yod and the absence of the vav after the resh at 3:7, 3:10 and 3:11 are visible at the resolution read, and await professional confirmation.
-[^nb32k]: Swete, vol. I, p. 4; Vulgate 1592, p. 3; Coverdale, opening 10 R ("Then were the eyes of them both opened"); Great Bible, opening 11 L ("And the eyes of both them were opened"); Geneva, leaf 11 ("Then the eyes of them bothe were opened"); Bishops', leaf 55 ("Then the eyes of them both were opened"); 1611, Pollard p. 227.
-[^nb32l]: Leningrad, p. 9 (חֲגֹרֹת); Swete, vol. I, p. 4 (περιζώματα); Vulgate 1592, p. 3 (*perizomata*); Coverdale, opening 10 R ("apurns"); Great Bible, opening 11 L ("aperns"); Geneva, leaf 11 ("breeches," margin "Ebr. things to girde about thē to hide their priuities"); Bishops', leaf 55 ("apernes"); 1611, Pollard p. 227 ("‖ aprons," margin "Or, things to gird about").
-[^nb32m]: Swete, vol. I, p. 5 (περιπατοῦντος ἐν τῷ παραδείσῳ τὸ δειλινόν).
-[^nb32n]: Vulgate 1592, p. 3 (*deambulantis in paradiso ad auram post meridiem*).
-[^nb32o]: Coverdale, opening 10 R ("in the coole of the daye"); Great Bible, opening 11 R ("in the coole of the daye"); Geneva, leaf 11 ("in the coole of the day"); Bishops', leaf 55 ("in ȳ coole of the day"); 1611, Pollard p. 227 ("in the † coole of the day").
-[^nb32p]: Geneva, leaf 11, margin at 3:8 "Or, winde."; 1611, Pollard p. 227, margin at 3:8 "† Heb. wind."
-[^nb32q]: Geneva, leaf 11, note g at 3:8.
-[^nb32r]: 1611, Pollard p. 227, the argument to chapter III: "1 The serpent deceiueth Eue. 6 Mans shamefull fall. 9 God arraigneth them. 14 The serpent is cursed. 15 The promised Seed. 16 The punishment of Mankind. 21 Their first clothing. 22 Their casting out of Paradise."
-[^nb32s]: Leningrad Codex, p. 9, middle and left columns (3:9–13); 1611, Pollard p. 227.
-[^nb32t]: Swete, vol. I, p. 5 (3:9 Ἀδάμ, ποῦ εἶ; 3:11 μὴ ἀπὸ τοῦ ξύλου οὗ ἐνετειλάμην σοι τούτου μόνου μὴ φαγεῖν ἀπ᾿ αὐτοῦ, ἔφαγες;). Leningrad, p. 9 (3:11 צִוִּיתִיךָ).
-[^nb32u]: Vulgate 1592, p. 3; Coverdale, opening 10 R.
-[^nb32v]: Great Bible, opening 11 R ("The woman which thou gauest to be with me, she gaue me of the tre, and I dyd eate"); Geneva, leaf 12 ("The woman which thou gauest to be with me, she gaue me of the tre, and I did eat"); Bishops', leaf 55 ("The woman whiche thou gauest to be with me, she gaue me of the tree, and I did eate"); 1611, Pollard p. 227.
-[^nb32w]: Geneva, leaf 12, note h at 3:12.
-[^nb32x]: 1611, Pollard p. 227 (3:9 "called vnto Adam"; 3:12 "And the man said"; 3:17 "And vnto Adam"). The Geneva has "the man" at both 3:9 and 3:12; the Great and the Bishops' "Adam" at both.
-[^nb32y]: Leningrad, p. 9 (הִשִּׁיאַנִי); Swete, vol. I, p. 5 (Ὁ ὄφις ἠπάτησέν με); Vulgate 1592, p. 3 (*Serpens decepit me*); Coverdale, opening 10 R; Great Bible, opening 11 R; Geneva, leaf 12; Bishops', leaf 55; 1611, Pollard p. 227.
+[^nb32a]: [Leningrad Codex, p. 9, middle column (3:6–8)](cite:nb32a/1); [1611, Pollard p. 227.](cite:nb32a/2)
+[^nb32b]: [Swete, vol. I, p. 4.](cite:nb32b/1)
+[^nb32c]: [Vulgate 1592, p. 3.](cite:nb32c/1)
+[^nb32d]: [Coverdale, opening 10 R.](cite:nb32d/1)
+[^nb32e]: [Great Bible, opening 11 L.](cite:nb32e/1)
+[^nb32f]: [Bishops', leaf 55 ("gaue also vnto her husbande beyng with her, and he dyd eate")](cite:nb32f/1); [Geneva, leaf 11 ("gaue also to her housband with her, and he did eat")](cite:nb32f/2); [1611, Pollard p. 227.](cite:nb32f/3)
+[^nb32g]: [Swete, vol. I, p. 4](cite:nb32g/1); [Vulgate 1592, p. 3](cite:nb32g/2); [Coverdale, opening 10 R ("And the woman sawe that ȳ tre was good to eate of")](cite:nb32g/3); [Great Bible, opening 11 L ("And so the woman (seynge that the same tre was good to eate of)")](cite:nb32g/4); [Bishops', leaf 55 ("And so the woman (seing that the same tree was good to eate of)")](cite:nb32g/5); [Geneva, leaf 11 ("So the woman (seing that the tre was good for meat …)").](cite:nb32g/6)
+[^nb32h]: [1611, Pollard p. 227.](cite:nb32h/1)
+[^nb32i]: [Geneva, leaf 11, note f at 3:6](cite:nb32i/1); [1611, Pollard p. 227, margin at 3:6 "† Heb. a desire."](cite:nb32i/2)
+[^nb32j]: [Leningrad Codex, p. 9: 2:25 עֲרוּמִּים (right column)](cite:nb32j/1); 3:7 עֵירֻמִּם, 3:10 עֵירֹם, 3:11 עֵירֹם (middle and left columns). The reading of the pointing is the author's from the image; the presence of the yod and the absence of the vav after the resh at 3:7, 3:10 and 3:11 are visible at the resolution read, and await professional confirmation.
+[^nb32k]: [Swete, vol. I, p. 4](cite:nb32k/1); [Vulgate 1592, p. 3](cite:nb32k/2); [Coverdale, opening 10 R ("Then were the eyes of them both opened")](cite:nb32k/3); [Great Bible, opening 11 L ("And the eyes of both them were opened")](cite:nb32k/4); [Geneva, leaf 11 ("Then the eyes of them bothe were opened")](cite:nb32k/5); [Bishops', leaf 55 ("Then the eyes of them both were opened")](cite:nb32k/6); [1611, Pollard p. 227.](cite:nb32k/7)
+[^nb32l]: [Leningrad, p. 9 (חֲגֹרֹת)](cite:nb32l/1); [Swete, vol. I, p. 4 (περιζώματα)](cite:nb32l/2); [Vulgate 1592, p. 3 (*perizomata*)](cite:nb32l/3); [Coverdale, opening 10 R ("apurns")](cite:nb32l/4); [Great Bible, opening 11 L ("aperns")](cite:nb32l/5); [Geneva, leaf 11 ("breeches," margin "Ebr. things to girde about thē to hide their priuities")](cite:nb32l/6); [Bishops', leaf 55 ("apernes")](cite:nb32l/7); [1611, Pollard p. 227 ("‖ aprons," margin "Or, things to gird about").](cite:nb32l/8)
+[^nb32m]: [Swete, vol. I, p. 5 (περιπατοῦντος ἐν τῷ παραδείσῳ τὸ δειλινόν).](cite:nb32m/1)
+[^nb32n]: [Vulgate 1592, p. 3 (*deambulantis in paradiso ad auram post meridiem*).](cite:nb32n/1)
+[^nb32o]: [Coverdale, opening 10 R ("in the coole of the daye")](cite:nb32o/1); [Great Bible, opening 11 R ("in the coole of the daye")](cite:nb32o/2); [Geneva, leaf 11 ("in the coole of the day")](cite:nb32o/3); [Bishops', leaf 55 ("in ȳ coole of the day")](cite:nb32o/4); [1611, Pollard p. 227 ("in the † coole of the day").](cite:nb32o/5)
+[^nb32p]: [Geneva, leaf 11, margin at 3:8 "Or, winde."](cite:nb32p/1); [1611, Pollard p. 227, margin at 3:8 "† Heb. wind."](cite:nb32p/2)
+[^nb32q]: [Geneva, leaf 11, note g at 3:8.](cite:nb32q/1)
+[^nb32r]: [1611, Pollard p. 227, the argument to chapter III: "1 The serpent deceiueth Eue. 6 Mans shamefull fall. 9 God arraigneth them. 14 The serpent is cursed. 15 The promised Seed. 16 The punishment of Mankind. 21 Their first clothing. 22 Their casting out of Paradise."](cite:nb32r/1)
+[^nb32s]: [Leningrad Codex, p. 9, middle and left columns (3:9–13)](cite:nb32s/1); [1611, Pollard p. 227.](cite:nb32s/2)
+[^nb32t]: [Swete, vol. I, p. 5 (3:9 Ἀδάμ, ποῦ εἶ; 3:11 μὴ ἀπὸ τοῦ ξύλου οὗ ἐνετειλάμην σοι τούτου μόνου μὴ φαγεῖν ἀπ᾿ αὐτοῦ, ἔφαγες;). Leningrad, p. 9 (3:11 צִוִּיתִיךָ).](cite:nb32t/1)
+[^nb32u]: [Vulgate 1592, p. 3](cite:nb32u/1); [Coverdale, opening 10 R.](cite:nb32u/2)
+[^nb32v]: [Great Bible, opening 11 R ("The woman which thou gauest to be with me, she gaue me of the tre, and I dyd eate")](cite:nb32v/1); [Geneva, leaf 12 ("The woman which thou gauest to be with me, she gaue me of the tre, and I did eat")](cite:nb32v/2); [Bishops', leaf 55 ("The woman whiche thou gauest to be with me, she gaue me of the tree, and I did eate")](cite:nb32v/3); [1611, Pollard p. 227.](cite:nb32v/4)
+[^nb32w]: [Geneva, leaf 12, note h at 3:12.](cite:nb32w/1)
+[^nb32x]: [1611, Pollard p. 227 (3:9 "called vnto Adam"; 3:12 "And the man said"; 3:17 "And vnto Adam"). The Geneva has "the man" at both 3:9 and 3:12](cite:nb32x/1); [the Great and the Bishops' "Adam" at both.](cite:nb32x/2)
+[^nb32y]: [Leningrad, p. 9 (הִשִּׁיאַנִי)](cite:nb32y/1); [Swete, vol. I, p. 5 (Ὁ ὄφις ἠπάτησέν με)](cite:nb32y/2); [Vulgate 1592, p. 3 (*Serpens decepit me*)](cite:nb32y/3); [Coverdale, opening 10 R](cite:nb32y/4); [Great Bible, opening 11 R](cite:nb32y/5); [Geneva, leaf 12](cite:nb32y/6); [Bishops', leaf 55](cite:nb32y/7); [1611, Pollard p. 227.](cite:nb32y/8)
 
 ## 3.3 The Sentences (3:14–19)
 
@@ -845,34 +845,34 @@ The reading this book draws from these differences is the reading Part 2 prepare
 
 The subordination the tradition has read into the story is real, but it is not where the tradition has placed it. It is not at 2:18, where every version has a help like him or fit for him and none has a subordinate. It is not at 2:23–24, where the man names his wife his own flesh and speaks a law of cleaving. It is at 3:16, in the third clause of the woman's sentence, and it entered the text of the Bible as *sub viri potestate eris* in the fourth century, as "shal be subiect" in italics in 1560, and as "Or, subiect to thy husband" in the margin of 1611. The Hebrew says the man will rule; it does not say the woman was made to be ruled, and it says the man will rule in a sentence that gives no reason, to a woman who was given no commandment, after a man who was given one had broken it with her beside him. That is what the text says. The versions that read the Hebrew say it too.
 
-[^nb33a]: Leningrad Codex, p. 9, left column (3:14–15); 1611, Pollard p. 227 (3:14) and p. 228 (3:15).
-[^nb33b]: Swete, vol. I, p. 5; Vulgate 1592, p. 3; Coverdale, opening 10 R ("Then sayde the LORDE God vnto the serpent: Because thou hast done this"); Great Bible, opening 11 R ("because thou hast done this"); Geneva, leaf 12 ("¶Then the Lord God said to the serpent, Because thou hast done this"); Bishops', leaf 55 ("Because thou hast done this"); 1611, Pollard p. 227.
-[^nb33c]: Swete, vol. I, p. 5 (ἐπὶ τῷ στήθει σου καὶ τῇ κοιλίᾳ πορεύσῃ); Vulgate 1592, p. 3 (*super pectus tuum gradieris*); Coverdale, opening 10 R ("Vpon thy bely shalt thou go"); Great Bible, opening 11 R ("Upon thy belly shalt thou go"); Geneva, leaf 12 ("vpon thy belly shalt thou go"); Bishops', leaf 56 ("vpon thy belly shalt thou go"); 1611, Pollard p. 227 ("vpon thy belly shalt thou goe").
-[^nb33d]: Swete, vol. I, pp. 3, 5 (2:7 χοῦν; 3:14 γῆν φάγῃ; 3:19 γῆ εἶ καὶ εἰς γῆν ἀπελεύσῃ); Vulgate 1592, pp. 2–3 (*de limo terræ*; *terram comedes*; *puluis es*); Coverdale, openings 10 L–11 L ("moulde"; "earth shalt thou eate"; "earth thou art").
-[^nb33e]: Great Bible, opening 11 L ("dust from of the grounde"), 11 R ("dust shalt thou eate"; "thou art dust, & into dust"); Geneva, leaves 10, 12; Bishops', leaves 53, 56; 1611, Pollard pp. 226–228.
-[^nb33f]: Swete, vol. I, p. 5 (αὐτός σου τηρήσει κεφαλήν, καὶ σὺ τηρήσεις αὐτοῦ πτέρναν).
-[^nb33g]: Vulgate 1592, p. 3 (*ipsa conteret caput tuum, & tu insidiaberis calcaneo eius*).
-[^nb33h]: Coverdale, opening 10 R ("The same shal treade downe thy head, and thou shalt treade vpon his hele"); Great Bible, opening 11 R ("The same shall treade downe thy heade, and thou shalt treade vpon his hele"); Geneva, leaf 12 ("He shal breake thine head, & thou shalt bruise his heele"); Bishops', leaf 56 ("it shall treade downe thy head, and thou shalt treade vpon his heele"); 1611, Pollard p. 228 ("it shal bruise thy head, and thou shalt bruise his heele").
-[^nb33i]: Geneva, leaf 12, notes o ("He chiefly meaneth Satā, by whose motion & craft ȳ serpent deceiued ȳ woman"), p ("That is, the power of sinne and death") and q ("Satan shal sting Christ & his members, but not ouercome them"); Bishops', leaf 56, note (m).
-[^nb33j]: Leningrad Codex, p. 9, left column; 1611, Pollard p. 228.
-[^nb33k]: Leningrad Codex, p. 9, left column: the line carrying the end of 3:15 (תְּשׁוּפֶנּוּ עָקֵב) ends short, an open space follows, and 3:16 begins אֶל־הָאִשָּׁה אָמַר; a second open space stands between the end of 3:16 (יִמְשָׁל־בָּךְ) and 3:17.
-[^nb33l]: Swete, vol. I, p. 5 (καὶ τῇ γυναικὶ εἶπεν); Vulgate 1592, p. 3 (*Mulieri quoque dixit*); Coverdale, opening 10 R ("And vnto the woman he sayde"); Great Bible, opening 11 R ("But vnto the woman he sayde"); Geneva, leaf 12 ("¶Vnto the woman he said"); Bishops', leaf 56 ("But vnto the woman he sayde"); 1611, Pollard p. 228 ("Unto the woman he said").
-[^nb33m]: Leningrad, p. 9 (3:16 עִצְּבוֹנֵךְ … בְּעֶצֶב; 3:17 בְּעִצָּבוֹן); Swete, vol. I, p. 5 (3:16 ἐν λύπαις τέξῃ τέκνα; 3:17 ἐν λύπαις φάγῃ αὐτήν); Vulgate 1592, p. 3 (*in dolore paries filios*; *in laboribus comedes ex ea*); Great Bible, opening 11 R ("In sorowe shalt thou brynge furth chyldren"; "In sorowe shalt thou eate therof"); 1611, Pollard p. 228 ("In sorow thou shalt bring forth children"; "in sorrow shalt thou eate of it").
-[^nb33n]: The occurrences at 4:7 (Leningrad, p. 10, right column, תְּשׁוּקָתוֹ) and Song of Songs 7:10 (not read at the page for this book) are given from the concordance; the Song of Songs verse is cited for the word's range and not as a finding.
-[^nb33o]: Swete, vol. I, p. 5.
-[^nb33p]: Vulgate 1592, p. 3 (*in dolore paries filios, & sub viri potestate eris, & ipse dominabitur tui*).
-[^nb33q]: Coverdale, opening 10 R, text and margin.
-[^nb33r]: Great Bible, opening 11 R.
-[^nb33s]: Geneva, leaf 12, text ("thy desire *shal be subiect* to thine housband") and margin ("1. Cor. 14, 34.").
-[^nb33t]: Bishops', leaf 56.
-[^nb33u]: 1611, Pollard p. 228, text and margin "‖ Or, subiect to thy husband."
-[^nb33v]: Geneva, leaf 12 (4:7 "vnto thee his desire *shalbe subiect*, and thou shalt rule ouer him"); Coverdale, opening 11 L (4:7 "Shal he then be subdued vnto the? and wilt thou rule him?", margin "Some reade: Let it be subdued vnto the, & rule thou it").
-[^nb33w]: Leningrad Codex, p. 9, left column (3:17–18) and p. 10, right column (3:18–19); 1611, Pollard p. 228, with the margin at 3:18 "† Heb. cause to bud."
-[^nb33x]: Leningrad Codex, p. 9, left column: וּלְאָדָם אָמַר after the second open space; see note k.
-[^nb33y]: Swete, vol. I, p. 5 (τῷ δὲ Ἀδὰμ εἶπεν); Vulgate 1592, p. 3 (*Adæ vero dixit*); Coverdale, opening 10 R ("And vnto Adam he sayde"); Great Bible, opening 11 R ("Unto Adam he sayde"); Geneva, leaf 12 ("¶Also to Adám he said"); Bishops', leaf 56 ("Unto Adam he sayde"); 1611, Pollard p. 228 ("And vnto Adam he said").
-[^nb33z]: Swete, vol. I, p. 5 (Ὅτι ἤκουσας τῆς φωνῆς τῆς γυναικός σου); Vulgate 1592, p. 3 (*Quia audisti vocem vxoris tuæ*); Coverdale, opening 10 R ("For so moch as thou hast herkened vnto the voyce of thy wyfe"); Great Bible, opening 11 R ("Because thou hast herkened"); Geneva, leaf 12 ("Because thou hast obeied the voyce of thy wife"); Bishops', leaf 56 ("Because thou hast hearkened"); 1611, Pollard p. 228.
-[^nb33aa]: Swete, vol. I, p. 5 (ἐπικατάρατος ἡ γῆ ἐν τοῖς ἔργοις σου); Vulgate 1592, p. 3 (*maledicta terra in opere tuo*); Coverdale, opening 10 R ("Cursed be ȳ earth for thy sake"); Great Bible, opening 11 R ("cursed is the grounde for thy sake"); Geneva, leaf 12 ("cursed is the earth for thy sake"); Bishops', leaf 56 ("cursed is the grounde for thy sake"); 1611, Pollard p. 228 ("cursed is the ground for thy sake").
-[^nb33ab]: Swete, vol. I, p. 5; Vulgate 1592, p. 3; Coverdale, opening 11 L ("for earth thou art, and vnto earth shalt thou be turned agayne"); Great Bible, opening 11 R ("in as much as thou art dust, & into dust shalt thou be turned agayne"); Geneva, leaf 12 ("because thou art dust, and to dust shalt thou returne"); Bishops', leaf 56 ("for dust thou art, and into dust shalt thou be turned agayne"); 1611, Pollard p. 228.
+[^nb33a]: [Leningrad Codex, p. 9, left column (3:14–15)](cite:nb33a/1); [1611, Pollard p. 227 (3:14) and p. 228 (3:15).](cite:nb33a/2)
+[^nb33b]: [Swete, vol. I, p. 5](cite:nb33b/1); [Vulgate 1592, p. 3](cite:nb33b/2); [Coverdale, opening 10 R ("Then sayde the LORDE God vnto the serpent: Because thou hast done this")](cite:nb33b/3); [Great Bible, opening 11 R ("because thou hast done this")](cite:nb33b/4); [Geneva, leaf 12 ("¶Then the Lord God said to the serpent, Because thou hast done this")](cite:nb33b/5); [Bishops', leaf 55 ("Because thou hast done this")](cite:nb33b/6); [1611, Pollard p. 227.](cite:nb33b/7)
+[^nb33c]: [Swete, vol. I, p. 5 (ἐπὶ τῷ στήθει σου καὶ τῇ κοιλίᾳ πορεύσῃ)](cite:nb33c/1); [Vulgate 1592, p. 3 (*super pectus tuum gradieris*)](cite:nb33c/2); [Coverdale, opening 10 R ("Vpon thy bely shalt thou go")](cite:nb33c/3); [Great Bible, opening 11 R ("Upon thy belly shalt thou go")](cite:nb33c/4); [Geneva, leaf 12 ("vpon thy belly shalt thou go")](cite:nb33c/5); [Bishops', leaf 56 ("vpon thy belly shalt thou go")](cite:nb33c/6); [1611, Pollard p. 227 ("vpon thy belly shalt thou goe").](cite:nb33c/7)
+[^nb33d]: [Swete, vol. I, pp. 3, 5 (2:7 χοῦν; 3:14 γῆν φάγῃ; 3:19 γῆ εἶ καὶ εἰς γῆν ἀπελεύσῃ)](cite:nb33d/1); [Vulgate 1592, pp. 2–3 (*de limo terræ*; *terram comedes*; *puluis es*)](cite:nb33d/2); [Coverdale, openings 10 L–11 L ("moulde"; "earth shalt thou eate"; "earth thou art").](cite:nb33d/3)
+[^nb33e]: [Great Bible, opening 11 L ("dust from of the grounde"), 11 R ("dust shalt thou eate"; "thou art dust, & into dust")](cite:nb33e/1); [Geneva, leaves 10, 12](cite:nb33e/2); [Bishops', leaves 53, 56](cite:nb33e/3); [1611, Pollard pp. 226–228.](cite:nb33e/4)
+[^nb33f]: [Swete, vol. I, p. 5 (αὐτός σου τηρήσει κεφαλήν, καὶ σὺ τηρήσεις αὐτοῦ πτέρναν).](cite:nb33f/1)
+[^nb33g]: [Vulgate 1592, p. 3 (*ipsa conteret caput tuum, & tu insidiaberis calcaneo eius*).](cite:nb33g/1)
+[^nb33h]: [Coverdale, opening 10 R ("The same shal treade downe thy head, and thou shalt treade vpon his hele")](cite:nb33h/1); [Great Bible, opening 11 R ("The same shall treade downe thy heade, and thou shalt treade vpon his hele")](cite:nb33h/2); [Geneva, leaf 12 ("He shal breake thine head, & thou shalt bruise his heele")](cite:nb33h/3); [Bishops', leaf 56 ("it shall treade downe thy head, and thou shalt treade vpon his heele")](cite:nb33h/4); [1611, Pollard p. 228 ("it shal bruise thy head, and thou shalt bruise his heele").](cite:nb33h/5)
+[^nb33i]: [Geneva, leaf 12, notes o ("He chiefly meaneth Satā, by whose motion & craft ȳ serpent deceiued ȳ woman"), p ("That is, the power of sinne and death") and q ("Satan shal sting Christ & his members, but not ouercome them")](cite:nb33i/1); [Bishops', leaf 56, note (m).](cite:nb33i/2)
+[^nb33j]: [Leningrad Codex, p. 9, left column](cite:nb33j/1); [1611, Pollard p. 228.](cite:nb33j/2)
+[^nb33k]: [Leningrad Codex, p. 9, left column: the line carrying the end of 3:15 (תְּשׁוּפֶנּוּ עָקֵב) ends short, an open space follows, and 3:16 begins אֶל־הָאִשָּׁה אָמַר](cite:nb33k/1); a second open space stands between the end of 3:16 (יִמְשָׁל־בָּךְ) and 3:17.
+[^nb33l]: [Swete, vol. I, p. 5 (καὶ τῇ γυναικὶ εἶπεν)](cite:nb33l/1); [Vulgate 1592, p. 3 (*Mulieri quoque dixit*)](cite:nb33l/2); [Coverdale, opening 10 R ("And vnto the woman he sayde")](cite:nb33l/3); [Great Bible, opening 11 R ("But vnto the woman he sayde")](cite:nb33l/4); [Geneva, leaf 12 ("¶Vnto the woman he said")](cite:nb33l/5); [Bishops', leaf 56 ("But vnto the woman he sayde")](cite:nb33l/6); [1611, Pollard p. 228 ("Unto the woman he said").](cite:nb33l/7)
+[^nb33m]: [Leningrad, p. 9 (3:16 עִצְּבוֹנֵךְ … בְּעֶצֶב; 3:17 בְּעִצָּבוֹן)](cite:nb33m/1); [Swete, vol. I, p. 5 (3:16 ἐν λύπαις τέξῃ τέκνα; 3:17 ἐν λύπαις φάγῃ αὐτήν)](cite:nb33m/2); [Vulgate 1592, p. 3 (*in dolore paries filios*; *in laboribus comedes ex ea*)](cite:nb33m/3); [Great Bible, opening 11 R ("In sorowe shalt thou brynge furth chyldren"; "In sorowe shalt thou eate therof")](cite:nb33m/4); [1611, Pollard p. 228 ("In sorow thou shalt bring forth children"; "in sorrow shalt thou eate of it").](cite:nb33m/5)
+[^nb33n]: [The occurrences at 4:7 (Leningrad, p. 10, right column, תְּשׁוּקָתוֹ) and Song of Songs 7:10 (not read at the page for this book) are given from the concordance](cite:nb33n/1); the Song of Songs verse is cited for the word's range and not as a finding.
+[^nb33o]: [Swete, vol. I, p. 5.](cite:nb33o/1)
+[^nb33p]: [Vulgate 1592, p. 3 (*in dolore paries filios, & sub viri potestate eris, & ipse dominabitur tui*).](cite:nb33p/1)
+[^nb33q]: [Coverdale, opening 10 R, text and margin.](cite:nb33q/1)
+[^nb33r]: [Great Bible, opening 11 R.](cite:nb33r/1)
+[^nb33s]: [Geneva, leaf 12, text ("thy desire *shal be subiect* to thine housband") and margin ("1. Cor. 14, 34.").](cite:nb33s/1)
+[^nb33t]: [Bishops', leaf 56.](cite:nb33t/1)
+[^nb33u]: [1611, Pollard p. 228, text and margin "‖ Or, subiect to thy husband."](cite:nb33u/1)
+[^nb33v]: [Geneva, leaf 12 (4:7 "vnto thee his desire *shalbe subiect*, and thou shalt rule ouer him")](cite:nb33v/1); [Coverdale, opening 11 L (4:7 "Shal he then be subdued vnto the? and wilt thou rule him?", margin "Some reade: Let it be subdued vnto the, & rule thou it").](cite:nb33v/2)
+[^nb33w]: [Leningrad Codex, p. 9, left column (3:17–18) and p. 10, right column (3:18–19)](cite:nb33w/1); [1611, Pollard p. 228, with the margin at 3:18 "† Heb. cause to bud."](cite:nb33w/2)
+[^nb33x]: [Leningrad Codex, p. 9, left column: וּלְאָדָם אָמַר after the second open space](cite:nb33x/1); see note k.
+[^nb33y]: [Swete, vol. I, p. 5 (τῷ δὲ Ἀδὰμ εἶπεν)](cite:nb33y/1); [Vulgate 1592, p. 3 (*Adæ vero dixit*)](cite:nb33y/2); [Coverdale, opening 10 R ("And vnto Adam he sayde")](cite:nb33y/3); [Great Bible, opening 11 R ("Unto Adam he sayde")](cite:nb33y/4); [Geneva, leaf 12 ("¶Also to Adám he said")](cite:nb33y/5); [Bishops', leaf 56 ("Unto Adam he sayde")](cite:nb33y/6); [1611, Pollard p. 228 ("And vnto Adam he said").](cite:nb33y/7)
+[^nb33z]: [Swete, vol. I, p. 5 (Ὅτι ἤκουσας τῆς φωνῆς τῆς γυναικός σου)](cite:nb33z/1); [Vulgate 1592, p. 3 (*Quia audisti vocem vxoris tuæ*)](cite:nb33z/2); [Coverdale, opening 10 R ("For so moch as thou hast herkened vnto the voyce of thy wyfe")](cite:nb33z/3); [Great Bible, opening 11 R ("Because thou hast herkened")](cite:nb33z/4); [Geneva, leaf 12 ("Because thou hast obeied the voyce of thy wife")](cite:nb33z/5); [Bishops', leaf 56 ("Because thou hast hearkened")](cite:nb33z/6); [1611, Pollard p. 228.](cite:nb33z/7)
+[^nb33aa]: [Swete, vol. I, p. 5 (ἐπικατάρατος ἡ γῆ ἐν τοῖς ἔργοις σου)](cite:nb33aa/1); [Vulgate 1592, p. 3 (*maledicta terra in opere tuo*)](cite:nb33aa/2); [Coverdale, opening 10 R ("Cursed be ȳ earth for thy sake")](cite:nb33aa/3); [Great Bible, opening 11 R ("cursed is the grounde for thy sake")](cite:nb33aa/4); [Geneva, leaf 12 ("cursed is the earth for thy sake")](cite:nb33aa/5); [Bishops', leaf 56 ("cursed is the grounde for thy sake")](cite:nb33aa/6); [1611, Pollard p. 228 ("cursed is the ground for thy sake").](cite:nb33aa/7)
+[^nb33ab]: [Swete, vol. I, p. 5](cite:nb33ab/1); [Vulgate 1592, p. 3](cite:nb33ab/2); [Coverdale, opening 11 L ("for earth thou art, and vnto earth shalt thou be turned agayne")](cite:nb33ab/3); [Great Bible, opening 11 R ("in as much as thou art dust, & into dust shalt thou be turned agayne")](cite:nb33ab/4); [Geneva, leaf 12 ("because thou art dust, and to dust shalt thou returne")](cite:nb33ab/5); [Bishops', leaf 56 ("for dust thou art, and into dust shalt thou be turned agayne")](cite:nb33ab/6); [1611, Pollard p. 228.](cite:nb33ab/7)
 
 ## 3.4 Like One of Us (3:20–24)
 
@@ -932,26 +932,26 @@ The last verse sets the guard. הַכְּרֻבִים, the cherubim, and לַה�
 
 The first telling ended with God resting on the seventh day from all the work he had made. The second telling ends with God declaring that the man has become as one of us, and sending him out to the ground. The reading this book has carried through nine chapters is that these are one ending. The image announced on the sixth day is the likeness God declares at 3:22; the knowledge that the serpent promised, that the woman took, that the man took beside her, and that God confirmed, is the content of that likeness; and the sending out is not the undoing of the creation but the beginning of the life the creation was for, on the ground the man was made from, with the way to the tree of life guarded and not closed. Every step of the reading has been taken from the shape of the Hebrew clauses, and at every step the book has set down what the versions did. Part 4 now reads the versions as wholes, to see what each of them made of the narrative they were carrying.
 
-[^nb34a]: Leningrad Codex, p. 10, right column (3:20–24); 1611, Pollard p. 228, with the margin at 3:20 "† Heb. Chauah."
-[^nb34b]: Swete, vol. I, p. 5.
-[^nb34c]: Swete, vol. I, p. 6 (4:1 Εὕαν).
-[^nb34d]: Vulgate 1592, p. 3 (*Heua*); Coverdale, opening 11 L ("Heua"); Great Bible, opening 11 R ("Heua"); Geneva, leaf 12 ("Heuáh"); Bishops', leaf 56 ("Heua"); 1611, Pollard p. 228 ("Eue," margin "Heb. Chauah").
-[^nb34e]: Geneva, leaf 12; Coverdale, opening 11 L ("And Adam called his wyfe Heua"); Great Bible, opening 11 R ("And Adā called his wyfes name Heua"); Bishops', leaf 56 ("And Adam called his wyfes name Heua"); 1611, Pollard p. 228.
-[^nb34f]: Great Bible, opening 11 R; Geneva, leaf 12; Bishops', leaf 56; 1611, Pollard p. 228.
-[^nb34g]: Coverdale, opening 11 L.
-[^nb34h]: Swete, vol. I, p. 5; Vulgate 1592, p. 3.
+[^nb34a]: [Leningrad Codex, p. 10, right column (3:20–24)](cite:nb34a/1); [1611, Pollard p. 228, with the margin at 3:20 "† Heb. Chauah."](cite:nb34a/2)
+[^nb34b]: [Swete, vol. I, p. 5.](cite:nb34b/1)
+[^nb34c]: [Swete, vol. I, p. 6 (4:1 Εὕαν).](cite:nb34c/1)
+[^nb34d]: [Vulgate 1592, p. 3 (*Heua*)](cite:nb34d/1); [Coverdale, opening 11 L ("Heua")](cite:nb34d/2); [Great Bible, opening 11 R ("Heua")](cite:nb34d/3); [Geneva, leaf 12 ("Heuáh")](cite:nb34d/4); [Bishops', leaf 56 ("Heua")](cite:nb34d/5); [1611, Pollard p. 228 ("Eue," margin "Heb. Chauah").](cite:nb34d/6)
+[^nb34e]: [Geneva, leaf 12](cite:nb34e/1); [Coverdale, opening 11 L ("And Adam called his wyfe Heua")](cite:nb34e/2); [Great Bible, opening 11 R ("And Adā called his wyfes name Heua")](cite:nb34e/3); [Bishops', leaf 56 ("And Adam called his wyfes name Heua")](cite:nb34e/4); [1611, Pollard p. 228.](cite:nb34e/5)
+[^nb34f]: [Great Bible, opening 11 R](cite:nb34f/1); [Geneva, leaf 12](cite:nb34f/2); [Bishops', leaf 56](cite:nb34f/3); [1611, Pollard p. 228.](cite:nb34f/4)
+[^nb34g]: [Coverdale, opening 11 L.](cite:nb34g/1)
+[^nb34h]: [Swete, vol. I, p. 5](cite:nb34h/1); [Vulgate 1592, p. 3.](cite:nb34h/2)
 [^nb34i]: As the three preceding notes.
-[^nb34j]: Leningrad Codex, p. 10, right column: the line carrying the end of 3:21 (וַיַּלְבִּשֵׁם) ends short and an open space precedes 3:22.
-[^nb34k]: Swete, vol. I, p. 5; Vulgate 1592, p. 3; Coverdale, opening 11 L; Geneva, leaf 12; Bishops', leaf 56; 1611, Pollard p. 228.
-[^nb34l]: Great Bible, opening 11 R.
-[^nb34m]: Swete, vol. I, p. 5; Vulgate 1592, p. 3; Geneva, leaf 12 ("And now lest he put forthe his hand"); Bishops', leaf 56 ("And now lest he put foorth his hande"); 1611, Pollard p. 228; Great Bible, opening 11 R ("and now lest he put forth his hande").
-[^nb34n]: Bishops', leaf 56, note (s) at 3:22.
-[^nb34o]: Coverdale, opening 11 L.
-[^nb34p]: Leningrad, p. 10 (וַיְשַׁלְּחֵהוּ; אֶת־הָאָדָם); Swete, vol. I, p. 5 (ἐξαπέστειλεν αὐτόν; ἐξέβαλεν τὸν Ἀδάμ); Vulgate 1592, p. 3 (*emisit eum*; *Eiecitque Adam*); Great Bible, opening 11 R ("sent them furth"; "droue out man"); Coverdale, opening 11 L ("put him out"; "cast Adam out"); Geneva, leaf 12 ("sent him forthe"; "cast out man"); Bishops', leaf 56 ("sent hym foorth"; "droue out man"); 1611, Pollard p. 228 ("sent him foorth"; "droue out the man").
+[^nb34j]: [Leningrad Codex, p. 10, right column: the line carrying the end of 3:21 (וַיַּלְבִּשֵׁם) ends short and an open space precedes 3:22.](cite:nb34j/1)
+[^nb34k]: [Swete, vol. I, p. 5](cite:nb34k/1); [Vulgate 1592, p. 3](cite:nb34k/2); [Coverdale, opening 11 L](cite:nb34k/3); [Geneva, leaf 12](cite:nb34k/4); [Bishops', leaf 56](cite:nb34k/5); [1611, Pollard p. 228.](cite:nb34k/6)
+[^nb34l]: [Great Bible, opening 11 R.](cite:nb34l/1)
+[^nb34m]: [Swete, vol. I, p. 5](cite:nb34m/1); [Vulgate 1592, p. 3](cite:nb34m/2); [Geneva, leaf 12 ("And now lest he put forthe his hand")](cite:nb34m/3); [Bishops', leaf 56 ("And now lest he put foorth his hande")](cite:nb34m/4); [1611, Pollard p. 228](cite:nb34m/5); [Great Bible, opening 11 R ("and now lest he put forth his hande").](cite:nb34m/6)
+[^nb34n]: [Bishops', leaf 56, note (s) at 3:22.](cite:nb34n/1)
+[^nb34o]: [Coverdale, opening 11 L.](cite:nb34o/1)
+[^nb34p]: [Leningrad, p. 10 (וַיְשַׁלְּחֵהוּ; אֶת־הָאָדָם)](cite:nb34p/1); [Swete, vol. I, p. 5 (ἐξαπέστειλεν αὐτόν; ἐξέβαλεν τὸν Ἀδάμ)](cite:nb34p/2); [Vulgate 1592, p. 3 (*emisit eum*; *Eiecitque Adam*)](cite:nb34p/3); [Great Bible, opening 11 R ("sent them furth"; "droue out man")](cite:nb34p/4); [Coverdale, opening 11 L ("put him out"; "cast Adam out")](cite:nb34p/5); [Geneva, leaf 12 ("sent him forthe"; "cast out man")](cite:nb34p/6); [Bishops', leaf 56 ("sent hym foorth"; "droue out man")](cite:nb34p/7); [1611, Pollard p. 228 ("sent him foorth"; "droue out the man").](cite:nb34p/8)
 [^nb34q]: As the preceding note, for the connectives.
-[^nb34r]: Swete, vol. I, p. 5 (3:24 καὶ ἐξέβαλεν τὸν Ἀδὰμ καὶ κατῴκισεν αὐτὸν ἀπέναντι τοῦ παραδείσου τῆς τρυφῆς, καὶ ἔταξεν τὰ χερουβίμ); Vulgate 1592, p. 3 (*Eiecitque Adam: & collocauit ante paradisum voluptatis Cherubim*); Leningrad, p. 10 (וַיַּשְׁכֵּן מִקֶּדֶם לְגַן־עֵדֶן אֶת־הַכְּרֻבִים, the verb governing the cherubim and not the man).
-[^nb34s]: Vulgate 1592, p. 3; Coverdale, opening 11 L; Great Bible, opening 11 R; Bishops', leaf 56; Geneva, leaf 12; 1611, Pollard p. 228.
-[^nb34t]: Leningrad Codex, p. 10, right column: open space after 3:24; 4:1 וְהָאָדָם יָדַע אֶת־חַוָּה אִשְׁתּוֹ. See Method § B.
+[^nb34r]: [Swete, vol. I, p. 5 (3:24 καὶ ἐξέβαλεν τὸν Ἀδὰμ καὶ κατῴκισεν αὐτὸν ἀπέναντι τοῦ παραδείσου τῆς τρυφῆς, καὶ ἔταξεν τὰ χερουβίμ)](cite:nb34r/1); [Vulgate 1592, p. 3 (*Eiecitque Adam: & collocauit ante paradisum voluptatis Cherubim*)](cite:nb34r/2); [Leningrad, p. 10 (וַיַּשְׁכֵּן מִקֶּדֶם לְגַן־עֵדֶן אֶת־הַכְּרֻבִים, the verb governing the cherubim and not the man).](cite:nb34r/3)
+[^nb34s]: [Vulgate 1592, p. 3](cite:nb34s/1); [Coverdale, opening 11 L](cite:nb34s/2); [Great Bible, opening 11 R](cite:nb34s/3); [Bishops', leaf 56](cite:nb34s/4); [Geneva, leaf 12](cite:nb34s/5); [1611, Pollard p. 228.](cite:nb34s/6)
+[^nb34t]: [Leningrad Codex, p. 10, right column: open space after 3:24](cite:nb34t/1); 4:1 וְהָאָדָם יָדַע אֶת־חַוָּה אִשְׁתּוֹ. See Method § B.
 
 # Part 4 — What the Versions Did with the Narrative
 
@@ -993,27 +993,27 @@ Several renderings in the Septuagint are neither marks of the clause nor collaps
 
 The Septuagint is this book's oldest ally on the one point where the book most needs one, the order of the second telling, and its first opponent on the point where the book's reading of the sentences depends on a word, the dust. It marked the Hebrew's turns better than any English Bible before the twentieth century, and it smoothed the Hebrew's seams, at 2:2 and 2:17 and 3:16, in ways no English Bible did. It is a translation made by men who understood the Hebrew clause and did not always trust the Hebrew text; the book takes from it what it understood and records what it did not trust.
 
-[^nb41a]: H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, *Genesis–IV Kings*, 3rd ed. (Cambridge, 1901), pp. 1–6 and the preface on the manuscripts; the witnesses cited in Swete's apparatus for Genesis 1–4 are A (Alexandrinus), D (the Cotton Genesis) and E (the Bodleian Genesis).
-[^nb41b]: Swete, vol. I, pp. 1–6; see Method § B and the notes there.
-[^nb41c]: Swete, vol. I, p. 3; chapter 2.1 § B.
-[^nb41d]: Swete, vol. I, pp. 3–4; chapters 2.2 § B and 2.3 § B.
-[^nb41e]: Swete, vol. I, p. 3; chapter 1.3 § A.
-[^nb41f]: Swete, vol. I, pp. 3–4; chapter 2.2 § D.
-[^nb41g]: Swete, vol. I, p. 4; chapter 2.3 § A.
-[^nb41h]: Swete, vol. I, p. 5; chapter 3.3 § B.
-[^nb41i]: Swete, vol. I, p. 5; chapter 3.4 § D.
-[^nb41j]: Swete, vol. I, pp. 3, 5; chapters 2.2 § A and 3.3 §§ A, C.
-[^nb41k]: Swete, vol. I, p. 2; chapter 1.2 § A.
-[^nb41l]: Swete, vol. I, p. 4; chapters 2.4 §§ B, D and 3.1 § A.
-[^nb41m]: Swete, vol. I, p. 4; chapter 3.1 § A.
-[^nb41n]: Swete, vol. I, p. 5; chapter 3.4 § A.
-[^nb41o]: Swete, vol. I, p. 5; chapter 3.2 § C.
-[^nb41p]: Swete, vol. I, p. 5; chapter 3.3 § B.
-[^nb41q]: Swete, vol. I, p. 5; chapter 3.3 § A.
-[^nb41r]: Swete, vol. I, p. 3; chapter 2.2 § D.
-[^nb41s]: Swete, vol. I, p. 5; chapter 3.3 § C.
-[^nb41t]: Swete, vol. I, p. 4; chapter 3.1 § B.
-[^nb41u]: Swete, vol. I, p. 4; chapter 3.1 § C.
+[^nb41a]: [H. B. Swete, ed., *The Old Testament in Greek according to the Septuagint*, vol. I, *Genesis–IV Kings*, 3rd ed. (Cambridge, 1901), pp. 1–6 and the preface on the manuscripts](cite:nb41a/1); [the witnesses cited in Swete's apparatus for Genesis 1–4 are A (Alexandrinus), D (the Cotton Genesis) and E (the Bodleian Genesis).](cite:nb41a/2)
+[^nb41b]: [Swete, vol. I, pp. 1–6](cite:nb41b/1); see Method § B and the notes there.
+[^nb41c]: [Swete, vol. I, p. 3](cite:nb41c/1); chapter 2.1 § B.
+[^nb41d]: [Swete, vol. I, pp. 3–4](cite:nb41d/1); chapters 2.2 § B and 2.3 § B.
+[^nb41e]: [Swete, vol. I, p. 3](cite:nb41e/1); chapter 1.3 § A.
+[^nb41f]: [Swete, vol. I, pp. 3–4](cite:nb41f/1); chapter 2.2 § D.
+[^nb41g]: [Swete, vol. I, p. 4](cite:nb41g/1); chapter 2.3 § A.
+[^nb41h]: [Swete, vol. I, p. 5](cite:nb41h/1); chapter 3.3 § B.
+[^nb41i]: [Swete, vol. I, p. 5](cite:nb41i/1); chapter 3.4 § D.
+[^nb41j]: [Swete, vol. I, pp. 3, 5](cite:nb41j/1); chapters 2.2 § A and 3.3 §§ A, C.
+[^nb41k]: [Swete, vol. I, p. 2](cite:nb41k/1); chapter 1.2 § A.
+[^nb41l]: [Swete, vol. I, p. 4](cite:nb41l/1); chapters 2.4 §§ B, D and 3.1 § A.
+[^nb41m]: [Swete, vol. I, p. 4](cite:nb41m/1); chapter 3.1 § A.
+[^nb41n]: [Swete, vol. I, p. 5](cite:nb41n/1); chapter 3.4 § A.
+[^nb41o]: [Swete, vol. I, p. 5](cite:nb41o/1); chapter 3.2 § C.
+[^nb41p]: [Swete, vol. I, p. 5](cite:nb41p/1); chapter 3.3 § B.
+[^nb41q]: [Swete, vol. I, p. 5](cite:nb41q/1); chapter 3.3 § A.
+[^nb41r]: [Swete, vol. I, p. 3](cite:nb41r/1); chapter 2.2 § D.
+[^nb41s]: [Swete, vol. I, p. 5](cite:nb41s/1); chapter 3.3 § C.
+[^nb41t]: [Swete, vol. I, p. 4](cite:nb41t/1); chapter 3.1 § B.
+[^nb41u]: [Swete, vol. I, p. 4](cite:nb41u/1); chapter 3.1 § C.
 
 ## 4.2 The Latin: The Turns Kept, the Order Harmonised, the Pun Carried
 
@@ -1060,31 +1060,31 @@ A third reading is smaller and belongs with these. At 3:1 the serpent's opening,
 The Vulgate is the ancient version the book must reckon with most, because it is the one whose readings reached the English. At the connective Jerome is the most careful reader of the Hebrew's shape among the versions, and the book takes his turns, his *virago*, his doubled image, his one word for the soul and his seventh day. At the order he is the first to rearrange it, and the book follows his pluperfect and his ablative absolute to Coverdale and to the modern "had planted." At the sentences he wrote two readings into the text that the Hebrew and the Greek do not contain, and the book follows those too: *ipsa* to the Marian reading, *sub potestate* to the Geneva's italics and the King James's margin and the Douay's text. What the Latin understood, the book uses. What the Latin added, the book names as the Latin's, and reads the Hebrew without it.
 
 [^nb42a]: The dating of Jerome's Genesis to the last decade of the fourth century and the priority of the Hebrew in his method are stated from general knowledge and were not researched for this book; nothing in the chapter turns on the date.
-[^nb42b]: *Biblia Sacra Vulgatæ editionis* (Rome: Typographia Apostolica Vaticana, 1592), pp. 1–3 (Genesis 1:1–3:24; the versos print their numbers, 2 on the second page and 4 on the fourth, and the leaves cited in this book are counted from them).
-[^nb42c]: Vulgate 1592, pp. 1–3, as Method § B and note mb5; chapters 1.1 § A, 2.1 § B, 2.3 § C, 3.1 § A, 3.3 § C.
-[^nb42d]: Vulgate 1592, p. 2 (2:17 *De ligno autem*; 2:14 *Nomen vero fluminis tertij*, *Fluuius autem quartus*); chapter 2.2 § D and Method § B.
-[^nb42e]: Vulgate 1592, p. 2 (*Et omne virgultum agri*; *Et fluuius egrediebatur de loco voluptatis*); chapters 2.1 § B and 2.2 § C.
-[^nb42f]: Vulgate 1592, pp. 1–3; chapter 1.1 § B for the seven speeches.
-[^nb42g]: Vulgate 1592, p. 2 (*Formauit igitur*), p. 3 (*Vidit igitur mulier*); chapters 2.2 § A and 3.2 § A, where the English "also," "And so" and "So" are recorded with their leaves.
-[^nb42h]: Vulgate 1592, p. 2; chapter 2.2 § B.
-[^nb42i]: Vulgate 1592, p. 2 (2:9 *Produxitque Dominus Deus de humo omne lignum pulchrum visu, & ad vescendum suaue*); for the Greek's ἔτι, Swete, vol. I, p. 3, and chapter 2.2 § B.
-[^nb42j]: Vulgate 1592, p. 2; chapter 2.3 § B.
-[^nb42k]: Vulgate 1592, p. 2 (2:2 *Compleuitque Deus die septimo opus suum*; 2:17 *ne comedas … morte morieris*), p. 3 (3:24 *Eiecitque Adam: & collocauit ante paradisum voluptatis Cherubim*); chapters 1.3 § A, 2.2 § D, 3.4 § D.
-[^nb42l]: Vulgate 1592, p. 2 (2:18 *faciamus ei adiutorium simile sibi*), p. 3 (3:5 *eritis sicut dij*; 3:6 *deditque viro suo, qui comedit*; 3:17 *maledicta terra in opere tuo*); chapters 2.3 § A, 3.1 § C, 3.2 § A, 3.3 § C.
-[^nb42m]: Coverdale, opening 10 R (2:19 "And whan God the LORDE had made"; 3:6 "and he ate"); Great Bible, opening 11 L (2:19 "And so out of the grounde shope the Lorde God"; 3:6 "beynge with her"); chapters 2.3 § B and 3.2 § A.
-[^nb42n]: Vulgate 1592, p. 2; chapter 2.4 § B.
-[^nb42o]: Vulgate 1592, p. 2 (*ad imaginem suam: ad imaginem Dei creauit illum*); chapter 1.2 § A.
-[^nb42p]: Vulgate 1592, pp. 1–2 (*anima viuens* at 1:20, 1:24, 1:30, 2:7, 2:19); chapters 1.1 § E and 2.2 § A.
-[^nb42q]: Vulgate 1592, p. 2 (*callidior*); chapter 3.1 § A.
-[^nb42r]: Vulgate 1592, pp. 1–2 (1:26 *& præsit piscibus maris*; 1:28 *& subiicite eam, & dominamini*); Swete, vol. I, p. 2 (κατακυριεύσατε αὐτῆς καὶ ἄρχετε); chapter 1.2 § B.
-[^nb42s]: Vulgate 1592, p. 3 (*deambulantis in paradiso ad auram post meridiem*); chapter 3.2 § C.
-[^nb42t]: Vulgate 1592, p. 2 (2:7 *de limo terræ*), p. 3 (3:14 *terram comedes*; 3:19 *puluis es, & in puluerem reuerteris*); chapters 2.2 § A and 3.3 §§ A, C.
-[^nb42u]: Vulgate 1592, p. 3 (*Heua*); 1611, Pollard p. 228 (margin "Heb. Chauah"); chapter 3.4 § A.
-[^nb42v]: Vulgate 1592, p. 3 (*ipsa conteret caput tuum, & tu insidiaberis calcaneo eius*); chapter 3.3 § A.
-[^nb42w]: Leningrad Codex, p. 9 (הוּא יְשׁוּפְךָ); Swete, vol. I, p. 5 (αὐτός σου τηρήσει κεφαλήν); the English as recorded in chapter 3.3 § A with their leaves.
-[^nb42x]: Vulgate 1592, p. 3 (*in dolore paries filios, & sub viri potestate eris, & ipse dominabitur tui*); chapter 3.3 § B.
-[^nb42y]: Geneva, leaf 12 ("thy desire *shal be subiect* to thine housband"); 1611, Pollard p. 228 (margin "Or, subiect to thy husband"); Swete, vol. I, p. 5 (ἡ ἀποστροφή σου); chapter 3.3 § B. The Douay-Rheims reading (Challoner's revision) is from the edition text on the shelf, read as chapter 4.4 § D describes, not at any page.
-[^nb42z]: Vulgate 1592, pp. 2–3 (*Cur præcepit vobis Deus vt non comederetis de omni ligno paradisi?*); Swete, vol. I, p. 4 (Τί ὅτι εἶπεν ὁ θεός); Coverdale, opening 10 R ("Yee, hath God sayde in dede"); chapter 3.1 § B.
+[^nb42b]: [*Biblia Sacra Vulgatæ editionis* (Rome: Typographia Apostolica Vaticana, 1592), pp. 1–3 (Genesis 1:1–3:24; the versos print their numbers, 2 on the second page and 4 on the fourth, and the leaves cited in this book are counted from them).](cite:nb42b/1)
+[^nb42c]: [Vulgate 1592, pp. 1–3, as Method § B and note mb5](cite:nb42c/1); chapters 1.1 § A, 2.1 § B, 2.3 § C, 3.1 § A, 3.3 § C.
+[^nb42d]: [Vulgate 1592, p. 2 (2:17 *De ligno autem*; 2:14 *Nomen vero fluminis tertij*, *Fluuius autem quartus*)](cite:nb42d/1); chapter 2.2 § D and Method § B.
+[^nb42e]: [Vulgate 1592, p. 2 (*Et omne virgultum agri*; *Et fluuius egrediebatur de loco voluptatis*)](cite:nb42e/1); chapters 2.1 § B and 2.2 § C.
+[^nb42f]: [Vulgate 1592, pp. 1–3](cite:nb42f/1); chapter 1.1 § B for the seven speeches.
+[^nb42g]: [Vulgate 1592, p. 2 (*Formauit igitur*), p. 3 (*Vidit igitur mulier*)](cite:nb42g/1); chapters 2.2 § A and 3.2 § A, where the English "also," "And so" and "So" are recorded with their leaves.
+[^nb42h]: [Vulgate 1592, p. 2](cite:nb42h/1); chapter 2.2 § B.
+[^nb42i]: [Vulgate 1592, p. 2 (2:9 *Produxitque Dominus Deus de humo omne lignum pulchrum visu, & ad vescendum suaue*)](cite:nb42i/1); [for the Greek's ἔτι, Swete, vol. I, p. 3, and chapter 2.2 § B.](cite:nb42i/2)
+[^nb42j]: [Vulgate 1592, p. 2](cite:nb42j/1); chapter 2.3 § B.
+[^nb42k]: [Vulgate 1592, p. 2 (2:2 *Compleuitque Deus die septimo opus suum*; 2:17 *ne comedas … morte morieris*), p. 3 (3:24 *Eiecitque Adam: & collocauit ante paradisum voluptatis Cherubim*)](cite:nb42k/1); chapters 1.3 § A, 2.2 § D, 3.4 § D.
+[^nb42l]: [Vulgate 1592, p. 2 (2:18 *faciamus ei adiutorium simile sibi*), p. 3 (3:5 *eritis sicut dij*; 3:6 *deditque viro suo, qui comedit*; 3:17 *maledicta terra in opere tuo*)](cite:nb42l/1); chapters 2.3 § A, 3.1 § C, 3.2 § A, 3.3 § C.
+[^nb42m]: [Coverdale, opening 10 R (2:19 "And whan God the LORDE had made"; 3:6 "and he ate")](cite:nb42m/1); [Great Bible, opening 11 L (2:19 "And so out of the grounde shope the Lorde God"; 3:6 "beynge with her")](cite:nb42m/2); chapters 2.3 § B and 3.2 § A.
+[^nb42n]: [Vulgate 1592, p. 2](cite:nb42n/1); chapter 2.4 § B.
+[^nb42o]: [Vulgate 1592, p. 2 (*ad imaginem suam: ad imaginem Dei creauit illum*)](cite:nb42o/1); chapter 1.2 § A.
+[^nb42p]: [Vulgate 1592, pp. 1–2 (*anima viuens* at 1:20, 1:24, 1:30, 2:7, 2:19)](cite:nb42p/1); chapters 1.1 § E and 2.2 § A.
+[^nb42q]: [Vulgate 1592, p. 2 (*callidior*)](cite:nb42q/1); chapter 3.1 § A.
+[^nb42r]: [Vulgate 1592, pp. 1–2 (1:26 *& præsit piscibus maris*; 1:28 *& subiicite eam, & dominamini*)](cite:nb42r/1); [Swete, vol. I, p. 2 (κατακυριεύσατε αὐτῆς καὶ ἄρχετε)](cite:nb42r/2); chapter 1.2 § B.
+[^nb42s]: [Vulgate 1592, p. 3 (*deambulantis in paradiso ad auram post meridiem*)](cite:nb42s/1); chapter 3.2 § C.
+[^nb42t]: [Vulgate 1592, p. 2 (2:7 *de limo terræ*), p. 3 (3:14 *terram comedes*; 3:19 *puluis es, & in puluerem reuerteris*)](cite:nb42t/1); chapters 2.2 § A and 3.3 §§ A, C.
+[^nb42u]: [Vulgate 1592, p. 3 (*Heua*)](cite:nb42u/1); [1611, Pollard p. 228 (margin "Heb. Chauah")](cite:nb42u/2); chapter 3.4 § A.
+[^nb42v]: [Vulgate 1592, p. 3 (*ipsa conteret caput tuum, & tu insidiaberis calcaneo eius*)](cite:nb42v/1); chapter 3.3 § A.
+[^nb42w]: [Leningrad Codex, p. 9 (הוּא יְשׁוּפְךָ)](cite:nb42w/1); [Swete, vol. I, p. 5 (αὐτός σου τηρήσει κεφαλήν)](cite:nb42w/2); the English as recorded in chapter 3.3 § A with their leaves.
+[^nb42x]: [Vulgate 1592, p. 3 (*in dolore paries filios, & sub viri potestate eris, & ipse dominabitur tui*)](cite:nb42x/1); chapter 3.3 § B.
+[^nb42y]: [Geneva, leaf 12 ("thy desire *shal be subiect* to thine housband")](cite:nb42y/1); [1611, Pollard p. 228 (margin "Or, subiect to thy husband")](cite:nb42y/2); [Swete, vol. I, p. 5 (ἡ ἀποστροφή σου)](cite:nb42y/3); chapter 3.3 § B. The Douay-Rheims reading (Challoner's revision) is from the edition text on the shelf, read as chapter 4.4 § D describes, not at any page.
+[^nb42z]: [Vulgate 1592, pp. 2–3 (*Cur præcepit vobis Deus vt non comederetis de omni ligno paradisi?*)](cite:nb42z/1); [Swete, vol. I, p. 4 (Τί ὅτι εἶπεν ὁ θεός)](cite:nb42z/2); [Coverdale, opening 10 R ("Yee, hath God sayde in dede")](cite:nb42z/3); chapter 3.1 § B.
 
 ## 4.3 The English Before 1611: Range, Recovery, and the Heading of 1568
 
@@ -1128,41 +1128,41 @@ The book does not claim that the Bishops' translators held the reading this book
 
 The four Bibles of 1535 to 1568 are the years in which the Hebrew's second telling came into English whole. Coverdale brought it in the Latin's shape, with the animals formed before the man, the man absent from the tree and the dust dispersed into three words. The Great Bible, five years later and against the Hebrew, restored all three, and the Geneva kept the restoration and added the Hebrew in its margins. The Bishops' lost the order again at 2:19 and said in its heading what the order is for. Between them they marked the Hebrew's turns in a range of English the King James would narrow, they made the losses at the soul and the wind that the King James would keep, and they handed on, in the Bishops' text of 1568, a pluperfect to be struck, and a heading its own printers had already let go. The book takes from these years the recoveries of 1540, the Geneva's margins and its "help meet," and the Bishops' heading, and it reads the King James, in the next chapter, as what its translators made of them.
 
-[^nb43a]: The dates, the sources of Coverdale's and the Great Bible's texts, the Great Bible's placing in the churches and the Bishops' commission are stated from general knowledge and were not researched for this book; the readings that follow are from the leaves.
-[^nb43b]: Coverdale (1535), openings 9 R–11 L of the copy on the shelf; Great Bible (1540), openings 10 R–11 R; Geneva (1560), Huntington copy, leaves 9–12; Bishops' (1568), *The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge), Princeton copy, leaves 51–56. Doubtful readings are marked at their verses in Parts 1–3 (the Geneva's closing parenthesis at 2:9; the first words of the Bishops' note at 3:1).
-[^nb43c]: Coverdale, openings 9 R–10 L; chapters 1.1 § B and 1.3 § A.
-[^nb43d]: Great Bible, openings 10 R–11 L; chapters 1.1 § B, 2.2 § A, 2.3 § B, 3.2 § A.
-[^nb43e]: Geneva, leaves 9–12; chapters 1.1 § B, 2.4 § A, 3.2 § A, 3.3 § C, 3.4 § D.
-[^nb43f]: Bishops', leaves 51–56; chapter 1.1 § B.
+[^nb43a]: [The dates, the sources of Coverdale's and the Great Bible's texts, the Great Bible's placing in the churches and the Bishops' commission are stated from general knowledge and were not researched for this book](cite:nb43a/1); the readings that follow are from the leaves.
+[^nb43b]: [Coverdale (1535), openings 9 R–11 L of the copy on the shelf](cite:nb43b/1); [Great Bible (1540), openings 10 R–11 R](cite:nb43b/2); [Geneva (1560), Huntington copy, leaves 9–12](cite:nb43b/3); [Bishops' (1568), *The holie Bible conteynyng the olde Testament and the newe* (London: Richard Jugge), Princeton copy, leaves 51–56. Doubtful readings are marked at their verses in Parts 1–3 (the Geneva's closing parenthesis at 2:9; the first words of the Bishops' note at 3:1).](cite:nb43b/4)
+[^nb43c]: [Coverdale, openings 9 R–10 L](cite:nb43c/1); chapters 1.1 § B and 1.3 § A.
+[^nb43d]: [Great Bible, openings 10 R–11 L](cite:nb43d/1); chapters 1.1 § B, 2.2 § A, 2.3 § B, 3.2 § A.
+[^nb43e]: [Geneva, leaves 9–12](cite:nb43e/1); chapters 1.1 § B, 2.4 § A, 3.2 § A, 3.3 § C, 3.4 § D.
+[^nb43f]: [Bishops', leaves 51–56](cite:nb43f/1); chapter 1.1 § B.
 [^nb43g]: Chapter 1.1 § B.
-[^nb43h]: Coverdale, opening 10 L; Great Bible, opening 11 L; Geneva, leaf 10; Bishops', leaf 53; chapter 2.1 § B.
-[^nb43i]: Coverdale, opening 10 L–R; Great Bible, opening 11 L; Geneva, leaf 10; Bishops', leaf 53; chapter 2.2 § D.
-[^nb43j]: Coverdale, opening 10 R; Great Bible, opening 11 L; Geneva, leaf 10; Bishops', leaf 53; chapter 2.3 § C.
-[^nb43k]: Coverdale, opening 10 R; Great Bible, opening 11 L; Geneva, leaf 11; Bishops', leaf 55; chapter 3.1 § A.
-[^nb43l]: Great Bible, opening 10 R (1:2); Coverdale, opening 10 L, and Great Bible, opening 11 L (2:5 run into 2:4); Geneva, leaf 10, and Bishops', leaf 53 (2:5 "And euerie plant"); all four at 2:10 as chapter 2.2 § C records; chapters 1.1 § A and 2.1 § B.
-[^nb43m]: Great Bible, opening 11 R; Bishops', leaf 56; Geneva, leaf 12; Coverdale, opening 10 R (3:17); Coverdale and Geneva at 4:1 as Method § B, note mb6, records; chapter 3.3 § C.
+[^nb43h]: [Coverdale, opening 10 L](cite:nb43h/1); [Great Bible, opening 11 L](cite:nb43h/2); [Geneva, leaf 10](cite:nb43h/3); [Bishops', leaf 53](cite:nb43h/4); chapter 2.1 § B.
+[^nb43i]: [Coverdale, opening 10 L–R](cite:nb43i/1); [Great Bible, opening 11 L](cite:nb43i/2); [Geneva, leaf 10](cite:nb43i/3); [Bishops', leaf 53](cite:nb43i/4); chapter 2.2 § D.
+[^nb43j]: [Coverdale, opening 10 R](cite:nb43j/1); [Great Bible, opening 11 L](cite:nb43j/2); [Geneva, leaf 10](cite:nb43j/3); [Bishops', leaf 53](cite:nb43j/4); chapter 2.3 § C.
+[^nb43k]: [Coverdale, opening 10 R](cite:nb43k/1); [Great Bible, opening 11 L](cite:nb43k/2); [Geneva, leaf 11](cite:nb43k/3); [Bishops', leaf 55](cite:nb43k/4); chapter 3.1 § A.
+[^nb43l]: [Great Bible, opening 10 R (1:2)](cite:nb43l/1); [Coverdale, opening 10 L, and Great Bible, opening 11 L (2:5 run into 2:4)](cite:nb43l/2); [Geneva, leaf 10, and Bishops', leaf 53 (2:5 "And euerie plant")](cite:nb43l/3); all four at 2:10 as chapter 2.2 § C records; chapters 1.1 § A and 2.1 § B.
+[^nb43m]: [Great Bible, opening 11 R](cite:nb43m/1); [Bishops', leaf 56](cite:nb43m/2); [Geneva, leaf 12](cite:nb43m/3); [Coverdale, opening 10 R (3:17)](cite:nb43m/4); [Coverdale and Geneva at 4:1 as Method § B, note mb6, records](cite:nb43m/5); chapter 3.3 § C.
 [^nb43n]: The tally is drawn from the leaves cited in notes h to m and in Method § B; the verse-by-verse table is Appendix B.
-[^nb43o]: Coverdale, opening 10 R; chapter 2.3 § B.
-[^nb43p]: Great Bible, opening 11 L; Geneva, leaf 10; chapter 2.3 § B.
-[^nb43q]: Bishops', leaf 53; chapter 2.3 § B.
-[^nb43r]: Leningrad Codex, p. 9 (עִמָּהּ); Swete, vol. I, p. 4 (μετ᾿ αὐτῆς); Vulgate 1592, p. 3; Coverdale, opening 10 R; chapter 3.2 § A.
-[^nb43s]: Great Bible, opening 11 L; Bishops', leaf 55; Geneva, leaf 11; 1611, Pollard p. 227; chapter 3.2 § A.
-[^nb43t]: Coverdale, openings 10 L–11 L; Great Bible, openings 11 L–R; chapters 2.2 § A and 3.3 §§ A, C.
-[^nb43u]: Great Bible, opening 10 R; Coverdale, opening 10 L ("after his licknesse: after ȳ licknesse of God"); chapter 1.2 § A.
-[^nb43v]: Geneva, leaf 10; chapter 2.3 § A.
-[^nb43w]: Great Bible, opening 10 R (1:20, 1:24) and 11 L (2:7); Coverdale, openings 9 R–10 L; chapters 1.1 § E and 2.2 § A.
-[^nb43x]: Coverdale, opening 10 R; Great Bible, opening 11 R; Geneva, leaf 11 (margin "Or, winde"); Bishops', leaf 55; chapter 3.2 § C.
-[^nb43y]: Coverdale, opening 10 L; Great Bible, opening 10 R; Bishops', leaf 52; chapter 1.2 § B.
-[^nb43z]: Geneva, leaves 9–12; chapters 1.1 § E, 2.3 § A, 2.4 § B, 3.2 § C, 3.3 § B.
-[^nb43aa]: Geneva, leaves 10 and 12; chapters 2.2 § B and 3.4 § A.
-[^nb43ab]: Geneva, leaf 12; chapter 3.3 § B.
-[^nb43ac]: Geneva, leaves 10–12, the notes at 1:26, 2:9, 2:17, 3:1, 3:6, 3:8, 3:15; chapters 1.2 § A, 2.2 § D, 3.1 §§ A, D, 3.2 §§ A, C, 3.3 § A.
-[^nb43ad]: Great Bible, opening 10 R; Geneva, leaf 10; chapter 1.3 § B.
-[^nb43ae]: Bishops', leaves 52–53, the argument to "The .ij. Chapter"; chapters 1.3 § B and 2.1 § A.
-[^nb43af]: Bishops', leaf 53 (2:18, 2:22 margins) and leaf 56 (3:22 note); chapters 2.3 § A, 2.4 § A, 3.4 § C.
-[^nb43ag]: Bishops', leaf 52 (1:16) and leaf 56 (3:16); chapters 1.1 § D and 3.3 § B.
-[^nb43ah]: Bishops', leaf 52 (1:26, 1:27 notes) and leaf 56 (3:15 note); chapters 1.2 § A and 3.3 § A.
-[^nb43ai]: As chapter 1.3 § B, note nb13o: 1574 frame 58; 1575 frame 62; 1577 frame 78; 1578 frame 60; Bodleian Arch. A b.18 (1602), canvas 44.
+[^nb43o]: [Coverdale, opening 10 R](cite:nb43o/1); chapter 2.3 § B.
+[^nb43p]: [Great Bible, opening 11 L](cite:nb43p/1); [Geneva, leaf 10](cite:nb43p/2); chapter 2.3 § B.
+[^nb43q]: [Bishops', leaf 53](cite:nb43q/1); chapter 2.3 § B.
+[^nb43r]: [Leningrad Codex, p. 9 (עִמָּהּ)](cite:nb43r/1); [Swete, vol. I, p. 4 (μετ᾿ αὐτῆς)](cite:nb43r/2); [Vulgate 1592, p. 3](cite:nb43r/3); [Coverdale, opening 10 R](cite:nb43r/4); chapter 3.2 § A.
+[^nb43s]: [Great Bible, opening 11 L](cite:nb43s/1); [Bishops', leaf 55](cite:nb43s/2); [Geneva, leaf 11](cite:nb43s/3); [1611, Pollard p. 227](cite:nb43s/4); chapter 3.2 § A.
+[^nb43t]: [Coverdale, openings 10 L–11 L](cite:nb43t/1); [Great Bible, openings 11 L–R](cite:nb43t/2); chapters 2.2 § A and 3.3 §§ A, C.
+[^nb43u]: [Great Bible, opening 10 R](cite:nb43u/1); [Coverdale, opening 10 L ("after his licknesse: after ȳ licknesse of God")](cite:nb43u/2); chapter 1.2 § A.
+[^nb43v]: [Geneva, leaf 10](cite:nb43v/1); chapter 2.3 § A.
+[^nb43w]: [Great Bible, opening 10 R (1:20, 1:24) and 11 L (2:7)](cite:nb43w/1); [Coverdale, openings 9 R–10 L](cite:nb43w/2); chapters 1.1 § E and 2.2 § A.
+[^nb43x]: [Coverdale, opening 10 R](cite:nb43x/1); [Great Bible, opening 11 R](cite:nb43x/2); [Geneva, leaf 11 (margin "Or, winde")](cite:nb43x/3); [Bishops', leaf 55](cite:nb43x/4); chapter 3.2 § C.
+[^nb43y]: [Coverdale, opening 10 L](cite:nb43y/1); [Great Bible, opening 10 R](cite:nb43y/2); [Bishops', leaf 52](cite:nb43y/3); chapter 1.2 § B.
+[^nb43z]: [Geneva, leaves 9–12](cite:nb43z/1); chapters 1.1 § E, 2.3 § A, 2.4 § B, 3.2 § C, 3.3 § B.
+[^nb43aa]: [Geneva, leaves 10 and 12](cite:nb43aa/1); chapters 2.2 § B and 3.4 § A.
+[^nb43ab]: [Geneva, leaf 12](cite:nb43ab/1); chapter 3.3 § B.
+[^nb43ac]: [Geneva, leaves 10–12, the notes at 1:26, 2:9, 2:17, 3:1, 3:6, 3:8, 3:15](cite:nb43ac/1); chapters 1.2 § A, 2.2 § D, 3.1 §§ A, D, 3.2 §§ A, C, 3.3 § A.
+[^nb43ad]: [Great Bible, opening 10 R](cite:nb43ad/1); [Geneva, leaf 10](cite:nb43ad/2); chapter 1.3 § B.
+[^nb43ae]: [Bishops', leaves 52–53, the argument to "The .ij. Chapter"](cite:nb43ae/1); chapters 1.3 § B and 2.1 § A.
+[^nb43af]: [Bishops', leaf 53 (2:18, 2:22 margins) and leaf 56 (3:22 note)](cite:nb43af/1); chapters 2.3 § A, 2.4 § A, 3.4 § C.
+[^nb43ag]: [Bishops', leaf 52 (1:16) and leaf 56 (3:16)](cite:nb43ag/1); chapters 1.1 § D and 3.3 § B.
+[^nb43ah]: [Bishops', leaf 52 (1:26, 1:27 notes) and leaf 56 (3:15 note)](cite:nb43ah/1); chapters 1.2 § A and 3.3 § A.
+[^nb43ai]: [As chapter 1.3 § B, note nb13o: 1574 frame 58](cite:nb43ai/1); [1575 frame 62](cite:nb43ai/2); [1577 frame 78](cite:nb43ai/3); [1578 frame 60](cite:nb43ai/4); [Bodleian Arch. A b.18 (1602), canvas 44.](cite:nb43ai/5)
 
 ## 4.4 The King James and After: The Levelling, the Margins, and the Modern Return
 
@@ -1206,36 +1206,36 @@ At the words the thirteen texts show what the book has said in Parts 1 to 3 beco
 
 The King James is this book's English because it is the English in which the Hebrew's order at 2:19 was restored against the Bishops', in which the Hebrew's one verb at 3:15 was rendered by one verb for the first time, in which the Hebrew's bare opening at 3:16 was kept and its subjection moved to the margin, and in which the Hebrew itself was confessed, at every departure, in a margin the reader may hold against the text. It is also the English in which the Hebrew's scene-clauses were levelled at five of seven, further than any version before it, by translators who read the Hebrew for its words and not for the shape of its clauses; the marked copy of 1602 shows them doing the one and not the other. The book reads the King James as its text and the King James's margin as its corrector, and where the two are silent together, at "And the earth was" and "And Adam knew," it reads the Hebrew's clause and says so. The versions' history closes where this book began: the versions divide at the places the Hebrew's clause-shape marks, and the version that levelled most at those places is the one that recorded the Hebrew most faithfully everywhere else.
 
-[^nb44a]: A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611* (Oxford, 1911), pp. 225–228; Bodleian Library, Arch. A b.18, *The Holy Bible, containing the Old Testament and the New* (London: Robert Barker, 1602), the Bishops' Bible annotated by the King James translators, canvases 43–46 of the Digital Bodleian images on the shelf (fols. A1r–A2v of the text; Genesis 1:1–4:26). The Bodleian's description of the copy as a translators' working copy is the library's; the book states nothing about which company or which hand.
-[^nb44b]: The hand is a secretary hand of the early seventeenth century, read by the author from the image without training in it; the readings given are those the author could read, checked against the 1611's printed text.
-[^nb44c]: Arch. A b.18, canvas 44, right column, 2:19 (the phrase underlined; the marginal word cut at the leaf's edge, read as "formed"); 1611, Pollard p. 227; chapter 2.3 § B.
-[^nb44d]: Arch. A b.18, canvas 44, right column, 2:18 and 2:20 ("meet for him" written above the struck phrase); 1611, Pollard p. 227; chapter 2.3 § A.
-[^nb44e]: Arch. A b.18, canvas 44, right column, 3:1 ("Now" above the struck "AND"; "more" above "subtiller"); 1611, Pollard p. 227; chapter 3.1 § A.
-[^nb44f]: Arch. A b.18, canvas 45, left column, 3:15 ("bruise" written above each struck verb); 1611, Pollard p. 227; chapter 3.3 § A.
-[^nb44g]: Arch. A b.18, canvas 45, left column, 3:16 ("But" struck; "subiect" entered above the clause); 1611, Pollard p. 228 and margin; chapter 3.3 § B.
-[^nb44h]: Arch. A b.18, canvas 45, left column, 3:12 ("the man" in the margin against "Adam"); 1611, Pollard p. 227; chapter 3.2 § D.
-[^nb44i]: Arch. A b.18, canvas 45, left column, 3:17, 3:21, 3:23; 1611, Pollard p. 228; chapters 3.3 § C, 3.4 §§ B, D.
-[^nb44j]: Arch. A b.18, canvas 43, right of the initial, 1:2 (the second "was" bracketed; "And" untouched); canvas 45, left column foot, 4:1 ("who conceiuing, bare" underlined; "AND" untouched); 1611, Pollard pp. 225, 228.
-[^nb44k]: 1611, Pollard pp. 225–228, as Method § B, note mb6.
-[^nb44l]: Great Bible, opening 10 R (1:2); Vulgate 1592, p. 1 (*Terra autem*); Coverdale, opening 11 L (4:1 "Morouer"); Geneva, leaf 12 (4:1 "Afterwarde"; 3:17 "Also"); Great Bible, opening 11 R, and Bishops', leaf 56 (3:17); chapters 1.1 § A, 3.3 § C, 4.3 § A.
+[^nb44a]: [A. W. Pollard, ed., *The Holy Bible: A Facsimile in a Reduced Size of the Authorized Version Published in the Year 1611* (Oxford, 1911), pp. 225–228](cite:nb44a/1); [Bodleian Library, Arch. A b.18, *The Holy Bible, containing the Old Testament and the New* (London: Robert Barker, 1602), the Bishops' Bible annotated by the King James translators, canvases 43–46 of the Digital Bodleian images on the shelf (fols. A1r–A2v of the text; Genesis 1:1–4:26). The Bodleian's description of the copy as a translators' working copy is the library's](cite:nb44a/2); the book states nothing about which company or which hand.
+[^nb44b]: The hand is a secretary hand of the early seventeenth century, read by the author from the image without training in it; [the readings given are those the author could read, checked against the 1611's printed text.](cite:nb44b/2)
+[^nb44c]: [Arch. A b.18, canvas 44, right column, 2:19 (the phrase underlined; the marginal word cut at the leaf's edge, read as "formed")](cite:nb44c/1); [1611, Pollard p. 227](cite:nb44c/2); chapter 2.3 § B.
+[^nb44d]: [Arch. A b.18, canvas 44, right column, 2:18 and 2:20 ("meet for him" written above the struck phrase)](cite:nb44d/1); [1611, Pollard p. 227](cite:nb44d/2); chapter 2.3 § A.
+[^nb44e]: [Arch. A b.18, canvas 44, right column, 3:1 ("Now" above the struck "AND"; "more" above "subtiller")](cite:nb44e/1); [1611, Pollard p. 227](cite:nb44e/2); chapter 3.1 § A.
+[^nb44f]: [Arch. A b.18, canvas 45, left column, 3:15 ("bruise" written above each struck verb)](cite:nb44f/1); [1611, Pollard p. 227](cite:nb44f/2); chapter 3.3 § A.
+[^nb44g]: [Arch. A b.18, canvas 45, left column, 3:16 ("But" struck; "subiect" entered above the clause)](cite:nb44g/1); [1611, Pollard p. 228 and margin](cite:nb44g/2); chapter 3.3 § B.
+[^nb44h]: [Arch. A b.18, canvas 45, left column, 3:12 ("the man" in the margin against "Adam")](cite:nb44h/1); [1611, Pollard p. 227](cite:nb44h/2); chapter 3.2 § D.
+[^nb44i]: [Arch. A b.18, canvas 45, left column, 3:17, 3:21, 3:23](cite:nb44i/1); [1611, Pollard p. 228](cite:nb44i/2); chapters 3.3 § C, 3.4 §§ B, D.
+[^nb44j]: [Arch. A b.18, canvas 43, right of the initial, 1:2 (the second "was" bracketed; "And" untouched)](cite:nb44j/1); [canvas 45, left column foot, 4:1 ("who conceiuing, bare" underlined; "AND" untouched)](cite:nb44j/2); [1611, Pollard pp. 225, 228.](cite:nb44j/3)
+[^nb44k]: [1611, Pollard pp. 225–228, as Method § B, note mb6.](cite:nb44k/1)
+[^nb44l]: [Great Bible, opening 10 R (1:2)](cite:nb44l/1); [Vulgate 1592, p. 1 (*Terra autem*)](cite:nb44l/2); [Coverdale, opening 11 L (4:1 "Morouer")](cite:nb44l/3); [Geneva, leaf 12 (4:1 "Afterwarde"; 3:17 "Also")](cite:nb44l/4); [Great Bible, opening 11 R, and Bishops', leaf 56 (3:17)](cite:nb44l/5); chapters 1.1 § A, 3.3 § C, 4.3 § A.
 [^nb44m]: Chapter 1.1 § B.
-[^nb44n]: 1611, Pollard pp. 226–228; Bishops', leaf 52 (1:27 "So God created"); Geneva, leaves 10, 12 (2:1 "Thus"; 3:23–24 "Therefore … Thus"); Coverdale, opening 10 L (2:1 "Thus"); chapters 1.2 § B, 1.3 § A, 2.4 § C, 3.2 § A, 3.4 § D.
+[^nb44n]: [1611, Pollard pp. 226–228](cite:nb44n/1); [Bishops', leaf 52 (1:27 "So God created")](cite:nb44n/2); [Geneva, leaves 10, 12 (2:1 "Thus"; 3:23–24 "Therefore … Thus")](cite:nb44n/3); [Coverdale, opening 10 L (2:1 "Thus")](cite:nb44n/4); chapters 1.2 § B, 1.3 § A, 2.4 § C, 3.2 § A, 3.4 § D.
 [^nb44o]: Method § B, note mb1 (the count, made in the Pure Cambridge text and checked at the page for every verse cited).
-[^nb44p]: 1611, Pollard pp. 226 (¶ at 2:4) and 228 (3:16); Geneva, leaves 10, 12; chapters 2.1 § A and 3.3 § B.
-[^nb44q]: 1611, Pollard p. 225, margin at 1:5.
-[^nb44r]: 1611, Pollard pp. 225–226, margins at 1:20, 1:28, 1:29; chapter 1.1 § E.
-[^nb44s]: 1611, Pollard p. 226, margin at 2:3; chapter 1.3 § A.
-[^nb44t]: 1611, Pollard p. 226, margin at 2:6; chapter 2.1 § B.
-[^nb44u]: 1611, Pollard p. 226, margin at 2:7; chapter 2.2 § A.
-[^nb44v]: 1611, Pollard pp. 226–227, margins at 2:15 and 2:19; chapter 2.3 § D.
-[^nb44w]: 1611, Pollard p. 227, margins at 2:16 and 2:17; chapter 2.2 § D.
-[^nb44x]: 1611, Pollard p. 227, margins at 2:18 and 2:22; chapters 2.3 § A and 2.4 § A.
-[^nb44y]: 1611, Pollard p. 227, margins at 3:1, 3:6, 3:7; chapters 3.1 § B, 3.2 §§ A, B.
-[^nb44z]: 1611, Pollard p. 227, margin at 3:8; chapter 3.2 § C.
-[^nb44aa]: 1611, Pollard p. 228, margin at 3:16; chapter 3.3 § B.
-[^nb44ab]: 1611, Pollard p. 228, margin at 3:20; chapter 3.4 § A.
-[^nb44ac]: 1611, Pollard pp. 225–227, the arguments to chapters I–III; chapter 1.3 § B.
-[^nb44ad]: 1611, Pollard pp. 225–228, running heads.
+[^nb44p]: [1611, Pollard pp. 226 (¶ at 2:4) and 228 (3:16)](cite:nb44p/1); [Geneva, leaves 10, 12](cite:nb44p/2); chapters 2.1 § A and 3.3 § B.
+[^nb44q]: [1611, Pollard p. 225, margin at 1:5.](cite:nb44q/1)
+[^nb44r]: [1611, Pollard pp. 225–226, margins at 1:20, 1:28, 1:29](cite:nb44r/1); chapter 1.1 § E.
+[^nb44s]: [1611, Pollard p. 226, margin at 2:3](cite:nb44s/1); chapter 1.3 § A.
+[^nb44t]: [1611, Pollard p. 226, margin at 2:6](cite:nb44t/1); chapter 2.1 § B.
+[^nb44u]: [1611, Pollard p. 226, margin at 2:7](cite:nb44u/1); chapter 2.2 § A.
+[^nb44v]: [1611, Pollard pp. 226–227, margins at 2:15 and 2:19](cite:nb44v/1); chapter 2.3 § D.
+[^nb44w]: [1611, Pollard p. 227, margins at 2:16 and 2:17](cite:nb44w/1); chapter 2.2 § D.
+[^nb44x]: [1611, Pollard p. 227, margins at 2:18 and 2:22](cite:nb44x/1); chapters 2.3 § A and 2.4 § A.
+[^nb44y]: [1611, Pollard p. 227, margins at 3:1, 3:6, 3:7](cite:nb44y/1); chapters 3.1 § B, 3.2 §§ A, B.
+[^nb44z]: [1611, Pollard p. 227, margin at 3:8](cite:nb44z/1); chapter 3.2 § C.
+[^nb44aa]: [1611, Pollard p. 228, margin at 3:16](cite:nb44aa/1); chapter 3.3 § B.
+[^nb44ab]: [1611, Pollard p. 228, margin at 3:20](cite:nb44ab/1); chapter 3.4 § A.
+[^nb44ac]: [1611, Pollard pp. 225–227, the arguments to chapters I–III](cite:nb44ac/1); chapter 1.3 § B.
+[^nb44ad]: [1611, Pollard pp. 225–228, running heads.](cite:nb44ad/1)
 [^nb44ae]: The Revised Version's dates, 1881–1885, are taken from the shelf file's own title; the span is arithmetic and no history of the versions was consulted.
 [^nb44af]: The thirteen are the openbible.com text files on the shelf: the King James (Pure Cambridge Edition), the American King James Version, Webster's Bible (1833), Darby's translation (1890), Young's Literal Translation, Julia Smith's translation, the English Revised Version (1881–1885), the American Standard Version (1901), the Jewish Publication Society's Tanakh (1917), the Douay-Rheims in Challoner's revision, the Catholic Public Domain Version, the World English Bible and the Berean Standard Bible. They are read as edition text, verse-keyed, and not at any printed page; nothing in the book rests on them.
 [^nb44ag]: The thirteen texts at 3:1: "Now the" in KJV, AKJV, WBT, ERV, ASV, JPS 1917, DRB, WEB, BSB; "And the" in DBT, YLT, SLT; "However, the" in CPDV.

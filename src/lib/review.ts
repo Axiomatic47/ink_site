@@ -19,6 +19,12 @@ export interface ReviewPage {
   rights: string;
   /** the case's first page — the note cited the case without a pin, so the whole case is served (owner 2026-09-15) */
   begins?: boolean;
+  /** where the page can be SEEN when it is not served here (lane contract 2026-09-16): a held membrane or
+      folio's own leaf page on this site (site-relative, /research/<archive>/leaf/<id>), or the holder's
+      catalogue record for an EXTERNAL row (https) — one rule: any index row with a url yields a chip with it */
+  url?: string;
+  /** the register id of the WORK this page cites (second consumer contract, 2026-09-16) — see ReviewManifest.works */
+  work?: string;
   /** the READING COPY (owner rule 2026-09-15): a multi-page PDF of the work — whole when ≤10 pages or a
       whole case, else the cited page with the neighbours its quotation needs — and the cited page's
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
@@ -36,6 +42,11 @@ export interface ReviewUnit {
   /** the lane's status: CUT · CUT_FIRST · UNMAPPED · NO_PIN · NO_SOURCE */
   status: string;
   rights: string;
+  /** the register id of the work the unit's first row cites — what a unit with no page still cites */
+  work?: string;
+  /** the distinct register ids of ALL the unit's live rows, in row order (a pinless row carries no page chip
+      to hold its work; the card lists these) */
+  works?: string[];
   pages: ReviewPage[];
   /** where the unit stands in the book's PDF (absent for the two units the overlay could not place) */
   box?: ReviewBox;
@@ -69,10 +80,55 @@ export interface ReviewMarker { note: string; page: number; rect: Rect }
 export interface ReviewSource {
   title: string;
   rights: string;
-  pinkind: 'page' | 'col' | 'folio' | 'memb' | 'sig' | string;
+  pinkind: 'page' | 'col' | 'folio' | 'memb' | 'sig' | 'item' | string;
   /** the holder's catalogue record, for licence-bound reproductions */
   holderUrl?: string;
 }
+
+/** one row of the lane's register of cited works (drafter 8a96daa3): the full citation, where the whole work
+    can be read, how the holder asks to be cited, and the rights statement — shown under the source title */
+export interface ReviewWork {
+  full_citation?: string;
+  short_form?: string;
+  type?: string;
+  author?: string;
+  title?: string;
+  container?: string;
+  publisher?: string;
+  place?: string;
+  year?: string;
+  edition?: string;
+  isbn?: string;
+  issn?: string;
+  doi?: string;
+  full_work_url?: string;
+  full_work_url_kind?: string;
+  volume_url?: string;
+  holder?: string;
+  holder_url?: string;
+  preferred_citation?: string;
+  preferred_citation_source?: string;
+  rights?: string;
+  rights_statement?: string;
+  rights_source_url?: string;
+  licence?: string;
+}
+
+/** a reader's label for the register's full_work_url_kind */
+export const WORK_URL_KIND: Record<string, string> = {
+  'loc-usrep-pdf': 'Library of Congress, U.S. Reports',
+  'internet-archive': 'Internet Archive',
+  'cap-static': 'Caselaw Access Project',
+  'google-books': 'Google Books',
+  govinfo: 'GovInfo',
+  doi: 'DOI',
+  'legislation-gov-uk': 'legislation.gov.uk',
+  'uscode-house-gov': 'U.S. Code',
+  'supremecourt-gov-slip': 'Supreme Court slip opinion',
+  'catalogue-record': 'catalogue record',
+  'acquisition-source': 'acquisition source',
+  'site-archive': 'this site’s archive',
+};
 
 export interface ReviewManifest {
   slug: string;
@@ -86,6 +142,8 @@ export interface ReviewManifest {
   pdf: ReviewPdf | null;
   /** in-text superscripts that were matched to their note */
   markers: ReviewMarker[];
+  /** the cited WORKS the units point at (the lane's _REGISTER.tsv, public fields only; empty fields dropped) */
+  works?: Record<string, ReviewWork>;
   /** in book order (definition line, then unit order) */
   units: ReviewUnit[];
   /** the same manifest as a hashed static JSON the browser fetches (set in content/review/<slug>.json only) */
@@ -119,6 +177,7 @@ export const RIGHTS_LABEL: Record<string, string> = {
   'public-domain': 'Public domain',
   'in-copyright-owner-use': 'In copyright — held for the author’s own use',
   'licence-bound': 'Licence-bound reproduction',
+  'external-link': 'Catalogue record at the holder — nothing held in the library',
 };
 
 /** the units that open a published page */

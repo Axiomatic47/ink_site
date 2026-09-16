@@ -69,6 +69,12 @@ const REVIEWS = [
     lane: join(BOOK_DIR, 'Pinned Citation Extracts'),
   },
   {
+    slug: 'a-restorative-reading-of-genesis-1-3',
+    id: 'genesis-1-3', // lane by drafter 60f85bca, 2026-09-16
+    book: join(LIB, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
+    lane: join(LIB, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts'),
+  },
+  {
     slug: 'the-holy-seed',
     id: 'holy-seed',
     book: join(LIB, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'THE_HOLY_SEED.md'),
@@ -92,6 +98,9 @@ const tsv = (file) => {
 
 /** printed-page label from the pin kind and the extract's suffix letter */
 const pinLabel = (kind, pin, file, status, sourceKey) => {
+  // an ITEM (a catalogue record the book cites — status EXTERNAL, pinkind item): the pin is the item's
+  // citation as written ("NLW MS 9052E/227"), never "p. …" (lane contract 2026-09-16)
+  if (kind === 'item' || status === 'EXTERNAL') return pin || '';
   const suf = file ? /_([a-z])[^_/]*\.pdf$/.exec(file)?.[1] : null;
   if (sourceKey === 'POLLARD_1911') return `1611 facsimile p. ${pin}`; // the reprint's PDF page: the 1611 is unpaginated
   // owner rule 2026-09-15: a case cited by its first page means the WHOLE case — the lane cuts every page of
@@ -191,6 +200,23 @@ function importOne(cfg) {
   const defLine = new Map(); // note id → line index
   lines.forEach((l, i) => { const m = /^\[\^([A-Za-z0-9_]+)\]:/.exec(l); if (m) defLine.set(m[1], i); });
 
+  // THE REGISTER (second consumer contract, 2026-09-16): `_REGISTER.tsv` in the lane dir — one row per cited
+  // WORK (drafter 8a96daa3; ids stable); an index row's `work` is the id of the work it cites. Plain TSV,
+  // tab-only (one field opens with a straight quote). Only `is_work` Y rows are ever pointed at.
+  const registerFile = join(cfg.lane, '_REGISTER.tsv');
+  const register = new Map();
+  if (existsSync(registerFile)) {
+    const [rh, ...rr] = readFileSync(registerFile, 'utf8').split(/\r?\n/).filter((l) => l.length);
+    const rcols = rh.split('\t');
+    for (const line of rr) {
+      const cells = line.split('\t');
+      const rec = Object.fromEntries(rcols.map((c, i) => [c, cells[i] ?? '']));
+      if (rec.id && rec.is_work === 'Y') register.set(rec.id, rec);
+    }
+  }
+  const WORK_FIELDS = ['full_citation', 'short_form', 'type', 'author', 'title', 'container', 'publisher', 'place', 'year', 'edition', 'isbn', 'issn', 'doi',
+    'full_work_url', 'full_work_url_kind', 'volume_url', 'holder', 'holder_url', 'preferred_citation', 'preferred_citation_source', 'rights', 'rights_statement', 'rights_source_url', 'licence'];
+
   // units: one per (note, seq); a unit cited across a range has several pages
   const units = new Map();
   for (const r of rows) {
@@ -199,9 +225,14 @@ function importOne(cfg) {
     let u = units.get(key);
     if (!u) {
       u = { id: key, note: r.note, seq: Number(r.seq), line: Number(r.line) || 0, text: r.text, cls: r.cls, status: r.status, rights: r.rights || sources[r.source_key]?.rights || '', source: r.source_key || null, pages: [],
-        start: r.unit_start === '' || r.unit_start == null ? null : Number(r.unit_start), end: r.unit_end === '' || r.unit_end == null ? null : Number(r.unit_end) };
+        start: r.unit_start === '' || r.unit_start == null ? null : Number(r.unit_start), end: r.unit_end === '' || r.unit_end == null ? null : Number(r.unit_end),
+        ...(r.work ? { work: r.work } : {}), works: [] }; // the first row's work: what a unit with no page (NO_SOURCE, NO_PIN) still cites
       units.set(key, u);
     }
+    // contract refinement (2026-09-16): the unit carries `works` = the distinct work ids of ALL its live rows in
+    // row order — a NO_PIN row yields no page chip to carry its work, so a pinless unit citing two works
+    // (Rushworth's Appendix and its volume) would otherwise reach the card with the first only
+    if (r.work && !u.works.includes(r.work)) u.works.push(r.work);
     if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST' || r.status === 'CUT_CASE')) {
       const kind = sources[r.source_key]?.pinkind || 'page';
       // verified: Y = the page number was read on the page · N = placed by the run's offset · '-' = a verso with nothing to read
@@ -211,9 +242,29 @@ function importOne(cfg) {
       // owner-use leaves onto the device branch
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
         verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}),
+        // `url` (lane contract 2026-09-16): a held membrane / folio's own leaf page on this site
+        // (/research/<archive>/leaf/<id>) — the chip links there instead of only saying "held"
+        ...(r.url ? { url: r.url } : {}),
+        ...(r.work ? { work: r.work } : {}), // the register row this page cites (per ROW: a unit citing two works carries both)
         ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}) });
+    } else if (r.url && !r.extract) {
+      // a LINK-ONLY row (status EXTERNAL, rights external-link): a catalogue record the book cites;
+      // nothing is held in the lane, so nothing is served — the chip carries the record's URL and the
+      // item citation as its label. One rule for both kinds of url: any row that carries one yields a chip with it.
+      const kind = sources[r.source_key]?.pinkind || 'page';
+      u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, null, r.status, r.source_key), extract: null, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
+        verified: null, sha256: null, url: r.url, ...(r.work ? { work: r.work } : {}) });
     }
   }
+  // every `work` the manifest will carry must be a register work — fail closed, naming the id
+  const workIds = new Set();
+  for (const u of units.values()) { if (u.work) workIds.add(u.work); for (const id of u.works) workIds.add(id); for (const p of u.pages) if (p.work) workIds.add(p.work); }
+  const unknownWorks = [...workIds].filter((id) => !register.has(id));
+  if (unknownWorks.length) throw new Error(`${unknownWorks.length} work id(s) in the index are not is_work rows of _REGISTER.tsv: ${unknownWorks.slice(0, 5).join(', ')} — nothing written`);
+  const works = Object.fromEntries([...workIds].sort().map((id) => {
+    const rec = register.get(id);
+    return [id, Object.fromEntries(WORK_FIELDS.filter((f) => rec[f] && rec[f].trim()).map((f) => [f, rec[f].trim()]))];
+  }));
 
   const counts = { wrapped: 0, unwrappable: 0, noDef: 0, published: 0, held: 0, uncut: 0 };
   const unwrappable = [];
@@ -263,7 +314,7 @@ function importOne(cfg) {
   const wanted = new Set();
   for (const u of units.values()) {
     for (const p of u.pages) {
-      if (!PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
+      if (!p.extract || !PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
       const src = join(cfg.lane, p.extract);
       if (!existsSync(src)) { p.file = null; unwrappable.push(`${u.id}: extract missing on disk ${p.extract}`); continue; }
       const rel = p.extract.split('/').map(encodeURIComponent).join('/');
@@ -386,6 +437,8 @@ function importOne(cfg) {
     rightsRule: 'Only public-domain pages are published; every other citation is marked as held in the library.',
     pdf,
     markers,
+    // the cited WORKS the units point at (register contract 2026-09-16): id → the register's public fields
+    ...(workIds.size ? { works } : {}),
     sources: Object.fromEntries([...usedSources].sort().map((k) => {
       const s = sources[k] ?? {};
       return [k, { title: s.title || k, rights: s.rights || '', pinkind: s.pinkind || 'page', ...(s.holder_url ? { holderUrl: s.holder_url } : {}) }];
@@ -394,8 +447,8 @@ function importOne(cfg) {
       const u = units.get(id);
       return {
         // slim: this JSON travels to the reader's browser with the page
-        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
+        id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}), ...(u.works.length ? { works: u.works } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -420,6 +473,10 @@ function importOne(cfg) {
   const pages = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
+  { let withUrl = 0, external = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) withUrl += 1; if (!p.extract && p.url) external += 1; }
+    console.log(`  links: ${withUrl} page chips carry a url (${withUrl - external} held leaves on this site, ${external} external records)`); }
+  { let pw = 0, uw = 0, live = 0; for (const u of units.values()) { live += 1; if (u.works.length) uw += 1; for (const p of u.pages) if (p.work) pw += 1; }
+    console.log(`  works: ${workIds.size} cited works from the register (${register.size} is_work rows); ${uw} of ${live} units and ${pw} pages carry one`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
