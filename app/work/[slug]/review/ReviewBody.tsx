@@ -15,7 +15,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { RIGHTS_LABEL, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { Md } from '../../../_components/Markdown';
 import { SiteHeader } from '../../../_components/SiteHeader';
 import { SiteFooter } from '../../../_components/SiteFooter';
 import { PdfViewer, type PdfFocus, type PdfHotBox } from '../../../_components/PdfViewer';
@@ -46,6 +47,40 @@ interface Props {
   loadError?: string | null;
   /** source count for the intro card (the stub manifest has none) */
   sourceCount?: number;
+}
+
+/** one cited WORK from the lane's register (contract 2026-09-16), under the source title: the full citation;
+    where the whole work can be read (kind as a small label; a site-relative path is this site's own archive);
+    how the holder asks to be cited; the rights statement and licence; the holder when it differs from the source's */
+function WorkRecord({ w, sourceHolderUrl, compact = false }: { w: ReviewWork; sourceHolderUrl?: string; compact?: boolean }) {
+  const kind = w.full_work_url_kind ? (WORK_URL_KIND[w.full_work_url_kind] ?? w.full_work_url_kind) : w.full_work_url?.startsWith('/') ? WORK_URL_KIND['site-archive'] : '';
+  const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {});
+  const link = 'underline text-accent-ink break-words';
+  const holderDiffers = w.holder && (w.holder_url ? w.holder_url !== sourceHolderUrl : true);
+  return (
+    <div className={cn('space-y-0.5', compact ? 'text-inherit text-ink/85' : 'text-sm text-ink/85')}>
+      {w.full_citation && <p className={compact ? '' : 'leading-snug'}><Md inline>{w.full_citation}</Md></p>}
+      {(w.full_work_url || w.volume_url) && (
+        <p>
+          <span className="text-muted">Full text: </span>
+          {w.full_work_url && <a href={w.full_work_url} {...ext(w.full_work_url)} className={link}>{kind || 'the whole work'}</a>}
+          {w.volume_url && w.volume_url !== w.full_work_url && <> · <a href={w.volume_url} {...ext(w.volume_url)} className={link}>this volume</a></>}
+        </p>
+      )}
+      {w.preferred_citation && (
+        <p><span className="text-muted">Cite as: </span>{w.preferred_citation}{w.preferred_citation_source && <span className="text-muted"> ({w.preferred_citation_source})</span>}</p>
+      )}
+      {(w.rights_statement || w.licence) && (
+        <p className="text-muted">
+          {w.rights_statement}{w.rights_statement && w.licence && w.licence !== w.rights ? ' · ' : ''}{w.licence && w.licence !== w.rights ? `Licence: ${w.licence}` : ''}
+          {w.rights_source_url && <> · <a href={w.rights_source_url} {...ext(w.rights_source_url)} className={link}>rights source</a></>}
+        </p>
+      )}
+      {holderDiffers && (
+        <p><span className="text-muted">Held by: </span>{w.holder_url ? <a href={w.holder_url} {...ext(w.holder_url)} className={link}>{w.holder}</a> : w.holder}</p>
+      )}
+    </div>
+  );
 }
 
 export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount }: Props) {
@@ -234,6 +269,15 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const tog = (on: boolean) => cn('h-7 w-7 inline-flex items-center justify-center rounded', on ? 'bg-accent/20 text-accent-ink' : 'text-muted hover:bg-well');
   const ctl = 'h-7 min-w-7 px-1.5 inline-flex items-center justify-center gap-1 rounded text-xs text-accent-ink hover:bg-well disabled:opacity-35 disabled:hover:bg-transparent tabular-nums';
   const sourceTitle = source?.title ?? sourceKey ?? '';
+  // the cited works of the active unit (register contract 2026-09-16): the active page's work first, then the
+  // unit's other pages' works in order, then the unit's own (a unit with no page still cites a work)
+  const activeWorks: ReviewWork[] = (() => {
+    if (!active || !manifest.works) return [];
+    const ids: string[] = [];
+    const push = (id?: string) => { if (id && manifest.works?.[id] && !ids.includes(id)) ids.push(id); };
+    push(page?.work); active.pages.forEach((p) => push(p.work)); push(active.work);
+    return ids.map((id) => manifest.works![id]);
+  })();
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
   // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
@@ -397,6 +441,14 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                 {source?.holderUrl && (
                   <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline text-accent-ink break-all">{active.status === 'EXTERNAL' ? 'The collection’s record at the holder' : 'The holder’s copy'} <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
                 )}
+                {activeWorks.length > 0 && (
+                  <div className="mt-5 pt-4 border-t border-rule">
+                    <p className="text-[11px] uppercase tracking-[0.08em] text-muted mb-2" style={{ fontWeight: 600 }}>{activeWorks.length > 1 ? 'The works cited' : 'The work cited'}</p>
+                    <div className="space-y-3 border-l-2 border-accent/40 pl-3 text-xs">
+                      {activeWorks.map((w, i) => <WorkRecord key={i} w={w} sourceHolderUrl={source?.holderUrl} compact />)}
+                    </div>
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -494,6 +546,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
+                {page.work && manifest.works?.[page.work] && <div className="mt-1.5 max-w-3xl"><WorkRecord w={manifest.works[page.work]} sourceHolderUrl={source?.holderUrl} compact /></div>}
               </>
             ) : (
               <p>{manifest.rightsRule}</p>

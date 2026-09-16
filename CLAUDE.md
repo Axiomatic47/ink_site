@@ -72,6 +72,16 @@ p=none, all on Netlify DNS).
   extract, pinkind `item`) makes a chip whose label is the pin as written and
   whose link opens the holder's record in a new tab. One rule: any row with a
   `url` yields a chip with it; nothing with `external-link` is ever served.
+- **The register of cited works** (lane contract 2026-09-16, drafter 8a96daa3's
+  `_REGISTER.tsv` in the lane dir): an index row's `work` is a register id; the
+  importer copies it onto the page (and the unit's first row's onto the unit),
+  refuses an id that is not an `is_work` Y row, and writes the referenced rows'
+  public fields to the manifest's `works` map (empty fields dropped; never
+  shelf_path / sha256 / notes). `ReviewBody`'s `WorkRecord` shows a work under
+  the held card's actions and, compact, under the panes for a served page: the
+  full citation, "Full text" by kind (`WORK_URL_KIND`), "Cite as", the rights
+  statement and licence, the holder when it differs from the source's. Split
+  the register on tabs only.
 - **Search within a pane** (owner 2026-09-15): the viewer's magnifier opens a
   search row; the query is matched, case- and accent-folded, against each
   page's text layer, read once per page and cached; hits are boxed as
