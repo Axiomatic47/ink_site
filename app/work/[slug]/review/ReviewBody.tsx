@@ -13,7 +13,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows, ScrollText } from 'lucide-react';
+import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, Loader2, Lock, Rows, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
 import { Md } from '../../../_components/Markdown';
@@ -116,6 +116,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
+  const pageWork: ReviewWork | undefined = page?.work ? manifest.works?.[page.work] : undefined;
   // the page's own source when a unit spans two sources; else the unit's
   const sourceKey = page?.source ?? active?.source ?? null;
   const source = sourceKey ? manifest.sources[sourceKey] : undefined;
@@ -130,6 +131,11 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const [isLg, setIsLg] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [fillHeight, setFillHeight] = useState<number | null>(null);
+  // the work record under the panes is a DROPDOWN (owner 2026-09-16: "the pdf view panes shouldn't be
+  // affected by the data fields — present them in drop downs; the pdf panes MUST REMAIN the same size"):
+  // closed by default, and rendered OUTSIDE the measured record block, so opening it never enters the
+  // panes' height budget (the block under the panes is the two lines it was at a611fc1)
+  const [workOpen, setWorkOpen] = useState(false);
   const rowRef = useRef<HTMLDivElement | null>(null);
   const headRef = useRef<HTMLDivElement | null>(null);
   const belowRef = useRef<HTMLDivElement | null>(null);
@@ -442,12 +448,14 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                   <p className="mt-3"><a href={source.holderUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline text-accent-ink break-all">{active.status === 'EXTERNAL' ? 'The collection’s record at the holder' : 'The holder’s copy'} <ExternalLink className="h-3.5 w-3.5 shrink-0" /></a></p>
                 )}
                 {activeWorks.length > 0 && (
-                  <div className="mt-5 pt-4 border-t border-rule">
-                    <p className="text-[11px] uppercase tracking-[0.08em] text-muted mb-2" style={{ fontWeight: 600 }}>{activeWorks.length > 1 ? 'The works cited' : 'The work cited'}</p>
-                    <div className="space-y-3 border-l-2 border-accent/40 pl-3 text-xs">
+                  <details className="mt-5 pt-4 border-t border-rule group">
+                    <summary className="list-none cursor-pointer select-none inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.08em] text-muted hover:text-ink [&::-webkit-details-marker]:hidden" style={{ fontWeight: 600 }}>
+                      {activeWorks.length > 1 ? 'The works cited' : 'The work cited'} <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" aria-hidden />
+                    </summary>
+                    <div className="mt-2 space-y-3 border-l-2 border-accent/40 pl-3 text-xs">
                       {activeWorks.map((w, i) => <WorkRecord key={i} w={w} sourceHolderUrl={source?.holderUrl} compact />)}
                     </div>
-                  </div>
+                  </details>
                 )}
               </>
             )}
@@ -544,9 +552,13 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                     : <> · <Link href={page.url} className="underline text-accent-ink">the leaf on this site</Link></>)}
                   {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
                   {rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}
+                  {pageWork && (
+                    <> · <button type="button" onClick={() => setWorkOpen((o) => !o)} aria-expanded={workOpen} aria-controls="review-work-record" className="inline-flex items-center gap-0.5 underline text-accent-ink hover:text-ink align-baseline">
+                      the work cited <ChevronDown className={cn('h-3 w-3 transition-transform', workOpen && 'rotate-180')} aria-hidden />
+                    </button></>
+                  )}
                 </p>
                 {page.sha256 && <p className="font-mono break-all">sha256 {page.sha256}</p>}
-                {page.work && manifest.works?.[page.work] && <div className="mt-1.5 max-w-3xl"><WorkRecord w={manifest.works[page.work]} sourceHolderUrl={source?.holderUrl} compact /></div>}
               </>
             ) : (
               <p>{manifest.rightsRule}</p>
@@ -557,6 +569,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
             text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
           </p>
         </div>
+        {/* the dropdown's body — a sibling of the measured block, never part of the panes' height budget */}
+        {!reading && page && pageWork && workOpen && (
+          <div id="review-work-record" className={cn('mt-2 max-w-3xl border-l-2 border-accent/40 pl-3 text-[11px] leading-relaxed', (layout !== 'side') && 'max-w-5xl mx-auto')}>
+            <WorkRecord w={pageWork} sourceHolderUrl={source?.holderUrl} compact />
+          </div>
+        )}
       </main>
       <SiteFooter />
     </div>
