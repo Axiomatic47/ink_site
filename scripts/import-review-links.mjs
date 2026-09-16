@@ -69,6 +69,12 @@ const REVIEWS = [
     lane: join(BOOK_DIR, 'Pinned Citation Extracts'),
   },
   {
+    slug: 'a-restorative-reading-of-genesis-1-3',
+    id: 'genesis-1-3', // lane by drafter 60f85bca, 2026-09-16
+    book: join(LIB, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
+    lane: join(LIB, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts'),
+  },
+  {
     slug: 'the-holy-seed',
     id: 'holy-seed',
     book: join(LIB, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'THE_HOLY_SEED.md'),

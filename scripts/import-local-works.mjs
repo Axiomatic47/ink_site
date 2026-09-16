@@ -43,7 +43,8 @@ const LOCAL = [
     // the book's own words (its Conclusion, first paragraph)
     blurb: 'Genesis 1–3 is one narrative told twice. The first telling gives the frame, six days and a rest; the second goes back over the sixth day and gives the detail. A reading of the Hebrew and of its versions, from the Septuagint to the King James, cited at the leaf for every reading.',
     featured: true,
-    src: join(MANUSCRIPT, '1. Theology', '1. Genesis', 'canonical', 'A_Restorative_Reading_of_Genesis_1-3.md'),
+    // moved 2026-09-16 from work_station/manuscript into the research library beside its lane (drafter 60f85bca)
+    src: join(LIBRARY, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'A_Restorative_Reading_of_Genesis_1-3.md'),
   },
   {
     // owner 2026-09-14: the immunity book goes up with a REVIEW MODE — the
