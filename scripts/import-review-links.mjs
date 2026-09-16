@@ -98,6 +98,9 @@ const tsv = (file) => {
 
 /** printed-page label from the pin kind and the extract's suffix letter */
 const pinLabel = (kind, pin, file, status, sourceKey) => {
+  // an ITEM (a catalogue record the book cites — status EXTERNAL, pinkind item): the pin is the item's
+  // citation as written ("NLW MS 9052E/227"), never "p. …" (lane contract 2026-09-16)
+  if (kind === 'item' || status === 'EXTERNAL') return pin || '';
   const suf = file ? /_([a-z])[^_/]*\.pdf$/.exec(file)?.[1] : null;
   if (sourceKey === 'POLLARD_1911') return `1611 facsimile p. ${pin}`; // the reprint's PDF page: the 1611 is unpaginated
   // owner rule 2026-09-15: a case cited by its first page means the WHOLE case — the lane cuts every page of
@@ -217,7 +220,17 @@ function importOne(cfg) {
       // owner-use leaves onto the device branch
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
         verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}),
+        // `url` (lane contract 2026-09-16): a held membrane / folio's own leaf page on this site
+        // (/research/<archive>/leaf/<id>) — the chip links there instead of only saying "held"
+        ...(r.url ? { url: r.url } : {}),
         ...(r.context ? { ctx: { extract: r.context, page: Number(r.context_page) || 1, sha256: r.context_sha || null } } : {}) });
+    } else if (r.url && !r.extract) {
+      // a LINK-ONLY row (status EXTERNAL, rights external-link): a catalogue record the book cites;
+      // nothing is held in the lane, so nothing is served — the chip carries the record's URL and the
+      // item citation as its label. One rule for both kinds of url: any row that carries one yields a chip with it.
+      const kind = sources[r.source_key]?.pinkind || 'page';
+      u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, null, r.status, r.source_key), extract: null, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
+        verified: null, sha256: null, url: r.url });
     }
   }
 
@@ -269,7 +282,7 @@ function importOne(cfg) {
   const wanted = new Set();
   for (const u of units.values()) {
     for (const p of u.pages) {
-      if (!PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
+      if (!p.extract || !PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
       const src = join(cfg.lane, p.extract);
       if (!existsSync(src)) { p.file = null; unwrappable.push(`${u.id}: extract missing on disk ${p.extract}`); continue; }
       const rel = p.extract.split('/').map(encodeURIComponent).join('/');
@@ -401,7 +414,7 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights,
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -426,6 +439,8 @@ function importOne(cfg) {
   const pages = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
+  { let withUrl = 0, external = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) withUrl += 1; if (!p.extract && p.url) external += 1; }
+    console.log(`  links: ${withUrl} page chips carry a url (${withUrl - external} held leaves on this site, ${external} external records)`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');

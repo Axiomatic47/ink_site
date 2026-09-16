@@ -65,6 +65,13 @@ p=none, all on Netlify DNS).
   the on-disk extract set against the rows — extra 0, missing 0 — or aborts.
 - The book text and the lane are never edited here; a book edit re-runs the
   lane (the drafter's seat), then both imports.
+- **A held page may carry a `url`** (lane contract 2026-09-16): the index row's
+  `url` rides onto the page chip — a STAC membrane / HLS folio opens its own
+  leaf page on this site (site-relative, same tab); a row with status
+  `EXTERNAL` and rights `external-link` (a catalogue record the book cites, no
+  extract, pinkind `item`) makes a chip whose label is the pin as written and
+  whose link opens the holder's record in a new tab. One rule: any row with a
+  `url` yields a chip with it; nothing with `external-link` is ever served.
 - **Search within a pane** (owner 2026-09-15): the viewer's magnifier opens a
   search row; the query is matched, case- and accent-folded, against each
   page's text layer, read once per page and cached; hits are boxed as

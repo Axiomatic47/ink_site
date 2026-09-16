@@ -19,6 +19,10 @@ export interface ReviewPage {
   rights: string;
   /** the case's first page — the note cited the case without a pin, so the whole case is served (owner 2026-09-15) */
   begins?: boolean;
+  /** where the page can be SEEN when it is not served here (lane contract 2026-09-16): a held membrane or
+      folio's own leaf page on this site (site-relative, /research/<archive>/leaf/<id>), or the holder's
+      catalogue record for an EXTERNAL row (https) — one rule: any index row with a url yields a chip with it */
+  url?: string;
   /** the READING COPY (owner rule 2026-09-15): a multi-page PDF of the work — whole when ≤10 pages or a
       whole case, else the cited page with the neighbours its quotation needs — and the cited page's
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
@@ -69,7 +73,7 @@ export interface ReviewMarker { note: string; page: number; rect: Rect }
 export interface ReviewSource {
   title: string;
   rights: string;
-  pinkind: 'page' | 'col' | 'folio' | 'memb' | 'sig' | string;
+  pinkind: 'page' | 'col' | 'folio' | 'memb' | 'sig' | 'item' | string;
   /** the holder's catalogue record, for licence-bound reproductions */
   holderUrl?: string;
 }
@@ -119,6 +123,7 @@ export const RIGHTS_LABEL: Record<string, string> = {
   'public-domain': 'Public domain',
   'in-copyright-owner-use': 'In copyright — held for the author’s own use',
   'licence-bound': 'Licence-bound reproduction',
+  'external-link': 'Catalogue record at the holder — nothing held in the library',
 };
 
 /** the units that open a published page */
