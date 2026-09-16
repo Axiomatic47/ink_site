@@ -484,7 +484,7 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
               <>
                 <p>
                   <span className="text-ink/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
-                  {' · '}{page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
+                  {' · '}{page.rights === 'external-link' ? 'the holder’s catalogue record, cited by its preferred citation; no page is held' : page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
                   {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
                   {page.url && (page.url.startsWith('http')
