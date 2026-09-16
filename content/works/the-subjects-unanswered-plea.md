@@ -1789,22 +1789,16 @@ What remains is the observation on which the American Conclusion closed, now wit
 
 **Cases**
 
-- *Franchise Tax Board of California v. Hyatt*, 587 U.S. 230 (2019).
-- *Kawananakoa v. Polyblank*, 205 U.S. 349 (1907).
-- *Beers v. Arkansas*, 61 U.S. (20 How.) 527 (1858).
-- *Buckley v. Fitzsimmons*, 509 U.S. 259 (1993).
-- *Hans v. Louisiana*, 134 U.S. 1 (1890).
-- *Nevada v. Hall*, 440 U.S. 410 (1979).
-- *Rehberg v. Paulk*, 566 U.S. 356 (2012).
-- *Seminole Tribe of Florida v. Florida*, 517 U.S. 44 (1996).
 - *Alden v. Maine*, 527 U.S. 706 (1999).
 - *American Tobacco Co. v. United States*, 328 U.S. 781 (1946).
 - *Anderson v. Creighton*, 483 U.S. 635 (1987).
-- *Anonymous* (Sir John Bennet's Case), Cro. Car. 56, 79 Eng. Rep. 652 (C.P. 1626).
+- *Anonymous* (Sir John Bennet's Case), Cro. Car. 56, 79 Eng. Rep. 652 (C.P. 1627).
 - *Anonymous*, Jenk. 162, 145 Eng. Rep. 104 (digesting 8 Hen. 6, c. 12).
 - *Arizona v. Youngblood*, 488 U.S. 51 (1988).
+- *Awodiya v. Ministry of Justice*, [2025] EWHC 49 (KB).
 - *Bagg's Case*, 11 Co. Rep. 93b, 77 Eng. Rep. 1271 (K.B. 1615).
 - *Beacon Theatres, Inc. v. Westover*, 359 U.S. 500 (1959).
+- *Beers v. Arkansas*, 61 U.S. (20 How.) 527 (1858).
 - *Bell v. Milwaukee*, 746 F.2d 1205 (7th Cir. 1984).
 - *Blackamore's Case*, 8 Co. Rep. 160a, 77 Eng. Rep. 716 (K.B. 8 Jac. I).
 - *Bolling v. Sharpe*, 347 U.S. 497 (1954).
@@ -1814,27 +1808,37 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Bradley v. Fisher*, 80 U.S. (13 Wall.) 335 (1872).
 - *Brown v. Board of Education*, 347 U.S. 483 (1954).
 - *Brown v. Walker*, 161 U.S. 591 (1896).
+- *Buckley v. Fitzsimmons*, 509 U.S. 259 (1993).
 - *Bushell's Case*, Vaughan 135, 124 Eng. Rep. 1006 (C.P. 1670).
 - *Butz v. Economou*, 438 U.S. 478 (1978).
 - *California v. Trombetta*, 467 U.S. 479 (1984).
+- *Case de Libellis Famosis*, 5 Co. Rep. 125a, 77 Eng. Rep. 250 (Star Ch. 1605).
 - *Chambers v. Baltimore & Ohio R.R.*, 207 U.S. 142 (1907).
 - *Christopher v. Harbury*, 536 U.S. 403 (2002).
+- *City of Monterey v. Del Monte Dunes at Monterey, Ltd.*, 526 U.S. 687 (1999).
 - *Clark v. United States*, 289 U.S. 1 (1933).
 - *Clinton v. Jones*, 520 U.S. 681 (1997).
 - *Coffin v. Coffin*, 4 Mass. 1 (1808).
 - *Cohens v. Virginia*, 19 U.S. (6 Wheat.) 264 (1821).
+- *Curtis v. Loether*, 415 U.S. 189 (1974).
 - *Dairy Queen, Inc. v. Wood*, 369 U.S. 469 (1962).
 - *Dalehite v. United States*, 346 U.S. 15 (1953).
 - *Dawkins v. Lord Paulet*, L.R. 5 Q.B. 94 (1869).
 - *Dimes v. Proprietors of the Grand Junction Canal*, 3 H.L.C. 759, 10 Eng. Rep. 301 (H.L. 1852).
+- *Dimick v. Schiedt*, 293 U.S. 474 (1935).
+- *District of Columbia v. Wesby*, 583 U.S. 48 (2018).
 - *Dobbs v. Jackson Women's Health Org.*, 597 U.S. 215 (2022).
-- *Dr. Bonham's Case*, 8 Co. Rep. 113b (C.P. 1610).
+- *Dr. Bonham's Case*, 8 Co. Rep. 107a, 77 Eng. Rep. 638 (C.P. 1610).
 - *Dudly's Case*, 2 Sid. 71, 82 Eng. Rep. 1263 (Upper Bench 1658).
+- *Egbert v. Boule*, 596 U.S. 482 (2022).
 - *Sir John Egerton v. Lord Derby* (*Earl of Derby's Case*), 77 Eng. Rep. 1390 (Ch. 1614) (12 Co. Rep. 114).
+- *Entick v. Carrington*, 2 Wils. K.B. 275, 95 Eng. Rep. 807 (C.P. 1765).
 - *Ex parte Garland*, 71 U.S. (4 Wall.) 333 (1867).
 - *Ex parte Young*, 209 U.S. 123 (1908).
 - *Ferri v. Ackerman*, 444 U.S. 193 (1979).
 - *Floyd v. Barker*, 77 Eng. Rep. 1305 (Star Chamber 1607) (12 Co. Rep. 23).
+- *Forrester v. White*, 484 U.S. 219 (1988).
+- *Franchise Tax Board of California v. Hyatt*, 587 U.S. 230 (2019).
 - *Frankland v. Hampden*, 1 Vern. 66, 23 Eng. Rep. 315 (Ch. 1682).
 - *Fray v. Blackburn*, 3 B. & S. 576, 122 Eng. Rep. 217 (Q.B. 1863).
 - *Fuentes v. Shevin*, 407 U.S. 67 (1972).
@@ -1843,30 +1847,38 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Gravel v. United States*, 408 U.S. 606 (1972).
 - *Gregoire v. Biddle*, 177 F.2d 579 (2d Cir. 1949).
 - *Groenvelt v. Burwell*, 1 Ld. Raym. 454, 91 Eng. Rep. 1202 (K.B. 1700).
+- *Hans v. Louisiana*, 134 U.S. 1 (1890).
 - *Harlow v. Fitzgerald*, 457 U.S. 800 (1982).
 - *Harrison's Case*, Cro. Car. 503, 79 Eng. Rep. 1034 (K.B. 1638).
 - *Heckler v. Chaney*, 470 U.S. 821 (1985).
+- *Heien v. North Carolina*, 574 U.S. 54 (2014).
 - *Henry v. Farmer City State Bank*, 808 F.2d 1228 (7th Cir. 1986).
+- *Hernandez v. Mesa*, 589 U.S. 93 (2020).
 - *Hopkins v. Clemson College*, 221 U.S. 636 (1911).
 - *Hunt v. Cromartie*, 526 U.S. 541 (1999).
 - *Hunziker v. German-American State Bank*, 697 F. Supp. 1007 (N.D. Ill. 1988), *aff'd*, 908 F.2d 975 (7th Cir. 1990) (unpublished order).
+- *Hurnam v. Veerabudren*, [2026] UKPC 29.
 - *Hutton v. Harison*, Hut. 131, 123 Eng. Rep. 1151 (1638).
 - *Imbler v. Pachtman*, 424 U.S. 409 (1976).
 - *Interstate Circuit, Inc. v. United States*, 306 U.S. 208 (1939).
+- *Jacob v. New York City*, 315 U.S. 752 (1942).
 - *Jeffes' Case*, Cro. Car. 175, 79 Eng. Rep. 753 (K.B. 1629).
+- *Johnson v. Jones*, 515 U.S. 304 (1995).
+- *Kawananakoa v. Polyblank*, 205 U.S. 349 (1907).
 - *Kemp v. Neville*, 10 C.B. (N.S.) 523, 142 Eng. Rep. 556 (C.P. 1861).
 - *Kirby v. Tallmadge*, 160 U.S. 379 (1896).
 - *Krause v. Ohio*, 409 U.S. 1052 (1972).
 - *Krause v. State*, 28 Ohio App. 2d 1, 274 N.E.2d 321 (1971).
 - *Krause v. State*, 31 Ohio St. 2d 132, 285 N.E.2d 736 (1972).
-- *Lane v. Cotton*, 1 Ld. Raym. 646, 91 Eng. Rep. 1332; 1 Salk. 17, 91 Eng. Rep. 17 (K.B. 1701); *Macbeath v. Haldimand*, 1 T.R. 172, 99 Eng. Rep. 1036 (K.B. 1786).
+- *Lane v. Cotton*, 1 Ld. Raym. 646, 91 Eng. Rep. 1332; 1 Salk. 17, 91 Eng. Rep. 17 (K.B. 1701).
 - *Larson v. Domestic & Foreign Commerce Corp.*, 337 U.S. 682 (1949).
 - *Little v. Barreme*, 6 U.S. (2 Cranch) 170 (1804).
-- *Lujan v. Defenders of Wildlife*, 504 U.S. 555 (1992).
+- *Macbeath v. Haldimand*, 1 T.R. 172, 99 Eng. Rep. 1036 (K.B. 1786).
 - *Manning v. Ketcham*, 58 F.2d 948 (6th Cir. 1932).
 - *Marbury v. Madison*, 5 U.S. (1 Cranch) 137 (1803).
 - *Markman v. Westview Instruments, Inc.*, 517 U.S. 370 (1996).
 - *Mathews v. Eldridge*, 424 U.S. 319 (1976).
+- *Mazhar v. Lord Chancellor*, [2019] EWCA Civ 1558.
 - *McDonnell v. United States*, 579 U.S. 550 (2016).
 - Memoranda (the removals of Rainsford and Scroggs, C.JJ.), 1 Ventris 329, 354, 86 Eng. Rep. 212, 228 (K.B. 1678, 1681).
 - Memorandum (the removal of Sir Edward Coke), Cro. Jac. 407, 79 Eng. Rep. 348 (K.B. 1616).
@@ -1876,6 +1888,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Mitchell v. W.T. Grant Co.*, 416 U.S. 600 (1974).
 - *Mitchum v. Foster*, 407 U.S. 225 (1972).
 - *Monroe v. Pape*, 365 U.S. 167 (1961).
+- *Nevada v. Hall*, 440 U.S. 410 (1979).
 - *New York State Rifle & Pistol Ass'n v. Bruen*, 597 U.S. 1 (2022).
 - *Nixon v. Administrator of General Services*, 433 U.S. 425 (1977).
 - *Nixon v. Fitzgerald*, 457 U.S. 731 (1982).
@@ -1883,23 +1896,26 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Niz-Chavez v. Garland*, 593 U.S. 155 (2021).
 - *North Georgia Finishing, Inc. v. Di-Chem, Inc.*, 419 U.S. 601 (1975).
 - *O'Shea v. Littleton*, 414 U.S. 488 (1974).
+- *Ornelas v. United States*, 517 U.S. 690 (1996).
 - *Owen v. City of Independence*, 445 U.S. 622 (1980).
 - *Phelps v. Sill*, 1 Day 315 (Conn. 1804).
 - *Pierson v. Ray*, 386 U.S. 547 (1967).
 - *Pomeranz v. Class*, 82 Colo. 173, 257 P. 1086 (1927).
-- *Prohibitions del Roy*, 77 Eng. Rep. 1342 (1607) (12 Co. Rep. 63).
 - *Prohibitions* (the President of York's complaint), 13 Co. Rep. 30, 77 Eng. Rep. 1440.
+- *Prohibitions del Roy*, 77 Eng. Rep. 1342 (1607) (12 Co. Rep. 63).
 - *Prout v. Starr*, 188 U.S. 537 (1903).
 - *Pulliam v. Allen*, 466 U.S. 522 (1984).
 - *Pullman-Standard v. Swint*, 456 U.S. 273 (1982).
 - *Ramos v. Louisiana*, 590 U.S. 83 (2020).
 - *Randall v. Brigham*, 74 U.S. (7 Wall.) 523 (1869).
+- *Re McC (A Minor)*, [1985] A.C. 528 (H.L.).
 - *Reeves v. Sanderson Plumbing Prods., Inc.*, 530 U.S. 133 (2000).
-- *Sacra Biblia, Hebraice, Graece, et Latine, cum annotationibus Francisci Vatabli* (ex officina Commeliniana, 1599).
+- *Rehberg v. Paulk*, 566 U.S. 356 (2012).
 - *Scheuer v. Rhodes*, 416 U.S. 232 (1974).
 - *Schick v. Reed*, 419 U.S. 256 (1974).
 - *Scott v. Stansfield*, L.R. 3 Ex. 220 (1868).
-- *Sirros v. Moore*, [1975] Q.B. 118, [1974] 3 W.L.R. 459 (C.A.); *Re McC (A Minor)*, [1985] A.C. 528 (H.L.); *Mazhar v. Lord Chancellor*, [2019] EWCA Civ 1558; *Awodiya v. Ministry of Justice*, [2025] EWHC 49 (KB); *Hurnam v. Veerabudren*, [2026] UKPC 29.
+- *Seminole Tribe of Florida v. Florida*, 517 U.S. 44 (1996).
+- *Sirros v. Moore*, [1975] Q.B. 118, [1974] 3 W.L.R. 459 (C.A.).
 - *Smith v. Bouchier*, 2 Stra. 993, 93 Eng. Rep. 989 (K.B. 1734).
 - *Snyder v. Phelps*, 562 U.S. 443 (2011).
 - *Spalding v. Vilas*, 161 U.S. 483 (1896).
@@ -1907,15 +1923,15 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Stump v. Sparkman*, 435 U.S. 349 (1978).
 - *Taaffe v. Downes*, 3 Moore P.C. 36 n. (K.B. Ir. 1813) (the Hatchell report, Dublin 1815).
 - *Tenney v. Brandhove*, 341 U.S. 367 (1951).
-- *The Case of the Marshalsea*, 10 Co. Rep. 68b, 77 Eng. Rep. 1027 (K.B. 1612).
-- The Lord Chancellor's Speech to Sir Henry Mountague, Moore (K.B.) 827, 72 Eng. Rep. 931 (K.B. 1616).
-- *The Memoires of Titus Oates, Written for Publick Satisfaction* (Thomas Graves, London 1685).
+- *The Case of the Marshalsea*, 10 Co. Rep. 68b, 77 Eng. Rep. 1027 (C.P. 1612).
+- The Lord Chancellor's Speech to Sir Henry Montague, Moore (K.B.) 827, 72 Eng. Rep. 931 (K.B. 1616).
 - *The Pizarro*, 15 U.S. (2 Wheat.) 227 (1817).
-- *The Vulgate New Testament with the Douay Version of 1582 in Parallel Columns* (Samuel Bagster and Sons, London 1872).
 - *Trump v. United States*, 603 U.S. 593 (2024).
 - *Tull v. United States*, 481 U.S. 412 (1987).
+- *United States v. Johnson*, 383 U.S. 169 (1966).
 - *United States v. Lee*, 106 U.S. 196 (1882).
 - *United States v. Nixon*, 418 U.S. 683 (1974).
+- *U.S. Bank N.A. v. Village at Lakeridge, LLC*, 583 U.S. 387 (2018).
 - *Van Ness v. Pacard*, 27 U.S. (2 Pet.) 137 (1829).
 - *Washington v. Glucksberg*, 521 U.S. 702 (1997).
 - *Webster v. Fall*, 266 U.S. 507 (1925).
@@ -1925,32 +1941,40 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Wrenham's Case*, Hob. 220, 80 Eng. Rep. 367 (Star Ch. 1618).
 - *Yates v. Lansing*, 5 Johns. 282 (N.Y. Sup. Ct. 1810), *aff'd*, 9 Johns. 395 (N.Y. 1811).
 - *Youngstown Sheet & Tube Co. v. Sawyer*, 343 U.S. 579 (1952).
+- *Ziglar v. Abbasi*, 582 U.S. 120 (2017).
 
 **Constitutional Provisions, Statutes, and Rules**
 
-- 18 U.S.C. § 2071.
+- 18 U.S.C. §§ 242, 2071.
 - 28 C.F.R. § 0.25.
-- 28 U.S.C. §§ 503, 511.
+- 28 U.S.C. §§ 351, 352, 354, 503, 511, 2513, 2680.
 - 42 U.S.C. § 1983.
 - 42 U.S.C. § 1988(b).
 - Act of Apr. 20, 1871, ch. 22, § 1, 17 Stat. 13.
 - Act of Apr. 30, 1790, ch. 9, § 15, 1 Stat. 112, 115.
 - Act of Feb. 26, 1853, ch. 81, §§ 4–5, 10 Stat. 170.
+- Brottsbalk (1962:700); Lag (1986:765); Lag (1994:260) (Sweden).
+- Code de l'organisation judiciaire (France).
+- Code judiciaire (Belgium).
+- Constitution of Japan; 裁判官弾劾法, Act No. 137 of 1947 (Japan).
 - Constitution of the People's Republic of China (2018); Judges Law (2019 rev.); State Compensation Law (2010 rev.); Supervision Law (2018).
 - Courts Act 2003, c. 39; Crown Proceedings Act 1947, 10 & 11 Geo. 6, c. 44; Human Rights Act 1998, c. 42; Constitutional Reform Act 2005, c. 4 (King's and Queen's Printer copies as enacted, legislation.gov.uk; revised texts, legislation.gov.uk).
+- Domstolloven, lov 13. august 1915 nr. 5 (Norway).
 - Fed. R. Evid. 104(e), 607, 901.
+- Federal Constitution of Malaysia (Attorney General's Chambers reprint 2020); Constitution (Amendment) Act 1993, Act A848 (Malaysia).
 - Federal Courts Improvement Act of 1996, Pub. L. No. 104-317 (as codified at 42 U.S.C. §§ 1983, 1988(b)).
 - Ill. Rev. Stat. ch. 110, ¶¶ 19-101 to 19-128 (1985) (replevin).
+- Judges Act, R.S.C. 1985, c. J-1, and S.C. 2023, c. 18 (Canada).
 - Konstitutsiya Rossiiskoi Federatsii; Zakon RF N 3132-1 "O statuse sudei v Rossiiskoi Federatsii" (1992); Grazhdanskii kodeks RF; Postanovlenie Konstitutsionnogo Suda RF N 1-P (2001).
 - Law of the Judiciary, Royal Decree No. M/78 (Saudi Arabia, 2007), Bureau of Experts official translation (2008).
+- Ley Orgánica 6/1985 and Ley Orgánica 7/2015 (Spain).
+- Retsplejeloven, LBK nr. 1298 af 7. november 2025 (Denmark).
 - Rev. Stat. § 1979 (1874), 18 Stat. pt. 1, at 348.
 - Rev. Stat. §§ 5403, 5408 (1874), 18 Stat. pt. 1, at 1052–53.
 - Socialist Constitution of the D.P.R.K. (2016; 2026); Criminal Law of the D.P.R.K. (2012); Law on Compensation for Damage (2001, as amended).
 - The Declaration of Independence (U.S. 1776).
-- U.S. Const. art. I, § 1; art. I, § 6, cl. 1; art. I, § 9, cl. 2; art. II, § 1, cl. 8; art. II, § 2, cl. 1; art. II, § 3; art. II, § 4; art. III; art. IV, § 1; art. VI, cls. 2–3; amends. V, VI, VII, IX, X, XIV, XXV.
-- U.S. Const. art. III, § 1; amend. VIII.
-- U.S. Const.; 42 U.S.C. § 1983; 28 U.S.C. §§ 351, 352, 354, 2513, 2680; 18 U.S.C. § 242; Pub. L. No. 104-317 (1996).
-- U.S. Department of Justice, Torts Branch, *Immunity of Federal Employees in Personal Damages Actions*, Monograph III (1985).
+- U.S. Const. art. I, § 1; art. I, § 6, cl. 1; art. I, § 9, cl. 2; art. II, § 1, cl. 8; art. II, § 2, cl. 1; art. II, § 3; art. II, § 4; art. III; art. III, § 1; art. IV, § 1; art. VI, cls. 2–3; amends. V, VI, VII, VIII, IX, X, XIV, XXV.
+- Wet op de rechterlijke organisatie (Netherlands).
 
 **Briefs and Legislative Materials**
 
@@ -1977,6 +2001,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Reply Brief of Appellant, *Ohse v. Hughes*, No. 85-3074 (7th Cir. 1986).
 - Reply Brief of Plaintiff-Appellant, *McCloud v. Rector*, No. 76-1324 (7th Cir. July 26, 1976).
 - Reply Brief, *Justice v. Town of Blackwell*, Nos. 86-2878 & 86-3031 (7th Cir. 1987).
+- U.S. Department of Justice, Torts Branch, *Immunity of Federal Employees in Personal Damages Actions*, Monograph III (1985).
 
 **Founding-Era and Historical Sources**
 
@@ -1986,13 +2011,16 @@ What remains is the observation on which the American Conclusion closed, now wit
 - 8 Hen. 6, c. 12 (1429) (Eng.) (rasure of a record whereby a judgment is avoided made felony; cited as digested at Jenk. 162, *see* the note at chapter 1.2 § B).
 - *A Collection of the Proceedings in the House of Commons against the Lord Verulam, Viscount St. Albans, Lord High Chancellor of England, for Corruption and Bribery* (2d ed., London 1721).
 - *A Complete Collection of State-Trials*, vol. I (Francis Hargrave ed., 4th ed., London 1776) (item XIX, the proceedings of 27 January 1605/6 against the eight Gunpowder defendants, with the Attorney General's prosecution; every quoted passage collated against the 1776 print; *see* the notes at chapter 1.3 § C).
-- *A True Narrative of the Tryal of Titus Oates for Perjury at the Kings-Bench-Barr at Westminster* (Dublin reprint, 1685).
-- Alfred Boretius (ed.), *Capitularia regum Francorum*, vol. I (MGH, Legum sectio II; Hahn, Hanover 1883).
 - *A True Account of the Gunpowder Plot* (extracted from Lingard's *History of England* and Dodd's *Church History* with Tierney's notes and documents; "Vindicator" ed., London, C. Dolman 1851) (the huc-usque record of Coke's hand on the Fawkes examination, stated at pp. 8 & 44; quotations from the Internet Archive copy; the manuscript description rests on the 1851 editors' inspection; *see* the note at chapter 1.3 § C).
+- *A True Narrative of the Tryal of Titus Oates for Perjury at the Kings-Bench-Barr at Westminster* (Dublin reprint, 1685).
 - Act of Settlement 1701, 12 & 13 Will. 3, c. 2 (Eng.) (judicial tenure during good behaviour; model for U.S. Const. art. III, § 1).
 - *Acts of the Privy Council of England*, n.s. vols. 21 (A.D. 1591) & 22 (A.D. 1591–92) (J.R. Dasent ed., HMSO 1900–01) (the Anglesey enforcement record fifteen years before *Floyd* — the Wood–Bulkeley censure arc and the Foulk Thomas matter; *see* the note at chapter 1.1; corpus copies complete, fixity manifests beside them).
 - Administration of Justice Act 1774, 14 Geo. 3, c. 39 (Eng.) (the "Murder Act"; removal of officials' capital trials out of Massachusetts, justified in the preamble by the apprehension-of-being-questioned rationale; the Declaration's "mock Trial" grievance's referent).
+- Alfred Boretius (ed.), *Capitularia regum Francorum*, vol. I (MGH, Legum sectio II; Hahn, Hanover 1883).
 - *An Act for the Regulating of the Privy Council, and for taking away the Court commonly called the Star Chamber*, 16 Car. 1, c. 10 (1641) (Eng.) (dissolving the Court of Star Chamber and the Council in the Marches of Wales).
+- *Biblia Sacra Vulgatae Editionis* (Typographia Apostolica Vaticana, Rome 1592) (the Sixto-Clementine editio princeps).
+- *Biblia Sacra Vulgatae Editionis Sixti V et Clementis VIII auctoritate edita* (Desclée, Lefebvre, Tournai 1881).
+- *Biblia, the Bible, that is, the holy Scripture of the Olde and New Testament* (Myles Coverdale, 1535).
 - Bill of Rights 1689, 1 W. & M. sess. 2, c. 2 (Eng.) (the cruel-and-unusual-punishments clause carried into U.S. Const. amend. VIII).
 - C. E. Zachariä von Lingenthal (ed.), *Collectio librorum juris Graeco-Romani ineditorum: Ecloga Leonis et Constantini, Epanagoge Basilii Leonis et Alexandri* (Barth, Leipzig 1852).
 - C. E. Zachariä von Lingenthal (ed.), *Jus Graeco-Romanum*, pars I, *Practica ex actis Eustathii Romani* (Weigel, Leipzig 1856).
@@ -2005,8 +2033,8 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Cobbett's Complete Collection of State Trials*, vol. III (T.B. Howell ed., London 1809) (Oliver St John's speech to the Lords on the ship-money judgment, 1640).
 - Edward Coke, *La Size Part des Reports* (London 1607) (the English preface "To the Reader" — the reply-refusal to Persons and the reported-the-Text self-description; quoted from the first-edition leaves, from the BL microfilm; *see* the note at chapter 1.3 § C).
 - Edward Coke, *The Fourth Part of the Institutes of the Laws of England* (London 1797 ed.) (ch. 7, The Court of Kings Bench; the record-permanence passage at p. 73, in the 1797 print; *see* the note at chapter 1.2 § B).
-- Edward Coke, *The Twelfth Part of the Reports* (London 1656) (the posthumous first printing of 12 Co. Rep.; *Floyd v. Barker* at pp. 23–26; collated at the crux sentence against the notebook edition and the English Reports reprint — *see* the notebook-edition note at chapter 1.3 § B; corpus copies: the 1656 first edition (British Library/UMI microfilm) and the 1677 edition (John Adams Library, Boston Public Library copy), fixity manifests beside them).
 - Edward Coke, *The Reports of Sir Edward Coke, Kt. … in Thirteen Parts*, Part IX (London 1727) (the Preface "To the Reader" to the Ninth Part, English beside Coke's Latin, unpaginated; *see* the note at chapter 1.4 § A).
+- Edward Coke, *The Twelfth Part of the Reports* (London 1656) (the posthumous first printing of 12 Co. Rep.; *Floyd v. Barker* at pp. 23–26; collated at the crux sentence against the notebook edition and the English Reports reprint — *see* the notebook-edition note at chapter 1.3 § B; corpus copies: the 1656 first edition (British Library/UMI microfilm) and the 1677 edition (John Adams Library, Boston Public Library copy), fixity manifests beside them).
 - Edward Foss, *The Judges of England, with Sketches of their Lives*, vols. III (1272–1377) and IV (1377–1485) (London 1851).
 - Emil Friedberg (ed.), *Corpus Iuris Canonici*, 2 vols. (Tauchnitz, Leipzig 1879–1881).
 - F. Liebermann (ed.), *Die Gesetze der Angelsachsen*, vol. I (Niemeyer, Halle 1903).
@@ -2019,9 +2047,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - James Wilson, *The Works of the Honourable James Wilson*, 3 vols. (Bird Wilson ed., Philadelphia 1804).
 - John Adams, *A Defence of the Constitutions of Government of the United States of America*, vol. III (London 1788).
 - John Hawarde, *Les Reportes del Cases in Camera Stellata, 1593 to 1609* (William Paley Baildon ed., London 1894) (the Star Chamber's own practice notes; *Maye v. Ebden* (Mich. 1597) at p. 81; *see* the note at chapter 1.2 § B).
-- John Hawarde, *Les Reportes del Cases in Camera Stellata, 1593 to 1609* (William Paley Baildon ed., London 1894).
-- John Rushworth, *Historical Collections of Private Passages of State* (London 1692).
-- John Rushworth, *Historical Collections of Private Passages of State* (the volume for 1640–41) (London 1692).
+- John Rushworth, *Historical Collections of Private Passages of State* (London 1692) (the volume for 1640–41 and its Appendix).
 - *M. Tulli Ciceronis Pro Gnaeo Plancio Oratio ad Iudices* (Hubert A. Holden ed., Cambridge 1881).
 - *M. Tulli Ciceronis Pro P. Sestio Oratio ad Iudices* (Hubert A. Holden ed., 3d ed., Macmillan, London 1889).
 - Magna Carta (1215), 9 Hen. III, c. 29 (1225) (Eng.) ("no Freeman shall be taken or imprisoned . . . but by lawful Judgment of his Peers or by the Law of the Land").
@@ -2033,27 +2059,27 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Rotuli Parliamentorum*, vol. II (London 1783).
 - Rudolf Schoell & Wilhelm Kroll (eds.), *Corpus Iuris Civilis*, vol. III, *Novellae* (Weidmann, Berlin 1892).
 - Rudolph Sohm (ed.), *Lex Ribuaria et Lex Francorum Chamavorum* (Hahn, Hanover 1883).
+- *Sacra Biblia, Hebraice, Graece, et Latine, cum annotationibus Francisci Vatabli* (ex officina Commeliniana, 1599).
 - Samuel Roberts, *A Digest of Select British Statutes in Force in Pennsylvania, According to the Report of the Judges of the Supreme Court to the Legislature, with Notes and Illustrations* (Pittsburgh 1817).
-- Samuel Rutherford, *Lex, Rex* (1644).
 - Samuel Rutherford, *Lex, Rex: The Law and the Prince* (1644) (Edinburgh 1843 ed.).
-- *Biblia, the Bible, that is, the holy Scripture of the Olde and New Testament* (Myles Coverdale, 1535).
-- *Biblia Sacra Vulgatae Editionis* (Typographia Apostolica Vaticana, Rome 1592) (the Sixto-Clementine editio princeps).
-- *Biblia Sacra Vulgatae Editionis Sixti V et Clementis VIII auctoritate edita* (Desclée, Lefebvre, Tournai 1881).
+- Samuel Rutherford, *Lex, Rex: The Law and the Prince* (London 1644).
 - *The Bible and Holy Scriptures Conteyned in the Olde and Newe Testament* (Rouland Hall, Geneva 1560).
 - *The Book of the Popes (Liber Pontificalis)*, vol. I (Louise Ropes Loomis trans., Records of Civilization, New York 1916).
-- *The Federalist* Nos. 22, 46, 49, 51, 69, 70, 77, 78, 84 (Alexander Hamilton & James Madison), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
 - *The Byble in Englyshe* (Great Bible, Cranmer edition, 1540).
+- *The Federalist* Nos. 70, 77, 78, 84 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
 - *The holie Bible conteynyng the olde Testament and the newe* (Richard Jugge, London 1568).
 - *The Holy Bible, Conteyning the Old Testament, and the New* (Robert Barker, London 1611).
 - *The Holy Bible: An Exact Reprint in Roman Type, Page for Page, of the Authorized Version Published in the Year 1611* (A. W. Pollard ed., Clarendon Press, Oxford 1911).
 - *The Lord Coke his Speech and Charge. With a Discoverie of the Abuses and Corruption of Officers* (London: Nathaniel Butter, 1607) (unauthorized print, attributed to Coke).
 - The medieval due-process statutes, 5, 25, 28, 42 Edw. III (1331–1368) (Eng.) (the "due process of law" and "law of the land" statutes recited in the Star Chamber abolition Act).
+- *The Memoires of Titus Oates, Written for Publick Satisfaction* (Thomas Graves, London 1685).
 - *The Moral and Political Works of Thomas Hobbes of Malmesbury* (London 1750) (including *A Dialogue between a Philosopher and a Student of the Common Laws of England*, first published 1681).
+- *The Proceedings and Tryal of the Seven Bishops* (London 1739) (K.B. Trin. 1688; the Attorney General's use of *Wrenham*, at 382–84).
+- *The Statutes of the Realm*, vols. IV–VII (Record Commission 1819–20) (the archival prints from which the 1641 Act, 1689 Bill of Rights, and 1701 Act of Settlement are quoted, orthography as printed; *see* the notes at chapter 1.6).
+- *The Vulgate New Testament with the Douay Version of 1582 in Parallel Columns* (Samuel Bagster and Sons, London 1872).
 - *The Works of Alexander Hamilton*, vol. I (Henry Cabot Lodge ed., Federal ed., Putnam, New York 1904).
 - *The Writings of Thomas Jefferson*, vol. XV (Andrew A. Lipscomb & Albert Ellery Bergh eds., Washington 1903–1905).
 - Theodor Mommsen & Paul Krueger (eds.), *Digesta Iustiniani Augusti*, 2 vols. (Weidmann, Berlin 1870).
-- *The Proceedings and Tryal of the Seven Bishops* (London 1739) (K.B. Trin. 1688; the Attorney General's use of *Wrenham*, at 382–84).
-- *The Statutes of the Realm*, vols. IV–VII (Record Commission 1819–20) (the archival prints from which the 1641 Act, 1689 Bill of Rights, and 1701 Act of Settlement are quoted, orthography as printed; *see* the notes at chapter 1.6).
 - Theodor Mommsen & Paul M. Meyer (eds.), *Theodosiani Libri XVI cum Constitutionibus Sirmondianis*, vol. I pt. 2 (Weidmann, Berlin 1905).
 - Thomas Hobbes, *Leviathan* (W. G. Pogson Smith ed., Clarendon Press, Oxford 1909).
 - Thomas Hobbes, *Leviathan, or The Matter, Forme, & Power of a Common-wealth Ecclesiasticall and Civill* (Andrew Crooke, London 1651).
@@ -2068,7 +2094,6 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Harvard Law School Library, MS 149 (Star Chamber Reports, 1607–1623), ff. 81r–83r (the second, independent contemporaneous account of *Floyd v. Barker*).
 - National Library of Wales, Wynn of Gwydir Papers, GB 0210 GWYDIR (letters series NLW MSS 9051E–9069E; documents series NLW MSS 463B–470E) (cited at catalogue-description tier only, by the Library's own published item descriptions; *see* the Wynn Papers notes at chapter 1.2 § D).
 - The National Archives (UK), E 178/5052 (Exchequer, King's Remembrancer, special commissions of inquiry: Anglesey, 3 Jas. I) (the 1605 escheat commission and its November 1605 inquisition; author's working transcription, structural-layer readings only; *see* the note at chapter 1.1).
-- The National Archives (UK), STAC 8/203/38 (*Lloyde v. Lewys*, Anglesey, June 1607) (the cause's surviving file — examinations, sixteen-article interrogatory instrument, and a defendant's answer; the bill not extant, catalogued "Bill wanting"; quoted from the author's transcription of record copy RC8368179 (2026), conformed to the professional verification transcription by Christopher Whittick (final texts, August 2026); *see* the transcription note at chapter 1.2 § C).
 - The National Archives (UK), STAC 8/203/38 (*Lloyde v. Lewys*, Anglesey, June 1607) (the cause's surviving file — examinations, sixteen-article interrogatory instrument, and a defendant's answer; the bill not extant, catalogued "Bill wanting"; quoted from the author's transcription of record copy RC8368179 (2026), conformed to the professional verification transcription, whose final texts of all three surviving documents returned in August 2026; *see* the transcription note at chapter 1.2 § C).
 - The National Archives (UK), STAC 8/204/31 (Star Chamber; examinations of 30 April 1608) (the follow-on file recording the second prosecution upon the same transaction; outside the commissioned transcription's scope — author-layer readings, disclosed as such; *see* the note at chapter 1.2 § F).
 
@@ -2078,13 +2103,12 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Allen D. Boyer, *Understanding Authority and Will: Sir Edward Coke and the Elizabethan Origins of Judicial Review*, 39 B.C. L. Rev. 1 (1998).
 - Antonia Smith, *The Prefaces to Sir Edward Coke's Reports and Modern Historical Jurisprudence*, 54 Victoria U. Wellington L. Rev. 613 (2023).
 - Ardemus Stewart, *The Irresponsibility of the Judiciary*, 43 Am. L. Reg. & Rev. 383 (1895).
+- Clare Feikert, *United Kingdom: Immunity and Government and Executive Agencies in the 1700s*, Law Library of Congress, LL File No. 2002-13698 (2002).
 - Cora L. Scofield, *A Study of the Court of Star Chamber* (Chicago 1900) (the court's records history: Hudson's complaint, the 1608 Kallender-of-Orders delivery to Bacon; *see* the note at chapter 1.3 § F).
 - Cuthbert William Johnson, *The Life of Sir Edward Coke*, 2d ed., 2 vols. (London 1845).
-- Ifan ab Owen Edwards (comp.), *A Catalogue of Star Chamber Proceedings relating to Wales* (Board of Celtic Studies, University of Wales, History and Law Series No. I; Cardiff: University Press Board, 1929) (cited in the note at chapter 1.1; read at the title page).
-- Feikert, Clare, *United Kingdom: Immunity and Government and Executive Agencies in the 1700s*, Law Library of Congress, LL File No. 2002-13698 (2002).
-- Gillen, Mark R., *The Malay Rulers' Loss of Immunity*, U. Vic. Fac. of Law Occasional Paper (1994).
 - Harold M. Wiener, *Studies in Biblical Law* (David Nutt, London 1904).
 - Ian King, *The Legal Writing of Sir Edward Coke, the Anglo-Saxons, and Lex Terrae*, 39 The Seventeenth Century 329 (2024).
+- Ifan ab Owen Edwards (comp.), *A Catalogue of Star Chamber Proceedings relating to Wales* (Board of Celtic Studies, University of Wales, History and Law Series No. I; Cardiff: University Press Board, 1929) (cited in the note at chapter 1.1; read at the title page).
 - J. Ortolan, *Explication historique des Instituts de l'empereur Justinien*, 12e éd. par J. E. Labbé, vol. III (Livres III et IV) (Plon, Paris 1883).
 - Jay M. Feinman & Roy S. Cohen, *Suing Judges: History and Theory*, 31 S.C. L. Rev. 201 (1980) (cited as quoted in the *Hunziker* brief; not independently held).
 - Joseph R. Weisberger, *The Twilight of Judicial Independence — Pulliam v. Allen*, 19 Suffolk U. L. Rev. 537 (1985), *reprinted in* S. Hrg. 101-664, at 215 (1989).
@@ -2092,10 +2116,10 @@ What remains is the observation on which the American Conclusion closed, now wit
 - K.J. Kesselring, *Conspiracy, Crime, and Conflict in the Court of Star Chamber*, 43 Law & Hist. Rev. 693 (2025).
 - Karl Singewald, *The Doctrine of Non-Suability of the State in the United States* (Johns Hopkins Univ. Studies in Hist. & Pol. Sci. ser. XXVIII, no. 3, 1910).
 - Louis A. Knafla, *Sir Edward Coke and the Star Chamber: The Prosecution of Rapes at Snargate, 1598–1602*, in K.J. Kesselring & Natalie Mears eds., *Star Chamber Matters: An Early Modern Court and Its Records* 61 (Univ. of London Press 2021).
+- Mark R. Gillen, *The Malay Rulers' Loss of Immunity*, U. Vic. Fac. of Law Occasional Paper (1994).
 - Michael Lobban, *The Common Law Mind in the Age of Sir Edward Coke*, Amicus Curiae, no. 33 (2001).
 - Patrick Jaicomo & Daniel Nelson, *Section 1983 (Still) Displaces Qualified Immunity*, 49 Harv. J.L. & Pub. Pol'y 151 (2026).
 - Paul Vinogradoff, *Roman Law in Mediaeval Europe* (London 1909).
-- Retsplejeloven, LBK nr. 1298 af 7. november 2025 (Denmark); Domstolloven, lov 13. august 1915 nr. 5 (Norway); Brottsbalk (1962:700), Lag (1986:765), Lag (1994:260) (Sweden); Wet op de rechterlijke organisatie (Netherlands); Code judiciaire (Belgium); Ley Orgánica 6/1985 and Ley Orgánica 7/2015 (Spain); Code de l'organisation judiciaire (France); Judges Act, R.S.C. 1985, c. J-1, and S.C. 2023, c. 18 (Canada); Constitution of Japan and 裁判官弾劾法, Act No. 137 of 1947 (Japan); Federal Constitution of Malaysia (Attorney General's Chambers reprint 2020) and Constitution (Amendment) Act 1993, Act A848 (Malaysia).
 - W.R. Williams, *The History of the Great Sessions in Wales, 1542–1830* (1899) (the Welsh-circuit bench record; *see* the Wynn letters note at chapter 1.2 § D).
 - William Bennett Munro, *The Genesis of Roman Law in America*, 22 Harv. L. Rev. 579 (1909).
 - William Sharp McKechnie, *Magna Carta: A Commentary on the Great Charter of King John* (2d ed., Glasgow 1914).
