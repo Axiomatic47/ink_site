@@ -494,7 +494,7 @@ The reading at every version yields three conclusions for the argument. First, t
 [^hs4_6]: Coverdale, Great and Bishops' margins at Ezra 9:2; [Geneva 1560, notes a and b and chapter argument](cite:hs4_6/2); [1611, chapter argument. Read at the image.](cite:hs4_6/3)
 [^hs4_7]: [Kittel 1909 p. 1197, notes a and b at 9:1](cite:hs4_7/1); [no note at 9:2. Bertholet, *Die Stellung der Israeliten und der Juden zu den Fremden* (1896), pp. 135–137. Kittel at the image](cite:hs4_7/2); [Bertholet at the text layer.](cite:hs4_7/3)
 [^hs4_8]: [Kittel, Pars II, p. 560, Isa. 6:13 note c–c](cite:hs4_8/1); [Swete III (1905), p. 111, apparatus at 13](cite:hs4_8/2); [Vulgate 1592 fol. 640. Read at the image.](cite:hs4_8/3)
-[^hs4_9]: [Coverdale, opening 274](cite:hs4_9/1); [Great Bible, opening 260](cite:hs4_9/2); [Geneva fol. 285, notes q and r](cite:hs4_9/3); [Bishops' 1568 fol. lxxiij](cite:hs4_9/4); [1611, Isa. 6, margins](cite:hs4_9/5); [Leeser p. 508, note f](cite:hs4_9/6); [Ryle, *The Books of Ezra and Nehemiah* (Cambridge 1911), at 9:2. All at the image except Leeser.](cite:hs4_9/7)
+[^hs4_9]: [Coverdale, opening 274](cite:hs4_9/1); [Great Bible, opening 260](cite:hs4_9/2); [Geneva fol. 285, notes q and r](cite:hs4_9/3); [Bishops' 1568 fol. lxxiij](cite:hs4_9/4); [1611, Isa. 6, margins](cite:hs4_9/5); [Leeser p. 466, note f](cite:hs4_9/6); [Ryle, *The Books of Ezra and Nehemiah* (Cambridge 1911), at 9:2. All at the image except Leeser.](cite:hs4_9/7)
 
 ## 4.2 The Dissolution
 
@@ -587,7 +587,7 @@ The two texts together establish the vocabulary Ezra's generation had for the ma
 [^hs4_12]: [Geneva 1560, Neh. 13, notes l and n](cite:hs4_12/1); [1611, Neh. 13, margin at 29. Read at the image.](cite:hs4_12/2)
 [^hs4_13]: [Leningrad pp. 654–655](cite:hs4_13/1); [Kittel 1909 pp. 905–906, apparatus at Mal. 2:11 and 2:15–16.](cite:hs4_13/2)
 [^hs4_14]: [Swete III pp. 96–97 (Mal. II 10–16), with apparatus. Read at the image.](cite:hs4_14/1)
-[^hs4_15]: [Vulgate 1592 fol. 849](cite:hs4_15/1); [Geneva 1560 fol. 385, notes p, z and b](cite:hs4_15/2); [1611, Mal. 2, margins at 15 and 16](cite:hs4_15/3); [Leeser pp. 766–767 and note](cite:hs4_15/4); JPS 1917. All at the image except Leeser and JPS.
+[^hs4_15]: [Vulgate 1592 fol. 849](cite:hs4_15/1); [Geneva 1560 fol. 385, notes p, z and b](cite:hs4_15/2); [1611, Mal. 2, margins at 15 and 16](cite:hs4_15/3); [Leeser pp. 708–709 and note](cite:hs4_15/4); JPS 1917. All at the image except Leeser and JPS.
 
 ## 4.4 The Genealogies as Instrument
 
