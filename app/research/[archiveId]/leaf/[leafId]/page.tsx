@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${c.leafLabel} ${leafId} — ${c.ref}`,
     description: c.edition
-      ? `The ${c.leafLabel.toLowerCase()} image beside its transcription (PDF) — ${c.edition.credit.toLowerCase()}.`
+      ? `The ${c.leafLabel.toLowerCase()} image beside its transcription (PDF) — the professional verification transcription by ${c.edition.author}.`
       : `The ${c.leafLabel.toLowerCase()} image; the transcription follows.`,
     alternates: { canonical: `/research/${archiveId}/leaf/${leafId}` },
   };

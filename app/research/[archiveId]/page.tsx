@@ -72,7 +72,7 @@ export default async function ResearchArchivePage({ params }: Params) {
               <li>Open a {c.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
               {c.edition ? (
                 <>
-                  <li>Compare the image against the <strong>transcription</strong> — {c.edition.credit.toLowerCase()}; the depositions, the interrogatories and the answer each run across the {c.leafLabel.toLowerCase()}s they occupy, so the same document opens on each of them.</li>
+                  <li>Compare the image against the <strong>transcription</strong> — the professional verification transcription by {c.edition.author}; the depositions, the interrogatories and the answer each run across the {c.leafLabel.toLowerCase()}s they occupy, so the same document opens on each of them.</li>
                   <li>Angle brackets in the transcription mark the scribe’s insertions; square brackets carry the transcriber’s foliation and translations.</li>
                 </>
               ) : (
