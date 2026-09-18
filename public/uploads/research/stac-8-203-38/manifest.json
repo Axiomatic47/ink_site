@@ -11,7 +11,7 @@
     "published": true,
     "rightsHolder": "The National Archives (UK)",
     "rightsNote": "Images reproduced by permission of The National Archives (UK) Image Library (web-publication licence; the underlying record copies were supplied under order RC8368179).",
-    "reuseNote": "Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is published under the Open Government Licence v3.0 — contains public sector information licensed under the Open Government Licence v3.0; cite the piece as “The National Archives, ref. STAC 8/203/38.”"
+    "reuseNote": "Full-resolution downloads are provided for private study and non-commercial research; republication of the images requires a licence from The National Archives Image Library. The transcription text is the professional verification transcription by Christopher Whittick (2026), published in full with the author’s agreement; credit him as its author and cite the record as “The National Archives, ref. STAC 8/203/38.”"
   },
   "leaves": [
     {
@@ -23,9 +23,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 1. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 001 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M001.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -38,9 +42,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 2. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 002 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M002.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -53,9 +61,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 3. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 003 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M003.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -68,9 +80,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 4. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 004 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M004.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -83,9 +99,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 5. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 005 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M005.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -98,9 +118,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 6. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 006 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M006.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -113,9 +137,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 7. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 007 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M007.pdf"
+          "kind": "edition",
+          "span": "001–007",
+          "title": "The depositions of John Towneley and Rees ap Jevan Lloyd, taken 15 June 1607",
+          "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
         }
       ]
     },
@@ -128,9 +156,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 8. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 008 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M008.pdf"
+          "kind": "edition",
+          "span": "008–009",
+          "title": "The interrogatories — articles ministered against Rees ap Jevan Lloyd, 15 June 1607",
+          "pdf": "pdfs/WHITTICK_INTERROGATORIES_M008-M009.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9"
         }
       ]
     },
@@ -143,9 +175,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 9. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 009 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M009.pdf"
+          "kind": "edition",
+          "span": "008–009",
+          "title": "The interrogatories — articles ministered against Rees ap Jevan Lloyd, 15 June 1607",
+          "pdf": "pdfs/WHITTICK_INTERROGATORIES_M008-M009.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9"
         }
       ]
     },
@@ -159,9 +195,13 @@
       "credit": "The National Archives, Kew, STAC 8/203/38, m. 10. Reproduced by permission of The National Archives.",
       "docs": [
         {
-          "kind": "transcript",
-          "title": "CANONICAL TRANSCRIPT — MEMBRANE 010 (TNA STAC 8/203/38)",
-          "pdf": "pdfs/TRANSCRIPT_M010.pdf"
+          "kind": "edition",
+          "span": "010",
+          "title": "The answer of John Lewis, esquire, to the bill of Rees ap Jevan Lloyd, sworn 11 March 1608",
+          "pdf": "pdfs/WHITTICK_ANSWER_M010.pdf",
+          "author": "Christopher Whittick",
+          "credit": "Professional verification transcription by Christopher Whittick",
+          "sha256": "31e3ae10508cd3802f5b60b78a83d66b925295a21ed971e71682699ad60b9ec5"
         }
       ]
     }
