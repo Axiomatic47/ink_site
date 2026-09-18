@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { archiveId } = await params;
   const c = RESEARCH_ARCHIVES[archiveId];
   if (!c) return {};
-  return { title: `${c.ref} — working transcription`, description: c.summary, alternates: { canonical: `/research/${archiveId}` } };
+  return { title: `${c.ref} — ${c.edition ? 'the record and its transcription' : 'working transcription'}`, description: c.summary, alternates: { canonical: `/research/${archiveId}` } };
 }
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
@@ -38,7 +38,7 @@ export default async function ResearchArchivePage({ params }: Params) {
     <SiteShell>
       <Link href="/research" className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink no-underline mb-6">← Research</Link>
       <div className="max-w-5xl">
-        <Eyebrow>Primary-source research · working transcription</Eyebrow>
+        <Eyebrow>Primary-source research · {c.edition ? 'verification transcription' : 'working transcription'}</Eyebrow>
         <h1 className="font-serif tracking-tight leading-[1.12]" style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 620 }}>
           {c.ref} — <Md inline>{c.caseTitle}</Md>
         </h1>
@@ -46,11 +46,17 @@ export default async function ResearchArchivePage({ params }: Params) {
 
         <div className="mt-6 space-y-4 font-serif text-lg leading-relaxed text-ink/90 max-w-4xl">
           {c.intro.map((p, i) => <Md key={i}>{p}</Md>)}
-          <p>
-            <strong>Every reading here is provisional.</strong> These are working papers: uncertainty is marked rather than
-            resolved, deltas between passes are logged, and unresolved readings are flagged for professional arbitration
-            against the original. Corrections and collaboration are welcome — <a href={`mailto:${cv.email}`} className="underline text-accent-ink">{cv.email}</a>.
-          </p>
+          {c.edition ? (
+            <p>
+              <strong>{c.edition.credit}.</strong> {c.edition.note} Corrections and collaboration are welcome — <a href={`mailto:${cv.email}`} className="underline text-accent-ink">{cv.email}</a>.
+            </p>
+          ) : (
+            <p>
+              <strong>Every reading here is provisional.</strong> These are working papers: uncertainty is marked rather than
+              resolved, deltas between passes are logged, and unresolved readings are flagged for professional arbitration
+              against the original. Corrections and collaboration are welcome — <a href={`mailto:${cv.email}`} className="underline text-accent-ink">{cv.email}</a>.
+            </p>
+          )}
         </div>
 
         {manifest && !imagesPublished(manifest) && (
@@ -64,21 +70,42 @@ export default async function ResearchArchivePage({ params }: Params) {
             <Eyebrow>How to review</Eyebrow>
             <ol className="text-sm space-y-2 list-decimal ml-4 leading-relaxed">
               <li>Open a {c.leafLabel.toLowerCase()} below — the leaf image sits beside its documents (PDF).</li>
-              <li>Compare the image against the <strong>transcript</strong> (continuous text with editorial notes) — the author’s own transcription, which the commissioned professional transcription will replace.</li>
-              <li>Readings marked <code className="font-mono bg-well px-1 rounded">[?]</code> are uncertain; <code className="font-mono bg-well px-1 rounded">⟦…⟧</code> notes record what later passes changed and why.</li>
+              {c.edition ? (
+                <>
+                  <li>Compare the image against the <strong>transcription</strong> — the professional verification transcription by {c.edition.author}; the depositions, the interrogatories and the answer each run across the {c.leafLabel.toLowerCase()}s they occupy, so the same document opens on each of them.</li>
+                  <li>Angle brackets in the transcription mark the scribe’s insertions; square brackets carry the transcriber’s foliation and translations.</li>
+                </>
+              ) : (
+                <>
+                  <li>Compare the image against the <strong>transcript</strong> (continuous text with editorial notes) — the author’s own transcription, which the commissioned professional transcription will replace.</li>
+                  <li>Readings marked <code className="font-mono bg-well px-1 rounded">[?]</code> are uncertain; <code className="font-mono bg-well px-1 rounded">⟦…⟧</code> notes record what later passes changed and why.</li>
+                </>
+              )}
             </ol>
           </Card>
-          <Card>
-            <Eyebrow>Diplomatic conventions</Eyebrow>
-            <dl className="text-sm space-y-1.5">
-              {CONVENTIONS.map(([sym, meaning]) => (
-                <div key={sym} className="flex gap-3">
-                  <dt className="w-24 shrink-0"><code className="font-mono text-accent-ink">{sym}</code></dt>
-                  <dd className="text-muted">{meaning}</dd>
-                </div>
-              ))}
-            </dl>
-          </Card>
+          {c.edition ? (
+            <Card>
+              <Eyebrow>The edition</Eyebrow>
+              <dl className="text-sm space-y-1.5">
+                <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted">Author</dt><dd>{c.edition.author}</dd></div>
+                <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted">Credit</dt><dd>{c.edition.credit}</dd></div>
+                <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted">Rights</dt><dd className="text-muted">{c.edition.cite}</dd></div>
+                <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted">Images</dt><dd className="text-muted">{manifest?.images?.rightsNote || `Reproduced by permission of ${c.shelf.holder}.`}</dd></div>
+              </dl>
+            </Card>
+          ) : (
+            <Card>
+              <Eyebrow>Diplomatic conventions</Eyebrow>
+              <dl className="text-sm space-y-1.5">
+                {CONVENTIONS.map(([sym, meaning]) => (
+                  <div key={sym} className="flex gap-3">
+                    <dt className="w-24 shrink-0"><code className="font-mono text-accent-ink">{sym}</code></dt>
+                    <dd className="text-muted">{meaning}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Card>
+          )}
         </div>
 
         <div className="mt-12">

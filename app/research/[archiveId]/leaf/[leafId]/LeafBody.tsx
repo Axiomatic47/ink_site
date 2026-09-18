@@ -47,7 +47,7 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
     for (const d of publishedDocs(leaf)) {
       if (seen.has(d.pdf)) continue;
       seen.add(d.pdf);
-      t.push({ key: d.pdf, label: d.kind === 'transcript' ? 'Transcript' : d.kind === 'index' ? 'Line index' : `Transcription ${d.span || ''}`.trim(), doc: d });
+      t.push({ key: d.pdf, label: d.kind === 'edition' ? 'Transcription' : d.kind === 'transcript' ? 'Transcript' : d.kind === 'index' ? 'Line index' : `Transcription ${d.span || ''}`.trim(), doc: d });
     }
     return t;
   }, [leaf]);
@@ -209,6 +209,14 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
               </>
             ) : (
               leaf.sha256 && <p className="font-mono break-all">Source-image sha256 (recorded fixity): {leaf.sha256}</p>
+            )}
+            {activeTab?.doc.credit && (
+              <p className="pt-1">
+                <span className="text-ink/80" style={{ fontWeight: 550 }}>{activeTab.doc.credit}</span>
+                {activeTab.doc.span && <> · {leafLabel.toLowerCase()}{activeTab.doc.span.includes('–') ? 's' : ''} {activeTab.doc.span.replace(/^0+/, '').replace(/–0+/, '–')}</>}
+                {' · '}published in full with the author’s agreement · the record: The National Archives, ref. {refLabel}
+                {activeTab.doc.sha256 && <> · <span className="font-mono">sha256 {activeTab.doc.sha256.slice(0, 12)}…</span></>}
+              </p>
             )}
           </div>
           <nav aria-label="Leaf navigation" className="ml-auto inline-flex items-center gap-0.5 bg-card border border-rule rounded-md shadow-card p-0.5">

@@ -96,6 +96,23 @@ p=none, all on Netlify DNS).
   ReadableStream, which WebKit (Safari, the Studio shell) does not support,
   and every page throws. Verify hit counts against `pdftotext | grep -o | wc -l`.
 
+## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
+`public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
+built by lawsofexistence.com's `scripts/sync-archives.mjs` from the research library and
+copied here verbatim; this repo has no builder. Types and the publish gate:
+`src/lib/research-archive.ts` (`PUBLISHED_KINDS`). Since 2026-09-18 the STAC 8/203/38
+pages serve **Christopher Whittick's professional verification transcription** (doc kind
+`edition`: the depositions on mm. 1–7, the interrogatories on mm. 8–9, the answer on
+m. 10 — his latest texts, the 4 Aug 2026 set, by hash; the answer's PDF is the owner's
+export of his docx) in place of the owner's per-leaf transcripts, on his written agreement
+of 18 Sep 2026 (research_library 6f70fa6e) and the owner's word. Rules: credit reads
+exactly "Professional verification transcription by Christopher Whittick" wherever his
+text shows (leaf page, archive page, shelf, metadata); his licence is the basis for his
+text — never print the Open Government Licence over it (that covers the record; cite the
+record as "The National Archives, ref. STAC 8/203/38"); the owner's transcripts, line
+indexes and working spans stay in the library, unserved. A change to what is served is a
+change to the archive page's words in the same commit.
+
 ## Analytics — first-party, no third party (owner 2026-09-16)
 The site counts its own page views: `app/_components/Analytics.tsx` posts
 `{p, r, w}` to the site's own `/api/hit` (edge function `netlify/edge-functions/hit.js`
