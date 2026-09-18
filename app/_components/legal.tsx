@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { cv } from '@/lib/cv';
 
-export const LEGAL_UPDATED = 'September 9, 2026';
+export const LEGAL_UPDATED = 'September 16, 2026';
 export const SITE_HOST = 'kirchner.ink';
 
 export function LegalPage({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {

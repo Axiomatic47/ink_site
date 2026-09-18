@@ -16,6 +16,8 @@
     "readings:pull": "node scripts/pull-reading-answers.mjs",
     "validate-readings": "node scripts/validate-readings.mjs",
     "test:console": "node scripts/test-console.mjs",
+    "test:analytics": "node scripts/test-analytics.mjs",
+    "test:edge": "deno test scripts/analytics-hit_test.mjs",
     "check:pdf": "node scripts/check-pdf-private.mjs"
   },
   "dependencies": {

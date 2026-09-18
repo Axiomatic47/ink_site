@@ -1,7 +1,8 @@
 // netlify/functions/admin.mjs — the owner's console at /admin (owner word
 // 2026-09-09). Sign-in is OpenID Connect against Auth0 (netlify/lib/admin-auth.mjs);
 // only e-mails in ADMIN_EMAILS get a session. Pages: home, /admin/readings
-// (Open Readings queue), /admin/rebuild (build hook), /admin/logout.
+// (Open Readings queue), /admin/analytics (first-party page counts, 2026-09-16),
+// /admin/rebuild (build hook), /admin/logout.
 // The emergency passphrase (MODERATION_KEY) signs in ONLY while Auth0 is not
 // configured — it bypasses the identity provider, the allow-list and MFA, so the
 // moment AUTH0_* + ADMIN_EMAILS are set the route answers 404 and the console
@@ -10,6 +11,7 @@ import { timingSafeEqual } from 'node:crypto';
 import { authConfig, session, csrfToken, csrfOk, beginLogin, completeLogin, logoutLocation, logoutCookies, sessionCookie } from '../lib/admin-auth.mjs';
 import { page, redirect, flashFrom } from '../lib/admin-ui.mjs';
 import { handleReadings, readingsCounts, recentActivity } from '../lib/readings-moderation.mjs';
+import { handleAnalytics, analyticsSummary } from '../lib/analytics-report.mjs';
 import { escapeHtml as h } from '../lib/readings-format.mjs';
 
 const passphraseActive = cfg => Boolean(process.env.MODERATION_KEY) && cfg.missing.length > 0;
@@ -32,24 +34,26 @@ ${passphraseActive(cfg) ? `<details style="margin-top:2rem"><summary><small>Emer
   return page({ title: 'Console — sign in', body, ...flashFrom(url) });
 }
 
-async function home(url, sess, csrf, cfg) {
-  const c = await readingsCounts();
-  const audit = await recentActivity(20);
+async function home(url, sess, csrf, cfg, deployContext) {
+  const [c, audit, an] = await Promise.all([readingsCounts(), recentActivity(20), analyticsSummary({ deployContext })]);
   const body = `<h1>Console</h1><p class="sub">Signed in as ${h(sess.email)}. Sessions last eight hours. Queue store: <code>${h(c.kind)}</code>${c.kind.startsWith('blobs') ? '' : ' <b class="warn">— not Netlify Blobs; submissions cannot be queued</b>'}. Netlify Forms sync: ${process.env.NETLIFY_AUTH_TOKEN && process.env.SITE_ID ? 'on (diagnostic — the token is account-wide; revoke it once the queue is proven)' : 'off'}. Build hook: ${process.env.BUILD_HOOK_URL ? 'set' : 'not set'}.</p>
 ${cfg.missing.length === 0 && process.env.MODERATION_KEY ? '<div class="flash bad">MODERATION_KEY is still set. Auth0 is configured, so the passphrase no longer signs anyone in — delete the variable in the Netlify dashboard.</div>' : ''}
 ${passphraseActive(cfg) ? '<div class="flash bad">Signed in by emergency passphrase because Auth0 is not configured. Set AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET and ADMIN_EMAILS, redeploy, then delete MODERATION_KEY.</div>' : ''}
 <div class="grid">
 <div class="card"><div class="n">${c.pending}</div>Open Readings answers waiting<br><a class="btn" style="margin-top:.6rem" href="/admin/readings">Open the queue</a></div>
 <div class="card"><div class="n">${c.approved}</div>Approved, publishing at the next build${process.env.BUILD_HOOK_URL ? `<form method="post" action="/admin/rebuild" style="margin-top:.6rem"><input type="hidden" name="csrf" value="${h(csrf)}"><button name="action" value="rebuild">Rebuild now</button></form>` : '<br><small>Publishes with the next integrate.</small>'}</div>
+<div class="card"><div class="n">${an.error ? '—' : an.views.toLocaleString('en-US')}</div>page views, last 7 days${an.error ? `<br><small class="warn">${h(an.error)}</small>` : ` · ${an.uniques.toLocaleString('en-US')} visitors`}<br><a class="btn" style="margin-top:.6rem" href="/admin/analytics">Open analytics</a></div>
 </div>
 <h2>Recent activity</h2>
 ${audit.length ? `<div class="card" style="padding:.5rem 1rem"><table style="width:100%;border-collapse:collapse;font-size:.9rem">${audit.map(a => `<tr><td style="padding:.3rem .5rem .3rem 0;white-space:nowrap;color:var(--muted)">${h(a.at.replace('T', ' ').slice(0, 16))}</td><td style="padding:.3rem .5rem">${h(a.actor)}</td><td style="padding:.3rem .5rem"><b>${h(a.action)}</b></td><td style="padding:.3rem .5rem">${h(a.collection)}${a.collection && a.item_id ? '/' : ''}${h(a.item_id)} <small>${h(a.id)}</small></td></tr>`).join('')}</table></div>` : '<p class="empty">No actions recorded yet.</p>'}`;
   return page({ title: 'Console', body, sess, ...flashFrom(url) });
 }
 
-const handler = async req => {
+const handler = async (req, context) => {
   const url = new URL(req.url);
   const cfg = authConfig();
+  // the analytics store's name follows the deploy context (a branch deploy reads its own book)
+  const deployContext = context?.deploy?.context ?? process.env.CONTEXT;
   const path = url.pathname.replace(/\/+$/, '') || '/admin';
   const callbackUri = `${origin(url)}/admin/callback`;
 
@@ -90,8 +94,9 @@ const handler = async req => {
   const keyCfg = cfg.clientSecret ? cfg : { clientSecret: process.env.MODERATION_KEY };
   const ctx = { sess, csrf: csrfToken(keyCfg, sess), csrfOk: given => csrfOk(keyCfg, sess, given) };
 
-  if (path === '/admin') return home(url, sess, ctx.csrf, cfg);
+  if (path === '/admin') return home(url, sess, ctx.csrf, cfg, deployContext);
   if (path === '/admin/readings') return handleReadings(req, url, ctx);
+  if (path === '/admin/analytics' || path.startsWith('/admin/analytics.') || path.startsWith('/admin/analytics/')) return handleAnalytics(req, url, ctx, { deployContext });
   if (path === '/admin/rebuild' && req.method === 'POST') {
     const form = await req.formData();
     if (!ctx.csrfOk(form.get('csrf'))) return page({ title: 'Refused', body: '<h1>Refused</h1>', status: 403, sess });

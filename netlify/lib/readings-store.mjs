@@ -44,17 +44,19 @@ function localDir() {
 // vanish into a read-only local directory. A Netlify BUILD uses Blobs when the
 // runtime context or SITE_ID + NETLIFY_AUTH_TOKEN is present, and otherwise
 // warns and reads an empty local store so the build still succeeds.
-const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
-const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
+export const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
+export const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
-function contextHasUncachedEdge() {
+export function contextHasUncachedEdge() {
   try {
     const raw = process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext;
     return raw ? Boolean(JSON.parse(Buffer.from(raw, 'base64').toString('utf8')).uncachedEdgeURL) : false;
   } catch { return false; }
 }
 
-async function blobStore() {
+/** the raw Netlify Blobs client for a named store — shared with analytics-store.mjs
+ *  (same credentials rule, same consistency rule) */
+export async function blobsClient(name = STORE_NAME) {
   const { getStore } = await import('@netlify/blobs');
   // Strong consistency where the runtime supports it: a moderation queue must list
   // a record the moment the event function wrote it, and the default (eventual)
@@ -62,8 +64,9 @@ async function blobStore() {
   // uncachedEdgeURL, which the modern (Request) runtime supplies and the legacy
   // handler(event) context from connectLambda does NOT — asking for it there
   // fails every read (measured 2026-09-10). So: strong when available, else default.
-  return getStore(contextHasUncachedEdge() ? { name: STORE_NAME, consistency: 'strong' } : STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
+  return getStore(contextHasUncachedEdge() ? { name, consistency: 'strong' } : name); // the runtime's own credentials; throws a descriptive error when they are absent
 }
+const blobStore = () => blobsClient(STORE_NAME);
 
 const wrapBlobs = s => ({
   kind: 'blobs',

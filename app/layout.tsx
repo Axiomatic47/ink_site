@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { cv, SITE_ORIGIN } from '@/lib/cv';
+import { Analytics } from './_components/Analytics';
 import './globals.css';
 
 // Typography is a system font stack (tailwind.config.ts): nothing downloads at
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }} />
       </body>
     </html>

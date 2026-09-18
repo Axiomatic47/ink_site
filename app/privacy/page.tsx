@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { cv } from '@/lib/cv';
 import { SiteShell } from '../_components/SiteShell';
 import { LegalPage, H2, P, UL, SITE_HOST } from '../_components/legal';
+import { AnalyticsOptOut } from '../_components/AnalyticsOptOut';
 
 export const metadata: Metadata = { title: 'Privacy Policy', description: `What information ${SITE_HOST} handles.`, alternates: { canonical: '/privacy' } };
 
@@ -18,8 +19,14 @@ export default function Privacy() {
             is email, and what you send by email is handled like any other correspondence.
           </li>
           <li>
-            <strong>No analytics, no trackers, no cookies.</strong> The site loads no third-party scripts, fonts, or
-            pixels. Everything it serves comes from its own address.
+            <strong>Visit counts, first-party, no cookies.</strong> The site counts page views itself, on its own
+            address: the page you opened, the site you came from (its address only), your country, your screen size
+            class and the hour. To tell visitors apart within one day it keeps a hash made from a random daily value,
+            your address and your browser; the daily value is destroyed when the day closes, so the hash cannot be
+            traced back to anyone afterwards. No address is stored, nothing is sent to any other party, no cookie is
+            set, and browsers that send the Global Privacy Control signal are not counted at all. The site loads no
+            third-party scripts, fonts, or pixels.
+            <span className="block mt-2"><AnalyticsOptOut /></span>
           </li>
           <li>
             <strong>Hosting logs.</strong> The site is hosted on Netlify. Like any web host, Netlify may record
@@ -52,8 +59,8 @@ export default function Privacy() {
         <P>The site is not directed at children and knowingly collects nothing from them.</P>
         <H2>Your choices and rights</H2>
         <P>
-          Because the site stores nothing about you, there is nothing to access, correct, or delete beyond email you
-          have sent, which the author will delete on request. Residents of jurisdictions with data-protection laws may
+          Because the site stores nothing that identifies you, there is nothing to access, correct, or delete beyond
+          email you have sent, which the author will delete on request. Residents of jurisdictions with data-protection laws may
           exercise any rights they hold by emailing {cv.email}.
         </P>
         <H2>Changes</H2>
