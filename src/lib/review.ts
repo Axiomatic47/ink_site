@@ -183,6 +183,37 @@ export const RIGHTS_LABEL: Record<string, string> = {
 /** the units that open a published page */
 export const publishedUnits = (m: ReviewManifest) => m.units.filter((u) => u.pages.some((p) => p.file));
 
+/** an EDITION served for a membrane / folio of one of this site's archives (Christopher Whittick's verification
+    transcription of STAC 8/203/38, 2026-09-18): a held page whose chip links to that leaf opens the transcription
+    in the review pane at the leaf's page — not the held card — with the folio image a click away and the leaf page
+    (image beside transcription) in a new tab (owner 2026-09-21). Built at build time from the archive manifests
+    (review.server.ts editionLeaves) and passed through ReviewLoader; the same contract as lawsofexistence.com. */
+export interface EditionLeaf {
+  archiveId: string;
+  leafId: string;
+  leafLabel: string;
+  /** this site's leaf page — the image beside the transcription */
+  leafUrl: string;
+  /** the transcription PDF and the 1-based page where THIS leaf's text begins */
+  pdf: string;
+  sha256: string | null;
+  page: number;
+  title: string;
+  credit: string;
+  author?: string;
+  /** the leaf image (the web rendition when the original is oversized) and the holder's credit for it */
+  image: string;
+  imageCredit?: string | null;
+}
+/** keyed `${archiveId}/${leafId}` */
+export type EditionMap = Record<string, EditionLeaf>;
+/** a chip url of this site's leaf-page form, with an optional `#page=N` (the citation's exact page in the edition) */
+export const leafFromUrl = (url: string | null | undefined): { key: string; page: number | null } | null => {
+  if (!url) return null;
+  const m = url.match(/^\/research\/([^/]+)\/leaf\/([^/#?]+)(?:[#?].*?\bpage=(\d+))?/);
+  return m ? { key: `${m[1]}/${m[2]}`, page: m[3] ? Number(m[3]) : null } : null;
+};
+
 /** `#cite=<note>/<seq>[/<page index>]` ⇄ unit id + which of its cited pages (0-based) */
 export const citeFromHash = (hash: string): { id: string; page: number } | null => {
   const m = /(?:^|[#&])cite=([A-Za-z0-9_]+\/\d+)(?:\/(\d+))?/.exec(hash);

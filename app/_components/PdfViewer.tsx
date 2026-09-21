@@ -343,7 +343,11 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
   // a dependency because a page's assumed size is corrected when it renders, which moves the target;
   // that correction is followed only while the reader has not moved. Before, every correction (each
   // newly rendered page below, as the reader scrolled) re-ran the smooth scroll back to the cited page
-  // — the owner's "the pane jumps back up when you try to scroll down" (2026-09-15).
+  // — the owner's "the pane jumps back up when you try to scroll down" (2026-09-15). `pageWidth` is a
+  // dependency for the same reason: a focus applied at load, before the side-by-side pane has its
+  // measured width, lands on the pages' first layout; the refit that follows grows every page and the
+  // target moves down the well (leaf 004 opened with page 5's top 440px down instead of 72, 2026-09-21).
+  // A width change re-settles the scroll on the target — again only while the reader has not moved.
   useEffect(() => {
     const root = scrollRef.current;
     if (!root) return;
@@ -363,13 +367,17 @@ export function PdfViewer({ src, title, bytes, downloadSrc, downloadName, height
     const top = Math.max(0, el.offsetTop + (focus.y / meta.h) * el.offsetHeight - 72);
     inViewRef.current = focus.page; // the programmatic scroll is not a reader's move
     if (fresh) {
+      // the first focus on a freshly loaded document jumps: the reader has not seen page 1, so there is
+      // nothing to animate from (and an animation begun before the pane's refit lands short — the leaf
+      // pages, 2026-09-21); a later focus on the same document (the next citation) glides
+      const firstOnDoc = appliedFocus.current === null;
       appliedFocus.current = focus.nonce;
       readerMoved.current = false;
-      root.scrollTo({ top, behavior: 'smooth' });
+      root.scrollTo({ top, behavior: firstOnDoc ? 'auto' : 'smooth' });
     } else if (Math.abs(root.scrollTop - top) > 2) {
-      root.scrollTo({ top, behavior: 'auto' }); // the target moved under a size correction: settle on it without a second animation
+      root.scrollTo({ top, behavior: 'auto' }); // the target moved under a size correction or a refit: settle on it without a second animation
     }
-  }, [focus, pages]);
+  }, [focus, pages, pageWidth]);
 
   // ---- search ----
   // a page's text layer, read once: pdf.js text items joined in reading order, folded for matching,

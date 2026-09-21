@@ -13,6 +13,11 @@ export interface ArchiveDoc {
   /** the credit line as the author asked for it, rendered wherever the document is shown */
   credit?: string;
   sha256?: string;
+  /** in a document spanning several leaves, the 1-based PDF page where THIS leaf's text begins — written per
+      leaf by the builder (lawsofexistence.com's sync-archives) from the edition's `_PAGE_MAP.tsv` (the
+      manuscript seat's table, owner's folio-link task 2026-09-21); the leaf page opens the document there.
+      Absent = the document opens at page 1. */
+  page?: number;
 }
 export interface ArchiveLeafEntry {
   id: string;

@@ -57,6 +57,49 @@ function linearizeInto(src, dst, laneSha, served) {
 }
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
+
+// A leaf url on this site is /research/<archive>/leaf/<id>, optionally with `#page=<n>` — the 1-based page
+// of the leaf's document the citation lands on (the page-map contract, owner's folio-link task 2026-09-21;
+// the leaf page reads the fragment and opens its FIRST published document there). The gate checks the url
+// against what the site serves: the archive's manifest lists the leaf, and a named page exists in that
+// document (qpdf --show-npages on the served copy). A chip must land where it says — refuse the run
+// otherwise, naming the row. (2026-09-21: the first cut of this gate assumed three-digit leaf ids and
+// refused every HLS folio url, f81r…f83v — the manifest, not a shape, is the authority.)
+const LEAF_URL_RE = /^\/research\/([a-z0-9-]+)\/leaf\/([a-z0-9]+)(?:#page=([1-9]\d{0,3}))?$/;
+const PUBLISHED_DOC_KINDS = new Set(['edition']); // mirrors PUBLISHED_KINDS in src/lib/research-archive.ts
+const archiveLeaves = new Map(); // archive id → Map<leaf id, served path of its first published pdf | null>
+const pdfPages = new Map();      // served pdf path → page count
+function leavesOf(archive) {
+  if (archiveLeaves.has(archive)) return archiveLeaves.get(archive);
+  const p = join(ROOT, 'public', 'uploads', 'research', archive, 'manifest.json');
+  const m = existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null;
+  const leaves = m ? new Map(m.leaves.map((l) => {
+    const doc = (l.docs || []).find((d) => PUBLISHED_DOC_KINDS.has(d.kind));
+    return [l.id, doc ? join(ROOT, 'public', 'uploads', 'research', archive, doc.pdf) : null];
+  })) : null;
+  archiveLeaves.set(archive, leaves);
+  return leaves;
+}
+function pagesOf(pdf) {
+  if (!pdfPages.has(pdf)) pdfPages.set(pdf, existsSync(pdf) ? Number(execFileSync('qpdf', ['--show-npages', pdf], { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()) : 0);
+  return pdfPages.get(pdf);
+}
+function checkLeafUrl(r) {
+  if (!r.url || /^https?:\/\//.test(r.url)) return;
+  const where = `row ${r.note}/${r.seq} pin ${r.pin} (${r.source_key})`;
+  const m = LEAF_URL_RE.exec(r.url);
+  if (!m) throw new Error(`${where} carries a url this site cannot honour: ${r.url} — a leaf url is /research/<archive>/leaf/<id>, optionally #page=<n>; nothing written`);
+  const [, archive, leaf, page] = m;
+  const leaves = leavesOf(archive);
+  if (!leaves) throw new Error(`${where} links /research/${archive}, an archive this site does not serve (no public/uploads/research/${archive}/manifest.json); nothing written`);
+  if (!leaves.has(leaf)) throw new Error(`${where} links leaf ${leaf} of /research/${archive}, which its manifest does not list; nothing written`);
+  if (page) {
+    const pdf = leaves.get(leaf);
+    if (!pdf) throw new Error(`${where} names #page=${page} on /research/${archive}/leaf/${leaf}, a leaf with no published document to page into; nothing written`);
+    const n = pagesOf(pdf);
+    if (Number(page) > n) throw new Error(`${where} names #page=${page} on /research/${archive}/leaf/${leaf}, whose document ${basename(pdf)} has ${n} pages; nothing written`);
+  }
+}
 const LIB = join(homedir(), 'Git', 'work_station', 'research_library');
 const BOOK_DIR = join(LIB, '2_Academic Articles', '11_Immunity and Standing Doctrine Geneology', 'BOOK');
 
@@ -240,6 +283,7 @@ function importOne(cfg) {
       // scripture unit cut from the 1611 facsimile AND the Bodleian leaves), and only the page's own
       // rights decide whether it is published — the 2026-09-14 unit-level test let 8 licence-bound and
       // owner-use leaves onto the device branch
+      checkLeafUrl(r);
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, r.extract, r.status, r.source_key), extract: r.extract, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
         verified: r.verified === 'Y' ? true : r.verified === '-' ? null : false, sha256: r.sha256 || null, ...(r.status === 'CUT_FIRST' ? { begins: true } : {}),
         // `url` (lane contract 2026-09-16): a held membrane / folio's own leaf page on this site
@@ -252,6 +296,7 @@ function importOne(cfg) {
       // nothing is held in the lane, so nothing is served — the chip carries the record's URL and the
       // item citation as its label. One rule for both kinds of url: any row that carries one yields a chip with it.
       const kind = sources[r.source_key]?.pinkind || 'page';
+      checkLeafUrl(r);
       u.pages.push({ pin: r.pin, label: pinLabel(kind, r.pin, null, r.status, r.source_key), extract: null, source: r.source_key, rights: r.rights || sources[r.source_key]?.rights || '',
         verified: null, sha256: null, url: r.url, ...(r.work ? { work: r.work } : {}) });
     }
@@ -473,8 +518,8 @@ function importOne(cfg) {
   const pages = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
   console.log(`  book ${basename(cfg.book)} sha256 ${bookSha.slice(0, 16)}…  ${lines.length} lines, ${defLine.size} notes`);
-  { let withUrl = 0, external = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) withUrl += 1; if (!p.extract && p.url) external += 1; }
-    console.log(`  links: ${withUrl} page chips carry a url (${withUrl - external} held leaves on this site, ${external} external records)`); }
+  { let withUrl = 0, external = 0, paged = 0; for (const u of units.values()) for (const p of u.pages) { if (p.url) withUrl += 1; if (!p.extract && p.url) external += 1; if (p.url && p.url.includes('#page=')) paged += 1; }
+    console.log(`  links: ${withUrl} page chips carry a url (${withUrl - external} held leaves on this site, ${external} external records; ${paged} name an exact page with #page=)`); }
   { let pw = 0, uw = 0, live = 0; for (const u of units.values()) { live += 1; if (u.works.length) uw += 1; for (const p of u.pages) if (p.work) pw += 1; }
     console.log(`  works: ${workIds.size} cited works from the register (${register.size} is_work rows); ${uw} of ${live} units and ${pw} pages carry one`); }
   console.log(`  units: ${counts.wrapped} wrapped (${counts.published} open a published page, ${counts.held} marked held/uncut), ${counts.uncut} without a source left plain, ${counts.unwrappable} unwrappable, ${counts.noDef} with no definition`);
