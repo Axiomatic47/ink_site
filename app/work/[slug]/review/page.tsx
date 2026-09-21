@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { workBySlug } from '@/lib/works';
 import { readWorkBody } from '@/lib/works.server';
-import { readReview, reviewSlugs } from '@/lib/review.server';
+import { editionLeaves, readReview, reviewSlugs } from '@/lib/review.server';
 import { reviewMeta } from '@/lib/review';
 import { ArticleBody } from '../../../_components/ArticleBody';
 import { ReviewLoader } from './ReviewLoader';
@@ -35,7 +35,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
   const body = w ? readWorkBody(w) : null;
   if (!w || !manifest || !body) notFound();
   return (
-    <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} meta={reviewMeta(manifest)} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel="Articles">
+    <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} meta={reviewMeta(manifest)} textHref={`/work/${w.slug}/text`} editions={editionLeaves()} backHref={`/work#${w.collection}`} backLabel="Articles">
       {manifest.pdf ? undefined : <ArticleBody bare citeBase="">{body}</ArticleBody>}
     </ReviewLoader>
   );
