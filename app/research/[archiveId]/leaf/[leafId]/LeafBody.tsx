@@ -8,6 +8,13 @@
 // Side by side is the DEFAULT on large screens (the stacked toggle remains
 // and is remembered); the leaf pager and the fixity block sit BELOW the
 // panes. In side-by-side the row fills the viewport with a draggable divider.
+//
+// Where the document opens (owner 2026-09-21, "transcriptions linked to the
+// right folio; citation links to the correct page"): a `#page=N` fragment on
+// the leaf URL — a citation to an exact PDF page — wins; else the page where
+// this leaf's text begins in a multi-leaf document (`doc.page`, from the
+// edition's page map); else page 1. The fragment addresses the leaf's FIRST
+// document (the transcription); the other tabs open at their own leaf page.
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -18,7 +25,7 @@ import { cn } from '@/lib/cn';
 import { SiteHeader } from '../../../../_components/SiteHeader';
 import { SiteFooter } from '../../../../_components/SiteFooter';
 import { LeafImageViewer } from '../../../../_components/LeafImageViewer';
-import { PdfViewer } from '../../../../_components/PdfViewer';
+import { PdfViewer, type PdfFocus } from '../../../../_components/PdfViewer';
 
 type LeafLayout = 'stacked' | 'side';
 const LAYOUT_KEY = 'jk-archive-layout';
@@ -27,6 +34,12 @@ const SPLIT_MIN = 25, SPLIT_MAX = 75;
 const DIVIDER_PX = 14;
 // the below-panes row is measured live; this is the slack under it
 const BOTTOM_PAD_PX = 16;
+
+/** the `#page=N` fragment of a leaf URL (1-based PDF page of the leaf's document); null when absent or not that shape */
+export function pageFragment(hash: string): number | null {
+  const m = /^#page=([1-9]\d{0,3})$/.exec((hash || '').trim());
+  return m ? Number(m[1]) : null;
+}
 
 interface Props {
   archiveId: string;
@@ -53,6 +66,26 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
   }, [leaf]);
   const [active, setActive] = useState<string | null>(null);
   const activeTab = tabs.find((t) => t.key === active) || tabs[0] || null;
+
+  // the URL fragment, read after hydration and on every hash change (a citation chip on the same
+  // page may change only the fragment)
+  const [frag, setFrag] = useState<number | null>(null);
+  useEffect(() => {
+    const read = () => setFrag(pageFragment(window.location.hash));
+    read();
+    window.addEventListener('hashchange', read);
+    return () => window.removeEventListener('hashchange', read);
+  }, []);
+  // the page the document opens at: fragment (first document only) → the leaf's own page → none (page 1)
+  const targetPage = activeTab ? (frag && activeTab.key === tabs[0]?.key ? frag : activeTab.doc.page ?? null) : null;
+  const [focus, setFocus] = useState<PdfFocus | null>(null);
+  const nonceRef = useRef(0);
+  const activeKey = activeTab?.key ?? null;
+  useEffect(() => {
+    // a fresh nonce per target or tab: the viewer applies a focus once per nonce (see PdfViewer)
+    nonceRef.current += 1;
+    setFocus(targetPage ? { page: targetPage, y: 0, nonce: nonceRef.current } : null);
+  }, [targetPage, activeKey]);
 
   // side by side is the default; a stored choice (either way) wins after hydration
   const [layout, setLayout] = useState<LeafLayout>('side');
@@ -188,7 +221,7 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
               <div className="bg-card border border-rule rounded-lg shadow-card p-8 text-sm text-muted">The transcript of this leaf is not yet published — the image stands alone until it is.</div>
             ) : (
               <PdfViewer key={pdfUrl} src={pdfUrl} title={activeTab.doc.title} downloadName={pdfUrl.split('/').pop()}
-                height={review ? 'fill' : 'page'} chrome="pane" leading={docTabs} />
+                height={review ? 'fill' : 'page'} chrome="pane" leading={docTabs} focus={focus} />
             )}
           </div>
         </div>
@@ -214,6 +247,7 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
               <p className="pt-1">
                 <span className="text-ink/80" style={{ fontWeight: 550 }}>{activeTab.doc.credit}</span>
                 {activeTab.doc.span && <> · {leafLabel.toLowerCase()}{activeTab.doc.span.includes('–') ? 's' : ''} {activeTab.doc.span.replace(/^0+/, '').replace(/–0+/, '–')}</>}
+                {targetPage && <> · opened at page {targetPage}{activeTab.doc.page && targetPage !== activeTab.doc.page ? <> (this {leafLabel.toLowerCase()} begins on page {activeTab.doc.page})</> : null}</>}
                 {' · '}published in full with the author’s agreement · the record: The National Archives, ref. {refLabel}
                 {activeTab.doc.sha256 && <> · <span className="font-mono">sha256 {activeTab.doc.sha256.slice(0, 12)}…</span></>}
               </p>

@@ -29,7 +29,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 1
         }
       ]
     },
@@ -48,7 +49,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 2
         }
       ]
     },
@@ -67,7 +69,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 4
         }
       ]
     },
@@ -86,7 +89,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 5
         }
       ]
     },
@@ -105,7 +109,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 7
         }
       ]
     },
@@ -124,7 +129,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 9
         }
       ]
     },
@@ -143,7 +149,8 @@
           "pdf": "pdfs/WHITTICK_DEPOSITIONS_M001-M007.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770"
+          "sha256": "c74764f9182b95a9764ae53a48768b6265dc4e07fa39ec3fa3ef9da810b8f770",
+          "page": 11
         }
       ]
     },
@@ -162,7 +169,8 @@
           "pdf": "pdfs/WHITTICK_INTERROGATORIES_M008-M009.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9"
+          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9",
+          "page": 1
         }
       ]
     },
@@ -181,7 +189,8 @@
           "pdf": "pdfs/WHITTICK_INTERROGATORIES_M008-M009.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9"
+          "sha256": "7882ce7075e9bdef472462dec2280035a01980ba431c3dfc3517e68a4ea09ac9",
+          "page": 4
         }
       ]
     },
@@ -201,7 +210,8 @@
           "pdf": "pdfs/WHITTICK_ANSWER_M010.pdf",
           "author": "Christopher Whittick",
           "credit": "Professional verification transcription by Christopher Whittick",
-          "sha256": "31e3ae10508cd3802f5b60b78a83d66b925295a21ed971e71682699ad60b9ec5"
+          "sha256": "31e3ae10508cd3802f5b60b78a83d66b925295a21ed971e71682699ad60b9ec5",
+          "page": 1
         }
       ]
     }
