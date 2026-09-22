@@ -113,6 +113,22 @@ record as "The National Archives, ref. STAC 8/203/38"); the owner's transcripts,
 indexes and working spans stay in the library, unserved. A change to what is served is a
 change to the archive page's words in the same commit.
 
+## Social cards — one per page (owner 2026-09-21)
+
+A Facebook post preview of `/research/stac-8-203-38` showed the site portrait; the owner asked for
+"unique thumbnails for each particular page": the STAC page its first membrane, the HLS page its first
+folio, an article its first page. `npm run og:build` (manual-run: Pillow, poppler's `pdftoppm`, the Mac's
+fonts) writes `public/og/<key>.jpg`, 1200×630 — `research-<archiveId>` and `research-<archiveId>-<leafId>`
+are a band of the leaf's own published image (the holder's licence covers the page; the card is a crop of it);
+`work-<slug>` is the work's first page (a book's review render, else the work's PDF) letterboxed on the
+site's paper, or a rendered title page in the site's serif when a work has no PDF. `src/lib/og.server.ts`
+`ogImages(key, alt)` puts the card into `openGraph.images` + `twitter` in each page's `generateMetadata`
+(research archive + leaf pages; `/work/<slug>`, `/text`, `/review` share the work's card); a page whose card
+is missing keeps its tags without an image and the build warns by key. Re-run after a new leaf, render,
+work PDF or work; commit `public/og/`. The palette is read from `app/globals.css` (light theme) so the script
+is byte-identical on kirchner.cv, which carries the archive cards only. Facebook caches a URL's card: after a
+deploy the owner re-scrapes at developers.facebook.com/tools/debug/ (or posts a fresh URL).
+
 ## Analytics — first-party, no third party (owner 2026-09-16)
 The site counts its own page views: `app/_components/Analytics.tsx` posts
 `{p, r, w}` to the site's own `/api/hit` (edge function `netlify/edge-functions/hit.js`

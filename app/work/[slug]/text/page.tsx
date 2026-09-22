@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Columns } from 'lucide-react';
 import { workBySlug, collectionBySlug } from '@/lib/works';
+import { ogImages } from '@/lib/og.server';
 import { readWorkBody } from '@/lib/works.server';
 import { readReview, reviewSlugs } from '@/lib/review.server';
 import { SiteShell } from '../../../_components/SiteShell';
@@ -19,7 +20,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const w = workBySlug((await params).slug);
   if (!w) return {};
-  return { title: `${w.title} — text`, description: w.blurb ?? w.subtitle ?? w.title, alternates: { canonical: `/work/${w.slug}/text` } };
+  const title = `${w.title} — text`, description = w.blurb ?? w.subtitle ?? w.title;
+  const og = ogImages(`work-${w.slug}`, `${w.title} — the first page`); // the work's card (scripts/build_og_images.py)
+  return { title, description, alternates: { canonical: `/work/${w.slug}/text` }, openGraph: { title, description, type: 'article', url: `/work/${w.slug}/text`, ...og.openGraph }, twitter: og.twitter };
 }
 
 const longDate = (d?: string) => (d ? new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : '');

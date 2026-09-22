@@ -5,6 +5,7 @@ import { FileText } from 'lucide-react';
 import { cv } from '@/lib/cv';
 import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase, imagesPublished, leafStatus, CONVENTIONS } from '@/lib/research-archive';
 import { readArchiveManifest } from '@/lib/research-archive.server';
+import { ogImages } from '@/lib/og.server';
 import { SiteShell } from '../../_components/SiteShell';
 import { Md } from '../../_components/Markdown';
 
@@ -18,7 +19,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { archiveId } = await params;
   const c = RESEARCH_ARCHIVES[archiveId];
   if (!c) return {};
-  return { title: `${c.ref} — ${c.edition ? 'the record and its transcription' : 'working transcription'}`, description: c.summary, alternates: { canonical: `/research/${archiveId}` } };
+  const title = `${c.ref} — ${c.edition ? 'the record and its transcription' : 'working transcription'}`;
+  // the social card is the archive's first leaf (scripts/build_og_images.py; owner 2026-09-21)
+  const og = ogImages(`research-${archiveId}`, `${c.ref} — the first ${c.leafLabel.toLowerCase()}`);
+  return {
+    title, description: c.summary, alternates: { canonical: `/research/${archiveId}` },
+    openGraph: { title, description: c.summary, type: 'article', url: `/research/${archiveId}`, ...og.openGraph },
+    twitter: og.twitter,
+  };
 }
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (

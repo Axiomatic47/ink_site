@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Columns } from 'lucide-react';
 import { works, workBySlug, collectionBySlug, worksIn } from '@/lib/works';
+import { ogImages } from '@/lib/og.server';
 import { readWorkBody } from '@/lib/works.server';
 import { readReview } from '@/lib/review.server';
 import { publishedUnits, reviewMeta } from '@/lib/review';
@@ -19,10 +20,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const w = workBySlug((await params).slug);
   if (!w) return {};
+  const description = w.blurb ?? w.subtitle ?? w.title;
+  const og = ogImages(`work-${w.slug}`, `${w.title} — the first page`); // scripts/build_og_images.py (owner 2026-09-21)
   return {
     title: w.title,
-    description: w.blurb ?? w.subtitle ?? w.title,
+    description,
     alternates: { canonical: `/work/${w.slug}` },
+    openGraph: { title: w.title, description, type: 'article', url: `/work/${w.slug}`, ...og.openGraph },
+    twitter: og.twitter,
   };
 }
 

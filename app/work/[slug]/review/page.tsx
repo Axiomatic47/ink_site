@@ -7,6 +7,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { workBySlug } from '@/lib/works';
+import { ogImages } from '@/lib/og.server';
 import { readWorkBody } from '@/lib/works.server';
 import { editionLeaves, readReview, reviewSlugs } from '@/lib/review.server';
 import { reviewMeta } from '@/lib/review';
@@ -21,10 +22,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const w = workBySlug((await params).slug);
   if (!w) return {};
+  const title = `${w.title} — review mode`, description = `${w.title}: the text beside the pages it cites, one citation at a time.`;
+  const og = ogImages(`work-${w.slug}`, `${w.title} — the first page`); // the work's card (scripts/build_og_images.py)
   return {
-    title: `${w.title} — review mode`,
-    description: `${w.title}: the text beside the pages it cites, one citation at a time.`,
-    alternates: { canonical: `/work/${w.slug}/review` },
+    title, description, alternates: { canonical: `/work/${w.slug}/review` },
+    openGraph: { title, description, type: 'article', url: `/work/${w.slug}/review`, ...og.openGraph },
+    twitter: og.twitter,
   };
 }
 
