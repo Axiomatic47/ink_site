@@ -18,7 +18,8 @@
     "test:console": "node scripts/test-console.mjs",
     "test:analytics": "node scripts/test-analytics.mjs",
     "test:edge": "deno test scripts/analytics-hit_test.mjs",
-    "check:pdf": "node scripts/check-pdf-private.mjs"
+    "check:pdf": "node scripts/check-pdf-private.mjs",
+    "og:build": "python3 scripts/build_og_images.py"
   },
   "dependencies": {
     "@netlify/blobs": "^11.0.3",
