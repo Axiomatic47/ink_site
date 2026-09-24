@@ -1,0 +1,13 @@
+{
+  "$comment": "The book's version log (owner 2026-09-24): one entry per uploaded version, newest LAST in this file (the page shows newest first). Add an entry when a new render or text lands: version, date, the text and PDF sha prefixes the import printed, and a concise note of what changed. Rendered by app/work/[slug]/review/VersionMenu.tsx in the review page's footer and the text page's side panel. The same log as lawsofexistence.com's content/versions/<slug>.json — the two sites publish the same book at the same lane state.",
+  "slug": "the-subjects-unanswered-plea",
+  "versions": [
+    {
+      "version": 1,
+      "date": "2026-09-22",
+      "text": "c159083fcbc4",
+      "pdf": "3b1c69263962",
+      "note": "First numbered version. Christopher Whittick's verification transcription of STAC 8/203/38 replaces the author's transcripts on the site and opens at the cited page; the Star Chamber citations are pinned by the article each note quotes; Whittick's 1984 chapter on the appeal of felony enters Part 5, 1.2 § E and 1.3 § A; the sources register stands at v8."
+    }
+  ]
+}

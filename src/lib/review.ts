@@ -207,6 +207,18 @@ export interface EditionLeaf {
 }
 /** keyed `${archiveId}/${leafId}` */
 export type EditionMap = Record<string, EditionLeaf>;
+
+/** one uploaded version of a book (owner 2026-09-24: a version drop-down in the page footer with concise notes of
+    what changed) — content/versions/<slug>.json, newest last in the file; the same log as lawsofexistence.com's */
+export interface BookVersion {
+  version: number;
+  /** ISO date the version landed on the site */
+  date: string;
+  /** sha256 prefixes of the text and the PDF as the import printed them */
+  text?: string;
+  pdf?: string;
+  note: string;
+}
 /** a chip url of this site's leaf-page form, with an optional `#page=N` (the citation's exact page in the edition) */
 export const leafFromUrl = (url: string | null | undefined): { key: string; page: number | null } | null => {
   if (!url) return null;

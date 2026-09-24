@@ -6,7 +6,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { stubManifest, type EditionMap, type ReviewManifest, type ReviewMeta } from '@/lib/review';
+import { stubManifest, type BookVersion, type EditionMap, type ReviewManifest, type ReviewMeta } from '@/lib/review';
 import { ReviewBody } from './ReviewBody';
 
 interface Props {
@@ -17,6 +17,8 @@ interface Props {
   backLabel?: string;
   /** the archive leaves that serve an edition (a held page whose chip links to one opens it in the pane) */
   editions?: EditionMap;
+  /** the book's version log, newest first (the footer's version drop-down, owner 2026-09-24) */
+  versions?: BookVersion[];
   children?: React.ReactNode;
 }
 

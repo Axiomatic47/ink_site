@@ -95,6 +95,15 @@ p=none, all on Netlify DNS).
   `reader.read()` loop — `getTextContent()` uses `for await` on a
   ReadableStream, which WebKit (Safari, the Studio shell) does not support,
   and every page throws. Verify hit counts against `pdftotext | grep -o | wc -l`.
+- **A book's VERSION log (owner 2026-09-24, "a versioning drop down at the footer of the article
+  page … concise notes of change"; as lawsofexistence.com):** `content/versions/<slug>.json` — one
+  entry per uploaded version (number, ISO date, the text and PDF sha prefixes the import printed, a
+  concise note of what changed), newest last in the file; `app/work/[slug]/review/VersionMenu.tsx`
+  shows it as a drop-down in the review page's footer (opens upward as a popover, never inside the
+  panes' height budget) and in the text page's side panel. On a new render or text landing, add the
+  entry in the same commit as the import — the same entry as lawsofexistence.com's, since both sites
+  publish the same book at the same lane state; the immunity book's version 1 is the eighteenth lane
+  state of 2026-09-22. A book with no log shows no menu.
 
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
