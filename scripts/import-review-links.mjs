@@ -239,10 +239,15 @@ function importOne(cfg) {
   // pdf.sha256 — never the served _linked.pdf, whose hash moves with every index row). The gate is those two
   // equalities on the newest entry: a book or render that moved without an entry, or an entry naming another
   // text or render, is a lane behind its own log — refuse, naming the cells. A row-only state carries no new
-  // entry. The site's copy (content/versions/<slug>.json) is written from this file and never by hand; a lane
-  // without the file leaves the site without a menu (and removes a stale copy).
+  // entry. The site's copy (content/versions/<slug>.json) is written from this file and never by hand. A lane
+  // WITHOUT the file while the site has a copy is refused, not un-published: a vanished log is a mistake or a
+  // decision, and either arrives as a signal (the seventeenth-state rule — a removal the signal did not name
+  // is a refusal, not a footnote; the same gate as lawsofexistence.com's importer, loe ebd8218). A book that
+  // never had a log has no menu.
   const versionsFile = join(cfg.lane, '_VERSIONS.json');
+  const versionsOut = join(ROOT, 'content', 'versions', `${cfg.slug}.json`);
   let versions = null, versionsRaw = null;
+  if (!existsSync(versionsFile) && existsSync(versionsOut)) throw new Error('the site publishes a version log for this book but the lane carries no _VERSIONS.json — a vanished log is a signal, not an import; nothing written');
   if (existsSync(versionsFile)) {
     versionsRaw = readFileSync(versionsFile, 'utf8');
     const vj = JSON.parse(versionsRaw);
@@ -549,12 +554,10 @@ function importOne(cfg) {
   // the site's copy of the lane's version log, BYTE FOR BYTE (as lawsofexistence.com's importer writes it, so one
   // cmp proves the two sites and the lane agree) — read by src/lib/review.server.ts readVersions → VersionMenu;
   // never hand-edited: a new version lands in the lane with its book or render and rides the next import
-  const versionsOut = join(ROOT, 'content', 'versions', `${cfg.slug}.json`);
-  let staleVersions = false;
   if (versionsRaw !== null) {
     mkdirSync(join(ROOT, 'content', 'versions'), { recursive: true });
     writeFileSync(versionsOut, versionsRaw);
-  } else if (existsSync(versionsOut)) { unlinkSync(versionsOut); staleVersions = true; }
+  }
 
   const pages = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
@@ -569,7 +572,7 @@ function importOne(cfg) {
   console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
   if (versions) { const top = [...versions.versions].sort((a, b) => b.version - a.version)[0]; console.log(`  versions: ${versions.versions.length} in the lane's _VERSIONS.json; current version ${top.version} (${top.date}${top.lane_state ? `, lane ${top.lane_state}` : ''}) names this text and this render`); }
-  else console.log(`  versions: no _VERSIONS.json in the lane — no version menu${staleVersions ? ' (the site\'s stale copy removed)' : ''}`);
+  else console.log('  versions: no _VERSIONS.json in the lane — no version menu');
   for (const w of unwrappable) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 }

@@ -103,8 +103,10 @@ p=none, all on Netlify DNS).
   hash moves with every index row), the date, a concise note, and informational `book_commit`,
   `render`, `lane_state`. The import gates the newest entry with those two equalities (a book or
   render that moved without an entry is refused, naming the cells; a row-only state carries no entry)
-  and writes `content/versions/<slug>.json` — generated, never hand-edited; a lane without the file
-  leaves the site without a menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
+  and writes `content/versions/<slug>.json` — the lane's file byte for byte, never hand-edited. A lane
+  without the file while the site has a copy is REFUSED (a vanished log is a mistake or a decision, and
+  either arrives as a signal — never an import that un-publishes); a book that never had a log has no
+  menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
   page's footer (an upward popover, never inside the panes' height budget) and the text page's side
   panel. Both sites carry the same log; the immunity book's version 1 is the eighteenth lane state.
 
