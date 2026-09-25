@@ -232,6 +232,38 @@ function importOne(cfg) {
     if (!existsSync(rsrc)) throw new Error(`overlay.json names a render that is not in the lane: ${basename(overlay.pdf.path)}; nothing written`);
     if (sha256(rsrc) !== overlay.pdf.sha256) throw new Error(`the book render on disk is not the one overlay.json was built on; nothing written`);
   }
+  // ---- the published-version log (owner 2026-09-24; contract with drafter 0b43895f, RL f78abdbf) ----------
+  // `_VERSIONS.json` beside the extracts is the lane's own log of the book's published versions: one entry
+  // per version, newest LAST in the file, each naming the FULL sha256 of the committed text (what _BOOK.json
+  // records — never a fresh hash of the worktree, which may be mid-edit) and of the OWNER'S RENDER (overlay.json
+  // pdf.sha256 — never the served _linked.pdf, whose hash moves with every index row). The gate is those two
+  // equalities on the newest entry: a book or render that moved without an entry, or an entry naming another
+  // text or render, is a lane behind its own log — refuse, naming the cells. A row-only state carries no new
+  // entry. The site's copy (content/versions/<slug>.json) is written from this file and never by hand; a lane
+  // without the file leaves the site without a menu (and removes a stale copy).
+  const versionsFile = join(cfg.lane, '_VERSIONS.json');
+  let versions = null, versionsRaw = null;
+  if (existsSync(versionsFile)) {
+    versionsRaw = readFileSync(versionsFile, 'utf8');
+    const vj = JSON.parse(versionsRaw);
+    const list = Array.isArray(vj.versions) ? vj.versions : null;
+    if (!list || !list.length) throw new Error('_VERSIONS.json carries no versions[]; nothing written');
+    if (vj.slug && vj.slug !== cfg.slug) throw new Error(`_VERSIONS.json is another book's log (its slug ${vj.slug}, this book ${cfg.slug}); nothing written`);
+    const HEX = /^[0-9a-f]{64}$/, seen = new Set();
+    for (const e of list) {
+      const where = `_VERSIONS.json version ${e.version ?? '?'}`;
+      if (!Number.isInteger(e.version) || e.version < 1 || seen.has(e.version)) throw new Error(`${where}: version must be a unique positive integer; nothing written`);
+      seen.add(e.version);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(e.date))) throw new Error(`${where}: date must be YYYY-MM-DD; nothing written`);
+      if (!HEX.test(String(e.text)) || !HEX.test(String(e.pdf))) throw new Error(`${where}: text and pdf must be the full sha256 hex of the committed book and of the owner's render; nothing written`);
+      if (typeof e.note !== 'string' || !e.note.trim()) throw new Error(`${where}: note is empty; nothing written`);
+    }
+    const newest = [...list].sort((a, b) => b.version - a.version)[0];
+    const committedText = feedSha ?? bookSha; // _BOOK.json's sha256 (the feed already refused a worktree that differs)
+    if (newest.text !== committedText) throw new Error(`_VERSIONS.json version ${newest.version} names text ${newest.text.slice(0, 12)} but _BOOK.json records ${committedText.slice(0, 12)} — the book moved without a version entry, or the entry names another text; nothing written`);
+    if (overlay && newest.pdf !== overlay.pdf.sha256) throw new Error(`_VERSIONS.json version ${newest.version} names render ${newest.pdf.slice(0, 12)} but overlay.json's render is ${overlay.pdf.sha256.slice(0, 12)} — the render moved without a version entry, or the entry names another render; nothing written`);
+    versions = { versions: list };
+  }
   for (const r of rows) {
     if (r.extract && (r.status === 'CUT' || r.status === 'CUT_FIRST' || r.status === 'CUT_CASE') && PUBLISHABLE.has(r.rights) && !existsSync(join(cfg.lane, r.extract))) throw new Error(`${r.extract} is named by the index but missing on disk — the lane is mid-write; nothing written`);
     if (r.context && PUBLISHABLE.has(r.rights) && !existsSync(join(cfg.lane, r.context))) throw new Error(`${r.context} is named by the index but missing on disk — the lane is mid-write; nothing written`);
@@ -514,6 +546,15 @@ function importOne(cfg) {
   mkdirSync(join(ROOT, 'content', 'review'), { recursive: true });
   writeFileSync(join(ROOT, 'content', 'review', `${cfg.slug}.json`), JSON.stringify(manifest) + '\n');
   writeFileSync(join(ROOT, 'content', 'works', `${cfg.slug}.md`), md);
+  // the site's copy of the lane's version log, BYTE FOR BYTE (as lawsofexistence.com's importer writes it, so one
+  // cmp proves the two sites and the lane agree) — read by src/lib/review.server.ts readVersions → VersionMenu;
+  // never hand-edited: a new version lands in the lane with its book or render and rides the next import
+  const versionsOut = join(ROOT, 'content', 'versions', `${cfg.slug}.json`);
+  let staleVersions = false;
+  if (versionsRaw !== null) {
+    mkdirSync(join(ROOT, 'content', 'versions'), { recursive: true });
+    writeFileSync(versionsOut, versionsRaw);
+  } else if (existsSync(versionsOut)) { unlinkSync(versionsOut); staleVersions = true; }
 
   const pages = manifest.units.reduce((n, u) => n + u.pages.filter((p) => p.file).length, 0);
   console.log(`import-review-links: ${cfg.slug} ← ${feed}`);
@@ -527,6 +568,8 @@ function importOne(cfg) {
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
   console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
   console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
+  if (versions) { const top = [...versions.versions].sort((a, b) => b.version - a.version)[0]; console.log(`  versions: ${versions.versions.length} in the lane's _VERSIONS.json; current version ${top.version} (${top.date}${top.lane_state ? `, lane ${top.lane_state}` : ''}) names this text and this render`); }
+  else console.log(`  versions: no _VERSIONS.json in the lane — no version menu${staleVersions ? ' (the site\'s stale copy removed)' : ''}`);
   for (const w of unwrappable) console.log(`  ! ${w}`);
   console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 }

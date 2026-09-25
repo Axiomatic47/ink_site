@@ -46,7 +46,7 @@ export function VersionMenu({ versions, align = 'right', up = true, className }:
               </p>
               <p className="text-xs text-ink/85 leading-relaxed mt-0.5">{v.note}</p>
               {(v.text || v.pdf) && (
-                <p className="text-[10px] text-muted font-mono mt-1">{v.text ? `text ${v.text}` : ''}{v.text && v.pdf ? ' · ' : ''}{v.pdf ? `pdf ${v.pdf}` : ''}</p>
+                <p className="text-[10px] text-muted font-mono mt-1">{v.text ? `text ${v.text.slice(0, 12)}` : ''}{v.text && v.pdf ? ' · ' : ''}{v.pdf ? `pdf ${v.pdf.slice(0, 12)}` : ''}</p>
               )}
             </div>
           ))}

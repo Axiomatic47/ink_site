@@ -208,15 +208,22 @@ export interface EditionLeaf {
 /** keyed `${archiveId}/${leafId}` */
 export type EditionMap = Record<string, EditionLeaf>;
 
-/** one uploaded version of a book (owner 2026-09-24: a version drop-down in the page footer with concise notes of
-    what changed) — content/versions/<slug>.json, newest last in the file; the same log as lawsofexistence.com's */
+/** one published version of a book (owner 2026-09-24: a version drop-down in the page footer with concise notes of
+    what changed). The log is the LANE's — `_VERSIONS.json` beside the extracts, kept by the drafter (contract
+    2026-09-24: full shas; `text` = the committed book's sha256 as _BOOK.json records it, `pdf` = the owner's
+    render's, never the served linked copy's); the import gates the newest entry against the state and writes
+    content/versions/<slug>.json. Both sites carry the same log. */
 export interface BookVersion {
   version: number;
-  /** ISO date the version landed on the site */
+  /** ISO date the version was published */
   date: string;
-  /** sha256 prefixes of the text and the PDF as the import printed them */
+  /** full sha256 of the committed text and of the owner's render (the menu shows the first 12 characters) */
   text?: string;
   pdf?: string;
+  /** informational, from the lane: the research-library commit the text is at, the render's file name, the lane state */
+  book_commit?: string;
+  render?: string;
+  lane_state?: string;
   note: string;
 }
 /** a chip url of this site's leaf-page form, with an optional `#page=N` (the citation's exact page in the edition) */
