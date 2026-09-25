@@ -21,6 +21,16 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "twentieth",
    "note": "Version 2 (25 September 2026). The book takes up the suggestion of immunity: chapter 4.6 now closes with the United States' 2016 suggestion for Israel's former Minister of Defense in Doğan v. Barak, read against the three bars of 1607, and chapter 3.2 § B with the Eleventh Amendment as the honest route beside the foreign line's removal by comity, statute and an Executive letter. Every quotation and citation in the book has been checked against the shelf before this release: two quotations were conformed to their sources (the 1641 Act's 'Courts holden before the President and Councell in the Marches of Wales'; Federalist No. 70's 'vigorous executive'), the two control counts in note ii7g were rounded, pins into the Suggestion of Immunity now follow the ECF stamp, and the bibliography gains fifteen rows (Chisholm, Ex parte McCardle, Ex parte Bradley, Samantar, the Schooner Exchange among them). Text at 793fbae2; the PDF is the 16 September export until the author's next."
+  },
+  {
+   "version": 3,
+   "date": "2026-09-25",
+   "text": "27cc9c762dc43ad032f4342667d57c59c036db2f4f9b180fe77e1732f9a8a2b0",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "5cfe4e2ad5f82aed46013a3bbf893ef05c957b91",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "twenty-second",
+   "note": "Version 3 (25 September 2026). Three decisions the notes cite only inside 'quoting' parentheticals now stand in the bibliography: Miller v. Fenton, 474 U.S. 104 (1985), Brinegar v. United States, 338 U.S. 160 (1949), and Riley v. California, 573 U.S. 373 (2014), each read at its first page and at the page the quoting court took its words from (114, 171 and 381) in the Library of Congress print. No sentence of the body changes; the sources register is at its eleventh build. Text at 5cfe4e2a; the PDF is the 16 September export until the author's next."
   }
  ]
 }

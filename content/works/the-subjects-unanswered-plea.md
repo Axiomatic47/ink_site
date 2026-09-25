@@ -1841,6 +1841,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Boyd v. Mills*, 13 Ves. Jun. 85, 33 Eng. Rep. 226 (Ch. 1806).
 - *Boyd v. United States*, 116 U.S. 616 (1886).
 - *Bradley v. Fisher*, 80 U.S. (13 Wall.) 335 (1872).
+- *Brinegar v. United States*, 338 U.S. 160 (1949).
 - *Brown v. Board of Education*, 347 U.S. 483 (1954).
 - *Brown v. Walker*, 161 U.S. 591 (1896).
 - *Buckley v. Fitzsimmons*, 509 U.S. 259 (1993).
@@ -1924,6 +1925,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *McDonnell v. United States*, 579 U.S. 550 (2016).
 - Memoranda (the removals of Rainsford and Scroggs, C.JJ.), 1 Ventris 329, 354, 86 Eng. Rep. 212, 228 (K.B. 1678, 1681).
 - Memorandum (the removal of Sir Edward Coke), Cro. Jac. 407, 79 Eng. Rep. 348 (K.B. 1616).
+- *Miller v. Fenton*, 474 U.S. 104 (1985).
 - *Miranda v. Arizona*, 384 U.S. 436 (1966).
 - *Mireles v. Waco*, 502 U.S. 9 (1991).
 - *Mitchell v. Forsyth*, 472 U.S. 511 (1985).
@@ -1954,6 +1956,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Reeves v. Sanderson Plumbing Prods., Inc.*, 530 U.S. 133 (2000).
 - *Rehberg v. Paulk*, 566 U.S. 356 (2012).
 - *Republic of Mexico v. Hoffman*, 324 U.S. 30 (1945).
+- *Riley v. California*, 573 U.S. 373 (2014).
 - *Samantar v. Yousuf*, 560 U.S. 305 (2010).
 - *Scheuer v. Rhodes*, 416 U.S. 232 (1974).
 - *Schick v. Reed*, 419 U.S. 256 (1974).
