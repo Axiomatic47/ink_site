@@ -71,6 +71,16 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "twenty-eighth",
    "note": "Version 8 (2026-09-25): the fourth Liberty paragraph of chapter 4.6 now ends by naming the three parties in their places, the Department of State that receives and decides the plea, the United States as the sovereign whose citizen was killed and whose court stays closed, and Israel as the accused, and by saying that the one thing that changed between 1967 and 2016 was the law, changed back by a letter. The framing text is brought level with the week's additions: the Part 3 abstract carries the argument of chapter 3.2 § D; the Introduction's map of the Parts names it; the Part 4 abstract names chapter 4.6's reading of the letter of 2016 beside the Liberty claims of 1967; the Conclusion to Parts 2 and 3 says where the transfer runs when the wrong is a foreign state's; and the Conclusion states what chapter 4.6 adds, the one case in which the rule's reserved forum still operates in America and the presumption of 1812 on which it rests."
+  },
+  {
+   "version": 9,
+   "date": "2026-09-26",
+   "text": "e8723175be8f8bf082ab7fbb31a335a1be6889498f7e6fa07abbabbbcd84b6b6",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "bf243c2e59fbefa591d381dc83e510fb6d84d755",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "twenty-ninth",
+   "note": "Version 9 (2026-09-26): a read-through of chapters 3.2 and 4.6 for language and the run of the argument after the additions of the week, with no quotation, note or bibliography touched. In chapter 4.6 the case of 2016 is named, Doğan v. Barak, where it first appears; the sentence that placed the killing in 2016 now places the parents' suit there; the second of the two respects in which the foreign application differs from the judicial line, the repair, stands as its own paragraph; and the paragraph on the premise of 1812 opens on the letter of 2016 and the settlement of 1967 alike. In chapter 3.2 the opening roadmap names section D; the chapter's closing paragraph, which had stood at the end of section C, now closes section D with one added sentence; and the chapter's title names the First Article beside the Third and the Fifth: Article III, Article V and Article I: No Receiver, No Court to Make One, and the Record Withheld."
   }
  ]
 }
