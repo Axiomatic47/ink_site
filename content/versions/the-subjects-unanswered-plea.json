@@ -81,6 +81,16 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "twenty-ninth",
    "note": "Version 9 (2026-09-26): a read-through of chapters 3.2 and 4.6 for language and the run of the argument after the additions of the week, with no quotation, note or bibliography touched. In chapter 4.6 the case of 2016 is named, Doğan v. Barak, where it first appears; the sentence that placed the killing in 2016 now places the parents' suit there; the second of the two respects in which the foreign application differs from the judicial line, the repair, stands as its own paragraph; and the paragraph on the premise of 1812 opens on the letter of 2016 and the settlement of 1967 alike. In chapter 3.2 the opening roadmap names section D; the chapter's closing paragraph, which had stood at the end of section C, now closes section D with one added sentence; and the chapter's title names the First Article beside the Third and the Fifth: Article III, Article V and Article I: No Receiver, No Court to Make One, and the Record Withheld."
+  },
+  {
+   "version": 10,
+   "date": "2026-09-26",
+   "text": "40c1e9f6e61260e796e1ab05ca0c81779c8f7bfd36e3484acec4b68e049f9c95",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "8f837e7fb24f38a50f44450caf5549a0eeba4db7",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "thirtieth",
+   "note": "Version 10 (2026-09-26): six English decisions that the notes cited only by their nominate reports now have rows in the bibliography, each with its English Reports parallel: Ackerley v. Parkinson (1815), Ashford v. Thornton (1818), Blatch v. Archer (1774), Hamond v. Howell (1677), Houlden v. Smith (1850) and Thomas v. Churton (1862). Four were read at the original reports; two could not be found; the reprint pages await a host that serves them, and the register says which is which. No sentence of the body or the notes changed."
   }
  ]
 }

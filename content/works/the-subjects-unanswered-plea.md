@@ -1892,6 +1892,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 
 **Cases**
 
+- *Ackerley v. Parkinson*, 3 M. & S. 411, 105 Eng. Rep. 665 (K.B. 1815).
 - *Adalah Legal Center for Arab Minority Rights in Israel v. Minister of Defense*, HCJ 8276/05 (Isr. Sup. Ct. Dec. 12, 2006) (English translation, Cardozo Israeli Supreme Court Project).
 - *Alden v. Maine*, 527 U.S. 706 (1999).
 - *American Tobacco Co. v. United States*, 328 U.S. 781 (1946).
@@ -1899,6 +1900,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Anonymous* (Sir John Bennet's Case), Cro. Car. 56, 79 Eng. Rep. 652 (C.P. 1627).
 - *Anonymous*, Jenk. 162, 145 Eng. Rep. 104 (digesting 8 Hen. 6, c. 12).
 - *Arizona v. Youngblood*, 488 U.S. 51 (1988).
+- *Ashford v. Thornton*, 1 B. & Ald. 405, 106 Eng. Rep. 149 (K.B. 1818).
 - *Awodiya v. Ministry of Justice*, [2025] EWHC 49 (KB).
 - *Bagg's Case*, 11 Co. Rep. 93b, 77 Eng. Rep. 1271 (K.B. 1615).
 - *Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398 (1964).
@@ -1907,6 +1909,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Beers v. Arkansas*, 61 U.S. (20 How.) 527 (1858).
 - *Bell v. Milwaukee*, 746 F.2d 1205 (7th Cir. 1984).
 - *Blackamore's Case*, 8 Co. Rep. 160a, 77 Eng. Rep. 716 (K.B. 8 Jac. I).
+- *Blatch v. Archer*, 1 Cowp. 63, 98 Eng. Rep. 969 (K.B. 1774).
 - *Bolling v. Sharpe*, 347 U.S. 497 (1954).
 - *Bostock v. Clayton County*, 590 U.S. 644 (2020).
 - *Boyd v. Mills*, 13 Ves. Jun. 85, 33 Eng. Rep. 226 (Ch. 1806).
@@ -1964,6 +1967,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Gravel v. United States*, 408 U.S. 606 (1972).
 - *Gregoire v. Biddle*, 177 F.2d 579 (2d Cir. 1949).
 - *Groenvelt v. Burwell*, 1 Ld. Raym. 454, 91 Eng. Rep. 1202 (K.B. 1700).
+- *Hamond v. Howell*, 2 Mod. 218, 86 Eng. Rep. 1035 (C.P. 1677).
 - *Hans v. Louisiana*, 134 U.S. 1 (1890).
 - *Harlow v. Fitzgerald*, 457 U.S. 800 (1982).
 - *Harrison's Case*, Cro. Car. 503, 79 Eng. Rep. 1034 (K.B. 1638).
@@ -1973,6 +1977,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Hernandez v. Mesa*, 589 U.S. 93 (2020).
 - *Hilton v. Guyot*, 159 U.S. 113 (1895).
 - *Hopkins v. Clemson College*, 221 U.S. 636 (1911).
+- *Houlden v. Smith*, 14 Q.B. 841, 117 Eng. Rep. 323 (Q.B. 1850).
 - *Hunt v. Cromartie*, 526 U.S. 541 (1999).
 - *Hunziker v. German-American State Bank*, 697 F. Supp. 1007 (N.D. Ill. 1988), *aff'd*, 908 F.2d 975 (7th Cir. 1990) (unpublished order).
 - *Hurnam v. Veerabudren*, [2026] UKPC 29.
@@ -2054,6 +2059,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *The Pizarro*, 15 U.S. (2 Wheat.) 227 (1817).
 - *The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116 (1812).
 - *The Prize Cases*, 67 U.S. (2 Black) 635 (1863).
+- *Thomas v. Churton*, 2 B. & S. 475, 121 Eng. Rep. 1150 (Q.B. 1862).
 - *Trump v. United States*, 603 U.S. 593 (2024).
 - *Tull v. United States*, 481 U.S. 412 (1987).
 - *Underhill v. Hernandez*, 65 F. 577 (2d Cir. 1895), *aff'd*, 168 U.S. 250 (1897).
