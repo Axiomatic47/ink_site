@@ -31,6 +31,26 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "twenty-second",
    "note": "Version 3 (25 September 2026). Three decisions the notes cite only inside 'quoting' parentheticals now stand in the bibliography: Miller v. Fenton, 474 U.S. 104 (1985), Brinegar v. United States, 338 U.S. 160 (1949), and Riley v. California, 573 U.S. 373 (2014), each read at its first page and at the page the quoting court took its words from (114, 171 and 381) in the Library of Congress print. No sentence of the body changes; the sources register is at its eleventh build. Text at 5cfe4e2a; the PDF is the 16 September export until the author's next."
+  },
+  {
+   "version": 4,
+   "date": "2026-09-25",
+   "text": "d485f40591b8808e86fe1c50aab9903719544561f1ab6076f18cfab790d169e0",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "99661cffe7762addb87e0508ffc1c3d98b302dd0",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "twenty-fourth",
+   "note": "Version 4 (25 September 2026). Chapter 4.6 now closes on two propositions about the suggestion of immunity. The first is the relation: every immunity this book traces sits inside the bond of sovereign and subject, while the suggestion is the forum sovereign refusing its own subject on a stranger's behalf, on a consent Marshall said the nation implies and may withdraw. The second is the record: the judgment is what the third bar denies, nominal damages redress a completed violation, and the sequence from Filártiga to the Torture Victim Protection Act, from Sabbatino to the act-of-state amendment, and from the Iran judgments to the asset statute shows the political branches acting on records, as Federalist No. 80 said they should. Nine works join the bibliography. Text at 99661cff; the PDF is the 16 September export until the author's next."
+  },
+  {
+   "version": 6,
+   "date": "2026-09-25",
+   "text": "6f7718991fb4eb44366c216bc545400ec8dfea6c5843dd443be241541ea5cb28",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "f02f9553ba77bdf07d271d586ba6bbab0c989dd3",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "twenty-sixth",
+   "note": "Version 6 (2026-09-25): 4.6 gains the USS Liberty paragraph (the 1967 claims espoused and paid to the Government; Dames & Moore's name for the practice; the Court of Inquiry counsel's 2004 affidavit stated as an officer's sworn account and no more; the House Record of June 8, 2026) with the servicemen sentences, and a closing paragraph on the premise the suggestion rests on: Marshall's implied consent of 1812, \"less determinate, exposed more to the uncertainties of construction,\" never since put to proof, set against Hilton's comity and reciprocity, Sabbatino's agreement condition and the Act's implied waiver, and answered for Israel from the record (the 1951 treaty's Article V opening each party's courts to the other's nationals; the Civil Wrongs (Liability of the State) Law treating the State like any incorporated body, with thousands of such claims tried; the 2008 immunity statute drawn on our lines). 3.2 gains § D, Article I, Section 8: the record Congress needs and the branch that holds it (Article III's foreign States clause; the Section 8 clauses and the Statement and Account; McGrain, Watkins, Reynolds, Richardson; treason's enemy element, Cramer, the Prize Cases, Federalist 43; court, reprisal and war; Dames & Moore on practice), with one sentence on how an ally is made in the open (the 1951 treaty; 22 U.S.C. § 2321k(b); the 2014 Act). Notes si17–si25, cs1–cs8. Bibliography +19 rows since version 4, 6 amended. Register v14. Version 5 was prepared for the Liberty and § D text alone and never published; this entry supersedes it."
   }
  ]
 }

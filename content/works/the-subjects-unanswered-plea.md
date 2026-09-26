@@ -1091,6 +1091,14 @@ The two grounds meet in a single volume of the United States Reports. In the sev
 
 What a court bound by every decided case may do with both grounds is stated at chapter 3.6. The point here is narrower. The doctrine's two accounts of itself, a forum for the plea and the recognition of an immunity that already existed, each name a provision that does not do what the doctrine needs. Article III supplies no receiver and vests a power that a standardless immunity from suit does not exercise. Article V reserves to the people the act the Court performed. A doctrine that needs an amendment to stand and has not got one is not a tradition the Constitution received. It is a change to the Constitution made by hands the Constitution did not authorize.
 
+### D. Article I, Section 8: The Record Congress Needs and the Branch That Holds It
+
+Article III does not leave the citizen's case against a foreign state to construction. The judicial power extends "to Controversies … between a State, or the Citizens thereof, and foreign States, Citizens or Subjects," and no amendment has touched those words. When the founding generation wished to remove a class of controversies from the same sentence, a citizen's suit against a State, it used Article V and had the Eleventh Amendment ratified within two years of *Chisholm* (§ B above). Nobody has done the same for "foreign States." What removed the clause was Marshall's construction of 1812, that a nation's consent to a foreign sovereign's exemption is implied; then the Department of State administering that construction by letter; then the Court in 1943 and 1945 calling the court's surrender to the letter its duty, and in 1983 conceding that the letters had on occasion followed "political considerations" rather than any rule.[^cs1] On this chapter's test that is authority declared, not ratified: a word taken from Article III outside the only route by which its text changes. The 1976 Act took the decision from the Department and gave it to the courts under a rule of Congress's making, which is the reform Article I permits; the suggestion of immunity for the servant, described at chapter 4.6, returns the decision to the Department for the one class of defendant the Act left out.
+
+The record the court would have made is also the record the First Article runs on. Congress is to "provide for the common Defence," to "define and punish … Offences against the Law of Nations," to "declare War, grant Letters of Marque and Reprisal, and make Rules concerning Captures," to "raise and support Armies" on appropriations of no longer than two years, to "provide and maintain a Navy," and to "make Rules for the Government and Regulation of the land and naval Forces"; and no money leaves the Treasury but by its appropriation, with "a regular Statement and Account" to be published. Every one of those powers, exercised toward a state that has attacked a citizen, is exercised on a fact: what the state did. The Court has said where Congress gets its facts. The power of inquiry "is an essential and appropriate auxiliary to the legislative function," employed "in American legislatures before the Constitution was framed and ratified"; the power to investigate is "inherent in the legislative process," and Congress "has assiduously performed an 'informing function.'"[^cs2] Against that function the Executive holds three instruments the courts have recognized: the classification of records; the privilege "against revealing military secrets," recognized in 1953 for an Air Force accident report withheld from the plaintiffs who sued over the crash; and the settlement of the citizen's claim in its own name, which the Court in 1981 called a change in the substantive law.[^cs3] The citizen's own version of the claim, that he is entitled to a Congress that knows, the Court has refused. A taxpayer who sued in 1974 to compel the "Statement and Account" the Ninth Section requires was held to have no standing, in a sentence that concedes the whole difficulty: "the absence of any particular individual or class to litigate these claims gives support to the argument that the subject matter is committed to the surveillance of Congress, and ultimately to the political process."[^cs4] The citizen is sent to Congress for the record, and the record is what Congress is denied. The circle has no receiver in it, which is § A's finding in another form: the surveillance the Court commits the matter to is the surveillance the withholding defeats.
+
+The one crime the Constitution defines runs on the same record. Treason "shall consist only in levying War against them, or in adhering to their Enemies, giving them Aid and Comfort," and the Court reads it as "two elements: adherence to the enemy; and rendering him aid and comfort." Who is an enemy is not a court's finding. Whether hostilities exist "is a question to be decided by him," the President, "and this Court must be governed by the decisions and acts of the political department of the Government to which this power was entrusted."[^cs5] An ally, by contrast, is made in the open. Israel is one by a treaty of 1951 that the Senate consented to, by the statute of 1996 that deems it designated a major non-NATO ally, and by the Act of 2014 in which Congress declared it "a major strategic partner of the United States."[^cs8] So the branch that keeps an ally's attack out of every court is the branch whose acts fix, conclusively on the courts, whether that ally is an enemy; aid to a state that has killed citizens is not treason while the Executive declines to name it one, and the Executive giving the aid makes the naming. Madison saw the inverse danger and built the clause against it: "new fangled and artificial treasons, have been the great engines, by which violent factions … have usually wreaked their alternate malignity on each other," so the Convention "opposed a barrier to this peculiar danger, by inserting a constitutional definition of the crime, fixing the proof necessary for conviction of it." The fear was treason enlarged by the political branches; the record of 1967 shows it contracted by the same hands, and the barrier of definition and proof protects in both directions only if the enemy fact is made in the open.[^cs6] The founding design for a citizen injured by a foreign state had three routes, and none of them ran through the Executive alone: the court, under Article III's clause; reprisal, which the law of nations gave for a denial of justice to a subject and the Constitution gave to Congress; and war, which it gave to Congress too. The Executive's settlement of the citizen's claim in its own name is in none of them. The Court that upheld it in 1981 said where it came from, "long-continued practice, known to and acquiesced in by Congress," and in the same paragraph that "[p]ast practice does not, by itself, create power."[^cs7] That is the doctrine this book has followed since 1607: a subject's remedy removed by the sovereign's own act and later declared law because the removal went unchallenged. What the *Liberty* shows, and chapter 4.6 records, is that the removal disables at once the citizen's remedy under Article III, Congress's predicate under Section 8, the Statement and Account under Section 9, the enemy element of treason, and the facts on which the House would act under Article II, Section 4. Each of those the Constitution placed somewhere other than the branch that now holds them all, and the Court's own cases mark where each one went.
+
 [^av1]: [*Floyd v. Barker*, 12 Co. Rep. 25–26, 77 Eng. Rep. 1307–08 (Star Ch. 1607) (the *de jure* clause at 1307; the Parliament clause at 1308). Chapter 3.1 § A quotes both with the transfer clause](cite:av1/1); Part 1, chapter 1.3 reads the forum's one recorded sitting.
 [^av2]: [U.S. Const. art. III, § 1.](cite:av2/1)
 [^av3]: [*Marbury v. Madison*, 5 U.S. (1 Cranch) 137, 177 (1803).](cite:av3/1)
@@ -1114,6 +1122,21 @@ What a court bound by every decided case may do with both grounds is stated at c
 [^si9]: [*Chisholm v. Georgia*, 2 U.S. (2 Dall.) 419 (1793)](cite:si9/1); [U.S. Const. amend. XI (ratified 1795).](cite:si9/2)
 
 [^si10]: 28 U.S.C. § 1604 ("a foreign state shall be immune from the jurisdiction of the courts of the United States and of the States except as provided in sections 1605 to 1607 of this chapter"); *id.* § 1602 (the findings presuppose the immunity and assign only its adjudication); [*Samantar v. Yousuf*, 560 U.S. 305, 323–25 (2010) (the Act does not reach individual officials)](cite:si10/3); [*Filarsky v. Delia*, 566 U.S. 377, 389 (2012), as quoted in *Doğan v. Barak*, 932 F.3d 888 (9th Cir. 2019) (slip op. 13)](cite:si10/4); [U.S. Const. art. III, § 1](cite:si10/5); [*Ex parte McCardle*, 74 U.S. (7 Wall.) 506, 514–15 (1869) (chapter 3.2 § C)](cite:si10/6); [*United States v. Lee*, 106 U.S. 196, 209 (1882) ("will not embarrass," quoted in chapter 4.6).](cite:si10/7)
+
+[^cs1]: [U.S. Const. art. III, § 2, cl. 1](cite:cs1/1); [*id.* amend. XI](cite:cs1/2); [*Chisholm v. Georgia*, 2 U.S. (2 Dall.) 419 (1793)](cite:cs1/3); [*The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116, 136 (1812)](cite:cs1/4); [*Ex parte Republic of Peru*, 318 U.S. 578, 587–89 (1943)](cite:cs1/5); [*Republic of Mexico v. Hoffman*, 324 U.S. 30, 35 (1945)](cite:cs1/6); [*Verlinden B.V. v. Central Bank of Nigeria*, 461 U.S. 480, 486–87 (1983) ("On occasion, political considerations led to suggestions of immunity in cases where immunity would not have been available under the restrictive theory," at 487)](cite:cs1/7); 28 U.S.C. §§ 1602, 1604 (n. si10 above).
+
+[^cs2]: [U.S. Const. art. I, § 8, cls. 1, 10, 11, 12, 13, 14](cite:cs2/1); [*id.* § 9, cl. 7](cite:cs2/2); [*McGrain v. Daugherty*, 273 U.S. 135, 174 (1927)](cite:cs2/3); [*Watkins v. United States*, 354 U.S. 178, 187, 200 (1957) (at 200 quoting Woodrow Wilson, *Congressional Government* 303: "The informing function of Congress should be preferred even to its legislative function").](cite:cs2/4)
+
+[^cs3]: [*United States v. Reynolds*, 345 U.S. 1, 6–7 (1953)](cite:cs3/1); [*Dames & Moore v. Regan*, 453 U.S. 654, 685 (1981) (chapter 4.6, n. si18).](cite:cs3/2)
+
+[^cs4]: [*United States v. Richardson*, 418 U.S. 166, 179 (1974).](cite:cs4/1)
+
+[^cs5]: [U.S. Const. art. III, § 3, cl. 1](cite:cs5/1); [*Cramer v. United States*, 325 U.S. 1, 29 (1945)](cite:cs5/2); [*The Prize Cases*, 67 U.S. (2 Black) 635, 670 (1863).](cite:cs5/3)
+
+[^cs6]: [The Federalist No. 43 (James Madison), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution* (J. & A. M'Lean, New York 1788), vol. II, at 59 (quoted as the 1788 print sets it).](cite:cs6/1)
+
+[^cs7]: [U.S. Const. art. I, § 8, cl. 11](cite:cs7/1); [*id.* art. II, § 4](cite:cs7/2); [*Dames & Moore v. Regan*, 453 U.S. 654, 686 (1981).](cite:cs7/3)
+[^cs8]: Treaty of Friendship, Commerce and Navigation, U.S.–Isr., Aug. 23, 1951, 5 U.S.T. 550, 219 U.N.T.S. 237 (chapter 4.6 n. si24 quotes art. V); 22 U.S.C. § 2321k(b), added by Pub. L. No. 104-164, § 147(a)(1), 110 Stat. 1434 (1996) (Israel among the six countries "deemed to have been so designated by the President"); United States-Israel Strategic Partnership Act of 2014, Pub. L. No. 113-296, § 4, 128 Stat. 4075, 4076.
 
 
 ## 3.3 The Act That Made the Rule, Measured by American Law
@@ -1481,7 +1504,13 @@ On the two axes, then: the de jure text gives the subject a damages action again
 
 The mechanism appears again in American law outside the judicial line, in the one setting where the Constitution's text is said to commit the question to the political branches. When a foreign official is sued in an American court for acts done in office, the foreign state may ask the Department of State to recognize his immunity; if the Department agrees, the Department of Justice files a suggestion of immunity, and the court, on the Executive's own account of the law, "surrendered its jurisdiction."[^si1] In 2016 the United States filed such a suggestion for Israel's former Minister of Defense, sued by the parents of an American citizen killed by Israeli forces at sea. It told the court that "the Department of State has determined that Barak is immune from suit" and that "[t]he Court must defer to that determination"; that the United States "expresses no view on the merits of Plaintiffs' claims"; and that "it is for the Executive Branch, not the courts, to determine whether the conduct alleged was taken in a foreign official's official capacity," a fact the foreign state's diplomatic note supplied.[^si2] The court dismissed, and the court of appeals affirmed because to judge the minister "would be to enforce a rule of law against the sovereign state of Israel," declining to say whether the Executive's letter bound it or only weighed with it.[^si3]
 
-The three bars of 1607 are in that record, relabelled. The plea is routed to the sovereign alone: the foreign state asks, the Executive determines, the court surrenders. The forum that receives it does not adjudicate: the branch whose word closes the courthouse disclaims the merits. And no proof is heard against the record: the one fact on which the immunity turns is taken from the court and the jury and answered by the accused sovereign's own note, with the gravest wrongs known to the law of nations expressly no exception.[^si4] The origin is the one this book has traced. Marshall's first case of exemption in 1812 was "the exemption of the person of the sovereign," because a sovereign "is not understood as intending to subject himself to a jurisdiction incompatible with his dignity," and the receiver he named was "the sovereign power of the nation," which "is alone competent to avenge wrongs committed by a sovereign," in questions "for diplomatic, rather than legal discussion."[^si5] The servant took the sovereign's status in 1895, when "the acts of the official representatives of the state" became "those of the state itself," the reverse of the eighteenth-century configuration chapter 4.3 records, in which the sovereign's immunity was paid for by the servant's exposure.[^si6] What reached the killing of a citizen in 2016 came by citation. The sentence that the courts "will not embarrass" the political branch "by assuming an antagonistic jurisdiction" was written in 1882 of claims settled by "negotiation" or "war," was applied in 1943 and 1945 to the seizure of foreign ships, and was applied to a former minister accused of an extrajudicial killing without any court adjudicating the step.[^si7] Whether an Executive letter binds a court on a question of law the Supreme Court has never decided; one circuit holds that it does not, the Executive calls that holding legal error, and the Solicitor General has twice asked the Court not to resolve it.[^si8] This is the only line of the doctrine in which a receiver is named at all, and the receiver is diplomacy. The application differs from the judicial line in one respect. Congress holds the repair, and used it for foreign states in 1976. It did not use it for their servants, and it could not use it, by statute, to take from a citizen the court and the jury the Constitution gives him (chapter 3.2 § B).
+The three bars of 1607 are in that record, relabelled. The plea is routed to the sovereign alone: the foreign state asks, the Executive determines, the court surrenders. The forum that receives it does not adjudicate: the branch whose word closes the courthouse disclaims the merits. And no proof is heard against the record: the one fact on which the immunity turns is taken from the court and the jury and answered by the accused sovereign's own note, with the gravest wrongs known to the law of nations expressly no exception.[^si4] The origin is the one this book has traced. Marshall's first case of exemption in 1812 was "the exemption of the person of the sovereign," because a sovereign "is not understood as intending to subject himself to a jurisdiction incompatible with his dignity," and the receiver he named was "the sovereign power of the nation," which "is alone competent to avenge wrongs committed by a sovereign," in questions "for diplomatic, rather than legal discussion."[^si5] The servant took the sovereign's status in 1895, when "the acts of the official representatives of the state" became "those of the state itself," the reverse of the eighteenth-century configuration chapter 4.3 records, in which the sovereign's immunity was paid for by the servant's exposure.[^si6] What reached the killing of a citizen in 2016 came by citation. The sentence that the courts "will not embarrass" the political branch "by assuming an antagonistic jurisdiction" was written in 1882 of claims settled by "negotiation" or "war," was applied in 1943 and 1945 to the seizure of foreign ships, and was applied to a former minister accused of an extrajudicial killing without any court adjudicating the step.[^si7] Whether an Executive letter binds a court on a question of law the Supreme Court has never decided; one circuit holds that it does not, the Executive calls that holding legal error, and the Solicitor General has twice asked the Court not to resolve it.[^si8] This is the only line of the doctrine in which a receiver is named at all, and the receiver is diplomacy. The application differs from the judicial line in two respects. The first is the relation. Every immunity this book has traced sits inside one bond, sovereign and subject: the subject owes allegiance, the sovereign owes protection, and the immunity is the sovereign refusing its own subject's plea in a cause where the sovereign is the accused. The parents owed Israel nothing and Israel owed them nothing; there was no bond for a plea of immunity to breach. The bond that existed ran between the citizen and the United States, and it was the United States that closed its court, not because it was the accused but because it preferred its relations with the accused, on the ground that its courts "will not embarrass" the political branch. A foreign sovereign has no immunity of its own in an American court. Marshall grounded every exemption on "the consent of the nation itself," a consent the forum implies and may withdraw, so the immunity the court of appeals gave was not Israel's act but the forum's, a standing waiver made on the citizen's behalf without asking him, and the reason it is given is reciprocity: each sovereign keeps its officials out of the others' courts, and each pays its share with its subjects' remedies. The clause the court rested on, that to judge the minister "would be to enforce a rule of law against the sovereign state of Israel," is a real-party test taken from the American Law Institute's Restatement, and it attributes to the state exactly what the domestic line refuses to attribute. *Ex parte Young* holds that an officer acting against the supreme law is "stripped of his official or representative character," because "[t]he State has no power to impart to him any immunity from responsibility"; the foreign line holds that the unlawful act is the state's own, and that is why no one answers for it.[^si11] The second is the repair. Congress holds it, and used it for foreign states in 1976. It did not use it for their servants, and it could not use it, by statute, to take from a citizen the court and the jury the Constitution gives him (chapter 3.2 § B).
+
+What the second respect leaves open, the first closes, and what it costs is the record. A judgment is a record, and the record is what the third bar denies. The dismissal means that no court has found that a citizen was killed, by whom, or under what authority; in law the killing has not happened, and the one fact the immunity turned on rests on the accused state's note.[^si4] The declaration is the justice a payment cannot supply, and the law knows it: the Court holds that nominal damages redress "a completed violation of a legal right," because "every violation [of a right] imports damage," so a dollar and a finding is a judgment where a letter and a dismissal is not.[^si12] The record is also how this law has grown. In 1980 the Second Circuit held a Paraguayan police official answerable in an American court for torture, with the United States as friend of the court on the plaintiffs' side, and Congress answered the judgment in 1992 with the statute the parents sued under, which the House report described as establishing "an unambiguous and modern basis for" claims of torture and extrajudicial killing.[^si13] In 1964 the Court held that "the Judicial Branch will not examine the validity of a taking of property within its own territory by a foreign sovereign government," and Congress answered within the year that "no court in the United States shall decline on the ground of the federal act of state doctrine to make a determination on the merits," beside the suspension of aid it had already enacted for the citizens whose property was taken.[^si14] Holders of terrorism judgments against Iran could not reach its assets until Congress made the assets reachable, twice, and the Court upheld the second act; a statute reaching back to the attacks of September 11, 2001 passed over the President's objections.[^si15] In each the court's record came first and the political branches acted on it. Hamilton gave the federal courts the causes of foreigners for the stated reason that "the denial or perversion of justice by the sentences of courts" is "with reason classed among the just causes of war": adjudication was the alternative to vengeance, and a judgment in hand is what lets the Executive negotiate from a finding rather than avenge an allegation.[^si16] The Suggestion of Immunity removes the record, and with it the receiver the Constitution names, the justice the parents came for, and the thing on which repair depends. What it removes is not only the parents' case. The record of what a foreign state did to a citizen is also the fact on which Congress acts, when it declares war or grants reprisal or defines an offence against the law of nations or appropriates for the common defence, and the fact on which the one crime the Constitution defines depends, since treason is adherence to an enemy and an enemy is what the political branches say it is. Chapter 3.2 § D names the clauses. The branch that withholds the record from the court holds every one of them.
+
+The suggestion was not the first form of the mechanism to reach an American killed by Israeli forces. On 8 June 1967 Israeli aircraft and torpedo boats attacked the USS *Liberty* in international waters off the Sinai; thirty-four of her crew were killed, and the Department of State afterwards presented 164 claims for the wounded. No suit was brought and none could have been. The statute that opened the courthouse to a citizen's case against a foreign state was nine years away, and before it the immunity was the Department's to give by letter, on the practice of 1943 and 1945 this chapter has already named; the Court itself later admitted that "political considerations led to suggestions of immunity in cases where immunity would not have been available." The claim went where the doctrine sends it. The Department told Israel the attack "must be condemned as an act of military irresponsibility reflecting reckless disregard for human life," presented the claim in its own name, and Israel paid the United States Government $3,323,500 in 1968 "on behalf of the families of the 34 men killed," $3,566,457 in 1969 for the wounded and the Government's own expenses, and $6 million in 1980 for the ship.[^si17] The Court's name for that transaction, given in 1981 for the hostages' claims against Iran, is that the President "has exercised the power, acquiesced in by Congress, to settle claims and, as such, has simply effected a change in the substantive law governing the lawsuit," a power it found in "long-continued practice, known to and acquiesced in by Congress," of which the *Liberty* payments are part.[^si18] The one forum the crew had was the Navy's Court of Inquiry, and its senior counsel swore in 2004 that the court was given a week, was kept from the Israeli witnesses, did not receive "the more than sixty witness declarations from men who had been hospitalized," and was told by its president that he had been "ordered … to conclude that the attack was a case of 'mistaken identity' despite overwhelming evidence to the contrary." That is an officer's sworn account of what a dead admiral told him, and this book states it as no more; but it is the only account of the inquiry by anyone who sat in it, and it is now in the Congressional Record, placed there on 8 June 2026 by a Member who had "at least a dozen" of the survivors in the gallery and asked the House, fifty-nine years after the fact, for an investigation and a resolution: "Support them while they are still alive."[^si19] That the crew were servicemen changes nothing in the account. Congress has since said so in terms: the statute that strips a designated state's immunity for an extrajudicial killing names "a member of the armed forces" beside "a national of the United States" as a victim whose claim it opens and gives him the action by name; the bar on a serviceman's claim for injury "incident to their service" runs against his own government and no other; and the statute's own exclusion of an "act of war," defined as an act "in the course of … armed conflict between military forces of any origin," marks the line between an enemy's attack, which is the service, and an ally's, which is not, though where the *Liberty* falls on that line the statute leaves to argument.[^si20] What this book holds is that the line runs with the bond: the sovereign that sends a citizen into the company of its allies owes him its court against those allies no less than against a stranger, and no clause says otherwise. In 1967 there was no statute and no court, and the record was made once, by the sovereign, and fixed. In 2016 there was a statute and a court, and the record was removed by letter. Between the two lies the reform of 1976, which took the immunity from the Department and gave it to the courts under a rule, and which the suggestion for the servant reverses. The receiver in both is the same, and so is the plaintiff's sovereign, and so is the accused.
+
+The suggestion rests on a premise stated in 1812 and not examined since. Marshall found the foreign sovereign's exemption in the forum's own consent and said what kind of consent it was: express or implied, and in the latter case "less determinate, exposed more to the uncertainties of construction," drawn from a world "of distinct sovereignties, possessing equal rights and equal independence" and from what such sovereigns would agree to.[^si21] That is a presumption about facts, and the Court's other doctrines put facts of that kind to proof. *Hilton v. Guyot* defined comity with the citizen inside it, "having due regard both to international duty and convenience, and to the rights of its own citizens or of other persons who are under the protection of its laws," and refused conclusive effect to a French judgment "upon the broad ground that international law is founded upon mutuality and reciprocity," France giving none to ours.[^si22] *Sabbatino* made the act of state doctrine yield to "a treaty or other unambiguous agreement regarding controlling legal principles," and the Act of 1976 itself withholds the immunity where the foreign state "has waived its immunity either explicitly or by implication."[^si23] Two questions follow that the suggestion in *Doğan* never asked: whether the two states are bound to each other by instrument, and whether the foreign state's own law gives the relief the letter withholds. For the United States and Israel both are answered on the record. The Treaty of Friendship, Commerce and Navigation of 1951, in force since 1954, accords the nationals of each party national treatment "with respect to access to the courts of justice … in all degrees of jurisdiction, both in pursuit and in defense of their rights."[^si24] Israel's statute on the State's liability provides that "for the purpose of liability in torts, the state is like any incorporated body," with a proviso for "combatant activity of the Israel Defence Forces" that is raised as a plea and decided; its Supreme Court records that thousands of claims by inhabitants of the territories injured by its security forces "were tried in the courts in Israel in accordance with the Israeli law of torts"; and its own statute on the immunity of foreign states is drawn on the lines of ours, with the same exception for a tort within the territory.[^si25] Where the foreign state gives the relief by its own law and is bound by treaty to open its courts to our nationals as we open ours to its, there is no incompatibility of sovereignty or of jurisdiction for a court to presume. What is left is the alliance itself, a fact made by treaty and statute in the open, which the letter neither proves nor cites.
 
 ## 4.7 Two Axes: Who Pays for the Wrong, Who May Punish the Judge, and Where England Sits
 
@@ -1634,6 +1663,31 @@ The thesis therefore stands on a wider record: the rule's reserved forum was nev
 [^si7]: [*United States v. Lee*, 106 U.S. 196, 209 (1882)](cite:si7/1); [*Hoffman*, 324 U.S. at 35 (quoting *Lee* at 209)](cite:si7/2); [*Peru*, 318 U.S. at 588](cite:si7/3); [*Ye v. Zemin*, 383 F.3d 620, 626 (7th Cir. 2004), and *Matar v. Dichter*, 563 F.3d 9, 15 (2d Cir. 2009), as cited in the Suggestion of Immunity at 4, 11 (not read for this book).](cite:si7/4)
 
 [^si8]: [*Yousuf v. Samantar*, 699 F.3d 763, 773 (4th Cir. 2012), as quoted in the Suggestion of Immunity at 6, which calls the holding "legal error"](cite:si8/1); *id.* at 8 n.5 (the Solicitor General's two briefs); [*Doğan*, slip op. 12.](cite:si8/3)
+
+[^si11]: [*The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116, 136 (1812) (the nation's jurisdiction "necessarily exclusive and absolute"; every exception "traced up to the consent of the nation itself")](cite:si11/1); [*Doğan v. Barak*, 932 F.3d 888 (9th Cir. 2019) (slip op. 12) (quoting Restatement (Second) of Foreign Relations Law § 66(f) (1965))](cite:si11/2); [*Ex parte Young*, 209 U.S. 123, 160 (1908). The premise that sovereigns toward one another stand outside law is Hobbes's: kings, "because of their Independency, are in continuall jealousies, and in the state and posture of Gladiators," *Leviathan* ch. 13, at 63 (London 1651). Marshall did not adopt it](cite:si11/3); consent is a legal act, and what a nation consents to it may refuse.
+
+[^si12]: *Uzuegbunam v. Preczewski*, 592 U.S. 279 (2021) (slip op. 12) ("nominal damages provide the necessary redress for a completed violation of a legal right"; "every violation [of a right] imports damage," quoting *Webb v. Portland Manufacturing Co.*, 29 F. Cas. 506, 509 (No. 17,322) (CC Me. 1838)).
+
+[^si13]: *Filártiga v. Peña-Irala*, 630 F.2d 876, 878, 884, 890 (2d Cir. 1980) (the plaintiffs "citizens of the Republic of Paraguay" at 878; "official torture is now prohibited by the law of nations" at 884, quoting the Memorandum of the United States as Amicus Curiae; the torturer "an enemy of all mankind" at 890); Torture Victim Protection Act of 1991, Pub. L. No. 102-256, 106 Stat. 73 (1992); [*Sosa v. Alvarez-Machain*, 542 U.S. 692, 728, 731 (2004) (the Act "establish\[es\] an unambiguous and modern basis for" the claims, quoting H.R. Rep. No. 102-367, pt. 1, at 3 (1991); the position "assumed by some federal courts for 24 years, ever since the Second Circuit decided *Filartiga*").](cite:si13/3)
+
+[^si14]: [*Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398, 428 (1964)](cite:si14/1); 22 U.S.C. § 2370(e)(1) (the President "shall suspend assistance to the government of any country" that has expropriated a citizen's property without compensation), (e)(2) (the courts' sentence), added by Pub. L. No. 87-565, § 301(d), 76 Stat. 260 (1962), and Pub. L. No. 88-633, § 301(d), 78 Stat. 1013 (1964).
+
+[^si15]: [*Bank Markazi v. Peterson*, 578 U.S. 212, 217–18, 225–36 (2016) (the Terrorism Risk Insurance Act of 2002 and 22 U.S.C. § 8772, the assets in *Peterson v. Islamic Republic of Iran* made available to the judgment holders; the Act held not to violate the separation of powers)](cite:si15/1); Justice Against Sponsors of Terrorism Act, Pub. L. No. 114-222, 130 Stat. 852, 855–56 (2016) (applicable to injuries "on or after September 11, 2001"; passed on reconsideration after the bill was "returned by the President of the United States with his objections," "two-thirds of the Senators present having voted in the affirmative").
+
+[^si16]: [The Federalist No. 80 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution* (J. & A. M'Lean, New York 1788), vol. II, at 304.](cite:si16/1)
+
+[^si17]: [*Foreign Relations of the United States, 1964–1968*, vol. XIX, *Arab-Israeli Crisis and War, 1967*, doc. 424 (draft memorandum, Battle to Katzenbach, Aug. 18, 1967) ("military irresponsibility"), and n. 5 (the three payments, citing Dep't St. Bull., June 17, 1968, at 799; June 2, 1969, at 473; Feb. 1981, at 55). The practice before 1976: *Ex parte Republic of Peru*, 318 U.S. 578 (1943), and *Republic of Mexico v. Hoffman*, 324 U.S. 30 (1945), at n. si1](cite:si17/1); [*Verlinden B.V. v. Central Bank of Nigeria*, 461 U.S. 480, 487 (1983).](cite:si17/2)
+
+[^si18]: [*Dames & Moore v. Regan*, 453 U.S. 654, 679, 685, 686 (1981) ("the United States has repeatedly exercised its sovereign authority to settle the claims of its nationals against foreign countries" at 679; the substantive-law sentence at 685; "\[p\]ast practice does not, by itself, create power, but" the long-continued practice raises the presumption of consent, at 686).](cite:si18/1)
+
+[^si19]: 172 Cong. Rec. H3916–18 (daily ed. June 8, 2026) (Rep. Massie), inserting the affidavit of Capt. Ward Boston, Jr., JAGC USN (Ret.), senior counsel to the Court of Inquiry, dated Jan. 8, 2004, at H3917–18.
+
+[^si20]: 28 U.S.C. § 1605A(a)(2)(A)(ii)(II), (c)(2); [*Feres v. United States*, 340 U.S. 135, 144 (1950)](cite:si20/2); 28 U.S.C. § 1605B(a)(2); 18 U.S.C. § 2331(4)(C).
+[^si21]: [*The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116, 136 (1812) (the consent "may be either express or implied. In the latter case, it is less determinate, exposed more to the uncertainties of construction, but, if understood, not less obligatory")](cite:si21/1); [*id.* at 137 (a foreign sovereign "is not understood as intending to subject himself to a jurisdiction incompatible with his dignity, and the dignity of his nation").](cite:si21/2)
+[^si22]: [*Hilton v. Guyot*, 159 U.S. 113, 163–64 (1895) ("'Comity,' in the legal sense, is neither a matter of absolute obligation, on the one hand, nor of mere courtesy and good will, upon the other")](cite:si22/1); [*id.* at 210, 228 (the ground is "the want of reciprocity, on the part of France"; "we do not proceed upon any theory of retaliation upon one person by reason of injustice done to another; but upon the broad ground that international law is founded upon mutuality and reciprocity").](cite:si22/2)
+[^si23]: [*Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398, 428 (1964)](cite:si23/1); [28 U.S.C. § 1605(a)(1). Compare *Piper Aircraft Co. v. Reyno*, 454 U.S. 235, 254 & n.22 (1981): the Court's own doctrine for declining a case within its jurisdiction first asks "whether there exists an alternative forum," and a remedy "so clearly inadequate or unsatisfactory that it is no remedy at all" may defeat the dismissal](cite:si23/2); the suggestion of immunity asks after no forum.
+[^si24]: Treaty of Friendship, Commerce and Navigation, U.S.–Isr., art. V, ¶ 1, Aug. 23, 1951, 5 U.S.T. 550, T.I.A.S. No. 2948, 219 U.N.T.S. 237, 256 (entered into force Apr. 3, 1954); U.S. Dep't of State, *Treaties in Force: A List of Treaties and Other International Agreements of the United States in Force on January 1, 2026*, Bilateral, Israel, at 211, 214 (the treaty listed in force; the entries under Defense are assistance agreements and exchanges of notes, and no mutual defense treaty is listed).
+[^si25]: Civil Wrongs (Liability of the State) Law, 5712-1952, §§ 2, 5 (Isr.), as rendered in the English translation of HCJ 8276/05 *Adalah Legal Center for Arab Minority Rights in Israel v. Minister of Defense* (Isr. Sup. Ct. Dec. 12, 2006) (Barak P.E.), ¶¶ 1–2, published by the Cardozo Israeli Supreme Court Project; Foreign States Immunity Law, 5769-2008, §§ 2, 5 (Isr.), in the English text Israel furnished to the Council of Europe's CAHDI database of state immunity (2009) (no immunity "in an action in tort where personal injury or damage to tangible property has occurred, provided the tort was committed in Israel"); compare 28 U.S.C. § 1605(a)(5).
 
 # Part 5 — The Older Record: Remedies Against the Judge before 1607
 
@@ -1824,6 +1878,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 
 **Cases**
 
+- *Adalah Legal Center for Arab Minority Rights in Israel v. Minister of Defense*, HCJ 8276/05 (Isr. Sup. Ct. Dec. 12, 2006) (English translation, Cardozo Israeli Supreme Court Project).
 - *Alden v. Maine*, 527 U.S. 706 (1999).
 - *American Tobacco Co. v. United States*, 328 U.S. 781 (1946).
 - *Anderson v. Creighton*, 483 U.S. 635 (1987).
@@ -1832,6 +1887,8 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Arizona v. Youngblood*, 488 U.S. 51 (1988).
 - *Awodiya v. Ministry of Justice*, [2025] EWHC 49 (KB).
 - *Bagg's Case*, 11 Co. Rep. 93b, 77 Eng. Rep. 1271 (K.B. 1615).
+- *Banco Nacional de Cuba v. Sabbatino*, 376 U.S. 398 (1964).
+- *Bank Markazi v. Peterson*, 578 U.S. 212 (2016).
 - *Beacon Theatres, Inc. v. Westover*, 359 U.S. 500 (1959).
 - *Beers v. Arkansas*, 61 U.S. (20 How.) 527 (1858).
 - *Bell v. Milwaukee*, 746 F.2d 1205 (7th Cir. 1984).
@@ -1857,9 +1914,11 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Clinton v. Jones*, 520 U.S. 681 (1997).
 - *Coffin v. Coffin*, 4 Mass. 1 (1808).
 - *Cohens v. Virginia*, 19 U.S. (6 Wheat.) 264 (1821).
+- *Cramer v. United States*, 325 U.S. 1 (1945).
 - *Curtis v. Loether*, 415 U.S. 189 (1974).
 - *Dairy Queen, Inc. v. Wood*, 369 U.S. 469 (1962).
 - *Dalehite v. United States*, 346 U.S. 15 (1953).
+- *Dames & Moore v. Regan*, 453 U.S. 654 (1981).
 - *Dawkins v. Lord Paulet*, L.R. 5 Q.B. 94 (1869).
 - *Dimes v. Proprietors of the Grand Junction Canal*, 3 H.L.C. 759, 10 Eng. Rep. 301 (H.L. 1852).
 - *Dimick v. Schiedt*, 293 U.S. 474 (1935).
@@ -1876,8 +1935,10 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Ex parte McCardle*, 74 U.S. (7 Wall.) 506 (1869).
 - *Ex parte Republic of Peru*, 318 U.S. 578 (1943).
 - *Ex parte Young*, 209 U.S. 123 (1908).
+- *Feres v. United States*, 340 U.S. 135 (1950).
 - *Ferri v. Ackerman*, 444 U.S. 193 (1979).
 - *Filarsky v. Delia*, 566 U.S. 377 (2012).
+- *Filártiga v. Peña-Irala*, 630 F.2d 876 (2d Cir. 1980).
 - *Floyd v. Barker*, 77 Eng. Rep. 1305 (Star Chamber 1607) (12 Co. Rep. 23).
 - *Forrester v. White*, 484 U.S. 219 (1988).
 - *Franchise Tax Board of California v. Hyatt*, 587 U.S. 230 (2019).
@@ -1896,6 +1957,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Heien v. North Carolina*, 574 U.S. 54 (2014).
 - *Henry v. Farmer City State Bank*, 808 F.2d 1228 (7th Cir. 1986).
 - *Hernandez v. Mesa*, 589 U.S. 93 (2020).
+- *Hilton v. Guyot*, 159 U.S. 113 (1895).
 - *Hopkins v. Clemson College*, 221 U.S. 636 (1911).
 - *Hunt v. Cromartie*, 526 U.S. 541 (1999).
 - *Hunziker v. German-American State Bank*, 697 F. Supp. 1007 (N.D. Ill. 1988), *aff'd*, 908 F.2d 975 (7th Cir. 1990) (unpublished order).
@@ -1923,6 +1985,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Mathews v. Eldridge*, 424 U.S. 319 (1976).
 - *Mazhar v. Lord Chancellor*, [2019] EWCA Civ 1558.
 - *McDonnell v. United States*, 579 U.S. 550 (2016).
+- *McGrain v. Daugherty*, 273 U.S. 135 (1927).
 - Memoranda (the removals of Rainsford and Scroggs, C.JJ.), 1 Ventris 329, 354, 86 Eng. Rep. 212, 228 (K.B. 1678, 1681).
 - Memorandum (the removal of Sir Edward Coke), Cro. Jac. 407, 79 Eng. Rep. 348 (K.B. 1616).
 - *Miller v. Fenton*, 474 U.S. 104 (1985).
@@ -1944,6 +2007,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Owen v. City of Independence*, 445 U.S. 622 (1980).
 - *Phelps v. Sill*, 1 Day 315 (Conn. 1804).
 - *Pierson v. Ray*, 386 U.S. 547 (1967).
+- *Piper Aircraft Co. v. Reyno*, 454 U.S. 235 (1981).
 - *Pomeranz v. Class*, 82 Colo. 173, 257 P. 1086 (1927).
 - *Prohibitions* (the President of York's complaint), 13 Co. Rep. 30, 77 Eng. Rep. 1440.
 - *Prohibitions del Roy*, 77 Eng. Rep. 1342 (1607) (12 Co. Rep. 63).
@@ -1965,6 +2029,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *Sirros v. Moore*, [1975] Q.B. 118, [1974] 3 W.L.R. 459 (C.A.).
 - *Smith v. Bouchier*, 2 Stra. 993, 93 Eng. Rep. 989 (K.B. 1734).
 - *Snyder v. Phelps*, 562 U.S. 443 (2011).
+- *Sosa v. Alvarez-Machain*, 542 U.S. 692 (2004).
 - *Spalding v. Vilas*, 161 U.S. 483 (1896).
 - *Sparkman v. McFarlin*, 552 F.2d 172 (7th Cir. 1977).
 - *Stump v. Sparkman*, 435 U.S. 349 (1978).
@@ -1974,15 +2039,22 @@ What remains is the observation on which the American Conclusion closed, now wit
 - The Lord Chancellor's Speech to Sir Henry Montague, Moore (K.B.) 827, 72 Eng. Rep. 931 (K.B. 1616).
 - *The Pizarro*, 15 U.S. (2 Wheat.) 227 (1817).
 - *The Schooner Exchange v. McFaddon*, 11 U.S. (7 Cranch) 116 (1812).
+- *The Prize Cases*, 67 U.S. (2 Black) 635 (1863).
 - *Trump v. United States*, 603 U.S. 593 (2024).
 - *Tull v. United States*, 481 U.S. 412 (1987).
 - *Underhill v. Hernandez*, 65 F. 577 (2d Cir. 1895), *aff'd*, 168 U.S. 250 (1897).
 - *United States v. Johnson*, 383 U.S. 169 (1966).
 - *United States v. Lee*, 106 U.S. 196 (1882).
 - *United States v. Nixon*, 418 U.S. 683 (1974).
+- *United States v. Reynolds*, 345 U.S. 1 (1953).
+- *United States v. Richardson*, 418 U.S. 166 (1974).
 - *U.S. Bank N.A. v. Village at Lakeridge, LLC*, 583 U.S. 387 (2018).
+- *Uzuegbunam v. Preczewski*, 592 U.S. 279 (2021).
 - *Van Ness v. Pacard*, 27 U.S. (2 Pet.) 137 (1829).
+- *Verlinden B.V. v. Central Bank of Nigeria*, 461 U.S. 480 (1983).
 - *Washington v. Glucksberg*, 521 U.S. 702 (1997).
+- *Watkins v. United States*, 354 U.S. 178 (1957).
+- *Webb v. Portland Manufacturing Co.*, 29 F. Cas. 506 (No. 17,322) (C.C.D. Me. 1838).
 - *Webster v. Fall*, 266 U.S. 507 (1925).
 - *Williamson v. United States*, 207 U.S. 425 (1908).
 - *Willis v. Gipps*, 5 Moo. P.C. 379, 13 Eng. Rep. 536 (P.C. 1846).
@@ -1996,15 +2068,17 @@ What remains is the observation on which the American Conclusion closed, now wit
 
 **Constitutional Provisions, Statutes, and Rules**
 
-- 18 U.S.C. §§ 242, 2071.
+- 18 U.S.C. §§ 242, 2071, 2331.
+- 22 U.S.C. §§ 2321k, 2370(e), 8772.
 - 28 C.F.R. § 0.25.
-- 28 U.S.C. §§ 351, 352, 354, 503, 511, 1602, 1604, 2513, 2680.
+- 28 U.S.C. §§ 351, 352, 354, 503, 511, 1330, 1602, 1604, 1605, 1605A, 1605B, 2513, 2680.
 - 42 U.S.C. § 1983.
 - 42 U.S.C. § 1988(b).
 - Act of Apr. 20, 1871, ch. 22, § 1, 17 Stat. 13.
 - Act of Apr. 30, 1790, ch. 9, § 15, 1 Stat. 112, 115.
 - Act of Feb. 26, 1853, ch. 81, §§ 4–5, 10 Stat. 170.
 - Brottsbalk (1962:700); Lag (1986:765); Lag (1994:260) (Sweden).
+- Civil Wrongs (Liability of the State) Law, 5712-1952 (Isr.).
 - Code de l'organisation judiciaire (France).
 - Code judiciaire (Belgium).
 - Constitution of Japan; 裁判官弾劾法, Act No. 137 of 1947 (Japan).
@@ -2014,8 +2088,10 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Fed. R. Evid. 104(e), 607, 901.
 - Federal Constitution of Malaysia (Attorney General's Chambers reprint 2020); Constitution (Amendment) Act 1993, Act A848 (Malaysia).
 - Federal Courts Improvement Act of 1996, Pub. L. No. 104-317 (as codified at 42 U.S.C. §§ 1983, 1988(b)).
+- Foreign States Immunity Law, 5769-2008 (Isr.) (English text furnished by Israel to the Council of Europe's CAHDI database of state immunity, 2009).
 - Ill. Rev. Stat. ch. 110, ¶¶ 19-101 to 19-128 (1985) (replevin).
 - Judges Act, R.S.C. 1985, c. J-1, and S.C. 2023, c. 18 (Canada).
+- Justice Against Sponsors of Terrorism Act, Pub. L. No. 114-222, 130 Stat. 852 (2016).
 - Konstitutsiya Rossiiskoi Federatsii; Zakon RF N 3132-1 "O statuse sudei v Rossiiskoi Federatsii" (1992); Grazhdanskii kodeks RF; Postanovlenie Konstitutsionnogo Suda RF N 1-P (2001).
 - Law of the Judiciary, Royal Decree No. M/78 (Saudi Arabia, 2007), Bureau of Experts official translation (2008).
 - Ley Orgánica 6/1985 and Ley Orgánica 7/2015 (Spain).
@@ -2024,11 +2100,15 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Rev. Stat. §§ 5403, 5408 (1874), 18 Stat. pt. 1, at 1052–53.
 - Socialist Constitution of the D.P.R.K. (2016; 2026); Criminal Law of the D.P.R.K. (2012); Law on Compensation for Damage (2001, as amended).
 - The Declaration of Independence (U.S. 1776).
-- U.S. Const. art. I, § 1; art. I, § 6, cl. 1; art. I, § 9, cl. 2; art. II, § 1, cl. 8; art. II, § 2, cl. 1; art. II, § 3; art. II, § 4; art. III; art. III, § 1; art. IV, § 1; art. VI, cls. 2–3; amends. V, VI, VII, VIII, IX, X, XI, XIV, XXV.
+- Torture Victim Protection Act of 1991, Pub. L. No. 102-256, 106 Stat. 73 (1992).
+- Treaty of Friendship, Commerce and Navigation, U.S.–Isr., Aug. 23, 1951, 5 U.S.T. 550, T.I.A.S. No. 2948, 219 U.N.T.S. 237 (entered into force Apr. 3, 1954).
+- U.S. Const. art. I, § 1; art. I, § 6, cl. 1; art. I, § 8; art. I, § 9, cls. 2, 7; art. II, § 1, cl. 8; art. II, § 2, cl. 1; art. II, § 3; art. II, § 4; art. III; art. III, § 1; art. III, § 2; art. III, § 3; art. IV, § 1; art. VI, cls. 2–3; amends. V, VI, VII, VIII, IX, X, XI, XIV, XXV.
+- United States-Israel Strategic Partnership Act of 2014, Pub. L. No. 113-296, 128 Stat. 4075.
 - Wet op de rechterlijke organisatie (Netherlands).
 
 **Briefs and Legislative Materials**
 
+- 172 Cong. Rec. H3916–18 (daily ed. June 8, 2026) (Rep. Massie; affidavit of Capt. Ward Boston, Jr., Jan. 8, 2004).
 - Appellants' Brief and Argument, *Hunziker v. German-American State Bank*, No. 88-3160 (7th Cir. Jan. 1989) (pro se).
 - Brief and Argument for Appellant, *Shemaitis v. Reid*, No. 10444 (7th Cir. 1951).
 - Brief for Amici Curiae American Coalition of Citizens with Disabilities et al., *Stump v. Sparkman*, No. 76-1750 (U.S. Jan. 9, 1978).
@@ -2090,6 +2170,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Edward Foss, *The Judges of England, with Sketches of their Lives*, vols. III (1272–1377) and IV (1377–1485) (London 1851).
 - Emil Friedberg (ed.), *Corpus Iuris Canonici*, 2 vols. (Tauchnitz, Leipzig 1879–1881).
 - F. Liebermann (ed.), *Die Gesetze der Angelsachsen*, vol. I (Niemeyer, Halle 1903).
+- *Foreign Relations of the United States, 1964–1968*, vol. XIX, *Arab-Israeli Crisis and War, 1967* (Harriet Dashiell Schwar ed., U.S. Gov't Printing Office 2004), doc. 424.
 - Francis Bacon, *The Essayes or Counsels, Civill and Morall, of Francis Lo. Verulam, Viscount St. Alban. Newly Written* (London, Iohn Haviland for Hanna Barret, 1625) (*Of Iudicature*, Essay LVI, at 316–24; *see* the note at chapter 1.3 § E); modernised text in *The Essays of Francis Bacon* (George Edward Woodberry intro., Century Classics, New York 1900).
 - Glanvill, *Tractatus de legibus et consuetudinibus regni Angliae* (Rayner ed., London 1780).
 - J. B. Moyle (trans.), *The Institutes of Justinian*, 2d ed. (Clarendon Press, Oxford 1889).
@@ -2118,7 +2199,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - *The Bible and Holy Scriptures Conteyned in the Olde and Newe Testament* (Rouland Hall, Geneva 1560).
 - *The Book of the Popes (Liber Pontificalis)*, vol. I (Louise Ropes Loomis trans., Records of Civilization, New York 1916).
 - *The Byble in Englyshe* (Great Bible, Cranmer edition, 1540).
-- *The Federalist* Nos. 70, 77, 78, 84 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
+- *The Federalist* Nos. 43 (James Madison), 70, 77, 78, 80, 84 (Alexander Hamilton), in *The Federalist: A Collection of Essays, Written in Favour of the New Constitution*, 2 vols. (J. & A. M'Lean, New York 1788).
 - *The holie Bible conteynyng the olde Testament and the newe* (Richard Jugge, London 1568).
 - *The Holy Bible, Conteyning the Old Testament, and the New* (Robert Barker, London 1611).
 - *The Holy Bible: An Exact Reprint in Roman Type, Page for Page, of the Authorized Version Published in the Year 1611* (A. W. Pollard ed., Clarendon Press, Oxford 1911).
@@ -2138,6 +2219,7 @@ What remains is the observation on which the American Conclusion closed, now wit
 - Thomas Hobbes, *Leviathan, sive De Materia, Forma, & Potestate Civitatis Ecclesiasticae et Civilis* (Joan. Blaeu, Amsterdam 1668).
 - Thomas Rymer, *Foedera, Conventiones, Literae et Cujuscunque Generis Acta Publica*, tome VII (3d ed., The Hague 1742).
 - Thomas Rymer, *Foedera, Conventiones, Litterae et Acta Publica*, vol. III pt. i (Record Commission ed., London 1825).
+- U.S. Dep't of State, *Treaties in Force: A List of Treaties and Other International Agreements of the United States in Force on January 1, 2026* (2026).
 - William Hudson, *A Treatise of the Court of Star Chamber*, in 2 *Collectanea Juridica: Consisting of Tracts Relative to the Law and Constitution of England* 1 (Francis Hargrave ed., London 1792) (written under James I; the records "negligently kept, and many times lost," pt. I at 41; sentences "wholly left unentered," pt. I at 6; *see* the note at chapter 1.3 § F).
 - William Prynne, *Brief Animadversions on, Amendments of, & Additional Explanatory Records to, the Fourth Part of the Institutes* (London 1669) (the Keeper of the Records' re-examination of Coke's Star Chamber chapter at the original rolls; Epilogue pp. 417–22; *see* the note at chapter 1.3 § F).
 
