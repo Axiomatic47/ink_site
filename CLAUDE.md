@@ -95,6 +95,20 @@ p=none, all on Netlify DNS).
   `reader.read()` loop — `getTextContent()` uses `for await` on a
   ReadableStream, which WebKit (Safari, the Studio shell) does not support,
   and every page throws. Verify hit counts against `pdftotext | grep -o | wc -l`.
+- **A book's VERSION log (owner 2026-09-24, "a versioning drop down at the footer of the article
+  page … concise notes of change"; as lawsofexistence.com):** the log is the LANE's — the drafter's
+  `_VERSIONS.json` beside the extracts (contract with 0b43895f, RL f78abdbf): one entry per published
+  version, newest last, each with the FULL sha256 of the committed text (`text` = `_BOOK.json`.sha256)
+  and of the owner's render (`pdf` = `overlay.json` pdf.sha256 — never the served `_linked.pdf`, whose
+  hash moves with every index row), the date, a concise note, and informational `book_commit`,
+  `render`, `lane_state`. The import gates the newest entry with those two equalities (a book or
+  render that moved without an entry is refused, naming the cells; a row-only state carries no entry)
+  and writes `content/versions/<slug>.json` — the lane's file byte for byte, never hand-edited. A lane
+  without the file while the site has a copy is REFUSED (a vanished log is a mistake or a decision, and
+  either arrives as a signal — never an import that un-publishes); a book that never had a log has no
+  menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
+  page's footer (an upward popover, never inside the panes' height budget) and the text page's side
+  panel. Both sites carry the same log; the immunity book's version 1 is the eighteenth lane state.
 
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set

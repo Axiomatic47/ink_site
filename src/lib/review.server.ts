@@ -1,7 +1,7 @@
 // src/lib/review.server.ts — read the review manifests (server only: node:fs).
 import fs from 'node:fs';
 import path from 'node:path';
-import type { EditionMap, ReviewManifest } from './review';
+import type { BookVersion, EditionMap, ReviewManifest } from './review';
 import { RESEARCH_ARCHIVES, archiveBase, publishedDocs } from './research-archive';
 import { readArchiveManifest } from './research-archive.server';
 
@@ -17,6 +17,14 @@ export function readReview(slug: string): ReviewManifest | null {
   const file = path.join(DIR, `${slug}.json`);
   if (!fs.existsSync(file)) return null;
   return JSON.parse(fs.readFileSync(file, 'utf8')) as ReviewManifest;
+}
+
+/** the book's version log, newest first (content/versions/<slug>.json; none = no menu) */
+export function readVersions(slug: string): BookVersion[] {
+  const file = path.join(process.cwd(), 'content', 'versions', `${slug}.json`);
+  if (!fs.existsSync(file)) return [];
+  const v = (JSON.parse(fs.readFileSync(file, 'utf8')) as { versions: BookVersion[] }).versions ?? [];
+  return [...v].sort((a, b) => b.version - a.version);
 }
 
 /** every archive leaf that serves an EDITION (a professional transcription), keyed `${archiveId}/${leafId}` — the

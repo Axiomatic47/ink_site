@@ -15,7 +15,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlignLeft, ArrowLeft, ArrowRight, BookOpen, ChevronDown, ChevronLeft, ChevronRight, Columns, CornerLeftUp, ExternalLink, FileText, Image as ImageIcon, Loader2, Lock, Rows, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, leafFromUrl, type EditionMap, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { RIGHTS_LABEL, WORK_URL_KIND, citeFromHash, hashForCite, leafFromUrl, type BookVersion, type EditionMap, type ReviewManifest, type ReviewUnit, type ReviewWork } from '@/lib/review';
+import { VersionMenu } from './VersionMenu';
 import { Md } from '../../../_components/Markdown';
 import { SiteHeader } from '../../../_components/SiteHeader';
 import { SiteFooter } from '../../../_components/SiteFooter';
@@ -56,6 +57,8 @@ interface Props {
   sourceCount?: number;
   /** the archive leaves serving an EDITION: a held page whose chip links to one opens the transcription here */
   editions?: EditionMap;
+  /** the book's version log, newest first — the footer's version drop-down (owner 2026-09-24) */
+  versions?: BookVersion[];
 }
 
 /** one cited WORK from the lane's register (contract 2026-09-16), under the source title: the full citation;
@@ -92,7 +95,7 @@ function WorkRecord({ w, sourceHolderUrl, compact = false }: { w: ReviewWork; so
   );
 }
 
-export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount, editions }: Props) {
+export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount, editions, versions = [] }: Props) {
   const textTo = textHref ?? `/work/${work.slug}`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -621,10 +624,14 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
               <p>{manifest.rightsRule}</p>
             )}
           </div>
-          <p className="ml-auto text-right">
-            {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
-            text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
-          </p>
+          <div className="ml-auto text-right">
+            <p>
+              {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
+              text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
+            </p>
+            {/* the version drop-down opens UPWARD over the page — a popover, never a change to the panes' budget (BELOW_PX) */}
+            {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
+          </div>
         </div>
         {/* the dropdown's body — a sibling of the measured block, never part of the panes' height budget */}
         {!reading && page && pageWork && workOpen && (

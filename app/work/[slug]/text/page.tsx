@@ -8,9 +8,10 @@ import { ArrowLeft, Columns } from 'lucide-react';
 import { workBySlug, collectionBySlug } from '@/lib/works';
 import { ogImages } from '@/lib/og.server';
 import { readWorkBody } from '@/lib/works.server';
-import { readReview, reviewSlugs } from '@/lib/review.server';
+import { readReview, readVersions, reviewSlugs } from '@/lib/review.server';
 import { SiteShell } from '../../../_components/SiteShell';
 import { ArticleBody } from '../../../_components/ArticleBody';
+import { VersionMenu } from '../review/VersionMenu';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -34,6 +35,7 @@ export default async function ReviewedTextPage({ params }: { params: Promise<{ s
   const body = w ? readWorkBody(w) : null;
   if (!w || !review || !body) notFound();
   const collection = collectionBySlug(w.collection);
+  const versions = readVersions(slug);
   return (
     <SiteShell>
       <Link href={`/work/${w.slug}`} className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink no-underline mb-6">
@@ -50,6 +52,8 @@ export default async function ReviewedTextPage({ params }: { params: Promise<{ s
             <span className="text-sm leading-snug text-ink"><span style={{ fontWeight: 600 }}>Review mode</span> — the book beside the pages it cites. Every citation below is a link into it.</span>
           </Link>
           {collection && <p className="text-xs text-muted mt-4">Part of <Link href={`/work#${collection.slug}`} className="text-accent-ink underline">{collection.title}</Link></p>}
+          {/* the book's version log (owner 2026-09-24) — the same drop-down as the review page's footer, opening downward here */}
+          {versions.length > 0 && <VersionMenu versions={versions} align="left" up={false} className="mt-4" />}
         </aside>
         <section className="min-w-0">
           <ArticleBody citeBase={`/work/${w.slug}`}>{body}</ArticleBody>
