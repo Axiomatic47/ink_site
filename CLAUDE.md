@@ -118,6 +118,19 @@ p=none, all on Netlify DNS).
   menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
   page's footer (an upward popover, never inside the panes' height budget) and the text page's side
   panel. Both sites carry the same log; the immunity book's version 1 is the eighteenth lane state.
+- **Completed is not published (owner 2026-09-26, "none were published until September 26, which is
+  information that needs to be available to the reviewer"):** the lane's `date` is when the drafter
+  completed the version; publication is the owner's integration of device/macbook → main (Netlify
+  deploys main). `npm run versions:stamp` (`scripts/stamp-published.mjs`; run after EVERY integration,
+  then commit) reads main's first-parent history and records, per version, the date in the owner's
+  zone and the short sha of the first main commit that carried it →
+  `content/versions/<slug>.published.json` — the site's record, never the lane's; a recorded date is
+  never rewritten (a disagreement with main is printed, not applied). `readVersions` merges it; a
+  production build (`CONTEXT=production`) dates a version the record lacks by the commit it is
+  building — the deploy that publishes it — so the live site is never behind the record; any other
+  build shows such a version as **not yet published**. The menu prints both per version:
+  "completed … · published …". The immunity book's versions 1–4 and 6–10 were all published
+  2026-09-26 (main 156fc3f).
 
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
