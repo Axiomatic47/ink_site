@@ -19,7 +19,9 @@
     "test:analytics": "node scripts/test-analytics.mjs",
     "test:edge": "deno test scripts/analytics-hit_test.mjs",
     "check:pdf": "node scripts/check-pdf-private.mjs",
-    "og:build": "python3 scripts/build_og_images.py"
+    "og:build": "python3 scripts/build_og_images.py",
+    "review:diff": "python3 scripts/review_diff.py",
+    "versions:stamp": "node scripts/stamp-published.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^11.0.3",

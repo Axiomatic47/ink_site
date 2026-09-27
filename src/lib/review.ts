@@ -215,8 +215,15 @@ export type EditionMap = Record<string, EditionLeaf>;
     content/versions/<slug>.json. Both sites carry the same log. */
 export interface BookVersion {
   version: number;
-  /** ISO date the version was published */
+  /** ISO date the version was COMPLETED — the lane's date (the drafter's). Publication is the owner's
+      integration to main: see `published` (owner 2026-09-26: the reviewer must see both) */
   date: string;
+  /** ISO date the version first reached the live site, in the owner's zone (content/versions/<slug>.published.json,
+      written by scripts/stamp-published.mjs from main's history; a production build dates an unstamped version by
+      the commit it is building); absent = not yet published */
+  published?: string;
+  /** where `published` comes from: the short sha of the main commit that first carried the version, or 'this deploy' */
+  publishedBy?: string;
   /** full sha256 of the committed text and of the owner's render (the menu shows the first 12 characters) */
   text?: string;
   pdf?: string;

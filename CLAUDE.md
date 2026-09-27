@@ -48,6 +48,15 @@ p=none, all on Netlify DNS).
   copies the **public-domain pages only** to `public/uploads/research/<id>/sources/`
   (sha-checked), and writes `content/review/<slug>.json`. Run it after
   import-local-works; it refuses a book whose sha256 differs from the lane's.
+- **Then read the served diff before committing:** `npm run review:diff -- <slug>`
+  (`scripts/review_diff.py`, read-only) prints what changed in everything the
+  site serves against HEAD — review JSON (book, render, markers, works, sources,
+  units with status/rights censuses, boxes), served manifest, version log and its
+  byte identity with the lane's `_VERSIONS.json`, works markdown, the uploads tree
+  with any file that went empty or lost cells. Every line must trace to the
+  drafter's signal; otherwise refuse the state naming the cells (a sha gate is
+  necessary, not sufficient: the 17th lane state passed every sha and emptied 59
+  context cells).
 - Rights rule: nothing in copyright or licence-bound leaves the library; a
   citation whose page is held but not published is MARKED on the site (source,
   page, rights, holder link), never dropped. `Markdown.tsx` turns `cite:` hrefs
@@ -109,6 +118,19 @@ p=none, all on Netlify DNS).
   menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
   page's footer (an upward popover, never inside the panes' height budget) and the text page's side
   panel. Both sites carry the same log; the immunity book's version 1 is the eighteenth lane state.
+- **Completed is not published (owner 2026-09-26, "none were published until September 26, which is
+  information that needs to be available to the reviewer"):** the lane's `date` is when the drafter
+  completed the version; publication is the owner's integration of device/macbook → main (Netlify
+  deploys main). `npm run versions:stamp` (`scripts/stamp-published.mjs`; run after EVERY integration,
+  then commit) reads main's first-parent history and records, per version, the date in the owner's
+  zone and the short sha of the first main commit that carried it →
+  `content/versions/<slug>.published.json` — the site's record, never the lane's; a recorded date is
+  never rewritten (a disagreement with main is printed, not applied). `readVersions` merges it; a
+  production build (`CONTEXT=production`) dates a version the record lacks by the commit it is
+  building — the deploy that publishes it — so the live site is never behind the record; any other
+  build shows such a version as **not yet published**. The menu prints both per version:
+  "completed … · published …". The immunity book's versions 1–4 and 6–10 were all published
+  2026-09-26 (main 156fc3f).
 
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set

@@ -91,6 +91,16 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "thirtieth",
    "note": "Version 10 (2026-09-26): six English decisions that the notes cited only by their nominate reports now have rows in the bibliography, each with its English Reports parallel: Ackerley v. Parkinson (1815), Ashford v. Thornton (1818), Blatch v. Archer (1774), Hamond v. Howell (1677), Houlden v. Smith (1850) and Thomas v. Churton (1862). Four were read at the original reports; two could not be found; the reprint pages await a host that serves them, and the register says which is which. No sentence of the body or the notes changed."
+  },
+  {
+   "version": 11,
+   "date": "2026-09-26",
+   "text": "64dcca8fe02e82d601c5d8eb426968774b9dbbfb750fc9db576c5ec102329fde",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "1502b8cd35ea684443a41ba3ad8f2ca793797616",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "thirty-first",
+   "note": "Israel is set on chapter 4.7's two axes on the judge question at the owner's direction: two paragraphs before the table read the Civil Wrongs Ordinance's judicial-immunity clause and its 2005 public-servant clause, the Basic Law on the judiciary, the Courts Law's disciplinary chapter and the 2002 Ombudsman for Public Complaints against Judges Law; the table gains an Israel row; the finding places Israel with England on the money axis and with the kingdoms on the exposure axis, a fourth shape; five bibliography rows and seven notes with the Hebrew originals; the Preface's rendering rule names chapter 4.7."
   }
  ]
 }
