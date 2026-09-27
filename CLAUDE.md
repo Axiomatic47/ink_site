@@ -48,6 +48,15 @@ p=none, all on Netlify DNS).
   copies the **public-domain pages only** to `public/uploads/research/<id>/sources/`
   (sha-checked), and writes `content/review/<slug>.json`. Run it after
   import-local-works; it refuses a book whose sha256 differs from the lane's.
+- **Then read the served diff before committing:** `npm run review:diff -- <slug>`
+  (`scripts/review_diff.py`, read-only) prints what changed in everything the
+  site serves against HEAD — review JSON (book, render, markers, works, sources,
+  units with status/rights censuses, boxes), served manifest, version log and its
+  byte identity with the lane's `_VERSIONS.json`, works markdown, the uploads tree
+  with any file that went empty or lost cells. Every line must trace to the
+  drafter's signal; otherwise refuse the state naming the cells (a sha gate is
+  necessary, not sufficient: the 17th lane state passed every sha and emptied 59
+  context cells).
 - Rights rule: nothing in copyright or licence-bound leaves the library; a
   citation whose page is held but not published is MARKED on the site (source,
   page, rights, holder link), never dropped. `Markdown.tsx` turns `cite:` hrefs
