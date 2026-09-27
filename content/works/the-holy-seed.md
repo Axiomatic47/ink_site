@@ -1119,7 +1119,7 @@ Böklen, Ernst. *Die Verwandtschaft der jüdisch-christlichen mit der parsischen
 
 Brown, John P. *Researches in Oriental History.* 3rd ed. Rockford, Ill., 1891.
 
-Calabresi, Giorgio Ettore. "Il caso Rufeisen." *La Rassegna Mensile di Israel* XXIX, nn. 1–2 (Teveth-Shevat 5723 / January–February 1963): 3–17. Prints the five opinions of the High Court of Israel in *Rufeisen v. Minister of the Interior* (HCJ 72/62) in an Italian translation of *The Jerusalem Post*'s digest, and, as appendix, the *Legge del Ritorno* of 20 Tammuz 5710 (5 July 1950) in an Italian rendering of the Ministry of Justice's official English. In copyright. Owner's screenshots, collated. The book cites the reported judgment and the statute through this witness.
+Calabresi, Giorgio Ettore. "Il caso Rufeisen." *La Rassegna Mensile di Israel* XXIX, nn. 1–2 (Teveth-Shevat 5723 / January–February 1963): 3–17. Prints the five opinions of the High Court of Israel in *Rufeisen v. Minister of the Interior* (HCJ 72/62) in an Italian translation of *The Jerusalem Post*'s digest, and, as appendix, the *Legge del Ritorno* of 20 Tammuz 5710 (5 July 1950) in an Italian rendering of the Ministry of Justice's official English. In copyright; read in the author's own screenshots, collated. The book cites the reported judgment and the statute through this witness.
 
 Carter, George William. *Zoroastrianism and Judaism.* Boston: Richard G. Badger, 1918.
 
