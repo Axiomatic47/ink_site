@@ -394,6 +394,7 @@ function importOne(cfg) {
   const copied = new Set();
   let bytes = 0, copiedNew = 0, kept = 0;
   const wanted = new Set();
+  const multi = new Set(); // extracts that span two or more scans (a printed page cut across its scans, e.g. the 1797 Coke)
   for (const u of units.values()) {
     for (const p of u.pages) {
       if (!p.extract || !PUBLISHABLE.has(p.rights)) { p.file = null; continue; }
@@ -412,6 +413,8 @@ function importOne(cfg) {
         copied.add(p.extract);
       } else if (!p.sha256) p.sha256 = sha256(src);
       p.file = `/uploads/research/${cfg.id}/sources/${rel}`;
+      const np = pagesOf(dst); // an extract is one page unless the printed page runs across scans
+      if (np > 1) { p.pages = np; multi.add(p.extract); }
     }
     if (u.pages.some((p) => p.file)) counts.published += 1;
     else if (u.pages.length || u.source) counts.held += 1;
@@ -530,7 +533,7 @@ function importOne(cfg) {
       return {
         // slim: this JSON travels to the reader's browser with the page
         id: u.id, note: u.note, seq: u.seq, source: u.source, status: u.status, rights: u.rights, ...(u.work ? { work: u.work } : {}), ...(u.works.length ? { works: u.works } : {}),
-        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
+        pages: u.pages.map((p) => ({ label: p.label, file: p.file, verified: p.verified, sha256: p.sha256, source: p.source, rights: p.rights, ...(p.begins ? { begins: true } : {}), ...(p.pages ? { pages: p.pages } : {}), ...(p.url ? { url: p.url } : {}), ...(p.work ? { work: p.work } : {}),
           ...(p.ctx?.file ? { context: { file: p.ctx.file, page: p.ctx.page, sha256: p.ctx.sha256, served: p.ctx.served, bytes: p.ctx.bytes } } : {}) })),
         ...(boxes.has(u.id) ? { box: boxes.get(u.id) } : {}),
       };
@@ -570,7 +573,7 @@ function importOne(cfg) {
   if (pdf) console.log(`  book PDF: ${basename(pdf.file)} ${pdf.pages} pp. ${(pdf.bytes / 1e6).toFixed(1)} MB sha256 ${pdf.sha256.slice(0, 12)}… (${pdf.producer})${pdf.linked ? ' + linked copy' : ''}; boxes on ${counts.boxed} units, ${counts.unboxed.length} wrapped units without a box${counts.unboxed.length ? ': ' + counts.unboxed.join(', ') : ''}; ${markers.length} markers`);
   else console.log('  book PDF: none (no _WEB/overlay.json in the lane) — the review pane falls back to the rendered text');
   console.log(`  reading copies: ${ctxCopied.size} public-domain context documents (${(ctxBytes / 1e6).toFixed(1)} MB, linearized) — ${ctxNew} written, ${ctxKept} kept, ${ctxRemoved} removed; ${[...units.values()].reduce((n, u) => n + u.pages.filter((p) => p.ctx?.file).length, 0)} page links open in context`);
-  console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links`);
+  console.log(`  pages: ${copied.size} public-domain extracts (${(bytes / 1e6).toFixed(1)} MB) — ${copiedNew} copied, ${kept} kept, ${removed} removed; ${pages} page links${multi.size ? `; ${multi.size} extract${multi.size === 1 ? '' : 's'} span${multi.size === 1 ? 's' : ''} two or more scans` : ''}`);
   if (versions) { const top = [...versions.versions].sort((a, b) => b.version - a.version)[0]; console.log(`  versions: ${versions.versions.length} in the lane's _VERSIONS.json; current version ${top.version} (${top.date}${top.lane_state ? `, lane ${top.lane_state}` : ''}) names this text and this render`); }
   else console.log('  versions: no _VERSIONS.json in the lane — no version menu');
   for (const w of unwrappable) console.log(`  ! ${w}`);

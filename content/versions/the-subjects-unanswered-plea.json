@@ -111,6 +111,26 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "thirty-second",
    "note": "Version 12 (2026-09-27): chapter 4.6 now reads the case of Rachel Corrie, an American killed by Israeli forces in 2003 whose family's suit against the State was tried over sixteen days in the District Court at Haifa and affirmed on reasons by the Supreme Court in 2015, the channel the letter of 2016 withheld from the parents in Doğan; the paragraph on the premise of 1812 sets Holmes's ground for the sovereign's own immunity, that there can be no legal right against the authority that makes the law, beside Marshall's presumption and finds that it cannot reach a foreign state; and the Israel passage of chapter 4.7 records the judicial-immunity clause applied at the threshold in the family's second suit. Four notes carry the citations and the Hebrew; the Preface's rule on renderings names the judgment; the bibliography gains the case."
+  },
+  {
+   "version": 13,
+   "date": "2026-09-28",
+   "text": "62f3e95d888b4a06f0e0245fd23c7661c25eb6a04fb78f812f22d7d064bcbf5d",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "a53daedd27840e056f78bba581bcb5ad42fff411",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "thirty-third",
+   "note": "Version 13 (2026-09-28): the author's own sentences are swept of the em-dash, chapter by chapter, from the Preface through the Conclusion to Parts 2 and 3, each dash giving way to the comma, colon, parenthesis or full stop the sentence wanted; every quotation keeps its source's own punctuation, no note or citation changes, and no sentence changes its meaning."
+  },
+  {
+   "version": 14,
+   "date": "2026-09-28",
+   "text": "ca09cb68aace4f7e194ba68052cbdee3b036f00e85b2aaa78af85ba1b88e6ca9",
+   "pdf": "3b1c69263962688d7575e2d07c671565ca8260d6353a260a60a8e0b12f21c04d",
+   "book_commit": "882fd9d31a182b558548695b3e598edb6f12ded6",
+   "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
+   "lane_state": "thirty-sixth",
+   "note": "Version 14 (2026-09-28): two notes are corrected at the page. The note on the Act of 1641 now cites the Statutes of the Realm at pages 110 to 112, the clause dissolving the Council in the Marches of Wales standing on the last of them; and the note on Scott v. Stansfield gives its three further page references in citation form. No word of the text changes."
   }
  ]
 }

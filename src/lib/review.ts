@@ -7,12 +7,15 @@
 export interface ReviewPage {
   /** the cited page as a label: "p. 705" · "col. 529" · "f. 81v" · "m. 8" · "sig. E4v" · "first page" */
   label: string;
-  /** site path of the one-page PDF, or null when the page is held but not published */
+  /** site path of the extract PDF — one page, or the two or three scans a printed page runs across (the
+      1797 Coke's 1644 pagination) — or null when the page is held but not published */
   file: string | null;
   /** true: the page number was read on the cut page · false: placed by the
       run's offset · null: a verso with nothing to read */
   verified: boolean | null;
   sha256: string | null;
+  /** the extract's page count when it exceeds one: the printed page runs across that many scans (lane state 2026-09-28) */
+  pages?: number;
   /** the page's own source key and rights — a unit cut from two sources
       (the 1611 facsimile and the Bodleian leaves) has pages of each */
   source: string | null;
@@ -28,7 +31,7 @@ export interface ReviewPage {
   /** the READING COPY (owner rule 2026-09-15): a multi-page PDF of the work — whole when ≤10 pages or a
       whole case, else the cited page with the neighbours its quotation needs — and the cited page's
       1-based position inside it. The pane opens this, scrolled to `page`; `file` above stays the
-      hash-verified single-page audit copy. */
+      hash-verified audit copy (one page, or the scans the printed page spans). */
   context?: { file: string; page: number; sha256: string | null; served?: string | null; bytes?: number };
 }
 
