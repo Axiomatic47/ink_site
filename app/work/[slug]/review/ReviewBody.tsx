@@ -1,8 +1,8 @@
 // ReviewBody — a book beside the pages it cites. The book (server-rendered,
 // passed as children) scrolls in the left card; every citation unit in its
 // notes is an <a data-cite="note/seq"> written by the import, and a click on
-// one opens that unit's pinned page in the right card (PdfViewer, one-page
-// PDF cut from the held source). Same matched-card pattern as the archive
+// one opens that unit's pinned page in the right card (PdfViewer, a PDF cut
+// from the held source: one page, or the scans a printed page runs across). Same matched-card pattern as the archive
 // leaf pages (LeafBody): h-11 header bars, h-8 sub-bars, a draggable divider
 // in side-by-side, the layout choice remembered. Deep link: #cite=<note>/<seq>.
 //
@@ -298,7 +298,8 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   })();
   const pageTitle = page ? `${sourceTitle}, ${page.label}` : sourceTitle;
   // the reading copy (owner rule 2026-09-15): the pane opens the work's context document scrolled
-  // to the cited page; the single-page extract stays the audit copy behind "open the page PDF"
+  // to the cited page; the extract (one page, or the scans the printed page spans — `page.pages`) stays
+  // the audit copy behind "open the page PDF"
   const ctx = page?.context ?? null;
   const paneSrc = ctx ? v(ctx.file, ctx.served ?? ctx.sha256) : page?.file ? v(page.file, page.sha256) : null;
   // THE EDITION (owner 2026-09-21): a held page whose chip links to one of this site's leaves that serves a
@@ -604,11 +605,11 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
                   <span className="text-ink/80" style={{ fontWeight: 550 }}>{pageTitle}</span>
                   {' · '}{page.rights === 'external-link' ? 'the holder’s catalogue record, cited by its preferred citation; no page is held' : page.verified === true ? 'page number read on the page' : page.verified === false ? 'page placed by the scan’s offset — the number was not read on it' : 'a verso with no number to read'}
                   {active?.status === 'CUT_FIRST' && (page?.begins ? ' · the note cites the case without a page: the whole case is served, from its first page' : ' · a page of the case, cited whole')}
-                  {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF</a></>}
+                  {page.file && <> · <a href={v(page.file, page.sha256)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">open the page PDF{page.pages && page.pages > 1 ? ` (${page.pages} scans)` : ''}</a></>}
                   {page.url && !edition && (page.url.startsWith('http')
                     ? <> · <a href={page.url} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink break-all">the holder’s record</a></>
                     : <> · <Link href={page.url} className="underline text-accent-ink">the leaf on this site</Link></>)}
-                  {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? '; the download is the single page' : ''}</>}
+                  {ctx && <> · shown in its reading copy at page {ctx.page}{page.file ? (page.pages && page.pages > 1 ? `; the download is the cited page, which runs across ${page.pages} scans of the print` : '; the download is the single page') : ''}</>}
                   {edition && <> · shown in the transcription ({edition.credit}) at page {edition.page} · <Link href={`${edition.leafUrl}#page=${edition.page}`} className="underline text-accent-ink">the leaf page</Link>: the folio image beside it</>}
                   {/* under an edition pane the lane's rights label (the RECORD's held status) does not describe his published text */}
                   {edition ? <> · the images by permission of the holder; the transcription published in full with its author’s agreement</> : rights && RIGHTS_LABEL[rights] && <> · {RIGHTS_LABEL[rights]}</>}

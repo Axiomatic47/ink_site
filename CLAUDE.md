@@ -118,6 +118,13 @@ p=none, all on Netlify DNS).
   menu. `app/work/[slug]/review/VersionMenu.tsx` shows it in the review
   page's footer (an upward popover, never inside the panes' height budget) and the text page's side
   panel. Both sites carry the same log; the immunity book's version 1 is the eighteenth lane state.
+- **An extract may span two or three scans** (lane state 2026-09-28: the 1797 Coke's 1644 pagination —
+  a printed page begins at its bracket and runs to the next bracket's scan, so the lane cuts a pin
+  from its bracket scan to the next). The importer counts each copied extract's pages (qpdf) and
+  records `pages` on the page entry only when it exceeds one, so every other entry stays byte-stable;
+  the footer then says the download is the cited page across N scans, the "open the page PDF" link
+  names the count, and `PdfViewer` pages through the file on its own. The pane still opens the
+  reading copy at the cited page. The lane's index keeps `pdf_page` = the bracket scan.
 - **Completed is not published (owner 2026-09-26, "none were published until September 26, which is
   information that needs to be available to the reviewer"):** the lane's `date` is when the drafter
   completed the version; publication is the owner's integration of device/macbook → main (Netlify
