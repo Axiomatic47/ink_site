@@ -641,7 +641,10 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
           <div className="ml-auto text-right">
             <p>
               {pdf ? <>PDF rendered {pdf.rendered} ({pdf.pages} pp.; sha256 <span className="font-mono">{pdf.sha256.slice(0, 12)}…</span>) · </> : null}
-              text current to {manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
+              {/* the newest version entry's own date (readVersions sorts newest first; the author's date, the same line
+                  as lawsofexistence.com) — the import's generated stamp is the build's and belongs to the log, not the
+                  reader's line (lane holder, 2026-09-30) */}
+              text current to {versions[0]?.date ?? manifest.generated.slice(0, 10)} (sha256 <span className="font-mono">{manifest.book.sha256.slice(0, 12)}…</span>{manifest.book.commit ? <>, blob {manifest.book.commit.slice(0, 8)}</> : null})
             </p>
             {/* the version drop-down opens UPWARD over the page — a popover, never a change to the panes' budget (BELOW_PX) */}
             {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
