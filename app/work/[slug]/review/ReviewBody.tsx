@@ -128,7 +128,8 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
   // a citation the book's PDF does not carry yet: the text gained it after the PDF was rendered, so the
   // overlay has no box for it and the book pane cannot move to it (owner's screenshots 2026-09-30, the
-  // Whittick notes). The page says so and points at the text, instead of staying where it was.
+  // Whittick notes). The record line below the panes says so (the same words as lawsofexistence.com,
+  // 55339aa7) and the note-jump button is disabled; nothing inside the pane columns changes size.
   const unplaced = !!pdf && !!active && !active.box;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
@@ -448,20 +449,8 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const paneShell = 'bg-card border border-rule rounded-lg shadow-card flex flex-col min-h-0';
   const barTitle = 'font-serif text-[15px] leading-none';
 
-  // shown above the source pane in every layout while an unplaced citation is in hand
-  const unplacedNotice = pdf && active && !active.box ? (
-    <div className="shrink-0 mb-2 rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-xs text-ink/85 flex items-start gap-2" role="status">
-      <span className="text-accent-ink whitespace-nowrap" style={{ fontWeight: 600 }}>Not in the PDF yet</span>
-      <span className="min-w-0">
-        This citation (n. {active.note}) was added to the text after the PDF was rendered on {pdf.rendered}, so the book pane cannot move to it.{' '}
-        <Link href={`${textTo}#user-content-fn-${active.note.toLowerCase()}`} className="underline text-accent-ink">Read it in the text version</Link>.
-      </span>
-    </div>
-  ) : null;
-
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
-      {unplacedNotice}
       {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
       {edition && page ? (
         showFolio ? (
@@ -615,6 +604,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
         <div ref={belowRef} className={cn('mt-3 min-h-9 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
+            {!reading && active && !active.box && pdf && (
+              <p className="text-ink/85">
+                <span className="text-accent-ink" style={{ fontWeight: 600 }}>Not yet on the rendered PDF:</span> the render of {pdf.rendered} predates this citation, so the book pane stays where it was.{' '}
+                <Link href={`${textTo}#user-content-fnref-${active.note.toLowerCase()}`} className="underline text-accent-ink">The text version carries it</Link>; the next render places it.
+              </p>
+            )}
             {reading ? (
               <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>
             ) : page ? (
