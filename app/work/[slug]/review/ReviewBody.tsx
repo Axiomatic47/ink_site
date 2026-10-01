@@ -126,6 +126,10 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     setFocus({ page: part.page + 1, y: part.rects[0][1], nonce: Date.now() });
   }, []);
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
+  // a citation the book's PDF does not carry yet: the text gained it after the PDF was rendered, so the
+  // overlay has no box for it and the book pane cannot move to it (owner's screenshots 2026-09-30, the
+  // Whittick notes). The page says so and points at the text, instead of staying where it was.
+  const unplaced = !!pdf && !!active && !active.box;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
   const pageWork: ReviewWork | undefined = page?.work ? manifest.works?.[page.work] : undefined;
@@ -354,7 +358,9 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
       </span>
       <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
       {active && (
-        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
+        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} disabled={unplaced}
+          title={unplaced ? `Note ${active.note} is not in the PDF yet — the citation was added after the PDF was rendered` : `Show note ${active.note} in the book`}>
+          <CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
       {edition && edKey && (
         <>
@@ -442,8 +448,20 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   const paneShell = 'bg-card border border-rule rounded-lg shadow-card flex flex-col min-h-0';
   const barTitle = 'font-serif text-[15px] leading-none';
 
+  // shown above the source pane in every layout while an unplaced citation is in hand
+  const unplacedNotice = pdf && active && !active.box ? (
+    <div className="shrink-0 mb-2 rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-xs text-ink/85 flex items-start gap-2" role="status">
+      <span className="text-accent-ink whitespace-nowrap" style={{ fontWeight: 600 }}>Not in the PDF yet</span>
+      <span className="min-w-0">
+        This citation (n. {active.note}) was added to the text after the PDF was rendered on {pdf.rendered}, so the book pane cannot move to it.{' '}
+        <Link href={`${textTo}#user-content-fn-${active.note.toLowerCase()}`} className="underline text-accent-ink">Read it in the text version</Link>.
+      </span>
+    </div>
+  ) : null;
+
   const sourcePane = (
     <div ref={sourceRef} className={cn('min-w-0 flex flex-col', review ? 'h-full min-h-0' : 'lg:sticky lg:top-3 z-10')}>
+      {unplacedNotice}
       {!review && pageStrip && <div className="mb-2">{pageStrip}</div>}
       {edition && page ? (
         showFolio ? (
