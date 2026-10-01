@@ -126,6 +126,11 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
     setFocus({ page: part.page + 1, y: part.rects[0][1], nonce: Date.now() });
   }, []);
   const active: ReviewUnit | null = activeId ? byId.get(activeId) ?? null : null;
+  // a citation the book's PDF does not carry yet: the text gained it after the PDF was rendered, so the
+  // overlay has no box for it and the book pane cannot move to it (owner's screenshots 2026-09-30, the
+  // Whittick notes). The record line below the panes says so (the same words as lawsofexistence.com,
+  // 55339aa7) and the note-jump button is disabled; nothing inside the pane columns changes size.
+  const unplaced = !!pdf && !!active && !active.box;
   const idx = active ? units.indexOf(active) : -1;
   const page = active?.pages[pageIdx] ?? null;
   const pageWork: ReviewWork | undefined = page?.work ? manifest.works?.[page.work] : undefined;
@@ -354,7 +359,9 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
       </span>
       <button type="button" className={ctl} onClick={() => step(1)} disabled={idx < 0 || (idx >= units.length - 1 && pageIdx >= (active?.pages.length ?? 1) - 1)} title={active && pageIdx < active.pages.length - 1 ? 'Next cited page' : 'Next citation'} aria-label="Next"><ChevronRight className="h-4 w-4" /></button>
       {active && (
-        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} title={`Show note ${active.note} in the book`}><CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
+        <button type="button" className={cn(ctl, 'ml-1')} onClick={toNote} disabled={unplaced}
+          title={unplaced ? `Note ${active.note} is not in the PDF yet — the citation was added after the PDF was rendered` : `Show note ${active.note} in the book`}>
+          <CornerLeftUp className="h-3.5 w-3.5" /> n. {active.note}</button>
       )}
       {edition && edKey && (
         <>
@@ -597,6 +604,12 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
         {/* below the panes — the cited page's record (left) · the book's record (right) */}
         <div ref={belowRef} className={cn('mt-3 min-h-9 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 text-[11px] text-muted leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>
           <div className="min-w-0 space-y-0.5">
+            {!reading && active && !active.box && pdf && (
+              <p className="text-ink/85">
+                <span className="text-accent-ink" style={{ fontWeight: 600 }}>Not yet on the rendered PDF:</span> the render of {pdf.rendered} predates this citation, so the book pane stays where it was.{' '}
+                <Link href={`${textTo}#user-content-fnref-${active.note.toLowerCase()}`} className="underline text-accent-ink">The text version carries it</Link>; the next render places it.
+              </p>
+            )}
             {reading ? (
               <p>Reading mode — the book alone. A click on a citation in the notes opens review mode at the page it cites.</p>
             ) : page ? (
