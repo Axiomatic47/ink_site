@@ -131,6 +131,16 @@
    "render": "BOOK_render_word-quartz_2026-09-16_0652.pdf",
    "lane_state": "thirty-sixth",
    "note": "Version 14 (2026-09-28): two notes are corrected at the page. The note on the Act of 1641 now cites the Statutes of the Realm at pages 110 to 112, the clause dissolving the Council in the Marches of Wales standing on the last of them; and the note on Scott v. Stansfield gives its three further page references in citation form. No word of the text changes."
+  },
+  {
+   "version": 15,
+   "date": "2026-09-30",
+   "text": "ca09cb68aace4f7e194ba68052cbdee3b036f00e85b2aaa78af85ba1b88e6ca9",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "882fd9d31a182b558548695b3e598edb6f12ded6",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "thirty-eighth",
+   "note": "Version 15 (30 September 2026): the rendered book is refreshed to the export of 30 September, so that every citation added since 16 September, the Whittick passages among them, opens on the page. The text is unchanged from version 14."
   }
  ]
 }
