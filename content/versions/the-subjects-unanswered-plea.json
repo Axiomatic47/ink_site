@@ -141,6 +141,16 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "thirty-eighth",
    "note": "Version 15 (30 September 2026): the rendered book is refreshed to the export of 30 September, so that every citation added since 16 September, the Whittick passages among them, opens on the page. The text is unchanged from version 14."
+  },
+  {
+   "version": 16,
+   "date": "2026-10-06",
+   "text": "5e35e0d97052bd6129401e79b968cbc02819e72a26621c608bb8b14d7f9ed5dc",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "dd8b1f80c39cabef0267365860b758fb9f655bd4",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "thirty-ninth",
+   "note": "Version 16 (6 October 2026): the Preface closes with the name and the month on one line, so that the sign-off keeps the page the Preface ends on. Nothing else changes."
   }
  ]
 }

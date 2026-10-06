@@ -10,8 +10,7 @@ Part of what launched me into the research was K. J. Kesselring's study of consp
 
 I do not read Latin, Greek or Hebrew. Where the book quotes those languages it quotes what is printed on the page, sets the translations of the period beside it, and states as undecided any reading that remains in doubt; those readings await professional review, and the book says so where it happens. Where no translation of the period exists and the note names no published translation, as for the Greek and Latin of Part 5, the Latin and Hebrew of chapter 1.4 and the Hebrew statutes and judgment of chapters 4.6 and 4.7, the English beside the original was prepared for this book from the edition the note cites and stands unverified against any published translation; those renderings await the same review. The transcription of the cause file was verified by Christopher Whittick, who is the author of the final texts the book quotes. The errors that remain are mine.
 
-Joseph D. Kirchner
-September 2026
+Joseph D. Kirchner, September 2026
 
 # Introduction
 
