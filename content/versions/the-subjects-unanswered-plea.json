@@ -171,6 +171,16 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "forty-first",
    "note": "Version 18 (6 October 2026): Chapter 3.4 now sets out the line the Supreme Court itself drew between the judge's question and the jury's facts, and the words of the judges bound by the doctrine who have said it should change; chapter 3.6 answers the rule that binds a lower court and adds Wise v. Withers beside Little v. Barreme; chapter 4.6 runs the book's test between the States of the Union, from Nevada v. Hall through Hyatt, Branstad and Neagle to the extradition dispute over the officer Castro in 2026; and chapter 3.2 names dignity as the third feeling the doctrine has used in place of a clause."
+  },
+  {
+   "version": 19,
+   "date": "2026-10-06",
+   "text": "de5ccfaab1f17fbcddecbfee5345dd79561c3490c89604e38a82030bd2d15f96",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "41bcdc3a8b9d7875f8014669ce601f555d5b8569",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-second",
+   "note": "Version 19 (6 October 2026): Chapter 4.6 adds one sentence to the Castro passage: the demanding State pleaded the extradition duty and nothing more, naming comity once as a count of past extraditions and the compatibility of the two sovereigns' laws not at all, because the test the chapter states is symmetric and binds the State that wields it at home, where the same office has spent fourteen years in the court of appeals narrowing the door through which its own subjects may sue it."
   }
  ]
 }
