@@ -181,6 +181,16 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "forty-second",
    "note": "Version 19 (6 October 2026): Chapter 4.6 adds one sentence to the Castro passage: the demanding State pleaded the extradition duty and nothing more, naming comity once as a count of past extraditions and the compatibility of the two sovereigns' laws not at all, because the test the chapter states is symmetric and binds the State that wields it at home, where the same office has spent fourteen years in the court of appeals narrowing the door through which its own subjects may sue it."
+  },
+  {
+   "version": 20,
+   "date": "2026-10-06",
+   "text": "ea30333c7659719f078bf3a8240a9c4a72339e580e6da68f074e2d627eabcf2c",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "584d4d45c472000ce9b35cc6e1f25fd91ec78666",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-third",
+   "note": "Version 20 (6 October 2026): The last paragraph of the Preface loses one clause: where no published translation exists, the English beside the original was prepared for this book from the edition the note cites, and those renderings await the same review; the words that repeated this are gone, and nothing else moved."
   }
  ]
 }
