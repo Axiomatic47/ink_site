@@ -151,6 +151,16 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "thirty-ninth",
    "note": "Version 16 (6 October 2026): the Preface closes with the name and the month on one line, so that the sign-off keeps the page the Preface ends on. Nothing else changes."
+  },
+  {
+   "version": 17,
+   "date": "2026-10-06",
+   "text": "90ac0a32a49f08f1b5fe626c72bf29efa530f327ce3c768c5b39adb6a63a0b39",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "e385bba8a5b4a17c9c9be8d0d14498eeb84273f8",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "fortieth",
+   "note": "Version 17 (6 October 2026): The five Part headings now read Part 1. through Part 5., a full stop in place of the dash; and the Introduction's sentence on the plea transferred to a King is split at a semicolon so that it closes on 'justice done'."
   }
  ]
 }
