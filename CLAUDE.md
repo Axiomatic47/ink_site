@@ -139,6 +139,23 @@ p=none, all on Netlify DNS).
   "completed … · published …". The immunity book's versions 1–4 and 6–10 were all published
   2026-09-26 (main 156fc3f).
 
+## The immunity timeline — one module on three sites (owner 2026-10-06)
+
+- `/research/immunity-timeline` is *Where Immunity Came From*: the actual history of immunity in all its categories beside
+  endqi.org's six-step origin story, shared with Campaign Zero as a proposed correction; the same page on kirchnervjohnson.com
+  and lawsofexistence.com. ONE content file, `public/research/immunity-timeline.json`, the same bytes on every site, served
+  beside the page; the drafters write and review it (every fact from the book or a shelf copy), the sites render it, nobody
+  here edits a fact. Absent → the route answers 404, the sitemap omits it, no menu item: never a placeholder.
+- BYTE-IDENTICAL across sites (cmp at every landing): `src/lib/immunity-timeline.ts` (the shape: thirteen categories, six
+  kinds), `immunity-timeline.server.ts` (the loader; `IMMUNITY_TIMELINE_JSON` overrides for a local build, ignored under
+  CI/NETLIFY), `scripts/validate-timeline.mjs` (the build gate: ids, integer years, the closed sets, quote pins, http links,
+  the comparison's cross-references, no coordination vocabulary in reader-facing text), `app/research/immunity-timeline/
+  {TimelineBody,TimelineFilter}.tsx` and `timeline.css`. Per site: `page.tsx` (the shell) and `app/_components/Markdown.tsx`.
+  The book's address is a site setting (`bookBase`: `/work/<slug>` here; the absolute kirchner.ink URL elsewhere).
+- THE CHANGE RULE: a new import name, a new field, a new category or kind, or a NEW PALETTE TOKEN NAME in the stylesheet is
+  said by name to the other sites before it lands (lawsofexistence.com maps each token by hand); all three cut together.
+- The Research menu lists the page (`app/_components/SiteHeader.tsx`) only while the content exists.
+
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
 built by lawsofexistence.com's `scripts/sync-archives.mjs` from the research library and
