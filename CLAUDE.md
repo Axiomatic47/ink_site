@@ -162,8 +162,11 @@ p=none, all on Netlify DNS).
   site's review manifest (`content/review/<slug>.json` units): a lane row with no source copy (SKIP, NO_SOURCE) is not a unit
   the review page can open, and the entry keeps the note link instead. Per site: `page.tsx` (the shell) and `app/_components/Markdown.tsx`.
   The book's address is a site setting (`bookBase`: `/work/<slug>` here; the absolute kirchner.ink URL elsewhere).
-- THE CHANGE RULE: a new import name, a new field, a new category or kind, or a NEW PALETTE TOKEN NAME in the stylesheet is
-  said by name to the other sites before it lands (lawsofexistence.com maps each token by hand); all three cut together.
+- THE CHANGE RULE: a new import name, a new field, a new category or kind, a NEW PALETTE TOKEN NAME in the stylesheet, or a
+  NEW UTILITY CLASS NAME in the module's markup (`bg-ink`, `text-paper`, `border-rule` and their variants — lawsofexistence.com's
+  scoped sheet maps each utility by hand, so a class it has not met renders unstyled there without failing any gate; the
+  filter's filled chip brought five it had not met, 2026-10-07) is said by name to the other sites before it lands; all three
+  cut together.
   The HREF FORMS are part of the contract: lawsofexistence.com has no `/review` route (its review mode is `/books/<slug>`)
   and answers `bookUnitHref` by a permanent redirect that carries the fragment — a change to either href's shape (a new
   segment, a query instead of a hash) is said by name first.
