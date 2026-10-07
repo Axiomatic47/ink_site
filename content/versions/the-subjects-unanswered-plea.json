@@ -201,6 +201,36 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "forty-fourth",
    "note": "Version 21 (6 October 2026): Chapter 4.6 corrects one word of the Castro passage: the demanding State's complaints did name comity, once each, in their opening, as a principle at stake, and argued it nowhere; the sentence had said never, and now says what the complaints say."
+  },
+  {
+   "version": 22,
+   "date": "2026-10-06",
+   "text": "3ee59ad80150f55bac79899c511bcac318624154980374bc1972b29ed38606f5",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "c67afe441772970905bcad7053b6f56faae334cf",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 22 (6 October 2026): Seven sentences from a night's reading of three HathiTrust works and an 1880 English report. Chapter 3.2 § D gains the English Court of Appeal of 1880, which three times defined a sovereign's dignity as his independence, grounded the exemption on 'independence and dignity' and dropped the word in its own restatement, and Matsunami's 1924 answer to the 'embarrassment' ground; 4.6 gains Shepard's 1951 reading of the suggestion of immunity as a request, set against the 2016 'must'; 2.3 gains the English treatises' missing definition of the word and the Justice Department's 1985 'essentially judge-made'; 2.4 § A and 3.4 § C gain the same manual on Spalding's root and on the judge, not the jury, resolving the immunity. Seven new notes; The Parlement Belge, Matsunami and Shepard enter the bibliography."
+  },
+  {
+   "version": 23,
+   "date": "2026-10-06",
+   "text": "785bb4b968e37935800538e25dd770dfbc4b79d51fbb003fec3177755e7d327e",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "67ef41f374118a1f8648801327fe95595123d6da",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 23 (6 October 2026): The motive line, 1607 to 2024, in chapter 3.4 § C: Bradley (1872) grounded the bar on inquiry into judicial motives on Floyd by name, King's forum included, misdating the case to 1608 as Randall had; Pierson (1967) restated it for the judge under § 1983, the majority naming neither the case nor the King while the dissent named both, and left the officer's good faith to the jury; Harlow took the officer's good faith from the jury and Trump the President's motives from the case. One new note, the pages read at the bound volumes."
+  },
+  {
+   "version": 24,
+   "date": "2026-10-06",
+   "text": "785bb4b968e37935800538e25dd770dfbc4b79d51fbb003fec3177755e7d327e",
+   "pdf": "b86a43956f1e6efcaa921a68b1fecdf0708ded5231a1e43a3912af5346b28003",
+   "book_commit": "67ef41f374118a1f8648801327fe95595123d6da",
+   "render": "BOOK_render_word-quartz_2026-10-06_2207.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 24 (6 October 2026): the rendered book is refreshed to the export of 6 October, made from the text of version 23, so that every citation added since 30 September opens on the page and the sign-off keeps page 6. The text is unchanged from version 23."
   }
  ]
 }
