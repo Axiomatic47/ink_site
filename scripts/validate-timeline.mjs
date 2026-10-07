@@ -5,7 +5,9 @@
 //     a year that is not an integer (year_end likewise, and not before year); a category outside the closed set;
 //   - a kind outside decision · statute · constitutional-text · report · treatise · event (when given);
 //   - a quote without its pin; a link that is not http(s);
-//   - a comparison step without step/label/their_title/their_claim/correction, or an entry_id that resolves to nothing;
+//   - a source.book_unit that is not <note>/<seq> or does not begin with the entry's book_note (the review page's #cite id);
+//   - a comparison step (an older file may still carry the block; the page no longer draws it) without
+//     step/label/their_title/their_claim/correction, or an entry_id that resolves to nothing;
 //   - COORDINATION VOCABULARY in any text a reader sees (seat ids, "drafter", "seat", "lane holder", "owner", "admin",
 //     role names): the page speaks as its author.
 // `book_line` on a source is tolerated and ignored (line numbers move with every version; the page links the note).
@@ -52,6 +54,11 @@ for (const [i, e] of (t.entries ?? []).entries()) {
   if (e.quote && !e.quote_pin) err(`${at}: a quote needs its pin (quote_pin)`);
   if (e.link != null && !/^https?:\/\//.test(String(e.link))) err(`${at}: link is not http(s)`);
   if (e.source?.book_note != null && !/^[a-z0-9_]+$/i.test(String(e.source.book_note))) err(`${at}: source.book_note is not a note id`);
+  if (e.source?.book_unit != null) {
+    const u = String(e.source.book_unit);
+    if (!/^[a-z0-9_]+\/[0-9]+$/i.test(u)) err(`${at}: source.book_unit "${u}" is not <note>/<seq>`);
+    else if (!e.source.book_note || !u.startsWith(`${e.source.book_note}/`)) err(`${at}: source.book_unit "${u}" does not begin with its book_note`);
+  }
   for (const k of ['title', 'summary', 'quote', 'date_text']) text(`${at}.${k}`, e[k]);
   if (e.source) for (const k of ['cite', 'pin']) text(`${at}.source.${k}`, e.source[k]);
 }
@@ -66,4 +73,5 @@ for (const [i, s] of (t.comparison ?? []).entries()) {
 if (errors.length) { console.error(`timeline validation FAILED — ${errors.length} problem(s):`); for (const m of errors) console.error('  - ' + m); process.exit(1); }
 const withNote = (t.entries ?? []).filter((e) => e.source?.book_note).length;
 const withKind = (t.entries ?? []).filter((e) => e.kind).length;
-console.log(`timeline validation PASSED — ${t.entries.length} entries (${withNote} linked to a book note, ${withKind} with a kind), ${(t.comparison ?? []).length} comparison steps${override ? ` [from ${FILE}]` : ''}.`);
+const withUnit = (t.entries ?? []).filter((e) => e.source?.book_unit).length;
+console.log(`timeline validation PASSED — ${t.entries.length} entries (${withNote} linked to a book note, ${withUnit} to a cited unit, ${withKind} with a kind), ${(t.comparison ?? []).length} comparison steps (not drawn)${override ? ` [from ${FILE}]` : ''}.`);

@@ -1,12 +1,13 @@
 // src/lib/immunity-timeline.ts — the contract for /research/immunity-timeline: a timeline of the actual history of
-// immunity in all its categories, every entry resting on the book (The Subject's Unanswered Plea) or a shelf copy, set
-// beside the six-step origin story at endqi.org/learn-more as a proposed correction. The data is the drafters' work,
-// reviewed before it lands, and is served as it is read: public/research/immunity-timeline.json is the one file, read at
+// immunity in all its categories, every entry resting on the book (The Subject's Unanswered Plea, TSUP on the page) or a
+// shelf copy, shared outward as the record. The data is the drafters' work, reviewed before it lands, and is served as it is read: public/research/immunity-timeline.json is the one file, read at
 // build by the page and published as the copy a reader can take. This module is the shape the page, the loader and the
 // build gate (scripts/validate-timeline.mjs) share; nothing here renders.
 
 export const TIMELINE_PUBLIC_PATH = '/research/immunity-timeline.json';
 export const TIMELINE_PAGE_PATH = '/research/immunity-timeline';
+/** how the page names the book after the key has said it once: "TSUP § 2.3 · n. iicb5a" */
+export const BOOK_SHORT = 'TSUP';
 
 /** the closed set of categories (owner: "in all its categories"); the page colours and filters by them */
 export const CATEGORIES = [
@@ -56,6 +57,9 @@ export interface TimelineSource {
   book_section?: string | null;
   /** the book's note id the entry rests on, e.g. "ii7nc" — the page deep-links to it */
   book_note?: string | null;
+  /** the unit of that note the citation rests on most, "<note>/<seq>" (e.g. "iicb4/2"): the id the book's review page
+      answers at #cite=<note>/<seq>, the book open at the citing sentence with the cited page beside it. Begins with book_note. */
+  book_unit?: string | null;
   /** where a shelf-only source was read, when the book carries no note for it */
   read_at?: string | null;
 }
@@ -82,7 +86,8 @@ export interface TimelineEntry {
   link?: string | null;
 }
 
-/** one of endqi.org's steps, as it prints, with the correction and the entries that answer it */
+/** a comparison step, as an earlier draft carried it — kept in the shape so an older file still parses; the page no
+    longer draws a comparison */
 export interface ComparisonStep {
   step: number;
   /** the site's own step label: Incident · Legislation · Take away */
@@ -99,7 +104,7 @@ export interface ComparisonStep {
 export interface ImmunityTimeline {
   title: string;
   standfirst: string;
-  /** the one sentence that says what this page is beside endqi.org's */
+  /** an earlier draft's one-line framing; not drawn */
   comparison_line?: string | null;
   provenance: {
     book_title: string;
@@ -123,6 +128,12 @@ export interface ImmunityTimeline {
     address for the book's pages — a path on the site that carries the book, an absolute URL on one that does not. */
 export function bookNoteHref(bookBase: string, note: string): string {
   return `${bookBase}/text#user-content-fn-${note}`;
+}
+
+/** where a citation sits in the book: the review page at the unit (#cite=<note>/<seq>), the same contract on every site
+    that carries the book. `bookBase` as for bookNoteHref. */
+export function bookUnitHref(bookBase: string, unit: string): string {
+  return `${bookBase}/review#cite=${unit}`;
 }
 
 export function isCategory(x: unknown): x is Category {

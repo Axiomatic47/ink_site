@@ -1,6 +1,6 @@
-// app/research/immunity-timeline/page.tsx — the actual history of immunity, in all its categories, set beside the
-// six-step origin story at endqi.org (owner's word 2026-10-06; shared with Campaign Zero as a proposed correction to
-// their timeline, and carried on all three sites). The content is public/research/immunity-timeline.json, the drafters'
+// app/research/immunity-timeline/page.tsx — the actual history of immunity, in all its categories, shared outward as the
+// record (owner's words 2026-10-06 and 10-07: the timeline is to share, not a comparison against anyone else's, so the
+// comparison block came off the page; carried on all three sites). The content is public/research/immunity-timeline.json, the drafters'
 // reviewed work (every fact from the book or a shelf copy; src/lib/immunity-timeline.ts is the shape,
 // scripts/validate-timeline.mjs the gate). The body is TimelineBody.tsx, byte-identical on every site; this file is the
 // site's shell around it. No content → 404: the route exists only when the reviewed content does.

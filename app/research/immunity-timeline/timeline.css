@@ -17,6 +17,10 @@
 .tl-kind[data-kind="decision"] { border-color: rgb(var(--c-ink) / .45); }
 .tl-kind[data-kind="statute"], .tl-kind[data-kind="constitutional-text"] { border-color: rgb(var(--c-accent)); color: rgb(var(--c-accent-ink)); }
 
+/* the two filter rows: a small label, then the chips; the type chips carry no dot, the category chips their hue */
+.tl-chiprow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.tl-chiplabel { display: inline-block; min-width: 5rem; font: 600 10.5px/1.5 var(--font-sans, ui-sans-serif, system-ui, sans-serif); letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--c-muted)); }
+
 /* the rail: a hairline down the left, the year on it, the card to the right; one column on phones */
 .tl-rail { position: relative; }
 .tl-item[data-off] { display: none; }
@@ -30,6 +34,7 @@
 .tl-prose p { margin: 0; } .tl-prose p + p { margin-top: .5rem; }
 .tl-standfirst p { margin: 0; } .tl-standfirst p + p { margin-top: .75rem; }
 @media (max-width: 640px) {
+  .tl-chiplabel { min-width: 100%; }
   .tl-entry { grid-template-columns: 1fr; }
   .tl-entry::before, .tl-year::after { display: none; }
   .tl-year { text-align: left; padding: 0 0 .25rem; }
