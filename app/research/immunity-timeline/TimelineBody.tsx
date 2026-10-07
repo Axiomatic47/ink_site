@@ -38,7 +38,7 @@ export function TimelineBody({ t, bookBase, contactHref }: { t: ImmunityTimeline
         <p className="mt-3 max-w-3xl text-sm text-muted leading-relaxed">
           Each entry names its type and its category, its source and the page it was read at, and the section and note of {BOOK_SHORT} it
           rests on. A citation opens {BOOK_SHORT} at the passage that cites it, with the cited page beside it; a note opens the note on the
-          text page. Types and categories can be shown or hidden; printing shows them all.
+          text page. Choose a type or a category to see only those entries — several in a row add together — or All; printing shows them all.
         </p>
         <p className="tl-key mt-3 max-w-3xl text-sm text-muted leading-relaxed">
           <span className="text-ink/80">Key:</span> {BOOK_SHORT} = <a href={bookBase} className="underline hover:text-ink"><em>{t.provenance.book_title}</em></a>, the book;
