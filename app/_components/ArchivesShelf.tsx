@@ -10,6 +10,7 @@ import { ArrowRight, ScrollText } from 'lucide-react';
 import { ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase } from '@/lib/research-archive';
 import { imageSize, readArchiveManifest } from '@/lib/research-archive.server';
 import { Md } from './Markdown';
+import { TimelineShelfCard } from './TimelineLink';
 
 export function ArchivesShelf() {
   return (
@@ -56,6 +57,8 @@ export function ArchivesShelf() {
             );
           })}
         </ul>
+        {/* owner 2026-10-07: the timeline drawn from the book, offered beneath the archive cards (the book's PDF sits on its own pages here) */}
+        <TimelineShelfCard />
       </section>
       <figure className="text-center px-4 max-w-3xl mx-auto mt-14">
         <blockquote>

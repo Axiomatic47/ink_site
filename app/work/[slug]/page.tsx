@@ -9,6 +9,7 @@ import { readReview } from '@/lib/review.server';
 import { publishedUnits, reviewMeta } from '@/lib/review';
 import { SiteShell } from '../../_components/SiteShell';
 import { PdfViewer } from '../../_components/PdfViewer';
+import { TimelineBelowReview } from '../../_components/TimelineLink';
 import { ArticleBody } from '../../_components/ArticleBody';
 import { ReviewLoader } from './review/ReviewLoader';
 
@@ -47,7 +48,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   // rendered text is one click away at /work/<slug>/text
   if (review && body) {
     return (
-      <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} meta={reviewMeta(review)} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel={collection ? collection.title : 'All articles'}>
+      <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} after={<TimelineBelowReview slug={w.slug} />} meta={reviewMeta(review)} textHref={`/work/${w.slug}/text`} backHref={`/work#${w.collection}`} backLabel={collection ? collection.title : 'All articles'}>
         {review.pdf ? undefined : <ArticleBody bare citeBase="">{body}</ArticleBody>}
       </ReviewLoader>
     );

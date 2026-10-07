@@ -13,6 +13,7 @@ import { editionLeaves, readReview, readVersions, reviewSlugs } from '@/lib/revi
 import { reviewMeta } from '@/lib/review';
 import { ArticleBody } from '../../../_components/ArticleBody';
 import { ReviewLoader } from './ReviewLoader';
+import { TimelineBelowReview } from '../../../_components/TimelineLink';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -38,7 +39,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ slug: s
   const body = w ? readWorkBody(w) : null;
   if (!w || !manifest || !body) notFound();
   return (
-    <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} meta={reviewMeta(manifest)} textHref={`/work/${w.slug}/text`} editions={editionLeaves()} versions={readVersions(slug)} backHref={`/work#${w.collection}`} backLabel="Articles">
+    <ReviewLoader work={{ slug: w.slug, title: w.title, subtitle: w.subtitle, venue: w.venue }} after={<TimelineBelowReview slug={w.slug} />} meta={reviewMeta(manifest)} textHref={`/work/${w.slug}/text`} editions={editionLeaves()} versions={readVersions(slug)} backHref={`/work#${w.collection}`} backLabel="Articles">
       {manifest.pdf ? undefined : <ArticleBody bare citeBase="">{body}</ArticleBody>}
     </ReviewLoader>
   );
