@@ -151,8 +151,11 @@ p=none, all on Netlify DNS).
   CI/NETLIFY), `scripts/validate-timeline.mjs` (the build gate: ids, integer years, the closed sets, quote pins, http links,
   `source.book_unit` as `<note>/<seq>` beginning with the entry's `book_note`, an older file's comparison cross-references,
   no coordination vocabulary in reader-facing text), `app/research/immunity-timeline/{TimelineBody,TimelineFilter}.tsx`
-  (the body: key line, record; the rail: a TYPE filter row and a CATEGORY filter row, an entry hidden when either is off,
-  print showing all) and `timeline.css`. The page names the book once in a key line — TSUP = *The Subject's Unanswered Plea*
+  (the body: key line, record; the rail: a TYPE row and a CATEGORY row of chips that SELECT — each row begins at All, a chip
+  shows only its type or category, several in a row add together, the two rows combine, the selected chips are the filled
+  ones; the selection is the page's query string, `?type=<kind,…>&category=<category,…>`, read through
+  `useSyncExternalStore` so the server render and the first client render agree (All) and a filtered view can be sent; print
+  shows everything; owner 2026-10-07: a filter never hides what was clicked) and `timeline.css`. The page names the book once in a key line — TSUP = *The Subject's Unanswered Plea*
   — and TSUP thereafter ("TSUP § 2.3 · n. iicb5a"). A citation links to the book's review page at its cited unit
   (`bookUnitHref`: `${bookBase}/review#cite=<note>/<seq>`) when the data names `source.book_unit`; the note links to the text
   page (`bookNoteHref`: `${bookBase}/text#user-content-fn-<note>`). At a landing, every `book_unit` is checked against this
