@@ -95,10 +95,10 @@
    "quote_pin": "Capitulare missorum generale (802) c. 26, Boretius I at 96",
    "source": {
     "cite": "Admonitio generalis (789) c. 63; Capitulare missorum generale (802) c. 26; Lex Ribuaria 88 (Sohm ed. 1883)",
-    "pin": "Boretius, Capitularia I at 58; Sohm at 106",
+    "pin": "Boretius, Capitularia I at 58, 96; Sohm at 106",
     "book_section": "5.5",
-    "book_note": "ao26",
-    "book_unit": "ao26/1"
+    "book_note": "ao27",
+    "book_unit": "ao27/1"
    },
    "link": null
   },
@@ -485,8 +485,8 @@
     "cite": "Coffin v. Coffin, 4 Mass. 1 (1808)",
     "pin": "4 Mass. at 27, 28, 34",
     "book_section": "2.3",
-    "book_note": "iicf1",
-    "book_unit": "iicf1/1"
+    "book_note": "iicf2",
+    "book_unit": "iicf2/1"
    },
    "link": null
   },
@@ -820,9 +820,9 @@
    "source": {
     "cite": "Pierson v. Ray, 386 U.S. 547 (1967)",
     "pin": "386 U.S. at 553–58; 559–62, 565 & n.5 (Douglas, J., dissenting)",
-    "book_section": "2.3; 2.2 § A; 4.6",
-    "book_note": "ii5",
-    "book_unit": "ii5/1"
+    "book_section": "3.4; 2.3; 2.2 § A; 4.6",
+    "book_note": "ii7y",
+    "book_unit": "ii7y/3"
    },
    "link": null
   },
@@ -839,8 +839,7 @@
     "cite": "Brief of the National Council of the Churches of Christ et al. as Amici Curiae, Krause v. Ohio, No. 72-589 (U.S. filed Oct. 24, 1972)",
     "pin": "at 9–12",
     "book_section": "4.3",
-    "book_note": "cp35",
-    "book_unit": "cp35/1"
+    "book_note": "cp35"
    },
    "link": null
   },
@@ -858,8 +857,8 @@
     "cite": "Scheuer v. Rhodes, 416 U.S. 232 (1974)",
     "pin": "416 U.S. at 239 n.4, 240–42",
     "book_section": "2.3",
-    "book_note": "ii8",
-    "book_unit": "ii8/1"
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/6"
    },
    "link": null
   },
@@ -1043,8 +1042,8 @@
     "cite": "Nixon v. Fitzgerald, 457 U.S. 731 (1982)",
     "pin": "457 U.S. at 733–34, 748–49, 751, 754 & n.37, 757; 766 (White, J., dissenting)",
     "book_section": "2.3; 2.5 § A",
-    "book_note": "ii11",
-    "book_unit": "ii11/1"
+    "book_note": "ii13",
+    "book_unit": "ii13/1"
    },
    "link": null
   },
@@ -1062,8 +1061,8 @@
     "cite": "Pulliam v. Allen, 466 U.S. 522 (1984)",
     "pin": "466 U.S. at 524–25, 529–31, 541–44",
     "book_section": "2.3; 2.4 § D",
-    "book_note": "iicb4",
-    "book_unit": "iicb4/1"
+    "book_note": "iicb5",
+    "book_unit": "iicb5/1"
    },
    "link": null
   },
@@ -1194,8 +1193,8 @@
     "cite": "Alden v. Maine, 527 U.S. 706 (1999)",
     "pin": "527 U.S. at 713, 715",
     "book_section": "2.3; 4.6",
-    "book_note": "si29",
-    "book_unit": "si29/2"
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/20"
    },
    "link": null
   },
@@ -1362,9 +1361,9 @@
    "source": {
     "cite": "Trump v. United States, 603 U.S. 593 (2024); id. at 676, 685 (Sotomayor, J., dissenting)",
     "pin": "603 U.S. at 607–09, 611, 618–19, 630–32, 637; 676, 685 (dissent)",
-    "book_section": "2.3; 2.5 §§ A, E; 3.1 § A",
-    "book_note": "ii16",
-    "book_unit": "ii16/1"
+    "book_section": "2.5 § A; 2.3; 2.5 § E; 3.1 § A",
+    "book_note": "iinc1",
+    "book_unit": "iinc1/1"
    },
    "link": null
   },
