@@ -191,6 +191,16 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "forty-third",
    "note": "Version 20 (6 October 2026): The last paragraph of the Preface loses one clause: where no published translation exists, the English beside the original was prepared for this book from the edition the note cites, and those renderings await the same review; the words that repeated this are gone, and nothing else moved."
+  },
+  {
+   "version": 21,
+   "date": "2026-10-06",
+   "text": "986e62764e837e9b41b7314a838ef47db2fdf4fc2a02c50b736990166bf5c6c0",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "9abf0c35e9c0e14da033f503e7b42b278f4c32c9",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fourth",
+   "note": "Version 21 (6 October 2026): Chapter 4.6 corrects one word of the Castro passage: the demanding State's complaints did name comity, once each, in their opening, as a principle at stake, and argued it nowhere; the sentence had said never, and now says what the complaints say."
   }
  ]
 }
