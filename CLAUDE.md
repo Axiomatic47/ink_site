@@ -171,6 +171,12 @@ p=none, all on Netlify DNS).
   and answers `bookUnitHref` by a permanent redirect that carries the fragment — a change to either href's shape (a new
   segment, a query instead of a hash) is said by name first.
 - The Research menu lists the page (`app/_components/SiteHeader.tsx`) only while the content exists.
+- THE TIMELINE IS OFFERED FROM THE BOOK (owner 2026-10-07): `app/_components/TimelineLink.tsx` renders the home shelf's card
+  beneath the archive cards (title, span, count, the book, six entries chosen evenly across the record to their anchors — the
+  same six as lawsofexistence.com's card) and the line beneath the book's review panes on `/work/<slug>` and `/review`, passed
+  as the `after` slot from the page through `ReviewLoader` into `ReviewBody` and counted in the panes' height budget by its own
+  constant (`AFTER_PX` beside `BELOW_PX`, so a picked citation never moves the panes' edges). Both render only while the
+  timeline's content exists AND names this book (`provenance.book_slug`); every other work shows nothing. Shell, not module.
 
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
