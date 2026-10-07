@@ -12,6 +12,10 @@
 [data-cat="statute"] { --tl: var(--tl-statute); } [data-cat="repudiation"] { --tl: var(--tl-repudiation); }
 .tl-dot { display: inline-block; width: 9px; height: 9px; border-radius: 999px; background: rgb(var(--tl, var(--c-muted))); flex: none; }
 .tl-chip[aria-pressed="false"] .tl-dot { opacity: .35; }
+/* the kind: what instrument the entry is, said in words beside the category's colour; a decision is never dressed as legislation */
+.tl-kind { display: inline-flex; align-items: center; border: 1px solid rgb(var(--c-rule)); border-radius: 4px; padding: 1px 6px; font: 600 10.5px/1.5 var(--font-sans, ui-sans-serif, system-ui, sans-serif); letter-spacing: .06em; text-transform: uppercase; color: rgb(var(--c-ink)); background: rgb(var(--c-card)); }
+.tl-kind[data-kind="decision"] { border-color: rgb(var(--c-ink) / .45); }
+.tl-kind[data-kind="statute"], .tl-kind[data-kind="constitutional-text"] { border-color: rgb(var(--c-accent)); color: rgb(var(--c-accent-ink)); }
 
 /* the rail: a hairline down the left, the year on it, the card to the right; one column on phones */
 .tl-rail { position: relative; }

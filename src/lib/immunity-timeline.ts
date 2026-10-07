@@ -31,6 +31,22 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   repudiation: 'Repudiation',
 };
 
+/** what instrument an entry is — the correction the timeline exists to carry: a judicial decision never sits under a
+    "legislation" label. Category says which immunity; kind says what the thing is. */
+export const KINDS = ['decision', 'statute', 'constitutional-text', 'report', 'treatise', 'event'] as const;
+export type Kind = (typeof KINDS)[number];
+export const KIND_LABEL: Record<Kind, string> = {
+  decision: 'Judicial decision',
+  statute: 'Statute',
+  'constitutional-text': 'Constitutional text',
+  report: 'Report',
+  treatise: 'Treatise',
+  event: 'Event',
+};
+export function isKind(x: unknown): x is Kind {
+  return typeof x === 'string' && (KINDS as readonly string[]).includes(x);
+}
+
 export interface TimelineSource {
   /** the citation as the book gives it */
   cite: string;
@@ -40,6 +56,8 @@ export interface TimelineSource {
   book_section?: string | null;
   /** the book's note id the entry rests on, e.g. "ii7nc" — the page deep-links to it */
   book_note?: string | null;
+  /** where a shelf-only source was read, when the book carries no note for it */
+  read_at?: string | null;
 }
 
 export interface TimelineEntry {
@@ -52,6 +70,8 @@ export interface TimelineEntry {
   date_text: string;
   title: string;
   category: Category;
+  /** the instrument: decision · statute · constitutional-text · report · treatise · event */
+  kind?: Kind | null;
   /** 2–4 sentences, markdown inline (italic case names) */
   summary: string;
   /** verbatim, read at quote_pin */

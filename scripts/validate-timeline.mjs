@@ -3,6 +3,7 @@
 //   - a missing header field (title, standfirst, provenance.book_title/book_slug/date) or an entries array that is empty;
 //   - an entry without id/year/date_text/title/category/summary/source.cite; an id that is not a slug or not unique;
 //     a year that is not an integer (year_end likewise, and not before year); a category outside the closed set;
+//   - a kind outside decision · statute · constitutional-text · report · treatise · event (when given);
 //   - a quote without its pin; a link that is not http(s);
 //   - a comparison step without step/label/their_title/their_claim/correction, or an entry_id that resolves to nothing;
 //   - COORDINATION VOCABULARY in any text a reader sees (seat ids, "drafter", "seat", "lane holder", "owner", "admin",
@@ -17,7 +18,11 @@ const override = process.env.IMMUNITY_TIMELINE_JSON;
 const FILE = override && !process.env.NETLIFY && !process.env.CI ? resolve(override) : join(ROOT, 'public', 'research', 'immunity-timeline.json');
 const CATEGORIES = new Set(['older-record', 'english-origin', 'sovereign', 'state-sovereign', 'foreign-sovereign', 'judicial', 'legislative', 'executive-absolute', 'qualified', 'prosecutorial', 'municipal', 'statute', 'repudiation']);
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-const VOICE = /\b(drafter|seat|lane holder|owner|admin|website-developer|studio-spec|frontend-developer|docx-specialist)\b|\b[0-9a-f]{8}\b(?![0-9a-f])/i;
+const KINDS = new Set(['decision', 'statute', 'constitutional-text', 'report', 'treatise', 'event']);
+// coordination vocabulary only: the words the sites' seats use of one another. Plain English words that also occur in the
+// law ("seat of judgment", "the owner of the ship", "Lane v. Cotton") are not in this list, and a seat id is eight hex
+// characters standing alone.
+const VOICE = /\b(drafter|lane holder|website-developer|studio-spec|frontend-developer|docx-specialist|deck-push|check_links|registry\.py)\b|(?<![0-9a-f§\w])[0-9a-f]{8}(?![0-9a-f\w])/i;
 
 if (!existsSync(FILE)) { console.log('timeline validation PASSED — no public/research/immunity-timeline.json (the route answers 404).'); process.exit(0); }
 
@@ -42,6 +47,7 @@ for (const [i, e] of (t.entries ?? []).entries()) {
   if (!Number.isInteger(e.year)) err(`${at}: year is not an integer`);
   if (e.year_end != null && (!Number.isInteger(e.year_end) || e.year_end < e.year)) err(`${at}: year_end is not an integer at or after year`);
   if (!CATEGORIES.has(e.category)) err(`${at}: category "${e.category}" is not one of the closed set`);
+  if (e.kind != null && !KINDS.has(e.kind)) err(`${at}: kind "${e.kind}" is not one of decision · statute · constitutional-text · report · treatise · event`);
   if (!e.source || typeof e.source.cite !== 'string' || !e.source.cite.trim()) err(`${at}: source.cite missing`);
   if (e.quote && !e.quote_pin) err(`${at}: a quote needs its pin (quote_pin)`);
   if (e.link != null && !/^https?:\/\//.test(String(e.link))) err(`${at}: link is not http(s)`);
@@ -59,4 +65,5 @@ for (const [i, s] of (t.comparison ?? []).entries()) {
 
 if (errors.length) { console.error(`timeline validation FAILED — ${errors.length} problem(s):`); for (const m of errors) console.error('  - ' + m); process.exit(1); }
 const withNote = (t.entries ?? []).filter((e) => e.source?.book_note).length;
-console.log(`timeline validation PASSED — ${t.entries.length} entries (${withNote} linked to a book note), ${(t.comparison ?? []).length} comparison steps${override ? ` [from ${FILE}]` : ''}.`);
+const withKind = (t.entries ?? []).filter((e) => e.kind).length;
+console.log(`timeline validation PASSED — ${t.entries.length} entries (${withNote} linked to a book note, ${withKind} with a kind), ${(t.comparison ?? []).length} comparison steps${override ? ` [from ${FILE}]` : ''}.`);

@@ -4,7 +4,7 @@
 // script the rail shows everything. Nothing here adds to the content: the words are the data's.
 import { useMemo, useState } from 'react';
 import { Md } from '../../_components/Markdown';
-import { CATEGORIES, CATEGORY_LABEL, bookNoteHref, eraOf, yearLabel, type Category, type TimelineEntry } from '@/lib/immunity-timeline';
+import { CATEGORIES, CATEGORY_LABEL, KIND_LABEL, bookNoteHref, eraOf, yearLabel, type Category, type TimelineEntry } from '@/lib/immunity-timeline';
 
 export function TimelineRail({ entries, bookBase }: { entries: TimelineEntry[]; bookBase: string }) {
   const [off, setOff] = useState<Set<Category>>(() => new Set());
@@ -48,6 +48,7 @@ export function TimelineRail({ entries, bookBase }: { entries: TimelineEntry[]; 
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs text-muted">
                     <span>{e.date_text}</span>
                     <span className="tl-cat inline-flex items-center gap-1.5 uppercase tracking-[0.1em]" style={{ fontWeight: 600 }}><span className="tl-dot" aria-hidden />{CATEGORY_LABEL[e.category]}</span>
+                    {e.kind && <span className="tl-kind" data-kind={e.kind}>{KIND_LABEL[e.kind]}</span>}
                   </div>
                   <h3 className="font-serif text-xl mt-1.5 leading-snug" style={{ fontWeight: 560 }}>{e.title}</h3>
                   <div className="mt-2 leading-relaxed tl-prose"><Md>{e.summary}</Md></div>
@@ -60,6 +61,7 @@ export function TimelineRail({ entries, bookBase }: { entries: TimelineEntry[]; 
                   <p className="mt-3 text-sm text-muted leading-relaxed">
                     <span className="text-ink/80">Source:</span> <Md inline>{e.source.cite}</Md>
                     {e.source.pin ? <>, {e.source.pin}</> : null}
+                    {e.source.read_at ? <> (read at {e.source.read_at})</> : null}
                     {e.link ? <> · <a href={e.link} className="underline hover:text-ink" rel="noopener">public copy</a></> : null}
                     {(e.source.book_section || e.source.book_note) && (
                       <>
