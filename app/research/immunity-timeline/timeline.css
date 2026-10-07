@@ -1,0 +1,38 @@
+/* app/research/immunity-timeline/timeline.css — the rail and the category hues. Tokens are the site's (app/globals.css);
+   the hues below are the one addition, chosen to read on paper and on the dark ground alike, and used for nothing but the
+   category dots so the page stays navy and brass. */
+.tl-page { --tl-older: 120 96 72; --tl-english: 150 112 64; --tl-sovereign: 70 96 140; --tl-state: 92 118 160; --tl-foreign: 110 130 170;
+  --tl-judicial: 27 37 64; --tl-legislative: 72 118 88; --tl-executive: 112 84 140; --tl-qualified: 176 141 87; --tl-prosecutorial: 140 92 80;
+  --tl-municipal: 64 128 128; --tl-statute: 96 116 70; --tl-repudiation: 178 58 58; }
+.dark .tl-page { --tl-judicial: 160 176 210; --tl-sovereign: 130 160 210; --tl-qualified: 212 176 122; --tl-repudiation: 224 104 104; }
+[data-cat="older-record"] { --tl: var(--tl-older); } [data-cat="english-origin"] { --tl: var(--tl-english); }
+[data-cat="sovereign"] { --tl: var(--tl-sovereign); } [data-cat="state-sovereign"] { --tl: var(--tl-state); } [data-cat="foreign-sovereign"] { --tl: var(--tl-foreign); }
+[data-cat="judicial"] { --tl: var(--tl-judicial); } [data-cat="legislative"] { --tl: var(--tl-legislative); } [data-cat="executive-absolute"] { --tl: var(--tl-executive); }
+[data-cat="qualified"] { --tl: var(--tl-qualified); } [data-cat="prosecutorial"] { --tl: var(--tl-prosecutorial); } [data-cat="municipal"] { --tl: var(--tl-municipal); }
+[data-cat="statute"] { --tl: var(--tl-statute); } [data-cat="repudiation"] { --tl: var(--tl-repudiation); }
+.tl-dot { display: inline-block; width: 9px; height: 9px; border-radius: 999px; background: rgb(var(--tl, var(--c-muted))); flex: none; }
+.tl-chip[aria-pressed="false"] .tl-dot { opacity: .35; }
+
+/* the rail: a hairline down the left, the year on it, the card to the right; one column on phones */
+.tl-rail { position: relative; }
+.tl-item[data-off] { display: none; }
+.tl-era { margin: 28px 0 10px; }
+.tl-entry { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0 1.25rem; align-items: start; position: relative; padding: 0 0 18px; }
+.tl-entry::before { content: ""; position: absolute; left: 7.5rem; top: 0; bottom: 0; width: 1px; background: rgb(var(--c-rule)); transform: translateX(-1.25rem); }
+.tl-year { font-size: 1.05rem; line-height: 1.3; padding-top: 1.1rem; text-align: right; padding-right: 2rem; position: relative; }
+.tl-year::after { content: ""; position: absolute; right: calc(1.25rem - 5px); top: 1.45rem; width: 11px; height: 11px; border-radius: 999px; background: rgb(var(--tl, var(--c-muted))); box-shadow: 0 0 0 3px rgb(var(--c-paper)); }
+.tl-card { border-left: 3px solid rgb(var(--tl, var(--c-rule))); }
+.tl-entry:target .tl-card { outline: 2px solid rgb(var(--c-accent)); outline-offset: 2px; }
+.tl-prose p { margin: 0; } .tl-prose p + p { margin-top: .5rem; }
+.tl-standfirst p { margin: 0; } .tl-standfirst p + p { margin-top: .75rem; }
+@media (max-width: 640px) {
+  .tl-entry { grid-template-columns: 1fr; }
+  .tl-entry::before, .tl-year::after { display: none; }
+  .tl-year { text-align: left; padding: 0 0 .25rem; }
+}
+@media print {
+  .tl-filter { display: none; }
+  .tl-item[data-off] { display: block; }
+  .tl-card { box-shadow: none; break-inside: avoid; }
+  .tl-entry::before { display: none; }
+}
