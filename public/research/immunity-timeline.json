@@ -5,8 +5,8 @@
  "provenance": {
   "book_title": "The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity",
   "book_slug": "the-subjects-unanswered-plea",
-  "book_commit": "67ef41f3",
-  "book_sha256": "785bb4b968e37935800538e25dd770dfbc4b79d51fbb003fec3177755e7d327e",
+  "book_commit": "e19eaa9f",
+  "book_sha256": "bed36fcc66e16e5cd04c5082fac927a23310ebd3f3f5023e55837aa9a34b43ec",
   "date": "2026-10-06"
  },
  "endqi": {
@@ -785,6 +785,24 @@
    "link": null
   },
   {
+   "id": "1947-crown-proceedings-act",
+   "year": 1947,
+   "date_text": "1947",
+   "title": "The Crown Proceedings Act: the Crown suable in tort as a private person, except for acts of a judicial nature",
+   "category": "sovereign",
+   "kind": "statute",
+   "summary": "Parliament made a claim against the Crown enforceable as of right and without the King's fiat, and made the Crown subject to all the liabilities in tort to which a private person of full age and capacity would be subject in respect of torts committed by its servants or agents. One class was kept out: no proceedings lie against the Crown in respect of anything done or omitted by any person while discharging or purporting to discharge responsibilities of a judicial nature, or responsibilities connected with the execution of judicial process. The King can do no wrong was repealed for the Crown's servants' torts and preserved for its judges' acts.",
+   "quote": "No proceedings shall lie against the Crown by virtue of this section in respect of anything done or omitted to be done by any person while discharging or purporting to discharge any responsibilities of a judicial nature vested in him",
+   "quote_pin": "Crown Proceedings Act 1947, 10 & 11 Geo. 6, c. 44, s. 2(5)",
+   "source": {
+    "cite": "Crown Proceedings Act 1947, 10 & 11 Geo. 6, c. 44, ss. 1, 2(1), 2(5)",
+    "pin": "ss. 1, 2(1), 2(5)",
+    "book_section": "4.2",
+    "book_note": "ec7"
+   },
+   "link": null
+  },
+  {
    "id": "1951-tenney-v-brandhove",
    "year": 1951,
    "date_text": "1951",
@@ -817,6 +835,25 @@
     "pin": "386 U.S. at 549–50, 553",
     "book_section": "2.3",
     "book_note": "ii5"
+   },
+   "link": null
+  },
+  {
+   "id": "1961-monroe-v-pape",
+   "year": 1961,
+   "date_text": "1961",
+   "title": "Monroe v. Pape: § 1983 reaches an officer's misuse of power under color of state law",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court held that the meaning given under color of law in the Classic, Screws and Williams cases was the correct one and adhered to it: misuse of power possessed by virtue of state law, and made possible only because the wrongdoer is clothed with the authority of state law, is action taken under color of state law. The same decision held that Congress did not undertake to bring municipal corporations within the ambit of the statute, the holding Monell overruled in 1978.",
+   "quote": "Misuse of power, possessed by virtue of state law and made possible only because the wrongdoer is clothed with the authority of state law, is action taken 'under color of' state law.",
+   "quote_pin": "365 U.S. 167, 184 (quoting United States v. Classic, 313 U.S. 299, 326)",
+   "source": {
+    "cite": "Monroe v. Pape, 365 U.S. 167 (1961)",
+    "pin": "365 U.S. at 184, 187; Monell, 436 U.S. at 663",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file pages 18 and 21"
    },
    "link": null
   },
@@ -943,6 +980,25 @@
    "link": null
   },
   {
+   "id": "1978-monell-v-department-of-social-services",
+   "year": 1978,
+   "date_text": "1978",
+   "title": "Monell: local governments are persons under § 1983, liable for their own policy or custom",
+   "category": "municipal",
+   "kind": "decision",
+   "summary": "The Court overruled Monroe v. Pape insofar as it held local governments wholly immune from suit under § 1983, reading the 1871 text, any law, statute, ordinance, regulation, custom, or usage of the State to the contrary notwithstanding, as plainly imposing liability on a government that under color of its own policy causes a constitutional deprivation, including deprivations visited pursuant to a governmental custom that never received formal approval. It upheld Monroe insofar as it held that respondeat superior is not a basis for municipal liability.",
+   "quote": "we now overrule Monroe v. Pape, supra, insofar as it holds that local governments are wholly immune from suit under § 1983",
+   "quote_pin": "436 U.S. 658, 663",
+   "source": {
+    "cite": "Monell v. Department of Social Services of the City of New York, 436 U.S. 658 (1978)",
+    "pin": "436 U.S. at 663 & n.7, 690–92",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file pages 6, 34 and 35"
+   },
+   "link": null
+  },
+  {
    "id": "1978-stump-v-sparkman",
    "year": 1978,
    "date_text": "28 March 1978",
@@ -981,16 +1037,18 @@
    "id": "1980-owen-v-city-of-independence",
    "year": 1980,
    "date_text": "1980",
-   "title": "Owen v. City of Independence: the recital of a tradition so firmly rooted, on Pierson and Tenney",
+   "title": "Owen v. City of Independence: a municipality has no immunity, and may not assert its officers' good faith",
    "category": "municipal",
    "kind": "decision",
-   "summary": "In the municipal line the Court recited a tradition of immunity so firmly rooted in the common law and so well grounded in history and reason, and named for the age Pierson and Tenney, two decisions of its own from 1967 and 1951. The recital names an earlier node of the chain and nothing older.",
-   "quote": null,
+   "summary": "Where an immunity was well established at common law when § 1983 was enacted and its rationale was compatible with the Act, the Court had construed the statute to incorporate it; but there is no tradition of immunity for municipal corporations, and neither history nor policy supports a construction of § 1983 that would give a city a qualified immunity. The Court held that the municipality may not assert the good faith of its officers or agents as a defence to liability, and that municipalities have no immunity from damages liability flowing from their constitutional violations; the innocent individual harmed by an abuse of governmental authority is assured compensation, the official in good faith keeps his qualified immunity, and the public bears the cost of injury inflicted by the execution of its policy or custom. Four Justices dissented. The recital the Court made along the way, of a tradition of immunity so firmly rooted in the common law, named Pierson and Tenney for its age.",
+   "quote": "We hold, therefore, that the municipality may not assert the good faith of its officers or agents as a defense to liability under § 1983.",
+   "quote_pin": "445 U.S. 622, 638",
    "source": {
     "cite": "Owen v. City of Independence, 445 U.S. 622 (1980)",
-    "pin": "445 U.S. at 637",
+    "pin": "445 U.S. at 637–38, 657; 658 (Powell, J., dissenting)",
     "book_section": "2.3",
-    "book_note": "ii_age1"
+    "book_note": "ii_age1",
+    "read_at": "the holding at the bound volume on the shelf, file pages 17, 36 and 37"
    },
    "link": null
   },
@@ -1170,6 +1228,25 @@
     "pin": "527 U.S. at 713, 715",
     "book_section": "2.3; 4.6",
     "book_note": "si29"
+   },
+   "link": null
+  },
+  {
+   "id": "2009-pearson-v-callahan",
+   "year": 2009,
+   "date_text": "2009",
+   "title": "Pearson v. Callahan: the two-step sequence no longer mandatory; the law can stay unclear",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Reconsidering the procedure Saucier v. Katz had mandated, under which a court first decided whether a constitutional right was violated and only then whether the right was clearly established, the Court held that while the sequence is often appropriate it should no longer be regarded as mandatory, and that district and appellate judges should exercise their sound discretion in deciding which of the two prongs to address first. A court may now grant the immunity without saying whether the conduct was unconstitutional; a dissenting Eighth Circuit judge wrote in 2019 that applied this way the doctrine is a judicially created exception to a federal statute under which the law is never made clear enough to hold individual officials liable.",
+   "quote": "while the sequence set forth there is often appropriate, it should no longer be regarded as mandatory",
+   "quote_pin": "555 U.S. 223, 236",
+   "source": {
+    "cite": "Pearson v. Callahan, 555 U.S. 223 (2009); Saucier v. Katz, 533 U.S. 194 (2001); Kelsay v. Ernst, 933 F.3d 975, 987–88 (8th Cir. 2019) (en banc) (Grasz, J., dissenting)",
+    "pin": "555 U.S. at 236; 933 F.3d at 987–88",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file page 14"
    },
    "link": null
   },
