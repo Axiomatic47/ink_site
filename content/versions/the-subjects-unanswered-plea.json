@@ -231,6 +231,16 @@
    "render": "BOOK_render_word-quartz_2026-10-06_2207.pdf",
    "lane_state": "forty-fifth",
    "note": "Version 24 (6 October 2026): the rendered book is refreshed to the export of 6 October, made from the text of version 23, so that every citation added since 30 September opens on the page and the sign-off keeps page 6. The text is unchanged from version 23."
+  },
+  {
+   "version": 25,
+   "date": "2026-10-06",
+   "text": "bed36fcc66e16e5cd04c5082fac927a23310ebd3f3f5023e55837aa9a34b43ec",
+   "pdf": "b86a43956f1e6efcaa921a68b1fecdf0708ded5231a1e43a3912af5346b28003",
+   "book_commit": "e19eaa9fee3290b968369a25e37dfe1fa76086fa",
+   "render": "BOOK_render_word-quartz_2026-10-06_2207.pdf",
+   "lane_state": "forty-sixth",
+   "note": "Version 25 (6 October 2026): two rows of chapter 2.3, read at the page. The 1976 Imbler row of the recital table now names what the opinion named for the prosecutor, Griffith v. Slinkard (Ind. 1896), the first American case to address the question, citing a Massachusetts case the Court noted was not an immunity case, and Yaselli v. Goff (2d Cir. 1926), affirmed per curiam in 1927, before the five lower-court cases of 1933 to 1949 cited for the rule as settled. The Pulliam sentence now says that the Court's brief excursion into common-law history opens with the King's Bench and Heath v. Rydley (1614) and reaches back to Floyd and Barker (1607) and no further, with its note widened to pages 529 to 531. The table of cases gains Griffith, Heath v. Rydley and Yaselli. Notes 586, no new note. The rendered book is unchanged from the export of 6 October, so the revised note and its marker wait for the next export to open on the page."
   }
  ]
 }
