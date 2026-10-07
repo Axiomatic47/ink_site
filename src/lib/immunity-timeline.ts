@@ -99,9 +99,10 @@ export interface ImmunityTimeline {
   entries: TimelineEntry[];
 }
 
-/** where an entry's evidence sits in the book: the note's anchor on the plain-text page */
-export function bookNoteHref(slug: string, note: string): string {
-  return `/work/${slug}/text#user-content-fn-${note}`;
+/** where an entry's evidence sits in the book: the note's anchor on the plain-text page. `bookBase` is the site's
+    address for the book's pages — a path on the site that carries the book, an absolute URL on one that does not. */
+export function bookNoteHref(bookBase: string, note: string): string {
+  return `${bookBase}/text#user-content-fn-${note}`;
 }
 
 export function isCategory(x: unknown): x is Category {

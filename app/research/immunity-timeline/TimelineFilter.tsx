@@ -3,11 +3,10 @@
 // HTML at build (the filter only sets data-off, so a hidden entry still prints and still answers its #anchor), and without
 // script the rail shows everything. Nothing here adds to the content: the words are the data's.
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import { Md } from '../../_components/Markdown';
 import { CATEGORIES, CATEGORY_LABEL, bookNoteHref, eraOf, yearLabel, type Category, type TimelineEntry } from '@/lib/immunity-timeline';
 
-export function TimelineRail({ entries, bookSlug }: { entries: TimelineEntry[]; bookSlug: string }) {
+export function TimelineRail({ entries, bookBase }: { entries: TimelineEntry[]; bookBase: string }) {
   const [off, setOff] = useState<Set<Category>>(() => new Set());
   const counts = useMemo(() => {
     const c = new Map<Category, number>();
@@ -66,7 +65,7 @@ export function TimelineRail({ entries, bookSlug }: { entries: TimelineEntry[]; 
                       <>
                         {' '}· in the book:
                         {e.source.book_section ? <> § {e.source.book_section}</> : null}
-                        {e.source.book_note ? <>{e.source.book_section ? ',' : ''} <Link href={bookNoteHref(bookSlug, e.source.book_note)} className="underline hover:text-ink">n. {e.source.book_note}</Link></> : null}
+                        {e.source.book_note ? <>{e.source.book_section ? ',' : ''} <a href={bookNoteHref(bookBase, e.source.book_note)} className="underline hover:text-ink">n. {e.source.book_note}</a></> : null}
                       </>
                     )}
                   </p>
