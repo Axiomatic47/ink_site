@@ -123,6 +123,7 @@ export const WORK_URL_KIND: Record<string, string> = {
   'internet-archive': 'Internet Archive',
   'cap-static': 'Caselaw Access Project',
   'google-books': 'Google Books',
+  hathitrust: 'HathiTrust',
   govinfo: 'GovInfo',
   doi: 'DOI',
   'legislation-gov-uk': 'legislation.gov.uk',
