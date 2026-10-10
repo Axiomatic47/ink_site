@@ -35,7 +35,8 @@ git -C ~/Git/ourstudio worktree add --detach <wt> <the pair's commit>
 cd <wt> && env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export \
   /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out_dir>          # ~2 s at registry v0; refuses a lane that moves
 node scripts/casereview-size-guard.mjs --from <out_dir>   # refuses a `serve` row whose file is over 95 MB — GitHub refuses a file over 100 MB on push (no LFS here, and Netlify would not resolve LFS pointers); such a row is the registry's `link` + publish_url, never a quiet drop (the 1920 Biennial Report scan, 197 MB, 2026-10-10)
-node scripts/import-casereview.mjs --from <out_dir> --case kirchner-v-ellison  # the bundle, the PDFs, the keyed rules
+node scripts/import-casereview.mjs --from <out_dir> --case kirchner-v-ellison \
+  --serve-groups 'Filings,Case law,Constitution,Correspondence (unfiled),Recordings,Rules,Secondary sources,Statutes'   # the bundle, the PDFs, the keyed rules — THE HOST POLICY (the owner's word, 2026-10-10): every group but Kirchner I's appeal
 npm run casereview:check                                                        # vendor drift + the bundle (--case kirchner-v-ellison)
 git -C ~/Git/ourstudio worktree remove <wt>
 ```
@@ -192,6 +193,21 @@ serve row outside the listed groups is not hosted there — `link` when the regi
 `hold` — the row kept, the window saying so, the policy stamped in `_IMPORT.json.host_policy` and printed by the check.
 Without the flag every serve row is hosted. The `_redirects` rules are written as a marked block (`# casereview BEGIN …
 END`) merged into the file, so a host whose `_redirects` carries other generated rules keeps them. One importer, both sites.
+
+**kirchner.ink's host policy** (the owner's word, typed 2026-10-10 11:03 CDT: "I dont want kirchner I published to
+kirchner.ink - only Kirchner II"): the MN import runs with `--serve-groups 'Filings,Case law,Constitution,Correspondence (unfiled),Recordings,Rules,Secondary sources,Statutes'` — every
+group of the MN registry but `Appeal (8th Cir. No. 26-1615)`, which is Kirchner I (0:26-cv-00726-PJS-ECW and its appeal).
+The six appeal documents keep the registry's `serve` (they MAY be published; the registry takes no per-site field — admin
+69183d38's ruling, studio-spec's R3 applied) and are HELD here: the row kept as a placeholder (label, title, page count,
+`path` null, a `publish_note` with the host's reason), the file not copied and pruned from `public/uploads`, and — since
+2026-10-10 — **no table**: a link table is the document's own content, so the importer writes a table only for a document
+served on this host, drops the held id from `docs.links`, and lists the withheld ids in `_IMPORT.json.tables_withheld`
+(the check refuses a withheld table that is present). Kirchner II's rows that cite the appeal's record copies (the order
+and judgment of Kirchner I at `26-1615_Addendum` 2–4 and `26-1615_Sua_Sponte_Affirmation` 2, in 001, 011, 015, 015-04,
+016, 017, 027 and 037) stay as cut; a click on one takes the window's `publishedAway` sentence ("not published on this
+site"). Two gates ride the flag: a `--serve-groups` name that matches no registry group string is refused in words (the
+names must equal the registry's strings exactly — a typo would hold a whole group silently), and `host_policy` in the
+stamp names the groups held as well as the groups served.
 
 **Hosting size.** The served PDFs under `public/uploads/` are **not tracked in git** until the owner's word: the
 filings alone are 1.0 GB, the full serve set 1.6 GB (lawsofexistence.com carries its 436 filings in git). A Netlify

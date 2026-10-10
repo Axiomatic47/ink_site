@@ -103,7 +103,9 @@ function publishOf(doc) {
   const p = doc.publish;
   if (p === 'serve' && SERVE_GROUPS && !SERVE_GROUPS.has(doc.group)) {
     const url = /^https?:\/\//.test(String(doc.publish_url || '')) ? doc.publish_url : null;
-    return { mode: url ? 'link' : 'hold', url, by: 'host policy — the group is not hosted on this site' };
+    // the host's reason in the host's words, shown by the window on the held document (studio-spec 7d866ecf, 2026-10-10:
+    // `publish_note` beside `publish`; the registry may carry its own on a document it holds, the host's wins for a held group)
+    return { mode: url ? 'link' : 'hold', url, by: 'host policy — the group is not hosted on this site', note: `the ${doc.group} group is not hosted on this site by the owner's decision` };
   }
   if (MODES.has(p)) return { mode: p, url: p === 'link' ? (doc.publish_url || null) : null, by: 'the registry' };
   if (DEV && doc.group === 'Filings') return { mode: 'serve', url: null, by: 'DEV OVERRIDE' };
@@ -112,7 +114,7 @@ function publishOf(doc) {
 const FILER_COPY = /^none \(owner as-filed copy/;
 
 // ---------------------------------------------------------------- the public shapes
-const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'pagemap_basis',
+const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'publish_note', 'pagemap_basis',
   'embed', 'duration']   // the video row (studio-spec 2026-10-09 § 5.5): the embed {provider, id} and the recording's seconds;
 function publicDoc(d, pub) {
   const o = {};
@@ -120,6 +122,7 @@ function publicDoc(d, pub) {
   if (d.pagemap_error) o.pagemap = null;   // the loader could not read the map: the window falls to the offset, as the Studio does
   if (FILER_COPY.test(String(d.stamp || ''))) { o.filer_copy = true; o.title = `${o.title || ''} · filer's copy, not the court's stamped copy`.trim(); }
   o.publish = pub.mode;
+  if (pub.note) o.publish_note = pub.note;   // the host policy's reason for a held group (a registry's own note rides DOC_KEEP)
   if (pub.mode === 'link') o.publish_url = pub.url;
   o.path = pub.mode === 'serve' ? `${UPLOADS_URL}/${hostName(d)}` : null;
   return o;
@@ -223,7 +226,9 @@ function checkOne(c) {
     const rec = JSON.parse(fs.readFileSync(path.join(PUBLIC, 'casereview', 'vendor', 'VENDOR.json'), 'utf8'));
     if (imp.vendored_studio_commit && rec.source && rec.source.commit && imp.vendored_studio_commit !== rec.source.commit) console.warn(`  WARNING  the stamp was imported under Studio ${String(imp.vendored_studio_commit).slice(0, 8)}, the vendor record is at ${String(rec.source.commit).slice(0, 8)} — re-run the importer after a sync to re-stamp (the bundle's bytes do not depend on it)`);
   } catch { /* no record: the vendor check says so */ }
-  if (imp.host_policy) console.log(`  host policy: only ${(imp.host_policy.serve_groups || []).join(', ')} hosted here — ${imp.host_policy.not_hosted_here} registry serve row(s) said, not fetched`);
+  if (imp.host_policy) console.log(`  host policy: only ${(imp.host_policy.serve_groups || []).join(', ')} hosted here; held: ${(imp.host_policy.held_groups || []).join(', ') || 'none'} — ${imp.host_policy.not_hosted_here} registry serve row(s) said, not fetched`);
+  if (imp.tables_withheld && imp.tables_withheld.length) console.log(`  tables withheld with their documents not served here: ${imp.tables_withheld.join(', ')}`);
+  for (const id of imp.tables_withheld || []) if (fs.existsSync(path.join(LINKS, `${id}.json`)) || (docs.links || {})[id]) { console.error(`  served   links/${id}.json or its docs.links entry is present for a document not served here`); bad++; }
   if (bad) fail(`${bad} problem(s) in the bundle${c === DEFAULT_CASE ? '' : ` of ${c}`}`);
   console.log(`bundle ok${c === DEFAULT_CASE ? '' : ` (${c})`}: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
 }
@@ -237,6 +242,15 @@ async function run() {
   if (!caseRoot || !fs.existsSync(caseRoot)) fail(`the case root is not on this machine: ${caseRoot} (pass --case-root)`);
   console.log(`source: ${src.kind}; case root ${caseRoot}; ${docs.docs.length} documents, ${Object.keys(tables).length} link tables`);
 
+  // the host policy's names must equal the registry's group strings exactly (studio-spec 7d866ecf, 2026-10-10): a name no
+  // document carries is refused in words — a typo would hold a whole group silently, with nothing in the window to say why
+  const registryGroups = [...new Set(docs.docs.map((d) => d.group).filter(Boolean))].sort();
+  if (SERVE_GROUPS) {
+    const unknown = [...SERVE_GROUPS].filter((g) => !registryGroups.includes(g));
+    if (unknown.length) fail(`--serve-groups names ${unknown.map((g) => JSON.stringify(g)).join(', ')} — no document in the registry carries that group string; the registry's groups are ${registryGroups.map((g) => JSON.stringify(g)).join(', ')} (the names must match exactly)`);
+  }
+  const heldGroups = SERVE_GROUPS ? registryGroups.filter((g) => !SERVE_GROUPS.has(g)) : [];
+
   // the registry's word per row
   const decided = docs.docs.map(d => ({ d, pub: publishOf(d) }));
   const byMode = { serve: 0, link: 0, hold: 0 };
@@ -247,7 +261,7 @@ async function run() {
   console.log(`policy: ${byRegistry + byHost} rows carry the registry's publish field, ${decided.length - byRegistry - byHost} without one${DEV ? '' : ' (held)'}`);
   if (DEV) console.warn(`DEVELOPMENT OVERRIDE: ${overridden} Filings rows without a publish field treated as serve — not the registry's word`);
   const hostHeld = byHost;
-  if (SERVE_GROUPS) console.log(`host policy: only ${[...SERVE_GROUPS].join(', ')} hosted here — ${hostHeld} serve row(s) of other groups said, not fetched`);
+  if (SERVE_GROUPS) console.log(`host policy: only ${[...SERVE_GROUPS].join(', ')} hosted here; held: ${heldGroups.join(', ') || 'none'} — ${hostHeld} serve row(s) of other groups said, not fetched`);
   console.log(`publication: serve ${byMode.serve} · link ${byMode.link} · hold ${byMode.hold}`);
 
   fs.mkdirSync(LINKS, { recursive: true });
@@ -288,6 +302,13 @@ async function run() {
   console.log(`files: ${copied} copied, ${kept} already in place, ${refused} refused, ${pruned} pruned`);
   if (refused) fail(`${refused} served document(s) could not be gated — nothing is served that is not the registry's`);
 
+  // A LINK TABLE IS THE DOCUMENT'S OWN CONTENT (its citations, each with the document's words at the pin), so a table is served
+  // only for a document SERVED on this host: a document the registry or the host policy holds or links serves no table, its id
+  // leaves docs.links so the window never asks for it, and the stamp names the withheld ids (the owner's word of 2026-10-10
+  // 11:03 CDT: Kirchner I's appeal group off kirchner.ink — documents, files and tables; agreed by name 55339aa7 ⇄ f28bb754).
+  const servedIds = new Set(decided.filter(({ pub }) => pub.mode === 'serve').map(({ d }) => d.id));
+  const tablesWithheld = Object.keys(tables).filter((id) => !servedIds.has(id)).sort();
+
   // docs.json — the window's /docs answer (case_root is the tree's localStorage key on the client: the case slug, not a path)
   const outDocs = {
     case_root: CASE, lane: '_admin/case_review',
@@ -296,7 +317,7 @@ async function run() {
       // set" when absent — the viewer's rule of 2026-10-09; a per-case number, never the window's)
       nav: docs.registry && docs.registry.nav },
     docs: decided.map(({ d, pub }) => publicDoc(d, pub)),
-    links: docs.links || {},
+    links: Object.fromEntries(Object.entries(docs.links || {}).filter(([id]) => servedIds.has(id))),
   };
   fs.writeFileSync(path.join(DATA, 'docs.json'), JSON.stringify(outDocs));
 
@@ -304,13 +325,14 @@ async function run() {
   let rows = 0, droppedAnswers = 0;
   const written = new Set();
   for (const [id, t] of Object.entries(tables)) {
+    if (!servedIds.has(id)) continue;   // the document is not served here: its table is not served either
     const { table, dropped } = publicTable(t);
     rows += table.rows.length; droppedAnswers += dropped;
     fs.writeFileSync(path.join(LINKS, `${id}.json`), JSON.stringify(table));
     written.add(`${id}.json`);
   }
   for (const f of fs.readdirSync(LINKS)) if (f.endsWith('.json') && !written.has(f)) fs.rmSync(path.join(LINKS, f));
-  console.log(`tables: ${written.size} written, ${rows} rows; ${droppedAnswers} coverage answer(s) left out for carrying a seat id`);
+  console.log(`tables: ${written.size} written, ${rows} rows; ${droppedAnswers} coverage answer(s) left out for carrying a seat id${tablesWithheld.length ? `; ${tablesWithheld.length} withheld with the document(s) not served here: ${tablesWithheld.join(', ')}` : ''}`);
 
   // files.json — the manifest (studio-spec R1's shape): id → the served path, sha, bytes, pages, mode
   const manifest = {};
@@ -334,7 +356,8 @@ async function run() {
     registry_version: outDocs.registry.version, documents: docs.docs.length, tables: written.size, rows,
     publication: byMode, dev_override: DEV ? `${overridden} Filings rows treated as serve without a publish field` : false,
     default_doc: defaultDoc, vendored_studio_commit: studioCommit,
-    host_policy: SERVE_GROUPS ? { serve_groups: [...SERVE_GROUPS], not_hosted_here: hostHeld } : null,
+    host_policy: SERVE_GROUPS ? { serve_groups: [...SERVE_GROUPS], held_groups: heldGroups, not_hosted_here: hostHeld } : null,
+    tables_withheld: tablesWithheld,   // the documents not served here whose tables are therefore not served either
   };
   fs.writeFileSync(path.join(DATA, '_IMPORT.json'), JSON.stringify(stamp, null, 2) + '\n');
 

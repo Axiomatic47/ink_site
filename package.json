@@ -26,7 +26,7 @@
     "validate-timeline": "node scripts/validate-timeline.mjs",
     "casereview:check": "node scripts/sync-casereview.mjs --check && node scripts/import-casereview.mjs --check --case kirchner-v-ellison",
     "casereview:sync": "node scripts/sync-casereview.mjs --sync && node scripts/sync-casereview.mjs --check --source",
-    "casereview:import": "node scripts/import-casereview.mjs --case kirchner-v-ellison"
+    "casereview:import": "node scripts/import-casereview.mjs --case kirchner-v-ellison --serve-groups 'Filings,Case law,Constitution,Correspondence (unfiled),Recordings,Rules,Secondary sources,Statutes'"
   },
   "dependencies": {
     "@netlify/blobs": "^11.0.3",
