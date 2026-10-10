@@ -192,7 +192,8 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
             {c.letter.title} — debate times are links; each plays the recording from that moment.
           </div>
           <div className={cn('min-h-0', review ? 'flex-1 overflow-y-auto' : '')}>
-            <Prose md={c.letter.markdown} youtubeId={id} onTime={goTo} />
+            {/* the letter's one rule is its signature line (a row of underscores in the text): a short rule at the left, not a page-wide break */}
+            <Prose md={c.letter.markdown} youtubeId={id} onTime={goTo} className="[&_hr]:w-64 [&_hr]:ml-0 [&_hr]:my-2 [&_hr]:border-ink/50" />
             <hr className="mx-6 sm:mx-8 border-rule" />
             <div id="enclosure-a" className="scroll-mt-4">
               <Prose md={c.enclosure.markdown} youtubeId={id} onTime={goTo} />
