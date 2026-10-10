@@ -24,7 +24,7 @@ read on all three sites — a change to them lands on every site, byte for byte.
   importer's (the newest filing with a link table) when it names one, else the newest served document with a link table
   (filed date, then registry order — lawsofexistence.com's rule, so both sites open the MN case on the same document;
   today the open letter) (`src/lib/case-review.server.ts`).
-- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at a4abcb96 —
+- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at 257fe76f since 2026-10-10 — the held document's word without 'yet', a `publish_note` in brackets; before it a4abcb96 —
   the Studio's video tab of 2026-10-09 and its follow-up, after P97c's two-case picker, viewer-only — over an export under
   checker P97, the landing whose checker the bundle carries: the second case root, the D. Minn. stamp, the video kind; the three sites share this
   floor; a viewer-only landing moves the window without an export, a checker landing moves both; the shared checkout's
