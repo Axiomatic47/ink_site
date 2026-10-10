@@ -17,6 +17,7 @@
     "validate-readings": "node scripts/validate-readings.mjs",
     "test:console": "node scripts/test-console.mjs",
     "test:analytics": "node scripts/test-analytics.mjs",
+    "test:letter": "esbuild scripts/test-open-letter.mjs --bundle --platform=node --format=esm --outfile=.cache/test-open-letter.mjs --log-level=warning && node .cache/test-open-letter.mjs",
     "test:edge": "deno test scripts/analytics-hit_test.mjs",
     "check:pdf": "node scripts/check-pdf-private.mjs",
     "og:build": "python3 scripts/build_og_images.py",

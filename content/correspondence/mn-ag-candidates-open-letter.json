@@ -1,0 +1,1169 @@
+{
+ "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted (header_omitted). Do not edit by hand; re-run the import.",
+ "slug": "mn-ag-candidates-open-letter",
+ "generated": "2026-10-10T00:06:15.953Z",
+ "source": {
+  "tree": "work_station",
+  "commit": "1ef7a96bedd0398ad5540577ce2ff87a440fdeac",
+  "files": [
+   {
+    "role": "letter",
+    "path": "2_MN-0-26-cv-02594-LMP-DJF/05_Correspondence/OPEN_LETTER_AG_CANDIDATES_ELLISON_SCHUTZ_2026-10.md",
+    "bytes": 13039,
+    "sha256": "cd7a73146c4a26a39c82cb1b530eeddbbee8d482be2fd51f9d51e3dbb8c9d96f",
+    "commit": "d55be53e89ecdf917e1b7acdd48ad70b4f6b3333"
+   },
+   {
+    "role": "enclosure",
+    "path": "2_MN-0-26-cv-02594-LMP-DJF/05_Correspondence/OPEN_LETTER_ENCLOSURE_A_RECORD_AND_DEBATE_2026-10.md",
+    "bytes": 9447,
+    "sha256": "06bab7f6c6bec5d76ccb9e9b29cf464c6839ee6ca30d47603f78987c1339777d",
+    "commit": "d55be53e89ecdf917e1b7acdd48ad70b4f6b3333"
+   },
+   {
+    "role": "transcript",
+    "path": "2_MN-0-26-cv-02594-LMP-DJF/0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002/TRANSCRIPT_MPR_AG_DEBATE_ELLISON_SCHUTZ_2026-10-02.md",
+    "bytes": 64798,
+    "sha256": "5fcaa152edc50f51bcf08e7b2302d1de03c8541c9b55d4983b6d77f604c9a8f6",
+    "commit": "f639684feedb163e15208271622d24371e8b95e9"
+   }
+  ]
+ },
+ "recording": {
+  "youtube_id": "pgzvG1Ky8rQ",
+  "url": "https://www.youtube.com/watch?v=pgzvG1Ky8rQ",
+  "title": "Minnesota Attorney General Debate: Keith Ellison vs. Ron Schutz | Full Debate",
+  "duration": "59:00",
+  "duration_s": 3540,
+  "programme": "MPR News Politics Friday",
+  "date": "2026-10-02",
+  "moderator": "Brian Bakst"
+ },
+ "letter": {
+  "title": "Open Letter to the Candidates for Minnesota Attorney General",
+  "header": "Open Letter: Minn. Stat. § 8.31",
+  "date_line": "October 10, 2026",
+  "markdown": "**JOSEPH KIRCHNER**  \n4440 Parklawn Avenue, #203  \nEdina, MN 55435  \njoseph@kirchner.ink  \n(612) 552-2122\n\n**OPEN LETTER TO THE CANDIDATES FOR MINNESOTA ATTORNEY GENERAL**\n\nOctober 10, 2026\n\nBY CERTIFIED MAIL, BY EMAIL, AND PUBLIC RELEASE\n\nKeith Ellison, Candidate for Attorney General  \nKeith Ellison for Attorney General committee  \nPO Box 17224  \nMinneapolis, MN 55417  \ncampaign@keithellison.org\n\nRon Schutz, Candidate for Attorney General  \nRon for MN AG  \n216 Myrtle St W  \nP.O. Box 132  \nStillwater, MN 55082-4830  \ninfo@RonForMNAG.com\n\n**Re:** Minnesota Statutes § 8.31, Subdivision 1: the office's public position, its position in federal court, and three questions for each candidate\n\nDear Mr. Ellison and Mr. Schutz:\n\nI write as a Minnesota citizen to both of you, on the same day and in the same words, with three questions about the office you are asking to hold. This letter is public. On the day it is mailed to you it goes to the Minnesota reporters covering the office and the fraud cases, with its enclosure. Your answers, or the absence of them, will be sent to the same reporters and published on October 21, 2026.\n\n**What I asked the office.** On February 10, 2026, I hand-delivered to the Office of the Attorney General a referral documenting consumer fraud and computer crimes by four companies operating in Minnesota across county lines, supported by exhibits. It invoked the Prevention of Consumer Fraud Act, Minn. Stat. §§ 325F.68–.70, and asked the office to investigate, to issue civil investigative demands, and to pursue civil enforcement, among other things.\n\n**What the office answered.** On February 26, 2026, the office wrote: \"the Minnesota Legislature delegated the authority to prosecute criminal matters to the county attorney. It did not delegate any such authority to this Office, nor did it delegate the authority to investigate criminal matters to this Office.\" The office's website says the same: the Legislature \"delegated the authority to prosecute criminal matters to the county attorney. It did not delegate such authority to this Office.\" The letter did not mention § 8.31. It did not answer the civil requests. I am the plaintiff in *Kirchner v. Ellison*, No. 26-cv-2594 (D. Minn.), now on appeal, which arises from that letter.\n\n**What the statute says.** Minn. Stat. § 8.31, subd. 1: \"The attorney general shall investigate violations of the law of this state respecting unfair, discriminatory, and other unlawful practices in business, commerce, or trade, and specifically, but not exclusively, … the Prevention of Consumer Fraud Act (sections 325F.68 to 325F.70) …\". Minn. Stat. § 645.44, subd. 16: \"'Shall' is mandatory.\"\n\n**What the office says in court.** The office has defended the February 26 statement as accurate about criminal matters, telling the court the letter \"contains no misstatement of law\" (Doc. 16 at 5) and that the Attorney General \"may only exercise the prosecutorial powers of a county attorney at the direction of the governor or via consent from a county attorney\" (Doc. 11 at 8). At the same time it conceded that the office \"must investigate\" violations of the Consumer Fraud Act (Doc. 16 at 5), and argued in the alternative that even if the letter and the website \"do misstate the law,\" I have no redress because investigation is discretionary (Doc. 16 at 6). The court dismissed on that alternative, \"even if Kirchner is correct\" that the office has the authority (Doc. 27 at 5). Nothing in my suit asks the office to give up its discretion over what it investigates or prosecutes. The suit asks whether the office has the authority the statutes name, and whether it will say so. The record is set out in the enclosure, point 7.\n\n**What each of you said on October 2, 2026** (MPR News, Politics Friday; times are from the recording published on YouTube). On the civil duty, Mr. Ellison, at 2:49: \"Minnesota Statute 8.31 requires, it says shall, the attorney general shall investigate all illegality, unfairness and discrimination in the area of business, commerce and trade. And I have lived up to that as early as this morning.\" On criminal matters, Mr. Ellison, at 12:37: \"They're investigators … They are career prosecutors and the Bureau of Criminal Apprehension. We just brought a bunch of cases this week\"; at 21:19: \"I also am assisting local prosecutors in the investigation and in one case, prosecution of the people who were shot by ICE agents\"; at 44:06: \"We just convicted somebody in Winona who was a coach and criminally victimized three people.\" Mr. Schutz, at 4:34: \"The attorney general is tasked under Minnesota statutes with original criminal jurisdiction over Medicaid and medical assistance fraud\"; at 10:31: \"You prosecute people by charging them with at least three felony counts of fraud over $35,000\"; and at 22:07–23:26, on the ICE shootings: \"there needed to be a joint federal and state investigation … if it leads to prosecutions and the evidence warrants it, that's what should happen … I am more than happy to lead the charge.\" On the standard for acting against a company, Mr. Schutz, at 16:14: \"if they committed wrongdoing and Minnesotans were harmed, the attorney general should take action against that\"; asked whether that is the standard he uses, Mr. Ellison, at 16:24: \"Well, obviously, but that's just the basics.\"\n\n**The three questions.** Each can be answered yes or no.\n\n1. Will the office, under you, recognize its authority under Minn. Stat. § 8.31, subd. 1 to investigate a citizen's referral of unlawful business practices, including consumer fraud, on its own, without a request from a county attorney or the Governor, the duty Mr. Ellison stated on October 2?\n\n2. Will the office, under you, recognize that its authority to investigate criminal matters, and to cause and conduct their prosecution, is not limited to Medicaid fraud: that it rests on Minn. Stat. § 8.31, subd. 2, on the office's own information, and on § 8.01, with the request pathways that section names, and that the Legislature recognized it again in 2025 in § 299C.061, subd. 4(c); and will the office withdraw the statement, in the letter and on the website, that the Legislature did not delegate such authority to this Office?\n\n3. Will the office, under you, answer a citizen's referral with a decision on its merits, exercising whatever discretion the law gives, rather than with a statement that it lacks the authority?\n\nI submit these questions as a lifelong Minnesota resident who places great weight on the Office of the Attorney General, and not in my capacity as a party to a lawsuit. Your answers cannot confer standing in my case or stand in for the Eighth Circuit's ruling; that belongs to the court, on the record. Every public office, and everyone elected to it, is bounded by its authority. Voters can cast an informed vote for the office only when a candidate's understanding of that authority matches the office's. Here, what each of you said on October 2 contradicts, or is hard to square with, what the office says in federal court. For the sake of Minnesota voters, I ask you to say which it is.\n\nI ask for your written answers by October 21, 2026. On October 21, 2026 I will send the same reporters what each of you answered, or that you did not, so that voters may read it before Election Day. Answers may be sent to the email address above or by mail. The enclosure sets out each quotation above with its source. The full transcript and the record citations are available at kirchner.ink/mn-ag-candidates-open-letter.\n\nRespectfully,\n\nJOSEPH KIRCHNER\n\nEnclosure A: The record and the debate, point by point (2 pp.)\n"
+ },
+ "enclosure": {
+  "title": "Enclosure A: The record and the debate, point by point",
+  "header": "Enclosure A: Open Letter, Minn. Stat. § 8.31",
+  "markdown": "# ENCLOSURE A: The record and the debate, point by point\n\n**To the open letter of October 10, 2026 to the candidates for Minnesota Attorney General.** Seven points, each with the office's words in the record and the candidates' words in public; every quotation is given with its source. Debate times are from the recording of the MPR News Politics Friday debate of October 2, 2026 as published on YouTube (\"Minnesota Attorney General Debate: Keith Ellison vs. Ron Schutz | Full Debate\"). Record citations are to *Kirchner v. Ellison*, No. 26-cv-2594 (D. Minn.): \"Ex. A\" is Exhibit A to the Complaint (ECF 1-2); \"Doc. 37\" is the Attorney General's memorandum of October 7, 2026 (ECF 37).\n\n**1. The statute's duty.**\n\n*In the record.* The February 26 letter (Ex. A at 2) does not mention § 8.31. In court the office defends the letter as discretion, Doc. 37 at 5: \"the AGO could still reject the petition for any reason at all without it constituting an injury to Plaintiff.\"\n\n*In public.* Mr. Ellison, 2:49: \"Minnesota Statute 8.31 requires, it says shall, the attorney general shall investigate all illegality, unfairness and discrimination in the area of business, commerce and trade. And I have lived up to that as early as this morning.\"\n\n**2. Investigation.**\n\n*In the record.* Ex. A at 2: \"nor did it delegate the authority to investigate criminal matters to this Office.\"\n\n*In public.* Mr. Ellison, 12:37–12:52: \"They're investigators … They are career prosecutors and the Bureau of Criminal Apprehension. We just brought a bunch of cases this week.\" 21:19: \"I also am assisting local prosecutors in the investigation and in one case, prosecution of the people who were shot by ICE agents.\" 25:24: \"Yes, we're going to investigate.\" Mr. Schutz, 22:07–23:26: \"there needed to be a joint federal and state investigation … if it leads to prosecutions and the evidence warrants it, that's what should happen … I am more than happy to lead the charge.\"\n\n**3. Referral to the FBI.**\n\n*In the record.* Ex. A at 2–3: the office directed the citizen to the FBI's Internet Crime Complaint Center: \"You may contact the IC3 and make a request to investigate.\"\n\n*In public.* Mr. Ellison, 8:51–9:00, on Feeding Our Future: \"we began to work with the FBI. And later there were search warrants executed. There was then indictments.\"\n\n**4. Prosecution.**\n\n*In the record.* Ex. A at 2: \"the Minnesota Legislature delegated the authority to prosecute criminal matters to the county attorney. It did not delegate any such authority to this Office.\" The office's website (Compl. ¶ 22; Ex. B at 4): \"It delegated the authority to prosecute criminal matters to the county attorney. It did not delegate such authority to this Office.\"\n\n*In public.* Mr. Ellison, 5:57: \"We bring the charges. We get the convictions.\" 44:06: \"We just convicted somebody in Winona who was a coach and criminally victimized three people.\" 57:33: \"I've convicted over 350 people of Medicaid fraud, one every eight days.\" Mr. Schutz, 4:34: \"The attorney general is tasked under Minnesota statutes with original criminal jurisdiction over Medicaid and medical assistance fraud.\" 10:31: \"You prosecute people by charging them with at least three felony counts of fraud over $35,000.\"\n\n**5. The standard for acting.**\n\n*In the record.* The office's position in court is that a citizen \"does not have a constitutional right to have his referral investigated\" (ECF 11 at 13) and that a referral may be refused \"for any reason at all\" (Doc. 37 at 5).\n\n*In public.* Mr. Schutz, 16:14: \"if they committed wrongdoing and Minnesotans were harmed, the attorney general should take action against that.\" Mr. Ellison, 16:24, asked whether that is his standard: \"Well, obviously, but that's just the basics.\" Mr. Schutz, 54:48: \"If they're not complying with some law, then it's the job of the Attorney General to step in.\"\n\n**6. Discretion.**\n\n*In the record.* Doc. 37 at 5 treats the February 26 statement that the office lacks authority as an exercise of discretion.\n\n*In public.* Mr. Schutz, 11:22–11:55: \"the attorney general has broad discretion. As to how he allocates resources within the office … I have the discretion within the office as to where to devote resources.\"\n\n**7. The office in court.**\n\n*In the record.* The office has defended the February 26 statement as accurate: the letter \"does not disavow the AGO's jurisdiction to investigate violations of PCFA, only the ability to investigate and prosecute criminal matters,\" so \"there is no 'misstatement of law'\" (Doc. 11 at 8); \"The February 26 letter contains no misstatement of law\" (Doc. 16 at 5); the Attorney General \"may only exercise the prosecutorial powers of a county attorney at the direction of the governor or via consent from a county attorney\" (Doc. 11 at 8). At the same time it told the court that \"neither party disputes\" the office's authority to investigate violations of the Consumer Fraud Act and that the office \"must investigate\" them, while denying that the statutes give it \"broad criminal authority\" (Doc. 16 at 4–5); and, in the alternative, it argued that \"assuming … the Attorney General's website and the February 26 letter do misstate the law,\" the citizen has no redress because investigation is discretionary and no standing to complain (Doc. 16 at 6; Doc. 11 at 9, 13). The court dismissed on that ground, \"even if Kirchner is correct\" that the office has the authority (Doc. 27 at 5), and the office's latest filing says it \"could still reject the petition for any reason at all\" (Doc. 37 at 5). The letter has not been withdrawn, and the website said the same when last captured on March 18, 2026.\n\n*In public.* Mr. Ellison, 2:49, 12:37, 21:19 and 44:06; Mr. Schutz, 4:34, 10:31 and 22:07–23:26, as set out at points 1, 2 and 4 above.\n\n**The statute.** Minn. Stat. § 8.31, subd. 1 (2025): \"The attorney general shall investigate violations of the law of this state respecting unfair, discriminatory, and other unlawful practices in business, commerce, or trade, and specifically, but not exclusively, the Nonprofit Corporation Act (sections 317A.001 to 317A.909), the Act Against Unfair Discrimination and Competition (sections 325D.01 to 325D.07), the Unlawful Trade Practices Act (sections 325D.09 to 325D.16), the Antitrust Act (sections 325D.49 to 325D.66), section 325F.67 and other laws against false or fraudulent advertising, the antidiscrimination acts contained in section 325D.67, the act against monopolization of food products (section 325D.68), the act regulating telephone advertising services (section 325E.39), the Prevention of Consumer Fraud Act (sections 325F.68 to 325F.70), and chapter 53A regulating currency exchanges and assist in the enforcement of those laws as in this section provided.\" Minn. Stat. § 645.44, subd. 16: \"'Shall' is mandatory.\"\n\n**The statutes behind question 2** (as filed with the Complaint, Exhibit E, ECF 3-1). Minn. Stat. § 8.31, subd. 2: \"When the attorney general has information providing a reasonable ground to believe that any person has violated, or is about to violate, any of the laws of this state referred to in subdivision 1, the attorney general shall have power to investigate those violations, or suspected violations, and to take such steps as are necessary to cause the arrest and prosecution of all persons violating any of the statutes specifically mentioned in subdivision 1 or any other laws respecting unfair, discriminatory, or other unlawful practices in business, commerce, or trade.\" Minn. Stat. § 8.01: \"Upon request of the county attorney, the attorney general shall appear in court in such criminal cases as the attorney general deems proper. … Whenever the governor shall so request, in writing, the attorney general shall prosecute any person charged with an indictable offense, and in all such cases may attend upon the grand jury and exercise the powers of a county attorney.\" Minn. Stat. § 299C.061 (Financial Crimes and Fraud Section, as amended in 2025), subd. 4(c): \"Notwithstanding paragraph (b), this section has no effect on the authority of the attorney general to investigate and enforce violations or suspected violations of Minnesota civil or criminal law.\"\n\n**The referral's requests** (Ex. A, referral § V): (1) open a criminal investigation; (2) issue civil investigative demands; (3) coordinate with federal authorities; (4) pursue criminal prosecution where the evidence supports charges; (5) pursue civil enforcement under Minnesota consumer protection statutes; (6) preserve evidence. The February 26 letter addressed items 1 and 4 by disclaimer, answered item 3 only by directing the citizen to the FBI's web portal, and did not address items 2, 5 or 6.\n"
+ },
+ "transcript": {
+  "title": "TRANSCRIPT — MPR News Politics Friday: Minnesota Attorney General Debate, Keith Ellison (DFL, incumbent) v. Ron Schutz (R) — Friday, October 2, 2026",
+  "source": "The broadcast is MPR News \"Politics Friday\", moderator Brian Bakst; the recording's own clock is used for every timestamp (the broadcast begins ~0:30 into the file).",
+  "method": "audio extracted with ffmpeg (16 kHz mono PCM); transcribed with whisper.cpp (`whisper-cli`, Homebrew) using `ggml-large-v3.bin`, language en, 2026-10-09. Two repetition artifacts of the model were repaired by re-transcribing the windows as separate cuts (26:05–27:55 and 35:25–35:55; the 2:40–3:10 window was re-cut to confirm the § 8.31 sentence was spoken once, and the re-cut's fuller hearing of it, \"business, commerce and trade\", is the text used at 2:49). Speaker attribution (MOD = Brian Bakst; KE = Keith Ellison; RS = Ron Schutz) is the drafter's, from context; two crosstalk passages are marked. Name spellings normalised: MPR (heard \"NPR\"), Bakst, Schutz, Renee Good, Alex Pretti. Everything else is as the model heard it. **Draft work product — verify any quoted span at the audio before it is filed or relied on.**",
+  "header_omitted": [
+   "`~/Movies/Minnesota Attorney General Debate： Keith Ellison vs. Ron Schutz ｜ Full Debate [pgzvG1Ky8rQ].mp4` (YouTube id pgzvG1Ky8rQ; 155,901,012 bytes; sha256 ff3e1f1cd55baadc3f74aaba2ca984fff552813278f2015ff51babd9f9350f50; duration 59:00.07).",
+   "(the owner's model at `~/models/whisper-cpp/`)",
+   "by drafter a636b3d9"
+  ],
+  "speakers": {
+   "MOD": "Brian Bakst",
+   "KE": "Keith Ellison",
+   "RS": "Ron Schutz"
+  },
+  "turns": [
+   {
+    "n": 1,
+    "time": "00:00:00",
+    "t": 0,
+    "speaker": "MOD",
+    "text": "I'm not sure if you can hear me. Good afternoon. This is MPR News. I'm Brian Bakst. We have a special Politics Friday today. And just over a month, Minnesota voters will decide who should lead the state's main public law office. The Attorney General carries significant power to drive litigation, defend state interest, aid in criminal prosecution, and work with legislators to shape new laws. The Attorney General sits on a state board that manages tens of billions of dollars in investments. And holdings for pensions and similar accounts. The Attorney General is one of three people who weigh pardon applications. And the Attorney General has a say in the durability of executive orders issued by the governor. With us for the next hour are two people seeking that title for the next four years. Keith Ellison is a DFLer who's held the Attorney General role for the two terms beginning in 2019. Good afternoon."
+   },
+   {
+    "n": 2,
+    "time": "00:01:22",
+    "t": 82,
+    "speaker": "KE",
+    "text": "Thank you, Brian. Thanks for having me."
+   },
+   {
+    "n": 3,
+    "time": "00:01:23",
+    "t": 83,
+    "speaker": "MOD",
+    "text": "And Ron Schutz is a civil litigator who has most recently led a major Twin Cities law firm. Happy to have you here as well."
+   },
+   {
+    "n": 4,
+    "time": "00:01:30",
+    "t": 90,
+    "speaker": "RS",
+    "text": "Thank you, Brian. Thanks for having me."
+   },
+   {
+    "n": 5,
+    "time": "00:01:31",
+    "t": 91,
+    "speaker": "MOD",
+    "text": "So there aren't a lot of ground rules to go over, gentlemen. There are no timed responses, but we're asking you to be as succinct as possible in your answers so we can get to as many topics as possible. We'll allow for rebuttal, we're warranted, but please do your best to avoid talking over one another. And for the radio audience, you can find a live video feed of this debate at MPRnews.org or come back later if you missed something."
+   },
+   {
+    "n": 6,
+    "time": "00:01:51",
+    "t": 111,
+    "speaker": "KE/RS",
+    "text": "We all set? I'm all set."
+   },
+   {
+    "n": 7,
+    "time": "00:01:53",
+    "t": 113,
+    "speaker": "MOD",
+    "text": "So, Keith Ellison, when you were inaugurated for the first time, you vowed to be the people's lawyer whose job is, quote, to help Minnesotans afford their lives. With dignity and respect, how have you measured up?"
+   },
+   {
+    "n": 8,
+    "time": "00:02:02",
+    "t": 122,
+    "speaker": "KE",
+    "text": "I think we have succeeded. I can tell you, Brian, when you mentioned take me back eight years, I think of Nicole Holtz-Smith, who was a woman who approached me when I was a member of Congress and told me about her son who went from her insurance to his own. He went from paying nothing for insulin to paying about $1,300 a month. He tried to ration his insulin but was unable to do that. His body went into ketoacidosis and he died. When I became attorney general, one of the first cases that I filed was against the insulin cartel. And now, in Minnesota, insulin is kept at $35. This has been the operating principle of my service, helping people afford their lives and live with dignity, safety, and respect. Minnesota Statute 8.31 requires, it says shall, the attorney general shall investigate all illegality, unfairness and discrimination in the area of business, commerce and trade. And I have lived up to that as early as this morning."
+   },
+   {
+    "n": 9,
+    "time": "00:03:04",
+    "t": 184,
+    "speaker": "MOD",
+    "text": "And Ron Schutz, this is your first one for a public elected office. Prior to launching your campaign, you were on a finalist list to be Minnesota's U.S. Attorney. But why this job and why now?"
+   },
+   {
+    "n": 10,
+    "time": "00:03:14",
+    "t": 194,
+    "speaker": "RS",
+    "text": "Well, Brian, you're correct. I was on the finalist list to be United States Attorney. And when that didn't happen, when Dan Rosen was selected as U.S. Attorney, my phone started ringing off the hook because I had previously, considered running for public office, been urged to run for public office several times in the past. And for various reasons, timing, commitments with my law firm and others, I decided not to do that. But I stepped down from being chairman of my law firm in 2024. And I was looking for what I was going to do next in life. I've started my career in public service by being an officer in the United States Army. And I don't like the direction the state is headed. And I'm sure I'll do that. I'll get to address several of those issues during the course of this debate. I've got three grandchildren that live in this state. And I prefer that they grow up in a state that looks a lot more like the one I grew up in and was known as the land of 10,000 lakes and not the state as it's currently known as the land of 10,000 frauds."
+   },
+   {
+    "n": 11,
+    "time": "00:04:19",
+    "t": 259,
+    "speaker": "MOD",
+    "text": "Well, without question, investigations and prosecutions of fraud have stoked public frustration over misuse of tax dollars. Ron Schutz, what do you see as the role of the attorney general in combating that?"
+   },
+   {
+    "n": 12,
+    "time": "00:04:30",
+    "t": 270,
+    "speaker": "RS",
+    "text": "Well, the role of the attorney general is very broad in combating that fraud. The attorney general is tasked under Minnesota statutes with original criminal jurisdiction over Medicaid and medical assistance fraud. And in my view, I don't think this attorney general has done a good job prosecuting those cases, claims to have prosecuted 350 cases. KSTP, a local news station in town, did an investigative report. They looked at 250 cases. They looked at 250 cases that Keith Ellison had prosecuted and found the overwhelming, in the overwhelming majority of those cases, nobody went to jail, nobody had a felony on their record, and if anything, they paid cents on the dollars. And that is because the way the cases were prosecuted. In 70 of those cases, they found that there were stays of adjudication where the person was put on parole, came out of parole. And then the charges were dropped. So no convictions, at least 70 of those cases."
+   },
+   {
+    "n": 13,
+    "time": "00:05:33",
+    "t": 333,
+    "speaker": "MOD",
+    "text": "Well, Keith Ellison, he's assessed your role as not having done as much as you've said. What do you want to say about that?"
+   },
+   {
+    "n": 14,
+    "time": "00:05:40",
+    "t": 340,
+    "speaker": "KE",
+    "text": "I say he's absolutely wrong. I'm very proud of the 350 convictions that my office has secured. I'm proud of the group that does that work every single day. Mr. Schutz doesn't seem to understand that it is courts who sentence defendants, not the prosecutors. We bring the charges. We get the convictions. The courts sentence people. And so he's confusing those two roles. But here's the thing. I also worked with the legislature to negotiate a bill that lengthened sentences. He's concerned about sentences. We've actually got a bill that lengthened sentences, brought back longer period of time to get restitution orders, and was able to secure 18 more new people from my office with a three to one to three match from the federal government to us. We put up one buck. They put up three. Now, we've passed that law into law, but Mr. Schutz opposed this piece of legislation. He wrote a press release trying to get people to kill the bill. So it seems to me that he might be against Ellison, but he's not against fraud, because if he was against fraud, he would not care who was pushing that bill. He would have stood with me and helped get more strength for our office."
+   },
+   {
+    "n": 15,
+    "time": "00:06:57",
+    "t": 417,
+    "speaker": "MOD",
+    "text": "Did you oppose the bill that Keith Ellison was talking about?"
+   },
+   {
+    "n": 16,
+    "time": "00:06:59",
+    "t": 419,
+    "speaker": "RS",
+    "text": "Well, first. We need to clarify one thing. Under Minnesota Statute 609.095, the prosecution can agree with the defense to have the judge enter a stay of adjudication. That was done in at least 70 of those cases. So I'm absolutely right about that. You can check the record. And what happens is no conviction is entered on the record. And in 144 cases, there was a stay of imposition of sentence. What that means is there's a plea offered. The judge accepts the plea. Puts the person on probation. If the person successfully completes probation, then the felony to which they have pled is reduced to a misdemeanor."
+   },
+   {
+    "n": 17,
+    "time": "00:07:41",
+    "t": 461,
+    "speaker": "MOD",
+    "text": "But briefly, did you oppose the legislation?"
+   },
+   {
+    "n": 18,
+    "time": "00:07:44",
+    "t": 464,
+    "speaker": "RS",
+    "text": "Well, that's incomplete with what I said. My statement was this attorney general has substantial resources in the office not being deployed toward combating fraud. And he needs his priorities are wrong. He needs to reprioritize combating fraud."
+   },
+   {
+    "n": 19,
+    "time": "00:08:00",
+    "t": 480,
+    "speaker": "MOD",
+    "text": "Keith Ellison, particularly when it comes to the most..."
+   },
+   {
+    "n": 20,
+    "time": "00:08:02",
+    "t": 482,
+    "speaker": "KE",
+    "text": "He didn't answer the question about whether he opposed the bill or not."
+   },
+   {
+    "n": 21,
+    "time": "00:08:04",
+    "t": 484,
+    "speaker": "MOD",
+    "text": "Particularly when it comes to the most visible case, Feeding Our Future. Right. When did your office first step in and how?"
+   },
+   {
+    "n": 22,
+    "time": "00:08:10",
+    "t": 490,
+    "speaker": "KE",
+    "text": "Well, we represented the Department of Education. And when Feeding Our Future was asking, was demanding more money than they were entitled to, the Department of Education said, no, we weren't going to give, they weren't going to give that money over because there was no proof for it. We didn't know how deep the problem was. But we knew that there was a problem because the billings and the invoices didn't match. I defended the Department of Education, even when Feeding Our Future sued them and scurrilously claimed to be victims of discrimination. We fought that right up until Feeding Our Future. These people lied to judges. They lied to journalists. And they tried to lie their way through court. Then what we did is we began to work with the FBI. And later there were search warrants executed. There was then indictments. And now those people are in prison as they should be. My office worked very hard to make sure that justice was done. When we couldn't get it through the court system we thought we should get it through, we worked with our federal allies and got them convicted there."
+   },
+   {
+    "n": 23,
+    "time": "00:09:14",
+    "t": 554,
+    "speaker": "MOD",
+    "text": "Well, staying with you for a minute, you've been questioned before Congress and other venues for meeting with and paying contributions for people who were later accused in that nutrition aid scheme. What happened there?"
+   },
+   {
+    "n": 24,
+    "time": "00:09:24",
+    "t": 564,
+    "speaker": "KE",
+    "text": "I'm glad you asked me about that, Brian, because here's the thing. Nobody who I see, I meet with people every single day. I had several meetings this week, and so I met -- these people wanted to meet with me, and I met with them because I meet with people. But I took nothing from them. I did nothing for them. And no one in that meeting gave me a campaign donation. In fact, one of them suggested campaign donations. I said, no, this is an official meeting. That's on the tape you're talking about. But then what happened is that when those people sent me some campaign donations, no one in the meeting, others, I sent them back. Brian, to the federal authorities. So I have received no campaign donations from these people, and we aided in the prosecution and conviction of these people. I'm glad they're in prison, and I'm proud of the work that my team did to do that."
+   },
+   {
+    "n": 25,
+    "time": "00:10:13",
+    "t": 613,
+    "speaker": "MOD",
+    "text": "Ron Schutz, going forward, the attorney general's office will have a more robust Medicaid fraud control unit with additional staff, expanded powers to investigate. How do you foresee using that?"
+   },
+   {
+    "n": 26,
+    "time": "00:10:22",
+    "t": 622,
+    "speaker": "RS",
+    "text": "Well, I want to go back to how these cases are handled. People need to go to jail. Nobody's afraid out there. There are no repercussions. And here's how people go to jail. You prosecute people by charging them with at least three felony counts of fraud over $35,000. And then you refuse to enter into sweetheart plea agreements because if you then try these cases, and you've got to remember, I approach this job and will approach this job as a trial lawyer and not as a politician. So I view the way to do these cases is to actually go to court, stand up before juries and judges, get prosecuted. If you get a conviction on three felony counts for theft above $35,000, which is relatively easy to do given the scope of the fraud here, there's mandatory prison sentence under the state sentencing guidelines if you look at the grid."
+   },
+   {
+    "n": 27,
+    "time": "00:11:15",
+    "t": 675,
+    "speaker": "MOD",
+    "text": "What about the Medicaid fraud control unit? Do you think the amount of staff, 18 new staff members, is enough?"
+   },
+   {
+    "n": 28,
+    "time": "00:11:21",
+    "t": 681,
+    "speaker": "RS",
+    "text": "No. I would devote additional resources to that, and I'm glad you asked that question, Brian, because the attorney general has broad discretion. As to how he allocates resources within the office. Each year, the attorney general files a report with the legislature about the activities in the office. The most recent report that was filed was 51 pages long. 51 pages. Only two pages of that report were devoted to fraud. I will devote additional resources to fighting fraud. I have the discretion within the office as to where to devote resources. I'll devote more resources to fighting fraud."
+   },
+   {
+    "n": 29,
+    "time": "00:11:57",
+    "t": 717,
+    "speaker": "MOD",
+    "text": "Keith Ellison, more than the 18."
+   },
+   {
+    "n": 30,
+    "time": "00:11:58",
+    "t": 718,
+    "speaker": "KE",
+    "text": "Well, I tell you. There are about 50 Medicaid control fraud units throughout the United States. They are evaluated from Washington because Washington gives about three bucks for every one dollar that the state puts up. And they have evaluated us as having an excellent program. They have said, look, you are punching way above your weight. Your people are getting convictions, and they support and have given us positive feedback on our program. And so I don't know what Ron is talking about. We do this work every day. And I can tell you, the people who do this work have no connection to politics at all. They are line prosecutors. They do prosecution every day. They're investigators, and I'm proud of the work that they do. And quite frankly, Mr. Schutz, I find it offensive for you to insult these people. They are career prosecutors and the Bureau of Criminal Apprehension. We just brought a bunch of cases this week. These people work hard to build these cases. We're getting these convictions. And, Mr. Schutz, why? Why did you oppose my bill? Why did you put a partisan consideration in front of trying to get more resources to prosecute fraud?"
+   },
+   {
+    "n": 31,
+    "time": "00:13:08",
+    "t": 788,
+    "speaker": "RS",
+    "text": "Nobody goes to jail."
+   },
+   {
+    "n": 32,
+    "time": "00:13:10",
+    "t": 790,
+    "speaker": "KE",
+    "text": "Let me repeat that. You can people go to jail all the time. Go to listen."
+   },
+   {
+    "n": 33,
+    "time": "00:13:13",
+    "t": 793,
+    "speaker": "RS",
+    "text": "That's not true. Look at the KSTP report. Keith Ellison is on camera being confronted by the reporters. Nobody goes to report, goes to jail, and nobody ends up with a felony on your record. So the report that's submitted to the federal government about what the Medicaid Fraud Control Unit does measure certain factors. It does not measure whether people go to jail because if it measured that, it would get an F grade."
+   },
+   {
+    "n": 34,
+    "time": "00:13:37",
+    "t": 817,
+    "speaker": "MOD",
+    "text": "We're going to move along here. Financial scams targeting people online are involving confusing business tactics are a growing concern. What steps should this office take to help people recover money and what should be done with those bad actors, Ron Schutz?"
+   },
+   {
+    "n": 35,
+    "time": "00:13:49",
+    "t": 829,
+    "speaker": "RS",
+    "text": "Again, I will repeat that I will approach all these as I did in my private law practice as an aggressive trial lawyer. There's only one lawyer. In this race who has stood before juries given opening statements examined and cross-examined every witness and get and got given the closing argument and won tens of millions of dollars for his clients. And that's me. And I have frequently done that on behalf of individuals and small companies. I will take that track record, that aggressiveness, and I will use it to make sure that nobody and I mean nobody takes advantage of Minnesotans."
+   },
+   {
+    "n": 36,
+    "time": "00:14:26",
+    "t": 866,
+    "speaker": "KE",
+    "text": "So, Brian, look, I go to Hennepin County, go to federal district court. People know Keith Ellison is a trial lawyer who's put plenty of juries."
+   },
+   {
+    "n": 37,
+    "time": "00:14:36",
+    "t": 876,
+    "speaker": "MOD",
+    "text": "But that's not the point. I'm not going to get into that. What I will get into is the role of the office in financial crimes is very serious. And I do want to ask you a precise question about that. Are Minnesota's laws strong enough to respond to consumer scams or where do they need to be beefed up?"
+   },
+   {
+    "n": 38,
+    "time": "00:14:50",
+    "t": 890,
+    "speaker": "KE",
+    "text": "That's a great question. Thank you for asking that. I can tell you that when it comes to things like privacy, we need to continue to strengthen our laws. In Minnesota, I think when people's people's data, we had we passed some good legislation. We need more. We may need to pass some legislation to protect people's private identity. There is a new anti notification law that we're defending right now in court. I think that there are some ways to make that law stronger. Also, one of the things we did, we actually passed this law. Something that Ron opposed is we have actually on Medicaid fraud gone back further so that we can get further deeper in time beyond the statute, the ordinary statute of limitations so that we can get even more restitution. But we have increased our we have increased our medical debt bill. We passed a medical debt bill that improves our ability to protect Minnesota consumers medical billing. We've done that. And of course, these are laws that we're pursuing every single day."
+   },
+   {
+    "n": 39,
+    "time": "00:15:45",
+    "t": 945,
+    "speaker": "MOD",
+    "text": "Ron Schutz, are there any new laws that you would want to particularly on consumer protection?"
+   },
+   {
+    "n": 40,
+    "time": "00:15:51",
+    "t": 951,
+    "speaker": "RS",
+    "text": "We have very robust consumer protection laws on the books right now. They're very robust. Certainly we might be able to leaf some of those up, but it's like everything else. Execution is the key. It's not necessarily that we need more laws. We need them more vigorously enforced."
+   },
+   {
+    "n": 41,
+    "time": "00:16:07",
+    "t": 967,
+    "speaker": "MOD",
+    "text": "Well, let me ask you, what factors would you consider before pursuing legal action on behalf of the state, maybe against a corporation or business?"
+   },
+   {
+    "n": 42,
+    "time": "00:16:14",
+    "t": 974,
+    "speaker": "RS",
+    "text": "If they committed wrongdoing. I mean, if they committed wrongdoing and Minnesotans were harmed, the attorney general should take action against that."
+   },
+   {
+    "n": 43,
+    "time": "00:16:23",
+    "t": 983,
+    "speaker": "MOD",
+    "text": "Is that the standard you use?"
+   },
+   {
+    "n": 44,
+    "time": "00:16:24",
+    "t": 984,
+    "speaker": "KE",
+    "text": "Well, obviously, but that's just the basics, you know, I mean, the fact is, if we we we have sued multiple companies like Amazon, Eli Lilly, Exxon Mobil, Philip Morris and Meta. And Ron has substantial financial holdings in all those cases. I don't begrudge him that that's his right. But you can't do that if you're the attorney general of the state of Minnesota. If the attorney general state of Minnesota, you should be able to sue these companies unencumbered. I don't have any of these kind of conflicts. And that's why I've been able to sue Eli Lilly for gouging consumers, making insulin beyond their reach. So I'm suing Exxon Mobil on climate deception. I'm suing Amazon. I'm suing Meta. We just and Ron is profiting from all of these companies. And I think that's a real serious problem. One of the things I hope does not happen is that an attorney general factor in their own financial exposure when they make a decision about suing a company."
+   },
+   {
+    "n": 45,
+    "time": "00:17:21",
+    "t": 1041,
+    "speaker": "MOD",
+    "text": "Well, I want to know I don't have to do that. I want to give him a chance to respond to this. This relates to your economic disclosure and what stockholdings you have, are they going to be a problem and how are you going to wall that off?"
+   },
+   {
+    "n": 46,
+    "time": "00:17:30",
+    "t": 1050,
+    "speaker": "RS",
+    "text": "So I'm glad you asked that. But I'd like to point out first that I actually have a twelve million dollar verdict against Apple. Again, I'm somebody who's actually tried big cases against these tech companies. And one, I've sued Amazon, I've sued Microsoft. I've sued all these big companies even while I held their stock. But let's just step back a second and directly address the issue of my stock holdings. My stock portfolio is managed professionally by RBC Wealth Management. I don't pick the stocks. I don't decide what stocks should be sold or what stocks shouldn't be sold. Notwithstanding that, our plan, if I'm elected, is to put those stock holdings in a separate entity that I will not have any visibility into in terms of what it's holding are or what its stock trading is. RBC does this repeatedly for elected officials around the United States. There's nothing particularly mysterious about this. It will not be visible to me. I won't know what's going on in that. And further, to the extent that there are any current companies that are in litigation against the state. And if I own stock in those companies, if I'm elected, I will divest myself from those companies to make sure there is no appearance of conflict and no actual conflicts, I will take care of that problem."
+   },
+   {
+    "n": 47,
+    "time": "00:18:53",
+    "t": 1133,
+    "speaker": "MOD",
+    "text": "You're shaking your head."
+   },
+   {
+    "n": 48,
+    "time": "00:18:53",
+    "t": 1133,
+    "speaker": "KE",
+    "text": "Well, look, I don't have to divest anything. I depend upon, you know, the pension and retirement savings that are that are that I've been able to acquire because I've been serving the public interest for my whole career. The fact is, the public should not have to wonder, is Mr. Schutz not suing because he owns that stock or he's involved with that company? When he when he sued Apple, he made a lot of money on that, which he's now using to run scurrilous ads against me, by the way. But one hundred and seventy and seventy four separate stock holdings, at least ten thousand dollars a piece is a lot of money and you get people have a tendency to align their decisions in politics with their financial interests. Everyone knows that that's why we have a document for disclosure. And that's what the public should know. Can you do the public should never have to wonder whether he's pursuing the public interest or his own."
+   },
+   {
+    "n": 49,
+    "time": "00:19:51",
+    "t": 1191,
+    "speaker": "MOD",
+    "text": "Before we move on to anything else you want to say about your plan?"
+   },
+   {
+    "n": 50,
+    "time": "00:19:53",
+    "t": 1193,
+    "speaker": "RS",
+    "text": "Yeah, apparently. And I was surprised to learn this that I'm the only person seeking public office who owns any stock. I mean, it's a joke, of course, because public public servants, public officials throughout the United States have stock portfolios and they take care of them when they enter public office. Just as I have said, I will take care of I will divest from any stocks that I currently own from companies that are in litigation with the state. I will put the rest of it in a in a vehicle that I won't have any insight into. So I won't know what's in there. I will have divested from what it's done. There's I don't know what else I can do, Brian, other than what many, many public officials have done before me."
+   },
+   {
+    "n": 51,
+    "time": "00:20:33",
+    "t": 1233,
+    "speaker": "MOD",
+    "text": "Let's turn to immigration. Another topic that's been pretty dominant in Minnesota this year, specifically that agent surge that led to detentions and deportations. Keith Ellison, with some distance in time, is there anything you would have done differently to confront the situation as it unfolded?"
+   },
+   {
+    "n": 52,
+    "time": "00:20:48",
+    "t": 1248,
+    "speaker": "KE",
+    "text": "Look, Brian, you know, the president United States said that he wanted retribution and a reckoning against my state. I love my state. I'm dedicated to my state and I don't let anybody get retribution against the state of Minnesota. So it's absolutely the case that I did a number of things to protect Minnesota from Operation Metro surge. I sued them. We have active litigation going on right now and we are suing them for violating our state sovereignty, for all of the massive amount of damage that they did to our economy. We're doing that. I'm proud we're doing that. I also am assisting local prosecutors in the investigation and in one case, prosecution of the people who were shot by ICE agents. And I'm talking about Alex Pretti, Renee Good and Julian. So Solis was shot but survived. I also yeah, I would use my First Amendment rights and stood out on the street in 30 degree cold weather and said what ICE was doing was wrong to persecute our state. And of course, we did as much legal education as we could to the public. And I also did another thing that the public may not know. Yes, I sat down with Tom Holman and J.D. Vance and told them. I told them both that this surge, this targeted surge against Minnesota is unwarranted, is illegal and it needs to stop."
+   },
+   {
+    "n": 53,
+    "time": "00:22:03",
+    "t": 1323,
+    "speaker": "MOD",
+    "text": "Ron Schutz, how would you have responded to the agent surge at the time?"
+   },
+   {
+    "n": 54,
+    "time": "00:22:07",
+    "t": 1327,
+    "speaker": "RS",
+    "text": "Well, I'll tell you how I, in fact, did respond. Two days after the Alex Pretti shooting, I issued a press release calling for transparency, stating very clearly that for a government to have the confidence of its people, it needed to be transparent and that there needed to be a joint federal and state investigation of both of those shootings. That was back in January, 10 months ago. It's not as if I've recently come to this position. I was outraged by what happened there, called for a joint federal and state investigation, if you look, that probably didn't make me popular in certain circles in Washington, D.C., but that was the right thing to call for. It may be the only thing that that Keith Ellison and I agree on is that there had to be a joint investigation there. And wherever the facts lead out to that investigation, that's where they lead. And if it leads to prosecutions and the evidence warrants it, that's what should"
+   },
+   {
+    "n": 55,
+    "time": "00:23:02",
+    "t": 1382,
+    "speaker": "MOD",
+    "text": "happen. So you're saying you would continue to pursue possible prosecutions"
+   },
+   {
+    "n": 56,
+    "time": "00:23:05",
+    "t": 1385,
+    "speaker": "RS",
+    "text": "in the Renee Good and Alex Pretti? Absolutely. You got to remember, I started my career as a prosecutor. I don't want people coming into Minnesota shooting our citizens. And if they did so in a manner that was unjustified and criminal, they absolutely should be prosecuted. If that happens, I am more than happy to lead the charge because I, in fact, have done that as a prosecutor."
+   },
+   {
+    "n": 57,
+    "time": "00:23:27",
+    "t": 1407,
+    "speaker": "MOD",
+    "text": "And did you agree with the attorney general suing Texas over the ICE agent, Christian Castro's extradition?"
+   },
+   {
+    "n": 58,
+    "time": "00:23:36",
+    "t": 1416,
+    "speaker": "KE/RS (crosstalk)",
+    "text": "Where's that ICE agent right now? Did you agree with his action? No, no. Where's the ICE agent right now? He's in jail. Yes. But did you agree with his lawsuit against another state over extradition? Well, I commented on this at the time. The lawsuit, if you remember, was dismissed for lack of standing because the procedure. That's not true. That's inaccurate. I read the opinion. No, you're wrong. It was. But the state didn't let you finish and I didn't have standing in the case."
+   },
+   {
+    "n": 59,
+    "time": "00:23:59",
+    "t": 1439,
+    "speaker": "RS",
+    "text": "But but the short answer to that question is if someone commits a crime in our state, if they flee to another state and there is a legitimate extradition order and it's not being acknowledged and whether it's Texas or whether it's New York or wherever the case might be, it is the role of the attorney general. At that point, if all the if the timing is right to, in fact, go in and say you need to bring that person back and seek an order."
+   },
+   {
+    "n": 60,
+    "time": "00:24:29",
+    "t": 1469,
+    "speaker": "MOD",
+    "text": "So what's the line between calling for accountability and coming off as prejudging an ongoing investigation in situations like this?"
+   },
+   {
+    "n": 61,
+    "time": "00:24:37",
+    "t": 1477,
+    "speaker": "KE",
+    "text": "Look, I've been a prosecutor for years and I can tell you that when when you when the whole world sees videotape of a man being shot on the street 10 times, it makes sense for the local authorities to take the action that I took. And let me just say, the case was not bounced for lack of standing. It was found to be not ripe. That was the legal position. The case went on. We voluntarily dismissed when he got to Minnesota."
+   },
+   {
+    "n": 62,
+    "time": "00:25:05",
+    "t": 1505,
+    "speaker": "KE/RS (crosstalk)",
+    "text": "I'm sorry. You're right. It was it was a ripeness issue. And so and so he was in he was in jail for 90 days. And on the 98th day, the local Texas judge said, oh, it's not right yet."
+   },
+   {
+    "n": 63,
+    "time": "00:25:15",
+    "t": 1515,
+    "speaker": "KE",
+    "text": "So that's what happened. But let me get back to your question. My my the answer is that when the whole world sees a Minnesotan shot down 10 times Yes, we're going to investigate. Yes, we're going to follow the information. That's why I filed a lawsuit that very night to make sure that the federal agents did not somehow spoil the scene of the crime. That's what we did. That's the action that I took. That was the leadership that I would expect out of an AG. And quite if I may say so, Ron is a movement Republican. He was the chair of the Center for American Experiment. That's his First Amendment right. I have no problem with him doing that. But I would think that a that a movement Republican at a time when our state's being persecuted by a Republican administration, he would stand up and be a little bit more vocal than just send out a presser."
+   },
+   {
+    "n": 64,
+    "time": "00:26:02",
+    "t": 1562,
+    "speaker": "MOD",
+    "text": "Ron Schutz on immigration enforcement broadly. As the Attorney General mentioned, the Department of Justice is appealing to revive a lawsuit that seeks to compel state and local participation in immigration enforcement in Minnesota, including data sharing and jail holds known as detainers. Would your office, if you lead it, shift course in that case?"
+   },
+   {
+    "n": 65,
+    "time": "00:26:20",
+    "t": 1580,
+    "speaker": "RS",
+    "text": "Can you say that again? I'm not quite sure."
+   },
+   {
+    "n": 66,
+    "time": "00:26:23",
+    "t": 1583,
+    "speaker": "MOD",
+    "text": "The lawsuit regarding whether states deemed sanctuary states have to participate with federal immigration enforcement is before the Federal Court of Appeals right now."
+   },
+   {
+    "n": 67,
+    "time": "00:26:33",
+    "t": 1593,
+    "speaker": "RS",
+    "text": "Well, the state of Minnesota is not a sanctuary state. There's no sanctuary state law in the state. Hennepin County and Ramsey County are what's called, I think the technical term might be non-cooperation, or they have non-cooperation ordinances."
+   },
+   {
+    "n": 68,
+    "time": "00:26:48",
+    "t": 1608,
+    "speaker": "MOD",
+    "text": "The state is a named defendant in this case. Are you saying that you would?"
+   },
+   {
+    "n": 69,
+    "time": "00:26:53",
+    "t": 1613,
+    "speaker": "RS",
+    "text": "Well, correct me if I'm wrong, but I think there was an attempt to pass a specific sanctuary state law that failed in the state legislature. Perhaps the Attorney General, General Ellison has some more information about that."
+   },
+   {
+    "n": 70,
+    "time": "00:27:04",
+    "t": 1624,
+    "speaker": "KE",
+    "text": "I do."
+   },
+   {
+    "n": 71,
+    "time": "00:27:04",
+    "t": 1624,
+    "speaker": "RS",
+    "text": "But I do not believe there's a specific sanctuary state statute on the books."
+   },
+   {
+    "n": 72,
+    "time": "00:27:09",
+    "t": 1629,
+    "speaker": "KE",
+    "text": "Here's what the state law requires. If there is a warrant for somebody who happens to be a non-citizen, the Department of Corrections will make that person available when they complete their Minnesota time. At that point, the immigration authorities have to come to the state and to pick that person up. If you hold them for long. If you hold them for longer than the law requires, now you're violating their Fourth Amendment rights. So the immigration authorities have a responsibility to get there on time with the massive amount of money they've been given by the Congress. I don't see why they shouldn't be able to do that. And so the state does have the right to say, look, we are going to do what our state law says. You do what your federal immigration law says. It's not our responsibility to hold people for you beyond the amount of time that is legal to hold them. And so that is what the state of the law is. And we're not holding people for ICE if we don't have a legal basis to hold them on our own. And that's exactly what we should do."
+   },
+   {
+    "n": 73,
+    "time": "00:28:11",
+    "t": 1691,
+    "speaker": "MOD",
+    "text": "You're listening to an MPR News Politics Friday debate in the Minnesota's Attorney General race candidates Keith Ellison and Ron Schutz are with us for the full hour. Keith Ellison, you're part of more than 75 lawsuits. I think that number went up today against the Trump administration. Which one or two do you consider to be the most consequential?"
+   },
+   {
+    "n": 74,
+    "time": "00:28:28",
+    "t": 1708,
+    "speaker": "KE",
+    "text": "You know, Brian, that's a good question because I cannot narrow it down to one or two. I mean, look, clearly we're suing the Trump administration over Operation Metro Surge. That is a very important lawsuit to me. And we're throwing everything we got into it. We will defend Minnesota, period, full stop. But what about the fact that when a year ago, just about a year ago now, there was the longest shutdown in American history in the Congress, and Donald Trump came forth and said, well, we're going to withhold your supplemental nutrition assistance money, also known as food stamps. What did I do? I sued him over that because 440,000 Minnesotans rely on food stamps. Seniors rely on it. Children rely on it. And people with disabilities and others who are just having a hard time. And so, yeah, that's important to me, too. So you're asking me to, like, pick between my children. All of them are important. Every single time I sued Trump, he had it come in, and I'm proud of all of them."
+   },
+   {
+    "n": 75,
+    "time": "00:29:29",
+    "t": 1769,
+    "speaker": "MOD",
+    "text": "Well, Ron Schutz, what are a couple of that you have the most trouble with?"
+   },
+   {
+    "n": 76,
+    "time": "00:29:33",
+    "t": 1773,
+    "speaker": "RS",
+    "text": "Well, let's just step back and talk about these lawsuits in the bigger picture context. Let's be clear that what really is going on here is that the bus on these lawsuits is being driven by the California Attorney General leading a coalition of states, with rare exception. It's a coalition of states, and these cases are filed usually in places like Rhode Island, Massachusetts, Maryland, other places. They're not filed in Minnesota, where you, Brian, could go down to the courthouse, with possibly the exception of the ICE case that Keith has talked about. But the overwhelming majority of these cases are filed somewhere other than Minnesota. Minnesota's not the lead plaintiff, and there's no way to get them to the court. But there's no transparency in the sense that a Minnesota judge or a Minnesota jury hears the case, a Minnesota citizen can't go down to the courthouse and watch what's going on. Something like 95-plus percent of those cases are not filed in Minnesota."
+   },
+   {
+    "n": 77,
+    "time": "00:30:31",
+    "t": 1831,
+    "speaker": "MOD",
+    "text": "Are there some of the lawsuits that you have a problem with,"
+   },
+   {
+    "n": 78,
+    "time": "00:30:33",
+    "t": 1833,
+    "speaker": "RS",
+    "text": "particularly? I'm one guy running for Attorney General. He's got an office of 200 lawyers, and apparently 28 working on these cases, if I believe the press reports I've read. I haven't had a chance to look at all these cases, Brian. I just simply don't have the resources to dig into those cases."
+   },
+   {
+    "n": 79,
+    "time": "00:30:50",
+    "t": 1850,
+    "speaker": "KE",
+    "text": "Can I just respond?"
+   },
+   {
+    "n": 80,
+    "time": "00:30:52",
+    "t": 1852,
+    "speaker": "MOD",
+    "text": "Briefly."
+   },
+   {
+    "n": 81,
+    "time": "00:30:53",
+    "t": 1853,
+    "speaker": "KE",
+    "text": "Look, this whole thing about venue is a red herring. Mr. Schutz, in his practice as a trial lawyer, would clearly file the case in the best place for his client to be successful. These are multi-state litigation cases, and we work together. We lead a lot of these cases, but we decide on where to file them. Based on who's in the coalition, and based on what we think will give us the best outcome. I am sure that Minnesotans would rather have me win the case than care about where it's venue or not, and you can get all these materials online. So this is just a red herring. Mr. Schutz is trying to distract the reality of the situation. We've been winning these cases, and yes, we've been filing these cases, and I'm proud of all of them, including the tariff case, because Donald J. Trump destroyed the export markets of Minnesota farmers, so we sued him and we beat him, but then Trump filed more, so we sued him again."
+   },
+   {
+    "n": 82,
+    "time": "00:31:49",
+    "t": 1909,
+    "speaker": "RS",
+    "text": "So that statement was very telling, Brian, because he said, we file them where we think we can win them, meaning that he doesn't think, and the coalition doesn't think, those cases could be won in Minnesota if they're heard by a Minnesota judge and a Minnesota jury and being transparent to Minnesota citizens. I think that's quite telling."
+   },
+   {
+    "n": 83,
+    "time": "00:32:07",
+    "t": 1927,
+    "speaker": "MOD",
+    "text": "Let me ask about a couple..."
+   },
+   {
+    "n": 84,
+    "time": "00:32:08",
+    "t": 1928,
+    "speaker": "KE",
+    "text": "Absolutely not true."
+   },
+   {
+    "n": 85,
+    "time": "00:32:08",
+    "t": 1928,
+    "speaker": "MOD",
+    "text": "Let me ask about a couple of these. You know, he mentioned the SNAP program, the holdbacks, and also the Medicaid, the Medicaid program funding freeze that the Trump administration placed. Are you okay with those Trump administration actions?"
+   },
+   {
+    "n": 86,
+    "time": "00:32:21",
+    "t": 1941,
+    "speaker": "RS",
+    "text": "Am I okay with some Trump administration actions? To freeze Medicaid funding and potentially SNAP funding from Minnesota? Well, if they... Well, first of all, the SNAP program in Minnesota, and this is really beyond dispute, has been riddled with fraud, and so the pause in that funding was a direct request to the state of Minnesota to clean up those rolls, all right? So let's just be clear about that. But if, in fact, the federal... I have no problem suing the federal government. Let's just be clear about that. Again, I will bring my trial lawyer expertise and aggressiveness to protecting Minnesotans, and whether it's the Trump administration or any administration that comes after, if they are truly, truly hurting Minnesotans, we'll sue the Trump administration and we'll sue them in Minnesota. We won't be engaging in political theater."
+   },
+   {
+    "n": 87,
+    "time": "00:33:07",
+    "t": 1987,
+    "speaker": "MOD",
+    "text": "Keith Ellison, as Ron Schutz mentioned, those are federally funded programs for the most part. Right. Why isn't the Trump administration on firm footing to withhold money?"
+   },
+   {
+    "n": 88,
+    "time": "00:33:14",
+    "t": 1994,
+    "speaker": "KE",
+    "text": "Well, look, there are rules all about this. First of all, let me just say this. Any amount of fraud is too much. People who steal from government programs offend me deeply. That's why we prosecute these people. But let me say that Donald Trump, they're using a serious issue of fraud to opportunistically move a political agenda. That's what's going on. Operation Metro Surge is supposed to be based on fraud. Right. Somehow he surges armed mass men to our state based on fraud. Withholding food from hungry people, they claim, oh, it's because of fraud. They are using a real serious issue to push a political agenda. And look, Donald Trump has said, he has told us why he has come after Minnesota. He said reckoning and retribution. We've defended these programs because there is a legal procedure if there's going to be a withholding. The government violated it. And that's why we defeated them, Brian. That's why we beat them in court on these matters."
+   },
+   {
+    "n": 89,
+    "time": "00:34:19",
+    "t": 2059,
+    "speaker": "MOD",
+    "text": "As we've heard today, you're both lawyers with lengthy careers. What's an example of a case where you represented a client or an interest that didn't align with your personal principles?"
+   },
+   {
+    "n": 90,
+    "time": "00:34:27",
+    "t": 2067,
+    "speaker": "RS",
+    "text": "Ron Schutz. That's a good question, Brian. I'm not sure. I think that I had the luxury of turning down cases that didn't align with my... personal principles. I've been recognized as one of the top lawyers in the country, and so I'm presented with cases all the time. And I have, in the course of my career, chosen not to represent certain interests in certain people because I didn't have to. I had the luxury of picking and choosing my cases, and I think I was always on the right side and wearing the white hat in my cases."
+   },
+   {
+    "n": 91,
+    "time": "00:35:07",
+    "t": 2107,
+    "speaker": "KE",
+    "text": "Keith Ellison. I can certainly answer that, Brian. So let me tell you, I'm 100% with Planned Parenthood. I believe very strongly in women's rights, and I believe in the right to choose. And when I was a state legislator, when Governor Pawlenty was in office, there were some laws passed that interfered with that right. It didn't outright block it, but it got in the way of it, and it made it much harder, more difficult. When I was a... when the Attorney General, a group of folks from a nonprofit sued to strike some of those laws down. Now, here I am, a person who doesn't agree with those laws, but it is the job of the Attorney General to defend the rights of women. It is the job of the Attorney General to defend the rights of women. It is the job of the Attorney General to defend the rights of women. It is the job of the Attorney General to defend laws that are constitutional, and I think they're bad laws, but they're not unconstitutional. So my office did defend those laws, and when a court issued an opinion striking down those laws, I made a decision not to appeal because I thought people needed certainty, and I thought the trial court made the right decision. But it is the job of the Attorney General to defend laws sometimes you don't agree with if those laws are constitutional, even if unwise."
+   },
+   {
+    "n": 92,
+    "time": "00:36:13",
+    "t": 2173,
+    "speaker": "MOD",
+    "text": "Ron Schutz, do you have a view... Abortion access in Minnesota as settled law?"
+   },
+   {
+    "n": 93,
+    "time": "00:36:16",
+    "t": 2176,
+    "speaker": "RS",
+    "text": "Do I view abortion access as what?"
+   },
+   {
+    "n": 94,
+    "time": "00:36:19",
+    "t": 2179,
+    "speaker": "MOD",
+    "text": "Settled law in Minnesota?"
+   },
+   {
+    "n": 95,
+    "time": "00:36:21",
+    "t": 2181,
+    "speaker": "RS",
+    "text": "I do. There's a state statute that governs the right to abortion, and there is a Supreme Court case called Doe v. Gomez. Do you view it as settled law? Absolutely, no question."
+   },
+   {
+    "n": 96,
+    "time": "00:36:35",
+    "t": 2195,
+    "speaker": "KE",
+    "text": "But there are real challenges that we're facing. For example, just yesterday, or maybe the day before, I was advised that, Attorneys General in Louisiana, Mississippi, and Texas are going to file an original case with the Supreme Court on the theory that certain other states that have laws that say that if a Minnesota doctor prescribes abortion medication and somebody in some other state receives that, then they could somehow prosecute that doctor who did what was legal in Minnesota and never left the state. And that is something that the Attorney General is going to have to fight over. I will defend Minnesota doctors. I will stand with Minnesota patients, and I will make sure that if you do what is legal to do in Minnesota and you never left Minnesota, that I will fight tooth and nail for your right to continue to deliver that reproductive care. Ron's going to have to make a decision if he's the AG, and I wonder what it's going to be, because it's not always very simple. Sometimes you've got to stand on your principle, and my principle is that women have a right to make a choice over their own body."
+   },
+   {
+    "n": 97,
+    "time": "00:37:46",
+    "t": 2266,
+    "speaker": "MOD",
+    "text": "Do you care to respond?"
+   },
+   {
+    "n": 98,
+    "time": "00:37:47",
+    "t": 2267,
+    "speaker": "RS",
+    "text": "The duty of the Attorney General is to defend the state if it's involved in a lawsuit, and Keith mentioned something very important here. If it's, as long as the statute's constitutional. He was involved in a recent case involving the PSEO program, the Post-Secondary Enrollment Option Program, defending a law that, in my view, and in the view of many people at the time it was passed, was unconstitutional and violated the First Amendment freedom of exercise of religion rights. The plaintiffs in that case sued the state, won, and the judge issued an award of attorney's fees against the state for 3.3, attorney's fees and costs for $3.3 million. So in that case, the Attorney General defended what I thought, and many others, and the federal judge agreed was a clearly unconstitutional statute."
+   },
+   {
+    "n": 99,
+    "time": "00:38:39",
+    "t": 2319,
+    "speaker": "KE",
+    "text": "I'm glad Ron brought that up. Can I mention another case, Kenny?"
+   },
+   {
+    "n": 100,
+    "time": "00:38:41",
+    "t": 2321,
+    "speaker": "MOD",
+    "text": "Very briefly. I want to get back to health care."
+   },
+   {
+    "n": 101,
+    "time": "00:38:42",
+    "t": 2322,
+    "speaker": "KE",
+    "text": "There's an anti-notification statute. There's a statute that Elon Musk's company is challenging in court. This is a statute that prohibits companies like Grok from using your real face and put a nudified body on it that can literally do anything. They say it's their First Amendment right to do that. Minnesota law says it isn't. Yes, you better believe I'm defending that law, and I absolutely would do so, and I'm proud to do so."
+   },
+   {
+    "n": 102,
+    "time": "00:39:09",
+    "t": 2349,
+    "speaker": "RS",
+    "text": "I defend that law also. I agree with the law. I don't think that should be the case. I would absolutely defend that law."
+   },
+   {
+    "n": 103,
+    "time": "00:39:16",
+    "t": 2356,
+    "speaker": "KE",
+    "text": "I want to go back to health care. I'm already defending that law."
+   },
+   {
+    "n": 104,
+    "time": "00:39:18",
+    "t": 2358,
+    "speaker": "MOD",
+    "text": "I want to go back to health care. You're the Attorney General."
+   },
+   {
+    "n": 105,
+    "time": "00:39:20",
+    "t": 2360,
+    "speaker": "RS",
+    "text": "Okay, I'm going to jump in here. When I get elected, I'll take over defending it."
+   },
+   {
+    "n": 106,
+    "time": "00:39:22",
+    "t": 2362,
+    "speaker": "MOD",
+    "text": "We'll see if that happens. There's some big health care mergers that are pending, and the Attorney General's office does have the ability to intervene. Keith Ellison, are they on balance good for the health consumer in terms of offerings, access, and costs, or are these mergers more problematic?"
+   },
+   {
+    "n": 107,
+    "time": "00:39:35",
+    "t": 2375,
+    "speaker": "KE",
+    "text": "You've got to take them one at a time, Brian. I mean, here's the thing. Minnesota legislature very correctly passed a law that says that it's a medical transactions law. For those who might want to take a look at it, it's at 145D in Minnesota statutes, and it requires the Attorney General to evaluate these transactions or mergers from the standpoint of the public interest. Now, what do we do? We engage in a very exhaustive public process. We take in public comment. We don't just put up a website. We actually have community meetings. We've had them all over. One of them that just was finalized between Sanford and North Memorial. Community and labor unions and the parties involved feel has the hallmarks of perhaps being a success. There might be others where they object. As you know, health partners and Alcantara just announced that they were exploring something. We've got a long way to go before that one gets concluded. And Sutter, an out-of-town outfit, wants to align with Alina. That one is still in the process. The process of being worked through. We have to take these things. Here's what we know, Brian, that when these mergers happen around the country, oftentimes they mean fewer services and higher costs for consumers. Data will not allow. And so we go through our process to protect unions, to protect rights, to protect people's personal rights."
+   },
+   {
+    "n": 108,
+    "time": "00:41:03",
+    "t": 2463,
+    "speaker": "MOD",
+    "text": "Ron Schutz, how active should the Attorney General's office be in dictating these mergers?"
+   },
+   {
+    "n": 109,
+    "time": "00:41:06",
+    "t": 2466,
+    "speaker": "RS",
+    "text": "Well, the Attorney General is tasked by statute to take a look at these mergers. And as Keith has said, they're highly... tax-specific. And it really depends. No two mergers are the same. The impact of no two mergers are the same. And so you really have to dig in. You have to have economists. You have to have experts look at this. You have to take public testimony. And you just need to roll your sleeves up and do a lot of work to see if it's in the public interest to agree to the merger or not. But it's not a question that can be answered in the abstract."
+   },
+   {
+    "n": 110,
+    "time": "00:41:34",
+    "t": 2494,
+    "speaker": "MOD",
+    "text": "As I mentioned at the outset, the Attorney General is a member of the Board of Pardons alongside the Supreme Court Chief Justice and the Governor. Keith Ellison, one pardon in particular has come up in this campaign. It was... It was granted to Tuvang regarding his 2006 conviction of sexual assault charges involving a minor. Why did you vote for a pardon in that case?"
+   },
+   {
+    "n": 111,
+    "time": "00:41:51",
+    "t": 2511,
+    "speaker": "KE",
+    "text": "Very simply because the victim asked for it. Look, it's very difficult for a victim of a crime to write out a letter saying that my... saying that I think that the person who mistreated me should receive a pardon. But she did so. You know, the office, the clemency office, did all the due diligence to make sure that the letter was authentic. And so I thought that it's important to listen to victims. Victims often are not listened to in our criminal justice system. Now, there were a lot of people who had pardons up that day who didn't get them because they didn't have victim support. But I thought that was important to make sure that we were standing and listening to victims in that case."
+   },
+   {
+    "n": 112,
+    "time": "00:42:39",
+    "t": 2559,
+    "speaker": "MOD",
+    "text": "Ron Schutz, would you draw any red lines for pardon applications that might come before you?"
+   },
+   {
+    "n": 113,
+    "time": "00:42:44",
+    "t": 2564,
+    "speaker": "RS",
+    "text": "Pardon should be reserved for those who have been wrongfully convicted. In this case, there was zero doubt that Mr. Vang had been wrongfully convicted. He absolutely was properly convicted. The Ramsey County Attorney's Office, which prosecuted the case, did not, repeat, did not support the pardon in that case. The victim, I... The original file I looked at did not have the victim's statement in, so I contacted the clemency board, asked for a copy. They sent it to me. It is... It is an email, blacked out. And if you were to look at it and put your lawyer hat on, you would say, this has zero, zero indicia of liability, could not be admitted in court. I would never prosecute a child sex offender and a child rapist. When I was in the military, I prosecuted a child sex offender and I got a 17-year conviction in that case. I actually had to put the victim on the stand, this young girl. I had to put her on the stand before a military court-martial and walk her through what happened to her. It was excruciating, one of the toughest things I've ever done. I got a 17-year sentence in that case. I would never, ever pardon someone who was a child rapist."
+   },
+   {
+    "n": 114,
+    "time": "00:44:00",
+    "t": 2640,
+    "speaker": "KE",
+    "text": "So, Brian, let me just put this in the proper perspective. First of all, he's talking about a criminal prosecution. We just convicted somebody in Winona who was a coach and criminally victimized three people. That person, I think, they're getting away more than 17 years in prison. I can tell you that. So, that's apples and oranges. When it comes to this issue of pardon, Ron, one of your donors, Mr. Jim Knobloch, was credibly accused of sexual abuse in his child. He gave you a campaign donation. It was brought to your attention and you have not returned it. The problem is, we're talking about, you know, you're very selective on these issues. And so, what I'm saying is, I listened to victims after reading the entire file, after listening to, the entire case, and that's the decision that I made. But Ron also said, wrongful, he would not pardon anyone unless they were wrongfully convicted. That's not the pardon board. Nearly everybody who comes in front of the pardon board has been convicted, duly convicted, properly convicted, and is seeking clemency, which is mercy. And so, what Ron's saying is, he's going to be a no on every single case. It is the innocence, it is the, there's a whole other procedure for people who are wrongfully accused."
+   },
+   {
+    "n": 115,
+    "time": "00:45:12",
+    "t": 2712,
+    "speaker": "MOD",
+    "text": "This difference between exoneration and pardons, do you want to clear that up,"
+   },
+   {
+    "n": 116,
+    "time": "00:45:16",
+    "t": 2716,
+    "speaker": "RS",
+    "text": "and also the campaign donation? Sure, so we need to keep in mind that what a pardon does, it's like waving a magic wand and making the conviction go away. It's not as if somebody's in jail, is granted some type of clemency relief, and they get out of jail early. I'd also point out,"
+   },
+   {
+    "n": 117,
+    "time": "00:45:30",
+    "t": 2730,
+    "speaker": "KE",
+    "text": "That's called commutation."
+   },
+   {
+    "n": 118,
+    "time": "00:45:31",
+    "t": 2731,
+    "speaker": "RS",
+    "text": "I'd also point out that Amy Klobuchar went on record saying she would not agree to have granted that pardon. And the red line I drew in the sand was not all pardons, it was for child rape."
+   },
+   {
+    "n": 119,
+    "time": "00:45:44",
+    "t": 2744,
+    "speaker": "MOD",
+    "text": "So laws pertaining to Minnesota's gun possession have been front and center in recent years, and a source of litigation. Ron Schutz, would you defend the gun laws Minnesota has on the books now?"
+   },
+   {
+    "n": 120,
+    "time": "00:45:54",
+    "t": 2754,
+    "speaker": "RS",
+    "text": "So would I defend the gun laws Minnesota has on the books? So the particular suit you're talking about, I believe, involves a 30-day waiting period. Is that the case you're talking about?"
+   },
+   {
+    "n": 121,
+    "time": "00:46:02",
+    "t": 2762,
+    "speaker": "MOD",
+    "text": "Well, just any of them. There seems to be many cases. There's a live case right now."
+   },
+   {
+    "n": 122,
+    "time": "00:46:06",
+    "t": 2766,
+    "speaker": "RS",
+    "text": "Sure. So let's talk about, not in the abstract, but in what's actually on the table. There's a case right now that has a 30-day waiting period. The federal government has sued to declare that law unconstitutional. And as we've talked about previously, it's the job of the Attorney General to defend the state of Minnesota in cases like that, provided the law is constitutional. And that duty, quite frankly, comes from the oath that the Attorney General has to take to uphold the Constitution of the United States. If you look in the state constitution, Article 5, Section 6, you have to agree to uphold the U.S. Constitution. We have the United States of America claiming that this law is unconstitutional. So what I would do if I were the Attorney General is I would take a really deep dive into the law. I'd consult constitutional law experts, Second Amendment experts, and make a decision as to whether that law was in fact constitutional or unconstitutional. If it was constitutional, I would have a duty to defend it. If it was unconstitutional, I would have a duty not to defend it."
+   },
+   {
+    "n": 123,
+    "time": "00:47:13",
+    "t": 2833,
+    "speaker": "MOD",
+    "text": "Keith, I don't know. That's just the way it is. That's just the way it is. Let me ask you something here. You can chime in when I give you a chance. You've taken legal action against gun retailers over sales to alleged straw buyers. Explain that route and would there be more in the third term?"
+   },
+   {
+    "n": 124,
+    "time": "00:47:25",
+    "t": 2845,
+    "speaker": "KE",
+    "text": "First of all, let me point out to people listening, the number one cause of death for people under 18 is guns. Annunciation shooting, two beautiful children shot down and an entire community terrorized. My dear friend, Melissa Horton, and her husband, and Senator Hoffman and his wife. Gun violence is a very serious scourge in our community and you better believe that I would defend every Minnesota law on the books to protect people from gun violence. And yes, I'm actively suing Glock right now because you can put a $10 device in a Glock and convert it from a semi-automatic into a machine gun, which is illegal. I'm suing them over that. And I sued Fleet Farm because Fleet Farm, though a decent company, they still sold guns to straw purchasers. What is a straw purchaser? Somebody who buys guns because they have a clean record and then turn around and sell them. And yes, I sued them when that happened and I got injunctive relief which makes it a lot more difficult for straw purchasers to get guns."
+   },
+   {
+    "n": 125,
+    "time": "00:48:34",
+    "t": 2914,
+    "speaker": "MOD",
+    "text": "And Ron Schutz, I want to ask you about something I came across when preparing for this. It was a 2019 lawsuit in which you and your firm represented a state of a the estate of someone who sued a health provider after a man receiving mental health treatment shot and killed his family and then himself. That now settled lawsuit said as providers failed to adequately assess his risks and access to firearms. With that in mind, how do you view Minnesota's red flag law?"
+   },
+   {
+    "n": 126,
+    "time": "00:48:59",
+    "t": 2939,
+    "speaker": "RS",
+    "text": "So I think the case you're referring to was a case that we brought"
+   },
+   {
+    "n": 127,
+    "time": "00:49:06",
+    "t": 2946,
+    "speaker": "MOD",
+    "text": "against health partners."
+   },
+   {
+    "n": 128,
+    "time": "00:49:07",
+    "t": 2947,
+    "speaker": "RS",
+    "text": "Correct. Yeah, that was a case we brought against health partners on behalf of the family of number one. I'm trying to, the case goes back, but it was the family of Brian Short."
+   },
+   {
+    "n": 129,
+    "time": "00:49:16",
+    "t": 2956,
+    "speaker": "MOD",
+    "text": "Pardon me?"
+   },
+   {
+    "n": 130,
+    "time": "00:49:17",
+    "t": 2957,
+    "speaker": "RS",
+    "text": "Brian Short was. Yeah, Brian Short. Brian Short was suffering unbelievable mental issues, over prescribed drugs, went in to get counseling. They absolutely failed him and that failure put his family at risk and he shot his whole family. And we sued in that case. It ultimately resulted in a settlement. The case ultimately resulted in settlement. But that was, you know, again, that was a case that I'm proud that we took."
+   },
+   {
+    "n": 131,
+    "time": "00:49:50",
+    "t": 2990,
+    "speaker": "MOD",
+    "text": "So do you view Minnesota's red flag laws in a positive light after that?"
+   },
+   {
+    "n": 132,
+    "time": "00:49:54",
+    "t": 2994,
+    "speaker": "RS",
+    "text": "Well, that, first of all, that case did not involve red flag laws."
+   },
+   {
+    "n": 133,
+    "time": "00:50:00",
+    "t": 3000,
+    "speaker": "MOD",
+    "text": "It involved... The pleading said that they didn't assess his access to firearms and they should have."
+   },
+   {
+    "n": 134,
+    "time": "00:50:05",
+    "t": 3005,
+    "speaker": "RS",
+    "text": "Well, it's, but yes, that the problem was that the health partners did not bring to the attention of the appropriate authorities and did not bring the attention, quite frankly, to his family, the danger so that the family could take efforts to remove the firearm from the home. That was basically the allegations"
+   },
+   {
+    "n": 135,
+    "time": "00:50:27",
+    "t": 3027,
+    "speaker": "MOD",
+    "text": "in that case. Is Minnesota's red flag law working?"
+   },
+   {
+    "n": 136,
+    "time": "00:50:30",
+    "t": 3030,
+    "speaker": "KE",
+    "text": "Yes, it is. And I think it's a very good one. I was glad to be able to testify in favor of it, but also we're trying to get stronger laws when it comes to ghost guns. These are guns that could be manufactured with a 3D printer, but wouldn't have any serial numbers on them and make them impossible to trace. The only way we traced those Fleet Farm guns is because they had serial numbers on them. Police officers across the state of Minnesota, across Minneapolis and St. Paul and Minnesota will tell you that an untraceable gun makes the public much more at risk. So I absolutely believe it's a good law. I'm glad I testified for it and I want to see more done. Ron, I think, should tell you that he's opposed to the University of Minnesota's Law School's Gun Violence Prevention Task Force. He said he would not continue that program. I'm proud of that program and I'm trying to find more ways to protect people from gun violence."
+   },
+   {
+    "n": 137,
+    "time": "00:51:22",
+    "t": 3082,
+    "speaker": "MOD",
+    "text": "Did he get that right?"
+   },
+   {
+    "n": 138,
+    "time": "00:51:24",
+    "t": 3084,
+    "speaker": "RS",
+    "text": "You did. I have zero recollection of where I said that. If I did, I guess you could point it out to me, but I don't have any recollection."
+   },
+   {
+    "n": 139,
+    "time": "00:51:30",
+    "t": 3090,
+    "speaker": "MOD",
+    "text": "All right, we're starting to run short on time. So I want to quickly address a few more topics before we leave time for closing statements. So let's try to zip through these if possible here."
+   },
+   {
+    "n": 140,
+    "time": "00:51:37",
+    "t": 3097,
+    "speaker": "RS",
+    "text": "Yes, sir."
+   },
+   {
+    "n": 141,
+    "time": "00:51:38",
+    "t": 3098,
+    "speaker": "MOD",
+    "text": "Governor Tim Walz issued an executive order banning a certain type of mining in northern Minnesota near the Boundary Waters. If the next governor keeps that in place, would you defend that in court?"
+   },
+   {
+    "n": 142,
+    "time": "00:51:50",
+    "t": 3110,
+    "speaker": "RS",
+    "text": "Certainly, I would defend any legal measure that the state issues, executive order or whatever. To me, the only way you have a right to not defend it is if it's unconstitutional. And so if it's constitutional, I'm gonna defend it in court 'cause that's my job."
+   },
+   {
+    "n": 143,
+    "time": "00:52:05",
+    "t": 3125,
+    "speaker": "MOD",
+    "text": "The mining executive order."
+   },
+   {
+    "n": 144,
+    "time": "00:52:06",
+    "t": 3126,
+    "speaker": "KE",
+    "text": "I think the answer is, like I said, we don't agree on much, but the attorney general has a duty to defend constitutional laws and unless there were some clear argument that what the governor did was unconstitutional, I would defend it because it's my job to do that."
+   },
+   {
+    "n": 145,
+    "time": "00:52:20",
+    "t": 3140,
+    "speaker": "MOD",
+    "text": "All right, you first here, Ron. Minnesota's law to bar the hosting of prediction markets is another that's been under fire. What would be your posture there?"
+   },
+   {
+    "n": 146,
+    "time": "00:52:30",
+    "t": 3150,
+    "speaker": "RS",
+    "text": "Prediction markets, I think they take advantage of too many people. I think that there needs to be either some legislation or regulation on these prediction markets. If you dig down in these prediction markets, people get fleeced all the time there. So there may be things that the attorney general's office can do even without legislation, but I generally don't think online gambling's a good idea in general."
+   },
+   {
+    "n": 147,
+    "time": "00:52:58",
+    "t": 3178,
+    "speaker": "KE",
+    "text": "Well, Mr. Schutz is right. It's prediction markets are damaging to people's ability to afford their lives. I will tell you when I was in Congress, I actually was on the committee that, that allowed for the Commodity Futures Trading Commission to have jurisdiction over these kinds of trades, but never was who was gonna win the NBA finals on the minds of anybody in the Congress. What was on the minds of Congress was people getting things like credit default swaps against mortgages, back securities that went down. Nothing on this sports stuff. So I think that we're defending the Minnesota law right now. We intend to win it, and I think that Congress needs to act to make these clearly something that is regulated by the states."
+   },
+   {
+    "n": 148,
+    "time": "00:53:47",
+    "t": 3227,
+    "speaker": "MOD",
+    "text": "- How active of a role, briefly, should Minnesota Attorney General take on these hyperscale data centers and whether their construction goes forward?"
+   },
+   {
+    "n": 149,
+    "time": "00:53:56",
+    "t": 3236,
+    "speaker": "KE",
+    "text": "- Well, honestly, there is a law already in place, Minnesota Statute 216B, which says that these large consumers of energy cannot push prices onto consumers, cannot foist the burden onto consumers for those costs, and cannot undermine water quality and a range of other things. So I'm all for square with that law. I think it's a great law, and I've sat down with the people in Hermantown, Minnesota, and they are very concerned about that and transparency."
+   },
+   {
+    "n": 150,
+    "time": "00:54:25",
+    "t": 3265,
+    "speaker": "MOD",
+    "text": "- What do you wanna say about data centers?"
+   },
+   {
+    "n": 151,
+    "time": "00:54:26",
+    "t": 3266,
+    "speaker": "RS",
+    "text": "- You're talking about data centers? - Yes. - Well, whether to build or not build a data center is a local issue with some state overlay and overlap in terms of regulatory compliance. If some local community wants to have a data center, as long as they comply with Minnesota law, then there's no problem, as the Attorney General said. If they're not complying with some law, then it's the job of the Attorney General to step in."
+   },
+   {
+    "n": 152,
+    "time": "00:54:53",
+    "t": 3293,
+    "speaker": "MOD",
+    "text": "- All right, we've reached the point where we're gonna give you some time for closing pitches to the voters who are voting right now or a month from now. We flipped a coin, and for 90 seconds here, Ron Schutz, you go ahead and tell us why you should be the Attorney General."
+   },
+   {
+    "n": 153,
+    "time": "00:55:07",
+    "t": 3307,
+    "speaker": "RS",
+    "text": "- Thank you, Brian. This race really comes down to a choice between someone who spent his career in the courtroom as a trial lawyer and someone who's a politician. I would ask Minnesotans to ask themselves this question. If they had to go to court and their life, their liberty, their property were at stake, and they absolutely needed to win, who would they want to go, who would they want to go into court with them? A career trial lawyer who's been recognized as one of the top lawyers in the country repeatedly, been recognized as one of the top lawyers in the country, who has won tens of millions of dollars on behalf of his clients, frequently small businesses and individuals, including $110 million in one case on behalf of a small company in Rhode Island that was threatened by General Electric, one of the biggest corporations in the world. Would they want to go into court with that lawyer, or would they want to go into court with a lawyer who's had a career in politics? And if their answer is they should go into court with a lawyer who's been recognized one of the top in the country, then Minnesota itself deserves the same lawyer representing them. Thank you, Brian."
+   },
+   {
+    "n": 154,
+    "time": "00:56:20",
+    "t": 3380,
+    "speaker": "MOD",
+    "text": "- Keith Ellison, you're 90 seconds."
+   },
+   {
+    "n": 155,
+    "time": "00:56:21",
+    "t": 3381,
+    "speaker": "KE",
+    "text": "- Thank you. You know, Brian, thanks for having us here today, and I'll thank my opponent, Mr. Schutz, as well, for the time. My core goal is to help people afford their lives. That's why I left Congress and why I became the Attorney General, why I made lowering the price of insulin my first thing that I did. But I didn't stop there. We also started a wage-death unit where we actually fight for and get back millions of dollars of stolen wages of workers. I sued John Deere because they were interfering with farmers' ability to repair equipment. That is a cost-lowering measure. I sued Meta, and I sued them because they were pushing these addictive algorithms which were hooking our kids. I sued Philip Morris because they were doing the same thing with these vapes. Now, my point is, I don't think we're going to win. The opponent owns stock in all these things. He literally profits from John Deere, Eli Lilly, Meta, and all these different kind of companies that we mentioned before. This is a conflict of interest which you should not tolerate. You should vote for the person who has no conflict of interest, whose only goal is the public interest, which is what I've been doing. Look, I've convicted over 350 people of Medicaid fraud, one every eight days, and I will continue to do that plus more. I ask for your vote. Please vote and vote for the person who's going to fight for your family and help you afford your life."
+   },
+   {
+    "n": 156,
+    "time": "00:57:50",
+    "t": 3470,
+    "speaker": "MOD",
+    "text": "And that is all the time we have. Thank you to Keith Ellison and Ron Schutz for joining us. They're both vying to be Minnesota's Attorney General. This debate was produced by Matt Alvarez and Jeff Jones with a lot of folks from the MPR News events and technical teams helping out. You can find video of this debate at MPRNews.org. Also, find our handy-dandy voter guide there when you're looking to. It's got races up and down the ballot. Next week on Politics Friday, we'll hear from the candidates in Minnesota's 2nd Congressional District. Then in two weeks, tune in for a U.S. Senate debate right here. Remember, Election Day is Tuesday, November 3rd. Early voting has begun. Until then, stay safe and have a great weekend."
+   },
+   {
+    "n": 157,
+    "time": "00:58:28",
+    "t": 3508,
+    "speaker": "KE/RS",
+    "text": "-Thank you, Brian. -Thank you, Brian."
+   }
+  ]
+ }
+}

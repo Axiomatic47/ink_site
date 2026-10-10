@@ -178,6 +178,44 @@ p=none, all on Netlify DNS).
   constant (`AFTER_PX` beside `BELOW_PX`, so a picked citation never moves the panes' edges). Both render only while the
   timeline's content exists AND names this book (`provenance.book_slug`); every other work shows nothing. Shell, not module.
 
+## The open letter to the candidates for Minnesota Attorney General (owner 2026-10-09)
+
+- `/mn-ag-candidates-open-letter` — the route the letter prints in its closing paragraph (the owner mails it
+  October 10, 2026): the open letter, its Enclosure A and the transcript of the MPR News Politics Friday debate of
+  October 2, 2026, in the review-mode pattern — the letter and enclosure in the left card, the transcript (one row
+  per turn) in the right, a Reading-mode toggle that stacks them; EVERY debate time (the letter's "at 2:49",
+  "22:07–23:26", the transcript's Time cells) is a link to the recording at that second,
+  `https://www.youtube.com/watch?v=pgzvG1Ky8rQ&t=<seconds>s` (a range links to its start); a time clicked in the
+  letter also marks and, side by side, scrolls to the turn in progress in the transcript. Deep links `#enclosure-a`,
+  `#transcript`, `#turn-<n>`, `#t=<seconds>`.
+- Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
+  (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly three files of
+  `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the enclosure under `05_Correspondence`, the
+  transcript under `0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002` — recording each file's sha and
+  commit; it refuses a dirty source. NOTHING ELSE from that folder is published (the census beside the transcript
+  relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
+  and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard
+  breaks; the transcript header's source and method sentences ride onto the page with two things removed and listed
+  under `header_omitted` — the owner's local file paths and the drafter's seat (the outward-voice rule: no seat ids,
+  no filesystem paths where a reader reads); every other word is the drafter's. Record cites in the enclosure are
+  plain text (this site carries no docket). `src/lib/open-letter.ts` is the shape and the time rules
+  (`DEBATE_TIME_RE`, `recordingUrl`, `turnAt`); `remark-debate-times.ts` the plugin; `open-letter.server.ts` the
+  loader. Absent content → 404 and no sitemap entry, never a placeholder. GATE: `npm run test:letter`
+  (`scripts/test-open-letter.mjs`, bundled by esbuild so it imports the TypeScript rules) — the clock forms the
+  texts use (a time before a colon, a range before a colon, two times either side of a slash, a list), the
+  non-times (a docket prefix, a statute, a phone number), the plugin over markdown, and, when the content is on
+  disk, every time the pattern finds in the letter, the enclosure and the method becoming a link; plus
+  `node scripts/import-open-letter.mjs --check`. A time the pattern misses is a quotation a reader cannot hear —
+  the first cut missed every "2:49:" (a colon after the time) and the test is what caught the form.
+- NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
+  private port). The letter on the page is the current text — a placeholder the owner may revise before mailing — so a
+  revised letter is a re-run of the import (the same three files, committed in the case tree first), then
+  `review the diff`, build, commit. The social card is a title card from `content/og-cards.json` (the data-driven
+  list `build_og_images.py` reads after the works; kirchner.cv has no such file, so the script stays byte-identical).
+- The transcript is a machine transcript (whisper large-v3, two machine hearings, the header says so and the page
+  keeps it); the owner's own listen to the quoted clocks is theirs. Questions about the content go to its drafter,
+  not to this seat; the page's build is this seat's.
+
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
 built by lawsofexistence.com's `scripts/sync-archives.mjs` from the research library and
