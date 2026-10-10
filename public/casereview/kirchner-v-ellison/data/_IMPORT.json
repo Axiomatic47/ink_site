@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T06:28:07.622Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010j",
+  "imported": "2026-10-10T06:40:22.383Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010k",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "aa737bfdc557bb742060da9c26576021c25499dd2103014f05bb08fba6cdc810",
+      "sha256": "4352c96b7fa72619f6905f0b38444089f8119f52c8c64b934e8508f6966fb97c",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 350977,
-          "sha256": "9dea06c3ff1dc3d8531ad918978f2b88e60914a56981df850aa2c11824c28e8a"
+          "bytes": 369305,
+          "sha256": "e71ee5a12885ff7b42e0e7b97fb76258891a5ddbac8e5482966c928472f5d5aa"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
@@ -302,6 +302,16 @@
           "sha256": "88d1ccb1f80c050e6a0d1ef8632498390e30903b5d89e1b828aab926122af41d"
         },
         {
+          "path": "_admin/case_review/links/LINKS_MN2594-035-01.meta.json",
+          "bytes": 1286,
+          "sha256": "06ac227ab6d6dbdbbd34f223da2113cc71cb9da92f8d3b24ea8ed72b945cc444"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-035-01.tsv",
+          "bytes": 6333,
+          "sha256": "5957a7215b36b6f8d81b750052d6c61f588fc68480e68d06b5ca98622ab93e38"
+        },
+        {
           "path": "_admin/case_review/links/LINKS_MN2594-035.meta.json",
           "bytes": 1264,
           "sha256": "8385aa3fa5f3cda876910fbc93f6c0db1ad937fa3e81658d09c7b3bb801ad290"
@@ -310,6 +320,26 @@
           "path": "_admin/case_review/links/LINKS_MN2594-035.tsv",
           "bytes": 11414,
           "sha256": "a4069030ffc41b2d10cb13a64ad5432ee2cfd83fd2e5f3698323b5a755962e1f"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-037-01.meta.json",
+          "bytes": 850,
+          "sha256": "ab67b2324e4d87f908d761cac9ec6bba54282b29c82b33eaea5e998fbe7bfc70"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-037-01.tsv",
+          "bytes": 1162,
+          "sha256": "b3309d30039ce6b20b1ead4eca4957f5c4566ecf5db8f45c815f241d5f8982aa"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-037.meta.json",
+          "bytes": 2987,
+          "sha256": "3910aefbeafc19385c5d09638f8e906a09e82291b6ec8c393fa60c3f728e2b82"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-037.tsv",
+          "bytes": 29241,
+          "sha256": "69930c9688597e0d30487e0f53e69af68a6565346f46719220e22ccb53678f2f"
         },
         {
           "path": "_admin/case_review/_paramaps/mn/MN_626_89.json",
@@ -336,11 +366,11 @@
     "ourstudio_commit": "a4abcb96",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "106437eb3fbf4349488d5d36c5d1571829d465262eded221614d24e418f023c2",
-    "exported": "2026-10-10T06:28:07+00:00",
+    "mirrors_sha256": "317a47aaf2c42844f98497509415d63d20a0b24ee312ed6215bc455797e5330d",
+    "exported": "2026-10-10T06:40:21+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0t",
+    "registry_version": "v0u",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
@@ -371,11 +401,14 @@
       "MN2594-032",
       "MN2594-033",
       "MN2594-034",
-      "MN2594-035"
+      "MN2594-035",
+      "MN2594-035-01",
+      "MN2594-037",
+      "MN2594-037-01"
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 240,
+      "serve": 248,
       "link": 2,
       "hold": 0
     },
@@ -408,17 +441,17 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0t",
-  "documents": 242,
-  "tables": 30,
-  "rows": 1165,
+  "registry_version": "v0u",
+  "documents": 250,
+  "tables": 33,
+  "rows": 1269,
   "publication": {
-    "serve": 240,
+    "serve": 248,
     "link": 2,
     "hold": 0
   },
   "dev_override": false,
-  "default_doc": "MN2594-035",
+  "default_doc": "MN2594-037",
   "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
   "host_policy": null
 }

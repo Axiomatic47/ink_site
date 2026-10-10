@@ -615,6 +615,38 @@
       "destination": "/uploads/kirchner-v-ellison/Minnesota_Attorney_General_Ellison_-_Annual_Report_Required_by_Minnesota_Statutes_Sections_8.08_and_8.15_Subd_4_Fiscal_Year_2025_Office_of_the_Attorney_General_St_Paul_2025_Minnesota_Legislative_Reference_Library_251612_.pdf"
     },
     {
+      "source": "/api/casereview/file/2009 - Undlin v. City of Minneapolis, 2009 WL 3754208 \\(D. Minn.\\) \\[D. Minn. No. 08-cv-1855 \\(JNE-FLN\\) Doc. 105, Order, 4 Nov. 2009; GovInfo USCOURTS-mnd-0_08-cv-01855-4\\]",
+      "destination": "/uploads/kirchner-v-ellison/2009_-_Undlin_v._City_of_Minneapolis_2009_WL_3754208_D._Minn._D._Minn._No._08-cv-1855_JNE-FLN_Doc._105_Order_4_Nov._2009_GovInfo_USCOURTS-mnd-0_08-cv-01855-4_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2025 - Rivera v. Sedgwick Claims Management Services, 2025 WL 2680635 \\(D. Minn.\\) \\[D. Minn. No. 24-cv-3247 \\(LMP-SGE\\) Doc. 117, Order, 19 Sept. 2025; GovInfo USCOURTS-mnd-0_24-cv-03247-1\\]",
+      "destination": "/uploads/kirchner-v-ellison/2025_-_Rivera_v._Sedgwick_Claims_Management_Services_2025_WL_2680635_D._Minn._D._Minn._No._24-cv-3247_LMP-SGE_Doc._117_Order_19_Sept._2025_GovInfo_USCOURTS-mnd-0_24-cv-03247-1_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - Bhatia v. 3M Co., 323 F. Supp. 3d 1082 \\(D. Minn.\\) \\[D. Minn. No. 16-cv-1304 \\(DWF-DTS\\) Doc. 118, Order, 1 Mar. 2018; GovInfo USCOURTS-mnd-0_16-cv-01304-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2018_-_Bhatia_v._3M_Co._323_F._Supp._3d_1082_D._Minn._D._Minn._No._16-cv-1304_DWF-DTS_Doc._118_Order_1_Mar._2018_GovInfo_USCOURTS-mnd-0_16-cv-01304-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2019 - In re SuperValu, Inc., Customer Data Security Breach Litigation, 925 F.3d 955 \\(8th Cir.\\) \\[CA8 slip No. 18-1648, 31 May 2019\\]",
+      "destination": "/uploads/kirchner-v-ellison/2019_-_In_re_SuperValu_Inc._Customer_Data_Security_Breach_Litigation_925_F.3d_955_8th_Cir._CA8_slip_No._18-1648_31_May_2019_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - A.H. v. St. Louis County, 891 F.3d 721 \\(8th Cir.\\) \\[CA8 slip Nos. 17-1198 and 17-1393, 4 Jun. 2018\\]",
+      "destination": "/uploads/kirchner-v-ellison/2018_-_A.H._v._St._Louis_County_891_F.3d_721_8th_Cir._CA8_slip_Nos._17-1198_and_17-1393_4_Jun._2018_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2007 - In re Senior Cottages of America, LLC \\(Moratzka v. Morris\\), 482 F.3d 997 \\(8th Cir.\\) \\[CA8 slip No. 05-3867, 2 Apr. 2007\\]",
+      "destination": "/uploads/kirchner-v-ellison/2007_-_In_re_Senior_Cottages_of_America_LLC_Moratzka_v._Morris_482_F.3d_997_8th_Cir._CA8_slip_No._05-3867_2_Apr._2007_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2000 - Oto v. Metropolitan Life Insurance Co., 224 F.3d 601 \\(7th Cir.\\) \\[Caselaw Access Project scan, static.case.law\\]",
+      "destination": "/uploads/kirchner-v-ellison/2000_-_Oto_v._Metropolitan_Life_Insurance_Co._224_F.3d_601_7th_Cir._Caselaw_Access_Project_scan_static.case.law_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1993 - Dale & Selby Superette & Deli v. United States Department of Agriculture, 838 F. Supp. 1346 \\(D. Minn.\\) \\[Caselaw Access Project scan, static.case.law\\]",
+      "destination": "/uploads/kirchner-v-ellison/1993_-_Dale_Selby_Superette_Deli_v._United_States_Department_of_Agriculture_838_F._Supp._1346_D._Minn._Caselaw_Access_Project_scan_static.case.law_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/kirchner-v-ellison/:id.pdf"
     }
