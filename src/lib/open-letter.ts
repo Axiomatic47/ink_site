@@ -46,8 +46,39 @@ export interface OpenLetterContent {
   transcript: { title: string; source: string; method: string; header_omitted: string[]; speakers: Record<string, string>; turns: Turn[] };
 }
 
+/** a dated addition to the page (the owner's word after the mailing): the note's words verbatim behind the dated
+    lead, the document it cites served beside the letter's PDFs and recorded by its bytes —
+    content/correspondence/<slug>.additions.json, kept by hand, never written by the importer (the mailed letter,
+    the enclosures and their tables are not there) */
+export interface OpenLetterAddition {
+  id: string;
+  /** ISO date the note was added */
+  added: string;
+  /** the date as the note prints it ("October 10, 2026") */
+  date_line: string;
+  markdown: string;
+  document: AdditionDocument;
+}
+export interface AdditionDocument {
+  title: string;
+  /** the served copy's path under /uploads */
+  file: string;
+  sha256: string;
+  bytes: number;
+  pages: number;
+  /** the page the note cites, and the sentence quoted from it, verbatim (the test reads it there) */
+  cited_page: number;
+  quoted: string;
+  /** the document at its publisher, and the words the link uses */
+  source_url: string;
+  source_label: string;
+  /** where the owner's copy is shelved (the case tree); never sent to the page */
+  source?: { tree: string; path: string; commit: string };
+}
+export interface OpenLetterAdditions { slug: string; additions: OpenLetterAddition[] }
+
 /** the served file with its version query, as the book's review page serves its render */
-export const servedPdf = (p: DocPdf) => `${p.file}?v=${p.sha256.slice(0, 12)}`;
+export const servedPdf = (p: Pick<DocPdf, 'file' | 'sha256'>) => `${p.file}?v=${p.sha256.slice(0, 12)}`;
 
 /** what the page's client body receives: the content a reader reads and nothing else — not the source tree's
     paths and commits, not the header clauses the import omitted (a client component's props are serialized
@@ -59,11 +90,23 @@ export interface OpenLetterView {
   enclosure: OpenLetterContent['enclosure'];
   enclosure_b: OpenLetterContent['enclosure_b'];
   transcript: Omit<OpenLetterContent['transcript'], 'header_omitted'>;
+  /** the dated additions, their documents without the shelf record */
+  additions: AdditionView[];
 }
+export type AdditionView = Omit<OpenLetterAddition, 'document'> & { document: Omit<AdditionDocument, 'source'> };
 
-export function toView(c: OpenLetterContent): OpenLetterView {
+export function toView(c: OpenLetterContent, additions: OpenLetterAddition[] = []): OpenLetterView {
   const { title, source, method, speakers, turns } = c.transcript;
-  return { generated: c.generated, recording: c.recording, letter: c.letter, enclosure: c.enclosure, enclosure_b: c.enclosure_b ?? null, transcript: { title, source, method, speakers, turns } };
+  // the document's fields by allow-list: the shelf path and commit stay on the build host
+  const docView = (d: AdditionDocument): AdditionView['document'] => {
+    const { title, file, sha256, bytes, pages, cited_page, quoted, source_url, source_label } = d;
+    return { title, file, sha256, bytes, pages, cited_page, quoted, source_url, source_label };
+  };
+  return {
+    generated: c.generated, recording: c.recording, letter: c.letter, enclosure: c.enclosure, enclosure_b: c.enclosure_b ?? null,
+    transcript: { title, source, method, speakers, turns },
+    additions: additions.map((a) => ({ id: a.id, added: a.added, date_line: a.date_line, markdown: a.markdown, document: docView(a.document) })),
+  };
 }
 
 /** the recording at a second: the letter's rule — every debate time is a link to this */

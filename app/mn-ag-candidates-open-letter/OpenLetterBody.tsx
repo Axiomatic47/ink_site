@@ -62,7 +62,8 @@ function Prose({ md, youtubeId, onTime, className }: { md: string; youtubeId: st
                 </a>
               );
             }
-            const external = /^https?:\/\//.test(href ?? '');
+            // an outside link and a served PDF open in a new tab; the page keeps its place
+            const external = /^https?:\/\//.test(href ?? '') || /\.pdf(\?|$)/.test(href ?? '');
             return <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="underline text-accent-ink">{children}</a>;
           },
         }}
@@ -311,6 +312,23 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
     </button>
   );
 
+  // the page's dated additions (the owner's word after the mailing): under the document, before the transcript in
+  // reading mode; under both panes in review mode, where the row's height is the panes'. Each note's words verbatim
+  // behind its dated lead, its document served beside the letter's PDFs, the publisher's copy named beside it.
+  const additions: ReactNode = c.additions.length ? (
+    <section id="additions" aria-label="Additions to this page" className={cn('bg-card border border-rule rounded-lg shadow-card scroll-mt-4', review && 'mt-4')}>
+      {c.additions.map((a) => (
+        <div key={a.id} id={`added-${a.added}`} className="scroll-mt-4">
+          <Prose md={a.markdown} youtubeId={id} onTime={goTo} />
+          <div className="px-6 sm:px-8 pb-5 -mt-2 text-sm text-muted">
+            {a.document.title} — <a href={servedPdf(a.document)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">the document</a> (PDF, {a.document.pages} pages,{' '}
+            {Math.round(a.document.bytes / 1024)} KB) · <a href={a.document.source_url} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">{a.document.source_label}</a>
+          </div>
+        </div>
+      ))}
+    </section>
+  ) : null;
+
   const record: ReactNode = (
     <div className={cn('mt-3 min-h-9 flex flex-wrap items-start justify-between gap-x-6 gap-y-1 text-[11px] text-muted leading-relaxed', !review && 'max-w-5xl mx-auto')}>
       <div className="min-w-0">
@@ -334,8 +352,10 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
           className={cn('grid grid-cols-1 gap-4', review ? 'lg:grid-cols-2 lg:items-stretch' : 'max-w-5xl mx-auto')}
           style={review && fillHeight ? { height: fillHeight } : undefined}>
           {documentPane}
+          {!review && additions}
           {transcriptPane}
         </div>
+        {review && additions}
         {record}
       </main>
       <SiteFooter />

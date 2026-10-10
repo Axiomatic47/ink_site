@@ -7,6 +7,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
@@ -113,6 +115,40 @@ if (existsSync(file)) {
 } else {
   console.log('  --  content/correspondence not on disk: the content checks did not run');
 }
+// ---- the page's dated additions (the owner's word after the mailing): each note's words behind the dated lead, no
+// debate time, no path or seat; its document served at the recorded bytes and sha with the recorded page count; the
+// sentence the note quotes is on the page it cites, in the served file's own text, and in the note verbatim
+const addFile = resolve(ROOT, 'content', 'correspondence', `${OPEN_LETTER_SLUG}.additions.json`);
+if (existsSync(addFile)) {
+  const d = JSON.parse(readFileSync(addFile, 'utf8'));
+  assert.equal(d.slug, OPEN_LETTER_SLUG);
+  assert.ok(Array.isArray(d.additions) && d.additions.length > 0, 'additions listed');
+  const ids = new Set();
+  for (const a of d.additions) {
+    assert.ok(a.id && !ids.has(a.id), `addition id ${a.id}`); ids.add(a.id);
+    assert.match(a.added, /^\d{4}-\d{2}-\d{2}$/, `${a.id}: added`);
+    assert.match(a.markdown, /^\*\*Added [A-Z][a-z]+ \d{1,2}, \d{4}\.\*\* \S/, `${a.id}: the dated lead`);
+    assert.ok(a.markdown.startsWith(`**Added ${a.date_line}.**`), `${a.id}: the lead carries the date line`);
+    assert.equal(times(a.markdown).length, 0, `${a.id}: a note names no debate time`);
+    assert.ok(!/~\/|[0-9a-f]{8}-[0-9a-f]{4}|drafter [0-9a-f]{8}|<!--/.test(a.markdown), `${a.id}: no path, seat or comment in the note`);
+    const doc = a.document;
+    assert.match(doc.file, /^\/uploads\/correspondence\/[\w-]+\/[\w.-]+\.pdf$/, `${a.id}: served under uploads`);
+    const f = resolve(ROOT, 'public') + doc.file;
+    assert.ok(existsSync(f), `${a.id}: ${doc.file} on disk`);
+    const buf = readFileSync(f);
+    assert.equal(buf.length, doc.bytes, `${a.id}: bytes`);
+    assert.equal(createHash('sha256').update(buf).digest('hex'), doc.sha256, `${a.id}: sha256`);
+    assert.match(doc.source_url, /^https:\/\//, `${a.id}: the publisher's URL`);
+    assert.ok(doc.source_label && doc.title, `${a.id}: the publisher's label and the title`);
+    const info = execFileSync('pdfinfo', [f], { encoding: 'utf8' });
+    assert.equal(Number(info.match(/^Pages:\s+(\d+)/m)?.[1]), doc.pages, `${a.id}: pages`);
+    assert.ok(Number.isInteger(doc.cited_page) && doc.cited_page >= 1 && doc.cited_page <= doc.pages, `${a.id}: the cited page is in the document`);
+    const page = execFileSync('pdftotext', ['-f', String(doc.cited_page), '-l', String(doc.cited_page), f, '-'], { encoding: 'utf8' }).replace(/\s+/g, ' ');
+    assert.ok(doc.quoted.length > 40 && page.includes(doc.quoted.replace(/\s+/g, ' ')), `${a.id}: the quoted sentence is on page ${doc.cited_page} of the served file`);
+    assert.ok(a.markdown.includes(doc.quoted), `${a.id}: the note quotes the recorded sentence verbatim`);
+  }
+  ok(`the additions: ${d.additions.length}, dated, each document served at its bytes, the quoted sentence on the cited page`);
+} else console.log('  --  additions: none on disk');
 // the importer's copy of the pattern is the TypeScript one
 assert.equal(DEBATE_TIME_RE_IMPORT.source, DEBATE_TIME_RE.source); assert.equal(DEBATE_TIME_RE_IMPORT.flags, DEBATE_TIME_RE.flags);
 ok('the importer\'s pattern equals the page\'s');

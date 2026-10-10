@@ -1,0 +1,28 @@
+{
+  "$comment": "Dated additions to the open-letter page (kirchner.ink/mn-ag-candidates-open-letter): the page's own notes, added after the mailing on the owner's word, each with the document it cites served beside the letter's PDFs. The mailed letter, the enclosures and their tables are not here — content/correspondence/mn-ag-candidates-open-letter.json carries them, written by scripts/import-open-letter.mjs; this file is kept by hand and no importer writes it. A note's words are the owner's as approved, verbatim, behind the dated lead; its document is recorded by the served copy's sha256 and bytes, the page the note cites and the sentence quoted from it (the loader refuses a copy that is not the recorded bytes; scripts/test-open-letter.mjs reads the sentence on the cited page of the served file), the publisher's URL, and where the owner's copy is shelved in the case tree (never sent to the page).",
+  "slug": "mn-ag-candidates-open-letter",
+  "additions": [
+    {
+      "id": "ellison-house-oversight-statement-2026-03-04",
+      "added": "2026-10-10",
+      "date_line": "October 10, 2026",
+      "markdown": "**Added October 10, 2026.** On March 4, 2026, Attorney General Ellison's written testimony to the U.S. House Committee on Oversight and Government Reform stated, at 2: \"Under Minnesota law, my Office has limited jurisdiction over criminal matters. The only kind of criminal case we can prosecute on our own is Medicaid fraud; any other criminal case must be specifically referred to us by county attorneys or the Governor.\"",
+      "document": {
+        "title": "Statement of the Honorable Keith Ellison, Attorney General of the State of Minnesota, before the Committee on Oversight and Government Reform, U.S. House of Representatives, March 4, 2026",
+        "file": "/uploads/correspondence/mn-ag-candidates-open-letter/ellison-written-testimony-2026-03-04.pdf",
+        "sha256": "887bb8d4a132d5f0efb311fd41c7ec2107f1e09f53d5e8e38df8166281bbbd80",
+        "bytes": 177947,
+        "pages": 4,
+        "cited_page": 2,
+        "quoted": "Under Minnesota law, my Office has limited jurisdiction over criminal matters. The only kind of criminal case we can prosecute on our own is Medicaid fraud; any other criminal case must be specifically referred to us by county attorneys or the Governor.",
+        "source_url": "https://oversight.house.gov/wp-content/uploads/2026/03/Ellison-Written-Testimony.pdf",
+        "source_label": "the committee's copy",
+        "source": {
+          "tree": "work_station",
+          "path": "2_MN-0-26-cv-02594-LMP-DJF/05_Correspondence/_sources/Ellison_Written_Testimony_House_Oversight_2026-03-04.pdf",
+          "commit": "865dcfcdb8fbafe47a4a8dfaac8fb7c50bd9966e"
+        }
+      }
+    }
+  ]
+}

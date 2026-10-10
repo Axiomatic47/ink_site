@@ -276,6 +276,18 @@ p=none, all on Netlify DNS).
   `node scripts/import-open-letter.mjs --check`. The test's esbuild bundle lands in `.cache/` (gitignored and in the
   eslint ignores: its bundled library code once put 40 errors into `eslint .`). A time the pattern misses is a quotation a reader cannot hear —
   the first cut missed every "2:49:" (a colon after the time) and the test is what caught the form.
+- DATED ADDITIONS (owner 2026-10-10; the first: Attorney General Ellison's written testimony to the U.S. House
+  Committee on Oversight and Government Reform of March 4, 2026, its sentence at 2, approved verbatim):
+  `content/correspondence/mn-ag-candidates-open-letter.additions.json`, kept by hand on the owner's word and never
+  written by the importer — each note's words verbatim behind its dated lead (`**Added October 10, 2026.**`), the
+  document it cites served beside the letter's PDFs under `public/uploads/correspondence/<slug>/` and recorded by
+  sha256, bytes, pages, the cited page and the quoted sentence, the publisher's URL and label, and where the owner's
+  copy is shelved in the case tree (`document.source`, stripped by `toView`, never sent to the page). Rendered under
+  the document, before the transcript in reading mode and under both panes in review mode (`#additions`,
+  `#added-<date>`); the loader refuses an incomplete entry or a served copy that is not the recorded bytes;
+  `test:letter` reads the quoted sentence on the cited page of the served file and the note. The mailed letter, the
+  enclosures and their tables never change for an addition; a second document beside a note (the hearing transcript,
+  Exhibit C to the Complaint) waits on the owner's word.
 - NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
   private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
   route (owner 2026-10-09: "the site preview in ourstudio does not show any way to view this new page") — the

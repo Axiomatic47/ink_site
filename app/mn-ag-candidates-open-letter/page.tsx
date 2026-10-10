@@ -4,10 +4,12 @@
 // prints this URL and mails October 10, 2026). The content is content/correspondence/<slug>.json, written by
 // scripts/import-open-letter.mjs from the owner's case tree; the body is OpenLetterBody.tsx. No content → 404,
 // never a placeholder. Not in the site's navigation until the owner's word.
+// Dated additions after the mailing (content/correspondence/<slug>.additions.json, each on the owner's word) render
+// under the document, before the transcript; the mailed documents never change for one.
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ogImages } from '@/lib/og.server';
-import { loadOpenLetter } from '@/lib/open-letter.server';
+import { loadOpenLetter, loadOpenLetterAdditions } from '@/lib/open-letter.server';
 import { OPEN_LETTER_PATH, OPEN_LETTER_SLUG, toView } from '@/lib/open-letter';
 import { OpenLetterBody } from './OpenLetterBody';
 
@@ -29,5 +31,5 @@ export function generateMetadata(): Metadata {
 export default function OpenLetterPage() {
   const c = loadOpenLetter();
   if (!c) notFound();
-  return <OpenLetterBody c={toView(c)} />;
+  return <OpenLetterBody c={toView(c, loadOpenLetterAdditions())} />;
 }
