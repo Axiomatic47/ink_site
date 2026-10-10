@@ -201,11 +201,16 @@ p=none, all on Netlify DNS).
   (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly three files of
   `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the enclosure under `05_Correspondence`, the
   transcript under `0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002` — recording each file's sha and
-  commit; it refuses a dirty source. THE PDFs: the enclosure's rides by default (`--enclosure-pdf <path>` to
-  override, `none` to drop); the letter's only as `--letter-pdf <the PUBLISHED copy>` — the owner's rendering
-  without the street, the city line and the telephone — and the importer refuses, before it writes anything, a
-  letter PDF whose text carries them; without the flag the letter tab is absent and the left pane opens on the
-  Text tab. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
+  commit; it refuses a dirty source. THE LETTER'S TEXT comes from the drafters' PUBLISHED copy
+  (`…_2026-10_PUBLISHED.md`, the mailed text with the street, the city line and the telephone dropped) whenever
+  that file exists, else from the mailed letter with the same lines dropped here (`letter.text_source` says which).
+  THE PDFs: the enclosure's rides by default (`--enclosure-pdf <path>` to override, `none` to drop); the letter's
+  only as `--letter-pdf <the PUBLISHED copy>` (`…_PUBLISHED.pdf`, the owner's rendering of that published text) —
+  and the importer refuses, before it writes anything, a letter PDF whose text carries a telephone number or any
+  line the published letterhead drops. THOSE LINES ARE NEVER NAMED IN CODE: the refusal reads them from the mailed
+  letter's own letterhead in the case tree at run time (admin 69183d38 2026-10-09: a literal in the source is the
+  street in the repository — the first cut had one, a5db63d3, removed by the follow-up; the history keeps it).
+  Without the flag the letter tab is absent and the left pane opens on the Text tab. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
   the served files and reads the letter's text again. NOTHING ELSE from that folder is published (the census beside the transcript
   relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
   and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard

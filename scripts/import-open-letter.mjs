@@ -41,6 +41,10 @@ const CASE = '2_MN-0-26-cv-02594-LMP-DJF';
 // the index is cased 0_Workspace in git and 0_workspace on the disk (case-insensitive volume): one spelling here, git's
 const SOURCES = {
   letter: `${CASE}/05_Correspondence/OPEN_LETTER_AG_CANDIDATES_ELLISON_SCHUTZ_2026-10.md`,
+  // the drafters' published copy (a636b3d9 2026-10-09: the mailed text with the street, city line and phone dropped,
+  // name and email kept) — the letter's TEXT source whenever it exists; the mailed letter then serves only as the
+  // source of the lines a letter PDF must not carry
+  letter_published: `${CASE}/05_Correspondence/OPEN_LETTER_AG_CANDIDATES_ELLISON_SCHUTZ_2026-10_PUBLISHED.md`,
   enclosure: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_A_RECORD_AND_DEBATE_2026-10.md`,
   transcript: `${CASE}/0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002/TRANSCRIPT_MPR_AG_DEBATE_ELLISON_SCHUTZ_2026-10-02.md`,
 };
@@ -105,16 +109,27 @@ function redactLetterhead(md) {
   const end = lines.findIndex((l) => !l.trim());
   const head = end < 0 ? lines : lines.slice(0, end);
   if (!/^\*\*[^*]+\*\*$/.test(head[0] || '')) fail(`letter: the letterhead does not begin with the bold name line (got: ${(head[0] || '').slice(0, 40)})`);
-  const kept = [], redacted = [];
+  const kept = [], redacted = [], dropped = [];
   for (const l of head) {
     const t = l.trim();
     if (t === head[0].trim() || EMAIL_RE.test(t)) kept.push(l);
-    else if (PHONE_RE.test(t)) redacted.push('the telephone number');
-    else redacted.push(/^\d/.test(t) ? 'the street address' : 'the city line');
+    else { dropped.push(t); redacted.push(PHONE_RE.test(t) ? 'the telephone number' : /^\d/.test(t) ? 'the street address' : 'the city line'); }
   }
   if (!kept.some((l) => EMAIL_RE.test(l.trim()))) fail('letter: the letterhead has no email line to keep');
-  return { md: [...kept, ...lines.slice(head.length)].join('\n'), redacted };
+  // `dropped` holds the lines themselves — for the PDF refusal only; they are never written to the content file
+  // and never named in this code (admin 69183d38 2026-10-09: a literal in the source is the street in the repo)
+  return { md: [...kept, ...lines.slice(head.length)].join('\n'), redacted, dropped };
 }
+const norm = (s) => s.replace(/\s+/g, ' ').trim().toLowerCase();
+/** the lines the letterhead dropped, read from the MAILED letter in the case tree (the only place they live) */
+function forbiddenLines() {
+  const p = join(TREE, SOURCES.letter);
+  if (!existsSync(p)) return [];
+  const { body } = splitFrontMatter(readFileSync(p, 'utf8'));
+  return redactLetterhead(stripComments(body)).dropped.map(norm);
+}
+/** a PDF's text carries a telephone number or one of the dropped letterhead lines */
+const carriesLetterhead = (text, forbidden) => { const t = norm(text); return PHONE_RE.test(text) || forbidden.some((f) => f && t.includes(f)); };
 
 // ---------------------------------------------------------------- the transcript
 function parseTranscript(md) {
@@ -198,7 +213,7 @@ function importPdf(role, srcPath) {
   if (!existsSync(srcPath)) fail(`${role} PDF missing: ${srcPath}`);
   // the letter's text is read and judged BEFORE anything is written: a refused copy never reaches the served tree
   const text = execFileSync('pdftotext', [srcPath, '-'], { encoding: 'utf8' });
-  if (role === 'letter' && (PHONE_RE.test(text) || /Parklawn|\b55435\b/.test(text))) fail(`the letter PDF at ${srcPath} carries the telephone number or the street — pass the PUBLISHED copy (the letterhead without them), never this one; nothing written`);
+  if (role === 'letter' && carriesLetterhead(text, forbiddenLines())) fail(`the letter PDF at ${srcPath} carries the telephone number or a letterhead line the published copy drops — pass the PUBLISHED copy, never this one; nothing written`);
   const buf = readFileSync(srcPath);
   const sha = sha256(buf);
   const { pages, boxes } = pdfBoxes(srcPath);
@@ -225,7 +240,8 @@ function check() {
   const head = (d.letter?.markdown ?? '').split(/\n\s*\n/)[0].split('\n').map((l) => l.trim()).filter(Boolean);
   if (head.length !== 2 || !/^\*\*[^*]+\*\*$/.test(head[0]) || !EMAIL_RE.test(head[1])) bad.push(`letterhead: expected the name and the email only, got ${head.length} lines`);
   if (PHONE_RE.test(d.letter?.markdown ?? '')) bad.push('letter: a telephone number is in the published text');
-  if (!Array.isArray(d.letter?.redacted) || d.letter.redacted.length === 0) bad.push('letter: no redaction recorded');
+  if (!Array.isArray(d.letter?.redacted)) bad.push('letter: the redaction record is missing');
+  if (d.letter?.text_source === 'letter' && d.letter.redacted.length === 0) bad.push('letter: the mailed text served with nothing dropped');
   // the served PDFs: present, the registry's bytes, the time boxes inside their pages; the letter's text clean
   for (const role of ['letter', 'enclosure']) {
     const p = d[role]?.pdf;
@@ -238,7 +254,9 @@ function check() {
     for (const b of p.boxes || []) { const s = p.page_sizes?.[b.page - 1]; if (!s || b.rect[0] < 0 || b.rect[1] < 0 || b.rect[2] > s.w || b.rect[3] > s.h || b.rect[2] <= b.rect[0] || b.rect[3] <= b.rect[1]) bad.push(`${role} PDF: a box off its page (p. ${b.page} ${b.label})`); }
     if (role === 'letter') {
       const text = execFileSync('pdftotext', [f, '-'], { encoding: 'utf8' });
-      if (PHONE_RE.test(text) || /Parklawn|\b55435\b/.test(text)) bad.push('letter PDF: the telephone number or the street is in its text — not the published copy');
+      const forbidden = forbiddenLines();
+      if (carriesLetterhead(text, forbidden)) bad.push('letter PDF: the telephone number or a dropped letterhead line is in its text — not the published copy');
+      if (!forbidden.length) console.log('  (the case tree is not here: the letter PDF was read for a telephone number only)');
     }
   }
   const t = d.transcript;
@@ -254,17 +272,18 @@ function check() {
 // ---------------------------------------------------------------- import
 function main() {
   if (CHECK) return check();
-  for (const rel of Object.values(SOURCES)) if (!existsSync(join(TREE, rel))) fail(`missing: ${rel}`);
-  const dirty = git('status', '--porcelain', '--', ...Object.values(SOURCES));
+  for (const [role, rel] of Object.entries(SOURCES)) if (role !== 'letter_published' && !existsSync(join(TREE, rel))) fail(`missing: ${rel}`);
+  const dirty = git('status', '--porcelain', '--', ...Object.values(SOURCES).filter((rel) => existsSync(join(TREE, rel))));
   if (dirty) fail(`the sources have uncommitted changes — commit them in the case tree first:\n${dirty}`);
   const commit = git('rev-parse', 'HEAD');
-  const files = Object.entries(SOURCES).map(([role, rel]) => {
+  const files = Object.entries(SOURCES).filter(([, rel]) => existsSync(join(TREE, rel))).map(([role, rel]) => {
     const buf = readFileSync(join(TREE, rel));
     return { role, path: rel, bytes: buf.length, sha256: sha256(buf), commit: git('log', '-1', '--format=%H', '--', rel) };
   });
   const read = (role) => readFileSync(join(TREE, SOURCES[role]), 'utf8');
 
-  const L = splitFrontMatter(read('letter'));
+  const letterRole = existsSync(join(TREE, SOURCES.letter_published)) ? 'letter_published' : 'letter';
+  const L = splitFrontMatter(read(letterRole));
   const E = splitFrontMatter(read('enclosure'));
   const { md: letterBody, redacted } = redactLetterhead(stripComments(L.body));
   const letterMd = tidy(hardBreaks(letterBody));
@@ -280,7 +299,7 @@ function main() {
     generated: new Date().toISOString(),
     source: { tree: 'work_station', commit, files },
     recording: { ...transcript.recording, programme: 'MPR News Politics Friday', date: '2026-10-02', moderator: transcript.speakers.MOD },
-    letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, redacted, markdown: letterMd, pdf: letterPdf },
+    letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, text_source: letterRole, redacted, markdown: letterMd, pdf: letterPdf },
     enclosure: { title: E.meta.title ?? 'Enclosure A', header: E.meta.header ?? null, markdown: enclosureMd, pdf: enclosurePdf },
     transcript: { title: transcript.title, source: transcript.source, method: transcript.method, header_omitted: transcript.header_omitted, speakers: transcript.speakers, turns: transcript.turns },
   };
