@@ -56,11 +56,11 @@ ok('the plugin links times, leaves links and code alone, titles a range');
 const file = resolve(ROOT, 'content', 'correspondence', `${OPEN_LETTER_SLUG}.json`);
 if (existsSync(file)) {
   const c = JSON.parse(readFileSync(file, 'utf8'));
-  for (const [name, md] of [['letter', c.letter.markdown], ['enclosure', c.enclosure.markdown], ['method', c.transcript.method]]) {
+  for (const [name, md] of [['letter', c.letter.markdown], ['enclosure', c.enclosure.markdown], ['method', c.transcript.method], ...(c.enclosure_b ? [['enclosure_b', c.enclosure_b.markdown]] : [])]) {
     const expected = times(md).length;
     const got = links(tree(md)).filter((l) => secondsFromRecordingUrl(l.url, ID) != null).length;
     assert.equal(got, expected, `${name}: every time the pattern finds becomes a link (${got} of ${expected})`);
-    assert.ok(expected > 0 || name === 'method', `${name}: has times`);
+    assert.ok(expected > 0 || name === 'method' || name === 'enclosure_b', `${name}: has times`);
     assert.ok(!/<!--|LEGAL-ANALYSIS-SIG|^---\n/.test(md), `${name}: nothing stripped survives`);
   }
   assert.ok(!/~\/|[0-9a-f]{8}-[0-9a-f]{4}|drafter [0-9a-f]{8}/.test(`${c.transcript.source} ${c.transcript.method}`), 'the served header carries no local path or seat');
@@ -79,9 +79,23 @@ if (existsSync(file)) {
   assert.doesNotMatch(c.letter.markdown, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/, 'no telephone number anywhere in the letter');
   assert.ok(Array.isArray(c.letter.redacted) && (c.letter.text_source === 'letter_published' || c.letter.redacted.includes('the telephone number')), 'the redaction is recorded by label, or the published copy is the source');
   ok('the letterhead: name + email only; the telephone and the address redacted, recorded by label');
+  // Enclosure B, the reply form (owner 2026-10-09): the three questions as the letter asks them, a yes/no line under
+  // each, the return-by date; no telephone, no street (the envelope carries the address), no debate time
+  if (c.enclosure_b) {
+    const b = c.enclosure_b.markdown;
+    assert.match(b, /^# ENCLOSURE B: Reply Form$/m, 'the form\'s heading');
+    assert.equal((b.match(/^\*\*[123]\.\*\* Will the office, under you, /gm) || []).length, 3, 'the three questions');
+    assert.equal((b.match(/^☐ Yes ☐ No$/gm) || []).length, 3, 'a yes/no line under each question');
+    assert.match(b, /\*\*October 21, 2026\*\*/, 'the return-by date');
+    assert.doesNotMatch(b, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/, 'no telephone number on the form');
+    assert.doesNotMatch(b, /\b\d{2,5} [A-Z][\w.]+ (Avenue|Street|Road|Drive|Lane|Boulevard|Ave\.|St\.)\b/, 'no street address on the form');
+    assert.equal(times(b).length, 0, 'the form names no debate time');
+    assert.ok(!/<!--|^---\n/.test(b), 'the drafting notes and the front matter are stripped');
+    ok(`Enclosure B: the three questions, yes/no lines, the return-by date; no telephone, no street, no debate time; PDF ${c.enclosure_b.pdf ? 'served' : 'none yet'}`);
+  } else console.log('  --  enclosure B: not in this import');
   // the served PDFs, when the import carried them: one box per word a time runs through, inside its page, the
   // letter's boxes at least its mentions (a range wrapped across two lines is two boxes)
-  for (const [name, md] of [['letter', c.letter.markdown], ['enclosure', c.enclosure.markdown]]) {
+  for (const [name, md] of [['letter', c.letter.markdown], ['enclosure', c.enclosure.markdown], ...(c.enclosure_b ? [['enclosure_b', c.enclosure_b.markdown]] : [])]) {
     const p = c[name].pdf;
     if (!p) { console.log(`  --  ${name}: no PDF in this import`); continue; }
     assert.ok(p.pages >= 1 && p.page_sizes.length === p.pages, `${name} PDF: pages`);

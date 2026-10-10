@@ -6,6 +6,11 @@
 // letter (current version as a placeholder) and enclosure in the same style as my review mode with
 // hyperlinks to the timestamp in which statements were made"; the letter prints the page's URL and mails
 // October 10, 2026).
+// ENCLOSURE B (owner 2026-10-09 ~23:5x CDT, "Word on all of it we're getting it done"): the reply form that goes back
+// in the stamped envelope is the fourth source, `enclosure_b`. It names no debate time, so its PDF (the owner's
+// rendering, when it is beside the markdown) carries no boxes and the no-boxes refusal does not apply to it; it
+// rides by default when present. The form prints no street and no telephone (the envelope carries the address):
+// the letter's refusal applies to it, text and PDF.
 //
 //   node scripts/import-open-letter.mjs            # read the three files at ~/Git/work_station, write the JSON
 //   node scripts/import-open-letter.mjs --check    # the JSON on disk is whole (shape, counts, nothing stripped left in)
@@ -46,6 +51,7 @@ const SOURCES = {
   // source of the lines a letter PDF must not carry
   letter_published: `${CASE}/05_Correspondence/OPEN_LETTER_AG_CANDIDATES_ELLISON_SCHUTZ_2026-10_PUBLISHED.md`,
   enclosure: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_A_RECORD_AND_DEBATE_2026-10.md`,
+  enclosure_b: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_B_REPLY_FORM_2026-10.md`,
   transcript: `${CASE}/0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002/TRANSCRIPT_MPR_AG_DEBATE_ELLISON_SCHUTZ_2026-10-02.md`,
 };
 const YOUTUBE_ID = 'pgzvG1Ky8rQ';
@@ -58,6 +64,7 @@ const YOUTUBE_ID = 'pgzvG1Ky8rQ';
 // street. The enclosure's PDF carries no letterhead and rides by default (`--enclosure-pdf <path>` to override).
 const PDF_DEFAULTS = {
   enclosure: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_A_RECORD_AND_DEBATE_2026-10.pdf`,
+  enclosure_b: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_B_REPLY_FORM_2026-10.pdf`,
 };
 const opt = (f) => { const i = process.argv.indexOf(f); return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : null; };
 const LETTER_PDF = opt('--letter-pdf');
@@ -71,6 +78,11 @@ const LETTER_PDF = opt('--letter-pdf');
 const VIDEO_URL = opt('--video-url');
 if (VIDEO_URL && !/^(https:\/\/[^\s"']+|\/[^\s"']+)$/.test(VIDEO_URL)) fail(`--video-url must be an https URL or a site path: ${VIDEO_URL}`);
 const ENCLOSURE_PDF = opt('--enclosure-pdf') ?? join(TREE, PDF_DEFAULTS.enclosure);
+// Enclosure B's PDF rides by default WHEN the owner's rendering is beside the markdown (the form is served as text
+// alone until then — the rendering is the owner's, never produced here); `--enclosure-b-pdf <path>` names one (it
+// must exist), `none` drops it
+const ENCLOSURE_B_PDF_FLAG = opt('--enclosure-b-pdf');
+const ENCLOSURE_B_PDF = ENCLOSURE_B_PDF_FLAG ?? join(TREE, PDF_DEFAULTS.enclosure_b);
 const UPLOADS_DIR = join(ROOT, 'public', 'uploads', 'correspondence', SLUG);
 const UPLOADS_URL = `/uploads/correspondence/${SLUG}`;
 // the same pattern as src/lib/open-letter.ts DEBATE_TIME_RE (the TypeScript one is the one of record; the test
@@ -218,15 +230,15 @@ function pdfBoxes(pdfPath) {
   return { pages, boxes };
 }
 /** copy an owner-rendered PDF into the served tree and describe it: file, sha, bytes, pages, the time boxes */
-function importPdf(role, srcPath) {
+function importPdf(role, srcPath, { times = true } = {}) {
   if (!existsSync(srcPath)) fail(`${role} PDF missing: ${srcPath}`);
   // the letter's text is read and judged BEFORE anything is written: a refused copy never reaches the served tree
   const text = execFileSync('pdftotext', [srcPath, '-'], { encoding: 'utf8' });
-  if (role === 'letter' && carriesLetterhead(text, forbiddenLines())) fail(`the letter PDF at ${srcPath} carries the telephone number or a letterhead line the published copy drops — pass the PUBLISHED copy, never this one; nothing written`);
+  if ((role === 'letter' || role === 'enclosure_b') && carriesLetterhead(text, forbiddenLines())) fail(`the ${role} PDF at ${srcPath} carries the telephone number or a letterhead line the published copy drops — ${role === 'letter' ? 'pass the PUBLISHED copy, never this one' : 'the form prints no address; the envelope carries it'}; nothing written`);
   const buf = readFileSync(srcPath);
   const sha = sha256(buf);
   const { pages, boxes } = pdfBoxes(srcPath);
-  if (!boxes.length) fail(`${role} PDF: no debate time found on its pages; nothing written`);
+  if (times && !boxes.length) fail(`${role} PDF: no debate time found on its pages; nothing written`);
   mkdirSync(UPLOADS_DIR, { recursive: true });
   const name = `${role}.pdf`;
   writeFileSync(join(UPLOADS_DIR, name), buf);
@@ -238,7 +250,7 @@ function check() {
   if (!existsSync(OUT)) fail(`${OUT} missing — run the import`);
   const d = JSON.parse(readFileSync(OUT, 'utf8'));
   const bad = [];
-  for (const k of ['letter', 'enclosure']) {
+  for (const k of ['letter', 'enclosure', ...(d.enclosure_b ? ['enclosure_b'] : [])]) {
     const md = d[k]?.markdown ?? '';
     if (!md.trim()) bad.push(`${k}: empty`);
     if (/<!--/.test(md)) bad.push(`${k}: an HTML comment survived`);
@@ -251,20 +263,22 @@ function check() {
   if (PHONE_RE.test(d.letter?.markdown ?? '')) bad.push('letter: a telephone number is in the published text');
   if (!Array.isArray(d.letter?.redacted)) bad.push('letter: the redaction record is missing');
   if (d.letter?.text_source === 'letter' && d.letter.redacted.length === 0) bad.push('letter: the mailed text served with nothing dropped');
+  // the reply form: no telephone, no dropped letterhead line (the envelope carries the address; the form prints none)
+  if (d.enclosure_b && carriesLetterhead(d.enclosure_b.markdown ?? '', forbiddenLines())) bad.push('enclosure B: the telephone number or a dropped letterhead line is on the form');
   // the served PDFs: present, the registry's bytes, the time boxes inside their pages; the letter's text clean
-  for (const role of ['letter', 'enclosure']) {
+  for (const role of ['letter', 'enclosure', 'enclosure_b']) {
     const p = d[role]?.pdf;
     if (!p) continue;
     const f = join(ROOT, 'public', p.file);
     if (!existsSync(f)) { bad.push(`${role} PDF missing on disk: ${p.file}`); continue; }
     const buf = readFileSync(f);
     if (sha256(buf) !== p.sha256 || buf.length !== p.bytes) bad.push(`${role} PDF on disk is not the recorded one`);
-    if (!Array.isArray(p.boxes) || !p.boxes.length) bad.push(`${role} PDF: no time boxes`);
+    if (!Array.isArray(p.boxes) || (!p.boxes.length && role !== 'enclosure_b')) bad.push(`${role} PDF: no time boxes`);
     for (const b of p.boxes || []) { const s = p.page_sizes?.[b.page - 1]; if (!s || b.rect[0] < 0 || b.rect[1] < 0 || b.rect[2] > s.w || b.rect[3] > s.h || b.rect[2] <= b.rect[0] || b.rect[3] <= b.rect[1]) bad.push(`${role} PDF: a box off its page (p. ${b.page} ${b.label})`); }
-    if (role === 'letter') {
+    if (role === 'letter' || role === 'enclosure_b') {
       const text = execFileSync('pdftotext', [f, '-'], { encoding: 'utf8' });
       const forbidden = forbiddenLines();
-      if (carriesLetterhead(text, forbidden)) bad.push('letter PDF: the telephone number or a dropped letterhead line is in its text — not the published copy');
+      if (carriesLetterhead(text, forbidden)) bad.push(`${role} PDF: the telephone number or a dropped letterhead line is in its text${role === 'letter' ? ' — not the published copy' : ' (the envelope carries the address; the form prints none)'}`);
       if (!forbidden.length) console.log('  (the case tree is not here: the letter PDF was read for a telephone number only)');
     }
   }
@@ -275,7 +289,7 @@ function check() {
   if (d.recording?.youtube_id !== YOUTUBE_ID) bad.push('recording id');
   if (!d.source?.files?.length || d.source.files.some((f) => !/^[0-9a-f]{64}$/.test(f.sha256) || !/^[0-9a-f]{40}$/.test(f.commit))) bad.push('source files: a sha or a commit missing');
   if (bad.length) { bad.forEach((b) => console.error(`  ${b}`)); fail('check failed'); }
-  console.log(`open letter ok: ${t.turns.length} turns, letter ${d.letter.markdown.length} chars, enclosure ${d.enclosure.markdown.length} chars; sources at ${d.source.commit.slice(0, 8)}`);
+  console.log(`open letter ok: ${t.turns.length} turns, letter ${d.letter.markdown.length} chars, enclosure ${d.enclosure.markdown.length} chars${d.enclosure_b ? `, Enclosure B ${d.enclosure_b.markdown.length} chars (PDF ${d.enclosure_b.pdf ? 'served' : 'none yet'})` : ''}; sources at ${d.source.commit.slice(0, 8)}`);
 }
 
 // ---------------------------------------------------------------- import
@@ -297,27 +311,32 @@ function main() {
   const { md: letterBody, redacted } = redactLetterhead(stripComments(L.body));
   const letterMd = tidy(hardBreaks(letterBody));
   const enclosureMd = tidy(stripComments(E.body));
+  const B = splitFrontMatter(read('enclosure_b'));
+  const enclosureBMd = tidy(stripComments(B.body));
+  if (carriesLetterhead(enclosureBMd, forbiddenLines())) fail('enclosure B: the form carries the telephone number or a letterhead line the published letter drops (the return envelope carries the address; the form prints none); nothing written');
   const dateM = letterMd.match(/^(October|November|December|January|February|March|April|May|June|July|August|September) \d{1,2}, \d{4}$/m);
   const transcript = parseTranscript(read('transcript'));
   const letterPdf = LETTER_PDF && LETTER_PDF !== 'none' ? importPdf('letter', LETTER_PDF) : null;
   const enclosurePdf = ENCLOSURE_PDF !== 'none' ? importPdf('enclosure', ENCLOSURE_PDF) : null;
+  const enclosureBPdf = ENCLOSURE_B_PDF_FLAG === 'none' ? null : (ENCLOSURE_B_PDF_FLAG || existsSync(ENCLOSURE_B_PDF)) ? importPdf('enclosure_b', ENCLOSURE_B_PDF, { times: false }) : null;
 
   const out = {
-    $comment: 'Written by scripts/import-open-letter.mjs from the owner\'s case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header\'s local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.',
+    $comment: 'Written by scripts/import-open-letter.mjs from the owner\'s case tree — the open letter, its enclosures (A, the record and the debate; B, the reply form) and the debate transcript, front matter and HTML comments stripped, the transcript header\'s local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.',
     slug: SLUG,
     generated: new Date().toISOString(),
     source: { tree: 'work_station', commit, files },
     recording: { ...transcript.recording, programme: 'MPR News Politics Friday', date: '2026-10-02', moderator: transcript.speakers.MOD, file: VIDEO_URL ? { url: VIDEO_URL } : null },
     letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, text_source: letterRole, redacted, markdown: letterMd, pdf: letterPdf },
     enclosure: { title: E.meta.title ?? 'Enclosure A', header: E.meta.header ?? null, markdown: enclosureMd, pdf: enclosurePdf },
+    enclosure_b: { title: B.meta.title ?? 'Enclosure B', header: B.meta.header ?? null, markdown: enclosureBMd, pdf: enclosureBPdf },
     transcript: { title: transcript.title, source: transcript.source, method: transcript.method, header_omitted: transcript.header_omitted, speakers: transcript.speakers, turns: transcript.turns },
   };
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(OUT, JSON.stringify(out, null, 1) + '\n');
   console.log(`import-open-letter: ${SLUG} ← work_station ${commit.slice(0, 8)}`);
   for (const f of files) console.log(`  ${f.role.padEnd(10)} ${f.sha256.slice(0, 12)}  ${f.bytes.toString().padStart(6)} B  ${f.commit.slice(0, 8)}  ${f.path}`);
-  console.log(`  letter ${letterMd.length} chars (date line: ${out.letter.date_line}); enclosure ${enclosureMd.length} chars; transcript ${transcript.turns.length} turns, ${transcript.recording.duration} on the recording's clock; header clauses omitted: ${transcript.header_omitted.length}`);
-  for (const [role, p] of [['letter', letterPdf], ['enclosure', enclosurePdf]]) console.log(p ? `  ${role.padEnd(10)} PDF ${p.sha256.slice(0, 12)}  ${String(p.bytes).padStart(6)} B  ${p.pages} pp  ${p.boxes.length} time boxes → ${p.file}` : `  ${role.padEnd(10)} PDF none (${role === 'letter' ? 'pass --letter-pdf <the published copy>' : '--enclosure-pdf none'})`);
+  console.log(`  letter ${letterMd.length} chars (date line: ${out.letter.date_line}); enclosure ${enclosureMd.length} chars; Enclosure B ${enclosureBMd.length} chars; transcript ${transcript.turns.length} turns, ${transcript.recording.duration} on the recording's clock; header clauses omitted: ${transcript.header_omitted.length}`);
+  for (const [role, p] of [['letter', letterPdf], ['enclosure', enclosurePdf], ['enclosure_b', enclosureBPdf]]) console.log(p ? `  ${role.padEnd(11)} PDF ${p.sha256.slice(0, 12)}  ${String(p.bytes).padStart(6)} B  ${p.pages} pp  ${p.boxes.length} time boxes → ${p.file}` : `  ${role.padEnd(11)} PDF none (${role === 'letter' ? 'pass --letter-pdf <the published copy>' : role === 'enclosure_b' ? 'no rendering beside the markdown yet; --enclosure-b-pdf <path> once the owner has rendered it' : '--enclosure-pdf none'})`);
   console.log(`  → ${OUT}`);
 }
 // run only when THIS file is the script invoked — by its name, not by import.meta.url: scripts/test-open-letter.mjs

@@ -39,6 +39,10 @@ export interface OpenLetterContent {
   recording: { youtube_id: string; url: string; title: string | null; duration: string | null; duration_s: number | null; programme: string; date: string; moderator: string; file?: { url: string } | null };
   letter: { title: string; header: string | null; date_line: string | null; redacted: string[]; markdown: string; pdf: DocPdf | null };
   enclosure: { title: string; header: string | null; markdown: string; pdf: DocPdf | null };
+  /** Enclosure B, the reply form that goes back in the stamped envelope (owner 2026-10-09): the three questions,
+      yes/no boxes, ruled lines — it names no debate time, so its PDF carries no boxes; null in a content file written
+      before the form existed */
+  enclosure_b: { title: string; header: string | null; markdown: string; pdf: DocPdf | null } | null;
   transcript: { title: string; source: string; method: string; header_omitted: string[]; speakers: Record<string, string>; turns: Turn[] };
 }
 
@@ -53,12 +57,13 @@ export interface OpenLetterView {
   recording: OpenLetterContent['recording'];
   letter: OpenLetterContent['letter'];
   enclosure: OpenLetterContent['enclosure'];
+  enclosure_b: OpenLetterContent['enclosure_b'];
   transcript: Omit<OpenLetterContent['transcript'], 'header_omitted'>;
 }
 
 export function toView(c: OpenLetterContent): OpenLetterView {
   const { title, source, method, speakers, turns } = c.transcript;
-  return { generated: c.generated, recording: c.recording, letter: c.letter, enclosure: c.enclosure, transcript: { title, source, method, speakers, turns } };
+  return { generated: c.generated, recording: c.recording, letter: c.letter, enclosure: c.enclosure, enclosure_b: c.enclosure_b ?? null, transcript: { title, source, method, speakers, turns } };
 }
 
 /** the recording at a second: the letter's rule — every debate time is a link to this */

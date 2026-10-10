@@ -231,8 +231,8 @@ p=none, all on Netlify DNS).
   stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
   the play button; nothing autoplays on load).
 - Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
-  (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly three files of
-  `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the enclosure under `05_Correspondence`, the
+  (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly four files of
+  `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the two enclosures under `05_Correspondence`, the
   transcript under `0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002` — recording each file's sha and
   commit; it refuses a dirty source. THE LETTER'S TEXT comes from the drafters' PUBLISHED copy
   (`…_2026-10_PUBLISHED.md`, the mailed text with the street, the city line and the telephone dropped) whenever
@@ -243,7 +243,14 @@ p=none, all on Netlify DNS).
   line the published letterhead drops. THOSE LINES ARE NEVER NAMED IN CODE: the refusal reads them from the mailed
   letter's own letterhead in the case tree at run time (admin 69183d38 2026-10-09: a literal in the source is the
   street in the repository — the first cut had one, a5db63d3, removed by the follow-up; the history keeps it).
-  Without the flag the letter tab is absent and the left pane opens on the Text tab. SERVED SINCE 7c5e805b
+  Without the flag the letter tab is absent and the left pane opens on the Text tab. ENCLOSURE B (owner 2026-10-09
+  ~23:5x CDT, "Word on all of it we're getting it done"): the reply form that goes back in the stamped envelope is the
+  fourth source (`…_ENCLOSURE_B_REPLY_FORM_2026-10.md` → content `enclosure_b`): a third tab when its PDF is served,
+  its text after Enclosure A on the Text tab (`#enclosure-b`); it names no debate time, so its PDF carries no boxes
+  and the no-boxes refusal does not apply to it; its PDF rides by default WHEN the owner's rendering is beside the
+  markdown (`--enclosure-b-pdf <path>` names one, `none` drops it) — text alone until then; the form prints no
+  street and no telephone (the envelope carries the address), and the importer, `--check` and `test:letter` refuse
+  one that does, by the same run-time read of the mailed letterhead. SERVED SINCE 7c5e805b
   (2026-10-09 21:28, the page's final state for the mailing): the owner's final renderings of that evening — the
   PUBLISHED letter (21:10:59; 3 pp., 9 boxes) and Enclosure A (21:08:51; 3 pp., 23 boxes) — gated by the lane holder
   byte for byte against the owner's files; the mailed letter's PDF is the owner's mailing copy and is never served;

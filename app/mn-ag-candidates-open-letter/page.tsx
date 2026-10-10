@@ -1,5 +1,5 @@
 // app/mn-ag-candidates-open-letter/page.tsx — the open letter to the candidates for Minnesota Attorney General, its
-// Enclosure A and the transcript of the MPR News debate of October 2, 2026, in the review-mode style: the letter
+// enclosures (A, the record and the debate; B, the reply form) and the transcript of the MPR News debate of October 2, 2026, in the review-mode style: the letter
 // beside the transcript, every debate time a link to the recording at that second (owner 2026-10-09; the letter
 // prints this URL and mails October 10, 2026). The content is content/correspondence/<slug>.json, written by
 // scripts/import-open-letter.mjs from the owner's case tree; the body is OpenLetterBody.tsx. No content → 404,
@@ -15,7 +15,7 @@ export function generateMetadata(): Metadata {
   const c = loadOpenLetter();
   if (!c) return { title: 'Open letter', robots: { index: false, follow: false } };
   const title = c.letter.title;
-  const description = `An open letter of ${c.letter.date_line ?? 'October 2026'} to the candidates for Minnesota Attorney General, with its enclosure and the transcript of the ${c.recording.programme} debate of October 2, 2026 — every debate time opens the recording at that moment.`;
+  const description = `An open letter of ${c.letter.date_line ?? 'October 2026'} to the candidates for Minnesota Attorney General, with its ${c.enclosure_b ? 'enclosures' : 'enclosure'} and the transcript of the ${c.recording.programme} debate of October 2, 2026 — every debate time opens the recording at that moment.`;
   const og = ogImages(OPEN_LETTER_SLUG, `${title} — ${c.letter.date_line ?? ''}`.trim());
   return {
     title,

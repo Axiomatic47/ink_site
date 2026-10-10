@@ -1,13 +1,13 @@
 // OpenLetterBody — the open letter beside the debate it quotes, in the review-mode pattern of the book pages
 // (ReviewBody: h-11 header bars, h-8 sub-bars, matched cards, a mode toggle, the record line under the panes).
-// LEFT, the document: the owner's own PDF of the letter, or of Enclosure A, with every debate time a hit box over
+// LEFT, the document: the owner's own PDF of the letter, of Enclosure A or of Enclosure B (the reply form), with every debate time a hit box over
 // the page (as the book's citations are), and a Text tab (the markdown, times linked by the remark plugin).
 // RIGHT, the source: the recording itself — the debate as published on YouTube, playing in the page (owner
 // 2026-10-09: "publish the actual view in the same screen, not just its transcript") — above the transcript, one
 // row per turn, every Time cell a link. A time anywhere (a box on the PDF, a link in the text, a Time cell) plays
 // the recording from that second here and marks the turn in progress; the links keep their YouTube href for a
 // reader who wants the page there. Nothing from YouTube loads until the reader presses play or a time.
-// Reading mode stacks the three parts in one column. Deep links: #enclosure-a, #transcript, #turn-<n>, #t=<s>.
+// Reading mode stacks the parts in one column. Deep links: #enclosure-a, #enclosure-b, #transcript, #turn-<n>, #t=<s>.
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
@@ -23,7 +23,7 @@ import { SiteHeader } from '../_components/SiteHeader';
 import { SiteFooter } from '../_components/SiteFooter';
 
 type Mode = 'review' | 'reading';
-type Doc = 'letter' | 'enclosure' | 'text';
+type Doc = 'letter' | 'enclosure' | 'enclosure_b' | 'text';
 const MODE_KEY = 'jk-letter-mode';
 // the panes' height is computed from constants plus their top edge, as on the book's review page (owner 2026-09-21)
 const BELOW_PX = 48;
@@ -93,7 +93,7 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
   const [activeHot, setActiveHot] = useState<string | null>(null);
   const [pending, setPending] = useState<number | null>(null); // a second asked by a deep link, before the reader presses play
   const [playerSrc, setPlayerSrc] = useState<string | null>(null);
-  const hasLetterPdf = !!c.letter.pdf, hasEnclosurePdf = !!c.enclosure.pdf;
+  const hasLetterPdf = !!c.letter.pdf, hasEnclosurePdf = !!c.enclosure.pdf, hasEnclosureBPdf = !!c.enclosure_b?.pdf;
   const [doc, setDoc] = useState<Doc>(hasLetterPdf ? 'letter' : 'text');
   const rowRef = useRef<HTMLDivElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
@@ -153,14 +153,15 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
   useEffect(() => {
     const h = window.location.hash;
     if (h === '#enclosure-a') { setTimeout(() => setDoc(hasEnclosurePdf ? 'enclosure' : 'text'), 0); return; }
+    if (h === '#enclosure-b') { setTimeout(() => setDoc(hasEnclosureBPdf ? 'enclosure_b' : 'text'), 0); return; }
     const m = h.match(/^#turn-(\d+)$/) || h.match(/^#t=(\d+)$/);
     if (!m) return;
     const t = h.startsWith('#t=') ? Number(m[1]) : (turns.find((x) => x.n === Number(m[1]))?.t ?? null);
     if (t != null) setTimeout(() => { setPending(t); showTurn(t, true); }, 50);
-  }, [turns, showTurn, hasEnclosurePdf]);
+  }, [turns, showTurn, hasEnclosurePdf, hasEnclosureBPdf]);
 
   // the hit boxes over the chosen PDF: one per word a time runs through (scripts/import-open-letter.mjs)
-  const pdf: DocPdf | null = doc === 'letter' ? c.letter.pdf : doc === 'enclosure' ? c.enclosure.pdf : null;
+  const pdf: DocPdf | null = doc === 'letter' ? c.letter.pdf : doc === 'enclosure' ? c.enclosure.pdf : doc === 'enclosure_b' ? (c.enclosure_b?.pdf ?? null) : null;
   const { hotBoxes, hotSeconds } = useMemo(() => {
     const boxes: PdfHotBox[] = []; const secs = new Map<string, number>();
     (pdf?.boxes ?? []).forEach((b, i) => { const bid = `${doc}:${i}`; boxes.push({ id: bid, page: b.page, rect: b.rect, kind: 'unit', title: `Play the recording at ${clockLabel(b.t)}` }); secs.set(bid, b.t); });
@@ -176,15 +177,16 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
     <span className="inline-flex items-center gap-0.5">
       {hasLetterPdf && <button type="button" className={tabClass(doc === 'letter')} onClick={() => setDoc('letter')} aria-pressed={doc === 'letter'} title="The letter — the owner's PDF, every debate time a hit box"><FileText className="h-3.5 w-3.5" /> The letter</button>}
       {hasEnclosurePdf && <button type="button" className={tabClass(doc === 'enclosure')} onClick={() => setDoc('enclosure')} aria-pressed={doc === 'enclosure'} title="Enclosure A — the record and the debate, point by point"><FileText className="h-3.5 w-3.5" /> Enclosure A</button>}
-      <button type="button" className={tabClass(doc === 'text')} onClick={() => setDoc('text')} aria-pressed={doc === 'text'} title="The letter and the enclosure as text, with the same time links"><AlignLeft className="h-3.5 w-3.5" /> Text</button>
+      {hasEnclosureBPdf && <button type="button" className={tabClass(doc === 'enclosure_b')} onClick={() => setDoc('enclosure_b')} aria-pressed={doc === 'enclosure_b'} title="Enclosure B — the reply form that goes back in the stamped envelope"><FileText className="h-3.5 w-3.5" /> Enclosure B</button>}
+      <button type="button" className={tabClass(doc === 'text')} onClick={() => setDoc('text')} aria-pressed={doc === 'text'} title="The letter and the enclosures as text, with the same time links"><AlignLeft className="h-3.5 w-3.5" /> Text</button>
     </span>
   );
 
   const documentPane = (
     <div className={cn('min-w-0', review && 'h-full min-h-0 flex flex-col')}>
       {pdf ? (
-        <PdfViewer key={pdf.file} src={servedPdf(pdf)} bytes={pdf.bytes} downloadName={`${doc === 'letter' ? 'open-letter' : 'enclosure-a'}-mn-ag-candidates.pdf`}
-          title={`${doc === 'letter' ? c.letter.title : c.enclosure.title} — ${c.letter.date_line ?? ''}; a debate time on the page plays the recording from that moment`}
+        <PdfViewer key={pdf.file} src={servedPdf(pdf)} bytes={pdf.bytes} downloadName={`${doc === 'letter' ? 'open-letter' : doc === 'enclosure_b' ? 'enclosure-b' : 'enclosure-a'}-mn-ag-candidates.pdf`}
+          title={`${doc === 'letter' ? c.letter.title : doc === 'enclosure_b' ? (c.enclosure_b?.title ?? 'Enclosure B') : c.enclosure.title} — ${c.letter.date_line ?? ''}${doc === 'enclosure_b' ? '; the reply form, to go back in the stamped envelope' : '; a debate time on the page plays the recording from that moment'}`}
           height={review ? 'fill' : 'page'} chrome="pane" leading={tabs} hotBoxes={hotBoxes} activeHot={activeHot} onHot={onHot} />
       ) : (
         <div className={cn(paneShell, review && 'h-full')}>
@@ -202,9 +204,19 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
             <div id="enclosure-a" className="scroll-mt-4">
               <Prose md={c.enclosure.markdown} youtubeId={id} onTime={goTo} />
             </div>
+            {c.enclosure_b && (
+              <>
+                <hr className="mx-6 sm:mx-8 border-rule" />
+                <div id="enclosure-b" className="scroll-mt-4">
+                  {/* the form's ruled lines are rows of underscores in the text — rules across the pane, close-set, as on the form */}
+                  <Prose md={c.enclosure_b.markdown} youtubeId={id} onTime={goTo} className="[&_hr]:my-3 [&_hr]:border-ink/40" />
+                </div>
+              </>
+            )}
           </div>
           <div className="h-8 border-t border-rule px-4 flex items-center text-xs text-muted">
             <a href="#enclosure-a" className="underline text-accent-ink">Enclosure A</a>
+            {c.enclosure_b && (<><span className="mx-2">·</span><a href="#enclosure-b" className="underline text-accent-ink">Enclosure B</a></>)}
             <span className="mx-2">·</span>
             <a href="#transcript" className="underline text-accent-ink">The transcript</a>
           </div>
@@ -302,7 +314,7 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
   const record: ReactNode = (
     <div className={cn('mt-3 min-h-9 flex flex-wrap items-start justify-between gap-x-6 gap-y-1 text-[11px] text-muted leading-relaxed', !review && 'max-w-5xl mx-auto')}>
       <div className="min-w-0">
-        <span style={{ fontWeight: 600 }}>{c.letter.title}</span>, {c.letter.date_line ?? ''}, with Enclosure A — {hasLetterPdf ? 'the documents as rendered, with their text beside them' : 'the text as of ' + new Date(c.generated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Chicago' })}.
+        <span style={{ fontWeight: 600 }}>{c.letter.title}</span>, {c.letter.date_line ?? ''}, with {c.enclosure_b ? 'Enclosures A and B' : 'Enclosure A'} — {hasLetterPdf ? 'the documents as rendered, with their text beside them' : 'the text as of ' + new Date(c.generated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Chicago' })}.
       </div>
       <div className="min-w-0">
         The debate: {c.recording.title ?? c.recording.programme}, {c.recording.programme}, October 2, 2026 — <a href={c.recording.url} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">the recording on YouTube</a>; times are on the recording’s own clock.
