@@ -611,6 +611,10 @@
       "destination": "/uploads/kirchner-v-ellison/2024_-_Nordgren_v._Hennepin_County_96_F.4th_1072_8th_Cir._CA8_slip_No._22-1902_21_Mar._2024_.pdf"
     },
     {
+      "source": "/api/casereview/file/Minnesota Attorney General \\(Ellison\\) - Annual Report Required by Minnesota Statutes Sections 8.08 and 8.15 Subd 4, Fiscal Year 2025 \\(Office of the Attorney General, St Paul 2025\\) \\[Minnesota Legislative Reference Library 251612\\]",
+      "destination": "/uploads/kirchner-v-ellison/Minnesota_Attorney_General_Ellison_-_Annual_Report_Required_by_Minnesota_Statutes_Sections_8.08_and_8.15_Subd_4_Fiscal_Year_2025_Office_of_the_Attorney_General_St_Paul_2025_Minnesota_Legislative_Reference_Library_251612_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/kirchner-v-ellison/:id.pdf"
     }
