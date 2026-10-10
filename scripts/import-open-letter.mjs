@@ -320,4 +320,8 @@ function main() {
   for (const [role, p] of [['letter', letterPdf], ['enclosure', enclosurePdf]]) console.log(p ? `  ${role.padEnd(10)} PDF ${p.sha256.slice(0, 12)}  ${String(p.bytes).padStart(6)} B  ${p.pages} pp  ${p.boxes.length} time boxes → ${p.file}` : `  ${role.padEnd(10)} PDF none (${role === 'letter' ? 'pass --letter-pdf <the published copy>' : '--enclosure-pdf none'})`);
   console.log(`  → ${OUT}`);
 }
-if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) main();
+// run only when THIS file is the script invoked — by its name, not by import.meta.url: scripts/test-open-letter.mjs
+// bundles this module (esbuild), and under the bundle import.meta.url is the bundle's own path, which matched
+// process.argv[1] and ran the import as a side effect of the test (2026-10-09: the test overwrote the content file
+// without the --letter-pdf flag, silently, every run)
+if (process.argv[1] && /import-open-letter\.mjs$/.test(process.argv[1])) main();
