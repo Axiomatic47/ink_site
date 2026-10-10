@@ -61,6 +61,15 @@ const PDF_DEFAULTS = {
 };
 const opt = (f) => { const i = process.argv.indexOf(f); return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : null; };
 const LETTER_PDF = opt('--letter-pdf');
+// THE RECORDING'S SOURCE (owner 2026-10-09 ~20:4x, verbatim through a636b3d9: the YouTube video "if we can use [it]
+// without ad interruption on site and if not" the owner's own file of the broadcast). YouTube's watch page for the
+// video carries adPlacements, so the embed can show ads; the ad-free way is the file itself, served from a host the
+// owner chooses (the file is 155,901,012 bytes — over GitHub's 100 MB single-file limit, so never in this
+// repository; an object store or a video host, same-origin or a named origin in the CSP's media-src) and played by
+// a <video> element with no third party at all. `--video-url <https URL or site path>` records it; without the
+// flag the page keeps the embed. Republishing the broadcast is the owner's decision, not the importer's.
+const VIDEO_URL = opt('--video-url');
+if (VIDEO_URL && !/^(https:\/\/[^\s"']+|\/[^\s"']+)$/.test(VIDEO_URL)) fail(`--video-url must be an https URL or a site path: ${VIDEO_URL}`);
 const ENCLOSURE_PDF = opt('--enclosure-pdf') ?? join(TREE, PDF_DEFAULTS.enclosure);
 const UPLOADS_DIR = join(ROOT, 'public', 'uploads', 'correspondence', SLUG);
 const UPLOADS_URL = `/uploads/correspondence/${SLUG}`;
@@ -298,7 +307,7 @@ function main() {
     slug: SLUG,
     generated: new Date().toISOString(),
     source: { tree: 'work_station', commit, files },
-    recording: { ...transcript.recording, programme: 'MPR News Politics Friday', date: '2026-10-02', moderator: transcript.speakers.MOD },
+    recording: { ...transcript.recording, programme: 'MPR News Politics Friday', date: '2026-10-02', moderator: transcript.speakers.MOD, file: VIDEO_URL ? { url: VIDEO_URL } : null },
     letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, text_source: letterRole, redacted, markdown: letterMd, pdf: letterPdf },
     enclosure: { title: E.meta.title ?? 'Enclosure A', header: E.meta.header ?? null, markdown: enclosureMd, pdf: enclosurePdf },
     transcript: { title: transcript.title, source: transcript.source, method: transcript.method, header_omitted: transcript.header_omitted, speakers: transcript.speakers, turns: transcript.turns },

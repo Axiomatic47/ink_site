@@ -1,17 +1,17 @@
 {
  "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.",
  "slug": "mn-ag-candidates-open-letter",
- "generated": "2026-10-10T01:23:31.356Z",
+ "generated": "2026-10-10T01:27:15.294Z",
  "source": {
   "tree": "work_station",
-  "commit": "1d920f67555abaeb5300975c9e03a00601faaa6e",
+  "commit": "1864bc16f180436fe36cc9a3ed3f57178d470508",
   "files": [
    {
     "role": "letter",
     "path": "2_MN-0-26-cv-02594-LMP-DJF/05_Correspondence/OPEN_LETTER_AG_CANDIDATES_ELLISON_SCHUTZ_2026-10.md",
-    "bytes": 13215,
-    "sha256": "b0e2c69bba05b1c3dc811418c7532076ebfbb7ddd5eff45eff1e9a0365db9b00",
-    "commit": "1d920f67555abaeb5300975c9e03a00601faaa6e"
+    "bytes": 13084,
+    "sha256": "184f6107371930778ff9d1691fc79654aba551aebac2a9a5c05fb5a184466e8d",
+    "commit": "1864bc16f180436fe36cc9a3ed3f57178d470508"
    },
    {
     "role": "letter_published",
@@ -44,7 +44,8 @@
   "duration_s": 3540,
   "programme": "MPR News Politics Friday",
   "date": "2026-10-02",
-  "moderator": "Brian Bakst"
+  "moderator": "Brian Bakst",
+  "file": null
  },
  "letter": {
   "title": "Open Letter to the Candidates for Minnesota Attorney General",

@@ -194,7 +194,15 @@ p=none, all on Netlify DNS).
   page there. THE PLAYER is YouTube's privacy-enhanced embed (`www.youtube-nocookie.com`, `enablejsapi=1`, the
   page's origin) driven by the widget's postMessage protocol — no YouTube script on this site, and NOTHING from
   YouTube loads until the reader presses play or a time (a facade stands first); the one CSP in `netlify.toml`
-  gained `frame-src https://www.youtube-nocookie.com` for it, and the privacy page says so. A Reading-mode toggle
+  gained `frame-src https://www.youtube-nocookie.com` for it, and the privacy page says so. THE OWNER'S WORD ON
+  THE RECORDING (2026-10-09 ~20:4x): the YouTube video "if we can use [it] without ad interruption on site and if
+  not" the owner's own file of the broadcast. Measured: the video's watch page carries `adPlacements`, so the embed
+  can show YouTube's ads — the ad-free way is the file, played by a plain `<video>` (no third party at all), from a
+  host the owner chooses: the file is 155.9 MB, over GitHub's 100 MB single-file limit, so NEVER in this repository
+  (an object store or a video host; same-origin, or its origin added to the CSP as `media-src`). The importer takes
+  it as `--video-url <https URL or site path>` → `recording.file`; the page then renders the `<video>` and every
+  time seeks it; without the flag the embed stands. Republishing MPR's broadcast is the owner's decision, named to
+  them; the importer decides nothing about rights. A Reading-mode toggle
   stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
   the play button; nothing autoplays on load).
 - Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`

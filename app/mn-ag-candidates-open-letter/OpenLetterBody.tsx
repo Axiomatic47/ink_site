@@ -98,6 +98,7 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const turns = c.transcript.turns;
   const id = c.recording.youtube_id;
 
@@ -136,10 +137,13 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
     pane.scrollTo({ top: pane.scrollTop + delta - pane.clientHeight / 3, behavior: 'smooth' });
   }, [turns]);
 
-  /** play the recording from second t, here on the page; the first time loads the player, after that it seeks */
+  /** play the recording from second t, here on the page: the owner's file in the <video> when there is one (no
+      third party), else the embed — the first time loads the player, after that it seeks */
   const goTo = useCallback((t: number) => {
     showTurn(t, true);
     setPending(null);
+    const v = videoRef.current;
+    if (v) { v.currentTime = Math.max(0, t); void v.play().catch(() => { /* the browser wants a gesture first: the time is set, the reader presses play */ }); return; }
     if (!playerSrc) { setPlayerSrc(embedUrl(id, t)); return; }
     post({ event: 'command', func: 'seekTo', args: [Math.max(0, Math.floor(t)), true] });
     post({ event: 'command', func: 'playVideo', args: [] });
@@ -212,7 +216,11 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
   const player = (
     <div className="shrink-0 border-b border-rule bg-black">
       <div className="relative w-full" style={{ aspectRatio: '16 / 9', maxHeight: review ? '45vh' : undefined }}>
-        {playerSrc ? (
+        {c.recording.file ? (
+          // the owner's own copy of the broadcast: a plain <video>, nothing from any third party, no ads
+          <video ref={videoRef} src={c.recording.file.url} controls preload="metadata" playsInline className="absolute inset-0 h-full w-full bg-black"
+            title={c.recording.title ?? 'The debate'} aria-label={`${c.recording.title ?? 'The debate'} — the recording`} />
+        ) : playerSrc ? (
           <iframe ref={playerRef} src={playerSrc} onLoad={onPlayerLoad} title={c.recording.title ?? 'The debate'} className="absolute inset-0 h-full w-full"
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
         ) : (

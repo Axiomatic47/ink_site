@@ -34,7 +34,9 @@ export interface OpenLetterContent {
   slug: string;
   generated: string;
   source: { tree: string; commit: string; files: { role: string; path: string; bytes: number; sha256: string; commit: string }[] };
-  recording: { youtube_id: string; url: string; title: string | null; duration: string | null; duration_s: number | null; programme: string; date: string; moderator: string };
+  /** `file`: the owner's own copy of the broadcast, served from a host of their choosing and played by a <video>
+      element with no third party (the ad-free way; the embed is the fallback when it is null) */
+  recording: { youtube_id: string; url: string; title: string | null; duration: string | null; duration_s: number | null; programme: string; date: string; moderator: string; file?: { url: string } | null };
   letter: { title: string; header: string | null; date_line: string | null; redacted: string[]; markdown: string; pdf: DocPdf | null };
   enclosure: { title: string; header: string | null; markdown: string; pdf: DocPdf | null };
   transcript: { title: string; source: string; method: string; header_omitted: string[]; speakers: Record<string, string>; turns: Turn[] };
