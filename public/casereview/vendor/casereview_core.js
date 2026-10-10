@@ -170,13 +170,28 @@ export function foldText(s) {
 // bare page-number footer, and a leading line-number column on pleading
 // paper (a text item that is only a 1–2 digit number). Pinned by the shared
 // fixture's `page_chrome` cases.
-const STAMP_LINE = /^Case \d+:\d{2}-[a-z]{2}-\d+(?:-[A-Z]+)?\s+Document \d+(?:-\d+)?\s+Filed \d{2}\/\d{2}\/\d{2,4}\s+Page \d+ of \d+$/;
+// P97 (studio-spec 7d866ecf's spec row § 7.1, the MN lane): the D. Minn. form
+// of the same stamp — "CASE 0:26-cv-02594-LMP-DJF Doc. 37 Filed 10/07/26 Page
+// 1 of 10" (pdf.js hands it as the DDC's four pieces on one baseline, measured
+// on MN2594-037 pp. 1–2 and MN2594-001 p. 1) — so: the court's capitals under
+// the i flag (the checker carried re.I already; a latent two-readers difference
+// closed), up to two judge suffixes, and `Doc.` beside `Document`.
+const STAMP_LINE = /^Case \d+:\d+-[a-z]{2}-\d+(?:-[A-Z0-9]+){0,2}\s+Doc(?:ument|\.) \d+(?:-\d+)?\s+Filed \d{2}\/\d{2}\/\d{2,4}\s+Page \d+ of \d+$/i;
 // R3 (website-developer f28bb754, measured on ECF 74, 77 and 51-54): pdf.js
 // hands the stamp as FOUR items — "Case 1:25-cv-02735-ACR" | "Document 74" |
 // "Filed 08/28/26" | "Page 20 of 60" — so each fragment is chrome when it is
 // a whole item; the checker strips the whole line, and the two readers'
 // page text then agree.
-const STAMP_FRAG = /^(?:Case \d+:\d{2}-[a-z]{2}-\d+(?:-[A-Z0-9]+)?|Document \d+(?:-\d+)?|Filed \d{2}\/\d{2}\/\d{2,4}|Page \d+ of \d+)$/;
+const STAMP_FRAG = /^(?:Case \d+:\d+-[a-z]{2}-\d+(?:-[A-Z0-9]+){0,2}|Doc(?:ument|\.) \d+(?:-\d+)?|Filed \d{2}\/\d{2}\/\d{2,4}|Page \d+ of \d+)$/i;
+// P97: THE EIGHTH CIRCUIT HEADER on every appeal page's layer ("Appellate Case:
+// 26-1615 Page: 1 Date Filed: 05/12/2026 Entry ID: 5639443 RESTRICTED"; absent
+// from the mirrors, so the readers disagreed on 26-1615). pdf.js hands it as
+// THREE items on one baseline — "Appellate Case: 26-1615" | "Page: 1" | "Date
+// Filed: 05/12/2026 Entry ID: 5639443 RESTRICTED" (26-1615_Brief pp. 2–3; the
+// cover carries none) — which the line join rebuilds whole; pdftotext hands two
+// lines with "Page: 1" apart. The whole line and each fragment as a whole line.
+const APPEAL_LINE = /^Appellate Case:\s+\d+-\d+\s+Page:\s+\d+\s+Date Filed:\s+\d{2}\/\d{2}\/\d{4}\s+Entry ID:\s+\d+(?:\s+RESTRICTED)?$/;
+const APPEAL_FRAG = /^(?:Appellate Case:\s+\d+-\d+(?:\s+Page:\s+\d+)?|Page:\s+\d+|Date Filed:\s+\d{2}\/\d{2}\/\d{4}(?:\s+Entry ID:\s+\d+)?(?:\s+RESTRICTED)?|Entry ID:\s+\d+(?:\s+RESTRICTED)?|RESTRICTED)$/;
 const LINE_NUMBER = /^-?\s*\d{1,3}\s*-?$/;              // a bare page number, dashed or not ("- 12 -"); THREE digits since P70 (ECF 51 is 268 pages: '179' survived the fold and sat between a wrap head and the seam)
 const PAGE_MARKER = /^\*\*\[Page \d+\]\*\*/;           // machine_read's page marker (the stamp follows in italics)
 // a leading line-number COLUMN on pleading paper: "12  The record shows…" —
@@ -348,7 +363,7 @@ export function chromeLines(rawLines) {
 export function isPageChrome(text) {
   const f = foldText(text);
   const raw = String(text == null ? '' : text);
-  if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
+  if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || APPEAL_LINE.test(f) || APPEAL_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
   const head = headText(raw);                                        // P81 (1): a U.S. Reports running head, whole line
   return US_HEAD_LINE.test(head) || US_HEAD_MISC.test(head);
 }

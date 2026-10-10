@@ -17,17 +17,19 @@ read on all three sites — a change to them lands on every site, byte for byte.
   (`serve out`, the Studio's static preview pane) serves the sole case.
 - **The route** is `/kirchner-v-ellison` (`app/kirchner-v-ellison/`: the page, the host `CaseReviewMount`, the skin
   `casereview.css` on this site's tokens plus the four it lacked — the review blue and the three verdict colours).
-  The host names the case to the window twice, both the slug and never a path: `projroot=kirchner-v-ellison` in the
-  page URL (what the window before 5d048462 read) and `mountCaseReview({ root })` (the window from 5d048462 prefers it;
-  the same landing takes the hide-before threshold from the registry's `nav.hide_before` — none hidden until the lane sets one).
+  The host names the case to the window by the mount option alone, `mountCaseReview({ root })` (the Studio's P97v; the
+  window carries `?root=<slug>` on its fetches, the page URL carries no token), the slug and never a path; the same landing
+  takes the hide-before threshold from the registry's `nav.hide_before` — none hidden until the lane sets one.
   Without a bundle the route is a 404 and out of the sitemap — never a placeholder. The default document is the
-  importer's (the newest filing with a link table) when it names one, else the document whose table carries the most
-  rows (`src/lib/case-review.server.ts`).
-- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at 5d048462 =
-  the export at 5d048462, the Studio's P97v landing of 2026-10-09; the shared checkout's HEAD moves under other seats):
+  importer's (the newest filing with a link table) when it names one, else the newest served document with a link table
+  (filed date, then registry order — lawsofexistence.com's rule, so both sites open the MN case on the same document;
+  today the open letter) (`src/lib/case-review.server.ts`).
+- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at a90e40ec =
+  the export at a90e40ec, the Studio's P97 landing of 2026-10-09 — the second case root, the D. Minn. stamp, the video
+  kind; the three sites share this floor; the shared checkout's HEAD moves under other seats):
 
 ```
-git -C ~/Git/ourstudio worktree add --detach <wt> 5d048462
+git -C ~/Git/ourstudio worktree add --detach <wt> a90e40ec
 cd <wt> && env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export \
   /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out_dir>          # ~2 s at registry v0; refuses a lane that moves
 node scripts/import-casereview.mjs --from <out_dir> --case kirchner-v-ellison  # the bundle, the PDFs, the keyed rules
@@ -42,8 +44,8 @@ git -C ~/Git/ourstudio worktree remove <wt>
   `casereview:check` joins `npm run build` with that landing (the vendor check is in the build from the first commit).
 - **The video row** (the owner's word 2026-10-09: the recording is YouTube's, displayed in the review pane, every
   debate time a working hyperlink; the file on no host): `kind` video, `publish` link, `embed {provider, id}`,
-  `duration` — the importer keeps `embed` and `duration` by name (DOC_KEEP); the window's tab for it is the Studio's
-  (P97's mechanics) and arrives by sync; this site's CSP already allows the privacy-enhanced YouTube frame.
+  `duration` — the importer keeps `embed` and `duration` by name (DOC_KEEP); the lane's clock rows are `video` rows since P97 (the served
+  `target_pin_page.seconds` is the player's second); the window's tab for it is the Studio's and arrives by sync; this site's CSP already allows the privacy-enhanced YouTube frame.
 - **Previews.** The Studio's STATIC pane (`serve out`) serves the review through `serve.json`; the DEV pane
   (`next dev`) has no rewrite for `/api/casereview/*` on a static-export site, so the window's fetches 404 there —
   review this page on the static pane or a private port.
