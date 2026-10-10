@@ -1997,6 +1997,72 @@ export function textCarries(text, label) {
   return false;
 }
 
+// ---------------------------------------------------------------- the video kind (studio-spec 7d866ecf's spec row f14b45ce § 5.5;
+// the owner's word 2026-10-09: YouTube, displayed, every debate time a working hyperlink to the second, site and Studio alike)
+/** A recording target: the registry's `embed` ({provider: 'youtube', id}) on the doc and the served row's clock pin
+ *  (`target_pin_page` by "clock" with `seconds`, `end_seconds` for a range, `pdf` the transcript's minute page) → what the
+ *  player and the words need, or null when the row is not a video row. `clock` is the pin as printed without its "at"
+ *  (the hyperlink's text); `pages` the served passage's minute pages (text per page — the transcript mirror is the one
+ *  store; absent on a host whose importer drops the row key). The window never parses a pin: the seconds are the row's. */
+export function videoTarget(t, doc) {
+  const e = doc && doc.embed;
+  if (!e || e.provider !== 'youtube' || typeof e.id !== 'string' || !/^[A-Za-z0-9_-]{6,}$/.test(e.id)) return null;
+  const pp = t && t.target_pin_page;
+  if (!pp || pp.by !== 'clock' || !Number.isFinite(+pp.seconds) || +pp.seconds < 0) return null;
+  const seconds = Math.floor(+pp.seconds);
+  const end = Number.isFinite(+pp.end_seconds) && +pp.end_seconds > seconds ? Math.floor(+pp.end_seconds) : null;
+  const clock = String(pp.key || t.target_pin || clockText(seconds)).replace(/^at\s+/i, '').trim() || clockText(seconds);
+  const pages = t.passage && Array.isArray(t.passage.pages)
+    ? t.passage.pages.filter((x) => x && typeof x.text === 'string').map((x) => ({ page: isPage(+x.page) ? +x.page : (isPage(+x.pdf) ? +x.pdf : null), pdf: isPage(+x.pdf) ? +x.pdf : (isPage(+x.page) ? +x.page : null), text: x.text }))
+    : [];
+  return { provider: 'youtube', id: e.id, seconds, end, clock, pdf: isPage(+pp.pdf) ? +pp.pdf : null, pdfEnd: isPage(+pp.pdf_end) ? +pp.pdf_end : null,
+    pages, quote: String(t.target_quote || ''), watchUrl: `https://www.youtube.com/watch?v=${encodeURIComponent(e.id)}&t=${seconds}s` };
+}
+/** Seconds as a clock: 169 → "2:49", 3453 → "57:33", 3660 → "1:01:00". */
+export function clockText(seconds) {
+  const s = Math.max(0, Math.floor(+seconds || 0));
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+  return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`;
+}
+/** The privacy-enhanced embed (f28bb754's facade protocol, the sites' player): nothing from YouTube loads until the reader
+ *  presses play; then this iframe, with the JS API on so a later citation SEEKS the frame instead of reloading it. */
+export function videoEmbedUrl(v, origin) {
+  const q = [`enablejsapi=1`, `origin=${encodeURIComponent(origin || '')}`, `start=${Math.max(0, Math.floor(+v.seconds || 0))}`, 'autoplay=1', 'rel=0', 'modestbranding=1'];
+  if (Number.isFinite(+v.end) && +v.end > +v.seconds) q.push(`end=${Math.floor(+v.end)}`);
+  return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?${q.join('&')}`;
+}
+/** The quote's span marked in a minute's text — [{text, mark}] in order, the text whole. The quote's fragments (the DDC
+ *  convention: ' … ' between them) are searched in order through core's fold on both sides (so the transcript's curly
+ *  apostrophe meets the row's straight one); a fragment the page does not carry whole — the seam case, a quote running on
+ *  to the next minute — marks its longest head or tail of three words or more; nothing found marks nothing. */
+export function markQuote(text, quote) {
+  const raw = String(text == null ? '' : text);
+  const fm = foldMap(raw, { page: false });
+  const out = [];
+  let cursor = 0, searchFrom = 0;
+  const push = (from, to) => { if (to > from) { if (from > cursor) out.push({ text: raw.slice(cursor, from), mark: false }); out.push({ text: raw.slice(from, to), mark: true }); cursor = to; } };
+  const find = (frag) => {
+    const q = foldMap(frag, { page: false }).text.trim();
+    if (q.length < 3) return null;
+    const i = fm.text.indexOf(q, searchFrom);
+    if (i < 0) return null;
+    const from = fm.map[i], to = fm.map[i + q.length - 1] + 1;
+    return { from, to, foldEnd: i + q.length };
+  };
+  const frags = String(quote == null ? '' : quote).split(/\s*(?:…|\.\s?\.\s?\.)\s*/).map((f) => f.trim()).filter(Boolean);
+  for (const frag of frags) {
+    let hit = find(frag);
+    if (!hit) {
+      const words = frag.split(/\s+/);
+      for (let n = words.length - 1; n >= 3 && !hit; n--) hit = find(words.slice(0, n).join(' '));          // the head (the quote runs on to the next page)
+      if (!hit) { const saved = searchFrom; searchFrom = 0; for (let n = words.length - 1; n >= 3 && !hit; n--) hit = find(words.slice(words.length - n).join(' ')); if (!hit) searchFrom = saved; }   // the tail (the quote began on the page before)
+    }
+    if (hit) { push(hit.from, hit.to); searchFrom = hit.foldEnd; }
+  }
+  if (cursor < raw.length) out.push({ text: raw.slice(cursor), mark: false });
+  return out.length ? out : [{ text: raw, mark: false }];
+}
+
 export function saysFor(u, k, t, doc, resolved = null) {
   const parts = [];
   const say = (text) => { if (text) parts.push({ text }); };
@@ -2017,6 +2083,19 @@ export function saysFor(u, k, t, doc, resolved = null) {
   // R7: only an http(s) URL is ever a live link — a javascript: or data: target is text
   if (t.kind === 'url') { say(`${head} — a url row whose target is not an http(s) address: ${t.target_doc || '(blank)'}. Nothing opened.`); return { kind: 'dead', opens: false, locate: false, parts }; }
   if (!doc) { say(`${head} — target ${t.target_doc || '(blank)'} is not in the registry. Nothing opened.`); return { kind: 'bad', opens: false, locate: false, parts }; }
+  // THE VIDEO KIND (§ 5.5), before publishedAway: a recording is not served as a file on any host (path '', publish link) —
+  // the embed is what opens: the player at the second in the reference pane, the transcript's minute beside it; the
+  // hyperlink text is the clock as printed, the link the watch page at that second (the browser's way, for a host without the frame)
+  const vt = videoTarget(t, doc);
+  if (vt) {
+    say(`${head} — the recording at `); parts.push({ text: vt.clock, href: vt.watchUrl });
+    // the two served facts (7d866ecf's ruling 2026-10-09): the minute page is the CLOCK's (⌊s/60⌋ + 1, one rule, no exception);
+    // the passage carries ITS pages — a turn sits whole under the minute it begins, so the words can be on the page before
+    const turnPage = vt.pages.length && vt.pages[0].pdf != null && vt.pdf != null && vt.pages[0].pdf !== vt.pdf ? vt.pages[0].pdf : null;
+    say(` (transcript minute page ${vt.pdf != null ? vt.pdf : '?'}${vt.pdfEnd != null && vt.pdfEnd !== vt.pdf ? `–${vt.pdfEnd}` : ''}${turnPage !== null ? `; the turn begins on page ${turnPage}` : ''}): the player opens at that second, the minute's words beside it${vt.pages.length ? '' : ' (no transcript text served for this row)'}${u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : ''}${t.status === 'mapped' ? ' · mapped, not yet heard at the target' : ''}`);
+    unfound();
+    return { kind: 'video', opens: true, locate: false, parts, video: vt };
+  }
   // a target this host does not serve (publish link | hold): the words, no fetch
   const away = publishedAway(doc);
   if (away) { say(`${head} — `); parts.push(...away.parts); return { kind: away.kind, opens: false, locate: false, parts }; }

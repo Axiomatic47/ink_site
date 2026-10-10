@@ -24,9 +24,9 @@ read on all three sites — a change to them lands on every site, byte for byte.
   importer's (the newest filing with a link table) when it names one, else the newest served document with a link table
   (filed date, then registry order — lawsofexistence.com's rule, so both sites open the MN case on the same document;
   today the open letter) (`src/lib/case-review.server.ts`).
-- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at e779a953 —
-  the Studio's P97c of 2026-10-09, the local two-case picker, viewer-only — over the export at a90e40ec, the P97 landing
-  whose checker the bundle carries: the second case root, the D. Minn. stamp, the video kind; the three sites share this
+- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at a4abcb96 —
+  the Studio's video tab of 2026-10-09 and its follow-up, after P97c's two-case picker, viewer-only — over an export under
+  checker P97, the landing whose checker the bundle carries: the second case root, the D. Minn. stamp, the video kind; the three sites share this
   floor; a viewer-only landing moves the window without an export, a checker landing moves both; the shared checkout's
   HEAD moves under other seats):
 
@@ -47,7 +47,9 @@ git -C ~/Git/ourstudio worktree remove <wt>
 - **The video row** (the owner's word 2026-10-09: the recording is YouTube's, displayed in the review pane, every
   debate time a working hyperlink; the file on no host): `kind` video, `publish` link, `embed {provider, id}`,
   `duration` — the importer keeps `embed` and `duration` by name (DOC_KEEP); the lane's clock rows are `video` rows since P97 (the served
-  `target_pin_page.seconds` is the player's second); the window's tab for it is the Studio's and arrives by sync; this site's CSP already allows the privacy-enhanced YouTube frame.
+  `target_pin_page.seconds` is the player's second); the window's tab (a4abcb96): a facade, then the privacy-enhanced embed at
+  the second, the minute's words beside it — which is why the importer keeps `passage` on video rows alone
+  (`ROW_KEEP_ON_VIDEO`; a recording has no PDF to read the words from); this site's CSP already allows the privacy-enhanced YouTube frame.
 - **Previews.** The Studio's STATIC pane (`serve out`) serves the review through `serve.json`; the DEV pane
   (`next dev`) has no rewrite for `/api/casereview/*` on a static-export site, so the window's fetches 404 there —
   review this page on the static pane or a private port.

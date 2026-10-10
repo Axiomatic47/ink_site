@@ -125,9 +125,13 @@ function publicDoc(d, pub) {
   return o;
 }
 const ROW_DROP = new Set(['by', 'note', 'passage']);
+// … except on a VIDEO row (the Studio's video tab, 2026-10-09): a recording has no PDF, so the row's `passage` — the transcript
+// mirror's minute, the words the tab marks beside the player — is the only text the window can show; it is kept on rows of kind
+// video and dropped everywhere else as before (agreed by name 55339aa7 ⇄ f28bb754, 2026-10-10).
+const ROW_KEEP_ON_VIDEO = new Set(['passage']);
 function publicRow(r) {
   const o = {};
-  for (const [k, v] of Object.entries(r)) if (!ROW_DROP.has(k)) o[k] = v;
+  for (const [k, v] of Object.entries(r)) if (!ROW_DROP.has(k) || (r.kind === 'video' && ROW_KEEP_ON_VIDEO.has(k))) o[k] = v;
   return o;
 }
 function publicTable(t) {

@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { apiQuery, buildHash, casePicker, filterNav, foldText, gapPage, hideRows, ligatureDropFor, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { apiQuery, buildHash, casePicker, clockText, filterNav, foldText, gapPage, hideRows, ligatureDropFor, markQuote, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState, videoEmbedUrl } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -197,8 +197,12 @@ function rowFromJson(j) {
     // P89 (studio-spec 7d866ecf 694d1680): the target pages of this row's span the checker's P83 detector reads as two-column — [] none, null not measured, absent (a served process before the landing) → null
     target_columns: Array.isArray(j.target_columns) ? j.target_columns.map(Number).filter(Number.isFinite) : null,
     target_ligature_drop: typeof j.target_ligature_drop === 'boolean' ? j.target_ligature_drop : null,   // P95: the checker's document fact, per row
-    // P66: how a statute pin resolved through the target's SECTION map, when the registry did ({pdf, by, key, file})
+    // P66: how a statute pin resolved through the target's SECTION map, when the registry did ({pdf, by, key, file}); a video
+    // row's carries by "clock" with the seconds (§ 5.5)
     target_pin_page: j.target_pin_page && typeof j.target_pin_page === 'object' ? j.target_pin_page : null,
+    // the checker's served passage ({oracle, retry, wrapped, pages: [{page, pdf, text}]}) — read for a VIDEO row alone (the
+    // transcript minute beside the player; the one store); a PDF row's passage is located in the pane. A host's importer may drop it.
+    passage: j.passage && typeof j.passage === 'object' && Array.isArray(j.passage.pages) ? j.passage : null,
   };
   if (j.unit_id) r.unit_id = j.unit_id;
   if (j.k) r.k = +j.k;
@@ -691,7 +695,8 @@ async function openRight(id, opts = {}) {
   const doc = st.byId.get(id);
   if (!doc) { says(`${id} is not in the registry — nothing opened.`, 'bad'); return false; }
   // a row this host does not serve (publish link | hold, path null — the site bundle): core's words, no fetch (the Studio's rows carry paths)
-  { const away = publishedAway(doc); if (away) { sayParts(away); return false; } }
+  // — a RECORDING (§ 5.5: embed on the doc) is never a file; its tab is the player, so the publish word does not refuse it
+  if (!isVideoDoc(doc)) { const away = publishedAway(doc); if (away) { sayParts(away); return false; } }
   let x = tabsExploring(st.tabs.bar);
   if (!x) { st.tabs.bar = tabsOpen(st.tabs.bar, { doc: null }); x = tabsExploring(st.tabs.bar); }
   activateTab(x.id, { save: false });
@@ -713,6 +718,8 @@ async function openInto(S, id, opts = {}) {
   S.reviewable = !!(doc.has_links || st.source.kind === 'fixture');
   if (S === st.right) notesOnDoc('right');
   renderNav();
+  if (isVideoDoc(doc)) return openVideoInto(S, doc, opts);   // § 5.5: the tab is the player and the transcript minute, no PDF
+  if (S.video) { S.video.root.remove(); S.video = null; S.host.classList.remove('is-video'); }   // a PDF replaces a recording in this tab: the frame goes (nothing plays unseen)
   if (!same) {
     S.links = null; S.units = null; S.boxesByPage = new Map(); S.passage = new Map(); S.stale = false;
     try { const o = await S.pane.open(st.source.fileUrl(id)); if (!o || S.id !== id) return false; }
@@ -737,6 +744,60 @@ async function openInto(S, id, opts = {}) {
     }
   }
   return true;
+}
+
+// ---------------------------------------------------------------- the video tab (§ 5.5 of studio-spec 7d866ecf's spec row f14b45ce)
+// A recording row (the registry's `embed`, a served clock pin) opens a TAB whose well is the PLAYER and the transcript's
+// MINUTE: the facade first (f28bb754's protocol, the sites' player — nothing from YouTube loads until the reader presses
+// play), then the privacy-enhanced iframe with the JS API on; a later citation to the same recording SEEKS the frame
+// (postMessage seekTo + playVideo) instead of reloading it; a hidden tab pauses; a PDF opening in the tab removes the frame.
+// The minute's words come from the row's served passage (the transcript mirror is the one store — no file to fetch), the
+// quote's span marked by core's markQuote; the hyperlink in the footer is core's (the clock as printed, the watch page).
+function isVideoDoc(doc) { return !!(doc && doc.embed && typeof doc.embed === 'object' && doc.embed.provider === 'youtube' && typeof doc.embed.id === 'string' && doc.embed.id); }
+const YT_ORIGIN = 'https://www.youtube-nocookie.com';
+async function openVideoInto(S, doc, opts = {}) {
+  const v = opts.video || null;   // core's videoTarget for the citation that opened it; a lazy restore or a nav click has none
+  const seconds = v ? v.seconds : Math.max(0, ((+opts.page || 1) - 1) * 60);
+  if (!S.video || S.video.docId !== doc.id) {
+    if (S.video) S.video.root.remove();
+    const root = document.createElement('div'); root.className = 'cr-video';
+    root.innerHTML = `<div class="cr-videobox"><button class="cr-videoplay" type="button"></button></div><div class="cr-videotext"></div>`;
+    S.host.appendChild(root);
+    S.video = { docId: doc.id, root, frame: null, seconds, end: null };
+    root.querySelector('.cr-videoplay').addEventListener('click', () => videoPlay(S, doc));
+  }
+  S.host.classList.add('is-video');
+  S.video.seconds = seconds; S.video.end = v ? v.end : null;
+  videoWords(S, doc, v, seconds);
+  if (S.video.frame) videoCommand(S, 'seekTo', [seconds, true]), videoCommand(S, 'playVideo', []);
+  S.page = +opts.page || Math.floor(seconds / 60) + 1;
+  return true;
+}
+function videoWords(S, doc, v, seconds) {
+  const btn = S.video.root.querySelector('.cr-videoplay');
+  btn.textContent = `▶ play at ${clockText(seconds)}${v && v.end !== null ? ` – ${clockText(v.end)}` : ''}`;
+  btn.title = `${doc.title || doc.label || doc.id} — loads the player from ${YT_ORIGIN.replace('https://', '')} only when pressed`;
+  const tx = S.video.root.querySelector('.cr-videotext');
+  if (!v) { tx.innerHTML = `<div class="cr-empty">${esc(doc.label || doc.id)} — the transcript's minute shows here when a citation opens the recording.</div>`; return; }
+  if (!v.pages.length) { tx.innerHTML = `<div class="cr-empty">${esc(doc.label || doc.id)} at ${esc(v.clock)} — no transcript text served for this row.</div>`; return; }
+  tx.innerHTML = v.pages.map((p) => `<div class="cr-videominute"><div class="cr-videominutehead">transcript minute page ${p.pdf != null ? p.pdf : '?'}${p.pdf != null ? ` · ${clockText((p.pdf - 1) * 60)}–${clockText((p.pdf - 1) * 60 + 59)}` : ''}</div><div class="cr-videominutetext">${markQuote(p.text, v.quote).map((x) => x.mark ? `<mark class="cr-videomark">${esc(x.text)}</mark>` : esc(x.text)).join('')}</div></div>`).join('');
+}
+function videoPlay(S, doc) {
+  if (!S.video || S.video.frame) return;
+  const box = S.video.root.querySelector('.cr-videobox');
+  const frame = document.createElement('iframe');
+  frame.src = videoEmbedUrl({ id: doc.embed.id, seconds: S.video.seconds, end: S.video.end }, location.origin);
+  frame.title = doc.title || doc.label || doc.id;
+  frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  frame.setAttribute('allowfullscreen', '');
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.addEventListener('load', () => { try { frame.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), YT_ORIGIN); } catch {} });
+  box.appendChild(frame); box.classList.add('is-playing');
+  S.video.frame = frame;
+}
+function videoCommand(S, func, args) {
+  const f = S.video && S.video.frame; if (!f) return;
+  try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), YT_ORIGIN); } catch {}
 }
 
 // ---------------------------------------------------------------- the tab bar (P88): the shell prints core's bar
@@ -764,7 +825,7 @@ function disposeTab(id) {
 function activateTab(id, { save = true } = {}) {
   const tab = tabsFind(st.tabs.bar, id); if (!tab) return;
   const cur = st.right;
-  if (cur && cur.host) { cur.host.hidden = true; const el = $('#crSays'); cur.says = { html: el.innerHTML, cls: el.className, title: el.title }; }
+  if (cur && cur.host) { cur.host.hidden = true; const el = $('#crSays'); cur.says = { html: el.innerHTML, cls: el.className, title: el.title }; videoCommand(cur, 'pauseVideo', []); }   // a hidden tab's recording pauses
   const S = tabState(id); st.right = S; S.host.hidden = false;
   st.tabs.bar = tabsActivate(st.tabs.bar, id);
   { const el = $('#crRightTitle'); const n = S.doc ? nameOf(S.doc) : 'reference pane'; el.textContent = n; el.title = n; }
@@ -897,10 +958,10 @@ async function openUnit(u, k = 1, opts = {}) {
 /** Open a unit's target in the RIGHT pane and box its passage — the one path for a citation from either pane (P87). */
 async function openTarget(u, k, t, doc) {
   const tp = targetPages(t, doc);
-  const ok = await openRight(t.target_doc, { page: tp.pdfPage || 1, marked: tp.marked });
+  const head = saysFor(u, k, t, doc, tp);   // pure — the same answer before and after the open; a video row's carries the player's seconds
+  const ok = await openRight(t.target_doc, { page: tp.pdfPage || 1, marked: tp.marked, video: head.video || null });
   if (!ok) return;
   const R = st.right;   // the exploring tab's state (P88): the passage and the words are its
-  const head = saysFor(u, k, t, doc, tp);
   sayParts(head);
   setRightPassage(R, null);   // the former passage goes; the right document's own citation boxes stay
   if (head.locate) {
