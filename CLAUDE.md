@@ -178,6 +178,28 @@ p=none, all on Netlify DNS).
   constant (`AFTER_PX` beside `BELOW_PX`, so a picked citation never moves the panes' edges). Both render only while the
   timeline's content exists AND names this book (`provenance.book_slug`); every other work shows nothing. Shell, not module.
 
+## The MN case in review mode — `/kirchner-v-ellison` (owner 2026-10-09: "Both sites will host the dmn review as well as and primarily the local review in ourstudio")
+
+- The Case Review window is the Studio's, vendored byte for byte under `public/casereview/vendor/` with its pdf.js
+  (4.10.38) under `public/lib/pdfjs/`, recorded in `VENDOR.json` — **never edit them here**; a rule change lands in
+  `~/Git/ourstudio` (studio-spec + frontend review) and comes by `npm run casereview:sync`; `npm run build` fails on
+  drift (`scripts/sync-casereview.mjs --check`). The three shims beside it (`base.js`, `filing/ctxmenu.js`,
+  `reviews.js`), `app/kirchner-v-ellison/` (the host, the skin) and `src/lib/case-review.server.ts` (the case table,
+  the stamp, the default document) are this repo's code. The same architecture carries the DDC case on
+  lawsofexistence.com and kirchnervjohnson.com; the MN lane's local review in the Studio is PRIMARY — the site follows
+  it, never leads.
+- The bundle under `public/casereview/kirchner-v-ellison/data/` is written by `scripts/import-casereview.mjs` from the
+  checker's EXPORT of the MN lane (`--from <export> --case kirchner-v-ellison`) — **never hand-edited**; the importer
+  is the ONE file shared by the three sites, byte for byte (a change is said by name to the other website seat first
+  and cut on both — the rule for Case Review keys). Publication is the registry's per-row `publish` word, fail-closed.
+  The served PDFs (`public/uploads/kirchner-v-ellison/`) are untracked until the owner's hosting word; the bundle lands
+  in git only with them.
+- The route 404s without a bundle and joins the sitemap with it. The window is named its case by the slug (`projroot`
+  in the URL and the mount option), never a path. Record cites in the open-letter page become links to this review
+  when the lane's rows reach them (the brief's sequence, § 5 (6)).
+- Read `docs/CASE_REVIEW_SITE.md` before touching any of it; the lane's contract is the admins' README under the case
+  root (`_admin/case_review/README.md`), the rulings the studio-spec's.
+
 ## The open letter to the candidates for Minnesota Attorney General (owner 2026-10-09)
 
 - `/mn-ag-candidates-open-letter` — the route the letter prints in its closing paragraph (the owner mails it

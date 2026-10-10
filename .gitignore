@@ -23,3 +23,8 @@ public/cv/
 # Owner Word exports beside the resume markdown (some carry the phone) — never committed;
 # the site PDFs are generated into public/cv/ or placed, phone-free, under public/resume/
 /*.pdf
+
+# The MN case's served PDFs (the Case Review bundle's files, ~244 MB at registry v0: the docket, the appeal, the shelf's
+# opinions, statutes and rules), copied by scripts/import-casereview.mjs — tracking them here (as lawsofexistence.com
+# tracks its filings) or hosting them elsewhere is the owner's hosting decision; until it, not tracked
+public/uploads/kirchner-v-ellison/

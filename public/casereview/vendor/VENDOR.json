@@ -1,0 +1,69 @@
+{
+  "what": "The Studio's Case Review WINDOW, vendored byte for byte — the window itself (casereview.js), its pure core (casereview_core.js), its PDF pane (casereview_pdf.js) and the pdf.js build they were tuned on. The site runs them as native ES modules from public/ — never bundled, never edited here; the three Studio modules the window imports (base.js, ../filing/ctxmenu.js, reviews.js) are the site's SHIMS beside it, the only host code. A rule change lands in the Studio first (studio-spec + frontend review) and syncs out with scripts/sync-casereview.mjs; `npm run casereview:check` refuses a build whose files drift from this record or from the Studio fixture's pdf.js pin.",
+  "source": {
+    "repo": "git@github.com:Axiomatic47/ourstudio.git",
+    "commit": "5d04846200fc1acdf9f1304c033352a83efe869b",
+    "files_last_changed": "5d04846200fc1acdf9f1304c033352a83efe869b",
+    "vendored": "2026-10-10T03:19:39.181Z"
+  },
+  "files": {
+    "casereview/vendor/casereview.js": {
+      "from": "ourstudio_frontend/ui/js/deck/casereview.js",
+      "sha256": "632f5eaf2a7591ac1e180e7c61028e8fb184cd0c2226c5e9bb3210ab9a0c5f7b"
+    },
+    "casereview/vendor/casereview_core.js": {
+      "from": "ourstudio_frontend/ui/js/deck/casereview_core.js",
+      "sha256": "5369b4c6201ed816fb387042d4ef6b941796bcf7c053ceb4416ffedaf5aec638"
+    },
+    "casereview/vendor/casereview_pdf.js": {
+      "from": "ourstudio_frontend/ui/js/deck/casereview_pdf.js",
+      "sha256": "61cfee2f5721c73f5ff46722c44495ca4cd707ee29485f3333da9980b8423ac4"
+    },
+    "lib/pdfjs/pdf.min.mjs": {
+      "from": "ourstudio_frontend/ui/lib/pdfjs/pdf.min.mjs",
+      "sha256": "27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c",
+      "version": "4.10.38"
+    },
+    "lib/pdfjs/pdf.worker.min.mjs": {
+      "from": "ourstudio_frontend/ui/lib/pdfjs/pdf.worker.min.mjs",
+      "sha256": "1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36",
+      "version": "4.10.38"
+    }
+  },
+  "dirs": {
+    "lib/pdfjs/standard_fonts": {
+      "from": "ourstudio_frontend/ui/lib/pdfjs/standard_fonts"
+    }
+  },
+  "why_this_pdfjs": "The pane's text rules were tuned on the pieces pdf.js 4.10.38 hands. Measured 2026-10-01: 6.3.289 differs on 60 of 60 pages of ECF 74 (page 1: 264 vs 130 items, hasEOL set differently), 6 of 18 of Adler v. Loyd, 0 of 39 of Ashcroft v. Iqbal. One build in both readers; an upgrade is a joint re-measure with the Studio.",
+  "shims": {
+    "casereview/vendor/base.js": "$ and esc — the deck's base helpers (ui/js/deck/base.js), same semantics",
+    "casereview/filing/ctxmenu.js": "showCtx/hideCtx — the deck's shared menu (ui/js/filing/ctxmenu.js) as a plain menu; the items that open the Studio's notes store are not drawn (the site has no /api/notes)",
+    "casereview/vendor/reviews.js": "openReview — the deck's review composer; unreachable on the site (the notes drawer never opens), a no-op"
+  },
+  "pdfjs_pin": {
+    "note": "copied from the Studio fixture's `pdfjs` section at sync time (tests/fixtures/casereview_fold.json); --check asserts every digest against the vendored copy, --source asserts this copy against the fixture at the recorded commit",
+    "version": "4.10.38",
+    "files": {
+      "pdf.min.mjs": "27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c",
+      "pdf.worker.min.mjs": "1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36"
+    },
+    "standard_fonts": {
+      "FoxitDingbats.pfb": "845c752392b6c914fb989c75a08b7792b88f542d2499042ef2889f8c814a16ed",
+      "FoxitFixed.pfb": "b6c8fe53f134b8b6d4578cd2d544df4cee9624c4efa8d51a560fb40ea296101b",
+      "FoxitFixedBold.pfb": "f1b7159702973f54fc86254ea38bcf3712b2a736eb3a0995751e9f4bb45ad603",
+      "FoxitFixedBoldItalic.pfb": "8a000945843bd31add06aee63bf9fd41b7578b4f3242a4b7cd46349ad9d24d4d",
+      "FoxitFixedItalic.pfb": "5007faf8320fa1fcc08b8894b356ad976f60b992ba29ee5272578bbdebaf3876",
+      "FoxitSerif.pfb": "4f57d2b9d884af8f907bf22df6019b52d86cbf6214fdbd02b1ae05472a543f35",
+      "FoxitSerifBold.pfb": "0bdf4b04e964139818d51eda03d566ba999fc3ba2421b1c6c51f9dc969022e80",
+      "FoxitSerifBoldItalic.pfb": "a406cac82583bf98175cb62c87ed5e95c45fbb34eece63a10b0a13e793cb2e10",
+      "FoxitSerifItalic.pfb": "610ae0687198045c4db5d1a6650fd5e92536631706382eb8b72e38df578d0ae9",
+      "FoxitSymbol.pfb": "47967d055530e7357088a08403115425643ec2cdfd6201ba8af0fbd7116c1539",
+      "LiberationSans-Bold.ttf": "361c61b82d575c5c35fd9157fda8b0194bcfcd0d88ea8521a4fb5dd53d33dddc",
+      "LiberationSans-BoldItalic.ttf": "a224075ac17495ad0a3af3bc0a419ac0704a8b3fd1095456201fb9b095fc281d",
+      "LiberationSans-Italic.ttf": "832b4406dbef23628800d3aaad21048534ac84d7e3ad955be83b8172ed8ef512",
+      "LiberationSans-Regular.ttf": "f8ace1f892b2bd9dc1792ba7f097fa7588f84fed48321480e04de5390828221f"
+    },
+    "why": "ONE pdf.js build in both readers (studio-spec fbf555d9's R2, 2026-10-01): every reading-order rule in core (pageLines, itemSeparator, footnoteMarkerSeam, the raised punctuation, the line-number piece, the two-column channel) was tuned on the pieces this build hands; f28bb754 measured pdfjs-dist 6.3.289 handing different items on 60/60 pages of ECF 74. The Studio's harness asserts these digests against ui/lib/pdfjs; a site's sync check asserts them against its vendored copy, so drift fails the build on either side. An upgrade is ONE Studio patch moving the pin and the files together, measured with pdfjs_diff over a brief, a slip and a LoC cut (the Python checker reads none of this section)."
+  }
+}

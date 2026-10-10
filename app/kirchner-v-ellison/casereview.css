@@ -1,0 +1,272 @@
+/* casereview.css — the SKIN of the Case Review window on kirchner.ink (the MN case, /kirchner-v-ellison).
+   The window is the Studio's, vendored byte for byte (public/casereview/vendor/casereview.js and its two modules);
+   this sheet is the one thing the site owns about how it looks. Every class name, grid track and placement rule is
+   the Studio's casereview.css (ourstudio ui/css/casereview.css) — only the tokens, the type and the surfaces are
+   the site's. Two pane colours: LEFT = the review blue, RIGHT = the site's brass — carried by the nav rows, the pane
+   keys and the hot boxes alike, so the reader learns them once. The panes never change size for content: the grid
+   rows are fixed, the wells scroll. */
+
+/* --- the deck's tokens, in the site's palette (light and dark through the RGB channel vars of globals.css) --- */
+#casereviewRoot {
+  /* four tokens kirchnervjohnson.com defines in its globals and this site does not: the review blue of the left pane and
+     the three verdict colours — the same values, light and dark (the dark set below) */
+  --c-pane-left: 53 116 240;
+  --c-ok: 64 128 72;
+  --c-warn: 176 122 24;
+  --c-bad: 178 58 58;
+  --cr-left: rgb(var(--c-pane-left));
+  --cr-right: rgb(var(--c-accent));
+  --bg: rgb(var(--c-card));
+  --panel: rgb(var(--c-paper));
+  --panel-2: rgb(var(--c-well));
+  --ink: rgb(var(--c-ink));
+  --text: rgb(var(--c-ink));
+  --dim: rgb(var(--c-muted));
+  --faint: color-mix(in srgb, rgb(var(--c-muted)) 72%, transparent);
+  --line: rgb(var(--c-rule));
+  --line-strong: color-mix(in srgb, rgb(var(--c-rule)) 55%, rgb(var(--c-muted)));
+  --accent: rgb(var(--c-pane-left));
+  --row-active: color-mix(in srgb, rgb(var(--c-pane-left)) 12%, transparent);
+  --green: rgb(var(--c-ok));
+  --yellow: rgb(var(--c-warn));
+  --red: rgb(var(--c-bad));
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fs-md: 12.5px;
+  --page-well: rgb(var(--c-well));
+  --page-paper: #fff;
+  --badge-ink: rgb(var(--c-on-ink));
+}
+.dark #casereviewRoot { --page-well: rgb(var(--c-well)); --c-pane-left: 110 160 255; --c-ok: 106 176 112; --c-warn: 232 190 92; --c-bad: 224 104 104; }
+
+/* --- the host: the window takes the viewport under the site's one-row head --- */
+.cr-host { display: flex; flex-direction: column; height: 100vh; height: 100dvh; min-height: 0; background: rgb(var(--c-paper)); }
+.cr-head { flex: none; display: flex; align-items: baseline; gap: 14px; padding: 8px 14px; border-bottom: 1px solid rgb(var(--c-rule)); font-size: 13px; color: rgb(var(--c-muted)); white-space: nowrap; overflow: hidden; }
+.cr-head .cr-caption { font-family: ui-serif, "Iowan Old Style", Palatino, Georgia, "Times New Roman", serif; font-size: 17px; color: rgb(var(--c-ink)); }
+.cr-head .cr-caption .v { color: rgb(var(--c-muted)); }
+.cr-head .cr-no { font-variant-numeric: tabular-nums; }
+.cr-head .cr-nav-links { margin-left: auto; display: flex; gap: 14px; }
+.cr-head .cr-mode { text-transform: uppercase; letter-spacing: .16em; font-size: 11px; color: rgb(var(--c-accent-ink)); }
+.cr-head a { color: rgb(var(--c-muted)); text-decoration: none; }
+.cr-head a:hover { color: rgb(var(--c-ink)); text-decoration: underline; }
+#casereviewRoot { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+
+.cr-page { display: flex; flex-direction: column; height: 100%; min-height: 0; color: var(--ink); font: var(--fs-md, 12.5px)/1.5 var(--sans); }
+.cr-status, .cr-dim { color: var(--dim); font: 11.5px/1.6 var(--mono); }
+.cr-spacer { flex: 1 1 auto; }
+.cr-empty { padding: 28px 18px; color: var(--dim); font: 13px/1.6 var(--sans); }
+.cr-loading, .cr-error { padding: 24px; color: var(--dim); font: 13px/1.6 var(--sans); }
+.cr-error { color: var(--red); }
+
+/* --- the three columns: nav | splitter | left | splitter | right --- */
+.cr-body { flex: 1 1 auto; min-height: 0; display: grid;
+  grid-template-columns: var(--cr-nav, 260px) 6px minmax(0, var(--cr-split, 50%)) 8px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr); }
+.cr-navsplit, .cr-split { cursor: col-resize; background: transparent; position: relative; }
+.cr-navsplit::after, .cr-split::after { content: ""; position: absolute; inset: 0 auto 0 50%; width: 1px; background: var(--line); }
+.cr-navsplit:hover::after, .cr-split:hover::after, .cr-navsplit.is-dragging::after, .cr-split.is-dragging::after { background: var(--accent); width: 2px; }
+
+/* --- filings nav --- */
+.cr-nav { overflow: auto; min-height: 0; padding: 6px 0 24px; background: var(--panel); border-right: 1px solid var(--line); }
+.cr-group { padding: 10px 12px 4px; color: var(--dim); font: 600 11px/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.cr-row { display: grid; grid-template-columns: 18px auto minmax(0, 1fr) auto 22px; align-items: center; gap: 6px;
+  padding: 4px 8px 4px 10px; cursor: pointer; border-left: 3px solid transparent; color: var(--ink); }
+.cr-row.depth-1 { padding-left: 26px; }
+.cr-row:hover { background: color-mix(in srgb, var(--line) 60%, transparent); }
+.cr-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-row.is-left { border-left-color: var(--cr-left); background: var(--row-active); }
+.cr-row.is-right { border-left-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 14%, transparent); }
+.cr-row.is-left.is-right { border-left-color: var(--cr-left); box-shadow: inset 3px 0 0 var(--cr-right); }
+.cr-dots { display: inline-flex; gap: 2px; }
+.cr-dot { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1px solid var(--line-strong); }
+.cr-row.is-left .cr-dot.l { background: var(--cr-left); border-color: var(--cr-left); }
+.cr-row.is-right .cr-dot.r { background: var(--cr-right); border-color: var(--cr-right); }
+.cr-rowlabel { font: 600 11.5px/1.4 var(--mono); white-space: nowrap; }
+.cr-rowtitle { color: var(--dim); font: 12px/1.4 var(--sans); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cr-row.is-unfiled .cr-rowlabel::after { content: " · unfiled"; color: var(--yellow); font-weight: 400; }
+.cr-rowpages { color: var(--faint); font: 10.5px/1.4 var(--mono); }
+.cr-rowcounts { display: inline-flex; gap: 3px; font: 10.5px/1.4 var(--mono); }
+.cr-rowcounts i { font-style: normal; padding: 0 4px; border-radius: 6px; border: 1px solid var(--line-strong); color: var(--dim); }
+.cr-rowcounts i.v { border-color: var(--green); }
+.cr-rowcounts i.m { border-color: var(--yellow); }
+.cr-rowcounts i.u { border-color: var(--red); }
+.cr-toright { border: 1px solid transparent; background: transparent; color: var(--dim); font: 12px/1 var(--mono); border-radius: 4px; padding: 2px 4px; cursor: pointer; opacity: 0; }
+.cr-row:hover .cr-toright, .cr-row:focus-within .cr-toright { opacity: 1; }
+.cr-toright:hover { color: var(--cr-right); border-color: var(--cr-right); }
+
+/* --- the tree (the IDE sidebar's idiom) --- */
+.cr-nav { display: grid; grid-template-rows: auto minmax(0, 1fr); padding: 0 0 24px; }
+.cr-navhead { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 2; }
+.cr-navhead .cr-filter { margin: 0; width: auto; flex: 1 1 auto; min-width: 0; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 12.5px/1.4 var(--sans); border-radius: 5px; padding: 4px 8px; }
+.cr-navhead .cr-filter:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-navact { flex: none; border: 1px solid var(--line-strong); background: transparent; color: var(--dim); font: 12px/1 var(--mono); border-radius: 4px; padding: 3px 6px; cursor: pointer; }
+.cr-navact:hover { color: var(--ink); border-color: var(--ink); }
+.cr-navlist { overflow: auto; min-height: 0; padding-top: 4px; }
+.cr-group { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; align-items: center; gap: 4px; cursor: pointer; user-select: none; }
+.cr-group:hover { color: var(--ink); }
+.cr-group:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-groupn { color: var(--faint); font: 10.5px/1.4 var(--mono); letter-spacing: 0; text-transform: none; }
+.cr-chev { display: inline-flex; align-items: center; justify-content: center; width: 14px; color: var(--faint); font: 14px/1 var(--sans); font-style: normal; transition: transform 120ms ease; cursor: pointer; }
+.cr-chev.is-leaf { visibility: hidden; cursor: default; }
+.cr-row:hover .cr-chev, .cr-group:hover .cr-chev { color: var(--ink); }
+.cr-row.is-open > .cr-chev, .cr-group.is-open > .cr-chev { transform: rotate(90deg); }
+.cr-row { grid-template-columns: 14px 18px auto minmax(0, 1fr) auto 22px; }
+.cr-row.depth-1 { padding-left: 24px; }
+.cr-row.depth-1 > .cr-chev { display: none; }
+.cr-row.is-series .cr-rowlabel { color: var(--dim); font-weight: 600; letter-spacing: .04em; }
+.cr-row.is-series .cr-rowtitle { color: var(--dim); }
+.cr-row.depth-1 { grid-template-columns: 18px auto minmax(0, 1fr) auto 22px; }
+.cr-rowkids { color: var(--faint); font: 10.5px/1.4 var(--mono); white-space: nowrap; }
+.cr-row.has-left-within .cr-dot.l { border-color: var(--cr-left); border-width: 2px; }
+.cr-row.has-right-within .cr-dot.r { border-color: var(--cr-right); border-width: 2px; }
+.cr-row.is-folder:not(.is-open) .cr-rowcounts { display: none; }
+.cr-navsplit { position: relative; }
+.cr-navcollapse { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; width: 16px; height: 44px; padding: 0; background: var(--panel); border: 1px solid var(--line-strong); border-radius: 5px; color: var(--dim); font-size: 10px; cursor: pointer; opacity: .8; transition: opacity 120ms; }
+.cr-navsplit:hover .cr-navcollapse, .cr-page.is-navrail .cr-navcollapse { opacity: 1; }
+.cr-navhead { flex-wrap: wrap; }
+.cr-navopts { flex: 1 0 100%; display: flex; align-items: center; gap: 6px; padding-top: 4px; color: var(--dim); font: 11px/1.4 var(--sans); }
+.cr-hideopt { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; cursor: pointer; min-width: 0; }
+.cr-hideopt input[type="checkbox"] { margin: 0; accent-color: var(--accent); }
+.cr-hideopt input[type="number"] { width: 5ch; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 11px/1.4 var(--mono); border-radius: 3px; padding: 0 2px; }
+.cr-hiddenn { margin-left: auto; font: 10.5px/1 var(--mono); }
+.cr-navact.is-on { color: var(--ink); border-color: var(--ink); }
+.cr-row.is-hidden { opacity: .55; }
+.cr-row.is-hidden .cr-rowlabel::after { content: " ⊘"; color: var(--faint); font-weight: 400; }
+.cr-grouphid { font-style: normal; color: var(--faint); margin-left: 4px; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.cr-page.is-navrail .cr-navcollapse { left: 0; transform: translate(0, -50%); transition: none; width: 20px; height: 56px; background: var(--line); color: var(--ink); border-color: var(--line-strong); opacity: 1; font-size: 12px; }
+.cr-navcollapse:hover { color: var(--ink); border-color: var(--ink); }
+.cr-page.is-navrail .cr-body { --cr-nav: 0px; }
+.cr-page.is-navrail .cr-nav { display: none; }
+/* every body child is PLACED (the Studio's measurement: with the nav display:none, auto-placement shifted the others) */
+.cr-body > .cr-nav { grid-column: 1; }
+.cr-body > .cr-navsplit { grid-column: 2; }
+.cr-body > .cr-left { grid-column: 3; }
+.cr-body > .cr-split { grid-column: 4; }
+.cr-body > .cr-right { grid-column: 5; }
+
+/* --- the panes: notes (closed) · viewer · problems (closed) · FOOTER, fixed rows --- */
+.cr-pane { display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto 32px; min-height: 0; min-width: 0; background: var(--bg); }   /* notes · the tab bar (right pane; P88) · viewer · problems · footer — every child names its row */
+/* EACH CHILD NAMES ITS ROW (the Studio's lesson: closed rows are display:none and a grid places what remains in order) */
+.cr-pane > .cr-notes { grid-row: 1; }
+.cr-pane > .cr-tabs { grid-row: 2; }
+.cr-pane > .cr-viewer { grid-row: 3; }
+.cr-pane > .cr-problems { grid-row: 4; }
+.cr-pane > .cr-foot { grid-row: 5; }
+
+/* --- THE TAB BAR (P88, owner 2026-10-02; the Studio's rules at 85c2e4ca, the site's tokens): up to five tabs on the right pane,
+   32 px like the footer, one non-wrapping row; the locked run left with a lock glyph, the exploring tab rightmost drawn dashed,
+   the active tab the one the viewer shows --- */
+.cr-tabs { display: flex; align-items: stretch; gap: 2px; height: 32px; padding: 3px 6px 0; background: var(--panel); border-bottom: 1px solid var(--line); min-width: 0; overflow: hidden; user-select: none; }
+.cr-tabs[hidden] { display: none; }
+.cr-tab { flex: 1 1 0; min-width: 0; max-width: 240px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px; border: 1px solid var(--line); border-bottom: none; border-radius: 6px 6px 0 0; background: var(--panel-2); color: var(--dim); font: 11.5px var(--mono); cursor: pointer; text-align: left; }
+.cr-tab .cr-tabtext { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: min(100%, 10ch); flex: 1 1 auto; }   /* a FLOOR on the title that holds EVERY docket label whole: b0d76502's census of the lane — filings 5–12 glyphs, attachments 7–9 ('ECF 13-10', 'ECF 51-58'), the pairs that sit locked side by side differing in their LAST cells — so nine glyphs plus one cell of slack for the ellipsis's rounding (ch = the '0'; 6ch and 8ch both cut a digit on 7d866ecf's 490-px frames); case labels truncate past the volume and reporter, which is right */
+.cr-tab .cr-tabpage { white-space: nowrap; overflow: hidden; text-overflow: clip; min-width: 0; flex: 0 1 auto; color: var(--dim); }   /* the page yields only BELOW the title's floor — clipped, never '·…' (an ellipsis of nothing); at the owner's width both read whole */
+.cr-tab.is-active .cr-tabpage { color: var(--ink); }
+.cr-tab .cr-tablock { font-style: normal; font-size: 11px; flex: none; opacity: .85; }
+.cr-tab.is-exploring { border-style: dashed; font-style: italic; }
+.cr-tab.is-empty { color: color-mix(in srgb, var(--dim) 70%, transparent); }
+.cr-tab.is-active { background: var(--bg); color: var(--ink); border-color: var(--cr-right); border-bottom: 1px solid var(--bg); margin-bottom: -1px; }
+.cr-tab:hover { color: var(--ink); }
+.cr-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-tabwell { position: absolute; inset: 0; overflow: hidden; }
+.cr-tabwell[hidden] { display: none; }
+.cr-panekey { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.cr-panekey.is-left { background: var(--cr-left); }
+.cr-panekey.is-right { background: var(--cr-right); }
+.cr-panetitle { font: 600 12px/1.4 var(--sans); color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.cr-btn { border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 12px/1 var(--mono); border-radius: 5px; padding: 3px 8px; cursor: pointer; }
+.cr-btn:hover { border-color: var(--accent); }
+.cr-btn:active { transform: scale(0.96); }
+.cr-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-stepper { display: inline-flex; align-items: center; gap: 4px; }
+.cr-stepn { color: var(--dim); font: 11.5px/1 var(--mono); min-width: 52px; text-align: center; }
+
+/* the CORNER: ⌕ floats over the viewer's top-right; open, it becomes the search bar in the same corner */
+.cr-corner { position: absolute; top: 8px; right: 22px; left: 8px; z-index: 4; display: flex; align-items: center; justify-content: flex-end; gap: 4px; pointer-events: none; }
+.cr-corner > * { pointer-events: auto; }
+.cr-corner > .cr-btn { background: color-mix(in srgb, var(--panel) 94%, transparent); box-shadow: 0 1px 3px rgba(0,0,0,.25); font-size: 13px; padding: 3px 8px; }
+.cr-corner.is-open .cr-searchbtn { display: none; }
+.cr-search { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--panel); box-shadow: 0 2px 8px rgba(0,0,0,.25); flex: 0 1 440px; min-width: 0; }
+.cr-search[hidden] { display: none; }
+.cr-search input { flex: 1 1 auto; min-width: 0; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 12px/1.4 var(--sans); border-radius: 5px; padding: 3px 8px; }
+.cr-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-searchn { color: var(--dim); font: 11.5px/1.4 var(--mono); white-space: nowrap; }
+.cr-hits { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cr-hit { position: absolute; background: color-mix(in srgb, var(--yellow) 45%, transparent); border-radius: 2px; }
+.cr-hit.is-current { outline: 2px solid var(--cr-right); background: color-mix(in srgb, var(--cr-right) 40%, transparent); }
+/* the right pane's one line: what opened, or what could not */
+.cr-says { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dim); font: 11.5px/1.5 var(--mono); }
+.cr-says.is-ok { color: var(--ink); }
+.cr-says.is-bad { color: var(--red); }
+.cr-says.is-dead { color: var(--dim); font-style: italic; }
+.cr-says.is-docket { color: var(--yellow); }
+.cr-says.is-link a { color: var(--accent); }
+.cr-says .cr-warn { color: var(--yellow); }
+
+/* --- the pane FOOTER: 32 px, one non-wrapping row; the elastic chips ellipsize. The owner's word 2026-10-01 (Studio
+   aa6d13b0): ONE control — the citation stepper ‹ N / M ›; the page box is gone (pages turn by scrolling, the sentence
+   names the page); the name chip may take 60 % since the box no longer competes for the row --- */
+.cr-foot { flex: none; display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 6px 0 9px; background: var(--panel); border-top: 1px solid var(--line); font: 12px var(--sans); color: var(--dim); user-select: none; overflow: hidden; min-width: 0; }
+.cr-footchip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font: 11.5px var(--mono); color: var(--dim); }
+.cr-foot .cr-panetitle { flex: 0 1 auto; max-width: 60%; color: var(--ink); }
+.cr-foot .cr-status { flex: 1 1 auto; }
+.cr-foot .cr-status:empty, .cr-foot .cr-probn[hidden] { display: none; }
+.cr-probn { flex: none; border: 1px solid var(--yellow); color: var(--yellow); background: transparent; border-radius: 9px; padding: 1px 7px; font: 11px/1.3 var(--mono); cursor: pointer; white-space: nowrap; }
+.cr-probn.is-on { background: color-mix(in srgb, var(--yellow) 18%, transparent); }
+.cr-foot .cr-btn { width: 26px; height: 24px; padding: 0; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; }
+.cr-foot .cr-btn[disabled] { opacity: .3; cursor: default; }
+.cr-foot .cr-stepper { flex: none; }
+.cr-foot .cr-morebtn { flex: none; width: 22px; font-size: 15px; letter-spacing: -1px; }
+
+/* --- the notes drawer: the Studio's store; the site draws no item that opens it, the markup stays for the grid --- */
+.cr-notes { display: flex; flex-direction: column; border-bottom: 1px solid var(--line); background: var(--panel-2); min-width: 0; }
+.cr-notes[hidden] { display: none; }
+.cr-noteshead { display: flex; align-items: center; gap: 8px; padding: 4px 8px; font: 11.5px/1.4 var(--mono); color: var(--dim); min-width: 0; }
+.cr-noteslabel { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.cr-notesstatus { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.cr-notestext { width: 100%; box-sizing: border-box; height: 130px; min-height: 60px; max-height: 45vh; resize: vertical; border: 0; border-top: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 12px/1.5 var(--mono); padding: 6px 10px; }
+
+.cr-viewer { min-height: 0; overflow: hidden; position: relative; }
+.cr-well { position: absolute; inset: 0; overflow: hidden; }
+.cr-problems { border-top: 1px solid var(--line); background: var(--panel-2); color: var(--yellow); font: 11.5px/1.5 var(--mono); padding: 4px 10px; max-height: 120px; overflow: auto; }
+.cr-problems summary { cursor: pointer; }
+.cr-problems ul { margin: 4px 0 0; padding-left: 18px; color: var(--dim); }
+.cr-problems details.cr-coverage summary { color: var(--dim); }
+.cr-problems li[data-act="gapto"] { cursor: pointer; }
+.cr-problems li[data-act="gapto"]:hover { color: var(--text); }
+.cr-problems li.is-answered { color: var(--dim); opacity: .7; }
+
+/* --- the PDF stack (casereview_pdf.js) --- */
+.cr-scroll { position: absolute; inset: 0; overflow: auto; background: var(--page-well); }
+.cr-stack { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0 40px; }
+.cr-pdfpage { position: relative; background: var(--page-paper); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.cr-pdfpage canvas { display: block; }
+.cr-pdfpage .textLayer { position: absolute; inset: 0; overflow: hidden; line-height: 1; }
+.cr-pdfpage .textLayer span, .cr-pdfpage .textLayer br { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
+.cr-pageno { position: absolute; top: 4px; right: 6px; z-index: 3; color: rgba(0,0,0,.35); font: 10px/1 var(--mono); pointer-events: none; }
+.cr-pdfpage.is-marked { outline: 3px solid var(--cr-right); outline-offset: -3px; }
+.cr-pdfpage.is-marked::before { content: "cited"; position: absolute; top: 4px; left: -0px; z-index: 3; background: var(--cr-right); color: var(--badge-ink); font: 600 10px/1 var(--mono); padding: 3px 6px; border-radius: 0 3px 3px 0; }
+.cr-hot { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.cr-box { position: absolute; pointer-events: auto; border: 1.5px solid var(--cr-left); background: color-mix(in srgb, var(--cr-left) 12%, transparent); border-radius: 2px; padding: 0; cursor: pointer; }
+.cr-box:hover { background: color-mix(in srgb, var(--cr-left) 26%, transparent); }
+.cr-box.is-mapped { border-color: var(--yellow); background: color-mix(in srgb, var(--yellow) 12%, transparent); }
+.cr-box.is-unresolved { border-color: var(--red); border-style: dashed; background: transparent; cursor: not-allowed; }
+.cr-box.is-active { box-shadow: 0 0 0 2px var(--cr-left); }
+.cr-box.is-approx { border-style: dashed; opacity: .75; }
+.cr-right .cr-box { border-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 14%, transparent); cursor: default; }
+/* HIGHLIGHTS OFF: the boxes are unpainted, never removed */
+.cr-page.is-noboxes .cr-box { border-color: transparent; background: transparent; box-shadow: none; }
+.cr-page.is-noboxes .cr-box.is-active { box-shadow: 0 0 0 1px color-mix(in srgb, var(--cr-left) 45%, transparent); }
+.cr-page.is-noboxes .cr-box:hover { border-color: var(--cr-left); background: color-mix(in srgb, var(--cr-left) 18%, transparent); }
+.cr-page.is-noboxes .cr-right .cr-box:hover { border-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 18%, transparent); }
+
+/* --- the menu (public/casereview/filing/ctxmenu.js, the site's shim of the deck's shared menu) --- */
+.fctx { position: fixed; z-index: 1000; min-width: 220px; max-width: min(520px, 92vw); padding: 4px; background: rgb(var(--c-card)); border: 1px solid rgb(var(--c-rule)); border-radius: 6px; box-shadow: var(--shadow-card); font: 12.5px/1.4 var(--sans, system-ui); color: rgb(var(--c-ink)); }
+.fctx-item { display: block; width: 100%; text-align: left; border: 0; background: transparent; color: inherit; font: inherit; padding: 5px 10px; border-radius: 4px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fctx-item:hover, .fctx-item:focus-visible { background: color-mix(in srgb, rgb(var(--c-pane-left)) 12%, transparent); outline: none; }
+.fctx-item[disabled] { color: rgb(var(--c-muted)); cursor: default; }
+.fctx-item[disabled]:hover { background: transparent; }
+.fctx-item.has-sub::after { content: "›"; float: right; margin-left: 10px; color: rgb(var(--c-muted)); }
+.fctx-sep { height: 1px; margin: 4px 6px; background: rgb(var(--c-rule)); }
+
+@media (prefers-reduced-motion: reduce) { .cr-btn:active { transform: none; } .cr-chev { transition: none; } }
