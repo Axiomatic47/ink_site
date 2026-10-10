@@ -34,6 +34,7 @@ read on all three sites — a change to them lands on every site, byte for byte.
 git -C ~/Git/ourstudio worktree add --detach <wt> <the pair's commit>
 cd <wt> && env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export \
   /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out_dir>          # ~2 s at registry v0; refuses a lane that moves
+node scripts/casereview-size-guard.mjs --from <out_dir>   # refuses a `serve` row whose file is over 95 MB — GitHub refuses a file over 100 MB on push (no LFS here, and Netlify would not resolve LFS pointers); such a row is the registry's `link` + publish_url, never a quiet drop (the 1920 Biennial Report scan, 197 MB, 2026-10-10)
 node scripts/import-casereview.mjs --from <out_dir> --case kirchner-v-ellison  # the bundle, the PDFs, the keyed rules
 npm run casereview:check                                                        # vendor drift + the bundle (--case kirchner-v-ellison)
 git -C ~/Git/ourstudio worktree remove <wt>
@@ -129,6 +130,7 @@ prints it beside the record's commit).
 # the export (ourstudio 3436c4c7, checker P86): the lane's served JSON to disk — docs.json, links/<id>.json, files.json, _EXPORT.json
 cd ~/Git/ourstudio && env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export \
   /Users/everest/Git/work_station/1_DCC_1-25-cv-02735-ACR <out_dir> [--force]     # ~60 s; refuses a lane that moves during the run
+node scripts/casereview-size-guard.mjs --from <out_dir>   # refuses a `serve` row whose file is over 95 MB — GitHub refuses a file over 100 MB on push (no LFS here, and Netlify would not resolve LFS pointers); such a row is the registry's `link` + publish_url, never a quiet drop (the 1920 Biennial Report scan, 197 MB, 2026-10-10)
 node scripts/import-casereview.mjs --from <out_dir>   # the bundle from the export (the stamp carries the export's lane signature and checker)
 npm run casereview:import                             # the same bundle from the Studio API when it runs (byte-identical: measured 29/29 files)
 node scripts/import-casereview.mjs --check            # every build: the bundle is whole, every served file present and the registry's

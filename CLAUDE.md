@@ -191,7 +191,7 @@ p=none, all on Netlify DNS).
 - The bundle under `public/casereview/kirchner-v-ellison/data/` is written by `scripts/import-casereview.mjs` from the
   checker's EXPORT of the MN lane (`--from <export> --case kirchner-v-ellison`) — **never hand-edited**; the importer
   is the ONE file shared by the three sites, byte for byte (a change is said by name to the other website seat first
-  and cut on both — the rule for Case Review keys). Publication is the registry's per-row `publish` word, fail-closed.
+  and cut on both — the rule for Case Review keys). Publication is the registry's per-row `publish` word, fail-closed. A SIZE GUARD runs on every export before the import (`scripts/casereview-size-guard.mjs --from <export>`, site-only tooling, the same bytes on the three sites but the host's name): it measures every `serve` row's file at the export stamp's case root and refuses one over 95 MB — GitHub refuses a file over 100 MB on push, these repos carry no LFS; such a row is answered by the registry's `link` + publish_url, never dropped here (2026-10-10: the 1920 Biennial Report scan, 197 MB, refused by GitHub's hook after every other gate had passed).
   The served PDFs (`public/uploads/kirchner-v-ellison/`, 208 files, 244 MB at registry v0l) are tracked in git with the
   bundle since the owner's hosting word (2026-10-09 23:4x CDT): nothing published is served from nowhere, and the
   bundle check (`casereview:check`) runs inside `npm run build`.
