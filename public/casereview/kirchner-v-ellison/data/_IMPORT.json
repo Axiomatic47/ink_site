@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T08:13:49.200Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010p",
+  "imported": "2026-10-10T08:27:45.560Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010q",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "cb1a2c89989a2fd083b071326f7e857e742d608ff630f40f2bbb6db3d74c8388",
+      "sha256": "3abeadb4eaae37b5ddd8558413d949c76eeac3fbed7912a494268717adb132b1",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 398405,
-          "sha256": "86f9de66804a9a0cadb973c41fe7b8e802b76f9328af68e67a619b8dc4a3abaa"
+          "bytes": 438474,
+          "sha256": "0bd7b1a65adaa00cfaac1014ee3096934ad19df245ada04b3c449b521ca47626"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Addendum.meta.json",
@@ -20,6 +20,16 @@
           "path": "_admin/case_review/links/LINKS_26-1615_Addendum.tsv",
           "bytes": 22027,
           "sha256": "afc2dc5a349245a61b57b8fc0e462b80298b2277504e0fba1faecc39ee4b7563"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_26-1615_Brief.meta.json",
+          "bytes": 2802,
+          "sha256": "75899a6845d7728d19b1d9e9c0e8158e2d1a9a9712ca95217dc8b98f62ad34a1"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_26-1615_Brief.tsv",
+          "bytes": 122767,
+          "sha256": "719fb4d470c3add6593f570d9e3fd417e98ab81aaaff3387f92f10148b44f5ca"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Certificate_No_Transcript.meta.json",
@@ -666,13 +676,14 @@
     "ourstudio_commit": "a4abcb96",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "e8902a116379e0ff8b077855c3742d00ffec717fa22730dca0c0b0b97a12ad51",
-    "exported": "2026-10-10T08:13:48+00:00",
+    "mirrors_sha256": "d094d5a2e7cacf68f4d320d485b63df78568ae09fdf78f3fc2a6d6495f7ae94c",
+    "exported": "2026-10-10T08:27:44+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0w",
+    "registry_version": "v0x",
     "tables": [
       "26-1615_Addendum",
+      "26-1615_Brief",
       "26-1615_Certificate_No_Transcript",
       "26-1615_Documents",
       "26-1615_Notice_Refiled_District_Court_Action",
@@ -738,7 +749,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 264,
+      "serve": 283,
       "link": 2,
       "hold": 0
     },
@@ -771,12 +782,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0w",
-  "documents": 266,
-  "tables": 63,
-  "rows": 1877,
+  "registry_version": "v0x",
+  "documents": 285,
+  "tables": 64,
+  "rows": 2219,
   "publication": {
-    "serve": 264,
+    "serve": 283,
     "link": 2,
     "hold": 0
   },
