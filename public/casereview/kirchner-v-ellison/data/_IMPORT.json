@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T08:46:05.410Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010u",
+  "imported": "2026-10-10T09:00:27.731Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010v",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "f2adb78413f23eed6b6cb1a013dc8ae17eb54877fe8189527d30740249ff5477",
+      "sha256": "8d6bf62c0469ba819115a10adb049d905c8324c887680f4065df4eff95270fb1",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -13,23 +13,23 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Addendum.meta.json",
-          "bytes": 4620,
-          "sha256": "bb91a24eff08d8bd77e5b3c3cf0cfe5e64218c4e5a540778480b29c2c6c2ea03"
+          "bytes": 5273,
+          "sha256": "69263e54d97e0dc415b83075bf5c98de2976cb2937b31b95feba77250df2925d"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Addendum.tsv",
-          "bytes": 23029,
-          "sha256": "2b7262dcc1174d9f258984735a22caae58f37a218bc3b0d01c46bc1e49d432ab"
+          "bytes": 23033,
+          "sha256": "9baf6bd84e6f7cb0f5113b9b62512f35cd5e4bdc63bac412aaf001c0cd5f3767"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Brief.meta.json",
-          "bytes": 4046,
-          "sha256": "5b0fbac09676b84f4ab89a66329dd3ec352bc7512badb66fa41dcb918e8d2753"
+          "bytes": 5501,
+          "sha256": "160966bb4ac5fd76b1e9e0404453308132910617613ffcc733dfee36f8401e33"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Brief.tsv",
-          "bytes": 128596,
-          "sha256": "53eb5551b5f27ea12eada8e459d3705874759afda48eb7883da6c9dc96b30054"
+          "bytes": 130031,
+          "sha256": "57a9a1b900f501f5e0b4c8d873a600d63245b0a0c7aaba9da6c7b516d0292b1f"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Certificate_No_Transcript.meta.json",
@@ -73,13 +73,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
-          "bytes": 5343,
-          "sha256": "c5478f93544b4061290d87afa32d7d2161583af3ff02566666aef3c3a1b9e97e"
+          "bytes": 6225,
+          "sha256": "98d36f826cea6837945fef4503629e0366dc64b955d8be014aa9f16f71a8e9bc"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.tsv",
-          "bytes": 26351,
-          "sha256": "61a0128eecc461849d22d2b3935aadc5b6ce468d95c84111c19a2c78522ca01e"
+          "bytes": 26377,
+          "sha256": "3eaa7b2dfe8e903b87be153050230e65f143e2672d0cd04dbfb0543432fefe74"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10.meta.json",
@@ -133,13 +133,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001.meta.json",
-          "bytes": 4391,
-          "sha256": "d8292d1d82e67cd3928ccf0f559d66c24086debb625ee008c94e5b6f8c02b2f8"
+          "bytes": 4767,
+          "sha256": "bad945b83e893e376853b385feba5345d1da0132970e2f7f55d6bd8a75d05e79"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001.tsv",
-          "bytes": 81229,
-          "sha256": "94c9e8a45dab5e5d055506c4c9eac265e04c50f7085939ea26995590aa761adc"
+          "bytes": 81231,
+          "sha256": "7b4830257425233d5b8a3c0000bdbd25526584a26ef5dfcef51704cb00d45169"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-002.meta.json",
@@ -677,7 +677,7 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "6a6bd621e2c0ef17694d2d85469746af5d4efb50e634ead242c1c506e25c69fa",
-    "exported": "2026-10-10T08:46:04+00:00",
+    "exported": "2026-10-10T09:00:27+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0z",
