@@ -324,6 +324,11 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
             {a.document.title} — <a href={servedPdf(a.document)} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">the document</a> (PDF, {a.document.pages} pages,{' '}
             {Math.round(a.document.bytes / 1024)} KB) · <a href={a.document.source_url} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">{a.document.source_label}</a>
           </div>
+          {a.record.map((r) => (
+            <div key={r.registry_id} className="px-6 sm:px-8 pb-5 -mt-3 text-sm text-muted">
+              {r.title} ({r.label}) — <a href={r.href} target="_blank" rel="noopener noreferrer" className="underline text-accent-ink">in the case review, page {r.page} of {r.pages}</a>
+            </div>
+          ))}
         </div>
       ))}
     </section>

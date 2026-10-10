@@ -58,6 +58,8 @@ export interface OpenLetterAddition {
   date_line: string;
   markdown: string;
   document: AdditionDocument;
+  /** filed documents the note names, linked into the case review */
+  record?: AdditionRecordLink[];
 }
 export interface AdditionDocument {
   title: string;
@@ -74,6 +76,22 @@ export interface AdditionDocument {
   source_label: string;
   /** where the owner's copy is shelved (the case tree); never sent to the page */
   source?: { tree: string; path: string; commit: string };
+}
+/** a filed document the note names, linked into this site's case review at a page: the docket label, the
+    registry id and the PDF page are the content; the loader derives the window's deep link and refuses an id the
+    bundle does not serve or a page count the bundle contradicts */
+export interface AdditionRecordLink {
+  /** the docket label the note uses ("Doc. 2") */
+  label: string;
+  title: string;
+  registry_id: string;
+  /** the PDF page the link opens, and the document's page count as served */
+  page: number;
+  pages: number;
+  /** the words at that page the note refers to, verbatim from the record (the file's record; not rendered) */
+  quoted?: string;
+  /** the review window's deep link — filled by the loader, never written by hand */
+  href?: string;
 }
 export interface OpenLetterAdditions { slug: string; additions: OpenLetterAddition[] }
 
@@ -93,7 +111,8 @@ export interface OpenLetterView {
   /** the dated additions, their documents without the shelf record */
   additions: AdditionView[];
 }
-export type AdditionView = Omit<OpenLetterAddition, 'document'> & { document: Omit<AdditionDocument, 'source'> };
+export type AdditionRecordView = Omit<AdditionRecordLink, 'quoted' | 'href'> & { href: string };
+export type AdditionView = Omit<OpenLetterAddition, 'document' | 'record'> & { document: Omit<AdditionDocument, 'source'>; record: AdditionRecordView[] };
 
 export function toView(c: OpenLetterContent, additions: OpenLetterAddition[] = []): OpenLetterView {
   const { title, source, method, speakers, turns } = c.transcript;
@@ -105,7 +124,13 @@ export function toView(c: OpenLetterContent, additions: OpenLetterAddition[] = [
   return {
     generated: c.generated, recording: c.recording, letter: c.letter, enclosure: c.enclosure, enclosure_b: c.enclosure_b ?? null,
     transcript: { title, source, method, speakers, turns },
-    additions: additions.map((a) => ({ id: a.id, added: a.added, date_line: a.date_line, markdown: a.markdown, document: docView(a.document) })),
+    additions: additions.map((a) => ({
+      id: a.id, added: a.added, date_line: a.date_line, markdown: a.markdown, document: docView(a.document),
+      record: (a.record ?? []).map(({ label, title, registry_id, page, pages, href }) => {
+        if (!href) throw new Error(`open letter: the record link ${registry_id} of ${a.id} has no deep link — the loader fills it`);
+        return { label, title, registry_id, page, pages, href };
+      }),
+    })),
   };
 }
 

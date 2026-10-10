@@ -146,8 +146,22 @@ if (existsSync(addFile)) {
     const page = execFileSync('pdftotext', ['-f', String(doc.cited_page), '-l', String(doc.cited_page), f, '-'], { encoding: 'utf8' }).replace(/\s+/g, ' ');
     assert.ok(doc.quoted.length > 40 && page.includes(doc.quoted.replace(/\s+/g, ' ')), `${a.id}: the quoted sentence is on page ${doc.cited_page} of the served file`);
     assert.ok(a.markdown.includes(doc.quoted), `${a.id}: the note quotes the recorded sentence verbatim`);
+    // the filed documents the note names: the label in the note, the page in range, no hand-written deep link; served in
+    // this site's case review at the recorded page count when the bundle is on disk
+    const filesJson = resolve(ROOT, 'public', 'casereview', 'kirchner-v-ellison', 'data', 'files.json');
+    for (const r of a.record ?? []) {
+      assert.ok(r.label && r.title && r.registry_id, `${a.id}: record link fields`);
+      assert.ok(Number.isInteger(r.page) && r.page >= 1 && Number.isInteger(r.pages) && r.page <= r.pages, `${a.id}: ${r.registry_id} page ${r.page} of ${r.pages}`);
+      assert.ok(a.markdown.includes(`(${r.label})`), `${a.id}: the note names ${r.label}`);
+      assert.ok(!r.href, `${a.id}: ${r.registry_id} carries no hand-written deep link (the loader derives it)`);
+      if (existsSync(filesJson)) {
+        const served = JSON.parse(readFileSync(filesJson, 'utf8'))[r.registry_id];
+        assert.ok(served && served.publish === 'serve', `${a.id}: ${r.registry_id} is served in the case review`);
+        assert.equal(served.pages, r.pages, `${a.id}: ${r.registry_id} page count as served`);
+      } else console.log(`  --  ${a.id}: the case review bundle is not on disk; ${r.registry_id} not checked against it`);
+    }
   }
-  ok(`the additions: ${d.additions.length}, dated, each document served at its bytes, the quoted sentence on the cited page`);
+  ok(`the additions: ${d.additions.length}, dated, each document served at its bytes, the quoted sentence on the cited page, the record links served in the review`);
 } else console.log('  --  additions: none on disk');
 // the importer's copy of the pattern is the TypeScript one
 assert.equal(DEBATE_TIME_RE_IMPORT.source, DEBATE_TIME_RE.source); assert.equal(DEBATE_TIME_RE_IMPORT.flags, DEBATE_TIME_RE.flags);

@@ -286,8 +286,11 @@ p=none, all on Netlify DNS).
   the document, before the transcript in reading mode and under both panes in review mode (`#additions`,
   `#added-<date>`); the loader refuses an incomplete entry or a served copy that is not the recorded bytes;
   `test:letter` reads the quoted sentence on the cited page of the served file and the note. The mailed letter, the
-  enclosures and their tables never change for an addition; a second document beside a note (the hearing transcript,
-  Exhibit C to the Complaint) waits on the owner's word.
+  enclosures and their tables never change for an addition. A filed document the note names (`record[]`: the docket
+  label, the registry id, the PDF page, the page count as served) is linked into this site's Case Review at that page —
+  the loader derives the window's deep link from `CASE_REVIEW.slug` (`caseReviewDocHref`) and refuses an id the bundle
+  does not serve, a page count the bundle contradicts, or a label the note does not say; the first is Exhibit C to the
+  Complaint (Doc. 2) at page 11 of 34, the owner's second word of 2026-10-10 ('Approved as recommended').
 - NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
   private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
   route (owner 2026-10-09: "the site preview in ourstudio does not show any way to view this new page") — the
