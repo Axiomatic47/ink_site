@@ -1,7 +1,7 @@
 {
- "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted (header_omitted). Do not edit by hand; re-run the import.",
+ "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.",
  "slug": "mn-ag-candidates-open-letter",
- "generated": "2026-10-10T00:06:15.953Z",
+ "generated": "2026-10-10T00:39:41.139Z",
  "source": {
   "tree": "work_station",
   "commit": "1ef7a96bedd0398ad5540577ce2ff87a440fdeac",
@@ -55,9 +55,9 @@
   "source": "The broadcast is MPR News \"Politics Friday\", moderator Brian Bakst; the recording's own clock is used for every timestamp (the broadcast begins ~0:30 into the file).",
   "method": "audio extracted with ffmpeg (16 kHz mono PCM); transcribed with whisper.cpp (`whisper-cli`, Homebrew) using `ggml-large-v3.bin`, language en, 2026-10-09. Two repetition artifacts of the model were repaired by re-transcribing the windows as separate cuts (26:05–27:55 and 35:25–35:55; the 2:40–3:10 window was re-cut to confirm the § 8.31 sentence was spoken once, and the re-cut's fuller hearing of it, \"business, commerce and trade\", is the text used at 2:49). Speaker attribution (MOD = Brian Bakst; KE = Keith Ellison; RS = Ron Schutz) is the drafter's, from context; two crosstalk passages are marked. Name spellings normalised: MPR (heard \"NPR\"), Bakst, Schutz, Renee Good, Alex Pretti. Everything else is as the model heard it. **Draft work product — verify any quoted span at the audio before it is filed or relied on.**",
   "header_omitted": [
-   "`~/Movies/Minnesota Attorney General Debate： Keith Ellison vs. Ron Schutz ｜ Full Debate [pgzvG1Ky8rQ].mp4` (YouTube id pgzvG1Ky8rQ; 155,901,012 bytes; sha256 ff3e1f1cd55baadc3f74aaba2ca984fff552813278f2015ff51babd9f9350f50; duration 59:00.07).",
-   "(the owner's model at `~/models/whisper-cpp/`)",
-   "by drafter a636b3d9"
+   "the source recording's local file (its path, size and sha256)",
+   "the model's local path",
+   "the transcriber's seat"
   ],
   "speakers": {
    "MOD": "Brian Bakst",

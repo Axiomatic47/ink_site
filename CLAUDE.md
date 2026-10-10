@@ -195,8 +195,9 @@ p=none, all on Netlify DNS).
   commit; it refuses a dirty source. NOTHING ELSE from that folder is published (the census beside the transcript
   relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
   and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard
-  breaks; the transcript header's source and method sentences ride onto the page with two things removed and listed
-  under `header_omitted` — the owner's local file paths and the drafter's seat (the outward-voice rule: no seat ids,
+  breaks; the transcript header's source and method sentences ride onto the page with two things removed and NAMED
+  under `header_omitted` — as labels, never the words, so the content file carries them no more than the page does
+  (a636b3d9 2026-10-09) — the owner's local file paths and the drafter's seat (the outward-voice rule: no seat ids,
   no filesystem paths where a reader reads); every other word is the drafter's. Record cites in the enclosure are
   plain text (this site carries no docket). `src/lib/open-letter.ts` is the shape and the time rules
   (`DEBATE_TIME_RE`, `recordingUrl`, `turnAt`); `remark-debate-times.ts` the plugin; `open-letter.server.ts` the

@@ -18,7 +18,8 @@
 // of the JSON knows which text this is. The importer refuses a source whose tree is dirty.
 // Outward voice (the owner's standing rule: no seat ids and no filesystem paths where a reader reads): the
 // transcript header names the drafter's seat and two of the owner's local paths; those, and only those, are
-// removed from its sentences and listed under `header_omitted`; every other word is as written.
+// removed from its sentences and named under `header_omitted` — as labels, never the words themselves, so the
+// content file carries no path and no seat either; every other word is as written.
 // Line breaks: the letter's letterhead and addressee blocks are one line per line in the markdown (the Word
 // converter's cover-letter mode reads them so); on the web a single newline inside a paragraph is a soft
 // break, so the importer makes each one a hard break — the letter's body paragraphs are single lines, so no
@@ -93,16 +94,17 @@ function parseTranscript(md) {
   const fileM = sourceLine.match(/`~\/Movies\/(.+?) \[(\w+)\]\.mp4`/);
   if (!idM || idM[1] !== YOUTUBE_ID) fail(`transcript: YouTube id ${idM?.[1]} is not ${YOUTUBE_ID}`);
   const recordingTitle = fileM ? fileM[1].replace(/：/g, ':').replace(/｜/g, '|') : null;
+  // what was omitted is recorded as a LABEL, never the words (a636b3d9 2026-10-09: the clauses verbatim would put
+  // the local paths and the seat id in the repo's content file even though the page never renders them)
   const omitted = [];
   // outward voice: the clause describing the owner's local file (path, bytes, sha256) goes; the broadcast
   // sentence and the clock rule stay, as written
   let source = sourceLine;
   const localClause = source.match(/^`~\/Movies\/[^`]+`\s*\([^)]*\)\.\s*/);
-  if (localClause) { omitted.push(localClause[0].trim()); source = source.slice(localClause[0].length); }
+  if (localClause) { omitted.push("the source recording's local file (its path, size and sha256)"); source = source.slice(localClause[0].length); }
   let method = methodLine;
-  for (const re of [/\s*\(the owner's model at `~\/models\/whisper-cpp\/`\)/, /\s*by drafter [0-9a-f]{8}\b/]) {
-    const m = method.match(re);
-    if (m) { omitted.push(m[0].trim()); method = method.replace(re, ''); }
+  for (const [re, label] of [[/\s*\(the owner's model at `~\/models\/whisper-cpp\/`\)/, "the model's local path"], [/\s*by drafter [0-9a-f]{8}\b/, "the transcriber's seat"]]) {
+    if (re.test(method)) { omitted.push(label); method = method.replace(re, ''); }
   }
   if (/~\/|[0-9a-f]{8}-[0-9a-f]{4}/.test(source + method)) fail('transcript header still carries a local path or a session id');
 
@@ -140,6 +142,7 @@ function check() {
   const t = d.transcript;
   if (!t || !Array.isArray(t.turns) || t.turns.length < 100) bad.push('transcript: fewer than 100 turns');
   if (t && /~\/|[0-9a-f]{8}-[0-9a-f]{4}|drafter [0-9a-f]{8}/.test(`${t.source} ${t.method}`)) bad.push('transcript header: a local path or a seat id');
+  if (t && (t.header_omitted || []).some((x) => /~\/|`|[0-9a-f]{8}\b|sha256 [0-9a-f]/.test(x))) bad.push('header_omitted: carries the omitted words, not a label');
   if (d.recording?.youtube_id !== YOUTUBE_ID) bad.push('recording id');
   if (!d.source?.files?.length || d.source.files.some((f) => !/^[0-9a-f]{64}$/.test(f.sha256) || !/^[0-9a-f]{40}$/.test(f.commit))) bad.push('source files: a sha or a commit missing');
   if (bad.length) { bad.forEach((b) => console.error(`  ${b}`)); fail('check failed'); }
@@ -167,7 +170,7 @@ function main() {
   const transcript = parseTranscript(read('transcript'));
 
   const out = {
-    $comment: 'Written by scripts/import-open-letter.mjs from the owner\'s case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header\'s local paths and seat attribution omitted (header_omitted). Do not edit by hand; re-run the import.',
+    $comment: 'Written by scripts/import-open-letter.mjs from the owner\'s case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header\'s local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.',
     slug: SLUG,
     generated: new Date().toISOString(),
     source: { tree: 'work_station', commit, files },
