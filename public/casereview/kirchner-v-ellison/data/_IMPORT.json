@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T07:06:50.390Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010m",
+  "imported": "2026-10-10T07:30:59.956Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010n",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "c8fdd6f2758d35e51d2768a9e188662ae89761d3078597f27324654419cb151c",
+      "sha256": "51d8d1c0e985386c2568b331601f24a7481633f4a6271ad5e3c9d55619985f25",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 397579,
-          "sha256": "e56152726145763564bf8879f53371bd468abb50cc3b4a2eeb17d644a10432bf"
+          "bytes": 398405,
+          "sha256": "86f9de66804a9a0cadb973c41fe7b8e802b76f9328af68e67a619b8dc4a3abaa"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
@@ -33,13 +33,23 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-01.meta.json",
-          "bytes": 1782,
-          "sha256": "5595e240cdd7d63646ad6a93a74fb82384c7d3f060b37973666c553479e74d0f"
+          "bytes": 2127,
+          "sha256": "f7bc5c59a5829233fffa8bdf4a4a345b9183138a2ff59f5d9963221ca6390a45"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-01.tsv",
-          "bytes": 8039,
-          "sha256": "0133a7baa0153a1e23997cc88668f541845218e8048751f1e78efa08c85ce320"
+          "bytes": 8330,
+          "sha256": "6bbaf71068335084a6e43251ccad87350d9fce36675088385cd425d59468bb81"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-001-02.meta.json",
+          "bytes": 4938,
+          "sha256": "d8f4a312e541407cb093171a3eb9c7768a149fa0acf32bc9efb86bd8ab4dc52f"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-001-02.tsv",
+          "bytes": 5728,
+          "sha256": "1e6c0c2be0e655b25030e3c7b294c109c42f44b1dd13f5ccc69d9384e236f525"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-04.meta.json",
@@ -50,6 +60,46 @@
           "path": "_admin/case_review/links/LINKS_MN2594-001-04.tsv",
           "bytes": 1957,
           "sha256": "4d1371f603237c7a3dae0a612307735a94a3604b9e1cdd4323aa298394817274"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-001.meta.json",
+          "bytes": 2616,
+          "sha256": "ef5d42da4b5903e1ab0051e45275bbd6bf9b0c46b5cad245d028b028c6e91fe3"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-001.tsv",
+          "bytes": 80085,
+          "sha256": "c8a6ef05c2543c049be00f7a2764a8e5b3b2c5c4fbe01b6aed3a3e4f6d5669a2"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-002.meta.json",
+          "bytes": 1253,
+          "sha256": "f73f0ae2ea87dc173df66d077e2c5b25d3c0a1bf136fb22f30bd3d2f86472cab"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-002.tsv",
+          "bytes": 740,
+          "sha256": "b1a6227aca7d0037570a69b32d726b4f2b7675a5c7a1fa8b6528f5b5d0caf993"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-003-02.meta.json",
+          "bytes": 3944,
+          "sha256": "76f914c9a6fd3a0578d8d4a2aa16e898951cccbcad08da73f3417ed39db4c3e4"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-003-02.tsv",
+          "bytes": 1881,
+          "sha256": "43b6aa0004c35657e9b4048c5811dbc73b7207bc4fdbe0b72024453ee0390516"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-003.meta.json",
+          "bytes": 928,
+          "sha256": "21f44ecf0dd542b662fa8ed3500dd29b810718db1634f4c63d34f6454b2fcf06"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-003.tsv",
+          "bytes": 734,
+          "sha256": "e14be8e91dd54b1fe5b8754ca0743b79f457cfa4aead5ea3484d2fac50550717"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-004.meta.json",
@@ -63,33 +113,33 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-006.meta.json",
-          "bytes": 1075,
-          "sha256": "401fb2c0a74f4abd7258b0bfda8db4650fb90aabe09059cfdd56d5cdc0022956"
+          "bytes": 1347,
+          "sha256": "911d79ee38feaf4e1762a71f17e0a36d55ce525897f779874676f0ffc3a3c8a4"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-006.tsv",
-          "bytes": 789,
-          "sha256": "5c6c38ad66fd320639e7fb8ae5588499950f121212eee2c6d300aec703abc128"
+          "bytes": 1371,
+          "sha256": "1cd3b6bb21d5d223d62714764fa772166a0d13a13f16c0c08c9ba3f7eb076c19"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-01.meta.json",
-          "bytes": 1304,
-          "sha256": "1c009488c88dbfcce042fdedbfe7f1930566b2f5dafc8a067ac2287d07ac4922"
+          "bytes": 1519,
+          "sha256": "0c3f4cb8afd3abff1a0e7b2c28bd70da18efa1f1ce123eb6a12cfe2a312a291a"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-01.tsv",
-          "bytes": 2176,
-          "sha256": "2c076fc2d59a78993ad7fd260875bcb7ade7431ac8fe6e153439fa88c4a76341"
+          "bytes": 2448,
+          "sha256": "4de818eec84452815577140ff3eaef710e7a9b5eed67ec5f3053124f1887908a"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-02.meta.json",
-          "bytes": 1048,
-          "sha256": "b50754e1ea2f553c0574ceb69eb9deb555ccc3e018a455e339b642953112ed57"
+          "bytes": 1224,
+          "sha256": "cc2e9fe750e3fcf452328048e636f15bda39c9ae7fafc8c6722b4e6bc300d7d1"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-02.tsv",
-          "bytes": 1022,
-          "sha256": "573b10e8f40e4732ef12a29014f59b0f07cb13a5f5785dec868d90e65d0900b5"
+          "bytes": 1153,
+          "sha256": "38c27274a532fd6c2c5e78c00643f233ddf4d2ed933c966b2fe7719afd61473c"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-009.meta.json",
@@ -183,13 +233,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-04.meta.json",
-          "bytes": 2270,
-          "sha256": "0f5f33b3b96a3102870491b7f447d20b6b26d5377fc37306443d01b04e790d55"
+          "bytes": 2520,
+          "sha256": "40f98355427be801d3a089095b24713cf8a0b9621e65d182dc7fe74fdacf0401"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-04.tsv",
-          "bytes": 12555,
-          "sha256": "50fafce580c465b06fdec453cbe0d59cab29fb7c850d31fb8e5b303c2d6d17ec"
+          "bytes": 13142,
+          "sha256": "0aec15b320f6ec288dbecc50d155235b77a9bdf8a0391096fb2442ffd7cacac1"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015.meta.json",
@@ -393,13 +443,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.meta.json",
-          "bytes": 5051,
-          "sha256": "daef667168c7099d8a36b80bfb4b6ff6c5afdba4743c0ec7883399ebea40b7bc"
+          "bytes": 5222,
+          "sha256": "a0bdaecf7749d2c9d641fa4354be1a9dfd239142891f4861332fe7b846b3b4e5"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.tsv",
-          "bytes": 24740,
-          "sha256": "cdca1ab06755ed08b04bd9317fb14952585ac84511e92574fb9d83a01967f056"
+          "bytes": 24803,
+          "sha256": "4a29adf3f51618aa36f3dbd3dfa10a774c4acebf628dc9efd7dfc4b0b9804f16"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-028-01.meta.json",
@@ -546,16 +596,21 @@
     "ourstudio_commit": "a4abcb96",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "8bee84126cbc30f54bfa2aaf0942596bdf1d3c7d342fea02224a81fbeab0814d",
-    "exported": "2026-10-10T07:06:49+00:00",
+    "mirrors_sha256": "3ea670c4b473833fbb069e8601f2bfd287312b19d0537f0da8b3550f5871f438",
+    "exported": "2026-10-10T07:30:59+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0v",
+    "registry_version": "v0w",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
+      "MN2594-001",
       "MN2594-001-01",
+      "MN2594-001-02",
       "MN2594-001-04",
+      "MN2594-002",
+      "MN2594-003",
+      "MN2594-003-02",
       "MN2594-004",
       "MN2594-006",
       "MN2594-007-01",
@@ -639,10 +694,10 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0v",
+  "registry_version": "v0w",
   "documents": 266,
-  "tables": 51,
-  "rows": 1411,
+  "tables": 56,
+  "rows": 1675,
   "publication": {
     "serve": 264,
     "link": 2,
