@@ -455,6 +455,14 @@
       "destination": "/uploads/kirchner-v-ellison/Eighth_Circuit_Local_Rules_June_17_2024_ca8.uscourts.gov_official_pamphlet_.pdf"
     },
     {
+      "source": "/api/casereview/file/Federal Rules of Appellate Procedure \\(Dec. 1, 2025, official pamphlet, GPO print CPRT-119HPRT61919 via govinfo.gov\\)",
+      "destination": "/uploads/kirchner-v-ellison/Federal_Rules_of_Appellate_Procedure_Dec._1_2025_official_pamphlet_GPO_print_CPRT-119HPRT61919_via_govinfo.gov_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Federal Rules of Evidence \\(Dec. 1, 2025, uscourts.gov official pamphlet\\)",
+      "destination": "/uploads/kirchner-v-ellison/Federal_Rules_of_Evidence_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf"
+    },
+    {
       "source": "/api/casereview/file/The Constitution of the United States of America, Literal Print \\(text, spelling and punctuation of the National Archives high-resolution downloads\\) \\[20 pp\\]",
       "destination": "/uploads/kirchner-v-ellison/The_Constitution_of_the_United_States_of_America_Literal_Print_text_spelling_and_punctuation_of_the_National_Archives_high-resolution_downloads_20_pp_.pdf"
     },
@@ -525,6 +533,82 @@
     {
       "source": "/api/casereview/file/2014 - 281 Care Committee v. Arneson, 766 F.3d 774 \\(8th Cir.\\) \\[CA8 slip No. 13-1229, 2 Sept. 2014\\]",
       "destination": "/uploads/kirchner-v-ellison/2014_-_281_Care_Committee_v._Arneson_766_F.3d_774_8th_Cir._CA8_slip_No._13-1229_2_Sept._2014_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Gorog v. Best Buy Co., 760 F.3d 787 \\(8th Cir.\\) \\[CA8 slip No. 13-2231, 24 Jul. 2014\\]",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Gorog_v._Best_Buy_Co._760_F.3d_787_8th_Cir._CA8_slip_No._13-2231_24_Jul._2014_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2024 - Lamar v. Payne, 111 F.4th 902 \\(8th Cir.\\) \\[CA8 slip No. 22-2164, 5 Aug. 2024\\]",
+      "destination": "/uploads/kirchner-v-ellison/2024_-_Lamar_v._Payne_111_F.4th_902_8th_Cir._CA8_slip_No._22-2164_5_Aug._2024_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2023 - Cornice & Rose International, LLC v. Four Keys, LLC, 76 F.4th 1116 \\(8th Cir.\\) \\[CA8 slip No. 22-1976, 11 Aug. 2023\\]",
+      "destination": "/uploads/kirchner-v-ellison/2023_-_Cornice_Rose_International_LLC_v._Four_Keys_LLC_76_F.4th_1116_8th_Cir._CA8_slip_No._22-1976_11_Aug._2023_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2025 - Smith v. Reynolds, 139 F.4th 631 \\(8th Cir.\\) \\[CA8 slip No. 24-2187, 2 Jun. 2025\\]",
+      "destination": "/uploads/kirchner-v-ellison/2025_-_Smith_v._Reynolds_139_F.4th_631_8th_Cir._CA8_slip_No._24-2187_2_Jun._2025_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1998 - Innovative Home Health Care, Inc. v. P.T.-O.T. Associates of the Black Hills, 141 F.3d 1284 \\(8th Cir.\\) \\[CA8 slip No. 97-3275, 21 Apr. 1998\\]",
+      "destination": "/uploads/kirchner-v-ellison/1998_-_Innovative_Home_Health_Care_Inc._v._P.T.-O.T._Associates_of_the_Black_Hills_141_F.3d_1284_8th_Cir._CA8_slip_No._97-3275_21_Apr._1998_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2006 - United States v. Metropolitan St. Louis Sewer District, 440 F.3d 930 \\(8th Cir.\\) \\[CA8 slip No. 05-1598, 6 Mar. 2006\\]",
+      "destination": "/uploads/kirchner-v-ellison/2006_-_United_States_v._Metropolitan_St._Louis_Sewer_District_440_F.3d_930_8th_Cir._CA8_slip_No._05-1598_6_Mar._2006_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - Ryan v. Ryan, 889 F.3d 499 \\(8th Cir.\\) \\[CA8 slip No. 16-3149, 7 May 2018\\]",
+      "destination": "/uploads/kirchner-v-ellison/2018_-_Ryan_v._Ryan_889_F.3d_499_8th_Cir._CA8_slip_No._16-3149_7_May_2018_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2019 - Dalton v. NPC International, Inc., 932 F.3d 693 \\(8th Cir.\\) \\[CA8 slip No. 18-2123, 31 Jul. 2019\\]",
+      "destination": "/uploads/kirchner-v-ellison/2019_-_Dalton_v._NPC_International_Inc._932_F.3d_693_8th_Cir._CA8_slip_No._18-2123_31_Jul._2019_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Hart v. United States, 630 F.3d 1085 \\(8th Cir.\\) \\[CA8 slip No. 10-1604, 11 Jan. 2011\\]",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Hart_v._United_States_630_F.3d_1085_8th_Cir._CA8_slip_No._10-1604_11_Jan._2011_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2004 - County of Mille Lacs v. Benjamin, 361 F.3d 460 \\(8th Cir.\\) \\[CA8 slip No. 03-2527, 9 Mar. 2004\\]",
+      "destination": "/uploads/kirchner-v-ellison/2004_-_County_of_Mille_Lacs_v._Benjamin_361_F.3d_460_8th_Cir._CA8_slip_No._03-2527_9_Mar._2004_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2025 - Preble v. Itasca County Board of Commissioners, 2025 WL 3458052 \\(D. Minn.\\) \\[D. Minn. No. 25-cv-3006 \\(LMP-LIB\\) Doc. 71, Order, 2 Dec. 2025; GovInfo USCOURTS-mnd-0_25-cv-03006-1\\]",
+      "destination": "/uploads/kirchner-v-ellison/2025_-_Preble_v._Itasca_County_Board_of_Commissioners_2025_WL_3458052_D._Minn._D._Minn._No._25-cv-3006_LMP-LIB_Doc._71_Order_2_Dec._2025_GovInfo_USCOURTS-mnd-0_25-cv-03006-1_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2021 - Minnesota Automobile Dealers Association v. Minnesota, 520 F. Supp. 3d 1126 \\(D. Minn.\\) \\[D. Minn. No. 21-cv-53 \\(WMW-ECW\\) Doc. 48, Order, 17 Feb. 2021; GovInfo USCOURTS-mnd-0_21-cv-00053-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2021_-_Minnesota_Automobile_Dealers_Association_v._Minnesota_520_F._Supp._3d_1126_D._Minn._D._Minn._No._21-cv-53_WMW-ECW_Doc._48_Order_17_Feb._2021_GovInfo_USCOURTS-mnd-0_21-cv-00053-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2021 - Mell v. Minnesota State Agricultural Society, 557 F. Supp. 3d 902 \\(D. Minn.\\) \\[D. Minn. No. 21-cv-1040 \\(ECT-ECW\\) Doc. 21, Opinion and Order, 30 Aug. 2021; GovInfo USCOURTS-mnd-0_21-cv-01040-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2021_-_Mell_v._Minnesota_State_Agricultural_Society_557_F._Supp._3d_902_D._Minn._D._Minn._No._21-cv-1040_ECT-ECW_Doc._21_Opinion_and_Order_30_Aug._2021_GovInfo_USCOURTS-mnd-0_21-cv-01040-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2021 - Whole Woman's Health v. Jackson, 595 U.S. 30 \\(slip opinion No. 21-463, 10 Dec. 2021, supremecourt.gov revised slip\\)",
+      "destination": "/uploads/kirchner-v-ellison/2021_-_Whole_Woman_s_Health_v._Jackson_595_U.S._30_slip_opinion_No._21-463_10_Dec._2021_supremecourt.gov_revised_slip_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2020 - Banister v. Davis, 590 U.S. ___ \\(slip opinion, No. 18-6943\\)",
+      "destination": "/uploads/kirchner-v-ellison/2020_-_Banister_v._Davis_590_U.S._____slip_opinion_No._18-6943_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1992 - Morales v. Trans World Airlines, Inc., 504 U.S. 374 \\(US Reports bound\\)",
+      "destination": "/uploads/kirchner-v-ellison/1992_-_Morales_v._Trans_World_Airlines_Inc._504_U.S._374_US_Reports_bound_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1907 - State ex rel. Young v. Robinson, 101 Minn. 277, 112 N.W. 269 \\[Caselaw Access Project scan, static.case.law\\]",
+      "destination": "/uploads/kirchner-v-ellison/1907_-_State_ex_rel._Young_v._Robinson_101_Minn._277_112_N.W._269_Caselaw_Access_Project_scan_static.case.law_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1962 - Coppedge v. United States, 369 U.S. 438",
+      "destination": "/uploads/kirchner-v-ellison/1962_-_Coppedge_v._United_States_369_U.S._438.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2024 - Nordgren v. Hennepin County, 96 F.4th 1072 \\(8th Cir.\\) \\[CA8 slip No. 22-1902, 21 Mar. 2024\\]",
+      "destination": "/uploads/kirchner-v-ellison/2024_-_Nordgren_v._Hennepin_County_96_F.4th_1072_8th_Cir._CA8_slip_No._22-1902_21_Mar._2024_.pdf"
     },
     {
       "source": "/api/casereview/file/:id",

@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T05:53:15.201Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010g",
+  "imported": "2026-10-10T06:03:00.134Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010h",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "068872c0abb995d618910d9b2f0fd2d809fe5b9a60d353d09646676930d33547",
+      "sha256": "3f3883ea24c7c25e0ca34408f5f682c2f388be33855467deab07450e4bc6c72f",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 294574,
-          "sha256": "97e9eef30838e7f3db752f40cbd4225abc71896566ac7c1cc9eefabdad5e48b8"
+          "bytes": 340027,
+          "sha256": "49719e3ffe464fcb0999dae5246bc82a514601ab3f69c45d7ea6f768b599c2ae"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
@@ -203,13 +203,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.meta.json",
-          "bytes": 2955,
-          "sha256": "43e80fbc5c113b6fec66c576eb64e058ae7a93723da691ad6e6e7962475107e7"
+          "bytes": 3586,
+          "sha256": "069500442fca7c1563a178c463513784312cac7a2aaf8840e0082cd24f9b88dd"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.tsv",
-          "bytes": 24030,
-          "sha256": "232c1df3885b2a4044e7b42198f626da068ba17a6540709a22f1e2008d71955e"
+          "bytes": 24094,
+          "sha256": "c42f8591e936b54f3d5b0a653faa74b750d6352dcb695c1b8fc143f5b1a7288a"
         },
         {
           "path": "_admin/case_review/_paramaps/mn/MN_626_89.json",
@@ -222,6 +222,11 @@
           "sha256": "d55f28cef1a28a7031306b6906f1899dcfedba4607bcc2272f9c822bb5015f2b"
         },
         {
+          "path": "_admin/case_review/_paramaps/usc/usc28@119-111.json",
+          "bytes": 12832,
+          "sha256": "0db1d25b362f8dd7fb63b471ef5ca699053c5f58de049089f0be76d70f99a248"
+        },
+        {
           "path": "_admin/case_review/_paramaps/usc/usc42_ch8to39_Secs1401to3259@119-111.json",
           "bytes": 24216,
           "sha256": "0b9027b57ce498e57e73fc45a2fb21c29cf6f125c54e837a90803b36cb9c2f80"
@@ -232,10 +237,10 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "927cd63bded5425c492a8a93aa53ca00fef6fb874ffe9a53d810d9fa8ffb25fa",
-    "exported": "2026-10-10T05:53:14+00:00",
+    "exported": "2026-10-10T06:02:59+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0o",
+    "registry_version": "v0q",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
@@ -260,7 +265,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 217,
+      "serve": 239,
       "link": 1,
       "hold": 0
     },
@@ -293,12 +298,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0o",
-  "documents": 218,
+  "registry_version": "v0q",
+  "documents": 240,
   "tables": 20,
   "rows": 913,
   "publication": {
-    "serve": 217,
+    "serve": 239,
     "link": 1,
     "hold": 0
   },
