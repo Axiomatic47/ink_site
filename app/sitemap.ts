@@ -3,7 +3,11 @@ import { SITE_ORIGIN } from '@/lib/cv';
 import { works } from '@/lib/works';
 import {ARCHIVE_IDS } from '@/lib/research-archive';
 import { readArchiveManifest } from '@/lib/research-archive.server';
+import { hasImmunityTimeline } from '@/lib/immunity-timeline.server';
+import { hasOpenLetter } from '@/lib/open-letter.server';
+import { OPEN_LETTER_PATH } from '@/lib/open-letter';
 import { loadAllReadings } from '@/lib/open-readings.server';
+import { CASE_REVIEW, hasCaseReview } from '@/lib/case-review.server';
 
 export const dynamic = 'force-static';
 
@@ -21,6 +25,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
     { url: `${SITE_ORIGIN}/research/open-readings`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_ORIGIN}/research/acknowledgements`, lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
+    ...(hasImmunityTimeline() ? [{ url: `${SITE_ORIGIN}/research/immunity-timeline`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 }] : []),
+    // the open letter to the candidates for Minnesota Attorney General (owner 2026-10-09): present when its content is
+    ...(hasOpenLetter() ? [{ url: `${SITE_ORIGIN}${OPEN_LETTER_PATH}`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.7 }] : []),
+    // the MN case in review mode (owner 2026-10-09: both sites host the DMN review): present while its bundle is
+    ...(hasCaseReview() ? [{ url: `${SITE_ORIGIN}/${CASE_REVIEW.slug}`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.7 }] : []),
     ...loadAllReadings().flatMap((c) => [
       { url: `${SITE_ORIGIN}/research/${c.id}/readings`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.6 },
       ...c.items.map((it) => ({ url: `${SITE_ORIGIN}/research/${c.id}/readings/${it.id}`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.5 })),

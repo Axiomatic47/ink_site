@@ -153,6 +153,13 @@ def main():
             if pdf is None and w.get('pdf'): pdf = ROOT / 'public' / w['pdf'].lstrip('/')
             if pdf is not None and pdf.exists(): made.append(save(letterbox(pdf_first_page(pdf)), key))
             else: made.append(save(title_card(coll_title(w.get('collection', '')), w['title'], site, site), key))
+    # title cards by data (2026-10-09): pages that are neither a work nor a leaf — content/og-cards.json lists
+    # {key, eyebrow, title, byline}; absent on a site that has none (kirchner.cv), so the script stays byte-identical
+    oc = ROOT / 'content' / 'og-cards.json'
+    if oc.exists():
+        site = site_name()
+        for c in json.loads(oc.read_text()):
+            made.append(save(title_card(c['eyebrow'], c['title'], c.get('byline', site), site), c['key']))
     print(f'wrote {len(made)} card(s) to {OUT.relative_to(ROOT)}/')
     for p in made: print(f'   {p.name}  {p.stat().st_size // 1024} KB')
 

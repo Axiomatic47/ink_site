@@ -139,6 +139,170 @@ p=none, all on Netlify DNS).
   "completed … · published …". The immunity book's versions 1–4 and 6–10 were all published
   2026-09-26 (main 156fc3f).
 
+## The immunity timeline — one module on three sites (owner 2026-10-06)
+
+- `/research/immunity-timeline` is *Where Immunity Came From*: the actual history of immunity in all its categories, shared
+  outward as the record (owner 2026-10-07: it is the timeline to share, not a comparison against anyone else's — the
+  comparison block is no longer drawn); the same page on kirchnervjohnson.com and lawsofexistence.com. ONE content file, `public/research/immunity-timeline.json`, the same bytes on every site, served
+  beside the page; the drafters write and review it (every fact from the book or a shelf copy), the sites render it, nobody
+  here edits a fact. Absent → the route answers 404, the sitemap omits it, no menu item: never a placeholder.
+- BYTE-IDENTICAL across sites (cmp at every landing): `src/lib/immunity-timeline.ts` (the shape: thirteen categories, six
+  kinds), `immunity-timeline.server.ts` (the loader; `IMMUNITY_TIMELINE_JSON` overrides for a local build, ignored under
+  CI/NETLIFY), `scripts/validate-timeline.mjs` (the build gate: ids, integer years, the closed sets, quote pins, http links,
+  `source.book_unit` as `<note>/<seq>` beginning with the entry's `book_note`, an older file's comparison cross-references,
+  no coordination vocabulary in reader-facing text), `app/research/immunity-timeline/{TimelineBody,TimelineFilter}.tsx`
+  (the body: key line, record; the rail: a TYPE row and a CATEGORY row of chips that SELECT — each row begins at All, a chip
+  shows only its type or category, several in a row add together, the two rows combine, the selected chips are the filled
+  ones; the selection is the page's query string, `?type=<kind,…>&category=<category,…>`, read through
+  `useSyncExternalStore` so the server render and the first client render agree (All) and a filtered view can be sent; print
+  shows everything; owner 2026-10-07: a filter never hides what was clicked) and `timeline.css`. The page names the book once in a key line — TSUP = *The Subject's Unanswered Plea*
+  — and TSUP thereafter ("TSUP § 2.3 · n. iicb5a"). A citation links to the book's review page at its cited unit
+  (`bookUnitHref`: `${bookBase}/review#cite=<note>/<seq>`) when the data names `source.book_unit`; the note links to the text
+  page (`bookNoteHref`: `${bookBase}/text#user-content-fn-<note>`). At a landing, every `book_unit` is checked against this
+  site's review manifest (`content/review/<slug>.json` units): a lane row with no source copy (SKIP, NO_SOURCE) is not a unit
+  the review page can open, and the entry keeps the note link instead. Per site: `page.tsx` (the shell) and `app/_components/Markdown.tsx`.
+  The book's address is a site setting (`bookBase`: `/work/<slug>` here; the absolute kirchner.ink URL elsewhere).
+- THE CHANGE RULE: a new import name, a new field, a new category or kind, a NEW PALETTE TOKEN NAME in the stylesheet, or a
+  NEW UTILITY CLASS NAME in the module's markup (`bg-ink`, `text-paper`, `border-rule` and their variants — lawsofexistence.com's
+  scoped sheet maps each utility by hand, so a class it has not met renders unstyled there without failing any gate; the
+  filter's filled chip brought five it had not met, 2026-10-07) is said by name to the other sites before it lands; all three
+  cut together.
+  The HREF FORMS are part of the contract: lawsofexistence.com has no `/review` route (its review mode is `/books/<slug>`)
+  and answers `bookUnitHref` by a permanent redirect that carries the fragment — a change to either href's shape (a new
+  segment, a query instead of a hash) is said by name first.
+- The Research menu lists the page (`app/_components/SiteHeader.tsx`) only while the content exists.
+- THE TIMELINE IS OFFERED FROM THE BOOK (owner 2026-10-07): `app/_components/TimelineLink.tsx` renders the home shelf's card
+  beneath the archive cards (title, span, count, the book, six entries chosen evenly across the record to their anchors — the
+  same six as lawsofexistence.com's card) and the line beneath the book's review panes on `/work/<slug>` and `/review`, passed
+  as the `after` slot from the page through `ReviewLoader` into `ReviewBody` and counted in the panes' height budget by its own
+  constant (`AFTER_PX` beside `BELOW_PX`, so a picked citation never moves the panes' edges). Both render only while the
+  timeline's content exists AND names this book (`provenance.book_slug`); every other work shows nothing. Shell, not module.
+
+## The MN case in review mode — `/kirchner-v-ellison` (owner 2026-10-09: "Both sites will host the dmn review as well as and primarily the local review in ourstudio")
+
+- The Case Review window is the Studio's, vendored byte for byte under `public/casereview/vendor/` with its pdf.js
+  (4.10.38) under `public/lib/pdfjs/`, recorded in `VENDOR.json` — **never edit them here**; a rule change lands in
+  `~/Git/ourstudio` (studio-spec + frontend review) and comes by `npm run casereview:sync`; `npm run build` fails on
+  drift (`scripts/sync-casereview.mjs --check`). The three shims beside it (`base.js`, `filing/ctxmenu.js`,
+  `reviews.js`), `app/kirchner-v-ellison/` (the host, the skin) and `src/lib/case-review.server.ts` (the case table,
+  the stamp, the default document) are this repo's code. The same architecture carries the DDC case on
+  lawsofexistence.com and kirchnervjohnson.com; the MN lane's local review in the Studio is PRIMARY — the site follows
+  it, never leads.
+- The bundle under `public/casereview/kirchner-v-ellison/data/` is written by `scripts/import-casereview.mjs` from the
+  checker's EXPORT of the MN lane (`--from <export> --case kirchner-v-ellison`) — **never hand-edited**; the importer
+  is the ONE file shared by the three sites, byte for byte (a change is said by name to the other website seat first
+  and cut on both — the rule for Case Review keys). Publication is the registry's per-row `publish` word, fail-closed, narrowed by THIS HOST'S POLICY (the owner's word, 2026-10-10 11:03 CDT: "I dont want kirchner I published to kirchner.ink - only Kirchner II"): the import runs with `--serve-groups 'Filings,Case law,Constitution,Correspondence (unfiled),Recordings,Rules,Secondary sources,Statutes'` — every MN group but `Appeal (8th Cir. No. 26-1615)` (Kirchner I, 0:26-cv-00726 and its appeal), whose six documents are held here with no file and NO TABLE (a table is the document's own content: written only for a document served on this host, the id dropped from `docs.links`, the withheld ids stamped in `_IMPORT.json.tables_withheld`), Kirchner II's rows that cite them taking the window's "not published on this site" sentence; a `--serve-groups` name that matches no registry group is refused in words; `docs/CASE_REVIEW_SITE.md` has the whole of it. A SIZE GUARD runs on every export before the import (`scripts/casereview-size-guard.mjs --from <export>`, site-only tooling, the same bytes on the three sites but the host's name): it measures every `serve` row's file at the export stamp's case root and refuses one over 95 MB — GitHub refuses a file over 100 MB on push, these repos carry no LFS; such a row is answered by the registry's `link` + publish_url, never dropped here (2026-10-10: the 1920 Biennial Report scan, 197 MB, refused by GitHub's hook after every other gate had passed).
+  The served PDFs (`public/uploads/kirchner-v-ellison/`, 279 files, 293 MB at registry v1c under the host policy — the six appeal files withheld) are tracked in git with the
+  bundle since the owner's hosting word (2026-10-09 23:4x CDT): nothing published is served from nowhere, and the
+  bundle check (`casereview:check`) runs inside `npm run build`.
+- The route 404s without a bundle and joins the sitemap with it. The window is named its case by the slug (`projroot`
+  in the URL and the mount option), never a path. Record cites in the open-letter page become links to this review
+  when the lane's rows reach them (the brief's sequence, § 5 (6)).
+- Read `docs/CASE_REVIEW_SITE.md` before touching any of it; the lane's contract is the admins' README under the case
+  root (`_admin/case_review/README.md`), the rulings the studio-spec's.
+
+## The open letter to the candidates for Minnesota Attorney General (owner 2026-10-09)
+
+- `/mn-ag-candidates-open-letter` — the route the letter prints in its closing paragraph (the owner mails it
+  October 10, 2026): the open letter, its Enclosure A and the MPR News Politics Friday debate of October 2, 2026,
+  in the review-mode pattern. LEFT, the document: the owner's own PDF of the letter or of Enclosure A (the Word
+  build's rendering, read from `05_Correspondence`, never produced here — the device rule), every debate time a hit
+  box over the page as the book's citations are (`PdfViewer` `hotBoxes`; the boxes come from poppler's word
+  boxes, `pdftotext -bbox-layout`, one per word a time runs through, PDF points, origin top-left), and a Text tab
+  (the markdown, times linked by the remark plugin). RIGHT, the source: THE RECORDING ITSELF playing in the page
+  (owner 2026-10-09: "publish the actual view in the same screen, not just its transcript") above the transcript,
+  one row per turn, every Time cell a link. A time anywhere — a box on the PDF, a link in the text, a Time cell —
+  plays the recording from that second here and marks the turn in progress; every link keeps its YouTube href
+  (`https://www.youtube.com/watch?v=pgzvG1Ky8rQ&t=<seconds>s`, a range to its start) for a reader who wants the
+  page there. THE PLAYER is YouTube's privacy-enhanced embed (`www.youtube-nocookie.com`, `enablejsapi=1`, the
+  page's origin) driven by the widget's postMessage protocol — no YouTube script on this site, and NOTHING from
+  YouTube loads until the reader presses play or a time (a facade stands first); the one CSP in `netlify.toml`
+  gained `frame-src https://www.youtube-nocookie.com` for it, and the privacy page says so. THE OWNER'S WORD ON
+  THE RECORDING (2026-10-09 ~20:4x): the YouTube video "if we can use [it] without ad interruption on site and if
+  not" the owner's own file of the broadcast. Measured: the video's watch page carries `adPlacements`, so the embed
+  can show YouTube's ads — the ad-free way is the file, played by a plain `<video>` (no third party at all), from a
+  host the owner chooses: the file is 155.9 MB, over GitHub's 100 MB single-file limit, so NEVER in this repository
+  (an object store or a video host; same-origin, or its origin added to the CSP as `media-src`). The importer takes
+  it as `--video-url <https URL or site path>` → `recording.file`; the page then renders the `<video>` and every
+  time seeks it; without the flag the embed stands. Republishing MPR's broadcast is the owner's decision, named to
+  them; the importer decides nothing about rights. DECIDED (owner 2026-10-09 ~21:2x, verbatim through the drafter:
+  "We will host from youtube"): the embed stays, no file, no `--video-url`; the host and the rights questions are
+  closed, and the `--video-url` path is the importer's unused capability. A Reading-mode toggle
+  stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
+  the play button; nothing autoplays on load).
+- Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
+  (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly four files of
+  `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the two enclosures under `05_Correspondence`, the
+  transcript under `0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002` — recording each file's sha and
+  commit; it refuses a dirty source. THE LETTER'S TEXT comes from the drafters' PUBLISHED copy
+  (`…_2026-10_PUBLISHED.md`, the mailed text with the street, the city line and the telephone dropped) whenever
+  that file exists, else from the mailed letter with the same lines dropped here (`letter.text_source` says which).
+  THE PDFs: the enclosure's rides by default (`--enclosure-pdf <path>` to override, `none` to drop); the letter's
+  only as `--letter-pdf <the PUBLISHED copy>` (`…_PUBLISHED.pdf`, the owner's rendering of that published text) —
+  and the importer refuses, before it writes anything, a letter PDF whose text carries a telephone number or any
+  line the published letterhead drops. THOSE LINES ARE NEVER NAMED IN CODE: the refusal reads them from the mailed
+  letter's own letterhead in the case tree at run time (admin 69183d38 2026-10-09: a literal in the source is the
+  street in the repository — the first cut had one, a5db63d3, removed by the follow-up; the history keeps it).
+  Without the flag the letter tab is absent and the left pane opens on the Text tab. ENCLOSURE B (owner 2026-10-09
+  ~23:5x CDT, "Word on all of it we're getting it done"): the reply form that goes back in the stamped envelope is the
+  fourth source (`…_ENCLOSURE_B_REPLY_FORM_2026-10.md` → content `enclosure_b`): a third tab when its PDF is served,
+  its text after Enclosure A on the Text tab (`#enclosure-b`); it names no debate time, so its PDF carries no boxes
+  and the no-boxes refusal does not apply to it; its PDF rides by default WHEN the owner's rendering is beside the
+  markdown (`--enclosure-b-pdf <path>` names one, `none` drops it) — text alone until then; the form prints no
+  street and no telephone (the envelope carries the address), and the importer, `--check` and `test:letter` refuse
+  one that does, by the same run-time read of the mailed letterhead. SERVED SINCE 7c5e805b
+  (2026-10-09 21:28, the page's final state for the mailing): the owner's final renderings of that evening — the
+  PUBLISHED letter (21:10:59; 3 pp., 9 boxes) and Enclosure A (21:08:51; 3 pp., 23 boxes) — gated by the lane holder
+  byte for byte against the owner's files; the mailed letter's PDF is the owner's mailing copy and is never served;
+  the texts at work_station 8e5597d2. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
+  the served files and reads the letter's text again. NOTHING ELSE from that folder is published (the census beside the transcript
+  relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
+  and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard
+  breaks; the transcript header's source and method sentences ride onto the page with two things removed and NAMED
+  under `header_omitted` — as labels, never the words, so the content file carries them no more than the page does
+  (a636b3d9 2026-10-09) — the owner's local file paths and the drafter's seat (the outward-voice rule: no seat ids,
+  no filesystem paths where a reader reads); every other word is the drafter's. Record cites in the enclosure are
+  plain text (this site carries no docket). THE PUBLISHED LETTERHEAD is the name and the email only (owner
+  2026-10-09: "redact my phone number and address from the letter that's published") — the importer drops the
+  street, the city line and the telephone from the body's first paragraph, records what it dropped by label
+  (`letter.redacted`), and its `--check` and `test:letter` refuse a letterhead of more than those two lines or a
+  telephone number anywhere in the letter; the campaigns' addressee blocks are untouched. `src/lib/open-letter.ts` is the shape and the time rules
+  (`DEBATE_TIME_RE`, `recordingUrl`, `turnAt`); `remark-debate-times.ts` the plugin; `open-letter.server.ts` the
+  loader. Absent content → 404 and no sitemap entry, never a placeholder. GATE: `npm run test:letter`
+  (`scripts/test-open-letter.mjs`, bundled by esbuild so it imports the TypeScript rules) — the clock forms the
+  texts use (a time before a colon, a range before a colon, two times either side of a slash, a list), the
+  non-times (a docket prefix, a statute, a phone number), the plugin over markdown, and, when the content is on
+  disk, every time the pattern finds in the letter, the enclosure and the method becoming a link; plus
+  `node scripts/import-open-letter.mjs --check`. The test's esbuild bundle lands in `.cache/` (gitignored and in the
+  eslint ignores: its bundled library code once put 40 errors into `eslint .`). A time the pattern misses is a quotation a reader cannot hear —
+  the first cut missed every "2:49:" (a colon after the time) and the test is what caught the form.
+- DATED ADDITIONS (owner 2026-10-10; the first: Attorney General Ellison's written testimony to the U.S. House
+  Committee on Oversight and Government Reform of March 4, 2026, its sentence at 2, approved verbatim):
+  `content/correspondence/mn-ag-candidates-open-letter.additions.json`, kept by hand on the owner's word and never
+  written by the importer — each note's words verbatim behind its dated lead (`**Added October 10, 2026.**`), the
+  document it cites served beside the letter's PDFs under `public/uploads/correspondence/<slug>/` and recorded by
+  sha256, bytes, pages, the cited page and the quoted sentence, the publisher's URL and label, and where the owner's
+  copy is shelved in the case tree (`document.source`, stripped by `toView`, never sent to the page). Rendered under
+  the document, before the transcript in reading mode and under both panes in review mode (`#additions`,
+  `#added-<date>`); the loader refuses an incomplete entry or a served copy that is not the recorded bytes;
+  `test:letter` reads the quoted sentence on the cited page of the served file and the note. The mailed letter, the
+  enclosures and their tables never change for an addition. A filed document the note names (`record[]`: the docket
+  label, the registry id, the PDF page, the page count as served) is linked into this site's Case Review at that page —
+  the loader derives the window's deep link from `CASE_REVIEW.slug` (`caseReviewDocHref`) and refuses an id the bundle
+  does not serve, a page count the bundle contradicts, or a label the note does not say; the first is Exhibit C to the
+  Complaint (Doc. 2) at page 11 of 34, the owner's second word of 2026-10-10 ('Approved as recommended').
+- NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
+  private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
+  route (owner 2026-10-09: "the site preview in ourstudio does not show any way to view this new page") — the
+  SITES pane probes and frames `http://localhost:<port><ready_path>`, so the pane opens on the page and the site's
+  menu is a click away; set it back to `/` when the page is in the navigation or the owner says. The letter on the page is the current text — a placeholder the owner may revise before mailing — so a
+  revised letter is a re-run of the import (the same three files, committed in the case tree first), then
+  `review the diff`, build, commit. The social card is a title card from `content/og-cards.json` (the data-driven
+  list `build_og_images.py` reads after the works; kirchner.cv has no such file, so the script stays byte-identical).
+- The transcript is a machine transcript (whisper large-v3, two machine hearings, the header says so and the page
+  keeps it); the owner's own listen to the quoted clocks is theirs. Questions about the content go to its drafter,
+  not to this seat; the page's build is this seat's.
+
 ## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
 `public/uploads/research/<id>/` (manifest + leaf images + `pdfs/`) is the published set
 built by lawsofexistence.com's `scripts/sync-archives.mjs` from the research library and

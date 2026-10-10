@@ -1,0 +1,1389 @@
+{
+ "title": "Where Immunity Came From",
+ "standfirst": "A timeline of the actual history of immunity in every category the law knows, sovereign, judicial, legislative, executive, prosecutorial, municipal and qualified, from the Code of Hammurabi to *Trump v. United States*. Every entry is read at its own page. Judicial decisions are marked as decisions, statutes as statutes, and constitutional text as constitutional text, because a court's decision is not legislation and the difference is the history.",
+ "provenance": {
+  "book_title": "The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity",
+  "book_slug": "the-subjects-unanswered-plea",
+  "book_commit": "e19eaa9f",
+  "book_sha256": "bed36fcc66e16e5cd04c5082fac927a23310ebd3f3f5023e55837aa9a34b43ec",
+  "date": "2026-10-06"
+ },
+ "entries": [
+  {
+   "id": "c1750bc-code-of-hammurabi",
+   "year": -1750,
+   "date_text": "c. 1750 BC",
+   "title": "The Code of Hammurabi, §§ 4–5",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "The oldest text answers the judge with a remedy. A judge who pronounces a judgment, delivers a sealed decision and afterwards alters it is called to account, pays twelvefold the penalty of the judgment, and is expelled from his seat for life. The section before it makes the bribed witness bear the penalty of the case he swore in.",
+   "quote": "they shall call that judge to account for the alteration of the judgment which he had pronounced, and he shall pay twelve-fold the penalty which was in said judgment; and, in the assembly, they shall expel him from his seat of judgment",
+   "quote_pin": "Harper, The Code of Hammurabi (1904), § 5, translation at 13",
+   "source": {
+    "cite": "The Code of Hammurabi §§ 4–5, in R. F. Harper, The Code of Hammurabi (Chicago 1904)",
+    "pin": "translation at 11, 13",
+    "book_section": "5.2",
+    "book_note": "ao2",
+    "book_unit": "ao2/1"
+   },
+   "link": null
+  },
+  {
+   "id": "c330bc-constitution-of-athens",
+   "year": -330,
+   "date_text": "4th century BC",
+   "title": "Athens: the Council's judgments subject to appeal; any citizen may charge a magistrate",
+   "category": "older-record",
+   "kind": "treatise",
+   "summary": "The Constitution of Athens records that the people took from the Council of Five Hundred the power to put to death, imprison and fine, and that a court's vote on any such condemnation was final. The Council still tried most magistrates, but its judgment was subject to appeal to the court, and private persons could lay an information against any magistrate for not using the laws. After a magistrate's accounts were passed, any citizen could lodge a private or public charge against him within three days.",
+   "quote": null,
+   "source": {
+    "cite": "Aristotle, Athenaion Politeia 45.1–2, 48.4–5 (Sandys ed., 2d ed. 1912)",
+    "pin": "Sandys at 179",
+    "book_section": "5.2",
+    "book_note": "ao3",
+    "book_unit": "ao3/1"
+   },
+   "link": null
+  },
+  {
+   "id": "533-digest-and-institutes-of-justinian",
+   "year": 533,
+   "date_text": "533 (Ulpian, 3rd century, as compiled)",
+   "title": "Rome: the judge who makes the suit his own pays its true value",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "Roman law kept two remedies against the judge open at once. The subject's action lay against a judge who gave judgment with evil intent in fraud of the law, shown by favour, enmity or bribery, and he paid the true value of the suit. The sovereign's prosecution lay under the Julian law against extortion, against any holder of power who took money for judging, capital where a judge condemned an innocent man for money. The Institutes taught every student that a judge who delivers an unjust or partial decision has done a wrong even through ignorance, and pays a penalty.",
+   "quote": null,
+   "source": {
+    "cite": "Dig. 5.1.15.1 (Ulpian); Dig. 48.11.1–3; Inst. 4.5 pr.",
+    "pin": "Mommsen & Krueger, Digesta I at 166; Moyle, The Institutes of Justinian 174 (2d ed. 1889)",
+    "book_section": "5.3",
+    "book_note": "ao7",
+    "book_unit": "ao7/1"
+   },
+   "link": null
+  },
+  {
+   "id": "740-ecloga-salaried-bench",
+   "year": 740,
+   "date_text": "740",
+   "title": "The Ecloga of Leo III: the bench salaried so that judges take nothing from the judged",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "The preface of the Ecloga states what the emperors had done about judges before any subject sued. Because judges corrupted by money, friendship, enmity or fear cannot direct judgment aright, salaries were ordered from the treasury for the quaestor, the antigrapheis and all who serve in judicial business, so that they take nothing from any person judged before them.",
+   "quote": null,
+   "source": {
+    "cite": "Ecloga, proem (Zachariä ed.)",
+    "pin": "Zachariä at 13",
+    "book_section": "5.4",
+    "book_note": "ao19",
+    "book_unit": "ao19/1"
+   },
+   "link": null
+  },
+  {
+   "id": "789-charlemagne-admonitio-and-lex-ribuaria",
+   "year": 789,
+   "year_end": 813,
+   "date_text": "789–813",
+   "title": "Francia: the judge's duty in the capitularies, death for the bribed judge in the Lex Ribuaria",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "Charlemagne's general admonition of 789 commands those given the power of judging to judge justly, not for gifts, and the capitulary of 802 puts it in one sentence: judges judge according to the written law, not their own discretion. The Lex Ribuaria orders that no magnate, count or other officer sitting in judgment receive gifts to pervert judgment, and if anyone is caught in this, let him compound with his life.",
+   "quote": "That judges judge justly according to the written law, not according to their own discretion.",
+   "quote_pin": "Capitulare missorum generale (802) c. 26, Boretius I at 96",
+   "source": {
+    "cite": "Admonitio generalis (789) c. 63; Capitulare missorum generale (802) c. 26; Lex Ribuaria 88 (Sohm ed. 1883)",
+    "pin": "Boretius, Capitularia I at 58, 96; Sohm at 106",
+    "book_section": "5.5",
+    "book_note": "ao27",
+    "book_unit": "ao27/1"
+   },
+   "link": null
+  },
+  {
+   "id": "c900-basilika-on-judges",
+   "year": 900,
+   "date_text": "10th century",
+   "title": "The Basilika keeps both Roman remedies against the judge, and names the extortion law for judges",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "The tenth-century Byzantine compilation carries Ulpian's rule entire under a new rubric, on judges: the judge who gives sentence deceitfully in circumvention of the law, from enmity, favour or gain, pays the true value of the suit. Its sixtieth book carries the extortion law, renamed as the law against magistrates, judges or assessors who have stolen in a suit. The eleventh-century Peira records a praetor condemned under the law on violence for dragging a party into his court.",
+   "quote": null,
+   "source": {
+    "cite": "Bas. 7.5.15–17; Bas. 60.44 rubric; Peira 51",
+    "pin": "Bas. 7.5.15",
+    "book_section": "5.4",
+    "book_note": "ao13",
+    "book_unit": "ao13/1"
+   },
+   "link": null
+  },
+  {
+   "id": "959-edgar-code-unjust-judgment",
+   "year": 959,
+   "year_end": 1118,
+   "date_text": "959–1118",
+   "title": "England before the rule: the judge of an unjust judgment fined and stripped of rank unless he swears he knew no better",
+   "category": "older-record",
+   "kind": "statute",
+   "summary": "Edgar's code of Andover provides that the judge who judges an unjust judgment pays the king a hundred and twenty shillings and loses his thegnship for ever, unless he dare swear that he knew no better. Cnut restated the rule with the motives named, hatred or the taking of money. The compilers of Henry I's reign generalised it to every court and every regard, anger, hatred, fear, love or greed. The oath is the earliest English form of a good-faith exception, and it is a defence to the king's penalty, not a bar to a complaint.",
+   "quote": "the judge who shall judge an unjust judgment to anyone shall give the king a hundred and twenty shillings, unless he dare swear that he knew no better",
+   "quote_pin": "III Edgar 3 (Quadripartitus), Liebermann I at 201–02",
+   "source": {
+    "cite": "III Edgar 3; II Cnut 15; Leges Henrici Primi 34,1–3 (Liebermann, Die Gesetze der Angelsachsen I)",
+    "pin": "Liebermann I at 201–02, 319, 565",
+    "book_section": "5.6",
+    "book_note": "ao32",
+    "book_unit": "ao32/1"
+   },
+   "link": null
+  },
+  {
+   "id": "c1188-glanvill-false-judgment",
+   "year": 1188,
+   "date_text": "c. 1188",
+   "title": "Glanvill: the plea of false judgment lies against the court itself, and the lord loses his court",
+   "category": "older-record",
+   "kind": "treatise",
+   "summary": "At the end of the twelfth century the subject's plea of false judgment lay against the court that gave it. A seignorial court was bound to maintain its judgment by battle where a party alleged a false judgment, and if the court was convicted of it, the lord remained in the king's mercy and lost his court for ever. The king's writ commanded the record brought before the king or his justices by four lawful knights.",
+   "quote": null,
+   "source": {
+    "cite": "Glanvill, Tractatus de legibus et consuetudinibus regni Angliae VIII.9–10 (Rayner ed. 1780)",
+    "pin": "at 132–34",
+    "book_section": "5.6",
+    "book_note": "ao35a",
+    "book_unit": "ao35a/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1485-appeal-of-felony-outranks-the-kings-suit",
+   "year": 1485,
+   "year_end": 1819,
+   "date_text": "1485–1819",
+   "title": "The appeal of felony: the party's suit against the wrongdoer outranks the King's, until 1819",
+   "category": "older-record",
+   "kind": "event",
+   "summary": "The private action of the party or the kin against the wrongdoer survived the rise of the indictment and outlived the Star Chamber by nearly two centuries. In the King's Bench rolls of 1485 to 1495 there are 398 appeals, and the suit of the party always took precedence over the king's. It was brought against constables and sheriffs too. It was abolished in 1819, after the last appellee threw down his glove in the King's Bench. In the order that made the rule of 1607, the subject's plea against every other wrongdoer still outranked the King's; the plea against a judge alone was sent to the King and nowhere else.",
+   "quote": null,
+   "source": {
+    "cite": "C. Whittick, The Role of the Criminal Appeal in the Fifteenth Century, in Law and Social Change in British History 55 (1984); Ashford v. Thornton, 1 B. & Ald. 405 (K.B. 1818); 59 Geo. 3, c. 46",
+    "pin": "Whittick at 55–56, 68, 70",
+    "book_section": "5.6",
+    "book_note": "wh1",
+    "book_unit": "wh1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1600-anglesey-drowning-recast-as-murder",
+   "year": 1600,
+   "year_end": 1606,
+   "date_text": "1600 – c. 1606",
+   "title": "Anglesey: a drowning recast as murder, a conviction on a record its own witnesses disavowed",
+   "category": "english-origin",
+   "kind": "event",
+   "summary": "A man drowned by accident, with his horse, in 1600. Years later the death was recast as murder, and the prosecution was assembled on examinations taken from Welsh-speaking witnesses but written down in English contrary to what they had said. At trial an alibi placed the accused miles from the death; the judge would not let the jury hear the examinations of those who first found the drowned man and his horse; the witnesses disavowed the English statements attributed to them. The jury convicted and asked the accused's forgiveness for the verdict; he was executed. This is the wrong that the complaint of 1607 carried to the Star Chamber.",
+   "quote": null,
+   "source": {
+    "cite": "The second contemporaneous report and the modern reconstruction of the suppressed pleadings, read as TSUP reads them",
+    "pin": "TSUP § 1.1",
+    "book_section": "1.1",
+    "book_note": "vr3",
+    "book_unit": "vr3/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1607-floyd-v-barker",
+   "year": 1607,
+   "date_text": "Easter term 1607",
+   "title": "Floyd v. Barker (Star Chamber): the complaint against the judge destroyed without an answer, and the three bars fixed",
+   "category": "english-origin",
+   "kind": "decision",
+   "summary": "When a living complainant carried that record to the Star Chamber on the dead man's behalf, the court did not examine it. Without any answer from the accused judge, the complaining bill was ordered taken off the file, cancelled and utterly defaced; the second contemporaneous account records the complainant fined, pilloried and imprisoned. The report fixed three bars: records import verity and no proof is received against them; a judge is to be questioned for supposed corruption only before the King himself; and the companion decision holds that the King in his own person cannot adjudge any case and the party cannot have remedy against the King. For the rule itself the report cites no English case. The doctrine carries the name of the man the decree punished, Floyd the complainant, not Barker the judge.",
+   "quote": "they are only to make an account to God and the King, and not to answer to any suggestion in the Star-Chamber",
+   "quote_pin": "12 Co. Rep. 23, 25; 77 Eng. Rep. 1305, 1307",
+   "source": {
+    "cite": "Floyd v. Barker, 12 Co. Rep. 23, 77 Eng. Rep. 1305 (Star Chamber 1607); Prohibitions del Roy, 12 Co. Rep. 63, 77 Eng. Rep. 1342 (1607); the file STAC 8/203/38, bill wanting",
+    "pin": "77 Eng. Rep. at 1305–07",
+    "book_section": "1.2 § A; 1.3 § A; 1.4 § A",
+    "book_note": "vr4",
+    "book_unit": "vr4/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1612-case-of-the-marshalsea",
+   "year": 1612,
+   "date_text": "1612",
+   "title": "The Case of the Marshalsea: no jurisdiction, no protection; an action lies",
+   "category": "english-origin",
+   "kind": "decision",
+   "summary": "The same reporter laid down the counter-rule five years after Floyd. Where a court has not jurisdiction of the cause, the whole proceeding is coram non judice, and an action will lie in false imprisonment against the suitor and the officers. A century later Smith v. Bouchier (1734) entered judgment against the very judge who had ordered an arrest on an insufficient oath, because the judge and the plaintiff knew the oath would not support it. The tradition the receiving courts would call uniform ran in more than one direction.",
+   "quote": null,
+   "source": {
+    "cite": "The Case of the Marshalsea, 10 Co. Rep. 68b, 77 Eng. Rep. 1027 (C.P. 1612); Smith v. Bouchier, 2 Stra. 993, 93 Eng. Rep. 989 (K.B. 1734)",
+    "pin": "77 Eng. Rep. at 1027",
+    "book_section": "2.4 § A",
+    "book_note": "iicur1",
+    "book_unit": "iicur1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1616-coke-removed",
+   "year": 1616,
+   "date_text": "November 1616",
+   "title": "The reserved forum used once, from above: Coke removed by a writ stating no cause",
+   "category": "english-origin",
+   "kind": "event",
+   "summary": "The forum Floyd reserved, the King himself, sat against a judge once, and on the King's grievance. In June 1616 the twelve judges were summoned before the King in council over a royal command to stay proceedings; all but Coke kneeled and confessed error. In October the King recorded that he might justly have brought Coke in question in the Star Chamber, the court whose suggestion no judge was to answer on Coke's own report. Coke was removed the next month by a writ that stated no cause. For its author, the rule that judges answer only before the King himself was exactly true.",
+   "quote": null,
+   "source": {
+    "cite": "C. W. Johnson, The Life of Sir Edward Coke, 2d ed., vol. I (1845)",
+    "pin": "at 314–17",
+    "book_section": "1.3 § D",
+    "book_note": "v5e",
+    "book_unit": "v5e/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1641-star-chamber-abolished",
+   "year": 1641,
+   "date_text": "5 July 1641 (dissolved 1 August 1641)",
+   "title": "The Star Chamber abolished by statute, 16 Car. 1, c. 10",
+   "category": "repudiation",
+   "kind": "statute",
+   "summary": "Within a generation of the decision, and fifteen years before the report that carried it was printed, the court that decided Floyd v. Barker no longer lawfully existed. Parliament dissolved it, reciting from Magna Carta and the medieval due-process statutes that its censures and decrees had been an intolerable burden to the subjects and the means to introduce an arbitrary power and government, its judges having undertaken to punish where no law doth warrant. The same Parliament ordered the judges' ship-money records brought into the Lords and vacated, the rolls rased cross with a pen.",
+   "quote": "an intollerable burthen to the Subjects and the meanes to introduce an Arbitrary Power and Government",
+   "quote_pin": "16 Car. 1, c. 10, Statutes of the Realm vol. 5 at 110–11",
+   "source": {
+    "cite": "An Act for the Regulating of the Privy Council and for taking away the Court commonly called the Star Chamber, 16 Car. 1, c. 10",
+    "pin": "Statutes of the Realm vol. 5, pp. 110–11",
+    "book_section": "1.6",
+    "book_note": "vr11",
+    "book_unit": "vr11/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1656-coke-twelfth-reports-printed",
+   "year": 1656,
+   "date_text": "1656",
+   "title": "The report of Floyd v. Barker first printed, its founding sentence transmitted backwards",
+   "category": "english-origin",
+   "kind": "report",
+   "summary": "The twelfth part of Coke's Reports, carrying Floyd v. Barker, was printed fifteen years after the court that decided it had been abolished. The foundational sentence of the rule, as the English Reports reprint it, negates itself: the law will not admit proof against the presumption that a justice sworn to do justice will do injustice. Coke's own notebook report of the case, in print only since 2025, gives the clause sense-correct, that a justice sworn to do justice will do justice. The printed report is all any citing court has ever had.",
+   "quote": null,
+   "source": {
+    "cite": "Floyd v. Barker, 12 Co. Rep. 23, 77 Eng. Rep. 1305, 1306; Reports from the Notebooks of Edward Coke (2025)",
+    "pin": "77 Eng. Rep. at 1306",
+    "book_section": "1.3 § B",
+    "book_note": "vr18",
+    "book_unit": "vr18/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1689-bill-of-rights",
+   "year": 1689,
+   "date_text": "1689",
+   "title": "The Bill of Rights: the prerogative tribunals condemned, cruel and unusual punishments forbidden",
+   "category": "repudiation",
+   "kind": "statute",
+   "summary": "The Glorious Revolution and the Bill of Rights condemned the suspending and dispensing prerogative and the revived prerogative tribunals of the later Stuarts, and declared that cruel and unusual punishments ought not to be inflicted, a clause occasioned by a sentence for the perjury that had procured wrongful executions and carried almost verbatim into the Eighth Amendment. It is the one enacted text of any age that the American immunity decisions recite, and it protects legislators.",
+   "quote": null,
+   "source": {
+    "cite": "Bill of Rights 1689, 1 W. & M. sess. 2, c. 2",
+    "pin": "Statutes of the Realm VI at 142–43",
+    "book_section": "1.6; 2.3",
+    "book_note": "vr13",
+    "book_unit": "vr13/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1701-act-of-settlement",
+   "year": 1701,
+   "date_text": "1701",
+   "title": "The Act of Settlement: judges hold office during good behaviour",
+   "category": "repudiation",
+   "kind": "statute",
+   "summary": "The Act secured what the Star Chamber had most conspicuously denied: judges holding office during good behaviour rather than at the sovereign's pleasure, removable only on the address of both Houses. It is the acknowledged model of the Article III tenure guarantee, and its absence is what the Declaration of Independence would indict in the King's having made judges dependent on his will alone.",
+   "quote": null,
+   "source": {
+    "cite": "Act of Settlement 1701, 12 & 13 Will. 3, c. 2",
+    "pin": "the tenure clause",
+    "book_section": "1.6",
+    "book_note": "vr14"
+   },
+   "link": null
+  },
+  {
+   "id": "1701-lane-v-cotton",
+   "year": 1701,
+   "date_text": "Easter term 1701",
+   "title": "Lane v. Cotton: the sovereign shielded, the servant answerable",
+   "category": "sovereign",
+   "kind": "decision",
+   "summary": "In the year the judges' tenure was secured, the Crown's immunity for its servants' wrongs was paid for by the servant's own exposure. A subject whose Exchequer bills had been taken from a letter inside the post office sued the Postmasters-General; three judges held the head of the office not answerable for his servants' default and the servant answerable, Holt dissenting. The subject who could not reach the Postmaster could reach the receiver. What the American reception would carry across as one rule, the English law of 1701 held as two.",
+   "quote": "Because Breeze is an officer, and he is liable",
+   "quote_pin": "1 Salk. 17, 91 Eng. Rep. 17",
+   "source": {
+    "cite": "Lane v. Cotton, 1 Ld. Raym. 646, 91 Eng. Rep. 1332 (K.B. 1701); 1 Salk. 17, 91 Eng. Rep. 17",
+    "pin": "91 Eng. Rep. at 1332; 91 Eng. Rep. at 17",
+    "book_section": "1.6; 4.3",
+    "book_note": "vr29",
+    "book_unit": "vr29/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1765-blackstone-the-king-can-do-no-wrong",
+   "year": 1765,
+   "year_end": 1769,
+   "date_text": "1765–69",
+   "title": "Blackstone: the King can do no wrong, and the premise beneath it",
+   "category": "sovereign",
+   "kind": "treatise",
+   "summary": "Blackstone states the rule at its strictest: that the king can do no wrong is a necessary and fundamental principle of the English constitution, for who shall command the king? The rule rests on one premise, the King as principal with no superior to call him to account. On the same page whatever is amiss in public affairs is chargeable not on the king but on his ministers, accountable for it to the people, and the sovereign's servants answered for their own wrongs in the ordinary courts. The chapter supplies the premise, not the practice.",
+   "quote": null,
+   "source": {
+    "cite": "3 Blackstone, Commentaries ch. 17",
+    "pin": "*254–*255",
+    "book_section": "1.5",
+    "book_note": "iv3",
+    "book_unit": "iv3/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1765-entick-v-carrington",
+   "year": 1765,
+   "date_text": "1765",
+   "title": "Entick v. Carrington: the King's messengers answer in trespass; if this is law it would be found in our books",
+   "category": "english-origin",
+   "kind": "decision",
+   "summary": "The Court of Common Pleas gave the answer the American Founding would keep, an action of trespass against the King's messengers. The Secretary of State's warrant to seize a subject's papers was held wholly illegal and void, on a ground TSUP applies to every claim of official power: if this is law it would be found in our books, but no such law ever existed in this country. The officer justified himself by law or answered in damages.",
+   "quote": "if this is law it would be found in our books, but no such law ever existed in this country",
+   "quote_pin": "2 Wils. K.B. 275, 291; 95 Eng. Rep. 807, 817",
+   "source": {
+    "cite": "Entick v. Carrington, 2 Wils. K.B. 275, 95 Eng. Rep. 807 (C.P. 1765)",
+    "pin": "2 Wils. K.B. at 291–92",
+    "book_section": "3.4 § A",
+    "book_note": "fa1",
+    "book_unit": "fa1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1774-administration-of-justice-act-and-1776-declaration",
+   "year": 1774,
+   "year_end": 1776,
+   "date_text": "1774–1776",
+   "title": "The Murder Act of 1774 and the Declaration of 1776: impunity by a mock trial named a mark of tyranny",
+   "category": "repudiation",
+   "kind": "constitutional-text",
+   "summary": "The Administration of Justice Act of 1774 removed the trials of officials charged with capital offences out of the province, on the stated ground that officials must not be discouraged in their duty. The Declaration of Independence enumerated the Star Chamber's own marks among the facts that define a tyrant: depriving the colonists of trial by jury, transporting them beyond seas for trial, making judges dependent on his will alone, and protecting officials by a mock trial from punishment for any murders they should commit. Official impunity secured by a sham proceeding is the Floyd pattern precisely, and the founding charter called it an act of tyranny fit to justify revolution.",
+   "quote": "protecting them, by a mock Trial, from punishment for any Murders which they should commit on the Inhabitants of these States",
+   "quote_pin": "The Declaration of Independence (1776), the grievances",
+   "source": {
+    "cite": "Administration of Justice Act 1774, 14 Geo. 3, c. 39; The Declaration of Independence (1776)",
+    "pin": "the grievances",
+    "book_section": "2.1",
+    "book_note": "vr20"
+   },
+   "link": null
+  },
+  {
+   "id": "1786-macbeath-v-haldimand",
+   "year": 1786,
+   "date_text": "1786",
+   "title": "Macbeath v. Haldimand: the agent of the public not liable on its contracts, and no man would accept office otherwise",
+   "category": "sovereign",
+   "kind": "decision",
+   "summary": "The contract side of the eighteenth-century configuration. An officer appointed by Government, treating as an agent for the public, is not liable to be sued upon contracts made in that capacity; Ashhurst, J., gave the reason that no man would accept any office of trust under Government upon such conditions, and Lord Mansfield observed that a petition of right would lie but would probably produce no effect. In tort the cost fell on the servant; in contract it fell on a petition the court doubted would produce anything.",
+   "quote": null,
+   "source": {
+    "cite": "Macbeath v. Haldimand, 1 T.R. 172, 99 Eng. Rep. 1036 (K.B. 1786)",
+    "pin": "1 T.R. at 181–82",
+    "book_section": "4.3",
+    "book_note": "cp17a",
+    "book_unit": "cp17a/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1791-bill-of-rights-ratified",
+   "year": 1791,
+   "date_text": "1791",
+   "title": "The Bill of Rights: the codified repudiation of what the Star Chamber was and did",
+   "category": "repudiation",
+   "kind": "constitutional-text",
+   "summary": "The Fourth, Fifth, Sixth, Seventh and Eighth Amendments, the Article III tenure the Act of Settlement modelled, and the habeas guarantee are, severally and together, the codified repudiation of a court that was jury-less, oath-compelled, prerogative-dependent and punished where no law doth warrant. The common law crossed the Atlantic on the condition that the receiving generation adopted only the portion applicable to their situation. A monarchical immunity premised on answerability to the Crown presupposed a Crown to answer to, and the Founding supplied none.",
+   "quote": null,
+   "source": {
+    "cite": "U.S. Const. amends. IV–VIII; art. III",
+    "pin": "the text",
+    "book_section": "2.1; 2.2 § A",
+    "book_note": "v5",
+    "book_unit": "v5/2"
+   },
+   "link": null
+  },
+  {
+   "id": "1793-chisholm-v-georgia",
+   "year": 1793,
+   "date_text": "1793",
+   "title": "Chisholm v. Georgia: a State suable by a citizen of another State",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "The Court held a State suable by a citizen of another State under the judicial power as Article III wrote it. The answer came by the honest route: the class of suits left the judicial power by amendment, not by construction.",
+   "quote": null,
+   "source": {
+    "cite": "Chisholm v. Georgia, 2 U.S. (2 Dall.) 419 (1793)",
+    "pin": "2 U.S. 419",
+    "book_section": "3.2 § B",
+    "book_note": "si9",
+    "book_unit": "si9/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1795-eleventh-amendment",
+   "year": 1795,
+   "date_text": "1795",
+   "title": "The Eleventh Amendment: the one immunity added to the Constitution by its own route",
+   "category": "state-sovereign",
+   "kind": "constitutional-text",
+   "summary": "Within two years of Chisholm the Eleventh Amendment withdrew from the judicial power suits against a State by citizens of another State or by citizens or subjects of any foreign State. It is the exemplar of how a text gains a word, proposal and ratification under Article V. No amendment was proposed for the mirror class, suits by citizens against foreign states and their servants, which the courts removed by comity in 1812.",
+   "quote": null,
+   "source": {
+    "cite": "U.S. Const. amend. XI (ratified 1795)",
+    "pin": "the text",
+    "book_section": "3.2 § B",
+    "book_note": "si9",
+    "book_unit": "si9/2"
+   },
+   "link": null
+  },
+  {
+   "id": "1808-coffin-v-coffin",
+   "year": 1808,
+   "date_text": "1808",
+   "title": "Coffin v. Coffin (Mass.): legislative immunity grounded in a written constitution's text, and bounded by it",
+   "category": "legislative",
+   "kind": "decision",
+   "summary": "The fear rationale entered American law sixty years before the judicial immunity did, construing the speech-or-debate privilege of a written state constitution. Chief Justice Parsons grounded the privilege in enabling representatives to execute their office without fear of prosecutions, civil or criminal, and counted the citizen's lost remedy as the admitted price. But the court set the privilege's ceiling in the same text: in a republic of written constitutions privilege may be claimed only as the people conferred it, for a struggle for privileges would be a contest against the people.",
+   "quote": "a struggle for privileges, in this state, would be a contest against the people, to wrest from them what they have not chosen to grant",
+   "quote_pin": "4 Mass. 1, 34",
+   "source": {
+    "cite": "Coffin v. Coffin, 4 Mass. 1 (1808)",
+    "pin": "4 Mass. at 27, 28, 34",
+    "book_section": "2.3",
+    "book_note": "iicf2",
+    "book_unit": "iicf2/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1810-yates-v-lansing",
+   "year": 1810,
+   "year_end": 1811,
+   "date_text": "1810–1811",
+   "title": "Yates v. Lansing (N.Y.): the first American adoption, and the objection that the Star Chamber had been abolished",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "Chief Justice Kent of the New York Supreme Court received the rule as having a deep root in the common law, citing Floyd with its annihilating-of-a-record limb omitted. When the affirmance was argued in 1811, counsel objected that the Star Chamber had been abolished and that the report's clause had been left out of the quotation, and one senator dissented that judges answerable to the King as their principal could not be so answerable in a republic. The objections were lodged on the record and answered by none of the fourteen who affirmed. No decision in the American chain cites the affirmance.",
+   "quote": null,
+   "source": {
+    "cite": "Yates v. Lansing, 5 Johns. 282 (N.Y. Sup. Ct. 1810), aff'd, 9 Johns. 395 (N.Y. 1811)",
+    "pin": "5 Johns. at 291, 293",
+    "book_section": "2.2 § A",
+    "book_note": "ec4"
+   },
+   "link": null
+  },
+  {
+   "id": "1812-schooner-exchange-v-mcfaddon",
+   "year": 1812,
+   "date_text": "1812",
+   "title": "The Schooner Exchange: the foreign sovereign's exemption implied from the forum's own consent",
+   "category": "foreign-sovereign",
+   "kind": "decision",
+   "summary": "Marshall's first case of exemption was the exemption of the person of the sovereign, because a sovereign is not understood as intending to subject himself to a jurisdiction incompatible with his dignity. A nation's jurisdiction within its own territory is exclusive and absolute, and every exception is traced up to the consent of the nation itself. The receiver Marshall named was the sovereign power of the nation, in questions for diplomatic rather than legal discussion.",
+   "quote": "All exceptions, therefore, to the full and complete power of a nation within its own territories, must be traced up to the consent of the nation itself.",
+   "quote_pin": "11 U.S. (7 Cranch) 116, 136",
+   "source": {
+    "cite": "The Schooner Exchange v. McFaddon, 11 U.S. (7 Cranch) 116 (1812)",
+    "pin": "11 U.S. at 136, 137, 146",
+    "book_section": "4.6",
+    "book_note": "si5",
+    "book_unit": "si5/2"
+   },
+   "link": null
+  },
+  {
+   "id": "1858-beers-v-arkansas",
+   "year": 1858,
+   "date_text": "1858",
+   "title": "Beers v. Arkansas: the sovereign's immunity an established principle in all civilized nations, on no authority",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "Chief Justice Taney stated that it is an established principle of jurisprudence in all civilized nations that the sovereign cannot be sued in its own courts without its consent, and named no authority for it. Hans v. Louisiana took the sentence from Beers in 1890, and Seminole Tribe took it from Hans in 1996. The settledness is the recital's own.",
+   "quote": null,
+   "source": {
+    "cite": "Beers v. Arkansas, 61 U.S. (20 How.) 527 (1858)",
+    "pin": "61 U.S. at 529",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/16"
+   },
+   "link": null
+  },
+  {
+   "id": "1868-scott-v-stansfield",
+   "year": 1868,
+   "date_text": "1868",
+   "title": "Scott v. Stansfield (Exchequer): a judge free to act without fear of consequences",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "The Court of Exchequer held that a judge must be free to act without fear of consequences. The sentence is the one Spalding v. Vilas would carry to American cabinet officers in 1896, and the one the 1989 Senate hearing quoted without the judge's name.",
+   "quote": null,
+   "source": {
+    "cite": "Scott v. Stansfield, L.R. 3 Ex. 220 (1868)",
+    "pin": "L.R. 3 Ex. at 223",
+    "book_section": "2.4 § A",
+    "book_note": "ii20",
+    "book_unit": "ii20/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1869-randall-v-brigham",
+   "year": 1869,
+   "date_text": "December Term 1868, decided 1869",
+   "title": "Randall v. Brigham: the American entry, by citation and not adjudication",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "The immunity doctrine enters United States law here, and not by adjudication but by an act of citation. The Court received the rule as old as the law, maintained by a uniform course of decisions in England for centuries, resting on what was said as long ago as 1608 as reported by Lord Coke in Floyd and Barker's case, that the superior judges are the delegates of the king and to him alone are they accountable. It examined no record and produced no constitutional provision. Eight pages earlier in the same volume, in McCardle, the same Court had refused to act without express words.",
+   "quote": "as old as the law",
+   "quote_pin": "74 U.S. (7 Wall.) 523, 536",
+   "source": {
+    "cite": "Randall v. Brigham, 74 U.S. (7 Wall.) 523 (1869)",
+    "pin": "74 U.S. at 536",
+    "book_section": "2.3; 2.4 § A; 3.2 § C",
+    "book_note": "ii1",
+    "book_unit": "ii1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1871-civil-rights-act-section-1",
+   "year": 1871,
+   "year_end": 1874,
+   "date_text": "20 April 1871; recompiled 1874",
+   "title": "The Civil Rights Act of 1871, § 1: every person liable, any law of the State to the contrary notwithstanding",
+   "category": "statute",
+   "kind": "statute",
+   "summary": "Section 1 of the Act made every person who under color of state law deprives another of constitutional rights liable to the party injured, any such law, statute, ordinance, regulation, custom, or usage of the State to the contrary notwithstanding. The Revised Statutes of 1874 recompiled the section without the closing clause, an omission the Reviser lacked authority to make as positive law. In the 1871 debates every member who spoke to the issue assumed the words meant what they said and that judges would be liable; the Act's opponents objected because it stripped immunity. This is the only statute in the story of qualified immunity, and it is a Reconstruction statute that runs the other way.",
+   "quote": "any such law, statute, ordinance, regulation, custom, or usage of the State to the contrary notwithstanding",
+   "quote_pin": "Act of Apr. 20, 1871, ch. 22, § 1, 17 Stat. 13",
+   "source": {
+    "cite": "Act of Apr. 20, 1871, ch. 22, § 1, 17 Stat. 13; Rev. Stat. § 1979 (1874), 18 Stat. pt. 1, at 348; 42 U.S.C. § 1983",
+    "pin": "17 Stat. 13; 18 Stat. pt. 1, at 348",
+    "book_section": "2.3; 4.6",
+    "book_note": "ii7nc",
+    "book_unit": "ii7nc/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1872-bradley-v-fisher",
+   "year": 1872,
+   "date_text": "1872",
+   "title": "Bradley v. Fisher: the rule hardened; immunity fails only in the clear absence of all jurisdiction",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "The Court held that judges of courts of superior or general jurisdiction are not liable to civil actions for their judicial acts even when in excess of their jurisdiction and alleged to have been done maliciously or corruptly, excepting only acts in the clear absence of all jurisdiction. It called the rule a general principle of the highest importance, the settled doctrine of the English courts for many centuries, and grounded the bar on motive on Floyd and Barker by name, with the limb that the judge answers except before the king himself. Every later judicial-immunity decision rests on this one.",
+   "quote": "clear absence of all jurisdiction over the subject-matter",
+   "quote_pin": "80 U.S. (13 Wall.) 335, 351–52",
+   "source": {
+    "cite": "Bradley v. Fisher, 80 U.S. (13 Wall.) 335 (1872)",
+    "pin": "80 U.S. at 347–48, 351–52",
+    "book_section": "2.3; 2.4 § A; 4.6",
+    "book_note": "cp28a",
+    "book_unit": "cp28a/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1880-the-parlement-belge",
+   "year": 1880,
+   "date_text": "1880",
+   "title": "The Parlement Belge (C.A.): the foreign sovereign's dignity glossed as independence, then the word dropped",
+   "category": "foreign-sovereign",
+   "kind": "decision",
+   "summary": "The Court of Appeal, quoting Marshall's sentence that a foreign sovereign is not understood as intending to subject himself to a jurisdiction incompatible with his dignity, glossed dignity as independence three times before dropping the word. The English rule of the foreign sovereign's immunity rests here on the American presumption of 1812.",
+   "quote": null,
+   "source": {
+    "cite": "The Parlement Belge, 5 P.D. 197 (C.A. 1880)",
+    "pin": "5 P.D. at 206, 207, 209, 217",
+    "book_section": "3.2 § B",
+    "book_note": "si10c",
+    "book_unit": "si10c/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1890-hans-v-louisiana",
+   "year": 1890,
+   "date_text": "1890",
+   "title": "Hans v. Louisiana: a State immune from its own citizen's suit, on Beers",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "The Court held Louisiana immune from a suit by one of its own citizens, resting on the sentence Beers had stated without authority in 1858. Seminole Tribe quoted Hans for it in 1996.",
+   "quote": null,
+   "source": {
+    "cite": "Hans v. Louisiana, 134 U.S. 1 (1890)",
+    "pin": "134 U.S. at 17",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/17"
+   },
+   "link": null
+  },
+  {
+   "id": "1896-spalding-v-vilas",
+   "year": 1896,
+   "date_text": "1896",
+   "title": "Spalding v. Vilas: the judges' immunity carried to the executive branch by analogy",
+   "category": "executive-absolute",
+   "kind": "decision",
+   "summary": "The Court extended immunity to a cabinet officer by analogy to judges: the same general considerations of public policy and convenience which demand immunity for judges of courts of superior jurisdiction apply to a large extent to heads of executive departments. It built the analogy on English and American judicial-immunity precedent, quoting Scott v. Stansfield for a judge free to act without fear of consequences. The root of American executive immunity is a foreign judicial decision, transplanted by analogy. The Department of Justice's own manual of 1985 says there was no direct support at common law for such an immunity.",
+   "quote": null,
+   "source": {
+    "cite": "Spalding v. Vilas, 161 U.S. 483 (1896)",
+    "pin": "161 U.S. at 495, 498",
+    "book_section": "2.3; 2.4 § A",
+    "book_note": "ii19",
+    "book_unit": "ii19/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1907-kawananakoa-v-polyblank",
+   "year": 1907,
+   "date_text": "1907",
+   "title": "Kawananakoa v. Polyblank: the sovereign's immunity rested on Hobbes",
+   "category": "sovereign",
+   "kind": "decision",
+   "summary": "Justice Holmes stated the ground on which the Court rests the sovereign's own immunity: there can be no legal right as against the authority that makes the law on which the right depends, an answer public property since before the days of Hobbes. A foreign state makes none of the law an American sues under, so that ground does not reach it, and what remains for the foreign sovereign is Marshall's presumption of 1812.",
+   "quote": "the answer has been public property since before the days of Hobbes",
+   "quote_pin": "205 U.S. 349, 353",
+   "source": {
+    "cite": "Kawananakoa v. Polyblank, 205 U.S. 349 (1907)",
+    "pin": "205 U.S. at 353",
+    "book_section": "2.3; 4.6",
+    "book_note": "si27",
+    "book_unit": "si27/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1908-ex-parte-young",
+   "year": 1908,
+   "date_text": "1908",
+   "title": "Ex parte Young: the officer who acts against the supreme law is stripped of his official character",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "The Court held that a state officer acting against the supreme law is stripped of his official or representative character, because the State has no power to impart to him any immunity from responsibility. The domestic line refuses to attribute the unlawful act to the State; the foreign-sovereign line of the same Court attributes it to the state, and that is why no one answers for it.",
+   "quote": "The State has no power to impart to him any immunity from responsibility",
+   "quote_pin": "209 U.S. 123, 160",
+   "source": {
+    "cite": "Ex parte Young, 209 U.S. 123 (1908)",
+    "pin": "209 U.S. at 159–60",
+    "book_section": "4.6",
+    "book_note": "si11",
+    "book_unit": "si11/3"
+   },
+   "link": null
+  },
+  {
+   "id": "1924-matsunami-no-definition-of-immunity",
+   "year": 1924,
+   "date_text": "1924",
+   "title": "A jurist searches 120 English law books for the meaning of immunity and finds no definition",
+   "category": "sovereign",
+   "kind": "treatise",
+   "summary": "Writing in London on the immunity of state ships, a Japanese jurist reported that for the meaning of immunity in law he had searched about 120 books on the English constitution, Crown, prerogative and procedure and found neither definition nor explanation in Chitty's treatise on the prerogative, no word immunity in Sweet's or Stroud's dictionaries, no definition in Halsbury or the Encyclopaedia of the Law of England, and not a single word immunity in the index of the four volumes of Stephen's Laws of England. The recitals of age rest on a word the treatises did not define.",
+   "quote": null,
+   "source": {
+    "cite": "N. Matsunami, Immunity of State Ships as a Contribution towards Unification of the Laws on the Subject (London 1924)",
+    "pin": "at 25–26",
+    "book_section": "2.3",
+    "book_note": "ii_rec1",
+    "book_unit": "ii_rec1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1947-crown-proceedings-act",
+   "year": 1947,
+   "date_text": "1947",
+   "title": "The Crown Proceedings Act: the Crown suable in tort as a private person, except for acts of a judicial nature",
+   "category": "sovereign",
+   "kind": "statute",
+   "summary": "Parliament made a claim against the Crown enforceable as of right and without the King's fiat, and made the Crown subject to all the liabilities in tort to which a private person of full age and capacity would be subject in respect of torts committed by its servants or agents. One class was kept out: no proceedings lie against the Crown in respect of anything done or omitted by any person while discharging or purporting to discharge responsibilities of a judicial nature, or responsibilities connected with the execution of judicial process. The King can do no wrong was repealed for the Crown's servants' torts and preserved for its judges' acts.",
+   "quote": "No proceedings shall lie against the Crown by virtue of this section in respect of anything done or omitted to be done by any person while discharging or purporting to discharge any responsibilities of a judicial nature vested in him",
+   "quote_pin": "Crown Proceedings Act 1947, 10 & 11 Geo. 6, c. 44, s. 2(5)",
+   "source": {
+    "cite": "Crown Proceedings Act 1947, 10 & 11 Geo. 6, c. 44, ss. 1, 2(1), 2(5)",
+    "pin": "ss. 1, 2(1), 2(5)",
+    "book_section": "4.2",
+    "book_note": "ec7",
+    "book_unit": "ec7/2"
+   },
+   "link": null
+  },
+  {
+   "id": "1951-tenney-v-brandhove",
+   "year": 1951,
+   "date_text": "1951",
+   "title": "Tenney v. Brandhove: a common-law immunity read into § 1983 on a presumption about Congress",
+   "category": "legislative",
+   "kind": "decision",
+   "summary": "The Court declined to find that § 1983 had abrogated the common-law immunity of legislators, reasoning that it could not believe that Congress, itself a staunch advocate of legislative freedom, would impinge on a tradition so well grounded in history and reason by covert inclusion in general language. The ground is a tradition and a presumption about intent. Justice Douglas dissented: if a committee departs so far from its domain as to deprive a citizen of a constitutional right, he could think of no reason why it should be immune. The structure of this node set the pattern for everything read into the statute after it.",
+   "quote": "We cannot believe that Congress — itself a staunch advocate of legislative freedom — would impinge on a tradition so well grounded in history and reason by covert inclusion in the general language",
+   "quote_pin": "341 U.S. 367, 376",
+   "source": {
+    "cite": "Tenney v. Brandhove, 341 U.S. 367 (1951)",
+    "pin": "341 U.S. at 372, 376, 382–83",
+    "book_section": "2.3",
+    "book_note": "ii2",
+    "book_unit": "ii2/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1961-jackson-mississippi-arrests",
+   "year": 1961,
+   "date_text": "1961",
+   "title": "Jackson, Mississippi: fifteen clergymen arrested at a segregated bus terminal",
+   "category": "qualified",
+   "kind": "event",
+   "summary": "Fifteen white and Negro Episcopal clergymen attempted to use segregated facilities at an interstate bus terminal in Jackson, Mississippi. They were arrested under a Mississippi breach-of-the-peace statute, convicted by the police justice and given the maximum sentence of four months in jail and a fine of two hundred dollars; the Court later recorded that the ministers were concededly orderly and polite. They sued for damages under § 1983 and at common law for false arrest and imprisonment. The opinion does not say they were beaten.",
+   "quote": "the ministers were concededly orderly and polite",
+   "quote_pin": "386 U.S. 547, 553",
+   "source": {
+    "cite": "Pierson v. Ray, 386 U.S. 547 (1967), the facts",
+    "pin": "386 U.S. at 549–50, 553",
+    "book_section": "2.3",
+    "book_note": "ii5",
+    "book_unit": "ii5/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1961-monroe-v-pape",
+   "year": 1961,
+   "date_text": "1961",
+   "title": "Monroe v. Pape: § 1983 reaches an officer's misuse of power under color of state law",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court held that the meaning given under color of law in the Classic, Screws and Williams cases was the correct one and adhered to it: misuse of power possessed by virtue of state law, and made possible only because the wrongdoer is clothed with the authority of state law, is action taken under color of state law. The same decision held that Congress did not undertake to bring municipal corporations within the ambit of the statute, the holding Monell overruled in 1978.",
+   "quote": "Misuse of power, possessed by virtue of state law and made possible only because the wrongdoer is clothed with the authority of state law, is action taken 'under color of' state law.",
+   "quote_pin": "365 U.S. 167, 184 (quoting United States v. Classic, 313 U.S. 299, 326)",
+   "source": {
+    "cite": "Monroe v. Pape, 365 U.S. 167 (1961)",
+    "pin": "365 U.S. at 184, 187; Monell, 436 U.S. at 663",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file pages 18 and 21"
+   },
+   "link": null
+  },
+  {
+   "id": "1967-pierson-v-ray",
+   "year": 1967,
+   "date_text": "1967",
+   "title": "Pierson v. Ray: judicial immunity and the officers' good-faith-and-probable-cause defence read into § 1983; good faith left to the jury",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court read judicial immunity and a police defence into the statute, reasoning that the legislative record gives no clear indication that Congress meant to abolish wholesale all common-law immunities. The holding for the officers is the defence of good faith and probable cause, and the Court held that if the jury found the officers reasonably believed in good faith that the arrest was constitutional a verdict for them would follow; it remanded for a new trial. The subjective question stayed with the jury. Justice Douglas, dissenting, answered from the 1871 debates, named Floyd and Barker and the King, and called the doctrine a more sophisticated manner of saying the King can do no wrong; the majority names neither Floyd nor the King.",
+   "quote": "We hold that the defense of good faith and probable cause, which the Court of Appeals found available to the officers in the common-law action for false arrest and imprisonment, is also available to them in the action under § 1983.",
+   "quote_pin": "386 U.S. 547, 557",
+   "source": {
+    "cite": "Pierson v. Ray, 386 U.S. 547 (1967)",
+    "pin": "386 U.S. at 553–58; 559–62, 565 & n.5 (Douglas, J., dissenting)",
+    "book_section": "3.4; 2.3; 2.2 § A; 4.6",
+    "book_note": "ii7y",
+    "book_unit": "ii7y/3"
+   },
+   "link": null
+  },
+  {
+   "id": "1972-krause-v-ohio-dismissed",
+   "year": 1972,
+   "date_text": "1972",
+   "title": "Krause v. Ohio: the eighteenth-century rule put to the Court as due process, and dismissed without opinion",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "After the killing of Allison Krause by the Ohio National Guard at Kent State, her father's action against the State was dismissed under Ohio's sovereign immunity, while an Ohio statute shielded the Guardsman personally. An amicus brief stated the old configuration in American terms: the Court had been able to find sovereign immunity consistent with due process only because the officer himself was answerable, so a State that curtailed the officer's liability while keeping its own immunity would violate the Due Process Clause. The Court dismissed the appeal for want of a substantial federal question. The subject who in 1701 could sue the receiver could, in Ohio in 1972, sue neither the Guardsman nor the State.",
+   "quote": null,
+   "source": {
+    "cite": "Brief of the National Council of the Churches of Christ et al. as Amici Curiae, Krause v. Ohio, No. 72-589 (U.S. filed Oct. 24, 1972)",
+    "pin": "at 9–12",
+    "book_section": "4.3",
+    "book_note": "cp35"
+   },
+   "link": null
+  },
+  {
+   "id": "1974-scheuer-v-rhodes",
+   "year": 1974,
+   "date_text": "1974",
+   "title": "Scheuer v. Rhodes: executive qualified immunity by a balance of policy, and the modern concept credited to Coke",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court rested executive officers' qualified immunity on the danger that the threat of liability would deter an official's willingness to execute his office, and on the maxim that it is not a tort for government to govern. In its own words the modern concept owes much to the elaboration and restatement of Coke and other judges of the sixteenth and early seventeenth centuries, and it cited Floyd v. Barker, placing it in the wrong court. No constitutional text was produced.",
+   "quote": "The modern concept owes much to the elaboration and restatement of Coke and other judges of the sixteenth and early seventeenth centuries",
+   "quote_pin": "416 U.S. 232, 239 n.4",
+   "source": {
+    "cite": "Scheuer v. Rhodes, 416 U.S. 232 (1974)",
+    "pin": "416 U.S. at 239 n.4, 240–42",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/6"
+   },
+   "link": null
+  },
+  {
+   "id": "1975-wood-v-strickland",
+   "year": 1975,
+   "date_text": "1975",
+   "title": "Wood v. Strickland: qualified immunity extended to school officials, with a subjective prong for the jury",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court extended qualified immunity to school officials on common-law tradition and strong public-policy reasons. The standard it kept was bifurcated: an objective prong and a subjective one, the official's malice or improper intent, a classic jury question. Harlow would remove the second seven years later.",
+   "quote": null,
+   "source": {
+    "cite": "Wood v. Strickland, 420 U.S. 308 (1975)",
+    "pin": "420 U.S. at 318, 322",
+    "book_section": "2.3; 3.4 § C",
+    "book_note": "ii9",
+    "book_unit": "ii9/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1976-foreign-sovereign-immunities-act",
+   "year": 1976,
+   "date_text": "1976",
+   "title": "The Foreign Sovereign Immunities Act: the immunity taken from the Department of State and given to the courts under a rule",
+   "category": "foreign-sovereign",
+   "kind": "statute",
+   "summary": "Congress confirmed by statute the removal the courts had made by comity in 1812, providing that a foreign state shall be immune from the jurisdiction of the courts of the United States and of the States except as the Act provides. The Act's findings presuppose the immunity and assign only its adjudication, to the courts under a rule of Congress's making. The Act does not reach individual foreign officials, for whom an executive suggestion of immunity still does the work with no text at all.",
+   "quote": null,
+   "source": {
+    "cite": "Foreign Sovereign Immunities Act of 1976, 28 U.S.C. §§ 1602, 1604; Samantar v. Yousuf, 560 U.S. 305 (2010)",
+    "pin": "28 U.S.C. § 1604; 560 U.S. at 323–25",
+    "book_section": "3.2 § B; 4.6",
+    "book_note": "si10"
+   },
+   "link": null
+  },
+  {
+   "id": "1976-imbler-v-pachtman",
+   "year": 1976,
+   "date_text": "1976",
+   "title": "Imbler v. Pachtman: the prosecutor's absolute immunity, on roots extending to the earliest days of the common law",
+   "category": "prosecutorial",
+   "kind": "decision",
+   "summary": "The Court gave prosecutors absolute immunity from § 1983 damages, reciting roots extending to the earliest days of the common law and a rule well settled. What it named for the age was Floyd v. Barker, dated 1608, Yates v. Lansing and Bradley; for prosecutors specifically, Griffith v. Slinkard (1896), which it called the first American case, Yaselli v. Goff (1927), and five lower-court cases of 1933 to 1949 for the rule as settled.",
+   "quote": null,
+   "source": {
+    "cite": "Imbler v. Pachtman, 424 U.S. 409 (1976)",
+    "pin": "424 U.S. at 421–24 & nn. 20, 21",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/7"
+   },
+   "link": null
+  },
+  {
+   "id": "1978-butz-v-economou",
+   "year": 1978,
+   "date_text": "1978",
+   "title": "Butz v. Economou: absolute immunity rejected for most federal executives; the citizen's constitutional interest named",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Rejecting absolute immunity for most federal executive officials, the Court reasoned that to grant it would mean a suit under the Constitution could provide no redress to the injured citizen and would seriously erode the protection provided by basic constitutional guarantees. It is the one node in the chain where the citizen's side is named in constitutional terms and prevails, and the furthest point that interest reached; after it the interest recedes and survives only in dissent.",
+   "quote": "a suit under the Constitution could provide no redress to the injured citizen",
+   "quote_pin": "438 U.S. 478, 505",
+   "source": {
+    "cite": "Butz v. Economou, 438 U.S. 478 (1978)",
+    "pin": "438 U.S. at 505, 508",
+    "book_section": "2.3",
+    "book_note": "ii10",
+    "book_unit": "ii10/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1978-monell-v-department-of-social-services",
+   "year": 1978,
+   "date_text": "1978",
+   "title": "Monell: local governments are persons under § 1983, liable for their own policy or custom",
+   "category": "municipal",
+   "kind": "decision",
+   "summary": "The Court overruled Monroe v. Pape insofar as it held local governments wholly immune from suit under § 1983, reading the 1871 text, any law, statute, ordinance, regulation, custom, or usage of the State to the contrary notwithstanding, as plainly imposing liability on a government that under color of its own policy causes a constitutional deprivation, including deprivations visited pursuant to a governmental custom that never received formal approval. It upheld Monroe insofar as it held that respondeat superior is not a basis for municipal liability.",
+   "quote": "we now overrule Monroe v. Pape, supra, insofar as it holds that local governments are wholly immune from suit under § 1983",
+   "quote_pin": "436 U.S. 658, 663",
+   "source": {
+    "cite": "Monell v. Department of Social Services of the City of New York, 436 U.S. 658 (1978)",
+    "pin": "436 U.S. at 663 & n.7, 690–92",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file pages 6, 34 and 35"
+   },
+   "link": null
+  },
+  {
+   "id": "1978-stump-v-sparkman",
+   "year": 1978,
+   "date_text": "28 March 1978",
+   "title": "Stump v. Sparkman: a judge immune for an ex parte sterilization order with no notice and no hearing",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "An Indiana judge had approved a mother's petition to have her fifteen-year-old daughter sterilized on the day it was presented, with no hearing, no notice to the daughter and no guardian ad litem; the court of appeals had held it an illegitimate exercise of power for want of elementary due process. The Court reversed. It took from Bradley the rule that immunity fails only in the clear absence of all jurisdiction and added that the scope of the judge's jurisdiction must be construed broadly where the issue is the immunity of the judge, so that a judge is absolutely immune even if his exercise of authority is flawed by grave procedural errors. The due-process holding survives only in dissent.",
+   "quote": "the scope of the judge's jurisdiction must be construed broadly where the issue is the immunity of the judge",
+   "quote_pin": "435 U.S. 349, 356",
+   "source": {
+    "cite": "Stump v. Sparkman, 435 U.S. 349 (1978)",
+    "pin": "435 U.S. at 351–53, 356–57, 359; 367 (Stewart, J., dissenting)",
+    "book_section": "2.3",
+    "book_note": "iicb2",
+    "book_unit": "iicb2/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1980-filartiga-v-pena-irala",
+   "year": 1980,
+   "date_text": "1980",
+   "title": "Filártiga v. Peña-Irala: a foreign police official answerable in an American court for torture",
+   "category": "foreign-sovereign",
+   "kind": "decision",
+   "summary": "The Second Circuit held a Paraguayan police official answerable in an American court for torture, with the United States as friend of the court on the plaintiffs' side, official torture being prohibited by the law of nations and the torturer an enemy of all mankind. Congress answered the judgment in 1992 with the Torture Victim Protection Act, which the House report described as an unambiguous and modern basis for claims of torture and extrajudicial killing.",
+   "quote": null,
+   "source": {
+    "cite": "Filártiga v. Peña-Irala, 630 F.2d 876 (2d Cir. 1980); Torture Victim Protection Act of 1991, Pub. L. No. 102-256, 106 Stat. 73 (1992)",
+    "pin": "630 F.2d at 878, 884, 890",
+    "book_section": "4.6",
+    "book_note": "si13"
+   },
+   "link": null
+  },
+  {
+   "id": "1980-owen-v-city-of-independence",
+   "year": 1980,
+   "date_text": "1980",
+   "title": "Owen v. City of Independence: a municipality has no immunity, and may not assert its officers' good faith",
+   "category": "municipal",
+   "kind": "decision",
+   "summary": "Where an immunity was well established at common law when § 1983 was enacted and its rationale was compatible with the Act, the Court had construed the statute to incorporate it; but there is no tradition of immunity for municipal corporations, and neither history nor policy supports a construction of § 1983 that would give a city a qualified immunity. The Court held that the municipality may not assert the good faith of its officers or agents as a defence to liability, and that municipalities have no immunity from damages liability flowing from their constitutional violations; the innocent individual harmed by an abuse of governmental authority is assured compensation, the official in good faith keeps his qualified immunity, and the public bears the cost of injury inflicted by the execution of its policy or custom. Four Justices dissented. The recital the Court made along the way, of a tradition of immunity so firmly rooted in the common law, named Pierson and Tenney for its age.",
+   "quote": "We hold, therefore, that the municipality may not assert the good faith of its officers or agents as a defense to liability under § 1983.",
+   "quote_pin": "445 U.S. 622, 638",
+   "source": {
+    "cite": "Owen v. City of Independence, 445 U.S. 622 (1980)",
+    "pin": "445 U.S. at 637–38, 657; 658 (Powell, J., dissenting)",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "read_at": "the holding at the bound volume on the shelf, file pages 17, 36 and 37",
+    "book_unit": "ii_age1/10"
+   },
+   "link": null
+  },
+  {
+   "id": "1982-harlow-v-fitzgerald",
+   "year": 1982,
+   "date_text": "24 June 1982",
+   "title": "Harlow v. Fitzgerald: the subjective prong removed; the jury's question reassigned to the judge",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The same day, the Court recast qualified immunity in objective terms: officials performing discretionary functions are shielded insofar as their conduct does not violate clearly established statutory or constitutional rights of which a reasonable person would have known. It conceded the subjective prong was a question of fact that some courts had regarded as inherently requiring resolution by a jury, then in three moves on a single pair of pages reassigned the reasonableness determination to summary judgment, foreclosed discovery until the threshold question was resolved, and relocated the subjective inquiry into a judge-decided exception. Its own sentence says the limits were defined only essentially in objective terms. The petitioners were senior White House aides, not police. Five years later the Court described Harlow as having completely reformulated qualified immunity along principles not at all embodied in the common law.",
+   "quote": "By defining the limits of qualified immunity essentially in objective terms, we provide no license to lawless conduct.",
+   "quote_pin": "457 U.S. 800, 819",
+   "source": {
+    "cite": "Harlow v. Fitzgerald, 457 U.S. 800 (1982); Anderson v. Creighton, 483 U.S. 635, 645 (1987)",
+    "pin": "457 U.S. at 802, 816, 818–19 & n.30",
+    "book_section": "2.3; 2.5 § A; 3.4 § C",
+    "book_note": "ii14",
+    "book_unit": "ii14/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1982-nixon-v-fitzgerald",
+   "year": 1982,
+   "date_text": "24 June 1982",
+   "title": "Nixon v. Fitzgerald: absolute presidential immunity from civil damages, on Article II interests and Spalding",
+   "category": "executive-absolute",
+   "kind": "decision",
+   "summary": "The Court announced absolute presidential immunity from civil damages for official acts, grounding it in Article II interests and in Spalding v. Vilas, and producing no Article II text. The injured citizen, a constitutional protagonist in Butz four years earlier, became a regrettable cost, and the substitute for a remedy was impeachment, the press, Congress and the electorate, checks on the office and nothing for the person. Justice White, joined by three others, called the result a reversion to the old notion that the King can do no wrong. The plaintiff was A. Ernest Fitzgerald, a civilian management analyst with the Department of the Air Force, separated in January 1970 after testifying to Congress in November 1968 on cost overruns.",
+   "quote": "a reversion to the old notion that the King can do no wrong",
+   "quote_pin": "457 U.S. 731, 766 (White, J., dissenting)",
+   "source": {
+    "cite": "Nixon v. Fitzgerald, 457 U.S. 731 (1982)",
+    "pin": "457 U.S. at 733–34, 748–49, 751, 754 & n.37, 757; 766 (White, J., dissenting)",
+    "book_section": "2.3; 2.5 § A",
+    "book_note": "ii13",
+    "book_unit": "ii13/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1984-pulliam-v-allen",
+   "year": 1984,
+   "date_text": "1984",
+   "title": "Pulliam v. Allen: no immunity from prospective injunctive relief; the one modern decision that went to the root",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "A Virginia magistrate had jailed two men, unable to post the bail she set, on charges that carried no jail term. The Court held, five to four, that judicial immunity bars neither prospective injunctive relief nor the attorney's fees that follow it, because Congress meant § 1983 to protect the people from unconstitutional action under color of state law whether executive, legislative or judicial. Its history reaches back to Floyd and Barker and quotes the report's annihilating-of-a-record passage as the theory upon which judicial immunity was built, examining no record: the reception performed again in 1984.",
+   "quote": "the theory upon which the concept of judicial immunity was built",
+   "quote_pin": "466 U.S. 522, 530–31",
+   "source": {
+    "cite": "Pulliam v. Allen, 466 U.S. 522 (1984)",
+    "pin": "466 U.S. at 524–25, 529–31, 541–44",
+    "book_section": "2.3; 2.4 § D",
+    "book_note": "iicb5",
+    "book_unit": "iicb5/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1985-doj-torts-branch-monograph",
+   "year": 1985,
+   "date_text": "July 1985",
+   "title": "The Department of Justice's own manual: the immunities are essentially judge-made doctrines",
+   "category": "qualified",
+   "kind": "report",
+   "summary": "In the manual it wrote for the attorneys who defend federal employees sued for damages, the Department of Justice named two immunities as grounded in the Constitution itself, Speech or Debate and the President's, and no third. The others, while rooted in common-law traditions, are essentially judge-made doctrines that have been altered as courts have been confronted with novel theories of liability, and the immunity of executive officials other than the President is a judge-made doctrine that has evolved on an ad hoc basis.",
+   "quote": "essentially judge-made doctrines that have been altered as courts have been confronted with novel theories of liability",
+   "quote_pin": "DOJ, Immunity of Federal Employees in Personal Damages Actions, Monograph III (July 1985), at 1",
+   "source": {
+    "cite": "U.S. Department of Justice, Civil Division, Torts Branch, Immunity of Federal Employees in Personal Damages Actions, Monograph III (July 1985)",
+    "pin": "at 1, 13–14",
+    "book_section": "2.3; 4.6",
+    "book_note": "ii_col1",
+    "book_unit": "ii_col1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1987-anderson-v-creighton",
+   "year": 1987,
+   "date_text": "1987",
+   "title": "Anderson v. Creighton: a second reasonableness placed before the Fourth Amendment's own",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "The Court made clearly established a requirement of particularity and held that a search may be unreasonable under the Fourth Amendment and yet excused, because the question for immunity is whether a reasonable officer could have believed the search lawful. The same opinion describes Harlow as having completely reformulated qualified immunity along principles not at all embodied in the common law, replacing the inquiry into subjective malice with an objective inquiry into the legal reasonableness of the official action.",
+   "quote": "completely reformulated qualified immunity along principles not at all embodied in the common law",
+   "quote_pin": "483 U.S. 635, 645",
+   "source": {
+    "cite": "Anderson v. Creighton, 483 U.S. 635 (1987)",
+    "pin": "483 U.S. at 640, 641, 645",
+    "book_section": "3.4 § A; 3.2 § B",
+    "book_note": "fa2",
+    "book_unit": "fa2/2"
+   },
+   "link": null
+  },
+  {
+   "id": "1989-hunziker-brief-and-senate-hearing",
+   "year": 1989,
+   "year_end": 1990,
+   "date_text": "1989–1990",
+   "title": "Two answers of 1989: hog farmers ask the Seventh Circuit about divine right; a Senate hearing cites four centuries of unbroken precedent",
+   "category": "judicial",
+   "kind": "event",
+   "summary": "The Hunzikers, hog farmers of Stephenson County, Illinois, asked the Seventh Circuit without counsel whether it was not ironic that the courts of a people in whom sovereignty is reposed should rely on concepts of judicial immunity derived from a system assuming the power to govern by divine right; the court answered in an unpublished order in 1990. In 1989 the Senate hearing on S. 590 opened by quoting an 1868 English Exchequer judge without his name and charging that Pulliam disregards four centuries of unbroken precedent. Four centuries from 1989 reaches 1607.",
+   "quote": "Is it not ironic that the Courts of the United States, with sovereignty plainly reposed in the PEOPLE should rely upon concepts of judicial immunity derived from a system assuming the power to govern by divine right?",
+   "quote_pin": "Brief of Appellants at 25–26, Hunziker v. German-American State Bank (7th Cir. 1989)",
+   "source": {
+    "cite": "Hunziker v. German-American State Bank, 908 F.2d 975 (7th Cir. 1990) (unpublished order); Judicial Immunity: Hearing on S. 590, S. Hrg. 101-664 (1989)",
+    "pin": "Brief at 25–26; S. Hrg. 101-664 at 1",
+    "book_section": "2.4 § C; 2.3",
+    "book_note": "iicb17",
+    "book_unit": "iicb17/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1991-mireles-v-waco",
+   "year": 1991,
+   "date_text": "1991",
+   "title": "Mireles v. Waco: judicial immunity an immunity from suit, overcome in only two sets of circumstances",
+   "category": "judicial",
+   "kind": "decision",
+   "summary": "The Court held per curiam that judicial immunity is an immunity from suit, not just from ultimate assessment of damages, is not overcome by allegations of bad faith or malice, and is overcome in only two sets of circumstances, nonjudicial acts and acts in the complete absence of all jurisdiction. It recited Bradley's general principle of the highest importance.",
+   "quote": "an immunity from suit, not just from ultimate assessment of damages",
+   "quote_pin": "502 U.S. 9, 11",
+   "source": {
+    "cite": "Mireles v. Waco, 502 U.S. 9 (1991) (per curiam)",
+    "pin": "502 U.S. at 10–12",
+    "book_section": "4.6; 2.3",
+    "book_note": "cp32",
+    "book_unit": "cp32/7"
+   },
+   "link": null
+  },
+  {
+   "id": "1996-federal-courts-improvement-act-s309",
+   "year": 1996,
+   "date_text": "1996",
+   "title": "Pub. L. 104-317, § 309: Congress limits Pulliam, the only node in the chain that was enacted",
+   "category": "statute",
+   "kind": "statute",
+   "summary": "Congress wrote into § 1983 that in any action against a judicial officer for an act taken in judicial capacity, injunctive relief shall not be granted unless a declaratory decree was violated or declaratory relief was unavailable, and into § 1988(b) that such an officer shall not be liable for costs or fees unless the action was clearly in excess of jurisdiction. It is the only node in the chain enacted rather than received. The damages immunity Pierson presumed remains in no statute; what Congress enacted was a limit on the one remedy Pulliam had allowed, and the limit turns, as the tradition did, on jurisdiction rather than status.",
+   "quote": "injunctive relief shall not be granted unless a declaratory decree was violated or declaratory relief was unavailable",
+   "quote_pin": "42 U.S.C. § 1983",
+   "source": {
+    "cite": "Federal Courts Improvement Act of 1996, Pub. L. No. 104-317, § 309, 110 Stat. 3847, 3853; 42 U.S.C. §§ 1983, 1988(b)",
+    "pin": "110 Stat. at 3853",
+    "book_section": "2.3; 4.6",
+    "book_note": "iicb6",
+    "book_unit": "iicb6/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1997-clinton-v-jones",
+   "year": 1997,
+   "date_text": "1997",
+   "title": "Clinton v. Jones: no immunity for a President's unofficial acts",
+   "category": "executive-absolute",
+   "kind": "decision",
+   "summary": "The Court held that the President has no immunity from a civil suit for unofficial acts. The citizen's interest wins here as a procedural interest, the exception that marks the edge of the 1982 rule.",
+   "quote": null,
+   "source": {
+    "cite": "Clinton v. Jones, 520 U.S. 681 (1997)",
+    "pin": "520 U.S. at 707",
+    "book_section": "2.3",
+    "book_note": "ii15",
+    "book_unit": "ii15/1"
+   },
+   "link": null
+  },
+  {
+   "id": "1999-alden-v-maine",
+   "year": 1999,
+   "date_text": "1999",
+   "title": "Alden v. Maine: sovereign immunity central to sovereign dignity at the founding",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "The Court stated that the generation that designed and adopted the federal system considered immunity from private suits central to sovereign dignity, and that the States retain their immunity except as altered by the plan of the Convention or certain constitutional Amendments. What it named for the age was Blackstone and Iredell's dissent in Chisholm.",
+   "quote": null,
+   "source": {
+    "cite": "Alden v. Maine, 527 U.S. 706 (1999)",
+    "pin": "527 U.S. at 713, 715",
+    "book_section": "2.3; 4.6",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/20"
+   },
+   "link": null
+  },
+  {
+   "id": "2009-pearson-v-callahan",
+   "year": 2009,
+   "date_text": "2009",
+   "title": "Pearson v. Callahan: the two-step sequence no longer mandatory; the law can stay unclear",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Reconsidering the procedure Saucier v. Katz had mandated, under which a court first decided whether a constitutional right was violated and only then whether the right was clearly established, the Court held that while the sequence is often appropriate it should no longer be regarded as mandatory, and that district and appellate judges should exercise their sound discretion in deciding which of the two prongs to address first. A court may now grant the immunity without saying whether the conduct was unconstitutional; a dissenting Eighth Circuit judge wrote in 2019 that applied this way the doctrine is a judicially created exception to a federal statute under which the law is never made clear enough to hold individual officials liable.",
+   "quote": "while the sequence set forth there is often appropriate, it should no longer be regarded as mandatory",
+   "quote_pin": "555 U.S. 223, 236",
+   "source": {
+    "cite": "Pearson v. Callahan, 555 U.S. 223 (2009); Saucier v. Katz, 533 U.S. 194 (2001); Kelsay v. Ernst, 933 F.3d 975, 987–88 (8th Cir. 2019) (en banc) (Grasz, J., dissenting)",
+    "pin": "555 U.S. at 236; 933 F.3d at 987–88",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the bound volume on the shelf, file page 14"
+   },
+   "link": null
+  },
+  {
+   "id": "2012-rehberg-v-paulk",
+   "year": 2012,
+   "date_text": "2012",
+   "title": "Rehberg v. Paulk: an entrenched feature of our § 1983 jurisprudence",
+   "category": "prosecutorial",
+   "kind": "decision",
+   "summary": "The Court called the immunity long recognized, well grounded in history and reason, and an entrenched feature of our § 1983 jurisprudence, naming Tenney, Burns and Pierson for the age. The recital names earlier nodes of the chain and nothing older.",
+   "quote": "an entrenched feature of our § 1983 jurisprudence",
+   "quote_pin": "566 U.S. 356, 361",
+   "source": {
+    "cite": "Rehberg v. Paulk, 566 U.S. 356 (2012)",
+    "pin": "566 U.S. at 361",
+    "book_section": "2.3",
+    "book_note": "ii_age1",
+    "book_unit": "ii_age1/15"
+   },
+   "link": null
+  },
+  {
+   "id": "2014-heien-v-north-carolina",
+   "year": 2014,
+   "date_text": "2014",
+   "title": "Heien v. North Carolina: the Fourth Amendment's own tolerance of error is not as forgiving as qualified immunity's",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Allowing an officer's reasonable mistake of law to supply reasonable suspicion, the Court confined the tolerance to mistakes that are objectively reasonable, and added that this inquiry is not as forgiving as the one employed in deciding whether an officer is entitled to qualified immunity. The Court's own words place the immunity's tolerance of official error above the Amendment's.",
+   "quote": "not as forgiving as the one employed in the distinct context of deciding whether an officer is entitled to qualified immunity for a constitutional or statutory violation",
+   "quote_pin": "574 U.S. 54, 67",
+   "source": {
+    "cite": "Heien v. North Carolina, 574 U.S. 54 (2014)",
+    "pin": "574 U.S. at 60, 66, 67",
+    "book_section": "3.4 § A",
+    "book_note": "fa3",
+    "book_unit": "fa3/3"
+   },
+   "link": null
+  },
+  {
+   "id": "2016-dogan-v-barak-suggestion-of-immunity",
+   "year": 2016,
+   "year_end": 2019,
+   "date_text": "2016–2019",
+   "title": "Doğan v. Barak: the three bars of 1607 relabelled, in a suggestion of immunity for a foreign minister",
+   "category": "foreign-sovereign",
+   "kind": "event",
+   "summary": "Sued by the parents of an American citizen killed by Israeli forces at sea, Israel's former Minister of Defense obtained a suggestion of immunity from the United States, which told the court that the Department of State had determined he was immune, that the court must defer, and that it expressed no view on the merits. The district court dismissed and the Ninth Circuit affirmed in 2019, because to judge the minister would be to enforce a rule of law against the sovereign state of Israel. The plea is routed to the sovereign alone, the forum that receives it does not adjudicate, and no proof is heard against the record.",
+   "quote": null,
+   "source": {
+    "cite": "Suggestion of Immunity by the United States, Doğan v. Barak, No. 2:15-cv-08130 (C.D. Cal. June 10, 2016), ECF No. 48; Doğan v. Barak, 932 F.3d 888 (9th Cir. 2019)",
+    "pin": "Suggestion at 2, 3, 9–11; 932 F.3d, slip op. 12",
+    "book_section": "4.6",
+    "book_note": "si2",
+    "book_unit": "si2/1"
+   },
+   "link": null
+  },
+  {
+   "id": "2018-kisela-v-hughes",
+   "year": 2018,
+   "date_text": "2018",
+   "title": "Kisela v. Hughes: the dissent's absolute shield for law enforcement officers",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Reversing a denial of qualified immunity per curiam, the Court drew a dissent from Justice Sotomayor, joined by Justice Ginsburg, that the Court's one-sided approach transforms the doctrine into an absolute shield for law enforcement officers and tells officers that they can shoot first and think later.",
+   "quote": "transforms the doctrine into an absolute shield for law enforcement officers",
+   "quote_pin": "584 U.S. 100 (2018) (Sotomayor, J., dissenting), the dissent's last pages",
+   "source": {
+    "cite": "Kisela v. Hughes, 584 U.S. 100 (2018) (per curiam); id. (Sotomayor, J., dissenting)",
+    "pin": "the dissent's closing pages, read at the bound volume",
+    "book_section": null,
+    "book_note": null,
+    "read_at": "the shelf copy, not TSUP"
+   },
+   "link": null
+  },
+  {
+   "id": "2019-franchise-tax-board-v-hyatt",
+   "year": 2019,
+   "date_text": "2019",
+   "title": "Franchise Tax Board v. Hyatt: interstate sovereign immunity read from the Constitution's structure, overruling Nevada v. Hall",
+   "category": "state-sovereign",
+   "kind": "decision",
+   "summary": "In 1979 the Court had held, quoting Marshall's presumption, that a sovereign's immunity in a sister State's court rests on agreement or comity and that the Constitution did not require the courtesy. In 2019 it overruled that holding by reading the instrument: the Constitution embeds interstate sovereign immunity within the constitutional design, because Article I took from the States the diplomatic and military tools foreign sovereigns possess and Article IV imposes duties on them that international law does not. It is one of the two questions of this kind that the Court has answered from the text rather than presumed.",
+   "quote": null,
+   "source": {
+    "cite": "Franchise Tax Board of California v. Hyatt, 587 U.S. 230 (2019); Nevada v. Hall, 440 U.S. 410 (1979)",
+    "pin": "587 U.S. at 241, 245–46; 440 U.S. at 416–17",
+    "book_section": "4.6",
+    "book_note": "si29",
+    "book_unit": "si29/1"
+   },
+   "link": null
+  },
+  {
+   "id": "2020-baxter-v-bracey-thomas-dissent",
+   "year": 2020,
+   "date_text": "2020",
+   "title": "Baxter v. Bracey: a Justice's doubts that the doctrine follows the statutory text",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "Dissenting from the denial of certiorari, Justice Thomas repeated his doubts about the Court's qualified immunity jurisprudence and would have granted the petition because the § 1983 qualified immunity doctrine appears to stray from the statutory text. The year before, a Fifth Circuit judge had written that to some observers the doctrine smacks of unqualified impunity, letting public officials duck consequences for bad behavior.",
+   "quote": "Because our § 1983 qualified immunity doctrine appears to stray from the statutory text, I would grant this petition.",
+   "quote_pin": "590 U.S. 1011, 1011 (2020) (Thomas, J., dissenting from denial of certiorari)",
+   "source": {
+    "cite": "Baxter v. Bracey, 590 U.S. 1011 (2020) (Thomas, J., dissenting from denial of certiorari); Zadeh v. Robinson, 928 F.3d 457 (5th Cir. 2019) (Willett, J., concurring in part and dissenting in part), slip op. 33",
+    "pin": "590 U.S. at 1011",
+    "book_section": "3.5",
+    "book_note": "ii7x",
+    "book_unit": "ii7x/4"
+   },
+   "link": null
+  },
+  {
+   "id": "2022-egbert-v-boule",
+   "year": 2022,
+   "date_text": "2022",
+   "title": "Egbert v. Boule: the seventeenth decision of the chain, and still no sentence on the Seventh Amendment",
+   "category": "qualified",
+   "kind": "decision",
+   "summary": "In the seventeen American decisions of the immunity chain from Randall v. Brigham in 1869 to Egbert v. Boule in 2022, and in the apex opinion of 2024, the words Seventh Amendment appear not at all, concurrences and dissents included, while the same search returns some twenty occurrences in Curtis v. Loether and nearly thirty in Tull v. United States, the two Seventh Amendment decisions kept beside the chain as controls. The reassignment of the jury's questions of reasonableness, knowledge, intent and motive to the judge proceeds node by node without one opinion measuring itself against the Amendment's text.",
+   "quote": null,
+   "source": {
+    "cite": "Egbert v. Boule, 596 U.S. 482 (2022); U.S. Const. amend. VII",
+    "pin": "the chain's seventeen decisions, counted in TSUP's note ii7g",
+    "book_section": "3.4 § C",
+    "book_note": "ii7g",
+    "book_unit": "ii7g/17"
+   },
+   "link": null
+  },
+  {
+   "id": "2024-trump-v-united-states",
+   "year": 2024,
+   "date_text": "1 July 2024",
+   "title": "Trump v. United States: absolute and presumptive presidential immunity, and the three bars returned",
+   "category": "executive-absolute",
+   "kind": "decision",
+   "summary": "The Court held the President absolutely immune for acts within his conclusive and preclusive core, presumptively immune to the outer perimeter of official responsibility, and forbade the prosecutor to admit testimony or private records probing the official act itself. It rested on Nixon v. Fitzgerald, Article II, Youngstown and McDonnell, and answered the dissent's point that no constitutional text supports presidential immunity by saying that a specific textual basis has not been considered a prerequisite to the recognition of immunity. The first bar of 1607 returns as the evidentiary rule; the second as impeachment and the political process; the third as the foreclosed remedy. The dissent found a twisted irony in the duty to take care that the laws be faithfully executed read as a licence, the irony the Hunzikers had put to the Seventh Circuit thirty-five years before.",
+   "quote": "a specific textual basis has not been considered a prerequisite to the recognition of immunity",
+   "quote_pin": "603 U.S. 593, 637 (2024)",
+   "source": {
+    "cite": "Trump v. United States, 603 U.S. 593 (2024); id. at 676, 685 (Sotomayor, J., dissenting)",
+    "pin": "603 U.S. at 607–09, 611, 618–19, 630–32, 637; 676, 685 (dissent)",
+    "book_section": "2.5 § A; 2.3; 2.5 § E; 3.1 § A",
+    "book_note": "iinc1",
+    "book_unit": "iinc1/1"
+   },
+   "link": null
+  },
+  {
+   "id": "2025-coke-notebook-report-in-print",
+   "year": 2025,
+   "date_text": "2025",
+   "title": "Coke's own notebook report of Floyd v. Barker in print for the first time",
+   "category": "english-origin",
+   "kind": "report",
+   "summary": "Coke's notebook report of the case, published only in 2025, gives the rule's founding clause sense-correct, that a justice sworn to do justice will do justice, where the printed report every court has cited since 1656 reads the opposite. Its editor's apparatus shows the sentence unstable in every direction the copying tradition allows. The Star Chamber's own file of the cause, catalogued under a sheriff's name with its bill wanting, was transcribed entire for The Subject's Unanswered Plea, the book this timeline rests on, apparently for the first time.",
+   "quote": null,
+   "source": {
+    "cite": "Reports from the Notebooks of Edward Coke (2025); The National Archives, STAC 8/203/38",
+    "pin": "the notebook text and apparatus as TSUP n. vr18 pins them",
+    "book_section": "1.3 § B; 1.2 § C",
+    "book_note": "vr18",
+    "book_unit": "vr18/1"
+   },
+   "link": null
+  }
+ ]
+}

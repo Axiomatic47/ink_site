@@ -13,6 +13,7 @@ import { RESEARCH_ARCHIVES, ARCHIVE_IDS } from '@/lib/research-archive';
 const RESEARCH_MENU = [
   { href: '/research', label: 'All research' },
   ...ARCHIVE_IDS.map((id) => ({ href: `/research/${id}`, label: RESEARCH_ARCHIVES[id].ref })),
+  { href: '/research/immunity-timeline', label: 'The history of immunity' },
   { href: '/research/open-readings', label: 'Open Readings' },
   { href: '/research/acknowledgements', label: 'Acknowledgements' },
 ];

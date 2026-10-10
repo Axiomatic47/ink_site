@@ -37,6 +37,8 @@ const BOTTOM_PAD_PX = 16;
 // whose page strip scrolls sideways instead of wrapping, and the record line under the panes gets a fixed
 // two-line budget (a long title may run it a line long; the page then scrolls a little, the panes do not shrink).
 const BELOW_PX = 48;
+// the optional line beneath the record row (`after`): one 12px line with its margin, counted in the budget only when present
+const AFTER_PX = 28;
 
 interface Props {
   work: { slug: string; title: string; subtitle?: string; venue?: string };
@@ -59,6 +61,8 @@ interface Props {
   editions?: EditionMap;
   /** the book's version log, newest first — the footer's version drop-down (owner 2026-09-24) */
   versions?: BookVersion[];
+  /** a line beneath the record row, outside the panes: the timeline drawn from this book (owner 2026-10-07) */
+  after?: React.ReactNode;
 }
 
 /** one cited WORK from the lane's register (contract 2026-09-16), under the source title: the full citation;
@@ -95,7 +99,7 @@ function WorkRecord({ w, sourceHolderUrl, compact = false }: { w: ReviewWork; so
   );
 }
 
-export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount, editions, versions = [] }: Props) {
+export function ReviewBody({ work, manifest, published, textHref, backHref, backLabel, children, loading = false, loadError = null, sourceCount, editions, versions = [], after }: Props) {
   const textTo = textHref ?? `/work/${work.slug}`;
   const units = manifest.units;
   const byId = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
@@ -195,12 +199,13 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
   // the book fills the viewport in side-by-side review and in reading mode
   const fills = review || (reading && isLg);
 
+  const hasAfter = after != null;
   const measure = useCallback(() => {
     const el = rowRef.current;
     if (!el) return;
-    // constants only (BELOW_PX, never belowRef's live height): a picked citation must not move the panes' edges
-    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - BELOW_PX - BOTTOM_PAD_PX));
-  }, []);
+    // constants only (BELOW_PX, AFTER_PX when the line is present — never belowRef's live height): a picked citation must not move the panes' edges
+    setFillHeight(Math.max(480, window.innerHeight - el.getBoundingClientRect().top - BELOW_PX - (hasAfter ? AFTER_PX : 0) - BOTTOM_PAD_PX));
+  }, [hasAfter]);
   useEffect(() => {
     if (!fills) return;
     const t = setTimeout(measure, 0);
@@ -650,6 +655,8 @@ export function ReviewBody({ work, manifest, published, textHref, backHref, back
             {versions.length > 0 && <VersionMenu versions={versions} align="right" up className="mt-1" />}
           </div>
         </div>
+        {/* beneath the record row: the timeline drawn from this book (owner 2026-10-07) — its height is the AFTER_PX constant */}
+        {after && <div className={cn('mt-2 text-[12px] leading-relaxed', (reading || layout !== 'side') && 'max-w-5xl mx-auto')}>{after}</div>}
         {/* the dropdown's body — a sibling of the measured block, never part of the panes' height budget */}
         {!reading && page && pageWork && workOpen && (
           <div id="review-work-record" className={cn('mt-2 max-w-3xl border-l-2 border-accent/40 pl-3 text-[11px] leading-relaxed', (layout !== 'side') && 'max-w-5xl mx-auto')}>

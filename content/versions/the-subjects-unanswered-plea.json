@@ -141,6 +141,106 @@
    "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
    "lane_state": "thirty-eighth",
    "note": "Version 15 (30 September 2026): the rendered book is refreshed to the export of 30 September, so that every citation added since 16 September, the Whittick passages among them, opens on the page. The text is unchanged from version 14."
+  },
+  {
+   "version": 16,
+   "date": "2026-10-06",
+   "text": "5e35e0d97052bd6129401e79b968cbc02819e72a26621c608bb8b14d7f9ed5dc",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "dd8b1f80c39cabef0267365860b758fb9f655bd4",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "thirty-ninth",
+   "note": "Version 16 (6 October 2026): the Preface closes with the name and the month on one line, so that the sign-off keeps the page the Preface ends on. Nothing else changes."
+  },
+  {
+   "version": 17,
+   "date": "2026-10-06",
+   "text": "90ac0a32a49f08f1b5fe626c72bf29efa530f327ce3c768c5b39adb6a63a0b39",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "e385bba8a5b4a17c9c9be8d0d14498eeb84273f8",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "fortieth",
+   "note": "Version 17 (6 October 2026): The five Part headings now read Part 1. through Part 5., a full stop in place of the dash; and the Introduction's sentence on the plea transferred to a King is split at a semicolon so that it closes on 'justice done'."
+  },
+  {
+   "version": 18,
+   "date": "2026-10-06",
+   "text": "135d2260ed032413cc081c68b32d27ac8e76f5534b8e954526678e441b71629f",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "f6463b267f9c8b5339681c6bb581c150fddd8134",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-first",
+   "note": "Version 18 (6 October 2026): Chapter 3.4 now sets out the line the Supreme Court itself drew between the judge's question and the jury's facts, and the words of the judges bound by the doctrine who have said it should change; chapter 3.6 answers the rule that binds a lower court and adds Wise v. Withers beside Little v. Barreme; chapter 4.6 runs the book's test between the States of the Union, from Nevada v. Hall through Hyatt, Branstad and Neagle to the extradition dispute over the officer Castro in 2026; and chapter 3.2 names dignity as the third feeling the doctrine has used in place of a clause."
+  },
+  {
+   "version": 19,
+   "date": "2026-10-06",
+   "text": "de5ccfaab1f17fbcddecbfee5345dd79561c3490c89604e38a82030bd2d15f96",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "41bcdc3a8b9d7875f8014669ce601f555d5b8569",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-second",
+   "note": "Version 19 (6 October 2026): Chapter 4.6 adds one sentence to the Castro passage: the demanding State pleaded the extradition duty and nothing more, naming comity once as a count of past extraditions and the compatibility of the two sovereigns' laws not at all, because the test the chapter states is symmetric and binds the State that wields it at home, where the same office has spent fourteen years in the court of appeals narrowing the door through which its own subjects may sue it."
+  },
+  {
+   "version": 20,
+   "date": "2026-10-06",
+   "text": "ea30333c7659719f078bf3a8240a9c4a72339e580e6da68f074e2d627eabcf2c",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "584d4d45c472000ce9b35cc6e1f25fd91ec78666",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-third",
+   "note": "Version 20 (6 October 2026): The last paragraph of the Preface loses one clause: where no published translation exists, the English beside the original was prepared for this book from the edition the note cites, and those renderings await the same review; the words that repeated this are gone, and nothing else moved."
+  },
+  {
+   "version": 21,
+   "date": "2026-10-06",
+   "text": "986e62764e837e9b41b7314a838ef47db2fdf4fc2a02c50b736990166bf5c6c0",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "9abf0c35e9c0e14da033f503e7b42b278f4c32c9",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fourth",
+   "note": "Version 21 (6 October 2026): Chapter 4.6 corrects one word of the Castro passage: the demanding State's complaints did name comity, once each, in their opening, as a principle at stake, and argued it nowhere; the sentence had said never, and now says what the complaints say."
+  },
+  {
+   "version": 22,
+   "date": "2026-10-06",
+   "text": "3ee59ad80150f55bac79899c511bcac318624154980374bc1972b29ed38606f5",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "c67afe441772970905bcad7053b6f56faae334cf",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 22 (6 October 2026): Seven sentences from a night's reading of three HathiTrust works and an 1880 English report. Chapter 3.2 § D gains the English Court of Appeal of 1880, which three times defined a sovereign's dignity as his independence, grounded the exemption on 'independence and dignity' and dropped the word in its own restatement, and Matsunami's 1924 answer to the 'embarrassment' ground; 4.6 gains Shepard's 1951 reading of the suggestion of immunity as a request, set against the 2016 'must'; 2.3 gains the English treatises' missing definition of the word and the Justice Department's 1985 'essentially judge-made'; 2.4 § A and 3.4 § C gain the same manual on Spalding's root and on the judge, not the jury, resolving the immunity. Seven new notes; The Parlement Belge, Matsunami and Shepard enter the bibliography."
+  },
+  {
+   "version": 23,
+   "date": "2026-10-06",
+   "text": "785bb4b968e37935800538e25dd770dfbc4b79d51fbb003fec3177755e7d327e",
+   "pdf": "948063f4cf0fe18ab258ef227582ca08f75617a324a19daab7709cf4ee8a4696",
+   "book_commit": "67ef41f374118a1f8648801327fe95595123d6da",
+   "render": "BOOK_render_word-quartz_2026-09-30_1927.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 23 (6 October 2026): The motive line, 1607 to 2024, in chapter 3.4 § C: Bradley (1872) grounded the bar on inquiry into judicial motives on Floyd by name, King's forum included, misdating the case to 1608 as Randall had; Pierson (1967) restated it for the judge under § 1983, the majority naming neither the case nor the King while the dissent named both, and left the officer's good faith to the jury; Harlow took the officer's good faith from the jury and Trump the President's motives from the case. One new note, the pages read at the bound volumes."
+  },
+  {
+   "version": 24,
+   "date": "2026-10-06",
+   "text": "785bb4b968e37935800538e25dd770dfbc4b79d51fbb003fec3177755e7d327e",
+   "pdf": "b86a43956f1e6efcaa921a68b1fecdf0708ded5231a1e43a3912af5346b28003",
+   "book_commit": "67ef41f374118a1f8648801327fe95595123d6da",
+   "render": "BOOK_render_word-quartz_2026-10-06_2207.pdf",
+   "lane_state": "forty-fifth",
+   "note": "Version 24 (6 October 2026): the rendered book is refreshed to the export of 6 October, made from the text of version 23, so that every citation added since 30 September opens on the page and the sign-off keeps page 6. The text is unchanged from version 23."
+  },
+  {
+   "version": 25,
+   "date": "2026-10-06",
+   "text": "bed36fcc66e16e5cd04c5082fac927a23310ebd3f3f5023e55837aa9a34b43ec",
+   "pdf": "b86a43956f1e6efcaa921a68b1fecdf0708ded5231a1e43a3912af5346b28003",
+   "book_commit": "e19eaa9fee3290b968369a25e37dfe1fa76086fa",
+   "render": "BOOK_render_word-quartz_2026-10-06_2207.pdf",
+   "lane_state": "forty-sixth",
+   "note": "Version 25 (6 October 2026): two rows of chapter 2.3, read at the page. The 1976 Imbler row of the recital table now names what the opinion named for the prosecutor, Griffith v. Slinkard (Ind. 1896), the first American case to address the question, citing a Massachusetts case the Court noted was not an immunity case, and Yaselli v. Goff (2d Cir. 1926), affirmed per curiam in 1927, before the five lower-court cases of 1933 to 1949 cited for the rule as settled. The Pulliam sentence now says that the Court's brief excursion into common-law history opens with the King's Bench and Heath v. Rydley (1614) and reaches back to Floyd and Barker (1607) and no further, with its note widened to pages 529 to 531. The table of cases gains Griffith, Heath v. Rydley and Yaselli. Notes 586, no new note. The rendered book is unchanged from the export of 6 October, so the revised note and its marker wait for the next export to open on the page."
   }
  ]
 }

@@ -19,6 +19,8 @@ interface Props {
   editions?: EditionMap;
   /** the book's version log, newest first (the footer's version drop-down, owner 2026-09-24) */
   versions?: BookVersion[];
+  /** a line beneath the panes' record row — the timeline drawn from this book (owner 2026-10-07); rendered by the page, server side */
+  after?: React.ReactNode;
   children?: React.ReactNode;
 }
 
