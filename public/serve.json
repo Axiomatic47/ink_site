@@ -647,6 +647,22 @@
       "destination": "/uploads/kirchner-v-ellison/1993_-_Dale_Selby_Superette_Deli_v._United_States_Department_of_Agriculture_838_F._Supp._1346_D._Minn._Caselaw_Access_Project_scan_static.case.law_.pdf"
     },
     {
+      "source": "/api/casereview/file/2003 - Gordon v. Unifund CCR Partners, 345 F.3d 1028 \\(8th Cir.\\) \\[CA8 slip No. 03-1402, 10 Oct. 2003\\]",
+      "destination": "/uploads/kirchner-v-ellison/2003_-_Gordon_v._Unifund_CCR_Partners_345_F.3d_1028_8th_Cir._CA8_slip_No._03-1402_10_Oct._2003_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2000 - VanDanacker v. Main Motor Sales Co., 109 F. Supp. 2d 1045 \\(D. Minn.\\) \\[Caselaw Access Project scan, static.case.law\\]",
+      "destination": "/uploads/kirchner-v-ellison/2000_-_VanDanacker_v._Main_Motor_Sales_Co._109_F._Supp._2d_1045_D._Minn._Caselaw_Access_Project_scan_static.case.law_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Minnesota Rules of Civil Procedure \\(revisor.mn.gov official court rules PDF, print of June 2 2026\\)",
+      "destination": "/uploads/kirchner-v-ellison/Minnesota_Rules_of_Civil_Procedure_revisor.mn.gov_official_court_rules_PDF_print_of_June_2_2026_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/District of Minnesota - Order for Assignment of Cases \\(May 27, 2026, mnd.uscourts.gov general order; the current edition, superseding the July 19, 2021 order\\)",
+      "destination": "/uploads/kirchner-v-ellison/District_of_Minnesota_-_Order_for_Assignment_of_Cases_May_27_2026_mnd.uscourts.gov_general_order_the_current_edition_superseding_the_July_19_2021_order_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/kirchner-v-ellison/:id.pdf"
     }

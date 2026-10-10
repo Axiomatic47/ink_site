@@ -1,15 +1,15 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T06:59:26.370Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010l",
+  "imported": "2026-10-10T07:06:50.390Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010m",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "215fa6867127153d23390d71f8594f36e6bce0baf2b4c13cfde51c2e067514fc",
+      "sha256": "c8fdd6f2758d35e51d2768a9e188662ae89761d3078597f27324654419cb151c",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
-          "bytes": 369305,
-          "sha256": "e71ee5a12885ff7b42e0e7b97fb76258891a5ddbac8e5482966c928472f5d5aa"
+          "bytes": 397579,
+          "sha256": "e56152726145763564bf8879f53371bd468abb50cc3b4a2eeb17d644a10432bf"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
@@ -33,58 +33,58 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-01.meta.json",
-          "bytes": 1178,
-          "sha256": "38f61f21ed4c416f24de227b7132011c97b2caf156bd931d154c4b3e7250874c"
+          "bytes": 1782,
+          "sha256": "5595e240cdd7d63646ad6a93a74fb82384c7d3f060b37973666c553479e74d0f"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-01.tsv",
-          "bytes": 8023,
-          "sha256": "1f3c993f7ff559856b669a995f4ddfdd21a76cbd0ae09f118a6a9ac6c5b05485"
+          "bytes": 8039,
+          "sha256": "0133a7baa0153a1e23997cc88668f541845218e8048751f1e78efa08c85ce320"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-04.meta.json",
-          "bytes": 1265,
-          "sha256": "dcde2f3b69a61b7610520e5d262d32bd82494a02e9c0836bc74f4d83204ea38a"
+          "bytes": 1665,
+          "sha256": "91032b6a25e3c0f82ac8f21b4734f1f5d8cca4181cea2c04951abae3b441549d"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-001-04.tsv",
-          "bytes": 1949,
-          "sha256": "6e3810667729ab8454b0fbab1478dece40583ed5ecfb40ca9802e888a260f31f"
+          "bytes": 1957,
+          "sha256": "4d1371f603237c7a3dae0a612307735a94a3604b9e1cdd4323aa298394817274"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-004.meta.json",
-          "bytes": 685,
-          "sha256": "ccceaa5fc64eb36cd5a0d474cfdd3179b7588ca1089c8becbd1f056456f60e2c"
+          "bytes": 1031,
+          "sha256": "8945b056e464281b513112c79fa8bfd5020ccd3f3a673198f97564214453d3ba"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-004.tsv",
-          "bytes": 1434,
-          "sha256": "914100d85454d1a45d0678e1351f02d05c2c9f2c8297a7647c3643c66dfdca36"
+          "bytes": 1440,
+          "sha256": "bc2a88e5fab80b4c398a7322ea11fcaa3f62f3f377cc18ddc3df80a041e23d16"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-006.meta.json",
-          "bytes": 709,
-          "sha256": "5e8945d618808e55d5020fad67057648ddc7cda115204c433c454790423b6976"
+          "bytes": 1075,
+          "sha256": "401fb2c0a74f4abd7258b0bfda8db4650fb90aabe09059cfdd56d5cdc0022956"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-006.tsv",
-          "bytes": 787,
-          "sha256": "5759268bafaebc315f295410010b7a6f1038080ea2dd0264120b5abe60cddc0f"
+          "bytes": 789,
+          "sha256": "5c6c38ad66fd320639e7fb8ae5588499950f121212eee2c6d300aec703abc128"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-01.meta.json",
-          "bytes": 864,
-          "sha256": "fc520eea99b4969bc42b4df56038942fa5441a4ad01c9bdc2eb04d09bf4f33df"
+          "bytes": 1304,
+          "sha256": "1c009488c88dbfcce042fdedbfe7f1930566b2f5dafc8a067ac2287d07ac4922"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-01.tsv",
-          "bytes": 2172,
-          "sha256": "18a7172e58ffe6b23d277419b2a2c7fca45b0ed0e76573ac85c8bd218ca3825a"
+          "bytes": 2176,
+          "sha256": "2c076fc2d59a78993ad7fd260875bcb7ade7431ac8fe6e153439fa88c4a76341"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-02.meta.json",
-          "bytes": 793,
-          "sha256": "9fe67b9808ea85b279da7ec39b7d93fe7da7c938ba9db009546d521d6fdcb7a3"
+          "bytes": 1048,
+          "sha256": "b50754e1ea2f553c0574ceb69eb9deb555ccc3e018a455e339b642953112ed57"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-007-02.tsv",
@@ -93,18 +93,18 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-009.meta.json",
-          "bytes": 712,
-          "sha256": "83ebffc21e0f54afcf9d4084411f35c0726ccd3c311abfef02749fa9a207db90"
+          "bytes": 1050,
+          "sha256": "11e1c948038ca693058c08f18c45880270f4df29338a93eb31ad6b1ea8728bfb"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-009.tsv",
-          "bytes": 2179,
-          "sha256": "40f2a2e9b53390acce3087a66c536954cee65e253ba705f922666b01bee35cd0"
+          "bytes": 2189,
+          "sha256": "bde0cc276dbf011edda4f2beed8716cb631641e9727a361111c21ac38c0f9948"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-010.meta.json",
-          "bytes": 666,
-          "sha256": "9fc16607b9871d6baa2f7f59ec40e422401debd5dcccc24ded9b88629a61dd0e"
+          "bytes": 901,
+          "sha256": "417716f16df2ad27254d885493f708f287ed32bd8d487d8a64610f94438ef799"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-010.tsv",
@@ -113,13 +113,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-011-01.meta.json",
-          "bytes": 684,
-          "sha256": "b2b3aeb364850cd5824b2d86c8db251953389761bbd1f35aa7373fcf048fa063"
+          "bytes": 1006,
+          "sha256": "0c663634c51b58393378d8bd43e53cfaf35213a316480d940e8c0d67111242b6"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-011-01.tsv",
-          "bytes": 1122,
-          "sha256": "18dc2c895d7981563c9ddd89b301f8d7949cec7560167bb49d6dd1449654196d"
+          "bytes": 1126,
+          "sha256": "f424d1c9049da7716792034505c2d0ebdb7ab275bc32e44e6087168a92bdc83a"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-011.meta.json",
@@ -133,8 +133,8 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-012.meta.json",
-          "bytes": 662,
-          "sha256": "c37c5ece1b7a3f18eb07a832410a4c12593608fe1714cd89bbb45e374f8f85b6"
+          "bytes": 897,
+          "sha256": "2875979a4898dc81b0c8bea2f5aecff7e73ede8bc334d639715419ff6e3bc0d1"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-012.tsv",
@@ -143,8 +143,8 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-013.meta.json",
-          "bytes": 617,
-          "sha256": "71d64ff9ba3459b6695421c2dea63b23cbbab21f374972e325df668d672ba5c6"
+          "bytes": 852,
+          "sha256": "10dec5f3bb12292c172d5aa554f4ceaad284cdead5a909dae141e644866d0461"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-013.tsv",
@@ -153,43 +153,43 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-01.meta.json",
-          "bytes": 684,
-          "sha256": "51da1f181da43f4c0b596ac022ef549b17320e1084504322aef2847540488ef0"
+          "bytes": 988,
+          "sha256": "2e4c4d29487d3385deabb25a3784231e32a6ea90441c97c85f93f290bfb05649"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-01.tsv",
-          "bytes": 1557,
-          "sha256": "0fb5c047c45271acfbbb9c580cb00cf981194328b359916501192c136b43f4ba"
+          "bytes": 1563,
+          "sha256": "3a08ebace5cbd79df720c35d14ce43fcbed2f1291c3f9450cb54b248991a2cb3"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-02.meta.json",
-          "bytes": 1217,
-          "sha256": "baed668c1f67581e48c7d21dfbecdb4b9b557fa23dccc7af1dceb63b6bfb9c29"
+          "bytes": 1738,
+          "sha256": "0ae5fdafdbbcc79a0fc6f92302bb7486f2c1499999e7b2d80b304d32694f7f63"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-02.tsv",
-          "bytes": 8890,
-          "sha256": "eaefca11f4bd4c03a1e33914bc8bda478498cc8166093dd53cbabf5a7147f1cf"
+          "bytes": 8930,
+          "sha256": "fa82a97988959a87bb76c1a1b98a12f4ce397f806038066fb8ce766de0e3d099"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-03.meta.json",
-          "bytes": 1040,
-          "sha256": "050072785817206070260ac7e0a08545d7e61775a33ccebab5b10aa7570b6893"
+          "bytes": 1392,
+          "sha256": "a067dd193ea7ff769a39dad334a2bf22f6d2ef22a14df890150950c438861215"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-03.tsv",
-          "bytes": 2969,
-          "sha256": "25bf3263b89dcb6dc7f2cec01d5bfb0b24a09ea0100b56cf18e19813dcac9470"
+          "bytes": 2979,
+          "sha256": "f8cc6ed7aca1ef2a38d9b3953d1135ccecda7570abea3af2f480b9ebd9e255f5"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-04.meta.json",
-          "bytes": 1591,
-          "sha256": "1f867246fc0c9cdd96c7225ea18f6acb4b952b664d431750cfcd531891943353"
+          "bytes": 2270,
+          "sha256": "0f5f33b3b96a3102870491b7f447d20b6b26d5377fc37306443d01b04e790d55"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015-04.tsv",
-          "bytes": 12513,
-          "sha256": "6afc93222394aefea7d44ef31274f0655909dd75188216d3f682717fff26921f"
+          "bytes": 12555,
+          "sha256": "50fafce580c465b06fdec453cbe0d59cab29fb7c850d31fb8e5b303c2d6d17ec"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015.meta.json",
@@ -203,13 +203,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-016-01.meta.json",
-          "bytes": 705,
-          "sha256": "0e8b1777dc79f06ea54d648c2a2e07f765c30459b9f83a8d71590ca66ee6427d"
+          "bytes": 1027,
+          "sha256": "1ae06f18b7630ff03c64b5c63c6a145a6228c7e4cc7a9627ecfed879a5e53d71"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-016-01.tsv",
-          "bytes": 1134,
-          "sha256": "9c3714de0ec838002307a7f37cc8fcc6c91a0ac94397d662de6476c203989005"
+          "bytes": 1138,
+          "sha256": "6f5a473c859b48a597afcfff69018f4fb923e1bf8cb2a351cf7428ed96b28b9a"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-016.meta.json",
@@ -223,13 +223,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-017-01.meta.json",
-          "bytes": 707,
-          "sha256": "10ac860d5fde149bc4344a2838cfdce1f81cb49bbafa8183f1032ad5666aaf57"
+          "bytes": 1029,
+          "sha256": "1ef6898228f6ba42a6321c5a372983a6a66f6d5ec3f65a33c3479d3b3d12b2f5"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-017-01.tsv",
-          "bytes": 1134,
-          "sha256": "ec45e4205711a9f8b01eb241573ec84d35d576dd5bd7eb0eaabd5e2c70871efa"
+          "bytes": 1138,
+          "sha256": "962832bca352dff23798634e93f8b5225fd2991d802f27da4e68c352f64a5fb0"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-017.meta.json",
@@ -293,8 +293,8 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-019.meta.json",
-          "bytes": 628,
-          "sha256": "29fb540cc3c5e587b22e2730827c01cf9207cee5f2b1c6d6dee9b6ae94359801"
+          "bytes": 863,
+          "sha256": "336174c0a6c9d51e4e6d6bb1d3f870be0b1a144407d19a421a22074c825aa353"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-019.tsv",
@@ -393,13 +393,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.meta.json",
-          "bytes": 4396,
-          "sha256": "99b8bae7d4d5964460aebb4450f77f72a89420c601d68bbd0c0dd9c886b7597e"
+          "bytes": 5051,
+          "sha256": "daef667168c7099d8a36b80bfb4b6ff6c5afdba4743c0ec7883399ebea40b7bc"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-027.tsv",
-          "bytes": 24720,
-          "sha256": "ced3e142bea5b6fa9ad5ab575dda25952f45fdebc3496324c385d9b26c239117"
+          "bytes": 24740,
+          "sha256": "cdca1ab06755ed08b04bd9317fb14952585ac84511e92574fb9d83a01967f056"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-028-01.meta.json",
@@ -547,10 +547,10 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "8bee84126cbc30f54bfa2aaf0942596bdf1d3c7d342fea02224a81fbeab0814d",
-    "exported": "2026-10-10T06:59:25+00:00",
+    "exported": "2026-10-10T07:06:49+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
-    "registry_version": "v0u",
+    "registry_version": "v0v",
     "tables": [
       "MN-CORR-OPEN-LETTER-2026-10",
       "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
@@ -606,7 +606,7 @@
     ],
     "publish_applied": true,
     "publish": {
-      "serve": 248,
+      "serve": 264,
       "link": 2,
       "hold": 0
     },
@@ -639,12 +639,12 @@
       "manifest": "files.json"
     }
   },
-  "registry_version": "v0u",
-  "documents": 250,
+  "registry_version": "v0v",
+  "documents": 266,
   "tables": 51,
   "rows": 1411,
   "publication": {
-    "serve": 248,
+    "serve": 264,
     "link": 2,
     "hold": 0
   },
