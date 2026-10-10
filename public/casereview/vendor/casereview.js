@@ -410,7 +410,9 @@ function saveTree() {
 /** The options row above the list reflects the store (per case root). */
 function syncNavOpts() {
   const on = $('#crHideOn'), n = $('#crHideBefore');
-  if (on) on.checked = !!st.nav.hideOn;
+  // the switch shows the EFFECTIVE state (7d866ecf's live reading on the MN lane, 2026-10-10: a checked box over 'none' hid nothing
+  // and read as a lie): checked only when a number is set and the switch is on; typing a number turns the switch on
+  if (on) on.checked = !!st.nav.hideOn && st.nav.hideBefore != null;
   if (n && document.activeElement !== n) n.value = st.nav.hideBefore == null ? '' : String(st.nav.hideBefore);
 }
 function toggleShowHidden(force) { st.nav.showHidden = force == null ? !st.nav.showHidden : !!force; renderNav(); }
@@ -452,8 +454,8 @@ function bindNavTree() {
   const f = $('#crFilter');
   if (f) f.addEventListener('input', () => { st.nav.filter = f.value; renderNav(); });
   const on = $('#crHideOn'), n = $('#crHideBefore'), list = $('#crNavList');
-  if (on) on.addEventListener('change', () => { st.nav.hideOn = on.checked; saveTree(); renderNav(); });
-  if (n) n.addEventListener('change', () => { const v = parseInt(n.value, 10); st.nav.hideBefore = Number.isFinite(v) && v > 0 ? v : null; syncNavOpts(); saveTree(); renderNav(); });
+  if (on) on.addEventListener('change', () => { st.nav.hideOn = on.checked; if (on.checked && st.nav.hideBefore == null && n) n.focus(); syncNavOpts(); saveTree(); renderNav(); });   // on with no number: the number is asked
+  if (n) n.addEventListener('change', () => { const v = parseInt(n.value, 10); st.nav.hideBefore = Number.isFinite(v) && v > 0 ? v : null; if (st.nav.hideBefore != null) st.nav.hideOn = true; syncNavOpts(); saveTree(); renderNav(); });
   if (list) list.addEventListener('contextmenu', onNavMenu);
 }
 function toggleFold(id, force) {

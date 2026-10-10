@@ -127,7 +127,7 @@
 .cr-navopts { flex: 1 0 100%; display: flex; align-items: center; gap: 6px; padding-top: 4px; color: var(--dim); font: 11px/1.4 var(--sans); }
 .cr-hideopt { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; cursor: pointer; min-width: 0; }
 .cr-hideopt input[type="checkbox"] { margin: 0; accent-color: var(--accent); }
-.cr-hideopt input[type="number"] { width: 5ch; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 11px/1.4 var(--mono); border-radius: 3px; padding: 0 2px; }
+.cr-hideopt input[type="number"] { width: 6.5ch; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: 11px/1.4 var(--mono); border-radius: 3px; padding: 0 2px; }
 .cr-hiddenn { margin-left: auto; font: 10.5px/1 var(--mono); }
 .cr-navact.is-on { color: var(--ink); border-color: var(--ink); }
 .cr-row.is-hidden { opacity: .55; }

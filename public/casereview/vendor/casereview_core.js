@@ -2092,7 +2092,9 @@ export function saysFor(u, k, t, doc, resolved = null) {
   // hyperlink text is the clock as printed, the link the watch page at that second (the browser's way, for a host without the frame)
   const vt = videoTarget(t, doc);
   if (vt) {
-    say(`${head} — the recording at `); parts.push({ text: vt.clock, href: vt.watchUrl });
+    // the pin IS the clock the citation prints ('2:49' pinned 'at 2:49'): said once (N2), so the head is the cite alone when it carries the clock
+    const vhead = foldText(u.text).includes(foldText(vt.clock)) ? u.text : head;
+    say(`${vhead} — the recording at `); parts.push({ text: vt.clock, href: vt.watchUrl });
     // the two served facts (7d866ecf's ruling 2026-10-09): the minute page is the CLOCK's (⌊s/60⌋ + 1, one rule, no exception);
     // the passage carries ITS pages — a turn sits whole under the minute it begins, so the words can be on the page before
     const turnPage = vt.pages.length && vt.pages[0].pdf != null && vt.pdf != null && vt.pages[0].pdf !== vt.pdf ? vt.pages[0].pdf : null;
