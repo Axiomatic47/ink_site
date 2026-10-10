@@ -202,7 +202,9 @@ p=none, all on Netlify DNS).
   (an object store or a video host; same-origin, or its origin added to the CSP as `media-src`). The importer takes
   it as `--video-url <https URL or site path>` → `recording.file`; the page then renders the `<video>` and every
   time seeks it; without the flag the embed stands. Republishing MPR's broadcast is the owner's decision, named to
-  them; the importer decides nothing about rights. A Reading-mode toggle
+  them; the importer decides nothing about rights. DECIDED (owner 2026-10-09 ~21:2x, verbatim through the drafter:
+  "We will host from youtube"): the embed stays, no file, no `--video-url`; the host and the rights questions are
+  closed, and the `--video-url` path is the importer's unused capability. A Reading-mode toggle
   stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
   the play button; nothing autoplays on load).
 - Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
@@ -218,7 +220,11 @@ p=none, all on Netlify DNS).
   line the published letterhead drops. THOSE LINES ARE NEVER NAMED IN CODE: the refusal reads them from the mailed
   letter's own letterhead in the case tree at run time (admin 69183d38 2026-10-09: a literal in the source is the
   street in the repository — the first cut had one, a5db63d3, removed by the follow-up; the history keeps it).
-  Without the flag the letter tab is absent and the left pane opens on the Text tab. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
+  Without the flag the letter tab is absent and the left pane opens on the Text tab. SERVED SINCE 7c5e805b
+  (2026-10-09 21:28, the page's final state for the mailing): the owner's final renderings of that evening — the
+  PUBLISHED letter (21:10:59; 3 pp., 9 boxes) and Enclosure A (21:08:51; 3 pp., 23 boxes) — gated by the lane holder
+  byte for byte against the owner's files; the mailed letter's PDF is the owner's mailing copy and is never served;
+  the texts at work_station 8e5597d2. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
   the served files and reads the letter's text again. NOTHING ELSE from that folder is published (the census beside the transcript
   relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
   and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard
@@ -237,7 +243,8 @@ p=none, all on Netlify DNS).
   texts use (a time before a colon, a range before a colon, two times either side of a slash, a list), the
   non-times (a docket prefix, a statute, a phone number), the plugin over markdown, and, when the content is on
   disk, every time the pattern finds in the letter, the enclosure and the method becoming a link; plus
-  `node scripts/import-open-letter.mjs --check`. A time the pattern misses is a quotation a reader cannot hear —
+  `node scripts/import-open-letter.mjs --check`. The test's esbuild bundle lands in `.cache/` (gitignored and in the
+  eslint ignores: its bundled library code once put 40 errors into `eslint .`). A time the pattern misses is a quotation a reader cannot hear —
   the first cut missed every "2:49:" (a colon after the time) and the test is what caught the form.
 - NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
   private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
