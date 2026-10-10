@@ -1968,7 +1968,11 @@ export function publishedAway(doc, side = 'right') {
   if (doc.publish === 'link' && /^https?:\/\//i.test(doc.publish_url || '')) {
     return { kind: 'link', parts: [{ text: `${label}: not hosted on this site; at ` }, { text: doc.publish_url, href: doc.publish_url }, { text: ' (opens in the browser).' }] };
   }
-  return { kind: 'dead', parts: [{ text: `${label}: not published on this site yet. Nothing opened; ${pane} is as it was.` }] };
+  // THE HELD DOCUMENT'S WORD (studio-spec 7d866ecf's ruling 2026-10-10 on 69183d38's point from f28bb754's kirchner.ink landing):
+  // no 'yet' — the owner's hold is a decision, not a pending state; a `publish_note` string on the doc (the host's reason in the
+  // host's words, written by the importer from its host policy, or the lane's registry on a hold of its own) is said in brackets
+  const note = typeof doc.publish_note === 'string' && doc.publish_note.trim() ? ` (${doc.publish_note.trim()})` : '';
+  return { kind: 'dead', parts: [{ text: `${label}: not published on this site${note}. Nothing opened; ${pane} is as it was.` }] };
 }
 
 /** The sentence the right pane says for a unit's k-th target — PURE: the
