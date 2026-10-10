@@ -451,6 +451,10 @@
       "destination": "/uploads/kirchner-v-ellison/Federal_Rules_of_Civil_Procedure_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf"
     },
     {
+      "source": "/api/casereview/file/Eighth Circuit Local Rules \\(June 17, 2024, ca8.uscourts.gov official pamphlet\\)",
+      "destination": "/uploads/kirchner-v-ellison/Eighth_Circuit_Local_Rules_June_17_2024_ca8.uscourts.gov_official_pamphlet_.pdf"
+    },
+    {
       "source": "/api/casereview/file/The Constitution of the United States of America, Literal Print \\(text, spelling and punctuation of the National Archives high-resolution downloads\\) \\[20 pp\\]",
       "destination": "/uploads/kirchner-v-ellison/The_Constitution_of_the_United_States_of_America_Literal_Print_text_spelling_and_punctuation_of_the_National_Archives_high-resolution_downloads_20_pp_.pdf"
     },
@@ -489,6 +493,26 @@
     {
       "source": "/api/casereview/file/2014 - Capers v. Ramsey County Public Defender, Report and Recommendation \\(D. Minn.\\) \\[D. Minn. No. 13-cv-1041 \\(PJS-JJG\\) Doc. 24, 15 Jan. 2014, adopted by the Order of 18 Mar. 2014 \\(2014 WL 1048517\\); GovInfo USCOURTS-mnd-0_13-cv-01041-2\\]",
       "destination": "/uploads/kirchner-v-ellison/2014_-_Capers_v._Ramsey_County_Public_Defender_Report_and_Recommendation_D._Minn._D._Minn._No._13-cv-1041_PJS-JJG_Doc._24_15_Jan._2014_adopted_by_the_Order_of_18_Mar._2014_2014_WL_1048517_GovInfo_USCOURTS-mnd-0_13-cv-01041-2_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2020 - Mille Lacs Band of Ojibwe v. County of Mille Lacs, 508 F. Supp. 3d 486 \\(D. Minn.\\) \\[D. Minn. No. 17-cv-5155 \\(SRN-LIB\\) Doc. 217, Memorandum Opinion and Order, 21 Dec. 2020; GovInfo USCOURTS-mnd-0_17-cv-05155-2\\]",
+      "destination": "/uploads/kirchner-v-ellison/2020_-_Mille_Lacs_Band_of_Ojibwe_v._County_of_Mille_Lacs_508_F._Supp._3d_486_D._Minn._D._Minn._No._17-cv-5155_SRN-LIB_Doc._217_Memorandum_Opinion_and_Order_21_Dec._2020_GovInfo_USCOURTS-mnd-0_17-cv-05155-2_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2015 - Stevenson v. Blytheville School District No. 5, 800 F.3d 955 \\(8th Cir.\\) \\[CA8 slip No. 14-3746, 31 Aug. 2015\\]",
+      "destination": "/uploads/kirchner-v-ellison/2015_-_Stevenson_v._Blytheville_School_District_No._5_800_F.3d_955_8th_Cir._CA8_slip_No._14-3746_31_Aug._2015_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2016 - Demien Construction Co. v. O'Fallon Fire Protection District, 812 F.3d 654 \\(8th Cir.\\) \\[CA8 slip No. 14-3857, 1 Feb. 2016\\]",
+      "destination": "/uploads/kirchner-v-ellison/2016_-_Demien_Construction_Co._v._O_Fallon_Fire_Protection_District_812_F.3d_654_8th_Cir._CA8_slip_No._14-3857_1_Feb._2016_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2024 - Taaffe v. American Federation of Government Employees, Local 1969, 2024 WL 363754 \\(D. Minn.\\) \\[D. Minn. No. 23-cv-2037 \\(WMW-TNL\\) Doc. 37, Order, 31 Jan. 2024; RECAP copy of the filed PDF\\]",
+      "destination": "/uploads/kirchner-v-ellison/2024_-_Taaffe_v._American_Federation_of_Government_Employees_Local_1969_2024_WL_363754_D._Minn._D._Minn._No._23-cv-2037_WMW-TNL_Doc._37_Order_31_Jan._2024_RECAP_copy_of_the_filed_PDF_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2009 - Flowers v. City of Minneapolis, 558 F.3d 794 \\(8th Cir.\\) \\[CA8 slip No. 07-2705, 13 Mar. 2009\\]",
+      "destination": "/uploads/kirchner-v-ellison/2009_-_Flowers_v._City_of_Minneapolis_558_F.3d_794_8th_Cir._CA8_slip_No._07-2705_13_Mar._2009_.pdf"
     },
     {
       "source": "/api/casereview/file/:id",
