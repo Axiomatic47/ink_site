@@ -8,7 +8,7 @@
     "validate-cv": "node scripts/validate-cv.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "build": "npm run readings:pull && npm run cv:check && npm run validate-cv && npm run validate-readings && npm run validate-timeline && npm run build:cv-pdf && npm run check:pdf && npm run typecheck && node scripts/sync-casereview.mjs --check && next build",
+    "build": "npm run readings:pull && npm run cv:check && npm run validate-cv && npm run validate-readings && npm run validate-timeline && npm run build:cv-pdf && npm run check:pdf && npm run typecheck && npm run casereview:check && next build",
     "start": "npx serve out",
     "build:cv-pdf": "node scripts/build-cv-pdf.mjs",
     "cv:sync": "node scripts/cv-from-resume.mjs",

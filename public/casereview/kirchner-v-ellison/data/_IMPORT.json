@@ -1,0 +1,122 @@
+{
+  "case": "kirchner-v-ellison",
+  "imported": "2026-10-10T04:39:55.048Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1009f",
+  "export_stamp": {
+    "lane_signature": {
+      "sha256": "677b1ba368f6c8327f1e81af2323d03bde3590dbb577c31606da97ec0537a4c8",
+      "files": [
+        {
+          "path": "_admin/case_review/docs.json",
+          "bytes": 272024,
+          "sha256": "87449cc9afec7f258d67973f9f23db1fc3734c0790201e710a2f3c7c664ec2c9"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.meta.json",
+          "bytes": 4494,
+          "sha256": "d6177b18951716b55ebcb059e9ffb74fea345c2e635f80568c85f259e89d65d1"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-2026-10.tsv",
+          "bytes": 21448,
+          "sha256": "3b274f0077a3dbd1ef81f557fa29a29c9ebb35d3dbb8675968805fbbba24b1df"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10.meta.json",
+          "bytes": 3625,
+          "sha256": "0789a1183b02870df0da12049a891f808237b4aa5a85efd121cfc8f4f7b81dbf"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10.tsv",
+          "bytes": 23667,
+          "sha256": "6a2d44b0048477db360273e6686a40cf0e58b433ca8b819fef541d248489ed0e"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-011.meta.json",
+          "bytes": 2977,
+          "sha256": "edd35a74a773d5e63c2cdc063dfd2a0ec13ebe9a0f1dc57179c7d6053823cc64"
+        },
+        {
+          "path": "_admin/case_review/links/LINKS_MN2594-011.tsv",
+          "bytes": 47471,
+          "sha256": "86a9634824512b987f8d83e4ed58e83d42220620a34d9b5057cd2dc22315edf7"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/mn/MN_626_89.json",
+          "bytes": 495,
+          "sha256": "185bfd96f5569829985f1ac0f58c839335d89770f4358f4b87beb639eea79166"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/mn/MN_Chapter_8.json",
+          "bytes": 2692,
+          "sha256": "d55f28cef1a28a7031306b6906f1899dcfedba4607bcc2272f9c822bb5015f2b"
+        },
+        {
+          "path": "_admin/case_review/_paramaps/usc/usc42_ch8to39_Secs1401to3259@119-111.json",
+          "bytes": 24216,
+          "sha256": "0b9027b57ce498e57e73fc45a2fb21c29cf6f125c54e837a90803b36cb9c2f80"
+        }
+      ]
+    },
+    "ourstudio_commit": "a4abcb96",
+    "checker": "P97",
+    "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
+    "mirrors_sha256": "5f2cf5bb0292997e9c93b6298709f205b48dd547bcf556ec466cfaa5560378d4",
+    "exported": "2026-10-10T04:39:54+00:00",
+    "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
+    "project_root": "/Users/everest/Git/work_station",
+    "registry_version": "v0l",
+    "tables": [
+      "MN-CORR-OPEN-LETTER-2026-10",
+      "MN-CORR-OPEN-LETTER-ENCLOSURE-A-2026-10",
+      "MN2594-011"
+    ],
+    "publish_applied": true,
+    "publish": {
+      "serve": 208,
+      "link": 1,
+      "hold": 0
+    },
+    "pdfjs": {
+      "version": "4.10.38",
+      "files": {
+        "pdf.min.mjs": "27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c",
+        "pdf.worker.min.mjs": "1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36"
+      },
+      "standard_fonts": {
+        "FoxitDingbats.pfb": "845c752392b6c914fb989c75a08b7792b88f542d2499042ef2889f8c814a16ed",
+        "FoxitFixed.pfb": "b6c8fe53f134b8b6d4578cd2d544df4cee9624c4efa8d51a560fb40ea296101b",
+        "FoxitFixedBold.pfb": "f1b7159702973f54fc86254ea38bcf3712b2a736eb3a0995751e9f4bb45ad603",
+        "FoxitFixedBoldItalic.pfb": "8a000945843bd31add06aee63bf9fd41b7578b4f3242a4b7cd46349ad9d24d4d",
+        "FoxitFixedItalic.pfb": "5007faf8320fa1fcc08b8894b356ad976f60b992ba29ee5272578bbdebaf3876",
+        "FoxitSerif.pfb": "4f57d2b9d884af8f907bf22df6019b52d86cbf6214fdbd02b1ae05472a543f35",
+        "FoxitSerifBold.pfb": "0bdf4b04e964139818d51eda03d566ba999fc3ba2421b1c6c51f9dc969022e80",
+        "FoxitSerifBoldItalic.pfb": "a406cac82583bf98175cb62c87ed5e95c45fbb34eece63a10b0a13e793cb2e10",
+        "FoxitSerifItalic.pfb": "610ae0687198045c4db5d1a6650fd5e92536631706382eb8b72e38df578d0ae9",
+        "FoxitSymbol.pfb": "47967d055530e7357088a08403115425643ec2cdfd6201ba8af0fbd7116c1539",
+        "LiberationSans-Bold.ttf": "361c61b82d575c5c35fd9157fda8b0194bcfcd0d88ea8521a4fb5dd53d33dddc",
+        "LiberationSans-BoldItalic.ttf": "a224075ac17495ad0a3af3bc0a419ac0704a8b3fd1095456201fb9b095fc281d",
+        "LiberationSans-Italic.ttf": "832b4406dbef23628800d3aaad21048534ac84d7e3ad955be83b8172ed8ef512",
+        "LiberationSans-Regular.ttf": "f8ace1f892b2bd9dc1792ba7f097fa7588f84fed48321480e04de5390828221f"
+      }
+    },
+    "files": {
+      "docs": "docs.json",
+      "links": "links/<id>.json",
+      "manifest": "files.json"
+    }
+  },
+  "registry_version": "v0l",
+  "documents": 209,
+  "tables": 3,
+  "rows": 200,
+  "publication": {
+    "serve": 208,
+    "link": 1,
+    "hold": 0
+  },
+  "dev_override": false,
+  "default_doc": "MN2594-011",
+  "vendored_studio_commit": "a4abcb96cf53dcf7370a83c86b420a98eca5ba6a",
+  "host_policy": null
+}

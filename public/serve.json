@@ -1,0 +1,527 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/casereview/docs",
+      "destination": "/casereview/kirchner-v-ellison/data/docs.json"
+    },
+    {
+      "source": "/api/casereview/links/:id",
+      "destination": "/casereview/kirchner-v-ellison/data/links/:id.json"
+    },
+    {
+      "source": "/api/casereview/file/1803 - Marbury v. Madison, 5 U.S. \\(1 Cranch\\) 137",
+      "destination": "/uploads/kirchner-v-ellison/1803_-_Marbury_v._Madison_5_U.S._1_Cranch_137.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1804 - Little v. Barreme, 6 U.S. \\(2 Cranch\\) 170",
+      "destination": "/uploads/kirchner-v-ellison/1804_-_Little_v._Barreme_6_U.S._2_Cranch_170.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1866 - Ex parte Garland, 71 U.S. \\(4 Wall.\\) 333",
+      "destination": "/uploads/kirchner-v-ellison/1866_-_Ex_parte_Garland_71_U.S._4_Wall._333.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1884 - Elk v. Wilkins, 112 U.S. 94",
+      "destination": "/uploads/kirchner-v-ellison/1884_-_Elk_v._Wilkins_112_U.S._94.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1886 - Santa Clara County v. Southern Pacific, 118 U.S. 394",
+      "destination": "/uploads/kirchner-v-ellison/1886_-_Santa_Clara_County_v._Southern_Pacific_118_U.S._394.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1886 - Yick Wo v. Hopkins, 118 U.S. 356",
+      "destination": "/uploads/kirchner-v-ellison/1886_-_Yick_Wo_v._Hopkins_118_U.S._356.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1908 - Ex parte Young, 209 U.S. 123",
+      "destination": "/uploads/kirchner-v-ellison/1908_-_Ex_parte_Young_209_U.S._123.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1915 - Myers v. Anderson, 238 U.S. 368",
+      "destination": "/uploads/kirchner-v-ellison/1915_-_Myers_v._Anderson_238_U.S._368.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1921 - American Steel Foundries v. Tri City, 257 U.S. 184",
+      "destination": "/uploads/kirchner-v-ellison/1921_-_American_Steel_Foundries_v._Tri_City_257_U.S._184.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1921 - Duplex Printing v. Deering, 254 U.S. 443",
+      "destination": "/uploads/kirchner-v-ellison/1921_-_Duplex_Printing_v._Deering_254_U.S._443.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1921 - Truax v. Corrigan, 257 U.S. 312",
+      "destination": "/uploads/kirchner-v-ellison/1921_-_Truax_v._Corrigan_257_U.S._312.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1922 - Bailey v. Drexel Furniture, 259 U.S. 20",
+      "destination": "/uploads/kirchner-v-ellison/1922_-_Bailey_v._Drexel_Furniture_259_U.S._20.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1923 - Adkins v. Childrens Hospital, 261 U.S. 525",
+      "destination": "/uploads/kirchner-v-ellison/1923_-_Adkins_v._Childrens_Hospital_261_U.S._525.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1923 - Magnum Import v. Coty, 262 U.S. 159",
+      "destination": "/uploads/kirchner-v-ellison/1923_-_Magnum_Import_v._Coty_262_U.S._159.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1933 - Nashville v. Wallace, 288 U.S. 249",
+      "destination": "/uploads/kirchner-v-ellison/1933_-_Nashville_v._Wallace_288_U.S._249.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1937 - Aetna v. Haworth, 300 U.S. 227",
+      "destination": "/uploads/kirchner-v-ellison/1937_-_Aetna_v._Haworth_300_U.S._227.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1941 - State v. Northwest Linseed Co., 209 Minn. 422, 297 N.W. 635",
+      "destination": "/uploads/kirchner-v-ellison/1941_-_State_v._Northwest_Linseed_Co._209_Minn._422_297_N.W._635.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1949 - Larson v. Domestic & Foreign Commerce Corp., 337 U.S. 682",
+      "destination": "/uploads/kirchner-v-ellison/1949_-_Larson_v._Domestic_Foreign_Commerce_Corp._337_U.S._682.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1951 - American Fire Casualty v. Finn, 341 U.S. 6",
+      "destination": "/uploads/kirchner-v-ellison/1951_-_American_Fire_Casualty_v._Finn_341_U.S._6.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1952 - Youngstown Sheet & Tube Co. v. Sawyer, 343 U.S. 579",
+      "destination": "/uploads/kirchner-v-ellison/1952_-_Youngstown_Sheet_Tube_Co._v._Sawyer_343_U.S._579.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1954 - Brown v. Board of Education, 347 U.S. 483",
+      "destination": "/uploads/kirchner-v-ellison/1954_-_Brown_v._Board_of_Education_347_U.S._483.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1961 - Monroe v. Pape, 365 U.S. 167",
+      "destination": "/uploads/kirchner-v-ellison/1961_-_Monroe_v._Pape_365_U.S._167.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1965 - Griswold v. Connecticut, 381 U.S. 479",
+      "destination": "/uploads/kirchner-v-ellison/1965_-_Griswold_v._Connecticut_381_U.S._479.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1967 - Loving v. Virginia, 388 U.S. 1",
+      "destination": "/uploads/kirchner-v-ellison/1967_-_Loving_v._Virginia_388_U.S._1.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1967 - Pierson v. Ray, 386 U.S. 547",
+      "destination": "/uploads/kirchner-v-ellison/1967_-_Pierson_v._Ray_386_U.S._547.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1968 - Koll v. Wayzata State Bank, 397 F.2d 124",
+      "destination": "/uploads/kirchner-v-ellison/1968_-_Koll_v._Wayzata_State_Bank_397_F.2d_124.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1971 - Bivens v. Six Unknown Named Agents, 403 U.S. 388",
+      "destination": "/uploads/kirchner-v-ellison/1971_-_Bivens_v._Six_Unknown_Named_Agents_403_U.S._388.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1971 - NYTimes v. US, 403 U.S. 713",
+      "destination": "/uploads/kirchner-v-ellison/1971_-_NYTimes_v._US_403_U.S._713.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1972 - Haines v. Kerner, 404 U.S. 519",
+      "destination": "/uploads/kirchner-v-ellison/1972_-_Haines_v._Kerner_404_U.S._519.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1973 - Hampton v. City of Chicago, 484 F.2d 602",
+      "destination": "/uploads/kirchner-v-ellison/1973_-_Hampton_v._City_of_Chicago_484_F.2d_602.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1973 - Holtzman v. Schlesinger, 414 U.S. 1304",
+      "destination": "/uploads/kirchner-v-ellison/1973_-_Holtzman_v._Schlesinger_414_U.S._1304.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1973 - Holtzman v. Schlesinger, 414 U.S. 1316",
+      "destination": "/uploads/kirchner-v-ellison/1973_-_Holtzman_v._Schlesinger_414_U.S._1316.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1974 - Schick v. Reed, 419 U.S. 256",
+      "destination": "/uploads/kirchner-v-ellison/1974_-_Schick_v._Reed_419_U.S._256.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1974 - Steffel v. Thompson, 415 U.S. 452",
+      "destination": "/uploads/kirchner-v-ellison/1974_-_Steffel_v._Thompson_415_U.S._452.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1975 - Dunlop v. Bachowski, 421 U.S. 560",
+      "destination": "/uploads/kirchner-v-ellison/1975_-_Dunlop_v._Bachowski_421_U.S._560.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1975 - Wood v. Strickland, 420 U.S. 308",
+      "destination": "/uploads/kirchner-v-ellison/1975_-_Wood_v._Strickland_420_U.S._308.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1976 - Colorado River v. United States, 424 U.S. 800",
+      "destination": "/uploads/kirchner-v-ellison/1976_-_Colorado_River_v._United_States_424_U.S._800.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1976 - Imbler v. Pachtman, 424 U.S. 409",
+      "destination": "/uploads/kirchner-v-ellison/1976_-_Imbler_v._Pachtman_424_U.S._409.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1977 - Castaneda v. Partida, 430 U.S. 482",
+      "destination": "/uploads/kirchner-v-ellison/1977_-_Castaneda_v._Partida_430_U.S._482.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1978 - Butz v. Economou, 438 U.S. 478",
+      "destination": "/uploads/kirchner-v-ellison/1978_-_Butz_v._Economou_438_U.S._478.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1978 - Lorillard v. Pons, 434 U.S. 575",
+      "destination": "/uploads/kirchner-v-ellison/1978_-_Lorillard_v._Pons_434_U.S._575.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1978 - Stump v. Sparkman, 435 U.S. 349",
+      "destination": "/uploads/kirchner-v-ellison/1978_-_Stump_v._Sparkman_435_U.S._349.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1980 - Martinez v. California, 444 U.S. 277",
+      "destination": "/uploads/kirchner-v-ellison/1980_-_Martinez_v._California_444_U.S._277.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1981 - Peck v. Hoff, 660 F.2d 371",
+      "destination": "/uploads/kirchner-v-ellison/1981_-_Peck_v._Hoff_660_F.2d_371.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1982 - Harlow v. Fitzgerald, 457 U.S. 800",
+      "destination": "/uploads/kirchner-v-ellison/1982_-_Harlow_v._Fitzgerald_457_U.S._800.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1982 - Nixon v. Fitzgerald, 457 U.S. 731",
+      "destination": "/uploads/kirchner-v-ellison/1982_-_Nixon_v._Fitzgerald_457_U.S._731.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1983 - Michaelis v. Nebraska State Bar, 717 F.2d 437",
+      "destination": "/uploads/kirchner-v-ellison/1983_-_Michaelis_v._Nebraska_State_Bar_717_F.2d_437.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1983 - Micklus v. Greer, 705 F.2d 314",
+      "destination": "/uploads/kirchner-v-ellison/1983_-_Micklus_v._Greer_705_F.2d_314.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1983 - Russello v. United States, 464 U.S. 16",
+      "destination": "/uploads/kirchner-v-ellison/1983_-_Russello_v._United_States_464_U.S._16.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1984 - Pennhurst v. Halderman, 465 U.S. 89",
+      "destination": "/uploads/kirchner-v-ellison/1984_-_Pennhurst_v._Halderman_465_U.S._89.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - City of Cleburne v. Cleburne Living Center, 473 U.S. 432",
+      "destination": "/uploads/kirchner-v-ellison/1985_-_City_of_Cleburne_v._Cleburne_Living_Center_473_U.S._432.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - Clayton v. White Hall School District, 778 F.2d 457",
+      "destination": "/uploads/kirchner-v-ellison/1985_-_Clayton_v._White_Hall_School_District_778_F.2d_457.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - Heckler v. Chaney, 470 U.S. 821",
+      "destination": "/uploads/kirchner-v-ellison/1985_-_Heckler_v._Chaney_470_U.S._821.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - PA Bureau Correction v. Marshals, 474 U.S. 34",
+      "destination": "/uploads/kirchner-v-ellison/1985_-_PA_Bureau_Correction_v._Marshals_474_U.S._34.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1985 - Sedima v. Imrex, 473 U.S. 479",
+      "destination": "/uploads/kirchner-v-ellison/1985_-_Sedima_v._Imrex_473_U.S._479.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1986 - Ohio Citizens v. NRC, 479 U.S. 1312",
+      "destination": "/uploads/kirchner-v-ellison/1986_-_Ohio_Citizens_v._NRC_479_U.S._1312.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1986 - Papasan v. Allain, 478 U.S. 265",
+      "destination": "/uploads/kirchner-v-ellison/1986_-_Papasan_v._Allain_478_U.S._265.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1987 - Anderson v. Creighton, 483 U.S. 635",
+      "destination": "/uploads/kirchner-v-ellison/1987_-_Anderson_v._Creighton_483_U.S._635.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1987 - Flittie v. Solem, 827 F.2d 276",
+      "destination": "/uploads/kirchner-v-ellison/1987_-_Flittie_v._Solem_827_F.2d_276.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1988 - Liljeberg v. Health Services, 486 U.S. 847",
+      "destination": "/uploads/kirchner-v-ellison/1988_-_Liljeberg_v._Health_Services_486_U.S._847.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1989 - Graham v. Connor, 490 U.S. 386",
+      "destination": "/uploads/kirchner-v-ellison/1989_-_Graham_v._Connor_490_U.S._386.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1990 - Kronholm \\(In re\\), Roche v. FDIC, 915 F.2d 1171",
+      "destination": "/uploads/kirchner-v-ellison/1990_-_Kronholm_In_re_Roche_v._FDIC_915_F.2d_1171.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1990 - Lane v. Peterson, 899 F.2d 737",
+      "destination": "/uploads/kirchner-v-ellison/1990_-_Lane_v._Peterson_899_F.2d_737.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1991 - Gregory v. Ashcroft, 501 U.S. 452",
+      "destination": "/uploads/kirchner-v-ellison/1991_-_Gregory_v._Ashcroft_501_U.S._452.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1992 - Lujan v. Defenders of Wildlife, 504 U.S. 555",
+      "destination": "/uploads/kirchner-v-ellison/1992_-_Lujan_v._Defenders_of_Wildlife_504_U.S._555.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1992 - Woods v. Lemonds, 804 F.Supp. 1106",
+      "destination": "/uploads/kirchner-v-ellison/1992_-_Woods_v._Lemonds_804_F.Supp._1106.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1993 - Titus v. Sullivan, 4 F.3d 590",
+      "destination": "/uploads/kirchner-v-ellison/1993_-_Titus_v._Sullivan_4_F.3d_590.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1994 - Klinger v. Department of Corrections, 31 F.3d 727",
+      "destination": "/uploads/kirchner-v-ellison/1994_-_Klinger_v._Department_of_Corrections_31_F.3d_727.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1994 - Kokkonen v. Guardian Life, 511 U.S. 375",
+      "destination": "/uploads/kirchner-v-ellison/1994_-_Kokkonen_v._Guardian_Life_511_U.S._375.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1994 - US Bancorp v. Bonner Mall, 513 U.S. 18",
+      "destination": "/uploads/kirchner-v-ellison/1994_-_US_Bancorp_v._Bonner_Mall_513_U.S._18.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1997 - Arizonans for Official English v. Arizona, 520 U.S. 43",
+      "destination": "/uploads/kirchner-v-ellison/1997_-_Arizonans_for_Official_English_v._Arizona_520_U.S._43.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1998 - Springdale Education Assn v. Springdale School District, 133 F.3d 649",
+      "destination": "/uploads/kirchner-v-ellison/1998_-_Springdale_Education_Assn_v._Springdale_School_District_133_F.3d_649.pdf"
+    },
+    {
+      "source": "/api/casereview/file/1998 - Steel Co. v. Citizens for a Better Environment, 523 U.S. 83",
+      "destination": "/uploads/kirchner-v-ellison/1998_-_Steel_Co._v._Citizens_for_a_Better_Environment_523_U.S._83.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2000 - Bush v. Gore, 531 U.S. 98",
+      "destination": "/uploads/kirchner-v-ellison/2000_-_Bush_v._Gore_531_U.S._98.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2000 - Village of Willowbrook v. Olech, 528 U.S. 562",
+      "destination": "/uploads/kirchner-v-ellison/2000_-_Village_of_Willowbrook_v._Olech_528_U.S._562.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2001 - Missouri ex rel. Nixon v. Prudential, 259 F.3d 949",
+      "destination": "/uploads/kirchner-v-ellison/2001_-_Missouri_ex_rel._Nixon_v._Prudential_259_F.3d_949.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2001 - Semtek v. Lockheed Martin, 531 U.S. 497",
+      "destination": "/uploads/kirchner-v-ellison/2001_-_Semtek_v._Lockheed_Martin_531_U.S._497.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2002 - Verizon Maryland v. PSC, 535 U.S. 635",
+      "destination": "/uploads/kirchner-v-ellison/2002_-_Verizon_Maryland_v._PSC_535_U.S._635.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2002 - Wiles v. Capitol Indemnity, 280 F.3d 868",
+      "destination": "/uploads/kirchner-v-ellison/2002_-_Wiles_v._Capitol_Indemnity_280_F.3d_868.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2003 - Parker v. Matthews, 71 F. Appx 613",
+      "destination": "/uploads/kirchner-v-ellison/2003_-_Parker_v._Matthews_71_F._Appx_613.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2004 - Jennings v. City of Stillwater, 383 F.3d 1199",
+      "destination": "/uploads/kirchner-v-ellison/2004_-_Jennings_v._City_of_Stillwater_383_F.3d_1199.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2004 - Schatz Family v. Gierer, 399 F.Supp.2d 973",
+      "destination": "/uploads/kirchner-v-ellison/2004_-_Schatz_Family_v._Gierer_399_F.Supp.2d_973.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2004 - Stone v. Harry, 364 F.3d 912",
+      "destination": "/uploads/kirchner-v-ellison/2004_-_Stone_v._Harry_364_F.3d_912.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2007 - Bell Atlantic Corp. v. Twombly, 550 U.S. 544",
+      "destination": "/uploads/kirchner-v-ellison/2007_-_Bell_Atlantic_Corp._v._Twombly_550_U.S._544.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2007 - MedImmune v. Genentech, 549 U.S. 118",
+      "destination": "/uploads/kirchner-v-ellison/2007_-_MedImmune_v._Genentech_549_U.S._118.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2008 - District of Columbia v. Heller, 554 U.S. 570",
+      "destination": "/uploads/kirchner-v-ellison/2008_-_District_of_Columbia_v._Heller_554_U.S._570.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2008 - Ferrone v. Onorato, 298 F. Appx 190",
+      "destination": "/uploads/kirchner-v-ellison/2008_-_Ferrone_v._Onorato_298_F._Appx_190.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2009 - Ashcroft v. Iqbal, 556 U.S. 662",
+      "destination": "/uploads/kirchner-v-ellison/2009_-_Ashcroft_v._Iqbal_556_U.S._662.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2009 - Parkhurst v. Tabor, 569 F.3d 861",
+      "destination": "/uploads/kirchner-v-ellison/2009_-_Parkhurst_v._Tabor_569_F.3d_861.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2010 - Citizens United v. FEC, 558 U.S. 310",
+      "destination": "/uploads/kirchner-v-ellison/2010_-_Citizens_United_v._FEC_558_U.S._310.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - 281 Care Committee v. Arneson, 638 F.3d 621",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_281_Care_Committee_v._Arneson_638_F.3d_621.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Blakley v. Schlumberger, 648 F.3d 921",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Blakley_v._Schlumberger_648_F.3d_921.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Bond v. United States, 564 U.S. 211",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Bond_v._United_States_564_U.S._211.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Borough of Duryea v. Guarnieri, 564 U.S. 379",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Borough_of_Duryea_v._Guarnieri_564_U.S._379.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2012 - Orr v. Clements, 688 F.3d 463",
+      "destination": "/uploads/kirchner-v-ellison/2012_-_Orr_v._Clements_688_F.3d_463.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2012 - RadLAX v. Amalgamated Bank, 566 U.S. 639",
+      "destination": "/uploads/kirchner-v-ellison/2012_-_RadLAX_v._Amalgamated_Bank_566_U.S._639.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2012 - Ritchie Capital v. Jeffries, 849 F.Supp.2d 881",
+      "destination": "/uploads/kirchner-v-ellison/2012_-_Ritchie_Capital_v._Jeffries_849_F.Supp.2d_881.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Burwell v. Hobby Lobby, 573 U.S. 682",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Burwell_v._Hobby_Lobby_573_U.S._682.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Susan B. Anthony List v. Driehaus, 573 U.S. 149",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Susan_B._Anthony_List_v._Driehaus_573_U.S._149.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Topchian v. JPMorgan, 760 F.3d 843",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Topchian_v._JPMorgan_760_F.3d_843.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2015 - Obergefell v. Hodges, 576 U.S. 644",
+      "destination": "/uploads/kirchner-v-ellison/2015_-_Obergefell_v._Hodges_576_U.S._644.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2016 - Eggenberger v. West Albany Township, 820 F.3d 938",
+      "destination": "/uploads/kirchner-v-ellison/2016_-_Eggenberger_v._West_Albany_Township_820_F.3d_938.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2018 - Kisela v. Hughes, 138 S. Ct. 1148",
+      "destination": "/uploads/kirchner-v-ellison/2018_-_Kisela_v._Hughes_138_S._Ct._1148.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2020 - Bostock v. Clayton County, 590 U.S. 644",
+      "destination": "/uploads/kirchner-v-ellison/2020_-_Bostock_v._Clayton_County_590_U.S._644.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2021 - Niz-Chavez v. Garland, 593 U.S. 155",
+      "destination": "/uploads/kirchner-v-ellison/2021_-_Niz-Chavez_v._Garland_593_U.S._155.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2023 - Kezhaya v. City of Belle Plaine, 78 F.4th 1045",
+      "destination": "/uploads/kirchner-v-ellison/2023_-_Kezhaya_v._City_of_Belle_Plaine_78_F.4th_1045.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2024 - Moody v. NetChoice, 603 U.S. ___",
+      "destination": "/uploads/kirchner-v-ellison/2024_-_Moody_v._NetChoice_603_U.S.____.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2025 - Ellis v. Nike, 158 F.4th 932 \\(CA8 slip 24-2420\\)",
+      "destination": "/uploads/kirchner-v-ellison/2025_-_Ellis_v._Nike_158_F.4th_932_CA8_slip_24-2420_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2025 - MN Chapter ABC v. Ellison, 153 F.4th 695",
+      "destination": "/uploads/kirchner-v-ellison/2025_-_MN_Chapter_ABC_v._Ellison_153_F.4th_695.pdf"
+    },
+    {
+      "source": "/api/casereview/file/Federal Rules of Civil Procedure \\(Dec. 1, 2025, uscourts.gov official pamphlet\\)",
+      "destination": "/uploads/kirchner-v-ellison/Federal_Rules_of_Civil_Procedure_Dec._1_2025_uscourts.gov_official_pamphlet_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/The Constitution of the United States of America, Literal Print \\(text, spelling and punctuation of the National Archives high-resolution downloads\\) \\[20 pp\\]",
+      "destination": "/uploads/kirchner-v-ellison/The_Constitution_of_the_United_States_of_America_Literal_Print_text_spelling_and_punctuation_of_the_National_Archives_high-resolution_downloads_20_pp_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2023 - Sabal v. Robbinsdale Police Department, 2023 WL 2044520 \\(D. Minn.\\) \\[D. Minn. No. 22-cv-1732 \\(DWF-DTS\\) Doc. 22, Memorandum Opinion and Order, 16 Feb. 2023; GovInfo USCOURTS-mnd-0_22-cv-01732-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2023_-_Sabal_v._Robbinsdale_Police_Department_2023_WL_2044520_D._Minn._D._Minn._No._22-cv-1732_DWF-DTS_Doc._22_Memorandum_Opinion_and_Order_16_Feb._2023_GovInfo_USCOURTS-mnd-0_22-cv-01732-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2009 - Olson v. Brott, 2009 WL 4912135 \\(D. Minn.\\) \\[D. Minn. No. 09-cv-790 \\(JNE-JJG\\) Doc. 28, Order, 11 Dec. 2009; GovInfo USCOURTS-mnd-0_09-cv-00790-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2009_-_Olson_v._Brott_2009_WL_4912135_D._Minn._D._Minn._No._09-cv-790_JNE-JJG_Doc._28_Order_11_Dec._2009_GovInfo_USCOURTS-mnd-0_09-cv-00790-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2015 - Rickmyer v. Jungers, 2015 WL 412859 \\(D. Minn.\\) \\[D. Minn. No. 14-cv-614 \\(SRN-SER\\) Doc. 19, Memorandum Opinion and Order, 30 Jan. 2015; GovInfo USCOURTS-mnd-0_14-cv-00614-1\\]",
+      "destination": "/uploads/kirchner-v-ellison/2015_-_Rickmyer_v._Jungers_2015_WL_412859_D._Minn._D._Minn._No._14-cv-614_SRN-SER_Doc._19_Memorandum_Opinion_and_Order_30_Jan._2015_GovInfo_USCOURTS-mnd-0_14-cv-00614-1_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Capers v. Ramsey County Public Defender, 2014 WL 1048517 \\(D. Minn.\\) \\[D. Minn. No. 13-cv-1041 \\(PJS-JJG\\) Doc. 30, Order, 18 Mar. 2014; GovInfo USCOURTS-mnd-0_13-cv-01041-3\\]",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Capers_v._Ramsey_County_Public_Defender_2014_WL_1048517_D._Minn._D._Minn._No._13-cv-1041_PJS-JJG_Doc._30_Order_18_Mar._2014_GovInfo_USCOURTS-mnd-0_13-cv-01041-3_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Aldaco v. Holder, 2011 WL 825624 \\(D. Minn.\\) \\[D. Minn. No. 10-cv-590 \\(JRT-LIB\\) Doc. 45, Order Adopting the Report and Recommendation, 7 Mar. 2011; GovInfo USCOURTS-mnd-0_10-cv-00590-1\\]",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Aldaco_v._Holder_2011_WL_825624_D._Minn._D._Minn._No._10-cv-590_JRT-LIB_Doc._45_Order_Adopting_the_Report_and_Recommendation_7_Mar._2011_GovInfo_USCOURTS-mnd-0_10-cv-00590-1_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2008 - Pigott v. Corrections Corporation of America, 2008 WL 3244001 \\(D. Minn.\\) \\[D. Minn. No. 07-cv-2003 \\(JNE-JJG\\) Doc. 59, Order, 6 Aug. 2008; GovInfo USCOURTS-mnd-0_07-cv-02003-1\\]",
+      "destination": "/uploads/kirchner-v-ellison/2008_-_Pigott_v._Corrections_Corporation_of_America_2008_WL_3244001_D._Minn._D._Minn._No._07-cv-2003_JNE-JJG_Doc._59_Order_6_Aug._2008_GovInfo_USCOURTS-mnd-0_07-cv-02003-1_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2008 - Pigott v. Corrections Corporation of America, Report and Recommendation \\(D. Minn.\\) \\[D. Minn. No. 07-cv-2003 \\(JNE-JJG\\) Doc. 52, 8 Jul. 2008, adopted by the Order of 6 Aug. 2008 \\(2008 WL 3244001\\); GovInfo USCOURTS-mnd-0_07-cv-02003-0\\]",
+      "destination": "/uploads/kirchner-v-ellison/2008_-_Pigott_v._Corrections_Corporation_of_America_Report_and_Recommendation_D._Minn._D._Minn._No._07-cv-2003_JNE-JJG_Doc._52_8_Jul._2008_adopted_by_the_Order_of_6_Aug._2008_2008_WL_3244001_GovInfo_USCOURTS-mnd-0_07-cv-02003-0_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2011 - Aldaco v. Holder, Report and Recommendation \\(D. Minn.\\) \\[D. Minn. No. 10-cv-590 \\(JRT-LIB\\) Doc. 39, 7 Jan. 2011, adopted by the Order of 7 Mar. 2011 \\(2011 WL 825624\\); GovInfo USCOURTS-mnd-0_10-cv-00590-0; image-only scan, OCR mirror\\]",
+      "destination": "/uploads/kirchner-v-ellison/2011_-_Aldaco_v._Holder_Report_and_Recommendation_D._Minn._D._Minn._No._10-cv-590_JRT-LIB_Doc._39_7_Jan._2011_adopted_by_the_Order_of_7_Mar._2011_2011_WL_825624_GovInfo_USCOURTS-mnd-0_10-cv-00590-0_image-only_scan_OCR_mirror_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - Capers v. Ramsey County Public Defender, Report and Recommendation \\(D. Minn.\\) \\[D. Minn. No. 13-cv-1041 \\(PJS-JJG\\) Doc. 24, 15 Jan. 2014, adopted by the Order of 18 Mar. 2014 \\(2014 WL 1048517\\); GovInfo USCOURTS-mnd-0_13-cv-01041-2\\]",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_Capers_v._Ramsey_County_Public_Defender_Report_and_Recommendation_D._Minn._D._Minn._No._13-cv-1041_PJS-JJG_Doc._24_15_Jan._2014_adopted_by_the_Order_of_18_Mar._2014_2014_WL_1048517_GovInfo_USCOURTS-mnd-0_13-cv-01041-2_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/:id",
+      "destination": "/uploads/kirchner-v-ellison/:id.pdf"
+    }
+  ],
+  "headers": [
+    {
+      "source": "**/*.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "**/*.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        }
+      ]
+    },
+    {
+      "source": "**/*.mjs",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

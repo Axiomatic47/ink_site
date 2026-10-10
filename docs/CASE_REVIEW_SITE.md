@@ -39,11 +39,11 @@ npm run casereview:check                                                        
 git -C ~/Git/ourstudio worktree remove <wt>
 ```
 
-- **Hosting size.** The served PDFs are **not tracked in git until the owner's word** (`.gitignore`:
-  `public/uploads/kirchner-v-ellison/`): registry v0 serves 192 files, 233 MB — the docket and the appeal 98 MB, the
-  rest the shelf's opinions, statutes and rules. The bundle (docs.json, links, files.json, _IMPORT.json, the rewrites)
-  lands in git only together with the files it serves: nothing published is served from nowhere, and the build gate
-  `casereview:check` joins `npm run build` with that landing (the vendor check is in the build from the first commit).
+- **Hosting size.** The served PDFs are **tracked in git** since the owner's hosting word (2026-10-09 23:4x CDT; the
+  `.gitignore` line that held them back is gone): registry v0l serves 208 files, 244 MB — the docket and the appeal
+  about 98 MB, the rest the shelf's opinions, statutes and rules. The bundle (docs.json, links, files.json,
+  _IMPORT.json, the rewrites) landed together with the files it serves: nothing published is served from nowhere, and
+  the build gate `casereview:check` (the vendor check + the bundle check) runs inside `npm run build`.
 - **The video row** (the owner's word 2026-10-09: the recording is YouTube's, displayed in the review pane, every
   debate time a working hyperlink; the file on no host): `kind` video, `publish` link, `embed {provider, id}`,
   `duration` — the importer keeps `embed` and `duration` by name (DOC_KEEP); the lane's clock rows are `video` rows since P97 (the served

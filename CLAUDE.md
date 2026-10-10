@@ -192,8 +192,9 @@ p=none, all on Netlify DNS).
   checker's EXPORT of the MN lane (`--from <export> --case kirchner-v-ellison`) — **never hand-edited**; the importer
   is the ONE file shared by the three sites, byte for byte (a change is said by name to the other website seat first
   and cut on both — the rule for Case Review keys). Publication is the registry's per-row `publish` word, fail-closed.
-  The served PDFs (`public/uploads/kirchner-v-ellison/`) are untracked until the owner's hosting word; the bundle lands
-  in git only with them.
+  The served PDFs (`public/uploads/kirchner-v-ellison/`, 208 files, 244 MB at registry v0l) are tracked in git with the
+  bundle since the owner's hosting word (2026-10-09 23:4x CDT): nothing published is served from nowhere, and the
+  bundle check (`casereview:check`) runs inside `npm run build`.
 - The route 404s without a bundle and joins the sitemap with it. The window is named its case by the slug (`projroot`
   in the URL and the mount option), never a path. Record cites in the open-letter page become links to this review
   when the lane's rows reach them (the brief's sequence, § 5 (6)).
