@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T05:08:01.491Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010a",
+  "imported": "2026-10-10T05:13:15.385Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010b",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "d6c6297d6b7b398cb314548b47f13b7d0053c270713bea2995b8f0132f71e1d6",
+      "sha256": "380d310fb94e3aab9cf25aabbc9e3baffca79de5915df39922f06432d937ee69",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -43,13 +43,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015.meta.json",
-          "bytes": 3269,
-          "sha256": "fe1596ff3d803fe7a4ce0fc42456ab2178e56435b6c522a02c043d7bffb149eb"
+          "bytes": 4130,
+          "sha256": "e4630ca6d3d0abd878725a4104423a73d265e0a12d46dfab1915524966b62a6a"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-015.tsv",
-          "bytes": 89654,
-          "sha256": "f79385bcdd5530673fadb2a4a53ed0558202070d6e37f8140add9d14af926fd3"
+          "bytes": 90340,
+          "sha256": "121e8bc001fe69c0376bce4e418b7af112ef6e93a91582bcc3b718b2bdd44ab6"
         },
         {
           "path": "_admin/case_review/links/LINKS_MN2594-016.meta.json",
@@ -91,8 +91,8 @@
     "ourstudio_commit": "a4abcb96",
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
-    "mirrors_sha256": "bc3e4429f5db95f341bdbdebe4951f75a4af5f17ae7241c6406784b9bf4bc1dc",
-    "exported": "2026-10-10T05:07:14+00:00",
+    "mirrors_sha256": "31cc3a1437f53f50e1086ac1ff3f61c9e92bd3b357523f3147f4fd14492923ea",
+    "exported": "2026-10-10T05:13:15+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0n",
@@ -142,7 +142,7 @@
   "registry_version": "v0n",
   "documents": 215,
   "tables": 6,
-  "rows": 585,
+  "rows": 586,
   "publication": {
     "serve": 214,
     "link": 1,
