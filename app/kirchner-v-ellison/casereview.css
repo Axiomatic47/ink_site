@@ -270,3 +270,17 @@
 .fctx-sep { height: 1px; margin: 4px 6px; background: rgb(var(--c-rule)); }
 
 @media (prefers-reduced-motion: reduce) { .cr-btn:active { transform: none; } .cr-chev { transition: none; } }
+
+/* --- the video tab (the Studio's casereview.css at a4abcb96, lines 157–168, verbatim: the rules are the Studio's, the tokens this sheet's) --- */
+/* THE VIDEO TAB (§ 5.5): the player over the transcript's minute; the pane's scroller sleeps while the tab is a recording */
+.cr-tabwell.is-video .cr-scroll { display: none; }
+.cr-video { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: auto; background: var(--bg); }
+.cr-videobox { position: relative; flex: 0 0 auto; aspect-ratio: 16 / 9; background: #000; }
+.cr-videobox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cr-videoplay { position: absolute; inset: 0; margin: auto; width: max-content; height: max-content; padding: 10px 18px; font: 13px/1.2 var(--sans); color: #fff; background: rgba(0, 0, 0, .6); border: 1px solid rgba(255, 255, 255, .55); border-radius: 6px; cursor: pointer; }
+.cr-videoplay:hover { background: rgba(0, 0, 0, .8); }
+.cr-videobox.is-playing .cr-videoplay { display: none; }
+.cr-videotext { flex: 1 1 auto; padding: 8px 14px 14px; font: 13px/1.55 var(--sans); color: var(--ink); }
+.cr-videominutehead { font: 10.5px/1.4 var(--mono); color: var(--dim); margin: 8px 0 4px; }
+.cr-videominutetext { white-space: pre-wrap; }
+.cr-videomark { background: color-mix(in srgb, var(--cr-right) 26%, transparent); color: inherit; border-bottom: 1.5px solid var(--cr-right); }
