@@ -515,6 +515,18 @@
       "destination": "/uploads/kirchner-v-ellison/2009_-_Flowers_v._City_of_Minneapolis_558_F.3d_794_8th_Cir._CA8_slip_No._07-2705_13_Mar._2009_.pdf"
     },
     {
+      "source": "/api/casereview/file/1973 - Linda R.S. v. Richard D., 410 U.S. 614",
+      "destination": "/uploads/kirchner-v-ellison/1973_-_Linda_R.S._v._Richard_D._410_U.S._614.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2022 - Minnesota RFL Republican Farmer Labor Caucus v. Freeman, 33 F.4th 985 \\(8th Cir.\\) \\[CA8 slip No. 20-3083, 10 May 2022\\]",
+      "destination": "/uploads/kirchner-v-ellison/2022_-_Minnesota_RFL_Republican_Farmer_Labor_Caucus_v._Freeman_33_F.4th_985_8th_Cir._CA8_slip_No._20-3083_10_May_2022_.pdf"
+    },
+    {
+      "source": "/api/casereview/file/2014 - 281 Care Committee v. Arneson, 766 F.3d 774 \\(8th Cir.\\) \\[CA8 slip No. 13-1229, 2 Sept. 2014\\]",
+      "destination": "/uploads/kirchner-v-ellison/2014_-_281_Care_Committee_v._Arneson_766_F.3d_774_8th_Cir._CA8_slip_No._13-1229_2_Sept._2014_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/kirchner-v-ellison/:id.pdf"
     }
