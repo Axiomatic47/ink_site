@@ -1,10 +1,10 @@
 {
  "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.",
  "slug": "mn-ag-candidates-open-letter",
- "generated": "2026-10-10T02:13:29.401Z",
+ "generated": "2026-10-10T02:45:40.514Z",
  "source": {
   "tree": "work_station",
-  "commit": "8e5597d22d8ad6939ab63cdc786086d07d2533f6",
+  "commit": "b691a9c5661e5aab55dc519ecae5ac46fcd57422",
   "files": [
    {
     "role": "letter",
@@ -30,9 +30,9 @@
    {
     "role": "transcript",
     "path": "2_MN-0-26-cv-02594-LMP-DJF/0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002/TRANSCRIPT_MPR_AG_DEBATE_ELLISON_SCHUTZ_2026-10-02.md",
-    "bytes": 64798,
-    "sha256": "5fcaa152edc50f51bcf08e7b2302d1de03c8541c9b55d4983b6d77f604c9a8f6",
-    "commit": "f639684feedb163e15208271622d24371e8b95e9"
+    "bytes": 65301,
+    "sha256": "1910926db6718f3613271d95a2bfe16172d445d72a3b1935205906e10f076f7c",
+    "commit": "b691a9c5661e5aab55dc519ecae5ac46fcd57422"
    }
   ]
  },
@@ -459,7 +459,7 @@
  "transcript": {
   "title": "TRANSCRIPT — MPR News Politics Friday: Minnesota Attorney General Debate, Keith Ellison (DFL, incumbent) v. Ron Schutz (R) — Friday, October 2, 2026",
   "source": "The broadcast is MPR News \"Politics Friday\", moderator Brian Bakst; the recording's own clock is used for every timestamp (the broadcast begins ~0:30 into the file).",
-  "method": "audio extracted with ffmpeg (16 kHz mono PCM); transcribed with whisper.cpp (`whisper-cli`, Homebrew) using `ggml-large-v3.bin`, language en, 2026-10-09. Two repetition artifacts of the model were repaired by re-transcribing the windows as separate cuts (26:05–27:55 and 35:25–35:55; the 2:40–3:10 window was re-cut to confirm the § 8.31 sentence was spoken once, and the re-cut's fuller hearing of it, \"business, commerce and trade\", is the text used at 2:49). Speaker attribution (MOD = Brian Bakst; KE = Keith Ellison; RS = Ron Schutz) is the drafter's, from context; two crosstalk passages are marked. Name spellings normalised: MPR (heard \"NPR\"), Bakst, Schutz, Renee Good, Alex Pretti. Everything else is as the model heard it. **Draft work product — verify any quoted span at the audio before it is filed or relied on.**",
+  "method": "audio extracted with ffmpeg (16 kHz mono PCM); transcribed with whisper.cpp (`whisper-cli`, Homebrew) using `ggml-large-v3.bin`, language en, 2026-10-09. Two repetition artifacts of the model were repaired by re-transcribing the windows as separate cuts (26:05–27:55 and 35:25–35:55; the 2:40–3:10 window was re-cut to confirm the § 8.31 sentence was spoken once, and the re-cut's fuller hearing of it, \"business, commerce and trade\", is the text used at 2:49). Speaker attribution (MOD = Brian Bakst; KE = Keith Ellison; RS = Ron Schutz) is the drafter's, from context; two crosstalk passages are marked. One speaker-boundary conform on 2026-10-09 (a second reader's read at the raw SRT segments 365–367): the model's segment straddled the turn change at 23:02, so the first edit gave Mr. Schutz's closing word \"happen.\" to the moderator and the moderator's question tail \"in the Renee Good and Alex Pretti?\" to Mr. Schutz; turn 54 now ends \"that's what should happen.\", turn 55 is the moderator's whole question, and turn 56 opens \"Absolutely.\" at 23:07 — attribution from context, the words unchanged. Name spellings normalised: MPR (heard \"NPR\"), Bakst, Schutz, Renee Good, Alex Pretti. Everything else is as the model heard it. **Draft work product — verify any quoted span at the audio before it is filed or relied on.**",
   "header_omitted": [
    "the source recording's local file (its path, size and sha256)",
    "the model's local path",
@@ -847,21 +847,21 @@
     "time": "00:22:07",
     "t": 1327,
     "speaker": "RS",
-    "text": "Well, I'll tell you how I, in fact, did respond. Two days after the Alex Pretti shooting, I issued a press release calling for transparency, stating very clearly that for a government to have the confidence of its people, it needed to be transparent and that there needed to be a joint federal and state investigation of both of those shootings. That was back in January, 10 months ago. It's not as if I've recently come to this position. I was outraged by what happened there, called for a joint federal and state investigation, if you look, that probably didn't make me popular in certain circles in Washington, D.C., but that was the right thing to call for. It may be the only thing that that Keith Ellison and I agree on is that there had to be a joint investigation there. And wherever the facts lead out to that investigation, that's where they lead. And if it leads to prosecutions and the evidence warrants it, that's what should"
+    "text": "Well, I'll tell you how I, in fact, did respond. Two days after the Alex Pretti shooting, I issued a press release calling for transparency, stating very clearly that for a government to have the confidence of its people, it needed to be transparent and that there needed to be a joint federal and state investigation of both of those shootings. That was back in January, 10 months ago. It's not as if I've recently come to this position. I was outraged by what happened there, called for a joint federal and state investigation, if you look, that probably didn't make me popular in certain circles in Washington, D.C., but that was the right thing to call for. It may be the only thing that that Keith Ellison and I agree on is that there had to be a joint investigation there. And wherever the facts lead out to that investigation, that's where they lead. And if it leads to prosecutions and the evidence warrants it, that's what should happen."
    },
    {
     "n": 55,
     "time": "00:23:02",
     "t": 1382,
     "speaker": "MOD",
-    "text": "happen. So you're saying you would continue to pursue possible prosecutions"
+    "text": "So you're saying you would continue to pursue possible prosecutions in the Renee Good and Alex Pretti?"
    },
    {
     "n": 56,
-    "time": "00:23:05",
-    "t": 1385,
+    "time": "00:23:07",
+    "t": 1387,
     "speaker": "RS",
-    "text": "in the Renee Good and Alex Pretti? Absolutely. You got to remember, I started my career as a prosecutor. I don't want people coming into Minnesota shooting our citizens. And if they did so in a manner that was unjustified and criminal, they absolutely should be prosecuted. If that happens, I am more than happy to lead the charge because I, in fact, have done that as a prosecutor."
+    "text": "Absolutely. You got to remember, I started my career as a prosecutor. I don't want people coming into Minnesota shooting our citizens. And if they did so in a manner that was unjustified and criminal, they absolutely should be prosecuted. If that happens, I am more than happy to lead the charge because I, in fact, have done that as a prosecutor."
    },
    {
     "n": 57,
