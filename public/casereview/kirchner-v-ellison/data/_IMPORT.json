@@ -1,10 +1,10 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-10T09:00:27.731Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010v",
+  "imported": "2026-10-10T09:07:11.040Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1010w",
   "export_stamp": {
     "lane_signature": {
-      "sha256": "8d6bf62c0469ba819115a10adb049d905c8324c887680f4065df4eff95270fb1",
+      "sha256": "2a7c74d4339b690fc8a53b2aa50a6fbd0967c43cfdf57dfaf93f7d4245ae5813",
       "files": [
         {
           "path": "_admin/case_review/docs.json",
@@ -23,13 +23,13 @@
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Brief.meta.json",
-          "bytes": 5501,
-          "sha256": "160966bb4ac5fd76b1e9e0404453308132910617613ffcc733dfee36f8401e33"
+          "bytes": 6080,
+          "sha256": "f5829cefb0ccc052450e552740bc68ad8f13fda21f3f072f35312c5f39c6b6bf"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Brief.tsv",
-          "bytes": 130031,
-          "sha256": "57a9a1b900f501f5e0b4c8d873a600d63245b0a0c7aaba9da6c7b516d0292b1f"
+          "bytes": 130037,
+          "sha256": "ce9e15310412ea02af0072d2492cf0a26d6407effc8cd4b11ac609bef9601309"
         },
         {
           "path": "_admin/case_review/links/LINKS_26-1615_Certificate_No_Transcript.meta.json",
@@ -677,7 +677,7 @@
     "checker": "P97",
     "checker_source_sha256": "5554c75985719c7261ff83dca3777170a795c97f273916d668cfa38579383574",
     "mirrors_sha256": "6a6bd621e2c0ef17694d2d85469746af5d4efb50e634ead242c1c506e25c69fa",
-    "exported": "2026-10-10T09:00:27+00:00",
+    "exported": "2026-10-10T09:07:10+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v0z",
