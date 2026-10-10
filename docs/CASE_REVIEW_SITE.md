@@ -24,12 +24,14 @@ read on all three sites — a change to them lands on every site, byte for byte.
   importer's (the newest filing with a link table) when it names one, else the newest served document with a link table
   (filed date, then registry order — lawsofexistence.com's rule, so both sites open the MN case on the same document;
   today the open letter) (`src/lib/case-review.server.ts`).
-- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at a90e40ec =
-  the export at a90e40ec, the Studio's P97 landing of 2026-10-09 — the second case root, the D. Minn. stamp, the video
-  kind; the three sites share this floor; the shared checkout's HEAD moves under other seats):
+- **The export** runs from a detached worktree of the Studio at the pair's commit (the window vendored at e779a953 —
+  the Studio's P97c of 2026-10-09, the local two-case picker, viewer-only — over the export at a90e40ec, the P97 landing
+  whose checker the bundle carries: the second case root, the D. Minn. stamp, the video kind; the three sites share this
+  floor; a viewer-only landing moves the window without an export, a checker landing moves both; the shared checkout's
+  HEAD moves under other seats):
 
 ```
-git -C ~/Git/ourstudio worktree add --detach <wt> a90e40ec
+git -C ~/Git/ourstudio worktree add --detach <wt> <the pair's commit>
 cd <wt> && env -u PYTHONPATH python3 -m ourstudio_frontend.filing.case_review export \
   /Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF <out_dir>          # ~2 s at registry v0; refuses a lane that moves
 node scripts/import-casereview.mjs --from <out_dir> --case kirchner-v-ellison  # the bundle, the PDFs, the keyed rules

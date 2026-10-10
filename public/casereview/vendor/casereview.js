@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { buildHash, filterNav, foldText, gapPage, hideRows, ligatureDropFor, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
+import { apiQuery, buildHash, casePicker, filterNav, foldText, gapPage, hideRows, ligatureDropFor, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -75,12 +75,16 @@ const st = {
 };
 
 // ---------------------------------------------------------------- sources
-function projRootQS() {
-  // the HOST's root first (mountCaseReview({ root }) — a site mounting a second case names its slug, the sites' form,
-  // f28bb754/55339aa7 2026-10-09), else the aux window's own project root from the page URL
-  const r = st.hostRoot || new URLSearchParams(location.search).get('projroot');
-  return r ? `?root=${encodeURIComponent(r)}` : '';
+/** The query the three fetches carry (core's apiQuery): the HOST's root first (mountCaseReview({ root }) — a site
+ *  mounting a second case names its slug, the sites' form, f28bb754/55339aa7 2026-10-09), else the aux window's own
+ *  project root from the page URL; and — P97c, the local two-case Studio (studio-spec 7d866ecf's P97 API: `case=<dir
+ *  under the project>` chooses the lane, the configured case when absent) — the case the window names, from the mount
+ *  option or the URL's own `crcase` (a window-identity key like projroot: it survives the surface parking and a paste). */
+function apiQS({ withCase = true } = {}) {
+  const q = new URLSearchParams(location.search);
+  return apiQuery({ root: st.hostRoot || q.get('projroot'), caseName: withCase ? (st.caseName || q.get('crcase')) : null });
 }
+function projRootQS() { return apiQS(); }
 function apiSource() {
   const qs = projRootQS();
   return {
@@ -95,7 +99,7 @@ function apiSource() {
         // line is for a bare Not Found only, when the route is missing
         let detail = '';
         try { const j = await r.json(); detail = typeof j.detail === 'string' ? j.detail : ''; } catch {}
-        if (detail) return { unavailable: `${detail} — the Case Review window reads the DDC case tree; open it in the work_station project` };
+        if (detail) return { unavailable: `${detail} — the Case Review window reads a case tree with a case review lane; open it in the project that holds one` };
         return { unavailable: 'the case review API is not on this server yet (studio-spec 7d866ecf\'s half) — open with ?crfixture=<base> to develop against the fixture' };
       }
       if (!r.ok) throw new Error(`docs: HTTP ${r.status}`);
@@ -208,6 +212,7 @@ export function mountCaseReview(opts = null) {
   if (!root || st.mounted) return;
   st.mounted = true;
   st.hostRoot = opts && typeof opts.root === 'string' && opts.root.trim() ? opts.root.trim() : null;   // → ?root=<slug> on the three fetches
+  st.caseName = opts && typeof opts.case === 'string' && opts.case.trim() ? opts.case.trim() : null;   // → &case=<dir> (P97c); else the URL's crcase
   try { st.split = Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, +localStorage.getItem(SPLIT_KEY) || 50)); } catch {}
   try { st.navW = Math.min(900, Math.max(180, +localStorage.getItem(NAV_KEY) || 260)); } catch {}
   // NO HEADER BAR (the owner's word 2026-09-30 04:16 CDT, with a screenshot: "remove the Case review line, its wasted
@@ -225,8 +230,9 @@ export function mountCaseReview(opts = null) {
   // this page (the chips strip that used to sit above the page). The h key and ⌘F keep their bindings.
   root.innerHTML = `<div class="cr-page">
     <div class="cr-body" id="crBody" style="--cr-nav:${st.navW}px;--cr-split:${st.split}%">
-      <nav class="cr-nav" id="crNav" aria-label="DDC filings">
+      <nav class="cr-nav" id="crNav" aria-label="filings">
         <div class="cr-navhead">
+          <select id="crCase" class="cr-caseopt" hidden aria-label="the case this window reviews — a project serving two case review lanes" title="the case this window reviews (P97: one Studio, two lanes) — choosing another reloads the window on that lane"></select>
           <input id="crFilter" class="cv-search cr-filter" type="search" placeholder="filter…" autocomplete="off" spellcheck="false" aria-label="filter the filings">
           <button class="row-act cr-navact" id="crCollapseAll" data-act="collapseall" title="collapse all — close every filing's attachments and clear the filter">⊟</button>
           <div class="cr-navopts">
@@ -315,6 +321,7 @@ async function loadDocs() {
     if (d && d.unavailable) { $('#crNavList').innerHTML =`<div class="cr-empty">${esc(d.unavailable)}</div>`; setStatus(''); return; }
     st.docs = (d && d.docs) || [];
     st.caseRoot = (d && d.case_root) || (st.source.base || '');
+    if (st.source.kind === 'api') loadCases();
     { const nv = d && d.registry && d.registry.nav; const hb = nv && typeof nv === 'object' ? +nv.hide_before : NaN; st.nav.hideDefault = Number.isFinite(hb) && hb > 0 ? hb : null; }
     loadTree();
     // the docs answer carries per-document link counts ({links: {id: {rows, mapped, verified, unresolved, ok}}})
@@ -328,6 +335,30 @@ async function loadDocs() {
     $('#crNavList').innerHTML =`<div class="cr-empty">registry failed — ${esc(String(e.message || e))}</div>`;
     setStatus('');
   }
+}
+
+// ---------------------------------------------------------------- the case picker (P97c)
+// One Studio process serves every lane under the project (7d866ecf's P97 API: GET /api/casereview/cases?root= lists them,
+// `case=` on the three fetches chooses one). The picker shows only when two or more lanes answer; the lane the registry
+// answered is current. Choosing another RELOADS the window on that lane — a case is a new registry, new ids, new stores
+// (the tree store is per case root already) — with the URL's `casereview=` state dropped (its doc ids are the old
+// case's) and `crcase=<dir>` set, a window-identity key that survives the surface parking and rides a pasted link.
+async function loadCases() {
+  const sel = $('#crCase'); if (!sel) return;
+  let cases = [];
+  try { const r = await fetch(`/api/casereview/cases${apiQS({ withCase: false })}`); if (r.ok) cases = ((await r.json()) || {}).cases || []; } catch {}
+  const m = casePicker(cases, st.caseRoot);
+  sel.hidden = !m.show;
+  if (!m.show) return;
+  sel.innerHTML = m.options.map((o) => `<option value="${esc(o.name)}" title="${esc(o.title)}"${o.current ? ' selected' : ''}${o.error ? ' disabled' : ''}>${esc(o.label)}${o.configured ? ' (configured)' : ''}${o.error ? ' — ' + esc(o.error) : ''}</option>`).join('');
+  if (!sel.dataset.bound) { sel.dataset.bound = '1'; sel.addEventListener('change', () => switchCase(sel.value)); }
+}
+function switchCase(name) {
+  if (!name) return;
+  const u = new URL(location.href);
+  u.searchParams.set('crcase', name);
+  u.searchParams.delete('casereview');
+  location.replace(u.toString());
 }
 
 // ---------------------------------------------------------------- nav

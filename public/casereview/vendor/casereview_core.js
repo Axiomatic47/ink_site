@@ -2312,6 +2312,31 @@ export function navView(rows, nav) {
   return { items, hiddenCount, empty: drawnRows ? null : 'filter', inert: !!hiding.inert };
 }
 
+/** P97c — the query the window's API calls carry: the host's root (a site's slug, a project window's projroot) and, in a
+ *  project serving two cases (P97's `case=`), the case the window names; '' when neither. Encoded as the fetches always
+ *  were (encodeURIComponent, a space %20). */
+export function apiQuery({ root = null, caseName = null } = {}) {
+  const parts = [];
+  if (root) parts.push(`root=${encodeURIComponent(root)}`);
+  if (caseName) parts.push(`case=${encodeURIComponent(caseName)}`);
+  return parts.length ? `?${parts.join('&')}` : '';
+}
+/** The case picker's model from GET /api/casereview/cases ({cases: [{name, case_root, case, version, current, error?}]}):
+ *  shown only when two or more lanes answer; `current` = the lane the registry answered (`caseRoot` = the docs payload's
+ *  case_root); `configured` = the process's own case; an entry without a name is dropped, one with an error is kept and
+ *  said. One model, two skins. */
+export function casePicker(cases, caseRoot) {
+  const list = Array.isArray(cases) ? cases.filter((x) => x && typeof x.name === 'string' && x.name) : [];
+  const options = list.map((x) => ({
+    name: x.name,
+    label: x.case ? `${x.name} — ${x.case}` : x.name,
+    title: x.version ? `${x.case_root || x.name} (registry ${x.version})` : String(x.case_root || x.name),
+    configured: !!x.current,
+    current: !!(caseRoot && x.case_root === caseRoot),
+    error: x.error ? String(x.error) : null,
+  }));
+  return { show: options.length >= 2, options };
+}
 export function parentIdOf(id) {
   const m = /^(DDC-\d{3})-\d+$/.exec(String(id || ''));
   return m ? m[1] : null;
