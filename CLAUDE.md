@@ -181,25 +181,43 @@ p=none, all on Netlify DNS).
 ## The open letter to the candidates for Minnesota Attorney General (owner 2026-10-09)
 
 - `/mn-ag-candidates-open-letter` — the route the letter prints in its closing paragraph (the owner mails it
-  October 10, 2026): the open letter, its Enclosure A and the transcript of the MPR News Politics Friday debate of
-  October 2, 2026, in the review-mode pattern — the letter and enclosure in the left card, the transcript (one row
-  per turn) in the right, a Reading-mode toggle that stacks them; EVERY debate time (the letter's "at 2:49",
-  "22:07–23:26", the transcript's Time cells) is a link to the recording at that second,
-  `https://www.youtube.com/watch?v=pgzvG1Ky8rQ&t=<seconds>s` (a range links to its start); a time clicked in the
-  letter also marks and, side by side, scrolls to the turn in progress in the transcript. Deep links `#enclosure-a`,
-  `#transcript`, `#turn-<n>`, `#t=<seconds>`.
+  October 10, 2026): the open letter, its Enclosure A and the MPR News Politics Friday debate of October 2, 2026,
+  in the review-mode pattern. LEFT, the document: the owner's own PDF of the letter or of Enclosure A (the Word
+  build's rendering, read from `05_Correspondence`, never produced here — the device rule), every debate time a hit
+  box over the page as the book's citations are (`PdfViewer` `hotBoxes`; the boxes come from poppler's word
+  boxes, `pdftotext -bbox-layout`, one per word a time runs through, PDF points, origin top-left), and a Text tab
+  (the markdown, times linked by the remark plugin). RIGHT, the source: THE RECORDING ITSELF playing in the page
+  (owner 2026-10-09: "publish the actual view in the same screen, not just its transcript") above the transcript,
+  one row per turn, every Time cell a link. A time anywhere — a box on the PDF, a link in the text, a Time cell —
+  plays the recording from that second here and marks the turn in progress; every link keeps its YouTube href
+  (`https://www.youtube.com/watch?v=pgzvG1Ky8rQ&t=<seconds>s`, a range to its start) for a reader who wants the
+  page there. THE PLAYER is YouTube's privacy-enhanced embed (`www.youtube-nocookie.com`, `enablejsapi=1`, the
+  page's origin) driven by the widget's postMessage protocol — no YouTube script on this site, and NOTHING from
+  YouTube loads until the reader presses play or a time (a facade stands first); the one CSP in `netlify.toml`
+  gained `frame-src https://www.youtube-nocookie.com` for it, and the privacy page says so. A Reading-mode toggle
+  stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
+  the play button; nothing autoplays on load).
 - Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
   (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly three files of
   `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the enclosure under `05_Correspondence`, the
   transcript under `0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002` — recording each file's sha and
-  commit; it refuses a dirty source. NOTHING ELSE from that folder is published (the census beside the transcript
+  commit; it refuses a dirty source. THE PDFs: the enclosure's rides by default (`--enclosure-pdf <path>` to
+  override, `none` to drop); the letter's only as `--letter-pdf <the PUBLISHED copy>` — the owner's rendering
+  without the street, the city line and the telephone — and the importer refuses, before it writes anything, a
+  letter PDF whose text carries them; without the flag the letter tab is absent and the left pane opens on the
+  Text tab. Each served PDF is recorded with its sha, size, page count, page sizes and time boxes; `--check` hashes
+  the served files and reads the letter's text again. NOTHING ELSE from that folder is published (the census beside the transcript
   relates the debate to another action; the letter and enclosure name the owner's own case only). The front matter
   and every HTML comment (drafting notes, signature blocks) are stripped; the letterhead and addressee blocks get hard
   breaks; the transcript header's source and method sentences ride onto the page with two things removed and NAMED
   under `header_omitted` — as labels, never the words, so the content file carries them no more than the page does
   (a636b3d9 2026-10-09) — the owner's local file paths and the drafter's seat (the outward-voice rule: no seat ids,
   no filesystem paths where a reader reads); every other word is the drafter's. Record cites in the enclosure are
-  plain text (this site carries no docket). `src/lib/open-letter.ts` is the shape and the time rules
+  plain text (this site carries no docket). THE PUBLISHED LETTERHEAD is the name and the email only (owner
+  2026-10-09: "redact my phone number and address from the letter that's published") — the importer drops the
+  street, the city line and the telephone from the body's first paragraph, records what it dropped by label
+  (`letter.redacted`), and its `--check` and `test:letter` refuse a letterhead of more than those two lines or a
+  telephone number anywhere in the letter; the campaigns' addressee blocks are untouched. `src/lib/open-letter.ts` is the shape and the time rules
   (`DEBATE_TIME_RE`, `recordingUrl`, `turnAt`); `remark-debate-times.ts` the plugin; `open-letter.server.ts` the
   loader. Absent content → 404 and no sitemap entry, never a placeholder. GATE: `npm run test:letter`
   (`scripts/test-open-letter.mjs`, bundled by esbuild so it imports the TypeScript rules) — the clock forms the
@@ -209,7 +227,10 @@ p=none, all on Netlify DNS).
   `node scripts/import-open-letter.mjs --check`. A time the pattern misses is a quotation a reader cannot hear —
   the first cut missed every "2:49:" (a colon after the time) and the test is what caught the form.
 - NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
-  private port). The letter on the page is the current text — a placeholder the owner may revise before mailing — so a
+  private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
+  route (owner 2026-10-09: "the site preview in ourstudio does not show any way to view this new page") — the
+  SITES pane probes and frames `http://localhost:<port><ready_path>`, so the pane opens on the page and the site's
+  menu is a click away; set it back to `/` when the page is in the navigation or the owner says. The letter on the page is the current text — a placeholder the owner may revise before mailing — so a
   revised letter is a re-run of the import (the same three files, committed in the case tree first), then
   `review the diff`, build, commit. The social card is a title card from `content/og-cards.json` (the data-driven
   list `build_og_images.py` reads after the works; kirchner.cv has no such file, so the script stays byte-identical).

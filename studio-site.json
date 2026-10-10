@@ -10,7 +10,7 @@
       "3200"
     ],
     "port": 3200,
-    "ready_path": "/"
+    "ready_path": "/mn-ag-candidates-open-letter"
   },
   "static": {
     "build_argv": [
@@ -27,7 +27,7 @@
       "--no-clipboard"
     ],
     "port": 3201,
-    "ready_path": "/"
+    "ready_path": "/mn-ag-candidates-open-letter"
   },
   "env": {
     "BROWSER": "none",

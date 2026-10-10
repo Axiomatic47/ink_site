@@ -12,6 +12,7 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import { DEBATE_TIME_RE, clockSeconds, clockLabel, recordingUrl, secondsFromRecordingUrl, turnAt, OPEN_LETTER_SLUG } from '../src/lib/open-letter.ts';
 import remarkDebateTimes from '../src/lib/remark-debate-times.ts';
+import { DEBATE_TIME_RE_IMPORT } from './import-open-letter.mjs';
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
 const ID = 'pgzvG1Ky8rQ';
@@ -70,7 +71,36 @@ if (existsSync(file)) {
   assert.equal(turnAt([], 5), undefined);
   assert.equal(c.recording.youtube_id, ID);
   ok(`the imported content: ${turns.length} turns; ${times(c.letter.markdown).length} times in the letter, ${times(c.enclosure.markdown).length} in the enclosure, all linked`);
+  // the published letterhead (owner 2026-10-09): the name and the email, no street, no city line, no telephone
+  const head = c.letter.markdown.split(/\n\s*\n/)[0].split('\n').map((l) => l.trim()).filter(Boolean);
+  assert.equal(head.length, 2, `letterhead lines: ${head.join(' | ')}`);
+  assert.match(head[0], /^\*\*[^*]+\*\*$/, 'the name line');
+  assert.match(head[1], /^[\w.+-]+@[\w-]+(\.[\w-]+)+$/, 'the email line');
+  assert.doesNotMatch(c.letter.markdown, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/, 'no telephone number anywhere in the letter');
+  assert.ok(c.letter.redacted.length >= 2 && c.letter.redacted.includes('the telephone number'), 'the redaction is recorded by label');
+  assert.ok(!/Parklawn|55435/.test(c.letter.markdown), 'the street and the city line are gone');
+  ok('the letterhead: name + email only; the telephone and the address redacted, recorded by label');
+  // the served PDFs, when the import carried them: one box per word a time runs through, inside its page, the
+  // letter's boxes at least its mentions (a range wrapped across two lines is two boxes)
+  for (const [name, md] of [['letter', c.letter.markdown], ['enclosure', c.enclosure.markdown]]) {
+    const p = c[name].pdf;
+    if (!p) { console.log(`  --  ${name}: no PDF in this import`); continue; }
+    assert.ok(p.pages >= 1 && p.page_sizes.length === p.pages, `${name} PDF: pages`);
+    assert.ok(p.boxes.length >= times(md).length, `${name} PDF: ${p.boxes.length} boxes for ${times(md).length} mentions`);
+    for (const b of p.boxes) {
+      const s = p.page_sizes[b.page - 1];
+      assert.ok(s && b.rect[0] >= 0 && b.rect[1] >= 0 && b.rect[2] <= s.w && b.rect[3] <= s.h && b.rect[2] > b.rect[0] && b.rect[3] > b.rect[1], `${name} PDF: box inside its page (${b.label})`);
+      assert.equal(typeof b.t, 'number');
+      assert.equal(clockSeconds(b.label.match(DEBATE_TIME_RE)[0].split(/[–—-]/)[0]), b.t, `${name} PDF: the box's second is its label's start`);
+    }
+    const secs = new Set(p.boxes.map((b) => b.t)); const mentioned = new Set(times(md).map((x) => x[1]));
+    for (const t of mentioned) assert.ok(secs.has(t), `${name} PDF: the time ${clockLabel(t)} has a box`);
+    ok(`${name} PDF: ${p.pages} pp, ${p.boxes.length} time boxes, every mentioned time boxed`);
+  }
 } else {
   console.log('  --  content/correspondence not on disk: the content checks did not run');
 }
+// the importer's copy of the pattern is the TypeScript one
+assert.equal(DEBATE_TIME_RE_IMPORT.source, DEBATE_TIME_RE.source); assert.equal(DEBATE_TIME_RE_IMPORT.flags, DEBATE_TIME_RE.flags);
+ok('the importer\'s pattern equals the page\'s');
 console.log(`test-open-letter: ${n} groups passed`);

@@ -25,7 +25,10 @@ export default function Privacy() {
             your address and your browser; the daily value is destroyed when the day closes, so the hash cannot be
             traced back to anyone afterwards. No address is stored, nothing is sent to any other party, no cookie is
             set, and browsers that send the Global Privacy Control signal are not counted at all. The site loads no
-            third-party scripts, fonts, or pixels.
+            third-party scripts, fonts, or pixels. One exception, by choice: the open letter to the candidates for
+            Minnesota Attorney General embeds the recording of their debate, which is published on YouTube; nothing
+            from YouTube loads until you press play there, and from then on YouTube&rsquo;s own privacy terms apply to
+            the player.
             <span className="block mt-2"><AnalyticsOptOut /></span>
           </li>
           <li>

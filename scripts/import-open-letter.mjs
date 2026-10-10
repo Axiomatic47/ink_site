@@ -45,6 +45,24 @@ const SOURCES = {
   transcript: `${CASE}/0_Workspace/03_Video_Evidence/ellison_schutz_mpr_debate_20261002/TRANSCRIPT_MPR_AG_DEBATE_ELLISON_SCHUTZ_2026-10-02.md`,
 };
 const YOUTUBE_ID = 'pgzvG1Ky8rQ';
+// THE PDFs (owner 2026-10-09: "use pdf's as we do in all our review modes"): the owner's own renderings from the
+// Word build, beside the markdown in 05_Correspondence — never produced here (the device rule: agents render no
+// case document; reading one is fine). The letter's PUBLISHED copy is the one without the street, the city line
+// and the telephone (owner: "redact my phone number and address from the letter that's published"): pass it as
+// `--letter-pdf <path>`; without the flag the letter is served as text only (the page falls back to the text
+// version in the left pane) and `--check` refuses a served letter PDF whose text carries a telephone number or the
+// street. The enclosure's PDF carries no letterhead and rides by default (`--enclosure-pdf <path>` to override).
+const PDF_DEFAULTS = {
+  enclosure: `${CASE}/05_Correspondence/OPEN_LETTER_ENCLOSURE_A_RECORD_AND_DEBATE_2026-10.pdf`,
+};
+const opt = (f) => { const i = process.argv.indexOf(f); return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : null; };
+const LETTER_PDF = opt('--letter-pdf');
+const ENCLOSURE_PDF = opt('--enclosure-pdf') ?? join(TREE, PDF_DEFAULTS.enclosure);
+const UPLOADS_DIR = join(ROOT, 'public', 'uploads', 'correspondence', SLUG);
+const UPLOADS_URL = `/uploads/correspondence/${SLUG}`;
+// the same pattern as src/lib/open-letter.ts DEBATE_TIME_RE (the TypeScript one is the one of record; the test
+// asserts the two are equal, so a change there is a change here)
+export const DEBATE_TIME_RE_IMPORT = /(?<!\d)(?<!\d:)(\d{1,2}:[0-5]\d(?::[0-5]\d)?)(?:\s?[–—-]\s?(\d{1,2}:[0-5]\d(?::[0-5]\d)?))?(?!\d|:\d|-cv)/g;
 
 const sha256 = (b) => createHash('sha256').update(b).digest('hex');
 const git = (...a) => execFileSync('git', ['-C', TREE, ...a], { encoding: 'utf8' }).trim();
@@ -73,6 +91,29 @@ function clockSeconds(s) {
   const p = s.split(':').map(Number);
   if (p.some((x) => !Number.isInteger(x))) return null;
   return p.length === 3 ? p[0] * 3600 + p[1] * 60 + p[2] : p.length === 2 ? p[0] * 60 + p[1] : null;
+}
+
+// ---------------------------------------------------------------- the letterhead (owner 2026-10-09: "redact my phone
+// number and address from the letter that's published"). The letterhead is the body's first paragraph — the name,
+// the street, the city line, the email, the telephone, one per line. The published copy keeps the NAME and the EMAIL
+// (the email is on every page of this site) and drops every other line; what was dropped is recorded by label. The
+// addressee blocks (the campaigns' public addresses) are not touched.
+const PHONE_RE = /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/;
+const EMAIL_RE = /^[\w.+-]+@[\w-]+(\.[\w-]+)+$/;
+function redactLetterhead(md) {
+  const lines = md.replace(/^\s+/, '').split('\n');
+  const end = lines.findIndex((l) => !l.trim());
+  const head = end < 0 ? lines : lines.slice(0, end);
+  if (!/^\*\*[^*]+\*\*$/.test(head[0] || '')) fail(`letter: the letterhead does not begin with the bold name line (got: ${(head[0] || '').slice(0, 40)})`);
+  const kept = [], redacted = [];
+  for (const l of head) {
+    const t = l.trim();
+    if (t === head[0].trim() || EMAIL_RE.test(t)) kept.push(l);
+    else if (PHONE_RE.test(t)) redacted.push('the telephone number');
+    else redacted.push(/^\d/.test(t) ? 'the street address' : 'the city line');
+  }
+  if (!kept.some((l) => EMAIL_RE.test(l.trim()))) fail('letter: the letterhead has no email line to keep');
+  return { md: [...kept, ...lines.slice(head.length)].join('\n'), redacted };
 }
 
 // ---------------------------------------------------------------- the transcript
@@ -127,6 +168,47 @@ function parseTranscript(md) {
   };
 }
 
+// ---------------------------------------------------------------- the PDFs: boxes over every debate time
+const unent = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)));
+/** poppler's word boxes (points, origin top-left) → one box per word a debate time runs through, with its second */
+function pdfBoxes(pdfPath) {
+  const xml = execFileSync('pdftotext', ['-bbox-layout', pdfPath, '-'], { encoding: 'utf8', maxBuffer: 64 << 20 });
+  const pages = []; const boxes = [];
+  const pageRe = /<page width="([\d.]+)" height="([\d.]+)">([\s\S]*?)<\/page>/g;
+  for (const pm of xml.matchAll(pageRe)) {
+    const pageNo = pages.push({ w: Number(pm[1]), h: Number(pm[2]) });
+    for (const lm of pm[3].matchAll(/<line [^>]*>([\s\S]*?)<\/line>/g)) {
+      const words = [...lm[1].matchAll(/<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">([^<]*)<\/word>/g)]
+        .map((w) => ({ rect: [Number(w[1]), Number(w[2]), Number(w[3]), Number(w[4])], text: unent(w[5]) }));
+      let text = '', at = 0;
+      const spans = words.map((w) => { const s = at; text += (text ? ' ' : '') + w.text; at = text.length; return [s + (s ? 1 : 0), at]; });
+      for (const m of text.matchAll(DEBATE_TIME_RE_IMPORT)) {
+        const t = clockSeconds(m[1]);
+        if (t == null) continue;
+        const a = m.index, b = m.index + m[0].length;
+        words.forEach((w, i) => { const [s, e] = spans[i]; if (s < b && e > a) boxes.push({ page: pageNo, rect: w.rect.map((v) => Math.round(v * 100) / 100), t, label: m[0] }); });
+      }
+    }
+  }
+  if (!pages.length) fail(`${pdfPath}: pdftotext read no pages`);
+  return { pages, boxes };
+}
+/** copy an owner-rendered PDF into the served tree and describe it: file, sha, bytes, pages, the time boxes */
+function importPdf(role, srcPath) {
+  if (!existsSync(srcPath)) fail(`${role} PDF missing: ${srcPath}`);
+  // the letter's text is read and judged BEFORE anything is written: a refused copy never reaches the served tree
+  const text = execFileSync('pdftotext', [srcPath, '-'], { encoding: 'utf8' });
+  if (role === 'letter' && (PHONE_RE.test(text) || /Parklawn|\b55435\b/.test(text))) fail(`the letter PDF at ${srcPath} carries the telephone number or the street — pass the PUBLISHED copy (the letterhead without them), never this one; nothing written`);
+  const buf = readFileSync(srcPath);
+  const sha = sha256(buf);
+  const { pages, boxes } = pdfBoxes(srcPath);
+  if (!boxes.length) fail(`${role} PDF: no debate time found on its pages; nothing written`);
+  mkdirSync(UPLOADS_DIR, { recursive: true });
+  const name = `${role}.pdf`;
+  writeFileSync(join(UPLOADS_DIR, name), buf);
+  return { file: `${UPLOADS_URL}/${name}`, sha256: sha, bytes: buf.length, pages: pages.length, page_sizes: pages, boxes };
+}
+
 // ---------------------------------------------------------------- check
 function check() {
   if (!existsSync(OUT)) fail(`${OUT} missing — run the import`);
@@ -138,6 +220,26 @@ function check() {
     if (/<!--/.test(md)) bad.push(`${k}: an HTML comment survived`);
     if (/^---\n/.test(md)) bad.push(`${k}: front matter survived`);
     if (/LEGAL-ANALYSIS-SIG/.test(md)) bad.push(`${k}: a signature block survived`);
+  }
+  // the published letterhead is the name and the email, nothing else (owner 2026-10-09)
+  const head = (d.letter?.markdown ?? '').split(/\n\s*\n/)[0].split('\n').map((l) => l.trim()).filter(Boolean);
+  if (head.length !== 2 || !/^\*\*[^*]+\*\*$/.test(head[0]) || !EMAIL_RE.test(head[1])) bad.push(`letterhead: expected the name and the email only, got ${head.length} lines`);
+  if (PHONE_RE.test(d.letter?.markdown ?? '')) bad.push('letter: a telephone number is in the published text');
+  if (!Array.isArray(d.letter?.redacted) || d.letter.redacted.length === 0) bad.push('letter: no redaction recorded');
+  // the served PDFs: present, the registry's bytes, the time boxes inside their pages; the letter's text clean
+  for (const role of ['letter', 'enclosure']) {
+    const p = d[role]?.pdf;
+    if (!p) continue;
+    const f = join(ROOT, 'public', p.file);
+    if (!existsSync(f)) { bad.push(`${role} PDF missing on disk: ${p.file}`); continue; }
+    const buf = readFileSync(f);
+    if (sha256(buf) !== p.sha256 || buf.length !== p.bytes) bad.push(`${role} PDF on disk is not the recorded one`);
+    if (!Array.isArray(p.boxes) || !p.boxes.length) bad.push(`${role} PDF: no time boxes`);
+    for (const b of p.boxes || []) { const s = p.page_sizes?.[b.page - 1]; if (!s || b.rect[0] < 0 || b.rect[1] < 0 || b.rect[2] > s.w || b.rect[3] > s.h || b.rect[2] <= b.rect[0] || b.rect[3] <= b.rect[1]) bad.push(`${role} PDF: a box off its page (p. ${b.page} ${b.label})`); }
+    if (role === 'letter') {
+      const text = execFileSync('pdftotext', [f, '-'], { encoding: 'utf8' });
+      if (PHONE_RE.test(text) || /Parklawn|\b55435\b/.test(text)) bad.push('letter PDF: the telephone number or the street is in its text — not the published copy');
+    }
   }
   const t = d.transcript;
   if (!t || !Array.isArray(t.turns) || t.turns.length < 100) bad.push('transcript: fewer than 100 turns');
@@ -164,10 +266,13 @@ function main() {
 
   const L = splitFrontMatter(read('letter'));
   const E = splitFrontMatter(read('enclosure'));
-  const letterMd = tidy(hardBreaks(stripComments(L.body)));
+  const { md: letterBody, redacted } = redactLetterhead(stripComments(L.body));
+  const letterMd = tidy(hardBreaks(letterBody));
   const enclosureMd = tidy(stripComments(E.body));
   const dateM = letterMd.match(/^(October|November|December|January|February|March|April|May|June|July|August|September) \d{1,2}, \d{4}$/m);
   const transcript = parseTranscript(read('transcript'));
+  const letterPdf = LETTER_PDF && LETTER_PDF !== 'none' ? importPdf('letter', LETTER_PDF) : null;
+  const enclosurePdf = ENCLOSURE_PDF !== 'none' ? importPdf('enclosure', ENCLOSURE_PDF) : null;
 
   const out = {
     $comment: 'Written by scripts/import-open-letter.mjs from the owner\'s case tree — the open letter, its enclosure and the debate transcript, front matter and HTML comments stripped, the transcript header\'s local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.',
@@ -175,8 +280,8 @@ function main() {
     generated: new Date().toISOString(),
     source: { tree: 'work_station', commit, files },
     recording: { ...transcript.recording, programme: 'MPR News Politics Friday', date: '2026-10-02', moderator: transcript.speakers.MOD },
-    letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, markdown: letterMd },
-    enclosure: { title: E.meta.title ?? 'Enclosure A', header: E.meta.header ?? null, markdown: enclosureMd },
+    letter: { title: L.meta.title ?? 'Open letter', header: L.meta.header ?? null, date_line: dateM ? dateM[0] : null, redacted, markdown: letterMd, pdf: letterPdf },
+    enclosure: { title: E.meta.title ?? 'Enclosure A', header: E.meta.header ?? null, markdown: enclosureMd, pdf: enclosurePdf },
     transcript: { title: transcript.title, source: transcript.source, method: transcript.method, header_omitted: transcript.header_omitted, speakers: transcript.speakers, turns: transcript.turns },
   };
   mkdirSync(OUT_DIR, { recursive: true });
@@ -184,6 +289,7 @@ function main() {
   console.log(`import-open-letter: ${SLUG} ← work_station ${commit.slice(0, 8)}`);
   for (const f of files) console.log(`  ${f.role.padEnd(10)} ${f.sha256.slice(0, 12)}  ${f.bytes.toString().padStart(6)} B  ${f.commit.slice(0, 8)}  ${f.path}`);
   console.log(`  letter ${letterMd.length} chars (date line: ${out.letter.date_line}); enclosure ${enclosureMd.length} chars; transcript ${transcript.turns.length} turns, ${transcript.recording.duration} on the recording's clock; header clauses omitted: ${transcript.header_omitted.length}`);
+  for (const [role, p] of [['letter', letterPdf], ['enclosure', enclosurePdf]]) console.log(p ? `  ${role.padEnd(10)} PDF ${p.sha256.slice(0, 12)}  ${String(p.bytes).padStart(6)} B  ${p.pages} pp  ${p.boxes.length} time boxes → ${p.file}` : `  ${role.padEnd(10)} PDF none (${role === 'letter' ? 'pass --letter-pdf <the published copy>' : '--enclosure-pdf none'})`);
   console.log(`  → ${OUT}`);
 }
-main();
+if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) main();

@@ -17,15 +17,31 @@ export interface Turn {
   text: string;
 }
 
+/** one time mention on a served PDF: the word's box in PDF points, origin top-left (poppler's), the second it names */
+export interface TimeBox { page: number; rect: [number, number, number, number]; t: number; label: string }
+
+/** an owner-rendered PDF served beside its text (the review-mode pane shows the PDF, the times as hit boxes over it) */
+export interface DocPdf {
+  file: string;
+  sha256: string;
+  bytes: number;
+  pages: number;
+  page_sizes: { w: number; h: number }[];
+  boxes: TimeBox[];
+}
+
 export interface OpenLetterContent {
   slug: string;
   generated: string;
   source: { tree: string; commit: string; files: { role: string; path: string; bytes: number; sha256: string; commit: string }[] };
   recording: { youtube_id: string; url: string; title: string | null; duration: string | null; duration_s: number | null; programme: string; date: string; moderator: string };
-  letter: { title: string; header: string | null; date_line: string | null; markdown: string };
-  enclosure: { title: string; header: string | null; markdown: string };
+  letter: { title: string; header: string | null; date_line: string | null; redacted: string[]; markdown: string; pdf: DocPdf | null };
+  enclosure: { title: string; header: string | null; markdown: string; pdf: DocPdf | null };
   transcript: { title: string; source: string; method: string; header_omitted: string[]; speakers: Record<string, string>; turns: Turn[] };
 }
+
+/** the served file with its version query, as the book's review page serves its render */
+export const servedPdf = (p: DocPdf) => `${p.file}?v=${p.sha256.slice(0, 12)}`;
 
 /** what the page's client body receives: the content a reader reads and nothing else — not the source tree's
     paths and commits, not the header clauses the import omitted (a client component's props are serialized
