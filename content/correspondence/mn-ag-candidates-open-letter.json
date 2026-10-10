@@ -1,7 +1,7 @@
 {
  "$comment": "Written by scripts/import-open-letter.mjs from the owner's case tree — the open letter, its enclosures (A, the record and the debate; B, the reply form) and the debate transcript, front matter and HTML comments stripped, the transcript header's local paths and seat attribution omitted and named by label under header_omitted. Do not edit by hand; re-run the import.",
  "slug": "mn-ag-candidates-open-letter",
- "generated": "2026-10-10T08:17:40.671Z",
+ "generated": "2026-10-10T08:22:57.381Z",
  "source": {
   "tree": "work_station",
   "commit": "9aca5e3424864fb55e94578903bf4364d99ef211",
@@ -471,7 +471,23 @@
   "title": "Enclosure B: Reply Form",
   "header": "Enclosure B: Open Letter, Minn. Stat. § 8.31",
   "markdown": "# ENCLOSURE B: Reply Form\n\n**To the open letter of October 10, 2026 to the candidates for Minnesota Attorney General.**\n\n**Candidate:** ______________________________\n\n**Campaign:** ______________________________\n\nPlease return this page by **October 21, 2026** in the enclosed stamped envelope, or send the same answers by email to joseph@kirchner.ink. Each question can be answered yes or no; the lines under each are for any explanation you wish to add. Your answers, or the absence of them, will be published with the letter on October 21, 2026.\n\n**1.** Will the office, under you, recognize its authority under Minn. Stat. § 8.31, subd. 1 to investigate a citizen's referral of unlawful business practices, including consumer fraud, on its own, without a request from a county attorney or the Governor, the duty Mr. Ellison stated on October 2?\n\n☐ Yes ☐ No\n\n_______________________________________________________________________\n\n_______________________________________________________________________\n\n**2.** Will the office, under you, recognize that its authority to investigate criminal matters, and to cause and conduct their prosecution, is not limited to Medicaid fraud: that it rests on Minn. Stat. § 8.31, subd. 2, on the office's own information, and on § 8.01, with the request pathways that section names, and that the Legislature recognized it again in 2025 in § 299C.061, subd. 4(c); and will the office withdraw the statement, in the letter and on the website, that the Legislature did not delegate such authority to this Office?\n\n☐ Yes ☐ No\n\n_______________________________________________________________________\n\n_______________________________________________________________________\n\n**3.** Will the office, under you, answer a citizen's documented referral of unlawful practices that reach across county lines, or otherwise lie beyond a single county attorney's reach, with a decision on its merits, or with a declination in the exercise of whatever discretion the law gives, rather than with a statement that it lacks the authority?\n\n☐ Yes ☐ No\n\n_______________________________________________________________________\n\n_______________________________________________________________________\n\n**Signed:** ______________________________\n\n**Printed name:** ______________________________\n\n**Title:** ______________________________\n\n**Date:** ______________________\n",
-  "pdf": null
+  "pdf": {
+   "file": "/uploads/correspondence/mn-ag-candidates-open-letter/enclosure_b.pdf",
+   "sha256": "fc2cbfea3c3a97781b3a76ff6e4f3b174ffd3f054f8dc9f5fd5d5a2c4d6fada1",
+   "bytes": 101525,
+   "pages": 2,
+   "page_sizes": [
+    {
+     "w": 612,
+     "h": 792
+    },
+    {
+     "w": 612,
+     "h": 792
+    }
+   ],
+   "boxes": []
+  }
  },
  "transcript": {
   "title": "TRANSCRIPT — MPR News Politics Friday: Minnesota Attorney General Debate, Keith Ellison (DFL, incumbent) v. Ron Schutz (R) — Friday, October 2, 2026",
