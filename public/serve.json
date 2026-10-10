@@ -735,6 +735,10 @@
       "destination": "/uploads/kirchner-v-ellison/1993_-_Skeen_v._State_505_N.W.2d_299_Caselaw_Access_Project_scan_static.case.law_.pdf"
     },
     {
+      "source": "/api/casereview/file/2019 - Akins v. Southern Glazer's Wine and Spirits of Arkansas, LLC \\(8th Cir., per curiam, unpublished\\) \\[CA8 slip No. 18-1957, 29 Aug. 2019\\]",
+      "destination": "/uploads/kirchner-v-ellison/2019_-_Akins_v._Southern_Glazer_s_Wine_and_Spirits_of_Arkansas_LLC_8th_Cir._per_curiam_unpublished_CA8_slip_No._18-1957_29_Aug._2019_.pdf"
+    },
+    {
       "source": "/api/casereview/file/:id",
       "destination": "/uploads/kirchner-v-ellison/:id.pdf"
     }
