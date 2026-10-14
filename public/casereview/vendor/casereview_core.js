@@ -1349,11 +1349,12 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  *  sits at the head's LAST position on the page (nearest the break).
  *  → {start, head:{text, items}, tail:{text, items}} with `items` the
  *  per-item ranges on THIS page and on the NEXT page, or null. */
-export function locateWrapped(itemsA, itemsB, quote) { return wrappedOn(itemsA, itemsB, foldQuery(quote), false); }
+export function locateWrapped(itemsA, itemsB, quote) { return wrappedOn(itemsA, itemsB, foldQuery(quote), false, true); }
 /** The split rule over a folded query, on the pages as they are or (P63)
  *  on their hyphenless sides with every position mapped back. */
 const PIN_MARKER_HEAD = /^(?:¶¶?|§§?)$/;                   // P70: a wrap head that is only the pin marker
-function wrappedOn(itemsA, itemsB, q, retry) {
+const WRAP_REMAINDER = /^(?: ?(?:\d{1,3}|[ivxlcdm]{1,7})(?= |$))*(?: ?\d{1,3} .*)?$/is;   // P99: what may follow a wrap head on its page — the checker's regex verbatim
+function wrappedOn(itemsA, itemsB, q, retry, strict = true) {
   if (!q || q.length < 4 || !itemsB || !itemsB.length) return null;
   const page = side(foldItems(itemsA), retry), next = side(foldItems(itemsB), retry);
   if (!page.text || !next.text) return null;
@@ -1372,9 +1373,15 @@ function wrappedOn(itemsA, itemsB, q, retry) {
     const heads = [head];
     if (head.endsWith('-') && head.length > 3) heads.push(head.slice(0, -1));
     for (const h of heads) {
-      const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(h)}(?=(?:\\p{Nd}+)?(?: |$))`, 'gu');
+      // P99w (studio-spec 7d866ecf's P99, measured 2026-10-14 on d735a78c's DDC-013 172/173: the head '28 U.S.C.' found
+      // MID-PAGE before more body text added a phantom second hit on the mirror while the citation stood whole on the
+      // text layer): THE HEAD MUST END THE PAGE'S BODY — after its occurrence, to the page's end, only page chrome the
+      // fold left (a bare one-to-three-digit number: a glued pleading line number or folio; a roman folio) and/or the
+      // page's FOOTNOTE BLOCK (a one-to-three-digit footnote number, a space, the notes); the occurrence taken is the
+      // LAST that satisfies this; a head followed by more body text is not a wrap, whatever the next page begins with.
+      const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(h)}`, 'gu');
       let last = null;
-      for (const m of page.text.matchAll(re)) last = m.index;
+      for (const m of page.text.matchAll(re)) if (strict ? WRAP_REMAINDER.test(page.text.slice(m.index + h.length)) : /^(?:\p{Nd}+)?(?: |$)/u.test(page.text.slice(m.index + h.length))) last = m.index;
       if (last === null) continue;
       const hs = spanOn(page, last, h.length), ts = spanOn(next, 0, tail.length);
       return { start: hs.from, head: { text: h, items: hs.items }, tail: { text: tail, items: ts.items } };
@@ -1405,7 +1412,7 @@ export function pageOccurrences(itemsA, itemsB, quote) {
       if (!sp.items.length || sp.items[0].index >= a.length) break;   // begins on the next page: not this page's
       hits.push({ start: sp.from, wrapped: false, items: sp.items });
     }
-    const w = b.length ? wrappedOn(a, b, q, retry) : null;
+    const w = b.length ? wrappedOn(a, b, q, retry, true) : null;
     if (w && !hits.some(h => h.start === w.start)) {
       hits.push({ start: w.start, wrapped: true, head: w.head, tail: w.tail });
       hits.sort((x, y) => x.start - y.start);
@@ -1607,7 +1614,7 @@ function locateFragmentWrapped(folded, list, span, q, cursor, limit) {
     const A = list[k], B = list[k + 1];
     for (const hyph of [false, true]) {
       if (hyph && hyphenless(q) === q) continue;
-      const w = wrappedOn(A, B, hyph ? hyphenless(q) : q, hyph);
+      const w = wrappedOn(A, B, hyph ? hyphenless(q) : q, hyph, false);   // MEASURE: the passage path under the old rule
       if (!w || !w.head.items.length || !w.tail.items.length) continue;
       const h0 = w.head.items[0], t1 = w.tail.items[w.tail.items.length - 1];
       const from = joinedIndexOf(folded, folded.pages[k].first + h0.index, h0.from);
