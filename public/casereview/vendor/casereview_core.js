@@ -1832,13 +1832,23 @@ export function targetPages(t, doc) {
   const pdfPage = stamped == null ? (viaMap ? t.target_pdf_page : 1) : (t.target_pdf_page || pdfPageFor(stamped, doc.offset, doc.pagemap));
   const endStamped = rowPage(t.target_page_end);
   const begins = stamped != null && pdfPage && pagemapBasis(doc) === 'begins';   // P96: a reprint's folio spans [begins(f), begins(f+1)]
+  // P98w (studio-spec 7d866ecf's section-span spec, admin 69183d38's word 2026-10-13): ONE derivation, the checker's
+  // section_span, serves the SECTION's end on a row whose target_page_end is blank — `target_pdf_page_end` and
+  // `target_pin_page.pdf_end` (the next key's page, INCLUSIVE; a range or list's tail; the subsection floor on a
+  // page-pinned row whose page lies inside its pin's section; a hand-filled end never moves) — and the viewer READS it.
+  // sectionSpanEnd stays as the FALLBACK when no end is served (a bundle exported before P98 carries null), so nothing
+  // narrows at any step; retired at a later sync once both sites' bundles carry the served end.
+  const servedEnd = isPage(+t.target_pdf_page_end) ? +t.target_pdf_page_end : (pp0 && isPage(+pp0.pdf_end) ? +pp0.pdf_end : null);
   const pdfEnd = begins
-    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
+    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (servedEnd || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
     : endStamped == null
-    ? (viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
-    : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap));
+    ? (servedEnd && pdfPage && servedEnd >= pdfPage ? servedEnd
+       : viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
+    : (servedEnd || pdfPageFor(endStamped, doc.offset, doc.pagemap));
+  // THE MARKED SET is the whole span (the owner's visible change under P98w: the right pane's page markers widen from the
+  // section's head to the section on a map-resolved row, as a hand-filled end always marked its pages)
   const marked = [];
-  if (pdfPage && pdfEnd) for (let p = pdfPage; p <= (viaMap ? pdfPage : pdfEnd); p++) marked.push(p);
+  if (pdfPage && pdfEnd) for (let p = pdfPage; p <= Math.max(pdfPage, pdfEnd); p++) marked.push(p);
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
@@ -2127,7 +2137,7 @@ export function saysFor(u, k, t, doc, resolved = null) {
   const quoteTok = !willLocate ? '' : r.passage === undefined ? ' · a quote to box' : r.passage ? ' · quote boxed' : '';
   const suffix = quoteTok + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
-  if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
+  if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${suffix}`); unfound(); }   // P98w: the span it opened, as the stamped line prints its own
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so${suffix}`); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row)${suffix}`); }
   // a target cited without a page: the words by what it is (f28bb754's read of Adler v. Loyd on the site, 2026-10-01 — a case cited whole is not a docket reference)
