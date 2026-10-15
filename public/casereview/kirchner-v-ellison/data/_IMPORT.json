@@ -1,7 +1,7 @@
 {
   "case": "kirchner-v-ellison",
-  "imported": "2026-10-14T19:38:37.745Z",
-  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/f28bb754-b403-4af3-bd27-7400ba11bd3b/scratchpad/export_mn_1014p99",
+  "imported": "2026-10-15T00:13:41.487Z",
+  "source": "the checker's export at /private/tmp/claude-501/-Users-everest-Git-ourstudio-everest/b5e822fa-aee1-4a1d-8721-fd7052f9be64/scratchpad/mn_p100",
   "export_stamp": {
     "lane_signature": {
       "sha256": "1d5f6993d19a71005525ff370e0d3794130e9aa6d43a7e7efd1f5d7daaf15515",
@@ -673,11 +673,11 @@
         }
       ]
     },
-    "ourstudio_commit": "c036ecb1",
-    "checker": "P99",
-    "checker_source_sha256": "47b5e5dc4b21588493a2d552d069cf741a090d4d375a14f6640a7d3b51ebf17e",
+    "ourstudio_commit": "6f6dd67d",
+    "checker": "P100",
+    "checker_source_sha256": "9cb36ae7a97a36ec4b6af70a56bf404614def94beab84de1e563eb5acebe74d6",
     "mirrors_sha256": "0e51fe72bf98f98e5d1209dabc2d3bddb5bb2650b521455c86203ba1a855ea1b",
-    "exported": "2026-10-14T19:38:21+00:00",
+    "exported": "2026-10-15T00:06:38+00:00",
     "case_root": "/Users/everest/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF",
     "project_root": "/Users/everest/Git/work_station",
     "registry_version": "v1d",
@@ -793,7 +793,7 @@
   },
   "dev_override": false,
   "default_doc": "MN2594-037",
-  "vendored_studio_commit": "c036ecb1dc8655c0abeb3f255ea118484b48963f",
+  "vendored_studio_commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135",
   "host_policy": {
     "serve_groups": [
       "Filings",
