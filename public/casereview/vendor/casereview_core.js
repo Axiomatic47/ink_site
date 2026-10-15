@@ -264,6 +264,66 @@ const UPPER_LINE = /^[A-Z0-9&'\u2019.,\-() ]+$/;
 const SPLIT_NAME = /^[A-Z][A-Z' ]+,$/;
 const SPLIT_TAIL = /^(?:C\. ?)?J\., (?:dissenting|concurring)/;
 const HEAD_LINES = 4;                                                // the page-bound shapes live in a page's first four kept lines
+// (b) — THE REVISOR'S RUNNING HEAD AND FOOTER ARE PAGE CHROME (P99's named refinement; studio-spec b30c7017's spec
+// 326cdcf5 § 2 on b0d76502's inventory, both admins' word 17:46 / 17:5x CDT 2026-10-14; the checker's forms verbatim).
+// Three families, 32 files, 263 pages: the Minnesota Statutes section prints (footer TWO lines, 'Official Publication of
+// the State of Minnesota' | 'Revisor of Statutes'; head 'S.SS · MINNESOTA STATUTES 2025 · folio', the sides swapping by
+// parity), the Constitution (the same footer; head 'folio · CONSTITUTION OF THE STATE OF MINNESOTA'), the Rules of Civil
+// Procedure (footer 'Published by the Revisor of Statutes under …'; head 'MINNESOTA COURT RULES · folio · CIVIL
+// PROCEDURE'). pdf.js hands the head's pieces on ONE baseline (one line of three parts, at the page's TAIL in stream
+// order) and the footer's two on two baselines (this seat's measure, ch. 8 pp. 7–8, Addendum 2); pdftotext hands every
+// piece as its own line ending in U+200B (the fold drops it; the layer's spelling is pinned beside the bare one).
+// R-b1′ (b30c7017 17:49): a line is chrome when, invisibles dropped and trimmed, it is ENTIRELY tokens of two classes
+// separated by single spaces — the ANCHORS (FOOT_1, FOOT_3, 'MINNESOTA STATUTES <year>', 'CONSTITUTION OF THE STATE OF
+// MINNESOTA', 'MINNESOTA COURT RULES') and the COMPANIONS ('Revisor of Statutes', 'CIVIL PROCEDURE', a section number
+// S.SS, a folio N) — with AT LEAST ONE anchor: so the mirror's inline run 'Official Publication … Revisor of Statutes 8.31
+// MINNESOTA STATUTES 2025' is chrome whole, while 'Revisor of Statutes', 'CIVIL PROCEDURE' and '8.31' alone stay body (a
+// bare section number is a line 625 times — the chapter's table of sections). R-b2: the companions as NEIGHBOURS in
+// chromeLines — 'Revisor of Statutes' only as the next non-empty line after FOOT_1; a bare S.SS only as the previous or
+// next non-empty line of a MINNESOTA STATUTES head, 'CIVIL PROCEDURE' only beside MINNESOTA COURT RULES, a bare folio
+// between them allowed — at ANY position (raw order and pdf.js put the head at the page's tail; the Rules' contents
+// pages set a bare rule number beside the head, kept). R-b3: the head glued onto a page's FIRST kept body line (the
+// mirror's 13 pages) — stripRunningHead(first) drops a '(N )?HEAD-words (N )?' prefix, then ONE leading 'S.SS ' token
+// when the page's walk dropped a MINNESOTA STATUTES head (or the prefix was that form) and what follows is the same
+// token, a digit, a lower-case letter or a Capitalised word other than 'Subdivision' — never an ALL-CAPS title ('8.31
+// PRIVATE REMEDIES.' stays), never the Rules' Title Case heading ('4.03 Personal Service'), never a renumbered section's
+// own head ('45.16 Subdivision 1. [Renumbered 8.32, subd 1]'); the three bounds are b30c7017's v2 (18:05 CDT).
+const MN_SEC = '\\d{1,3}[A-Z]?\\.\\d{1,4}';
+const MN_N = '\\d{1,4}';
+const MN_ANCHOR = 'Official Publication of the State of Minnesota|Published by the Revisor of Statutes under Minnesota Statutes, section 3C\\.08, subdivision 1\\.|MINNESOTA STATUTES \\d{4}|CONSTITUTION OF THE STATE OF MINNESOTA|MINNESOTA COURT RULES';
+const MN_COMPANION = `Revisor of Statutes|CIVIL PROCEDURE|${MN_SEC}|${MN_N}`;
+const MN_CHROME_RUN = new RegExp(`^(?:(?:${MN_ANCHOR}|${MN_COMPANION})(?: |$))+$`);
+const MN_ANCHOR_RE = new RegExp(`(?:^| )(?:${MN_ANCHOR})(?: |$)`);
+const MN_FOOT_1 = /^Official Publication of the State of Minnesota$/;
+const MN_FOOT_1_TAIL = /^Revisor of Statutes$/;
+const MN_HEAD_WORDS = 'MINNESOTA STATUTES \\d{4}|CONSTITUTION OF THE STATE OF MINNESOTA|MINNESOTA COURT RULES';
+const MN_HEAD_LINE = new RegExp(`^(?:(?:${MN_SEC}|${MN_N}) )?(?:${MN_HEAD_WORDS})(?: (?:${MN_N}|${MN_SEC}|CIVIL PROCEDURE))*$`);
+const MN_SEC_RE = new RegExp(`^${MN_SEC}$`);
+const MN_CIV_RE = /^CIVIL PROCEDURE$/;
+const MN_FOLIO = new RegExp(`^${MN_N}$`);
+const MN_STAT_HEAD = new RegExp(`^(?:(?:${MN_SEC}|${MN_N}) )?MINNESOTA STATUTES \\d{4}(?: (?:${MN_N}|${MN_SEC}))*$`);   // the STATUTES family's head alone (v2 bound (2): R-b3's section clause is theirs — the Rules' first line is the rule's own Title Case heading '4.03 Personal Service', the Constitution's head carries no section number)
+const MN_RULES_HEAD = new RegExp(`^(?:${MN_N} )?MINNESOTA COURT RULES(?: (?:${MN_N}|CIVIL PROCEDURE))*$`);
+const MN_HEAD_PREFIX = new RegExp(`^(?:${MN_N} )?(?:${MN_HEAD_WORDS})(?: ${MN_N})? (?=\\S)`);
+const MN_STAT_PREFIX = new RegExp(`^(?:${MN_N} )?MINNESOTA STATUTES \\d{4}(?: ${MN_N})? (?=\\S)`);
+const MN_SEC_GLUED = new RegExp(`^(${MN_SEC}) (?!Subdivision\\b)(?=\\1 |\\d|\\p{Ll}|\\p{Lu}\\p{Ll})`, 'u');   // v2 bound (1): never before 'Subdivision' — a renumbered or repealed section prints 'S.SS Subdivision 1. [Renumbered …]' as its own head (45.16); the mirror's glued continuations are 'Subd. N.'
+/** R-b1′: a line made only of the Revisor families' tokens, at least one of them an anchor. `f` is the folded or
+ *  invisible-stripped, whitespace-collapsed, trimmed line. */
+function mnChromeLine(f) { return MN_CHROME_RUN.test(f) && MN_ANCHOR_RE.test(f); }
+/** A Revisor running-head LINE (the head words with their folio and section number on either side, pdf.js's one line
+ *  or the layer's bare one) — exported for the harness's `first_kept` pin (the page fact R-b3 reads). */
+export function isRevisorHead(line) { return MN_HEAD_LINE.test(headText(line)); }
+/** The MINNESOTA STATUTES family's head line alone — R-b3's page fact (v2 bound (2)). */
+export function isStatutesHead(line) { return MN_STAT_HEAD.test(headText(line)); }
+/** R-b3: the length of the Revisor head glued onto a page's first kept body line — the '(N )?HEAD-words (N )?' prefix
+ *  when present, then ONE 'S.SS ' token under the guard (`hadHead`: the page's walk dropped a head line, or the prefix
+ *  itself was there) when the same token, a digit, a lower-case letter or a Capitalised word follows. */
+export function revisorHeadPrefixLen(s, hadHead = false) {
+  let n = 0;
+  const m = MN_HEAD_PREFIX.exec(s);
+  if (m) { n = m[0].length; if (MN_STAT_PREFIX.test(s)) hadHead = true; }   // the glued prefix arms the section clause only when it is the STATUTES form
+  if (hadHead) { const g = MN_SEC_GLUED.exec(s.slice(n)); if (g) n += g[0].length; }
+  return n;
+}
 // P81 (2): the mirror glues a head into the body's first line ('Opinion of
 // the Court. 289 U.S. troversy."'); the prefix is stripped up to the head's
 // period or the tag after it, at most twice (a term line and an opinion head
@@ -307,20 +367,22 @@ const US_CASE_NAME_PREFIX = new RegExp(`^${US_FOLIO_BEFORE}(?:${US_CASE_RUN}|Ex 
 /** The length of the running-head prefix a page line's head carries: on the
  *  page's FIRST kept line (first = true) each form to its own end, three at
  *  most; elsewhere P81's period-or-tag rule, twice at most. */
-export function runningHeadPrefixLen(s, first = false) {
+export function runningHeadPrefixLen(s, first = false, mnHead = false) {
   let n = 0;
+  if (first) { n = revisorHeadPrefixLen(s, mnHead); s = s.slice(n); }   // (b) R-b3: the Revisor head glued onto the first kept line, before the U.S. Reports forms
   if (!first) {
     for (let k = 0; k < 2; k++) { const m = US_HEAD_PREFIX_PERIOD.exec(s.slice(n)); if (!m) break; n += m[0].length; }
     return n;
   }
+  const base = n; n = 0;
   for (let k = 0; k < 3; k++) { const m = US_CASE_NAME_PREFIX.exec(s.slice(n)) || US_HEAD_PREFIX.exec(s.slice(n)); if (!m) break; n += m[0].length; }
-  return n;
+  return base + n;
 }
-export function stripRunningHead(s, first = false) { s = String(s == null ? '' : s); return s.slice(runningHeadPrefixLen(s, first)); }
+export function stripRunningHead(s, first = false, mnHead = false) { s = String(s == null ? '' : s); return s.slice(runningHeadPrefixLen(s, first, mnHead)); }
 /** A line's text as the head tests read it: the line-number column and the
  *  emphasis stripped, whitespace runs collapsed, trimmed (never folded). */
 function headText(raw) {
-  return stripEmphasis(String(raw == null ? '' : raw).replace(LINE_PREFIX, '')).replace(/\s+/g, ' ').trim();
+  return stripEmphasis(String(raw == null ? '' : raw).replace(FORMAT_CHARS, '').replace(LINE_PREFIX, '')).replace(/\s+/g, ' ').trim();   // (b): the invisibles dropped at entry, as the checker's kept_page_lines does
 }
 /** P81 (3): the odd-page case-name head — under 90 characters, upper case
  *  but for 'v.', 'et al.', 'Ex parte', 'In re', 'ex rel.', carrying ' v. '
@@ -343,6 +405,24 @@ export function chromeLines(rawLines) {
   const stripped = lines.map(headText);
   const drop = new Set();
   for (let i = 0; i < lines.length; i++) if (stripped[i] && isPageChrome(lines[i])) drop.add(i);
+  // (b) R-b2: the Revisor companions as neighbours — the footer's tail after FOOT_1; a bare section number or 'CIVIL
+  // PROCEDURE' beside a head line, one bare folio between them allowed; any position, chrome or kept neighbours alike
+  const neighbour = (i, step, skipFolio) => {
+    for (let j = i + step; j >= 0 && j < lines.length; j += step) {
+      if (!stripped[j]) continue;
+      if (skipFolio && MN_FOLIO.test(stripped[j])) { skipFolio = false; continue; }
+      return j;
+    }
+    return null;
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const s = stripped[i];
+    if (!s) continue;
+    if (MN_FOOT_1.test(s)) { const j = neighbour(i, 1, false); if (j !== null && MN_FOOT_1_TAIL.test(stripped[j])) drop.add(j); }
+    // v2 bound (3): a bare section number only beside a MINNESOTA STATUTES head, 'CIVIL PROCEDURE' only beside MINNESOTA COURT RULES — the Rules' contents and appendix pages set a bare rule number ('10.04', '543.10') beside the head at the raw tail
+    const nb = MN_STAT_HEAD.test(s) ? MN_SEC_RE : MN_RULES_HEAD.test(s) ? MN_CIV_RE : null;
+    if (nb) for (const step of [-1, 1]) { const j = neighbour(i, step, true); if (j !== null && nb.test(stripped[j])) drop.add(j); }
+  }
   let keptSeen = 0;
   for (let i = 0; i < lines.length; i++) {
     if (drop.has(i)) continue;
@@ -365,6 +445,7 @@ export function isPageChrome(text) {
   const raw = String(text == null ? '' : text);
   if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || APPEAL_LINE.test(f) || APPEAL_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
   const head = headText(raw);                                        // P81 (1): a U.S. Reports running head, whole line
+  if (mnChromeLine(f) || mnChromeLine(head)) return true;             // (b) R-b1′: the Revisor families' whole-line runs (the mirror's '### MINNESOTA STATUTES 2025' through the heading-mark strip)
   return US_HEAD_LINE.test(head) || US_HEAD_MISC.test(head);
 }
 /** The page-side text of an item: chrome lines → '', a line-number prefix
@@ -768,6 +849,7 @@ export function foldPages(a, b, loose = false) {
  *  rawOff, len} | null (a separator) map the fold carries forward. */
 function rawOfPage(items, loose, indexOffset = 0) {
   const chrome = loose ? new Set() : chromeItems(items);
+  const mnHead = !loose && pageLines(items, null).some(l => isStatutesHead(l.raw));   // (b) R-b3's page fact (v2 bound (2)): a MINNESOTA STATUTES head line on this page
   let raw = '';
   const ownerOfRaw = [];                // raw index → {index, rawOff, len} | null
   for (const line of readingOrder(pageLines(items, chrome))) {
@@ -780,7 +862,7 @@ function rawOfPage(items, loose, indexOffset = 0) {
     parts.forEach((p, i) => {
       let piece = p.str, base = 0;
       if (!loose && i === 0) { const m = LINE_PREFIX.exec(p.str); if (m) { base = m[0].length; piece = p.str.slice(base); } }
-      if (!loose && i === 0) { const r = runningHeadPrefixLen(piece, raw === ''); if (r) { base += r; piece = piece.slice(r); } }   // P81 (2): the mirror's glued head — P81a: on the page's FIRST kept line (nothing contributed yet) each form to its own end
+      if (!loose && i === 0) { const r = runningHeadPrefixLen(piece, raw === '', mnHead); if (r) { base += r; piece = piece.slice(r); } }   // P81 (2): the mirror's glued head — P81a: on the page's FIRST kept line (nothing contributed yet) each form to its own end
       if (raw) {
         const sep = i === 0 ? '\n' : p.sep;
         if (sep) { raw += sep; ownerOfRaw.push(null); }
