@@ -229,7 +229,8 @@ p=none, all on Netlify DNS).
   "We will host from youtube"): the embed stays, no file, no `--video-url`; the host and the rights questions are
   closed, and the `--video-url` path is the importer's unused capability. A Reading-mode toggle
   stacks the three parts. Deep links `#enclosure-a`, `#transcript`, `#turn-<n>`, `#t=<seconds>` (a second arms
-  the play button; nothing autoplays on load).
+  the play button; nothing autoplays on load). `#review` / `#reading` ask a mode, kept as the toggle's choice is (the home
+  page links `#review`).
 - Content: `content/correspondence/mn-ag-candidates-open-letter.json`, written by `scripts/import-open-letter.mjs`
   (manual-run, like import-local-works: the owner's case tree is not on the build host) from exactly four files of
   `~/Git/work_station/2_MN-0-26-cv-02594-LMP-DJF` — the letter and the two enclosures under `05_Correspondence`, the
@@ -291,7 +292,12 @@ p=none, all on Netlify DNS).
   the loader derives the window's deep link from `CASE_REVIEW.slug` (`caseReviewDocHref`) and refuses an id the bundle
   does not serve, a page count the bundle contradicts, or a label the note does not say; the first is Exhibit C to the
   Complaint (Doc. 2) at page 11 of 34, the owner's second word of 2026-10-10 ('Approved as recommended').
-- NOT in the site's navigation until the owner's word; the owner previews first (the Studio pane or a build on a
+- THE HOME PAGE SHOWS THE LETTER (owner 2026-10-11): `app/page.tsx` → `HomeLayout` renders the letter's served PDF
+  (the file and version query the letter page serves, `servedPdf(c.letter.pdf)`) in the resizable viewer beside the
+  information card, with the way into the letter's review mode beneath (`/mn-ag-candidates-open-letter#review`);
+  absent content → no viewer, never a placeholder and never the résumé. The résumé (`cv.pdf`) is under the
+  biography (`/bio#curriculum-vitae`, the card's link there); the home page's h1 stays the owner's name.
+- NOT in the site's navigation MENU until the owner's word (the home page links it since 2026-10-11); the owner previews first (the Studio pane or a build on a
   private port). Because no menu reaches it, `studio-site.json`'s `ready_path` for BOTH preview modes is this
   route (owner 2026-10-09: "the site preview in ourstudio does not show any way to view this new page") — the
   SITES pane probes and frames `http://localhost:<port><ready_path>`, so the pane opens on the page and the site's

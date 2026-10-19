@@ -264,6 +264,66 @@ const UPPER_LINE = /^[A-Z0-9&'\u2019.,\-() ]+$/;
 const SPLIT_NAME = /^[A-Z][A-Z' ]+,$/;
 const SPLIT_TAIL = /^(?:C\. ?)?J\., (?:dissenting|concurring)/;
 const HEAD_LINES = 4;                                                // the page-bound shapes live in a page's first four kept lines
+// (b) — THE REVISOR'S RUNNING HEAD AND FOOTER ARE PAGE CHROME (P99's named refinement; studio-spec b30c7017's spec
+// 326cdcf5 § 2 on b0d76502's inventory, both admins' word 17:46 / 17:5x CDT 2026-10-14; the checker's forms verbatim).
+// Three families, 32 files, 263 pages: the Minnesota Statutes section prints (footer TWO lines, 'Official Publication of
+// the State of Minnesota' | 'Revisor of Statutes'; head 'S.SS · MINNESOTA STATUTES 2025 · folio', the sides swapping by
+// parity), the Constitution (the same footer; head 'folio · CONSTITUTION OF THE STATE OF MINNESOTA'), the Rules of Civil
+// Procedure (footer 'Published by the Revisor of Statutes under …'; head 'MINNESOTA COURT RULES · folio · CIVIL
+// PROCEDURE'). pdf.js hands the head's pieces on ONE baseline (one line of three parts, at the page's TAIL in stream
+// order) and the footer's two on two baselines (this seat's measure, ch. 8 pp. 7–8, Addendum 2); pdftotext hands every
+// piece as its own line ending in U+200B (the fold drops it; the layer's spelling is pinned beside the bare one).
+// R-b1′ (b30c7017 17:49): a line is chrome when, invisibles dropped and trimmed, it is ENTIRELY tokens of two classes
+// separated by single spaces — the ANCHORS (FOOT_1, FOOT_3, 'MINNESOTA STATUTES <year>', 'CONSTITUTION OF THE STATE OF
+// MINNESOTA', 'MINNESOTA COURT RULES') and the COMPANIONS ('Revisor of Statutes', 'CIVIL PROCEDURE', a section number
+// S.SS, a folio N) — with AT LEAST ONE anchor: so the mirror's inline run 'Official Publication … Revisor of Statutes 8.31
+// MINNESOTA STATUTES 2025' is chrome whole, while 'Revisor of Statutes', 'CIVIL PROCEDURE' and '8.31' alone stay body (a
+// bare section number is a line 625 times — the chapter's table of sections). R-b2: the companions as NEIGHBOURS in
+// chromeLines — 'Revisor of Statutes' only as the next non-empty line after FOOT_1; a bare S.SS only as the previous or
+// next non-empty line of a MINNESOTA STATUTES head, 'CIVIL PROCEDURE' only beside MINNESOTA COURT RULES, a bare folio
+// between them allowed — at ANY position (raw order and pdf.js put the head at the page's tail; the Rules' contents
+// pages set a bare rule number beside the head, kept). R-b3: the head glued onto a page's FIRST kept body line (the
+// mirror's 13 pages) — stripRunningHead(first) drops a '(N )?HEAD-words (N )?' prefix, then ONE leading 'S.SS ' token
+// when the page's walk dropped a MINNESOTA STATUTES head (or the prefix was that form) and what follows is the same
+// token, a digit, a lower-case letter or a Capitalised word other than 'Subdivision' — never an ALL-CAPS title ('8.31
+// PRIVATE REMEDIES.' stays), never the Rules' Title Case heading ('4.03 Personal Service'), never a renumbered section's
+// own head ('45.16 Subdivision 1. [Renumbered 8.32, subd 1]'); the three bounds are b30c7017's v2 (18:05 CDT).
+const MN_SEC = '\\d{1,3}[A-Z]?\\.\\d{1,4}';
+const MN_N = '\\d{1,4}';
+const MN_ANCHOR = 'Official Publication of the State of Minnesota|Published by the Revisor of Statutes under Minnesota Statutes, section 3C\\.08, subdivision 1\\.|MINNESOTA STATUTES \\d{4}|CONSTITUTION OF THE STATE OF MINNESOTA|MINNESOTA COURT RULES';
+const MN_COMPANION = `Revisor of Statutes|CIVIL PROCEDURE|${MN_SEC}|${MN_N}`;
+const MN_CHROME_RUN = new RegExp(`^(?:(?:${MN_ANCHOR}|${MN_COMPANION})(?: |$))+$`);
+const MN_ANCHOR_RE = new RegExp(`(?:^| )(?:${MN_ANCHOR})(?: |$)`);
+const MN_FOOT_1 = /^Official Publication of the State of Minnesota$/;
+const MN_FOOT_1_TAIL = /^Revisor of Statutes$/;
+const MN_HEAD_WORDS = 'MINNESOTA STATUTES \\d{4}|CONSTITUTION OF THE STATE OF MINNESOTA|MINNESOTA COURT RULES';
+const MN_HEAD_LINE = new RegExp(`^(?:(?:${MN_SEC}|${MN_N}) )?(?:${MN_HEAD_WORDS})(?: (?:${MN_N}|${MN_SEC}|CIVIL PROCEDURE))*$`);
+const MN_SEC_RE = new RegExp(`^${MN_SEC}$`);
+const MN_CIV_RE = /^CIVIL PROCEDURE$/;
+const MN_FOLIO = new RegExp(`^${MN_N}$`);
+const MN_STAT_HEAD = new RegExp(`^(?:(?:${MN_SEC}|${MN_N}) )?MINNESOTA STATUTES \\d{4}(?: (?:${MN_N}|${MN_SEC}))*$`);   // the STATUTES family's head alone (v2 bound (2): R-b3's section clause is theirs — the Rules' first line is the rule's own Title Case heading '4.03 Personal Service', the Constitution's head carries no section number)
+const MN_RULES_HEAD = new RegExp(`^(?:${MN_N} )?MINNESOTA COURT RULES(?: (?:${MN_N}|CIVIL PROCEDURE))*$`);
+const MN_HEAD_PREFIX = new RegExp(`^(?:${MN_N} )?(?:${MN_HEAD_WORDS})(?: ${MN_N})? (?=\\S)`);
+const MN_STAT_PREFIX = new RegExp(`^(?:${MN_N} )?MINNESOTA STATUTES \\d{4}(?: ${MN_N})? (?=\\S)`);
+const MN_SEC_GLUED = new RegExp(`^(${MN_SEC}) (?!Subdivision\\b)(?=\\1 |\\d|\\p{Ll}|\\p{Lu}\\p{Ll})`, 'u');   // v2 bound (1): never before 'Subdivision' — a renumbered or repealed section prints 'S.SS Subdivision 1. [Renumbered …]' as its own head (45.16); the mirror's glued continuations are 'Subd. N.'
+/** R-b1′: a line made only of the Revisor families' tokens, at least one of them an anchor. `f` is the folded or
+ *  invisible-stripped, whitespace-collapsed, trimmed line. */
+function mnChromeLine(f) { return MN_CHROME_RUN.test(f) && MN_ANCHOR_RE.test(f); }
+/** A Revisor running-head LINE (the head words with their folio and section number on either side, pdf.js's one line
+ *  or the layer's bare one) — exported for the harness's `first_kept` pin (the page fact R-b3 reads). */
+export function isRevisorHead(line) { return MN_HEAD_LINE.test(headText(line)); }
+/** The MINNESOTA STATUTES family's head line alone — R-b3's page fact (v2 bound (2)). */
+export function isStatutesHead(line) { return MN_STAT_HEAD.test(headText(line)); }
+/** R-b3: the length of the Revisor head glued onto a page's first kept body line — the '(N )?HEAD-words (N )?' prefix
+ *  when present, then ONE 'S.SS ' token under the guard (`hadHead`: the page's walk dropped a head line, or the prefix
+ *  itself was there) when the same token, a digit, a lower-case letter or a Capitalised word follows. */
+export function revisorHeadPrefixLen(s, hadHead = false) {
+  let n = 0;
+  const m = MN_HEAD_PREFIX.exec(s);
+  if (m) { n = m[0].length; if (MN_STAT_PREFIX.test(s)) hadHead = true; }   // the glued prefix arms the section clause only when it is the STATUTES form
+  if (hadHead) { const g = MN_SEC_GLUED.exec(s.slice(n)); if (g) n += g[0].length; }
+  return n;
+}
 // P81 (2): the mirror glues a head into the body's first line ('Opinion of
 // the Court. 289 U.S. troversy."'); the prefix is stripped up to the head's
 // period or the tag after it, at most twice (a term line and an opinion head
@@ -307,20 +367,22 @@ const US_CASE_NAME_PREFIX = new RegExp(`^${US_FOLIO_BEFORE}(?:${US_CASE_RUN}|Ex 
 /** The length of the running-head prefix a page line's head carries: on the
  *  page's FIRST kept line (first = true) each form to its own end, three at
  *  most; elsewhere P81's period-or-tag rule, twice at most. */
-export function runningHeadPrefixLen(s, first = false) {
+export function runningHeadPrefixLen(s, first = false, mnHead = false) {
   let n = 0;
+  if (first) { n = revisorHeadPrefixLen(s, mnHead); s = s.slice(n); }   // (b) R-b3: the Revisor head glued onto the first kept line, before the U.S. Reports forms
   if (!first) {
     for (let k = 0; k < 2; k++) { const m = US_HEAD_PREFIX_PERIOD.exec(s.slice(n)); if (!m) break; n += m[0].length; }
     return n;
   }
+  const base = n; n = 0;
   for (let k = 0; k < 3; k++) { const m = US_CASE_NAME_PREFIX.exec(s.slice(n)) || US_HEAD_PREFIX.exec(s.slice(n)); if (!m) break; n += m[0].length; }
-  return n;
+  return base + n;
 }
-export function stripRunningHead(s, first = false) { s = String(s == null ? '' : s); return s.slice(runningHeadPrefixLen(s, first)); }
+export function stripRunningHead(s, first = false, mnHead = false) { s = String(s == null ? '' : s); return s.slice(runningHeadPrefixLen(s, first, mnHead)); }
 /** A line's text as the head tests read it: the line-number column and the
  *  emphasis stripped, whitespace runs collapsed, trimmed (never folded). */
 function headText(raw) {
-  return stripEmphasis(String(raw == null ? '' : raw).replace(LINE_PREFIX, '')).replace(/\s+/g, ' ').trim();
+  return stripEmphasis(String(raw == null ? '' : raw).replace(FORMAT_CHARS, '').replace(LINE_PREFIX, '')).replace(/\s+/g, ' ').trim();   // (b): the invisibles dropped at entry, as the checker's kept_page_lines does
 }
 /** P81 (3): the odd-page case-name head — under 90 characters, upper case
  *  but for 'v.', 'et al.', 'Ex parte', 'In re', 'ex rel.', carrying ' v. '
@@ -343,6 +405,24 @@ export function chromeLines(rawLines) {
   const stripped = lines.map(headText);
   const drop = new Set();
   for (let i = 0; i < lines.length; i++) if (stripped[i] && isPageChrome(lines[i])) drop.add(i);
+  // (b) R-b2: the Revisor companions as neighbours — the footer's tail after FOOT_1; a bare section number or 'CIVIL
+  // PROCEDURE' beside a head line, one bare folio between them allowed; any position, chrome or kept neighbours alike
+  const neighbour = (i, step, skipFolio) => {
+    for (let j = i + step; j >= 0 && j < lines.length; j += step) {
+      if (!stripped[j]) continue;
+      if (skipFolio && MN_FOLIO.test(stripped[j])) { skipFolio = false; continue; }
+      return j;
+    }
+    return null;
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const s = stripped[i];
+    if (!s) continue;
+    if (MN_FOOT_1.test(s)) { const j = neighbour(i, 1, false); if (j !== null && MN_FOOT_1_TAIL.test(stripped[j])) drop.add(j); }
+    // v2 bound (3): a bare section number only beside a MINNESOTA STATUTES head, 'CIVIL PROCEDURE' only beside MINNESOTA COURT RULES — the Rules' contents and appendix pages set a bare rule number ('10.04', '543.10') beside the head at the raw tail
+    const nb = MN_STAT_HEAD.test(s) ? MN_SEC_RE : MN_RULES_HEAD.test(s) ? MN_CIV_RE : null;
+    if (nb) for (const step of [-1, 1]) { const j = neighbour(i, step, true); if (j !== null && nb.test(stripped[j])) drop.add(j); }
+  }
   let keptSeen = 0;
   for (let i = 0; i < lines.length; i++) {
     if (drop.has(i)) continue;
@@ -365,6 +445,7 @@ export function isPageChrome(text) {
   const raw = String(text == null ? '' : text);
   if (f === '' || STAMP_LINE.test(f) || STAMP_FRAG.test(f) || APPEAL_LINE.test(f) || APPEAL_FRAG.test(f) || LINE_NUMBER.test(f) || PAGE_MARKER.test(f) || RULE_LINE.test(raw) || HTML_COMMENT_LINE.test(raw)) return true;
   const head = headText(raw);                                        // P81 (1): a U.S. Reports running head, whole line
+  if (mnChromeLine(f) || mnChromeLine(head)) return true;             // (b) R-b1′: the Revisor families' whole-line runs (the mirror's '### MINNESOTA STATUTES 2025' through the heading-mark strip)
   return US_HEAD_LINE.test(head) || US_HEAD_MISC.test(head);
 }
 /** The page-side text of an item: chrome lines → '', a line-number prefix
@@ -768,6 +849,7 @@ export function foldPages(a, b, loose = false) {
  *  rawOff, len} | null (a separator) map the fold carries forward. */
 function rawOfPage(items, loose, indexOffset = 0) {
   const chrome = loose ? new Set() : chromeItems(items);
+  const mnHead = !loose && pageLines(items, null).some(l => isStatutesHead(l.raw));   // (b) R-b3's page fact (v2 bound (2)): a MINNESOTA STATUTES head line on this page
   let raw = '';
   const ownerOfRaw = [];                // raw index → {index, rawOff, len} | null
   for (const line of readingOrder(pageLines(items, chrome))) {
@@ -780,7 +862,7 @@ function rawOfPage(items, loose, indexOffset = 0) {
     parts.forEach((p, i) => {
       let piece = p.str, base = 0;
       if (!loose && i === 0) { const m = LINE_PREFIX.exec(p.str); if (m) { base = m[0].length; piece = p.str.slice(base); } }
-      if (!loose && i === 0) { const r = runningHeadPrefixLen(piece, raw === ''); if (r) { base += r; piece = piece.slice(r); } }   // P81 (2): the mirror's glued head — P81a: on the page's FIRST kept line (nothing contributed yet) each form to its own end
+      if (!loose && i === 0) { const r = runningHeadPrefixLen(piece, raw === '', mnHead); if (r) { base += r; piece = piece.slice(r); } }   // P81 (2): the mirror's glued head — P81a: on the page's FIRST kept line (nothing contributed yet) each form to its own end
       if (raw) {
         const sep = i === 0 ? '\n' : p.sep;
         if (sep) { raw += sep; ownerOfRaw.push(null); }
@@ -1349,11 +1431,12 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  *  sits at the head's LAST position on the page (nearest the break).
  *  → {start, head:{text, items}, tail:{text, items}} with `items` the
  *  per-item ranges on THIS page and on the NEXT page, or null. */
-export function locateWrapped(itemsA, itemsB, quote) { return wrappedOn(itemsA, itemsB, foldQuery(quote), false); }
+export function locateWrapped(itemsA, itemsB, quote) { return wrappedOn(itemsA, itemsB, foldQuery(quote), false, true); }
 /** The split rule over a folded query, on the pages as they are or (P63)
  *  on their hyphenless sides with every position mapped back. */
 const PIN_MARKER_HEAD = /^(?:¶¶?|§§?)$/;                   // P70: a wrap head that is only the pin marker
-function wrappedOn(itemsA, itemsB, q, retry) {
+const WRAP_REMAINDER = /^(?: ?(?:\d{1,3}|[ivxlcdm]{1,7})(?= |$))*(?: ?\d{1,3} .*)?$/is;   // P99: what may follow a wrap head on its page — the checker's regex verbatim
+function wrappedOn(itemsA, itemsB, q, retry, strict = true) {
   if (!q || q.length < 4 || !itemsB || !itemsB.length) return null;
   const page = side(foldItems(itemsA), retry), next = side(foldItems(itemsB), retry);
   if (!page.text || !next.text) return null;
@@ -1372,9 +1455,15 @@ function wrappedOn(itemsA, itemsB, q, retry) {
     const heads = [head];
     if (head.endsWith('-') && head.length > 3) heads.push(head.slice(0, -1));
     for (const h of heads) {
-      const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(h)}(?=(?:\\p{Nd}+)?(?: |$))`, 'gu');
+      // P99w (studio-spec 7d866ecf's P99, measured 2026-10-14 on d735a78c's DDC-013 172/173: the head '28 U.S.C.' found
+      // MID-PAGE before more body text added a phantom second hit on the mirror while the citation stood whole on the
+      // text layer): THE HEAD MUST END THE PAGE'S BODY — after its occurrence, to the page's end, only page chrome the
+      // fold left (a bare one-to-three-digit number: a glued pleading line number or folio; a roman folio) and/or the
+      // page's FOOTNOTE BLOCK (a one-to-three-digit footnote number, a space, the notes); the occurrence taken is the
+      // LAST that satisfies this; a head followed by more body text is not a wrap, whatever the next page begins with.
+      const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRe(h)}`, 'gu');
       let last = null;
-      for (const m of page.text.matchAll(re)) last = m.index;
+      for (const m of page.text.matchAll(re)) if (strict ? WRAP_REMAINDER.test(page.text.slice(m.index + h.length)) : /^(?:\p{Nd}+)?(?: |$)/u.test(page.text.slice(m.index + h.length))) last = m.index;
       if (last === null) continue;
       const hs = spanOn(page, last, h.length), ts = spanOn(next, 0, tail.length);
       return { start: hs.from, head: { text: h, items: hs.items }, tail: { text: tail, items: ts.items } };
@@ -1405,7 +1494,7 @@ export function pageOccurrences(itemsA, itemsB, quote) {
       if (!sp.items.length || sp.items[0].index >= a.length) break;   // begins on the next page: not this page's
       hits.push({ start: sp.from, wrapped: false, items: sp.items });
     }
-    const w = b.length ? wrappedOn(a, b, q, retry) : null;
+    const w = b.length ? wrappedOn(a, b, q, retry, true) : null;
     if (w && !hits.some(h => h.start === w.start)) {
       hits.push({ start: w.start, wrapped: true, head: w.head, tail: w.tail });
       hits.sort((x, y) => x.start - y.start);
@@ -1607,7 +1696,7 @@ function locateFragmentWrapped(folded, list, span, q, cursor, limit) {
     const A = list[k], B = list[k + 1];
     for (const hyph of [false, true]) {
       if (hyph && hyphenless(q) === q) continue;
-      const w = wrappedOn(A, B, hyph ? hyphenless(q) : q, hyph);
+      const w = wrappedOn(A, B, hyph ? hyphenless(q) : q, hyph, false);   // MEASURE: the passage path under the old rule
       if (!w || !w.head.items.length || !w.tail.items.length) continue;
       const h0 = w.head.items[0], t1 = w.tail.items[w.tail.items.length - 1];
       const from = joinedIndexOf(folded, folded.pages[k].first + h0.index, h0.from);
@@ -1832,13 +1921,23 @@ export function targetPages(t, doc) {
   const pdfPage = stamped == null ? (viaMap ? t.target_pdf_page : 1) : (t.target_pdf_page || pdfPageFor(stamped, doc.offset, doc.pagemap));
   const endStamped = rowPage(t.target_page_end);
   const begins = stamped != null && pdfPage && pagemapBasis(doc) === 'begins';   // P96: a reprint's folio spans [begins(f), begins(f+1)]
+  // P98w (studio-spec 7d866ecf's section-span spec, admin 69183d38's word 2026-10-13): ONE derivation, the checker's
+  // section_span, serves the SECTION's end on a row whose target_page_end is blank — `target_pdf_page_end` and
+  // `target_pin_page.pdf_end` (the next key's page, INCLUSIVE; a range or list's tail; the subsection floor on a
+  // page-pinned row whose page lies inside its pin's section; a hand-filled end never moves) — and the viewer READS it.
+  // sectionSpanEnd stays as the FALLBACK when no end is served (a bundle exported before P98 carries null), so nothing
+  // narrows at any step; retired at a later sync once both sites' bundles carry the served end.
+  const servedEnd = isPage(+t.target_pdf_page_end) ? +t.target_pdf_page_end : (pp0 && isPage(+pp0.pdf_end) ? +pp0.pdf_end : null);
   const pdfEnd = begins
-    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
+    ? beginsEnd(doc, endStamped == null ? stamped : endStamped, endStamped == null ? pdfPage : (servedEnd || pdfPageFor(endStamped, doc.offset, doc.pagemap) || pdfPage))
     : endStamped == null
-    ? (viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
-    : (t.target_pdf_page_end || pdfPageFor(endStamped, doc.offset, doc.pagemap));
+    ? (servedEnd && pdfPage && servedEnd >= pdfPage ? servedEnd
+       : viaMap && pp0 && (pp0.by === 'section' || pp0.by === 'range head') ? sectionSpanEnd(doc.pagemap, pdfPage) : pdfPage)
+    : (servedEnd || pdfPageFor(endStamped, doc.offset, doc.pagemap));
+  // THE MARKED SET is the whole span (the owner's visible change under P98w: the right pane's page markers widen from the
+  // section's head to the section on a map-resolved row, as a hand-filled end always marked its pages)
   const marked = [];
-  if (pdfPage && pdfEnd) for (let p = pdfPage; p <= (viaMap ? pdfPage : pdfEnd); p++) marked.push(p);
+  if (pdfPage && pdfEnd) for (let p = pdfPage; p <= Math.max(pdfPage, pdfEnd); p++) marked.push(p);
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
@@ -2127,7 +2226,7 @@ export function saysFor(u, k, t, doc, resolved = null) {
   const quoteTok = !willLocate ? '' : r.passage === undefined ? ' · a quote to box' : r.passage ? ' · quote boxed' : '';
   const suffix = quoteTok + (u.targets.length > 1 ? ` · target ${k} of ${u.targets.length}` : '') + (t.status === 'mapped' ? ' · mapped, not yet read at the target' : '');
   let kind;
-  if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${suffix}`); unfound(); }
+  if (viaMap) { kind = 'ok'; say(`${head} — ${how}, PDF page ${pdfPage}${pdfEnd && pdfEnd !== pdfPage ? `–${pdfEnd}` : ''}${suffix}`); unfound(); }   // P98w: the span it opened, as the stamped line prints its own
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule') && isSectionMap(doc.pagemap)) { kind = 'bad'; say(`${head} — the pin${pin ? '' : ' (none given)'} locates nothing in ${(doc.pagemap && doc.pagemap.file) || 'the title'}'s section map (the checker warns on this row); opened at page 1 and saying so${suffix}`); }
   else if (stamped == null && (t.kind === 'statute' || t.kind === 'rule')) { kind = 'docket'; say(`${head} — opened at page 1; the pin${pin ? '' : ' (none given)'} is the locator against the pamphlet (no page in the row)${suffix}`); }
   // a target cited without a page: the words by what it is (f28bb754's read of Adler v. Loyd on the site, 2026-10-01 — a case cited whole is not a docket reference)

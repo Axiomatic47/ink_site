@@ -150,9 +150,11 @@ export function OpenLetterBody({ c }: { c: OpenLetterView }) {
     post({ event: 'command', func: 'playVideo', args: [] });
   }, [id, playerSrc, post, showTurn]);
 
-  // a deep link: a turn (#turn-12) or a second (#t=169) marks the turn and arms the play button; #enclosure-a picks the tab
+  // a deep link: a turn (#turn-12) or a second (#t=169) marks the turn and arms the play button; #enclosure-a picks the tab;
+  // #review / #reading ask a mode, kept as the toggle's choice is (the home page links the letter's review mode)
   useEffect(() => {
     const h = window.location.hash;
+    if (h === '#review' || h === '#reading') { const m = h.slice(1) as Mode; setTimeout(() => { setOverride(m); writeMode(m); }, 0); return; }
     if (h === '#enclosure-a') { setTimeout(() => setDoc(hasEnclosurePdf ? 'enclosure' : 'text'), 0); return; }
     if (h === '#enclosure-b') { setTimeout(() => setDoc(hasEnclosureBPdf ? 'enclosure_b' : 'text'), 0); return; }
     const m = h.match(/^#turn-(\d+)$/) || h.match(/^#t=(\d+)$/);
