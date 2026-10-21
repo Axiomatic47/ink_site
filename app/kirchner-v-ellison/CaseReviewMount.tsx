@@ -11,13 +11,19 @@
 // the window's per-case tree store; the page URL carries no token, so the deep link keeps the Studio's exact form,
 // ?casereview=doc=<id>&cite=<page>/<n>&q=… — gives the page a default document when the URL names none (the one skin
 // decision the Studio leaves to its host; src/lib/case-review.server.ts), and calls the mount on #casereviewRoot.
+// R3 (the one skin, 2026-10-21; the owner's § 6): the window draws its own head row — the way back, the caption, the docket
+// line, the mode, the registry stamp — from the words the host hands it in the mount option `head`. The host's own header
+// is gone; the host supplies a TOKEN SHEET (./casereview.css) and links the window's vendored stylesheet.
 import { useEffect } from 'react';
 
 const WINDOW_URL = '/casereview/vendor/casereview.js';
 
-type CaseReviewModule = { mountCaseReview: (opts?: { root?: string }) => void };
+/** the head row's words, as the window's core headWords() reads them: caption required */
+export type CaseReviewHead = { caption: string; line?: string | null; mode?: string | null; version?: string | null; back?: { href: string; label: string } | null };
 
-export function CaseReviewMount({ root, defaultDoc }: { root: string; defaultDoc: string | null }) {
+type CaseReviewModule = { mountCaseReview: (opts?: { root?: string; head?: CaseReviewHead | null }) => void };
+
+export function CaseReviewMount({ root, defaultDoc, head = null }: { root: string; defaultDoc: string | null; head?: CaseReviewHead | null }) {
   useEffect(() => {
     let cancelled = false;
     document.body.dataset.mode = 'casereview';
@@ -31,12 +37,12 @@ export function CaseReviewMount({ root, defaultDoc }: { root: string; defaultDoc
     }
     const url = `${location.origin}${WINDOW_URL}`;
     import(/* webpackIgnore: true */ /* turbopackIgnore: true */ url)
-      .then((mod: CaseReviewModule) => { if (!cancelled) mod.mountCaseReview({ root }); })
+      .then((mod: CaseReviewModule) => { if (!cancelled) mod.mountCaseReview({ root, head }); })
       .catch((e: unknown) => {
         const el = document.getElementById('casereviewRoot');
         if (el) el.textContent = `The review window could not load — ${e instanceof Error ? e.message : String(e)}`;
       });
     return () => { cancelled = true; delete document.body.dataset.mode; };
-  }, [root, defaultDoc]);
+  }, [root, defaultDoc, head]);
   return <div id="casereviewRoot" aria-label="Case review" />;
 }

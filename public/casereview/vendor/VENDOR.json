@@ -2,22 +2,26 @@
   "what": "The Studio's Case Review WINDOW, vendored byte for byte — the window itself (casereview.js), its pure core (casereview_core.js), its PDF pane (casereview_pdf.js) and the pdf.js build they were tuned on. The site runs them as native ES modules from public/ — never bundled, never edited here; the three Studio modules the window imports (base.js, ../filing/ctxmenu.js, reviews.js) are the site's SHIMS beside it, the only host code. A rule change lands in the Studio first (studio-spec + frontend review) and syncs out with scripts/sync-casereview.mjs; `npm run casereview:check` refuses a build whose files drift from this record or from the Studio fixture's pdf.js pin.",
   "source": {
     "repo": "git@github.com:Axiomatic47/ourstudio.git",
-    "commit": "6f6dd67dafbf8611ca4ca157feaa546ea8675135",
-    "files_last_changed": "6f6dd67dafbf8611ca4ca157feaa546ea8675135",
-    "vendored": "2026-10-15T00:13:39.995Z"
+    "commit": "70e661ae2425015d6c596974e031e6b4dc52eaf5",
+    "files_last_changed": "70e661ae2425015d6c596974e031e6b4dc52eaf5",
+    "vendored": "2026-10-21T20:54:36.565Z"
   },
   "files": {
     "casereview/vendor/casereview.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview.js",
-      "sha256": "a126ad7303e164f9b39b84afddc0cdb9d8e604a018c8877be22717255b60a2bb"
+      "sha256": "15d9567f233abc22bcf9d344eac69714eac71106b20c106b2d7dad01f972ad9b"
     },
     "casereview/vendor/casereview_core.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview_core.js",
-      "sha256": "e5833d0965d732aede909164ea11b5fb774f4b96c096e30e62ad6ad616e3e238"
+      "sha256": "d0d96811aa20abdefdf26a511b358ad6050fef7d7b3f72801e0044df975bbea9"
     },
     "casereview/vendor/casereview_pdf.js": {
       "from": "ourstudio_frontend/ui/js/deck/casereview_pdf.js",
       "sha256": "61cfee2f5721c73f5ff46722c44495ca4cd707ee29485f3333da9980b8423ac4"
+    },
+    "casereview/vendor/casereview.css": {
+      "from": "ourstudio_frontend/ui/css/casereview.css",
+      "sha256": "da8a2bab1169406b8af8655ac519ae23a33c620102bf93b578977911c0823eca"
     },
     "lib/pdfjs/pdf.min.mjs": {
       "from": "ourstudio_frontend/ui/lib/pdfjs/pdf.min.mjs",
