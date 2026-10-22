@@ -48,6 +48,13 @@
 // checker's passage texts (the window boxes passages from the PDF's own text layer — the field is 60 % of the bytes
 // and read by nothing on the client), filesystem paths, mirror paths, shelf aliases. The checker's structured answers
 // (violations, warnings, coverage, stale_render, k, unit_id, pdf pages, section-map resolutions) ride unchanged.
+//
+// A DOCUMENT ROW'S KEYS ARE KEPT BY NAME (DOC_KEEP below; a key the Studio adds reaches a site only when named here), a LINK
+// ROW'S by exception (ROW_DROP). `has_links` (the review-mode standard § 3, the nav word, app d2b39b36 2026-10-22: the
+// Studio's docs answer says per row whether a links table exists, so the window's nav lists the reviewed documents before the
+// counts arrive) is SET HERE, MASKED BY THE HOST: true only when the document's table is SERVED on this site — the export's
+// word (or the counts map, when an older export carries none) AND the id in the served set — so a table withheld under the
+// host policy or a held document reads false and the window never lists a reviewed group it cannot open here.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -135,9 +142,10 @@ const FILER_COPY = /^none \(owner as-filed copy/;
 // ---------------------------------------------------------------- the public shapes
 const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'publish_note', 'pagemap_basis',
   'embed', 'duration']   // the video row (studio-spec 2026-10-09 § 5.5): the embed {provider, id} and the recording's seconds;
-function publicDoc(d, pub, extract = null) {
+function publicDoc(d, pub, extract = null, hasLinksHere = false) {
   const o = {};
   for (const k of DOC_KEEP) if (d[k] !== undefined) o[k] = d[k];
+  o.has_links = !!hasLinksHere;   // the host's word (above): the table exists AND is served here
   if (d.pagemap_error) o.pagemap = null;   // the loader could not read the map: the window falls to the offset, as the Studio does
   if (FILER_COPY.test(String(d.stamp || ''))) { o.filer_copy = true; o.title = `${o.title || ''} · filer's copy, not the court's stamped copy`.trim(); }
   o.publish = pub.mode;
@@ -254,6 +262,12 @@ function checkOne(c) {
   if (missing) console.error(`  ${missing} served document(s) have no file under public/ — the hosting decision (the files are gitignored until the owner's word)`);
   bad += missing + wrong;
   for (const id of Object.keys(docs.links || {})) if (!fs.existsSync(path.join(LINKS, `${id}.json`))) { console.error(`  missing  links/${id}.json`); bad++; }
+  // has_links agrees with the tables served here (a bundle imported before the key carries none: nothing to check)
+  for (const d of docs.docs) {
+    if (d.has_links === undefined) continue;
+    const servedTable = (docs.links || {})[d.id] != null;
+    if (!!d.has_links !== servedTable) { console.error(`  has_links  ${d.id} says ${JSON.stringify(d.has_links)} but its table is ${servedTable ? '' : 'not '}served here`); bad++; }
+  }
   for (const f of ['_redirects', 'serve.json']) if (!fs.existsSync(path.join(PUBLIC, f))) { console.error(`  missing  public/${f} (the API rewrites)`); bad++; }
   // the stamp names the vendored Studio commit it was imported under; a sync after the import leaves it stale — a warning, the bundle itself is unaffected
   try {
@@ -464,6 +478,10 @@ async function run() {
   // 11:03 CDT: Kirchner I's appeal group off kirchner.ink — documents, files and tables; agreed by name 55339aa7 ⇄ f28bb754).
   const servedIds = new Set(decided.filter(({ pub }) => SERVED(pub.mode)).map(({ d }) => d.id));
   const tablesWithheld = Object.keys(tables).filter((id) => !servedIds.has(id)).sort();
+  // has_links on the served row: the export's word per row (the Studio's docs answer since d2b39b36), else the counts map an
+  // older export carries; masked to the tables this host serves
+  const hasLinksHere = (d) => servedIds.has(d.id) && (d.has_links !== undefined && d.has_links !== null ? !!d.has_links : (docs.links || {})[d.id] != null);
+  const maskedLinks = decided.filter(({ d }) => (d.has_links || (docs.links || {})[d.id] != null) && !hasLinksHere(d)).length;
 
   // docs.json — the window's /docs answer (case_root is the tree's localStorage key on the client: the case slug, not a path)
   const outDocs = {
@@ -472,10 +490,11 @@ async function run() {
       // the window's defaults ride the registry object by name: nav.hide_before (the hide-before threshold; "nothing hidden until
       // set" when absent — the viewer's rule of 2026-10-09; a per-case number, never the window's)
       nav: docs.registry && docs.registry.nav },
-    docs: decided.map(({ d, pub }) => publicDoc(d, pub, pub.mode === 'pages' ? extractOf(d) : null)),
+    docs: decided.map(({ d, pub }) => publicDoc(d, pub, pub.mode === 'pages' ? extractOf(d) : null, hasLinksHere(d))),
     links: Object.fromEntries(Object.entries(docs.links || {}).filter(([id]) => servedIds.has(id))),
   };
   fs.writeFileSync(path.join(DATA, 'docs.json'), JSON.stringify(outDocs));
+  console.log(`has_links: ${outDocs.docs.filter((d) => d.has_links).length} row(s) say a table is served here${maskedLinks ? `; ${maskedLinks} with a table in the lane read false — not served on this host` : ''}`);
 
   // links/<id>.json — the window's /links answer per table
   let rows = 0, droppedAnswers = 0;
