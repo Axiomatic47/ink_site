@@ -3,6 +3,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/api/casereview/cases",
+      "destination": "/casereview/hosts.json"
+    },
+    {
       "source": "/api/casereview/docs",
       "destination": "/casereview/kirchner-v-ellison/data/docs.json"
     },

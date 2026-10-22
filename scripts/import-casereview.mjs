@@ -9,9 +9,13 @@
 //   /api/casereview/file/<id>    → /uploads/<case>/<id>.pdf              the PDF, sha-gated against the registry
 //
 //   node scripts/import-casereview.mjs                        # from the running Studio (http://127.0.0.1:8765), work_station
-//   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) once it lands
+//   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) — REQUIRED for a lane with
+//                                                            #   `pages` rows: the extracts are the export's (the review-mode standard § 2c)
 //   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
+//   node scripts/import-casereview.mjs --hosts                # refresh public/casereview/hosts.json (THE HOST TABLE, the review-mode
+//                                                            #   standard R4, 2026-10-21) from every bundle on disk, and the /api/casereview/cases
+//                                                            #   rewrite in _redirects + serve.json — no import; idempotent
 //   node scripts/import-casereview.mjs --case <slug> …        # a SECOND case on the same host (2026-10-10, the MN lane): its bundle under
 //                                                             # public/casereview/<slug>/data/, its API rules keyed on the window's ?root=<slug>
 //   --uploads-dir <dir under public/> --names id|docket --name-map <json>   # a host's own PDF layout (lawsofexistence.com)
@@ -19,12 +23,25 @@
 //   node scripts/import-casereview.mjs --dev-serve-filings    # DEVELOPMENT ONLY — see PUBLICATION below
 //
 // PUBLICATION (studio-spec fbf555d9's R3, 2026-10-01; the owner's content gates of 2026-09-30): a per-row `publish`
-// field in docs.json — serve | link | hold, with publish_url for link — decides what the site carries. FAIL CLOSED on
+// field in docs.json — serve | link | hold | pages, with publish_url for link — decides what the site carries. FAIL CLOSED on
 // every kind, the filings included: a row without the field is `hold`. The Studio ignores the field; the export (and,
 // until it lands, this importer) applies it: link → path null + url, hold → path null, the row KEPT and marked so a
 // citation to it still says what it points at. The admins write the field; the owner decides the case law and the
 // hosting size. `--dev-serve-filings` treats the Filings group as `serve` for a LOCAL proof of the module and is
 // refused under CI/NETLIFY; a bundle it wrote is stamped and `--check` refuses to deploy it.
+//
+// THE `pages` WORD (the review-mode standard § 2c; D6, the owner's yes of 2026-10-21; the export half app 6312f0da + 8532906e,
+// this import half the sites'): a `pages` row serves THE CITED PAGES of its file and nothing else. The export cuts them with
+// qpdf into extracts/<safe id>.pdf in the bundle and makes the row describe the extract AS A DOCUMENT (path, pages = the leaf
+// count, offset null, an exact-key pagemap own page → extract leaf, pagemap_basis leaf, extract_of {the whole file's sha256,
+// source_pages, leaves}); files.json names the extract with `extract: true` and ITS OWN sha256; the link rows targeting it
+// already cite extract leaves. Here a `pages` row is served like a `serve` row with two differences: the file is copied FROM
+// THE BUNDLE (a serve file comes from the case root by the registry's path), and the sha gate reads the extract's own sha from
+// files.json — the export's row still carries the registry's whole-file sha, so the served row here carries the extract's
+// (the document the window opens and --check gates) with the whole file's under extract_of. A `pages` row needs the checker's
+// export: the running Studio's API serves whole files and cuts no extract, so an API import with a `pages` row is refused in
+// words. The stamp and the host row carry the publish counts (serve/link/hold/pages) and the extracts' count and bytes; the
+// window needs no change (core.publishedAway opens any row with a path).
 //
 // What the bundle does not carry (the author's voice everywhere the reader reads; record and links only): the lane's
 // seat fields (`by`), the drafters' and admins' working notes (`note`, meta.notes, the registry's note_v0_* keys), the
@@ -51,6 +68,7 @@ const PUBLIC = path.resolve(opt('--out', path.join(ROOT, 'public')));   // --out
 // the slug too, so the window's per-case tree store (ourstudio_cr_tree:<case_root>) is distinct per case on one origin.
 const DEFAULT_CASE = 'kirchner-v-johnson';
 const CASE = opt('--case', DEFAULT_CASE);
+const HOSTS = flag('--hosts');   // the host-table refresh alone (hosts.json + the /cases rewrite), from the bundles on disk
 const KEYED = CASE !== DEFAULT_CASE;
 const FROM = opt('--from', 'http://127.0.0.1:8765');
 const PROJECT_ROOT = opt('--root', '/Users/everest/Git/work_station');
@@ -92,7 +110,8 @@ function hostName(d) {
 }
 
 // ---------------------------------------------------------------- the publication decision
-const MODES = new Set(['serve', 'link', 'hold']);
+const MODES = new Set(['serve', 'link', 'hold', 'pages']);
+const SERVED = (mode) => mode === 'serve' || mode === 'pages';   // the two words that put a file on this host
 // HOST POLICY (lawsofexistence.com, 2026-10-01): `--serve-groups Filings[,Rules…]` — the registry's `serve` is the lane's
 // word on what MAY be published; which groups a HOST actually hosts is the owner's hosting decision per site (the
 // non-filing serve set is 537 documents, 735 MB). A serve row outside the listed groups is not hosted here: `link` when
@@ -101,7 +120,7 @@ const MODES = new Set(['serve', 'link', 'hold']);
 const SERVE_GROUPS = (() => { const v = opt('--serve-groups', null); return v ? new Set(v.split(',').map(x => x.trim()).filter(Boolean)) : null; })();
 function publishOf(doc) {
   const p = doc.publish;
-  if (p === 'serve' && SERVE_GROUPS && !SERVE_GROUPS.has(doc.group)) {
+  if (SERVED(p) && SERVE_GROUPS && !SERVE_GROUPS.has(doc.group)) {
     const url = /^https?:\/\//.test(String(doc.publish_url || '')) ? doc.publish_url : null;
     // the host's reason in the host's words, shown by the window on the held document (studio-spec 7d866ecf, 2026-10-10:
     // `publish_note` beside `publish`; the registry may carry its own on a document it holds, the host's wins for a held group)
@@ -109,14 +128,14 @@ function publishOf(doc) {
   }
   if (MODES.has(p)) return { mode: p, url: p === 'link' ? (doc.publish_url || null) : null, by: 'the registry' };
   if (DEV && doc.group === 'Filings') return { mode: 'serve', url: null, by: 'DEV OVERRIDE' };
-  return { mode: 'hold', url: null, by: p == null ? 'no publish field — fail closed' : `publish ${JSON.stringify(p)} is not serve|link|hold — fail closed` };
+  return { mode: 'hold', url: null, by: p == null ? 'no publish field — fail closed' : `publish ${JSON.stringify(p)} is not serve|link|hold|pages — fail closed` };
 }
 const FILER_COPY = /^none \(owner as-filed copy/;
 
 // ---------------------------------------------------------------- the public shapes
 const DOC_KEEP = ['id', 'label', 'title', 'kind', 'parent', 'ecf_no', 'attachment', 'filed', 'filer', 'pages', 'sha256', 'offset', 'pagemap', 'text_layer', 'group', 'inventory_page', 'ligature_drop', 'ligature_drop_density', 'publish_note', 'pagemap_basis',
   'embed', 'duration']   // the video row (studio-spec 2026-10-09 § 5.5): the embed {provider, id} and the recording's seconds;
-function publicDoc(d, pub) {
+function publicDoc(d, pub, extract = null) {
   const o = {};
   for (const k of DOC_KEEP) if (d[k] !== undefined) o[k] = d[k];
   if (d.pagemap_error) o.pagemap = null;   // the loader could not read the map: the window falls to the offset, as the Studio does
@@ -124,7 +143,13 @@ function publicDoc(d, pub) {
   o.publish = pub.mode;
   if (pub.note) o.publish_note = pub.note;   // the host policy's reason for a held group (a registry's own note rides DOC_KEEP)
   if (pub.mode === 'link') o.publish_url = pub.url;
-  o.path = pub.mode === 'serve' ? `${UPLOADS_URL}/${hostName(d)}` : null;
+  o.path = SERVED(pub.mode) ? `${UPLOADS_URL}/${hostName(d)}` : null;
+  if (pub.mode === 'pages' && extract) {
+    // the served row describes the EXTRACT as a document: its own sha (what the window opens, what --check gates), the whole
+    // file's under extract_of — the registry's path dropped, a filesystem path the bundle does not carry
+    o.sha256 = extract.sha256;
+    o.extract_of = { sha256: extract.extract_of.sha256, source_pages: extract.extract_of.source_pages, leaves: extract.extract_of.leaves };
+  }
   return o;
 }
 const ROW_DROP = new Set(['by', 'note', 'passage']);
@@ -180,10 +205,11 @@ function fromExport(dir) {
 // is read when its stamp is present and the check fails only when no bundle of ANY case exists (agreed by name 55339aa7 ⇄
 // f28bb754, 2026-10-10); `--check --case <slug>` reads that one bundle and requires it.
 function check() {
-  if (argv.includes('--case')) { checkOne(CASE); return; }
+  if (argv.includes('--case')) { checkOne(CASE); if (checkHosts([CASE])) fail('the host table is behind the bundle'); return; }
   const present = bundlesPresent();
   if (!present.length) fail(`no bundle: public/${dataRel(DEFAULT_CASE)}/_IMPORT.json is missing and no public/casereview/<slug>/data/_IMPORT.json is present — run the importer`);
   for (const c of present) checkOne(c);
+  if (checkHosts(present)) fail('the host table is behind the bundles');
 }
 // the bundles on this host: the default case when its stamp is present, then every keyed case with a stamp
 function bundlesPresent() {
@@ -209,13 +235,21 @@ function checkOne(c) {
     if (deploying) { console.error(`  REFUSED  ${line}`); bad++; } else console.warn(`  WARNING  ${line}; rerun the importer without the flag before committing the bundle`);
   }
   const docs = JSON.parse(fs.readFileSync(path.join(DATA, 'docs.json'), 'utf8'));
-  let served = 0, missing = 0, wrong = 0;
+  let served = 0, missing = 0, wrong = 0, extracts = 0, extractBytes = 0;
   for (const d of docs.docs) {
-    if (d.publish !== 'serve') continue;
+    if (!(d.publish === 'serve' || d.publish === 'pages')) continue;
     served++;
+    if (d.publish === 'pages') {
+      // an EXTRACT (the pages word): the served row carries its own sha and extract_of {the whole file's sha, leaves}; a row
+      // without them, or whose page count is not its leaf count, is not the export's
+      extracts++;
+      const x = d.extract_of;
+      if (!x || !x.sha256 || !Array.isArray(x.leaves) || d.pages !== x.leaves.length) { wrong++; console.error(`  extract  ${d.id} says pages but carries no extract_of {sha256, leaves} matching its ${d.pages} page(s)`); continue; }
+    }
     const f = path.join(PUBLIC, d.path.replace(/^\//, ''));
     if (!fs.existsSync(f)) { missing++; if (missing <= 5) console.error(`  missing  ${d.path} (${d.id} is published as serve)`); continue; }
-    if (sha256(fs.readFileSync(f)) !== d.sha256) { wrong++; console.error(`  SHA      ${d.path} is not the registry's ${d.id} (${d.sha256.slice(0, 12)}…)`); }
+    if (sha256(fs.readFileSync(f)) !== d.sha256) { wrong++; console.error(`  SHA      ${d.path} is not ${d.publish === 'pages' ? 'the export\'s extract' : 'the registry\'s'} ${d.id} (${d.sha256.slice(0, 12)}…)`); continue; }
+    if (d.publish === 'pages') extractBytes += fs.statSync(f).size;
   }
   if (missing) console.error(`  ${missing} served document(s) have no file under public/ — the hosting decision (the files are gitignored until the owner's word)`);
   bad += missing + wrong;
@@ -230,7 +264,116 @@ function checkOne(c) {
   if (imp.tables_withheld && imp.tables_withheld.length) console.log(`  tables withheld with their documents not served here: ${imp.tables_withheld.join(', ')}`);
   for (const id of imp.tables_withheld || []) if (fs.existsSync(path.join(LINKS, `${id}.json`)) || (docs.links || {})[id]) { console.error(`  served   links/${id}.json or its docs.links entry is present for a document not served here`); bad++; }
   if (bad) fail(`${bad} problem(s) in the bundle${c === DEFAULT_CASE ? '' : ` of ${c}`}`);
-  console.log(`bundle ok${c === DEFAULT_CASE ? '' : ` (${c})`}: ${docs.docs.length} documents (${served} served, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
+  console.log(`bundle ok${c === DEFAULT_CASE ? '' : ` (${c})`}: ${docs.docs.length} documents (${served} served${extracts ? ` of which ${extracts} as extracts, ${(extractBytes / 1048576).toFixed(1)} MiB` : ''}, ${docs.docs.filter(d => d.publish === 'link').length} linked, ${docs.docs.filter(d => d.publish === 'hold').length} held), ${Object.keys(docs.links || {}).length} link tables; imported ${imp.imported} from ${imp.source}`);
+}
+
+// ---------------------------------------------------------------- the host table (hosts.json)
+// public/casereview/hosts.json — THE HOST TABLE as data (the review-mode standard R4, studio-spec 699a9f2a's frame and
+// the owner's § 6, 2026-10-21): the EXACT shape of the Studio's GET /api/casereview/cases answer — {project_root, cases:
+// [{name, case_root, case, version, current}]} as api/deck/casereview.py lane_cases() writes it — with the site's fields
+// added per row and nothing renamed: root (null for the default bundle, else the slug), route, kind (case | lane),
+// composition (the constitutional composition hosting the window, or null → the LANE PAGE), caption/docket/court or
+// title, back, default_doc, imported. This importer UPSERTS the registry half of a row at every import (name, case_root,
+// case, version, built, current, root, imported) and never touches the site's hand-set words; `--hosts` refreshes every
+// row from the bundles on disk without importing. The same file is served at /api/casereview/cases by rewrite (the
+// marked block below and next.config.ts), so the window's head row and lane picker read one shape on both hosts.
+// A new lane is one JSON row and its bundle; the site has no host code per lane.
+const HOSTS_PATH = path.join(PUBLIC, 'casereview', 'hosts.json');
+const HOST_HAND_SET = ['route', 'kind', 'composition', 'caption', 'docket', 'court', 'title', 'back', 'default_doc'];
+const CASES_RULE = '/api/casereview/cases  /casereview/hosts.json  200';
+function readHosts() {
+  try { return JSON.parse(fs.readFileSync(HOSTS_PATH, 'utf8')); } catch { return null; }
+}
+function siteName() {
+  try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).name || 'site'; } catch { return 'site'; }
+}
+/** the registry half of a row, read from a bundle on disk (docs.json + _IMPORT.json) */
+function hostRowFromBundle(c) {
+  const dir = path.join(PUBLIC, dataRel(c));
+  const docs = JSON.parse(fs.readFileSync(path.join(dir, 'docs.json'), 'utf8'));
+  let imp = {}; try { imp = JSON.parse(fs.readFileSync(path.join(dir, '_IMPORT.json'), 'utf8')); } catch {}
+  const reg = docs.registry || {};
+  return {
+    name: c, case_root: c, case: reg.case ?? null, version: reg.version ?? null, built: reg.built ?? null,
+    current: c === DEFAULT_CASE, root: c === DEFAULT_CASE ? null : c,
+    imported: { at: imp.imported || null, documents: imp.documents ?? docs.docs?.length ?? null, tables: imp.tables ?? null, rows: imp.rows ?? null,
+                publication: imp.publication || null, extracts: imp.extracts ? { count: imp.extracts.count ?? null, bytes: imp.extracts.bytes ?? null } : null,
+                vendored_studio_commit: imp.vendored_studio_commit || null },
+  };
+}
+/** upsert the registry half of `row` into hosts.json, keeping the site's hand-set words; a new row gets route /<name> and a kind */
+function upsertHost(row) {
+  const prior = readHosts() || {};
+  const cases = Array.isArray(prior.cases) ? prior.cases.filter(r => r && r.name) : [];
+  const have = cases.find(r => r.name === row.name);
+  const hand = {};
+  for (const k of HOST_HAND_SET) if (have && have[k] !== undefined) hand[k] = have[k];
+  if (hand.route === undefined) hand.route = `/${row.name}`;
+  if (hand.kind === undefined) hand.kind = /\bv\.\s/.test(String(row.case || '')) ? 'case' : 'lane';
+  if (hand.composition === undefined) hand.composition = null;
+  const next = { ...row, ...hand };
+  const rows = [...cases.filter(r => r.name !== row.name), next].sort((a, b) => (a.root === null ? -1 : b.root === null ? 1 : a.name.localeCompare(b.name)));
+  const doc = {
+    $comment: 'THE HOST TABLE of the Case Review window on this site (the review-mode standard R4, 2026-10-21): the Studio\'s /api/casereview/cases shape with the site\'s fields per row. The importer writes name, case_root, case, version, built, current, root and imported at every import (or `--hosts` from the bundles on disk) and never touches route, kind, composition, caption, docket, court, title, back or default_doc — those are the site\'s words; set them here. A row with no bundle on disk hosts nothing. Served at /api/casereview/cases.',
+    project_root: prior.project_root || siteName(),
+    cases: rows,
+  };
+  fs.writeFileSync(HOSTS_PATH, JSON.stringify(doc, null, 2) + '\n');
+  return { created: !have, row: next };
+}
+/** the /api/casereview/cases rewrite: into the DEFAULT block of _redirects (bare, matches under any query) — or the sole keyed
+ *  block on a host with no default bundle — and into serve.json; idempotent */
+function ensureCasesRule() {
+  const out = [];
+  const rp = path.join(PUBLIC, '_redirects');
+  if (fs.existsSync(rp)) {
+    let txt = fs.readFileSync(rp, 'utf8');
+    if (!txt.includes(CASES_RULE)) {
+      const lines = txt.split('\n');
+      const defaultIdx = lines.findIndex(l => l.startsWith('# casereview BEGIN — '));
+      const keyedIdx = lines.findIndex(l => l.startsWith('# casereview BEGIN '));
+      const at = defaultIdx >= 0 ? defaultIdx : keyedIdx;
+      if (at >= 0) { lines.splice(at + 1, 0, CASES_RULE); txt = lines.join('\n'); fs.writeFileSync(rp, txt); out.push('_redirects'); }
+      else out.push('_redirects: no casereview block — run an import first');
+    }
+  }
+  const sp = path.join(PUBLIC, 'serve.json');
+  if (fs.existsSync(sp)) {
+    const j = JSON.parse(fs.readFileSync(sp, 'utf8'));
+    j.rewrites = Array.isArray(j.rewrites) ? j.rewrites : [];
+    if (!j.rewrites.some(r => r.source === '/api/casereview/cases')) {
+      j.rewrites.unshift({ source: '/api/casereview/cases', destination: '/casereview/hosts.json' });
+      fs.writeFileSync(sp, JSON.stringify(j, null, 2) + '\n'); out.push('serve.json');
+    }
+  }
+  return out;
+}
+function refreshHosts() {
+  const present = bundlesPresent();
+  if (!present.length) fail('no bundle on disk — nothing to put in hosts.json');
+  for (const c of present) {
+    const { created, row } = upsertHost(hostRowFromBundle(c));
+    console.log(`  ${created ? 'added  ' : 'updated'} ${c}: ${row.case || '(no case sentence)'} — registry ${row.version || '?'}, route ${row.route}, kind ${row.kind}${row.composition ? `, composition ${row.composition}` : ' (lane page)'}`);
+  }
+  const touched = ensureCasesRule();
+  console.log(`hosts.json: ${present.length} row(s) at public/casereview/hosts.json${touched.length ? `; the /api/casereview/cases rewrite added to ${touched.join(' + ')}` : '; the /api/casereview/cases rewrite already present'}`);
+}
+/** the check's half: every bundle on disk has a row; the /cases rewrite is in place */
+function checkHosts(present) {
+  let bad = 0;
+  const h = readHosts();
+  const rows = h && Array.isArray(h.cases) ? h.cases : [];
+  for (const c of present) {
+    const r = rows.find(x => x && x.name === c);
+    if (!r) { console.error(`  missing  hosts.json row for ${c} — run: node scripts/import-casereview.mjs --hosts`); bad++; continue; }
+    const wantRoot = c === DEFAULT_CASE ? null : c;
+    if ((r.root ?? null) !== wantRoot) { console.error(`  wrong    hosts.json ${c}: root ${JSON.stringify(r.root)}, the bundle's layout says ${JSON.stringify(wantRoot)}`); bad++; }
+    if (r.kind === 'case' && !(Array.isArray(r.caption) && r.caption.length === 2)) { console.error(`  wrong    hosts.json ${c}: kind case needs caption [a, b]`); bad++; }
+  }
+  const rp = path.join(PUBLIC, '_redirects');
+  if (fs.existsSync(rp) && !fs.readFileSync(rp, 'utf8').includes(CASES_RULE)) { console.error('  missing  the /api/casereview/cases rewrite in public/_redirects — run: node scripts/import-casereview.mjs --hosts'); bad++; }
+  if (!bad) console.log(`hosts ok: ${present.length} row(s) in hosts.json, the /api/casereview/cases rewrite in place`);
+  return bad;
 }
 
 // ---------------------------------------------------------------- the import
@@ -253,7 +396,7 @@ async function run() {
 
   // the registry's word per row
   const decided = docs.docs.map(d => ({ d, pub: publishOf(d) }));
-  const byMode = { serve: 0, link: 0, hold: 0 };
+  const byMode = { serve: 0, link: 0, hold: 0, pages: 0 };
   for (const x of decided) byMode[x.pub.mode]++;
   const overridden = decided.filter(x => x.pub.by === 'DEV OVERRIDE').length;
   const byRegistry = decided.filter(x => x.pub.by === 'the registry').length;
@@ -262,25 +405,38 @@ async function run() {
   if (DEV) console.warn(`DEVELOPMENT OVERRIDE: ${overridden} Filings rows without a publish field treated as serve — not the registry's word`);
   const hostHeld = byHost;
   if (SERVE_GROUPS) console.log(`host policy: only ${[...SERVE_GROUPS].join(', ')} hosted here; held: ${heldGroups.join(', ') || 'none'} — ${hostHeld} serve row(s) of other groups said, not fetched`);
-  console.log(`publication: serve ${byMode.serve} · link ${byMode.link} · hold ${byMode.hold}`);
+  console.log(`publication: serve ${byMode.serve} · link ${byMode.link} · hold ${byMode.hold} · pages ${byMode.pages}`);
+  // a `pages` row's extract is the export's: the manifest entry (files.json — extract: true, the extract's own sha, extract_of)
+  // and the file under extracts/; the running Studio's API carries neither, so a pages row from it is refused in words
+  const extractOf = (d) => { const x = src.files && src.files[d.id]; return x && x.extract === true && x.extract_of && x.sha256 ? x : null; };
+  const pagesRows = decided.filter(({ pub }) => pub.mode === 'pages');
+  if (pagesRows.length && !src.files) fail(`${pagesRows.length} row(s) say pages, but ${src.kind} carries no files.json — a pages row needs the checker's export (--from <dir>), which cuts the extracts`);
 
   fs.mkdirSync(LINKS, { recursive: true });
   fs.mkdirSync(UPLOADS, { recursive: true });
 
   // the served PDFs, sha-gated against the registry (the render binding: a file that is not the registry's is not served)
-  let copied = 0, kept = 0, refused = 0;
+  let copied = 0, kept = 0, refused = 0, extracts = 0, extractBytes = 0;
   const served = new Set();
   for (const { d, pub } of decided) {
-    if (pub.mode !== 'serve') continue;
-    if (!d.path) { console.error(`  no path  ${d.id} is serve but the registry has no path`); refused++; continue; }
-    const from = path.resolve(caseRoot, d.path);
+    if (!SERVED(pub.mode)) continue;
+    if (!d.path) { console.error(`  no path  ${d.id} is ${pub.mode} but the ${pub.mode === 'pages' ? 'export' : 'registry'} has no path`); refused++; continue; }
+    // a serve file from the case root by the registry's path, gated on the registry's sha; an EXTRACT from the bundle by the
+    // export's path, gated on the extract's own sha (files.json), and the extract must be of the registry's file
+    const x = pub.mode === 'pages' ? extractOf(d) : null;
+    if (pub.mode === 'pages' && !x) { console.error(`  no extract  ${d.id} says pages but files.json names no extract for it (extract: true, sha256, extract_of) — the export cut none`); refused++; continue; }
+    if (x && x.extract_of.sha256 !== d.sha256) { console.error(`  SHA      ${d.id}: the extract is of ${String(x.extract_of.sha256).slice(0, 12)}…, the registry's file is ${String(d.sha256).slice(0, 12)}… — not served`); refused++; continue; }
+    const want = x ? x.sha256 : d.sha256;
+    const from = x ? path.resolve(FROM, d.path) : path.resolve(caseRoot, d.path);
     const name = hostName(d);
     const to = path.join(UPLOADS, name);
     if (!fs.existsSync(from)) { console.error(`  absent   ${d.id}: ${from}`); refused++; continue; }
-    if (fs.existsSync(to) && sha256(fs.readFileSync(to)) === d.sha256) { kept++; served.add(name); continue; }
+    if (x) extracts++;
+    if (fs.existsSync(to) && sha256(fs.readFileSync(to)) === want) { kept++; served.add(name); if (x) extractBytes += fs.statSync(to).size; continue; }
     const buf = fs.readFileSync(from);
     const h = sha256(buf);
-    if (h !== d.sha256) { console.error(`  SHA      ${d.id}: the file on disk is ${h.slice(0, 12)}…, the registry says ${String(d.sha256).slice(0, 12)}… — not served`); refused++; continue; }
+    if (h !== want) { console.error(`  SHA      ${d.id}: the file on disk is ${h.slice(0, 12)}…, ${x ? 'files.json says the extract is' : 'the registry says'} ${String(want).slice(0, 12)}… — not served`); refused++; continue; }
+    if (x) extractBytes += buf.length;
     fs.mkdirSync(path.dirname(to), { recursive: true });   // a host name with a subdirectory (a name map's value) on a fresh host
     fs.writeFileSync(to, buf);
     copied++; served.add(name);
@@ -299,14 +455,14 @@ async function run() {
     for (const v of Object.values(JSON.parse(fs.readFileSync(fj, 'utf8')))) if (v && v.path) servedElsewhere.add(v.path);
   }
   for (const f of fs.readdirSync(UPLOADS)) if (f.endsWith('.pdf') && mine.has(f) && !served.has(f) && !servedElsewhere.has(`${UPLOADS_URL}/${f}`)) { fs.rmSync(path.join(UPLOADS, f)); pruned++; }
-  console.log(`files: ${copied} copied, ${kept} already in place, ${refused} refused, ${pruned} pruned`);
+  console.log(`files: ${copied} copied, ${kept} already in place, ${refused} refused, ${pruned} pruned${extracts ? `; ${extracts} extract(s) from the bundle, ${(extractBytes / 1048576).toFixed(1)} MiB` : ''}`);
   if (refused) fail(`${refused} served document(s) could not be gated — nothing is served that is not the registry's`);
 
   // A LINK TABLE IS THE DOCUMENT'S OWN CONTENT (its citations, each with the document's words at the pin), so a table is served
   // only for a document SERVED on this host: a document the registry or the host policy holds or links serves no table, its id
   // leaves docs.links so the window never asks for it, and the stamp names the withheld ids (the owner's word of 2026-10-10
   // 11:03 CDT: Kirchner I's appeal group off kirchner.ink — documents, files and tables; agreed by name 55339aa7 ⇄ f28bb754).
-  const servedIds = new Set(decided.filter(({ pub }) => pub.mode === 'serve').map(({ d }) => d.id));
+  const servedIds = new Set(decided.filter(({ pub }) => SERVED(pub.mode)).map(({ d }) => d.id));
   const tablesWithheld = Object.keys(tables).filter((id) => !servedIds.has(id)).sort();
 
   // docs.json — the window's /docs answer (case_root is the tree's localStorage key on the client: the case slug, not a path)
@@ -316,7 +472,7 @@ async function run() {
       // the window's defaults ride the registry object by name: nav.hide_before (the hide-before threshold; "nothing hidden until
       // set" when absent — the viewer's rule of 2026-10-09; a per-case number, never the window's)
       nav: docs.registry && docs.registry.nav },
-    docs: decided.map(({ d, pub }) => publicDoc(d, pub)),
+    docs: decided.map(({ d, pub }) => publicDoc(d, pub, pub.mode === 'pages' ? extractOf(d) : null)),
     links: Object.fromEntries(Object.entries(docs.links || {}).filter(([id]) => servedIds.has(id))),
   };
   fs.writeFileSync(path.join(DATA, 'docs.json'), JSON.stringify(outDocs));
@@ -338,7 +494,11 @@ async function run() {
   const manifest = {};
   for (const { d, pub } of decided) {
     const name = hostName(d);
-    manifest[d.id] = { path: pub.mode === 'serve' ? `${UPLOADS_URL}/${name}` : null, sha256: d.sha256, bytes: pub.mode === 'serve' && fs.existsSync(path.join(UPLOADS, name)) ? fs.statSync(path.join(UPLOADS, name)).size : null, pages: d.pages, publish: pub.mode, ...(pub.url ? { url: pub.url } : {}) };
+    const x = pub.mode === 'pages' ? extractOf(d) : null;
+    const onDisk = SERVED(pub.mode) && fs.existsSync(path.join(UPLOADS, name)) ? fs.statSync(path.join(UPLOADS, name)).size : null;
+    // an extract's entry as the export names it: extract true, its own sha, extract_of {the whole file's sha, source_pages, leaves}
+    manifest[d.id] = { path: SERVED(pub.mode) ? `${UPLOADS_URL}/${name}` : null, sha256: x ? x.sha256 : d.sha256, bytes: onDisk, pages: d.pages, publish: pub.mode, ...(pub.url ? { url: pub.url } : {}),
+      ...(x ? { extract: true, extract_of: { sha256: x.extract_of.sha256, source_pages: x.extract_of.source_pages, leaves: x.extract_of.leaves } } : {}) };
   }
   fs.writeFileSync(path.join(DATA, 'files.json'), JSON.stringify(manifest));
 
@@ -354,7 +514,11 @@ async function run() {
   const stamp = {
     case: CASE, imported: new Date().toISOString(), source: src.kind, export_stamp: src.stamp || null,
     registry_version: outDocs.registry.version, documents: docs.docs.length, tables: written.size, rows,
-    publication: byMode, dev_override: DEV ? `${overridden} Filings rows treated as serve without a publish field` : false,
+    publication: byMode,
+    // the pages word's trace (the review-mode standard § 2c): the extracts this host serves, their bytes, the export's host bound
+    extracts: { count: extracts, bytes: extractBytes, ids: pagesRows.map(({ d }) => d.id) },
+    serve_max_mb: src.stamp && src.stamp.serve_max_mb !== undefined ? src.stamp.serve_max_mb : null,
+    dev_override: DEV ? `${overridden} Filings rows treated as serve without a publish field` : false,
     default_doc: defaultDoc, vendored_studio_commit: studioCommit,
     host_policy: SERVE_GROUPS ? { serve_groups: [...SERVE_GROUPS], held_groups: heldGroups, not_hosted_here: hostHeld } : null,
     tables_withheld: tablesWithheld,   // the documents not served here whose tables are therefore not served either
@@ -372,13 +536,16 @@ async function run() {
   const END = `# casereview END${KEYED ? ` ${CASE}` : ''}`;
   const DEFAULT_BEGIN = '# casereview BEGIN — generated by scripts/import-casereview.mjs';
   const q = ROOT_QS ? `  ${ROOT_QS}` : '';
+  const soleKeyedBlock = KEYED && !fs.existsSync(path.join(PUBLIC, dataRel(DEFAULT_CASE), '_IMPORT.json'));
   const redirects = [
     BEGIN,
+    // the host table where the Studio serves its lane list: bare (any query) in the default block, or in the sole keyed block
+    ...(!KEYED || soleKeyedBlock ? [CASES_RULE] : []),
     `/api/casereview/docs${q}  ${DATA_URL}/docs.json  200`,
     `/api/casereview/links/:id${q}  ${DATA_URL}/links/:id.json  200`,
     // a served document whose file is not <id>.pdf (an unsafe id, or the docket-slug layout): the request path as the
     // window sends it (encodeURIComponent) and, when it differs, the form a browser normalises to (encodeURI)
-    ...decided.filter(x => x.pub.mode === 'serve' && needsRule(x.d)).flatMap(({ d }) => {
+    ...decided.filter(x => SERVED(x.pub.mode) && needsRule(x.d)).flatMap(({ d }) => {
       const a = encodeURIComponent(d.id), b = encodeURI(d.id);
       return [...new Set([a, b])].map(enc => `/api/casereview/file/${enc}${q}  ${UPLOADS_URL}/${hostName(d)}  200`);
     }),
@@ -409,10 +576,11 @@ async function run() {
   const serveJson = (KEYED && !soleKeyed) ? null : {
     cleanUrls: true, trailingSlash: false,
     rewrites: [
+      { source: '/api/casereview/cases', destination: '/casereview/hosts.json' },
       { source: '/api/casereview/docs', destination: `${DATA_URL}/docs.json` },
       { source: '/api/casereview/links/:id', destination: `${DATA_URL}/links/:id.json` },
       // serve-handler matches the DECODED path against a path-to-regexp source; no parameter, so nothing is re-encoded
-      ...decided.filter(x => x.pub.mode === 'serve' && needsRule(x.d)).map(({ d }) => ({ source: `/api/casereview/file/${p2r(d.id)}`, destination: `${UPLOADS_URL}/${hostName(d)}` })),
+      ...decided.filter(x => SERVED(x.pub.mode) && needsRule(x.d)).map(({ d }) => ({ source: `/api/casereview/file/${p2r(d.id)}`, destination: `${UPLOADS_URL}/${hostName(d)}` })),
       { source: '/api/casereview/file/:id', destination: `${UPLOADS_URL}/:id.pdf` },
     ],
     headers: [
@@ -422,8 +590,17 @@ async function run() {
     ],
   };
   if (serveJson) fs.writeFileSync(path.join(PUBLIC, 'serve.json'), JSON.stringify(serveJson, null, 2) + '\n');
+  // THE HOST TABLE: the registry half of this lane's row, the site's words kept; the /cases rewrite beside the three routes
+  const host = upsertHost({
+    name: CASE, case_root: CASE, case: outDocs.registry.case ?? null, version: outDocs.registry.version ?? null, built: outDocs.registry.built ?? null,
+    current: !KEYED, root: KEYED ? CASE : null,
+    imported: { at: stamp.imported, documents: stamp.documents, tables: stamp.tables, rows: stamp.rows, publication: stamp.publication,
+                extracts: { count: stamp.extracts.count, bytes: stamp.extracts.bytes }, vendored_studio_commit: studioCommit },
+  });
+  const ruleTouched = ensureCasesRule();
+  console.log(`hosts.json: ${host.created ? 'row added for' : 'row updated for'} ${CASE} (route ${host.row.route}, kind ${host.row.kind}${host.row.composition ? `, composition ${host.row.composition}` : ', lane page'})${ruleTouched.length ? `; /cases rewrite added to ${ruleTouched.join(' + ')}` : ''}`);
   console.log(`bundle written to public/${DATA_REL} (default document ${defaultDoc || 'none — nothing served'}); rewrites in public/_redirects${KEYED ? ` (keyed on ?${ROOT_QS}; serve.json ${soleKeyed ? 'bare (the host\'s only case)' : 'untouched'})` : ' and public/serve.json'}`);
   if (DEV) console.warn('REMINDER: this bundle carries the development override — rerun without --dev-serve-filings before committing it');
 }
 
-if (CHECK) check(); else await run();
+if (CHECK) check(); else if (HOSTS) refreshHosts(); else await run();
