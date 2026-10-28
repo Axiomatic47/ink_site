@@ -11,7 +11,7 @@
 //   node scripts/import-casereview.mjs                        # from the running Studio (http://127.0.0.1:8765), work_station
 //   node scripts/import-casereview.mjs --from <export_dir>    # from the checker's export (studio-spec R1) — REQUIRED for a lane with
 //                                                            #   `pages` rows: the extracts are the export's (the review-mode standard § 2c)
-//   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build)
+//   node scripts/import-casereview.mjs --check                # the bundle on disk is whole (runs in every build); it carries no device path
 //   node scripts/import-casereview.mjs --out <dir>            # write the bundle under <dir> instead of public/ (a dry run)
 //   node scripts/import-casereview.mjs --hosts                # refresh public/casereview/hosts.json (THE HOST TABLE, the review-mode
 //                                                            #   standard R4, 2026-10-21) from every bundle on disk, and the /api/casereview/cases
@@ -197,13 +197,52 @@ async function fromApi(base) {
   process.stdout.write('\n');
   return { docs, tables, caseRoot: docs.case_root, kind: `the Studio API at ${base}` };
 }
+// ---------------------------------------------------------------- no device path in a served bundle
+// The Studio's export stamp names its roots absolutely (filing_root, case_root, project_root — the checker reads them);
+// the served copy names each relative to the project root (the lane's folder name) or by the root's own name, the
+// stamp's source names the export by its folder name and the lane's signature, and `--check` refuses any string under
+// a device root in a bundle or the host table — so no import carries a machine's path again (admin 93e0ddad #29482,
+// 2026-10-28: a served stamp had carried a scratchpad path with a session id in it since the 15 Oct import).
+const DEVICE_ROOT = /^\/(Users|private|home|Volumes)\//;
+const DEVICE_PATH_IN_JSON = /(?:^|[\s"(=])(\/(?:Users|private|home|Volumes)\/[^"]*)/m;   // a device root anywhere in a string value — after the string's start, a space, a quote, a paren or an equals, never after a letter, a digit or a dot (a URL's /home/ or /private/ is not a machine; admin 93e0ddad #29538)
+function withoutDevicePaths(stamp) {
+  const proj = typeof stamp.project_root === 'string' ? stamp.project_root.replace(/\/+$/, '') : null;
+  const rel = (v) => {
+    const w = v.replace(/\/+$/, '');
+    if (proj && w === proj) return path.basename(proj);
+    if (proj && w.startsWith(proj + '/')) return path.relative(proj, w);
+    return path.basename(w);
+  };
+  const walk = (x) => Array.isArray(x) ? x.map(walk)
+    : x && typeof x === 'object' ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, walk(v)]))
+    : typeof x === 'string' && DEVICE_ROOT.test(x) ? rel(x) : x;
+  return walk(stamp);
+}
+/** the check's half: no string under a device root in the bundle's JSON (the stamp, docs.json, files.json, every table) */
+function checkNoDevicePaths(DATA, LINKS) {
+  let bad = 0;
+  const files = ['_IMPORT.json', 'docs.json', 'files.json'];
+  if (fs.existsSync(LINKS)) for (const n of fs.readdirSync(LINKS)) if (n.endsWith('.json')) files.push(path.join('links', n));
+  for (const f of files) {
+    const fp = path.join(DATA, f);
+    if (!fs.existsSync(fp)) continue;
+    const m = fs.readFileSync(fp, 'utf8').match(DEVICE_PATH_IN_JSON);
+    if (m) { console.error(`  REFUSED  ${f} carries a device path (${m[1].slice(0, 60)}…) — a served bundle names no machine; re-import with this importer, or set the line by hand`); bad++; }
+  }
+  return bad;
+}
+
 function fromExport(dir) {
   const docs = JSON.parse(fs.readFileSync(path.join(dir, 'docs.json'), 'utf8'));
   const tables = {};
   for (const f of fs.readdirSync(path.join(dir, 'links'))) if (f.endsWith('.json')) tables[f.slice(0, -5)] = JSON.parse(fs.readFileSync(path.join(dir, 'links', f), 'utf8'));
   let stamp = null; try { stamp = JSON.parse(fs.readFileSync(path.join(dir, '_EXPORT.json'), 'utf8')); } catch {}
   let files = null; try { files = JSON.parse(fs.readFileSync(path.join(dir, 'files.json'), 'utf8')); } catch {}
-  return { docs, tables, caseRoot: CASE_ROOT_OPT || (stamp && stamp.case_root) || docs.case_root, kind: `the checker's export at ${dir}`, stamp, files };
+  const name = path.basename(path.resolve(dir));
+  const kind = stamp && stamp.lane_signature && stamp.lane_signature.sha256
+    ? `the checker's export ${name} of the lane at ${String(stamp.lane_signature.sha256).slice(0, 8)} (${stamp.registry_version || '?'}, ${stamp.checker || '?'})`
+    : `the checker's export ${name}`;
+  return { docs, tables, caseRoot: CASE_ROOT_OPT || (stamp && stamp.case_root) || docs.case_root, kind, stamp, files };
 }
 
 // ---------------------------------------------------------------- the check (every build)
@@ -238,6 +277,7 @@ function checkOne(c) {
   const imp = JSON.parse(fs.readFileSync(p, 'utf8'));
   const deploying = !!(process.env.NETLIFY || process.env.CI);
   let bad = 0;
+  bad += checkNoDevicePaths(DATA, LINKS);
   if (imp.dev_override) {
     const line = `the bundle was written under --dev-serve-filings (${imp.imported}) — a development proof, not the registry's word`;
     if (deploying) { console.error(`  REFUSED  ${line}`); bad++; } else console.warn(`  WARNING  ${line}; rerun the importer without the flag before committing the bundle`);
@@ -377,6 +417,7 @@ function checkHosts(present) {
   let bad = 0;
   const h = readHosts();
   const rows = h && Array.isArray(h.cases) ? h.cases : [];
+  if (h) { const m = JSON.stringify(h).match(DEVICE_PATH_IN_JSON); if (m) { console.error(`  REFUSED  hosts.json carries a device path (${m[1].slice(0, 60)}…) — a served host table names no machine`); bad++; } }
   for (const c of present) {
     const r = rows.find(x => x && x.name === c);
     if (!r) { console.error(`  missing  hosts.json row for ${c} — run: node scripts/import-casereview.mjs --hosts`); bad++; continue; }
@@ -531,7 +572,7 @@ async function run() {
   let studioCommit = null;
   try { studioCommit = fs.readFileSync(path.join(PUBLIC, 'casereview', 'vendor', 'VENDOR.json'), 'utf8').match(/"commit":\s*"([0-9a-f]+)"/)[1]; } catch {}
   const stamp = {
-    case: CASE, imported: new Date().toISOString(), source: src.kind, export_stamp: src.stamp || null,
+    case: CASE, imported: new Date().toISOString(), source: src.kind, export_stamp: src.stamp ? withoutDevicePaths(src.stamp) : null,
     registry_version: outDocs.registry.version, documents: docs.docs.length, tables: written.size, rows,
     publication: byMode,
     // the pages word's trace (the review-mode standard § 2c): the extracts this host serves, their bytes, the export's host bound
