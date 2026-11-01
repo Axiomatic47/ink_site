@@ -1941,96 +1941,100 @@ export function targetPages(t, doc) {
   return { pdfPage, pdfEnd, viaMap, marked };
 }
 
-// ---------------------------------------------------------------- the right pane's TAB BAR (P88)
-// The owner's word 2026-10-02 (spec fbf555d9 3f7b616): up to FIVE tabs on the RIGHT pane; "lock to tab bar" holds a tab at
-// its document AND page, left-aligned in lock order, stationary while the left explores; at most FOUR locked; exactly ONE
-// exploring tab, rightmost, which EVERY link opens into. The model is pure and pinned; the shell prints tabsView.
-// A bar: { seq, active, tabs: [{ id, doc (a registry id or null = the empty exploring slot), page, unit, locked }] }.
-const TABS_MAX_LOCKED = 4;
+// ---------------------------------------------------------------- the right pane's TAB BAR (R2 — the owner's tab rule)
+// The owner's words (2026-10-21, studio-spec 699a9f2a's review-mode standard R2, decisions D1–D3; they replace P88's
+// exploring-tab model of 2026-10-02): the right pane holds up to FIVE tabs. OPEN — a link clicked anywhere (a box on the
+// left, a box in a right tab, the stepper, the nav's open-on-the-right): (a) a document already open in a tab ACTIVATES that
+// tab and turns it to the page — ONE TAB PER DOCUMENT; (b) else, fewer than five → a NEW tab is appended at the right and
+// becomes active; (c) else the RIGHTMOST UNPINNED tab is replaced by the new document (its slot and its id — the shell's
+// pane takes the new document) and becomes active; the other tabs do not move. PIN (P88's lock, kept as an option): a
+// pinned tab is never the replaced one; five pinned → the open is refused in words. CLOSE: the tab goes, the run shifts
+// left, the bar may be EMPTY (no standing empty slot). ACTIVATE and a page turn as before; every tab remembers its page.
+// The model is pure and pinned; the shell prints tabsView.
+// A bar: { seq, active (a tab id, or null when the bar is empty), tabs: [{ id, doc (a registry id), page, unit, pinned }] }.
+export const TABS_MAX = 5;
 function tabsClone(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ ...t })) }; }
-function tabsFresh(bar) { bar.seq = (bar.seq || 0) + 1; return { id: `t${bar.seq}`, doc: null, page: null, unit: null, locked: false }; }
-/** The bar before anything opened: one empty exploring slot (the invariant holds from the first moment). */
-export function tabsEmpty() { const b = { seq: 0, active: null, tabs: [] }; const x = tabsFresh(b); b.tabs.push(x); b.active = x.id; return b; }
-export function tabsExploring(bar) { return bar.tabs.find((t) => !t.locked) || null; }
-export function tabsLocked(bar) { return bar.tabs.filter((t) => t.locked); }
+function tabsFresh(bar, doc, page, unit) { bar.seq = (bar.seq || 0) + 1; return { id: `t${bar.seq}`, doc, page: page || 1, unit: unit || null, pinned: false }; }
+/** The bar before anything opened: no tabs, nothing active. */
+export function tabsEmpty() { return { seq: 0, active: null, tabs: [] }; }
 export function tabsFind(bar, id) { return bar.tabs.find((t) => t.id === id) || null; }
-/** The bar is shown when any tab holds a document. */
-export function tabsShown(bar) { return bar.tabs.some((t) => t.doc); }
-/** Every open from a link lands in the EXPLORING tab, replacing its document and page (invariant 3); it becomes active. */
+/** The tab holding `doc`, or null — one tab per document. */
+export function tabsFindDoc(bar, doc) { return bar.tabs.find((t) => t.doc === doc) || null; }
+export function tabsPinned(bar) { return bar.tabs.filter((t) => t.pinned); }
+/** The bar is shown when it holds a tab. */
+export function tabsShown(bar) { return bar.tabs.length > 0; }
+/** OPEN, the owner's three cases. → { bar, tab (the id the document is in — the shell opens into its state), created (the
+ *  tab is new or re-used for this document: the pane must take it), refused (in words; the bar unchanged, tab null) }. */
 export function tabsOpen(bar, { doc, page = 1, unit = null }) {
-  const b = tabsClone(bar); let x = tabsExploring(b);
-  if (!x) { x = tabsFresh(b); b.tabs.push(x); }
-  x.doc = doc; x.page = page || 1; x.unit = unit || null; b.active = x.id; return b;
+  if (!doc) return { bar, tab: null, created: false, refused: 'nothing to open' };
+  const b = tabsClone(bar);
+  const have = tabsFindDoc(b, doc);
+  if (have) { have.page = page || have.page || 1; have.unit = unit || null; b.active = have.id; return { bar: b, tab: have.id, created: false, refused: null }; }
+  if (b.tabs.length < TABS_MAX) { const t = tabsFresh(b, doc, page, unit); b.tabs.push(t); b.active = t.id; return { bar: b, tab: t.id, created: true, refused: null }; }
+  const slot = [...b.tabs].reverse().find((t) => !t.pinned);
+  if (!slot) return { bar, tab: null, created: false, refused: 'five tabs are pinned — unpin one' };
+  slot.doc = doc; slot.page = page || 1; slot.unit = unit || null; b.active = slot.id;
+  return { bar: b, tab: slot.id, created: true, refused: null };
 }
-/** "lock to tab bar": the exploring tab is locked at its document and page and a new empty exploring slot appears at the
- *  right; refused IN WORDS at four locked, on a locked tab, or on an empty slot — nothing changes then. → { bar, refused }. */
-export function tabsLock(bar, id) {
+/** PIN: never the tab a sixth document replaces. → { bar, refused }. */
+export function tabsPin(bar, id) {
   const t = tabsFind(bar, id);
   if (!t) return { bar, refused: 'no such tab' };
-  if (t.locked) return { bar, refused: 'this tab is already locked' };
-  if (!t.doc) return { bar, refused: 'nothing to lock — open a citation in this tab first' };
-  if (tabsLocked(bar).length >= TABS_MAX_LOCKED) return { bar, refused: 'four tabs are locked — unlock one to lock this' };
-  const b = tabsClone(bar); const u = tabsFind(b, id); u.locked = true;
-  b.tabs = [...b.tabs.filter((v) => v.locked), ...b.tabs.filter((v) => !v.locked)];   // the locked run left, in lock order
-  b.tabs.push(tabsFresh(b)); b.active = id; return { bar: b, refused: null };
+  if (t.pinned) return { bar, refused: 'this tab is already pinned' };
+  const b = tabsClone(bar); tabsFind(b, id).pinned = true; return { bar: b, refused: null };
 }
-/** "unlock": the tab becomes the exploring tab at its document and page; the former exploring tab closes (the throwaway;
- *  the decision the owner may flip — the alternative loses the view the reviewer deliberately unlocked). */
-export function tabsUnlock(bar, id) {
-  const t = tabsFind(bar, id); if (!t || !t.locked) return bar;
-  const b = tabsClone(bar); const x = tabsExploring(b);
-  b.tabs = b.tabs.filter((v) => v.id !== id && (!x || v.id !== x.id));
-  const u = { ...t, locked: false }; b.tabs.push(u); b.active = id; return b;
-}
-/** "close tab": a locked tab closes and the run shifts left; closing the exploring tab empties the slot (never a bar
- *  without an exploring slot). The active tab, if closed, becomes the exploring slot. */
+/** UNPIN: the tab may be the replaced one again; an unknown or unpinned tab → unchanged. */
+export function tabsUnpin(bar, id) { const t = tabsFind(bar, id); if (!t || !t.pinned) return bar; const b = tabsClone(bar); tabsFind(b, id).pinned = false; return b; }
+/** CLOSE: the tab goes and the run shifts left; the active tab closed → its right-hand neighbour, else the new last, else none. */
 export function tabsClose(bar, id) {
-  const t = tabsFind(bar, id); if (!t) return bar;
-  const b = tabsClone(bar);
-  if (t.locked) { b.tabs = b.tabs.filter((v) => v.id !== id); if (b.active === id) b.active = tabsExploring(b).id; return b; }
-  const x = tabsFind(b, id); x.doc = null; x.page = null; x.unit = null; b.active = id; return b;
+  const i = bar.tabs.findIndex((t) => t.id === id); if (i < 0) return bar;
+  const b = tabsClone(bar); b.tabs.splice(i, 1);
+  if (b.active === id) b.active = b.tabs.length ? b.tabs[Math.min(i, b.tabs.length - 1)].id : null;
+  return b;
 }
-/** Click a tab: show it at ITS page; nothing else moves (a locked tab activated is still not the exploring tab). */
+/** Click a tab: show it at ITS page; nothing else moves. */
 export function tabsActivate(bar, id) { if (!tabsFind(bar, id)) return bar; const b = tabsClone(bar); b.active = id; return b; }
 /** A page change inside a tab is remembered on that tab. */
-export function tabsSetPage(bar, id, page) { const t = tabsFind(bar, id); if (!t || !t.doc || !(page >= 1)) return bar; const b = tabsClone(bar); tabsFind(b, id).page = page; return b; }
-/** The drawn row — the shell prints this. `labelOf(docId)` names a document. */
+export function tabsSetPage(bar, id, page) { const t = tabsFind(bar, id); if (!t || !(page >= 1)) return bar; const b = tabsClone(bar); tabsFind(b, id).page = page; return b; }
+/** The drawn row — the shell prints this. `labelOf(docId)` names a document; `slot` is the ⌥-digit. */
 export function tabsView(bar, labelOf = (d) => d) {
-  return bar.tabs.map((t) => ({ id: t.id, doc: t.doc, label: t.doc ? labelOf(t.doc) : 'exploring', page: t.doc ? t.page : null, locked: t.locked, exploring: !t.locked, active: bar.active === t.id, empty: !t.doc }));
+  return bar.tabs.map((t, i) => ({ id: t.id, doc: t.doc, label: labelOf(t.doc), page: t.page || 1, pinned: !!t.pinned, active: bar.active === t.id, slot: i + 1 }));
 }
-/** The invariants, as a list of breaches (empty = sound): ≤ 4 locked, ≤ 5 tabs, exactly one exploring tab and it is
- *  rightmost, the locked run left of it, the active tab present, ids unique. */
+/** The invariants, as a list of breaches (empty = sound): ≤ 5 tabs, every tab on a document, one tab per document, the
+ *  active tab present (none only when the bar is empty), ids unique. */
 export function tabsInvariants(bar) {
   const out = [];
-  const locked = tabsLocked(bar), open = bar.tabs.filter((t) => !t.locked);
-  if (locked.length > TABS_MAX_LOCKED) out.push(`${locked.length} locked (at most ${TABS_MAX_LOCKED})`);
-  if (bar.tabs.length > TABS_MAX_LOCKED + 1) out.push(`${bar.tabs.length} tabs (at most ${TABS_MAX_LOCKED + 1})`);
-  if (open.length !== 1) out.push(`${open.length} exploring tabs (exactly one)`);
-  if (open.length === 1 && bar.tabs[bar.tabs.length - 1] !== open[0]) out.push('the exploring tab is not rightmost');
-  if (bar.active && !tabsFind(bar, bar.active)) out.push('the active tab is not in the bar');
+  if (bar.tabs.length > TABS_MAX) out.push(`${bar.tabs.length} tabs (at most ${TABS_MAX})`);
+  if (bar.tabs.some((t) => !t.doc)) out.push('a tab without a document');
+  if (new Set(bar.tabs.map((t) => t.doc)).size !== bar.tabs.length) out.push('a document in two tabs');
+  if (bar.active != null && !tabsFind(bar, bar.active)) out.push('the active tab is not in the bar');
+  if (bar.active == null && bar.tabs.length) out.push('tabs but no active tab');
   if (new Set(bar.tabs.map((t) => t.id)).size !== bar.tabs.length) out.push('tab ids repeat');
   return out;
 }
-/** For the tree's localStorage store (per case root): docs by id, pages, the locked flags, the active tab. */
-export function tabsSerialize(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ id: t.id, doc: t.doc, page: t.page, locked: !!t.locked })) }; }
-/** From the store: tabs whose document the registry no longer knows are dropped; the invariants re-established (one
- *  exploring slot, rightmost; an active tab). A bad or missing record is the empty bar. */
+/** For the tree's localStorage store (per case root): docs by id, pages, the pins, the active tab. */
+export function tabsSerialize(bar) { return { seq: bar.seq || 0, active: bar.active, tabs: bar.tabs.map((t) => ({ id: t.id, doc: t.doc, page: t.page, pinned: !!t.pinned })) }; }
+/** From the store: tabs on documents the registry no longer knows are dropped, a document in two records keeps its first,
+ *  the NEWEST five (by id) are kept in bar order; a P88 record's `locked` reads as pinned and its empty exploring slot is
+ *  dropped. A bad or missing record is the empty bar. */
 export function tabsRestore(j, known = () => true) {
   if (!j || typeof j !== 'object' || !Array.isArray(j.tabs)) return tabsEmpty();
   const b = { seq: Number.isFinite(+j.seq) ? +j.seq : 0, active: null, tabs: [] };
-  const seen = new Set();
+  const ids = new Set(), docs = new Set();
   for (const t of j.tabs) {
-    if (!t || typeof t.id !== 'string' || seen.has(t.id)) continue;
-    const doc = typeof t.doc === 'string' && known(t.doc) ? t.doc : null;
-    if (!doc && t.locked) continue;   // a locked tab on a document no longer served is gone
-    seen.add(t.id); b.tabs.push({ id: t.id, doc, page: doc && +t.page >= 1 ? +t.page : (doc ? 1 : null), unit: null, locked: !!t.locked && !!doc });
+    if (!t || typeof t.id !== 'string' || ids.has(t.id)) continue;
+    const doc = typeof t.doc === 'string' && t.doc && known(t.doc) ? t.doc : null;
+    if (!doc || docs.has(doc)) continue;
+    ids.add(t.id); docs.add(doc);
+    b.tabs.push({ id: t.id, doc, page: +t.page >= 1 ? +t.page : 1, unit: null, pinned: !!(t.pinned || t.locked) });
     const n = parseInt(String(t.id).replace(/^t/, ''), 10); if (Number.isFinite(n) && n > b.seq) b.seq = n;
   }
-  let locked = b.tabs.filter((t) => t.locked).slice(0, TABS_MAX_LOCKED);
-  const open = b.tabs.filter((t) => !t.locked);
-  const x = open.find((t) => t.doc) || open[0] || tabsFresh(b);
-  b.tabs = [...locked, x];
-  b.active = typeof j.active === 'string' && tabsFind(b, j.active) ? j.active : x.id;
+  if (b.tabs.length > TABS_MAX) {
+    const age = (t) => parseInt(String(t.id).replace(/^t/, ''), 10) || 0;
+    const keep = new Set([...b.tabs].sort((x, y) => age(y) - age(x)).slice(0, TABS_MAX).map((t) => t.id));
+    b.tabs = b.tabs.filter((t) => keep.has(t.id));
+  }
+  b.active = typeof j.active === 'string' && tabsFind(b, j.active) ? j.active : (b.tabs.length ? b.tabs[b.tabs.length - 1].id : null);
   return b;
 }
 
@@ -2166,6 +2170,20 @@ export function markQuote(text, quote) {
   return out.length ? out : [{ text: raw, mark: false }];
 }
 
+/** D11 (the owner, 21 Oct 2026): the row's SOURCE note and the number the export PRINTS for it, from the lane's note map
+ *  (notes/<DOC>.json, the rebind verb's; served per row as `src_note` and `note_printed` [page, printed] — the server read the
+ *  note column, the window never parses it): ' · n. 79' when the numbering is continuous or nothing was read, ' · n. 79 ·
+ *  printed 7 (p. 12)' when the export restarts its numbering (the page is the export's), '' for a row with no source note. */
+export function noteLine(t) {
+  const n = t && t.src_note != null && String(t.src_note).trim() ? String(t.src_note).trim() : '';
+  if (!n) return '';
+  const np = Array.isArray(t.note_printed) && t.note_printed.length >= 2 ? t.note_printed : null;
+  const printed = np && Number.isFinite(+np[1]) ? +np[1] : 0;
+  const page = np && Number.isFinite(+np[0]) && +np[0] > 0 ? +np[0] : null;
+  if (!printed || String(printed) === n) return ` · n. ${n}`;
+  return ` · n. ${n} · printed ${printed}${page ? ` (p. ${page})` : ''}`;
+}
+
 export function saysFor(u, k, t, doc, resolved = null) {
   const parts = [];
   const say = (text) => { if (text) parts.push({ text }); };
@@ -2180,7 +2198,7 @@ export function saysFor(u, k, t, doc, resolved = null) {
   const fl = foldText(t.target_label || '');
   const pin = t.target_label && !(u.targets.length > 1 ? foldText(u.text).endsWith(fl) : textCarries(foldText(u.text), fl)) ? ` ${t.target_label}` : '';
   const unfound = () => { if (u.missing) warn(` (box not located on the left: ${u.missing})`); };
-  const head = `${u.text}${pin}`;
+  const head = `${u.text}${pin}${noteLine(t)}`;
   if (t.status === 'unresolved') { say(`${head} — UNRESOLVED: ${t.note || 'no file on any shelf'}. Nothing opened; the reference pane is as it was.`); unfound(); return { kind: 'dead', opens: false, locate: false, parts }; }
   if (/^https?:\/\//i.test(t.target_doc || '')) { say(`${head} — a web source: `); parts.push({ text: t.target_doc, href: t.target_doc }); say(' (opens in the browser; nothing on the shelf).'); return { kind: 'link', opens: false, locate: false, parts }; }
   // R7: only an http(s) URL is ever a live link — a javascript: or data: target is text
@@ -2456,8 +2474,33 @@ export function hideRows(rows, { ids = null, before = null, keep = null, pins = 
  *  the hidden rows, the filter names it, or a pane has it open (dimmed,
  *  marked); a folded parent carries the pane marks of the documents inside
  *  it; a group heading counts what it shows and says what it hides. */
+// THE LINK COUNTS ARRIVE AFTER THE REGISTRY (2026-10-21): `links` = {id: {rows, mapped, verified,
+// unresolved, ok, stale_render}} from /docs (when the process held the check) or /link_counts
+// (after). Marks has_links on a document with rows and keeps its counts; returns how many were
+// marked. Pure on the docs array; the shell re-renders.
+export function applyLinkCounts(docs, links, facts) {
+  let n = 0;
+  for (const x of docs || []) {
+    const c = (links || {})[x.id];
+    if (c) {
+      x.link_counts = c;
+      if ((c.rows || 0) > 0) { x.has_links = true; n++; }
+    }
+    // the ligature facts (2026-10-21): off the docs call, they arrive with the counts or the facts poll; a
+    // document the server has not measured is left as it was — null is 'not measured', never 'not flagged'
+    const f = (facts || {})[x.id];
+    if (f) { x.ligature_drop = f.flagged; x.ligature_drop_density = f.density; }
+  }
+  return n;
+}
+
 export function navView(rows, nav) {
-  if (!rows.length) return { items: [], hiddenCount: 0, empty: 'none' };
+  // THE LOADING STATE (owner 2026-10-21 01:2x, 'why arent my review files appearing'): the docs
+  // fetch can take minutes behind the lane's whole-lane check, and a redraw before it lands
+  // printed 'the registry lists no documents' over a list that had not arrived. No rows while
+  // `nav.loading` → empty: 'loading' (the shell prints 'reading the registry…'); rows present
+  // → the flag means nothing; no rows and not loading → 'none', as before.
+  if (!rows.length) return { items: [], hiddenCount: 0, empty: nav.loading ? 'loading' : 'none' };
   const { show, expand } = filterNav(rows, nav.filter);
   const hiding = hideRows(rows, { ids: nav.hidden, before: nav.hideOn ? nav.hideBefore : null, keep: [nav.left, nav.right], pins: nav.pins });
   const hiddenIn = new Map();
@@ -2520,6 +2563,31 @@ export function casePicker(cases, caseRoot) {
     error: x.error ? String(x.error) : null,
   }));
   return { show: options.length >= 2, options };
+}
+/** THE HEAD ROW'S WORDS (R3). A host hands its words in the mount option `head: { caption, line, mode, version, back: { href,
+ *  label } }` (the sites, from their hosts.json); strings trimmed; no caption → no row; the mode defaults to 'Case review';
+ *  the way back needs an href that is a path or an http(s) address and a label. → { caption, line, mode, version, back } or null. */
+export function headWords(head) {
+  if (!head || typeof head !== 'object') return null;
+  const str = (v) => (typeof v === 'string' && v.trim() ? v.trim() : null);
+  const caption = str(head.caption);
+  if (!caption) return null;
+  const b = head.back && typeof head.back === 'object' ? head.back : null;
+  const href = b ? str(b.href) : null, label = b ? str(b.label) : null;
+  const back = href && label && /^(\/|https?:\/\/)/i.test(href) ? { href, label } : null;
+  return { caption, line: str(head.line), mode: str(head.mode) || 'Case review', version: str(head.version), back };
+}
+/** THE STUDIO'S HEAD ROW from GET /api/casereview/cases (the owner's word of 2026-10-21, "returns as suggested", on R3 — the
+ *  row the 30 Sept word removed returns for this row alone, the statistics out): the lane the registry answered (its
+ *  case_root), else the configured one — the registry's `case` as the caption (else the directory's name), 'Case review', the
+ *  registry's version, and `lane` the directory's name for the one-lane row (the picker shows only with two). → headWords'
+ *  shape with `lane`, or null when the answer carries no such lane (the row stays hidden). */
+export function headFromCases(cases, caseRoot) {
+  const list = Array.isArray(cases) ? cases.filter((x) => x && typeof x.name === 'string' && x.name) : [];
+  const cur = list.find((x) => caseRoot && x.case_root === caseRoot) || list.find((x) => x.current) || null;
+  if (!cur) return null;
+  const w = headWords({ caption: typeof cur.case === 'string' && cur.case.trim() ? cur.case : cur.name, version: cur.version, mode: 'Case review' });
+  return w ? { ...w, lane: cur.name } : null;
 }
 export function parentIdOf(id) {
   const m = /^(DDC-\d{3})-\d+$/.exec(String(id || ''));

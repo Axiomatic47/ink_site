@@ -37,7 +37,7 @@
 // <base>/<id>_LINKS.tsv and <base>/<id>.pdf (tests/fixtures/casereview).
 import { $, esc } from './base.js';
 import { createPdfPane, orderByPosition } from './casereview_pdf.js';
-import { apiQuery, buildHash, casePicker, clockText, filterNav, foldText, gapPage, hideRows, ligatureDropFor, markQuote, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsExploring, tabsFind, tabsLock, tabsOpen, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnlock, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState, videoEmbedUrl } from './casereview_core.js';
+import { apiQuery, applyLinkCounts, buildHash, casePicker, clockText, filterNav, foldText, gapPage, headFromCases, headWords, hideRows, ligatureDropFor, markQuote, navRows, navView, opensWhere, parseHash, parseLinksTsv, pdfPageFor, publishedAway, saysFor, servedColumns, tabsActivate, tabsClose, tabsEmpty, tabsFind, tabsOpen, tabsPin, tabsRestore, tabsSerialize, tabsSetPage, tabsShown, tabsUnpin, tabsView, targetPages, unitForCite, unitStatus, unitsOf, urlForState, videoEmbedUrl } from './casereview_core.js';
 import { showCtx } from '../filing/ctxmenu.js';
 import { openReview } from './reviews.js';
 
@@ -51,6 +51,10 @@ const NAV_COLLAPSE_AT = 120;   // px: drag the filings list narrower than this a
 const SPLIT_MIN = 28, SPLIT_MAX = 72;
 
 const st = {
+  docsPending: false,    // the docs fetch is in flight (loadDocs): the nav says 'reading the registry…'
+  linksPending: false,   // the server did not hold the lane's check: loadLinkCounts is fetching the counts
+  factsPending: false,   // the server did not hold every ligature fact: pollFacts asks until it does
+  factsTries: 0,         // the polls so far this load (bounded)
   mounted: false, source: null, docs: [], byId: new Map(),
   left: { id: null, pane: null, links: null, units: null, doc: null, page: 1, problems: [], coverage: [], coverageAnswered: [], here: [], showProblems: false },
   // P88 THE TAB BAR (owner 2026-10-02): the right pane is up to five TABS, each its own pane and state — st.right is the ACTIVE
@@ -58,6 +62,7 @@ const st = {
   // bar's model is core's (tabs.bar), the states live in tabs.states by tab id. P87's right-pane boxes and passage are per tab.
   right: null,
   tabs: { bar: null, states: new Map(), stored: null, linkCache: new Map() },
+  head: null, headHost: false,   // R3: the head row's words — a host's from the mount option (headHost), else the Studio's from /cases
   active: null,            // {unit, k}
   split: 50, navW: 260,
   // THE TREE (owner 2026-09-29 22:05 CDT): which parents are expanded, which
@@ -90,7 +95,9 @@ function apiSource() {
   return {
     kind: 'api',
     docs: async () => {
-      const r = await fetch(`/api/casereview/docs${qs}`);
+      // the registry answers at once now (the link counts come after); a fetch that
+      // does not return in 30 s is a server that is not serving — say so, do not hang
+      const r = await fetch(`/api/casereview/docs${qs}`, { signal: AbortSignal.timeout(30000) });
       if (r.status === 404) {
         // the server's own 404 says WHY when the route exists (studio-spec's
         // return on the owner's 18:37 window: "this project has no case tree"
@@ -203,6 +210,10 @@ function rowFromJson(j) {
     // the checker's served passage ({oracle, retry, wrapped, pages: [{page, pdf, text}]}) — read for a VIDEO row alone (the
     // transcript minute beside the player; the one store); a PDF row's passage is located in the pane. A host's importer may drop it.
     passage: j.passage && typeof j.passage === 'object' && Array.isArray(j.passage.pages) ? j.passage : null,
+    // D11: the source note the row cites and the number the export prints for it ([page, printed]), served from the lane's
+    // note map (the rebind verb's notes/<DOC>.json); null where the row has none or the lane has no map — core's noteLine says it
+    src_note: j.src_note != null && String(j.src_note).trim() ? String(j.src_note).trim() : null,
+    note_printed: Array.isArray(j.note_printed) && j.note_printed.length >= 2 ? j.note_printed.slice(0, 2).map(Number) : null,
   };
   if (j.unit_id) r.unit_id = j.unit_id;
   if (j.k) r.k = +j.k;
@@ -211,12 +222,25 @@ function rowFromJson(j) {
 }
 
 // ---------------------------------------------------------------- mount
+/** THE HEAD ROW (R3): one row above the body — the lane picker (two lanes) or the lane's name, the way back (a host's),
+ *  the caption, the docket line (a host's), the mode, the registry stamp — filled from the words the window holds: a host's
+ *  (the mount option) or the Studio's (/cases, when it answers); hidden while it holds none. The statistics stay out. */
+function renderHead(h) {
+  const head = $('#crHead'); if (!head) return;
+  if (!h) { head.hidden = true; return; }
+  const put = (id, text) => { const el = $(id); if (!el) return; el.hidden = !text; if (text) el.textContent = text; };
+  const back = $('#crBack'); if (back) { back.hidden = !h.back; if (h.back) { back.href = h.back.href; back.textContent = h.back.label; back.setAttribute('aria-label', h.back.label); } }
+  const sel = $('#crCase'); put('#crLane', sel && !sel.hidden ? '' : (h.lane || ''));
+  put('#crCaption', h.caption); put('#crNo', h.line || ''); put('#crMode', h.mode); put('#crStamp', h.version ? `registry ${h.version}` : '');
+  head.hidden = false;
+}
 export function mountCaseReview(opts = null) {
   const root = $('#casereviewRoot');
   if (!root || st.mounted) return;
   st.mounted = true;
   st.hostRoot = opts && typeof opts.root === 'string' && opts.root.trim() ? opts.root.trim() : null;   // → ?root=<slug> on the three fetches
   st.caseName = opts && typeof opts.case === 'string' && opts.case.trim() ? opts.case.trim() : null;   // → &case=<dir> (P97c); else the URL's crcase
+  st.head = headWords(opts && opts.head); st.headHost = !!st.head;   // R3: a host's head row words win; the Studio's come from /cases when it answers
   try { st.split = Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, +localStorage.getItem(SPLIT_KEY) || 50)); } catch {}
   try { st.navW = Math.min(900, Math.max(180, +localStorage.getItem(NAV_KEY) || 260)); } catch {}
   // NO HEADER BAR (the owner's word 2026-09-30 04:16 CDT, with a screenshot: "remove the Case review line, its wasted
@@ -233,10 +257,10 @@ export function mountCaseReview(opts = null) {
   // status, its notes, the highlights toggle, open-in-the-other-pane, the link map's problems, and the citations on
   // this page (the chips strip that used to sit above the page). The h key and ⌘F keep their bindings.
   root.innerHTML = `<div class="cr-page">
+    <header class="cr-head" id="crHead" hidden><select id="crCase" class="cr-caseopt" hidden aria-label="the case this window reviews — a project serving two case review lanes" title="the case this window reviews (P97: one Studio, two lanes)"></select><span class="cr-lane" id="crLane" hidden></span><a class="cr-back" id="crBack" hidden></a><span class="cr-caption" id="crCaption"></span><span class="cr-no" id="crNo" hidden></span><span class="cr-mode" id="crMode"></span><span class="cr-stamp" id="crStamp" hidden></span></header>
     <div class="cr-body" id="crBody" style="--cr-nav:${st.navW}px;--cr-split:${st.split}%">
       <nav class="cr-nav" id="crNav" aria-label="filings">
         <div class="cr-navhead">
-          <select id="crCase" class="cr-caseopt" hidden aria-label="the case this window reviews — a project serving two case review lanes" title="the case this window reviews (P97: one Studio, two lanes) — choosing another reloads the window on that lane"></select>
           <input id="crFilter" class="cv-search cr-filter" type="search" placeholder="filter…" autocomplete="off" spellcheck="false" aria-label="filter the filings">
           <button class="row-act cr-navact" id="crCollapseAll" data-act="collapseall" title="collapse all — close every filing's attachments and clear the filter">⊟</button>
           <div class="cr-navopts">
@@ -299,6 +323,7 @@ export function mountCaseReview(opts = null) {
   </div>`;
   st.left.pane = createPdfPane($('#crLeftWell'), { onPage: (p) => { st.left.page = p; renderCites(); pushHash(); }, onBoxClick: (b) => openFrom('left', b.unit, 1) });
   st.tabs.bar = tabsEmpty(); activateTab(st.tabs.bar.active, { save: false });
+  renderHead(st.head);   // a host's words at mount; the Studio's row fills when /cases answers
   bindTabs();
   bindSplitters(root);
   bindNavTree();
@@ -320,8 +345,10 @@ function readState() {
 
 async function loadDocs() {
   setStatus('reading the registry…');
+  st.docsPending = true;
   try {
     const d = await st.source.docs();
+    st.docsPending = false;
     if (d && d.unavailable) { $('#crNavList').innerHTML =`<div class="cr-empty">${esc(d.unavailable)}</div>`; setStatus(''); return; }
     st.docs = (d && d.docs) || [];
     st.caseRoot = (d && d.case_root) || (st.source.base || '');
@@ -329,15 +356,66 @@ async function loadDocs() {
     { const nv = d && d.registry && d.registry.nav; const hb = nv && typeof nv === 'object' ? +nv.hide_before : NaN; st.nav.hideDefault = Number.isFinite(hb) && hb > 0 ? hb : null; }
     loadTree();
     // the docs answer carries per-document link counts ({links: {id: {rows, mapped, verified, unresolved, ok}}})
-    const lk = (d && d.links) || {};
-    for (const x of st.docs) { const c = lk[x.id]; if (c && (c.rows || 0) > 0) x.has_links = true; if (c) x.link_counts = c; }
+    // when the server held the lane's check; otherwise links_pending, and loadLinkCounts fetches them after
+    // the registry is on screen (admin 93e0ddad's word 2026-10-21 02:0x: two minutes of 'lists no documents')
+    applyLinkCounts(st.docs, (d && d.links) || {}, {});
+    st.linksPending = !!(d && d.links_pending && st.source.kind === 'api');
+    st.factsPending = !!(d && d.facts_pending && st.source.kind === 'api');
+    st.factsTries = 0; clearTimeout(factsPollTimer);
     st.byId = new Map(st.docs.map(x => [x.id, x]));
     restoreTabs();
     setStatus('');
     renderNav();
+    if (st.linksPending) loadLinkCounts(); else if (st.factsPending) pollFacts();
   } catch (e) {
+    st.docsPending = false;
     $('#crNavList').innerHTML =`<div class="cr-empty">registry failed — ${esc(String(e.message || e))}</div>`;
     setStatus('');
+  }
+}
+
+// THE LINK COUNTS, after the registry (2026-10-21): the whole-lane check runs on the server when it does
+// not hold it (minutes on the big lane; one run per lane signature); the window reads and marks every
+// row while it is already usable. A failure leaves the registry readable and says so in the footer.
+async function loadLinkCounts() {
+  setStatus('checking the links…');
+  try {
+    const r = await fetch(`/api/casereview/link_counts${apiQS()}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    st.linksPending = false;
+    st.factsPending = !!(d && d.facts_pending);
+    applyLinkCounts(st.docs, (d && d.links) || {}, (d && d.facts) || {});
+    setStatus('');
+    renderNav();
+    if (st.factsPending) pollFacts();
+  } catch (e) {
+    st.linksPending = false;
+    st.factsPending = false;
+    setStatus(`link counts failed — ${String(e.message || e)}`);
+  }
+}
+
+// THE FACTS, after the counts (studio-spec b30c7017's condition (b), 2026-10-21): the server never measures a
+// ligature fact on a request's time — /link_counts and /facts answer with what the process or the store holds
+// and start the lane's worker for the rest; the window polls /facts every 3 s while any is pending, bounded
+// (~2 min), and a document still pending keeps its fact null: 'not measured', never 'not flagged' (nothing
+// renders the docs fact; a row's locate flag rides /links).
+const FACTS_POLL_MS = 3000, FACTS_POLL_MAX = 40;
+let factsPollTimer = null;
+async function pollFacts() {
+  if (!st.factsPending || st.source.kind !== 'api') return;
+  if (++st.factsTries > FACTS_POLL_MAX) { st.factsPending = false; return; }
+  try {
+    const r = await fetch(`/api/casereview/facts${apiQS()}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    applyLinkCounts(st.docs, {}, (d && d.facts) || {});
+    st.factsPending = !!(d && d.facts_pending);
+    if (st.factsPending) factsPollTimer = setTimeout(pollFacts, FACTS_POLL_MS);
+  } catch (e) {
+    st.factsPending = false;
+    setStatus(`facts failed — ${String(e.message || e)}`);
   }
 }
 
@@ -353,6 +431,7 @@ async function loadCases() {
   try { const r = await fetch(`/api/casereview/cases${apiQS({ withCase: false })}`); if (r.ok) cases = ((await r.json()) || {}).cases || []; } catch {}
   const m = casePicker(cases, st.caseRoot);
   sel.hidden = !m.show;
+  if (!st.headHost) { st.head = headFromCases(cases, st.caseRoot); renderHead(st.head); }   // R3: the Studio's head row from the answer (the owner's word: it returns)
   if (!m.show) return;
   sel.innerHTML = m.options.map((o) => `<option value="${esc(o.name)}" title="${esc(o.title)}"${o.current ? ' selected' : ''}${o.error ? ' disabled' : ''}>${esc(o.label)}${o.configured ? ' (configured)' : ''}${o.error ? ' — ' + esc(o.error) : ''}</option>`).join('');
   if (!sel.dataset.bound) { sel.dataset.bound = '1'; sel.addEventListener('change', () => switchCase(sel.value)); }
@@ -499,7 +578,9 @@ function renderNav() {
   // although hidden, a filter match draws although hidden — both marked), a folded parent's pane marks, a group's shown
   // and hidden counts — is decided there; this shell prints the items in its markup
   const view = navView(rows, { filter: st.nav.filter, hidden: st.nav.hidden, hideOn: st.nav.hideOn, hideBefore: st.nav.hideBefore, showHidden: st.nav.showHidden,
-                               open: st.nav.open, groups: st.nav.groups, pins: st.nav.pins, left: st.left.id, right: st.right.id });
+                               open: st.nav.open, groups: st.nav.groups, pins: st.nav.pins, left: st.left.id, right: st.right.id,
+                               loading: st.docsPending });
+  if (view.empty === 'loading') { nav.innerHTML = '<div class="cr-empty">reading the registry…</div>'; return; }
   if (view.empty === 'none') { nav.innerHTML = '<div class="cr-empty">the registry lists no documents</div>'; return; }
   const hb = $('#crShowHidden'); if (hb) { const nh = view.hiddenCount; hb.textContent = `${nh} hidden`; hb.classList.toggle('is-on', st.nav.showHidden); hb.hidden = !nh && !st.nav.showHidden; }
   const html = [];
@@ -691,26 +772,29 @@ function setRightPassage(S, page, box) {
   S.passage.set(page, box); paintSideBoxes('right', page, null, S);
 }
 
-/** Open a document in the RIGHT pane = in the EXPLORING tab (P88, invariant 3: every link lands there; a document already
- *  locked in a tab gets a second view here and the locked view stays at its page). The bar records the open. */
+/** Open a document in the RIGHT pane under the owner's tab rule (R2): the model says which tab — the one already holding
+ *  the document (activated, turned to the page), a new one while fewer than five, else the rightmost unpinned one re-used —
+ *  and the shell opens into that tab's state; five pinned refuses in words. The bar records the open. */
 async function openRight(id, opts = {}) {
   const doc = st.byId.get(id);
   if (!doc) { says(`${id} is not in the registry — nothing opened.`, 'bad'); return false; }
   // a row this host does not serve (publish link | hold, path null — the site bundle): core's words, no fetch (the Studio's rows carry paths)
   // — a RECORDING (§ 5.5: embed on the doc) is never a file; its tab is the player, so the publish word does not refuse it
   if (!isVideoDoc(doc)) { const away = publishedAway(doc); if (away) { sayParts(away); return false; } }
-  let x = tabsExploring(st.tabs.bar);
-  if (!x) { st.tabs.bar = tabsOpen(st.tabs.bar, { doc: null }); x = tabsExploring(st.tabs.bar); }
-  activateTab(x.id, { save: false });
+  const r = tabsOpen(st.tabs.bar, { doc: id, page: opts.page || 1 });
+  if (r.refused) { says(esc(r.refused), 'bad'); return false; }
+  st.tabs.bar = r.bar;
+  activateTab(r.tab, { save: false, lazy: false });
   const S = st.right;
+  if (S.opening) { try { await S.opening; } catch {} }   // a restored tab opening lazily: let it land, then turn the page
   const ok = await openInto(S, id, opts);
-  if (!ok) return false;
-  st.tabs.bar = tabsOpen(st.tabs.bar, { doc: id, page: S.page || opts.page || 1 });
+  if (!ok) { if (r.created) { st.tabs.bar = tabsClose(st.tabs.bar, r.tab); disposeTab(r.tab); activateTab(st.tabs.bar.active, { save: false }); } return false; }
+  st.tabs.bar = tabsSetPage(st.tabs.bar, r.tab, S.page || opts.page || 1);
   renderTabs(); saveTree();
   return true;
 }
 /** Open document `id` into tab state S (the pane, the title chip when S is active, the marked pages, the focus) and load its
- *  own citation table (P87). The same path for the exploring tab's open and a locked tab's lazy restore after a reload. */
+ *  own citation table (P87). The same path for an open under the tab rule and a restored tab's lazy open after a reload. */
 async function openInto(S, id, opts = {}) {
   const doc = st.byId.get(id);
   if (!doc) return false;
@@ -822,18 +906,20 @@ function disposeTab(id) {
   try { S.pane.destroy(); } catch {}
   S.host.remove(); st.tabs.states.delete(id);
 }
+const TAB_NONE = 'none';   // the placeholder state the right pane shows while the bar is empty (R2: no standing empty slot)
 /** Show tab `id`: its pane, its title, its chip words; the leaving tab keeps everything. A tab restored from the store opens
- *  its document lazily here, at its remembered page. */
-function activateTab(id, { save = true } = {}) {
-  const tab = tabsFind(st.tabs.bar, id); if (!tab) return;
+ *  its document lazily here, at its remembered page (`lazy: false` when the caller opens into it itself). `id` null = the
+ *  empty bar: the placeholder state shows. */
+function activateTab(id, { save = true, lazy = true } = {}) {
+  const tab = id != null ? tabsFind(st.tabs.bar, id) : null; if (id != null && !tab) return;
   const cur = st.right;
   if (cur && cur.host) { cur.host.hidden = true; const el = $('#crSays'); cur.says = { html: el.innerHTML, cls: el.className, title: el.title }; videoCommand(cur, 'pauseVideo', []); }   // a hidden tab's recording pauses
-  const S = tabState(id); st.right = S; S.host.hidden = false;
-  st.tabs.bar = tabsActivate(st.tabs.bar, id);
+  const S = tab ? tabState(id) : tabState(TAB_NONE); st.right = S; S.host.hidden = false;
+  if (tab) st.tabs.bar = tabsActivate(st.tabs.bar, id);
   { const el = $('#crRightTitle'); const n = S.doc ? nameOf(S.doc) : 'reference pane'; el.textContent = n; el.title = n; }
-  { const el = $('#crSays'); if (S.says) { el.innerHTML = S.says.html; el.className = S.says.cls; el.title = S.says.title; } else { el.className = 'cr-says'; el.textContent = tab.doc ? `${(st.byId.get(tab.doc) || {}).label || tab.doc} · page ${tab.page || 1}` : 'Click a boxed citation on the left, or step through them with ‹ ›, to open its primary source here at the cited page.'; el.title = el.textContent; } }
+  { const el = $('#crSays'); if (S.says) { el.innerHTML = S.says.html; el.className = S.says.cls; el.title = S.says.title; } else { el.className = 'cr-says'; el.textContent = tab && tab.doc ? `${(st.byId.get(tab.doc) || {}).label || tab.doc} · page ${tab.page || 1}` : 'Click a boxed citation on the left, or step through them with ‹ ›, to open its primary source here at the cited page.'; el.title = el.textContent; } }
   notesOnDoc('right'); renderNav(); renderTabs();
-  if (tab.doc && !S.pane.doc && !S.opening && st.byId.has(tab.doc)) {
+  if (lazy && tab && tab.doc && !S.pane.doc && !S.opening && st.byId.has(tab.doc)) {
     S.opening = openInto(S, tab.doc, { page: tab.page || 1 }).finally(() => { S.opening = null; });
   }
   if (save) saveTree();
@@ -845,12 +931,12 @@ function renderTabs() {
   if (!shown) { bar.innerHTML = ''; return; }
   const view = tabsView(st.tabs.bar, (d) => (st.byId.get(d) || {}).label || d);
   bar.innerHTML = view.map((v) => {
-    const cls = ['cr-tab', v.locked ? 'is-locked' : 'is-exploring', v.active ? 'is-active' : '', v.empty ? 'is-empty' : ''].filter(Boolean).join(' ');
+    const cls = ['cr-tab', v.pinned ? 'is-pinned' : '', v.active ? 'is-active' : ''].filter(Boolean).join(' ');
     // two spans (7d866ecf's frame at a 490-px pane, 2026-10-02): the LABEL truncates, the PAGE stays — the page a tab is kept at is
     // the point of the bar and must never be hover-only ('ECF … · p. 12', not 'ECF 74 · p…')
-    const text = v.empty ? '<span class="cr-tabtext">exploring — pick a citation in the left</span>' : `<span class="cr-tabtext">${esc(v.label)}</span>${v.page ? `<span class="cr-tabpage">· p. ${v.page}</span>` : ''}`;
-    const title = v.empty ? 'the exploring tab: the next citation opens here' : `${esc(v.label)} at PDF page ${v.page || 1} — ${v.locked ? 'locked to the bar: stays here while the left explores' : 'the exploring tab: the next citation replaces it'} · right-click: ${v.locked ? 'unlock, close' : 'lock to tab bar, close'}`;
-    return `<button class="${cls}" role="tab" aria-selected="${v.active}" data-act="tab" data-tab="${esc(v.id)}" title="${title}">${v.locked ? '<i class="cr-tablock" aria-label="locked">🔒</i>' : ''}${text}</button>`;
+    const text = `<span class="cr-tabtext">${esc(v.label)}</span>${v.page ? `<span class="cr-tabpage">· p. ${v.page}</span>` : ''}`;
+    const title = `${esc(v.label)} at PDF page ${v.page || 1} — ${v.pinned ? 'pinned: never the tab a sixth document replaces' : 'a sixth document replaces the rightmost unpinned tab'} · ⌥${v.slot} · right-click: pin, close`;
+    return `<button class="${cls}" role="tab" aria-selected="${v.active}" data-act="tab" data-tab="${esc(v.id)}" title="${title}">${v.pinned ? '<i class="cr-tabpin" aria-label="pinned">📌</i>' : ''}${text}</button>`;
   }).join('');
 }
 function bindTabs() {
@@ -862,34 +948,30 @@ function onTabMenu(ev) {
   ev.preventDefault(); ev.stopPropagation();   // the deck's menu hides on the document's click; this click is the one that opens it
   const id = el.dataset.tab, tab = tabsFind(st.tabs.bar, id); if (!tab) return;
   const items = [];
-  if (tab.locked) items.push({ label: 'unlock — this becomes the exploring tab; the exploring tab closes', run: () => unlockTab(id) });
-  else items.push({ label: 'lock to tab bar — keep this document at this page while the left explores', disabled: !tab.doc, run: () => lockTab(id) });
+  if (tab.pinned) items.push({ label: 'unpin — this tab may be the one a sixth document replaces', run: () => unpinTab(id) });
+  else items.push({ label: 'pin — never the tab a sixth document replaces', run: () => pinTab(id) });
   items.push({ sep: true });
-  items.push({ label: tab.locked ? 'close tab' : (tab.doc ? 'close tab (the slot stays for the next citation)' : 'close tab'), disabled: !tab.doc && !tab.locked, run: () => closeTab(id) });
+  items.push({ label: 'close tab', run: () => closeTab(id) });
   showCtx(ev.clientX, ev.clientY, items);
 }
-function lockTab(id) {
-  const r = tabsLock(st.tabs.bar, id);
+function pinTab(id) {
+  const r = tabsPin(st.tabs.bar, id);
   if (r.refused) { says(esc(r.refused), 'bad'); return; }
   st.tabs.bar = r.bar; renderTabs(); saveTree();
 }
-function unlockTab(id) {
-  const x = tabsExploring(st.tabs.bar);
-  st.tabs.bar = tabsUnlock(st.tabs.bar, id);
-  if (x && x.id !== id) disposeTab(x.id);
-  activateTab(id);
-}
+function unpinTab(id) { st.tabs.bar = tabsUnpin(st.tabs.bar, id); renderTabs(); saveTree(); }
+/** CLOSE: the tab and its state go, the run shifts left; the model names the next active tab (none → the placeholder). */
 function closeTab(id) {
   const tab = tabsFind(st.tabs.bar, id); if (!tab) return;
   st.tabs.bar = tabsClose(st.tabs.bar, id);
-  disposeTab(id);   // a locked tab goes whole; the exploring slot gets a fresh empty state on activation
+  disposeTab(id);
   activateTab(st.tabs.bar.active);
 }
 /** After the registry is known: the bar from the store (per case root), tabs on documents no longer served dropped. */
 function restoreTabs() {
   const bar = tabsRestore(st.tabs.stored, (id) => st.byId.has(id));
   st.tabs.stored = null;
-  for (const id of [...st.tabs.states.keys()]) if (!tabsFind(bar, id)) disposeTab(id);
+  for (const id of [...st.tabs.states.keys()]) if (id !== TAB_NONE && !tabsFind(bar, id)) disposeTab(id);
   st.tabs.bar = bar;
   activateTab(bar.active, { save: false });
 }
@@ -963,7 +1045,7 @@ async function openTarget(u, k, t, doc) {
   const head = saysFor(u, k, t, doc, tp);   // pure — the same answer before and after the open; a video row's carries the player's seconds
   const ok = await openRight(t.target_doc, { page: tp.pdfPage || 1, marked: tp.marked, video: head.video || null });
   if (!ok) return;
-  const R = st.right;   // the exploring tab's state (P88): the passage and the words are its
+  const R = st.right;   // the active tab's state (R2): the passage and the words are its
   sayParts(head);
   setRightPassage(R, null);   // the former passage goes; the right document's own citation boxes stay
   if (head.locate) {
@@ -975,7 +1057,7 @@ async function openTarget(u, k, t, doc) {
     // `passage` cases). The citation locate (locateParts) is the LEFT pane's.
     try {
       const parts = await R.pane.locatePassage(tp.pdfPage, tp.pdfEnd || tp.pdfPage, t.target_quote, { ligatureDrop: ligatureDropFor(t) });   // P95: the flag arms retry (g)
-      if (R.id !== t.target_doc) return;   // the exploring tab moved on under the locate
+      if (R.id !== t.target_doc) return;   // the active tab moved on under the locate
       if (parts) {
         for (const part of parts) setRightPassage(R, part.page, { id: 'q', rects: part.rects, status: 'verified', title: t.target_quote });
         if (R === st.right) sayParts(saysFor(u, k, t, doc, { ...tp, passage: parts }));
@@ -1072,7 +1154,7 @@ function openMore(side, ev, btn) {
   if (side === 'right' && doc && st.right.reviewable) items.push({ label: `review ${doc.label || doc.id} on the left ⇤`, run: () => openLeft(doc.id) });
   if (side === 'right' && st.tabs.bar) {   // P88: the active tab's bar actions, as the tab's right-click has them
     const tab = tabsFind(st.tabs.bar, st.tabs.bar.active);
-    if (tab) { items.push({ sep: true }); if (tab.locked) items.push({ label: 'unlock this tab', run: () => unlockTab(tab.id) }); else items.push({ label: 'lock this tab to the tab bar', disabled: !tab.doc, run: () => lockTab(tab.id) }); if (tab.doc || tab.locked) items.push({ label: 'close this tab', run: () => closeTab(tab.id) }); }
+    if (tab) { items.push({ sep: true }); if (tab.pinned) items.push({ label: 'unpin this tab', run: () => unpinTab(tab.id) }); else items.push({ label: 'pin this tab — never the one a sixth document replaces', run: () => pinTab(tab.id) }); items.push({ label: 'close this tab', run: () => closeTab(tab.id) }); }
   }
   if (side === 'left' && doc) {
     const p = st.left.problems || [], g = st.left.coverage || [], ga = st.left.coverageAnswered || [];
@@ -1182,10 +1264,10 @@ function pushHash() {
   // here again (the owner's word 2026-10-01). Off-surface, the state is the pane's own
   // until the owner returns; setMode restores the parked key then.
   if (document.body.dataset.mode !== 'casereview') return;
-  const xr = st.tabs.bar ? tabsExploring(st.tabs.bar) : null;   // P88: right= names the EXPLORING tab; the locked tabs ride the store
+  const xa = st.tabs.bar ? tabsFind(st.tabs.bar, st.tabs.bar.active) : null;   // R2: right= names the ACTIVE tab; the bar rides the store
   const url = urlForState(location.href, { doc: st.left.id,
     cite: st.active ? { page: st.active.unit.page, n: st.active.unit.n, k: st.active.k, q: st.active.unit.q } : null,
-    page: st.left.page, right: xr && xr.doc ? xr.doc : null, rpage: xr && xr.doc ? (xr.page || 1) : null });
+    page: st.left.page, right: xa && xa.doc ? xa.doc : null, rpage: xa && xa.doc ? (xa.page || 1) : null });
   if (url !== location.href) { try { history.replaceState(null, '', url); } catch {} }
 }
 async function restoreFromHash(h) {

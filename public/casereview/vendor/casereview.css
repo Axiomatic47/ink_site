@@ -1,0 +1,279 @@
+/* casereview.css — the CASE REVIEW window (owner directive 2026-09-29): the
+   DDC filings, every citation a link between two PDF panes. A rail destination
+   like SITES; deck sheet, JetBrains dark palette from agents.css. Three columns:
+   the filings nav (far left), the document under review (left pane), the
+   reference at its primary source (right pane). Two pane colours — LEFT = the
+   accent blue, RIGHT = the drafter orange — carried by the nav rows, the pane
+   keys and the hot boxes alike, so the reader learns them once.
+   Legibility law (docs/UI.md): text is --dim/--ink at ≥ 11px; --faint is
+   decoration only. The panes NEVER change size for content (owner rule
+   2026-09-14/21 on the website): the grid rows are fixed, the wells scroll. */
+
+/* --- mode visibility (mirrors sites.css) --- */
+/* ONE SHEET (R3 — studio-spec 699a9f2a's review-mode standard, the owner's D4 of 2026-10-21): this sheet is the window's
+   on EVERY host, vendored and sha-pinned with its scripts, and carries NO literal colour and NO literal type size — every one
+   is a token the host's TOKEN SHEET defines (the Studio: css/casereview_tokens.css on the deck's own tokens, today's dark
+   values and today's scale; a site: its own block on its palette and its scale). The layout, the grid and the placement are
+   one; the hosts differ by tokens alone. The harness reads this rule. */
+#casereviewRoot { display: none; }
+body[data-mode="casereview"] #casereviewRoot { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+body[data-mode="casereview"] #zones,
+body[data-mode="casereview"] #unavailable,
+body[data-mode="casereview"] #attention { display: none !important; }
+
+
+/* --- THE HEAD ROW (R3): one row above the body — the lanes (the picker when two answer) or the lane's name · the caption ·
+   CASE REVIEW · registry vN — drawn by the window from the host's words or /api/casereview/cases; a host that shows none
+   mounts without it (the Studio, on the owner's word of 2026-09-30) --- */
+.cr-head { flex: none; display: flex; align-items: baseline; gap: 14px; padding: 8px 14px; border-bottom: 1px solid var(--line); font-size: var(--fs-xl); color: var(--dim); white-space: nowrap; overflow: hidden; }
+.cr-head .cr-caption { font-family: var(--serif); font-size: var(--fs-caption); color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+.cr-head .cr-caption .v { color: var(--dim); }
+.cr-head .cr-no { font-variant-numeric: tabular-nums; }
+.cr-head .cr-mode { margin-left: auto; text-transform: uppercase; letter-spacing: .16em; font-size: var(--fs-sm); color: var(--cr-right); }
+.cr-head .cr-stamp { font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.cr-head a, .cr-head .cr-back { color: var(--dim); text-decoration: none; }
+.cr-head a:hover { color: var(--ink); text-decoration: underline; }
+.cr-page { display: flex; flex-direction: column; height: 100%; min-height: 0; color: var(--ink); font: var(--fs-md)/1.5 var(--sans); }
+/* no header bar (owner 2026-09-30 04:16 CDT): the window is the two panes and the list; the status is a dim chip in the left pane's FOOTER */
+.cr-status, .cr-dim { color: var(--dim); font: var(--fs-sm)/1.6 var(--mono); }
+.cr-spacer { flex: 1 1 auto; }
+.cr-empty { padding: 28px 18px; color: var(--dim); font: var(--fs-xl)/1.6 var(--sans); }
+.cr-loading, .cr-error { padding: 24px; color: var(--dim); font: var(--fs-xl)/1.6 var(--sans); }
+.cr-error { color: var(--red); }
+
+/* --- the three columns: nav | splitter | left | splitter | right --- */
+.cr-body { flex: 1 1 auto; min-height: 0; display: grid;
+  grid-template-columns: var(--cr-nav, 260px) 6px minmax(0, var(--cr-split, 50%)) 8px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr); }
+.cr-navsplit, .cr-split { cursor: col-resize; background: transparent; position: relative; }
+.cr-navsplit::after, .cr-split::after { content: ""; position: absolute; inset: 0 auto 0 50%; width: 1px; background: var(--line); }
+.cr-navsplit:hover::after, .cr-split:hover::after, .cr-navsplit.is-dragging::after, .cr-split.is-dragging::after { background: var(--accent); width: 2px; }
+
+/* --- filings nav --- */
+.cr-nav { overflow: auto; min-height: 0; padding: 6px 0 24px; background: var(--panel); border-right: 1px solid var(--line); }
+.cr-group { padding: 10px 12px 4px; color: var(--dim); font: 600 var(--fs-xs)/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.cr-row { display: grid; grid-template-columns: 18px auto minmax(0, 1fr) auto 22px; align-items: center; gap: 6px;
+  padding: 4px 8px 4px 10px; cursor: pointer; border-left: 3px solid transparent; color: var(--ink); }
+.cr-row.depth-1 { padding-left: 26px; }
+.cr-row:hover { background: color-mix(in srgb, var(--line) 60%, transparent); }
+.cr-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-row.is-left { border-left-color: var(--cr-left); background: var(--row-active); }
+.cr-row.is-right { border-left-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 14%, transparent); }
+.cr-row.is-left.is-right { border-left-color: var(--cr-left); box-shadow: inset 3px 0 0 var(--cr-right); }
+.cr-dots { display: inline-flex; gap: 2px; }
+.cr-dot { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1px solid var(--line-strong); }
+.cr-row.is-left .cr-dot.l { background: var(--cr-left); border-color: var(--cr-left); }
+.cr-row.is-right .cr-dot.r { background: var(--cr-right); border-color: var(--cr-right); }
+.cr-rowlabel { font: 600 var(--fs-sm)/1.4 var(--mono); white-space: nowrap; }
+.cr-rowtitle { color: var(--dim); font: var(--fs-sm)/1.4 var(--sans); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cr-row.is-unfiled .cr-rowlabel::after { content: " · unfiled"; color: var(--yellow); font-weight: 400; }
+.cr-rowpages { color: var(--faint); font: var(--fs-2xs)/1.4 var(--mono); }
+.cr-rowcounts { display: inline-flex; gap: 3px; font: var(--fs-2xs)/1.4 var(--mono); }
+.cr-rowcounts i { font-style: normal; padding: 0 4px; border-radius: 6px; border: 1px solid var(--line-strong); color: var(--dim); }
+.cr-rowcounts i.v { border-color: var(--green); }
+.cr-rowcounts i.m { border-color: var(--yellow); }
+.cr-rowcounts i.u { border-color: var(--red); }
+.cr-toright { border: 1px solid transparent; background: transparent; color: var(--dim); font: var(--fs-lg)/1 var(--mono); border-radius: 4px; padding: 2px 4px; cursor: pointer; opacity: 0; }
+.cr-row:hover .cr-toright, .cr-row:focus-within .cr-toright { opacity: 1; }
+.cr-toright:hover { color: var(--cr-right); border-color: var(--cr-right); }
+
+/* --- the tree (owner 2026-09-29 22:05 CDT: the IDE sidebar's idiom) --- */
+.cr-nav { display: grid; grid-template-rows: auto minmax(0, 1fr); padding: 0 0 24px; }
+.cr-navhead { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 2; }
+.cr-navhead .cr-filter { margin: 0; width: auto; flex: 1 1 auto; min-width: 0; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: var(--fs-lg)/1.4 var(--sans); border-radius: 4px; padding: 3px 6px; }
+.cr-navhead .cr-filter:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-navact { flex: none; border: 1px solid var(--line-strong); background: transparent; color: var(--dim); font: var(--fs-lg)/1 var(--mono); border-radius: 4px; padding: 3px 6px; cursor: pointer; }
+.cr-navact:hover { color: var(--ink); border-color: var(--ink); }
+.cr-navlist { overflow: auto; min-height: 0; padding-top: 4px; }
+.cr-group { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; align-items: center; gap: 4px; cursor: pointer; user-select: none; }
+.cr-group:hover { color: var(--ink); }
+.cr-group:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-groupn { color: var(--faint); font: var(--fs-2xs)/1.4 var(--mono); letter-spacing: 0; text-transform: none; }
+.cr-chev { display: inline-flex; align-items: center; justify-content: center; width: 14px; color: var(--faint); font: var(--fs-2xl)/1 var(--sans); font-style: normal; transition: transform 120ms ease; cursor: pointer; }
+.cr-chev.is-leaf { visibility: hidden; cursor: default; }
+.cr-row:hover .cr-chev, .cr-group:hover .cr-chev { color: var(--ink); }
+.cr-row.is-open > .cr-chev, .cr-group.is-open > .cr-chev { transform: rotate(90deg); }
+.cr-row { grid-template-columns: 14px 18px auto minmax(0, 1fr) auto 22px; }
+.cr-row.depth-1 { padding-left: 24px; }
+.cr-row.depth-1 > .cr-chev { display: none; }
+/* a SERIES folder (USB exhibits by series): a folder row that is not a document — dim small caps, no reference-pane button */
+.cr-row.is-series .cr-rowlabel { color: var(--dim); font-weight: 600; letter-spacing: .04em; }
+.cr-row.is-series .cr-rowtitle { color: var(--dim); }
+.cr-row.depth-1 { grid-template-columns: 18px auto minmax(0, 1fr) auto 22px; }
+.cr-rowkids { color: var(--faint); font: var(--fs-2xs)/1.4 var(--mono); white-space: nowrap; }
+/* a folded parent shows, as a ring, the pane of a document open inside it */
+.cr-row.has-left-within .cr-dot.l { border-color: var(--cr-left); border-width: 2px; }
+.cr-row.has-right-within .cr-dot.r { border-color: var(--cr-right); border-width: 2px; }
+.cr-row.is-folder:not(.is-open) .cr-rowcounts { display: none; }
+.cr-navsplit { position: relative; }
+.cr-navcollapse { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; width: 16px; height: 44px; padding: 0; background: var(--panel); border: 1px solid var(--line-strong); border-radius: 5px; color: var(--dim); font-size: var(--fs-2xs); cursor: pointer; opacity: 0; transition: opacity 120ms; }
+.cr-navsplit:hover .cr-navcollapse, .cr-page.is-navrail .cr-navcollapse { opacity: 1; }
+/* the collapse tab is VISIBLE ALWAYS (owner 2026-09-30 03:56 CDT: "expand and collapse all the way", the file explorer's idiom) — dim at rest, full on hover */
+.cr-navcollapse { opacity: .8; }
+/* the options row under the filter: the docket threshold and the hidden count */
+.cr-navhead { flex-wrap: wrap; }
+.cr-navopts { flex: 1 0 100%; display: flex; align-items: center; gap: 6px; padding-top: 4px; color: var(--dim); font: var(--fs-xs)/1.4 var(--sans); }
+.cr-hideopt { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; cursor: pointer; min-width: 0; }
+.cr-hideopt input[type="checkbox"] { margin: 0; accent-color: var(--accent); }
+.cr-hideopt input[type="number"] { width: 6.5ch; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: var(--fs-xs)/1.4 var(--mono); border-radius: 3px; padding: 0 2px; }
+.cr-hiddenn { margin-left: auto; font: var(--fs-2xs)/1 var(--mono); }
+/* P97c + R3: the case picker sits in the HEAD ROW (the owner's word 2026-10-21), shown only when the project serves two or more lanes; with one the lane's name stands in its place */
+.cr-head .cr-caseopt { flex: 0 1 auto; max-width: 40%; min-width: 0; margin: 0; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: var(--fs-xs)/1.4 var(--sans); border-radius: 3px; padding: 1px 4px; align-self: center; }
+.cr-head .cr-lane { color: var(--dim); font: var(--fs-sm)/1.4 var(--mono); }
+.cr-head[hidden] { display: none; }
+.cr-navact.is-on { color: var(--ink); border-color: var(--ink); }
+/* a hidden row drawn anyway — open in a pane, named by the filter, or the session showing the hidden rows — is dim and says so */
+.cr-row.is-hidden { opacity: .55; }
+/* the mark is a glyph, not words, so the title survives at 260 px (a168bcf6's review nit a); the row's title attribute says "hidden from the list" */
+.cr-row.is-hidden .cr-rowlabel::after { content: " ⊘"; color: var(--faint); font-weight: 400; }
+.cr-grouphid { font-style: normal; color: var(--faint); margin-left: 4px; text-transform: none; letter-spacing: 0; font-weight: 400; }
+/* on the rail the button hangs off the splitter's right edge, clear of the shell's own rail */
+.cr-page.is-navrail .cr-navcollapse { left: 0; transform: translate(0, -50%); transition: none;
+  /* on the rail the tab is the only way back: wider and lit, as the file explorer's tab is (a168bcf6's review nit b — a dark sliver on a dark ground) */
+  width: 20px; height: 56px; background: var(--line); color: var(--ink); border-color: var(--line-strong); opacity: 1; font-size: var(--fs-lg); }
+.cr-navcollapse:hover { color: var(--ink); border-color: var(--ink); }
+.cr-page.is-navrail .cr-body { --cr-nav: 0px; }
+.cr-page.is-navrail .cr-nav { display: none; }
+/* every body child is PLACED (measured offscreen 2026-09-29: with the nav
+   display:none, auto-placement shifted the four others one column left —
+   the left pane sat in the 6px splitter column at its min-content width) */
+.cr-body > .cr-nav { grid-column: 1; }
+.cr-body > .cr-navsplit { grid-column: 2; }
+.cr-body > .cr-left { grid-column: 3; }
+.cr-body > .cr-split { grid-column: 4; }
+.cr-body > .cr-right { grid-column: 5; }
+
+/* --- the panes: notes (closed) · viewer · problems (closed) · FOOTER, fixed rows (no pane header — the owner's word
+   2026-09-30 ~04:5x CDT: "a footer for each pdf pane like we have for the tmux session panes … move the page buttons to
+   the footer. Remove the BOXES p. N/N … the details at the top of the pdf pane into a menu with three dots") --- */
+.cr-pane { display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto 32px; min-height: 0; min-width: 0; background: var(--bg); }   /* notes · the tab bar (right pane; P88) · viewer · problems · footer — every child names its row */
+/* EACH CHILD NAMES ITS ROW (the owner's screenshot 05:49 CDT: the footer drawn at the top, the viewer with no height): the
+   notes and the problems rows are display:none while closed, and a grid places what remains IN ORDER — the viewer fell
+   into the auto row and the footer took the 1fr one. Explicit placement holds the tracks whether or not the rows exist. */
+.cr-pane > .cr-notes { grid-row: 1; }
+.cr-pane > .cr-tabs { grid-row: 2; }
+.cr-pane > .cr-viewer { grid-row: 3; }
+.cr-pane > .cr-problems { grid-row: 4; }
+.cr-pane > .cr-foot { grid-row: 5; }
+
+/* --- THE TAB BAR (R2, the owner's tab rule 2026-10-21; P88's bar of 2026-10-02 re-ruled): up to five tabs on the right pane, 32 px like the footer,
+   one non-wrapping row; one tab per document, a pinned tab marked with its glyph and never the one a sixth document replaces, the active tab the one the viewer shows --- */
+.cr-tabs { display: flex; align-items: stretch; gap: 2px; height: 32px; padding: 3px 6px 0; background: var(--panel); border-bottom: 1px solid var(--line); min-width: 0; overflow: hidden; user-select: none; }
+.cr-tabs[hidden] { display: none; }
+.cr-tab { flex: 1 1 0; min-width: 0; max-width: 240px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px; border: 1px solid var(--line); border-bottom: none; border-radius: 6px 6px 0 0; background: var(--panel-2); color: var(--dim); font: var(--fs-md) var(--mono); cursor: pointer; text-align: left; }
+.cr-tab .cr-tabtext { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: min(100%, 10ch); flex: 1 1 auto; }   /* a FLOOR on the title that holds EVERY docket label whole: b0d76502's census of the lane — filings 5–12 glyphs, attachments 7–9 ('ECF 13-10', 'ECF 51-58'), the pairs that sit locked side by side differing in their LAST cells — so nine glyphs plus one cell of slack for the ellipsis's rounding (ch = the '0'; 6ch and 8ch both cut a digit on 7d866ecf's 490-px frames); case labels truncate past the volume and reporter, which is right */
+.cr-tab .cr-tabpage { white-space: nowrap; overflow: hidden; text-overflow: clip; min-width: 0; flex: 0 1 auto; color: var(--dim); }   /* the page yields only BELOW the title's floor — clipped, never '·…' (an ellipsis of nothing); at the owner's width both read whole */
+.cr-tab.is-active .cr-tabpage { color: var(--ink); }
+.cr-tab .cr-tabpin { font-style: normal; font-size: var(--fs-sm); flex: none; opacity: .85; }
+.cr-tab.is-pinned .cr-tabtext { font-weight: 600; }
+.cr-tab.is-active { background: var(--bg); color: var(--ink); border-color: var(--cr-right); border-bottom: 1px solid var(--bg); margin-bottom: -1px; }
+.cr-tab:hover { color: var(--ink); }
+.cr-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cr-tabwell { position: absolute; inset: 0; overflow: hidden; }
+.cr-tabwell[hidden] { display: none; }
+/* THE VIDEO TAB (§ 5.5): the player over the transcript's minute; the pane's scroller sleeps while the tab is a recording */
+.cr-tabwell.is-video .cr-scroll { display: none; }
+.cr-video { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: auto; background: var(--bg); }
+.cr-videobox { position: relative; flex: 0 0 auto; aspect-ratio: 16 / 9; background: var(--video-bg); }
+.cr-videobox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cr-videoplay { position: absolute; inset: 0; margin: auto; width: max-content; height: max-content; padding: 10px 18px; font: var(--fs-xl)/1.2 var(--sans); color: var(--video-ink); background: var(--video-glass); border: 1px solid var(--video-line); border-radius: 6px; cursor: pointer; }
+.cr-videoplay:hover { background: var(--video-glass-hover); }
+.cr-videobox.is-playing .cr-videoplay { display: none; }
+.cr-videotext { flex: 1 1 auto; padding: 8px 14px 14px; font: var(--fs-xl)/1.55 var(--sans); color: var(--ink); }
+.cr-videominutehead { font: var(--fs-xs)/1.4 var(--mono); color: var(--dim); margin: 8px 0 4px; }
+.cr-videominutetext { white-space: pre-wrap; }
+.cr-videomark { background: color-mix(in srgb, var(--cr-right) 26%, transparent); color: inherit; border-bottom: 1.5px solid var(--cr-right); }
+.cr-panekey { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.cr-panekey.is-left { background: var(--cr-left); }
+.cr-panekey.is-right { background: var(--cr-right); }
+.cr-panetitle { font: 600 var(--fs-md)/1.4 var(--sans); color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.cr-btn { border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: var(--fs-lg)/1 var(--mono); border-radius: 5px; padding: 3px 8px; cursor: pointer; }
+.cr-btn:hover { border-color: var(--accent); }
+.cr-btn:active { transform: scale(0.96); }
+.cr-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-stepper { display: inline-flex; align-items: center; gap: 4px; }
+.cr-stepn { color: var(--dim); font: var(--fs-sm)/1 var(--mono); min-width: 52px; text-align: center; }
+
+/* the CORNER (the owner's word: "the search bar open[s] up from a single button … the search field and buttons expand in
+   the top right corner of the pdf viewer itself when clicked"): ⋯ and ⌕ float over the viewer's top-right, left of the
+   scrollbar (⋯ sits in the footer beside the name, as the tmux pane footer has it); open, the ⌕ button becomes the search bar in the same corner */
+.cr-corner { position: absolute; top: 8px; right: 22px; left: 8px; z-index: 4; display: flex; align-items: center; justify-content: flex-end; gap: 4px; pointer-events: none; }   /* a strip across the top, right-aligned, that lets clicks through to the page between its controls */
+.cr-corner > * { pointer-events: auto; }
+.cr-corner > .cr-btn { background: color-mix(in srgb, var(--panel) 94%, transparent); box-shadow: 0 1px 3px var(--float-shadow); font-size: var(--fs-xl); padding: 3px 8px; }
+.cr-corner.is-open .cr-searchbtn { display: none; }
+.cr-search { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--panel); box-shadow: 0 2px 8px var(--float-shadow); flex: 0 1 440px; min-width: 0; }   /* narrows with the pane, never past its edge */
+.cr-search[hidden] { display: none; }
+.cr-search input { flex: 1 1 auto; min-width: 0; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font: var(--fs-lg)/1.4 var(--sans); border-radius: 5px; padding: 3px 8px; }
+.cr-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cr-searchn { color: var(--dim); font: var(--fs-sm)/1.4 var(--mono); white-space: nowrap; }
+.cr-hits { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cr-hit { position: absolute; background: color-mix(in srgb, var(--yellow) 45%, transparent); border-radius: 2px; }
+.cr-hit.is-current { outline: 2px solid var(--cr-right); background: color-mix(in srgb, var(--cr-right) 40%, transparent); }
+/* the right pane's one line: what opened, or what could not — the elastic chip of its footer, the whole text in its tooltip and the ⋯ menu */
+.cr-says { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dim); font: var(--fs-sm)/1.5 var(--mono); }
+.cr-says.is-ok { color: var(--ink); }
+.cr-says.is-bad { color: var(--red); }
+.cr-says.is-dead { color: var(--dim); font-style: italic; }
+.cr-says.is-docket { color: var(--yellow); }
+.cr-says.is-link a { color: var(--accent); }
+.cr-says .cr-warn { color: var(--yellow); }
+
+/* --- the pane FOOTER: workspace.js's .ws-pane-foot (32 px, one non-wrapping flex row; the elastic chips ellipsize, nothing
+   spills into the neighbour): key · name · status (left) / what opened (right) · the citation stepper (left) — the one control (the page box left on the owner's word 2026-10-01) --- */
+.cr-foot { flex: none; display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 6px 0 9px; background: var(--panel); border-top: 1px solid var(--line); font: var(--fs-md) var(--sans); color: var(--dim); user-select: none; overflow: hidden; min-width: 0; }
+.cr-footchip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font: var(--fs-md) var(--mono); color: var(--dim); }
+.cr-foot .cr-panetitle { flex: 0 1 auto; max-width: 60%; color: var(--ink); }   /* the name gives way first: it is also in the ⋯ menu and its tooltip (60 % since the page box left, owner 2026-10-01) */
+.cr-foot .cr-status { flex: 1 1 auto; }
+.cr-foot .cr-status:empty, .cr-foot .cr-probn[hidden] { display: none; }
+.cr-probn { flex: none; border: 1px solid var(--yellow); color: var(--yellow); background: transparent; border-radius: 9px; padding: 1px 7px; font: var(--fs-sm)/1.3 var(--mono); cursor: pointer; white-space: nowrap; }
+.cr-probn.is-on { background: color-mix(in srgb, var(--yellow) 18%, transparent); }
+.cr-foot .cr-btn { width: 26px; height: 24px; padding: 0; font-size: var(--fs-2xl); display: inline-flex; align-items: center; justify-content: center; }
+.cr-foot .cr-btn[disabled] { opacity: .3; cursor: default; }
+.cr-foot .cr-stepper { flex: none; }
+.cr-foot .cr-morebtn { flex: none; width: 22px; font-size: var(--fs-3xl); letter-spacing: -1px; }
+
+/* --- the notes drawer (the ⋯ menu): per document, the filings' own store — the project's .claude/doc_notes/<id>.md --- */
+.cr-notes { display: flex; flex-direction: column; border-bottom: 1px solid var(--line); background: var(--panel-2); min-width: 0; }
+.cr-notes[hidden] { display: none; }
+.cr-noteshead { display: flex; align-items: center; gap: 8px; padding: 4px 8px; font: var(--fs-sm)/1.4 var(--mono); color: var(--dim); min-width: 0; }
+.cr-noteslabel { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.cr-notesstatus { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.cr-notestext { width: 100%; box-sizing: border-box; height: 130px; min-height: 60px; max-height: 45vh; resize: vertical; border: 0; border-top: 1px solid var(--line); background: var(--bg); color: var(--ink); font: var(--fs-lg)/1.5 var(--mono); padding: 6px 10px; }
+.cr-notestext:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.cr-viewer { min-height: 0; overflow: hidden; position: relative; }
+.cr-well { position: absolute; inset: 0; overflow: hidden; }
+.cr-problems { border-top: 1px solid var(--line); background: var(--panel-2); color: var(--yellow); font: var(--fs-sm)/1.5 var(--mono); padding: 4px 10px; max-height: 120px; overflow: auto; }
+.cr-problems summary { cursor: pointer; }
+.cr-problems ul { margin: 4px 0 0; padding-left: 18px; color: var(--dim); }
+.cr-problems details.cr-coverage summary { color: var(--dim); }
+.cr-problems li[data-act="gapto"] { cursor: pointer; }
+.cr-problems li[data-act="gapto"]:hover { color: var(--text); }
+.cr-problems li.is-answered { color: var(--dim); opacity: .7; }
+
+/* --- the PDF stack (casereview_pdf.js) --- */
+.cr-scroll { position: absolute; inset: 0; overflow: auto; background: var(--page-well); }
+.cr-stack { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0 40px; }
+.cr-pdfpage { position: relative; background: var(--page-paper); box-shadow: 0 1px 3px var(--page-shadow); }
+.cr-pdfpage .textLayer span, .cr-pdfpage .textLayer br { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
+.cr-pdfpage canvas { display: block; }
+.cr-pdfpage .textLayer { position: absolute; inset: 0; overflow: hidden; line-height: 1; }
+.cr-pageno { position: absolute; top: 4px; right: 6px; z-index: 3; color: var(--pageno-ink); font: var(--fs-2xs)/1 var(--mono); pointer-events: none; }
+.cr-pdfpage.is-marked { outline: 3px solid var(--cr-right); outline-offset: -3px; }
+.cr-pdfpage.is-marked::before { content: "cited"; position: absolute; top: 4px; left: -0px; z-index: 3; background: var(--cr-right); color: var(--badge-ink); font: 600 var(--fs-2xs)/1 var(--mono); padding: 3px 6px; border-radius: 0 3px 3px 0; }
+.cr-hot { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.cr-box { position: absolute; pointer-events: auto; border: 1.5px solid var(--cr-left); background: color-mix(in srgb, var(--cr-left) 12%, transparent); border-radius: 2px; padding: 0; cursor: pointer; }
+.cr-box:hover { background: color-mix(in srgb, var(--cr-left) 26%, transparent); }
+.cr-box.is-mapped { border-color: var(--yellow); background: color-mix(in srgb, var(--yellow) 12%, transparent); }
+.cr-box.is-unresolved { border-color: var(--red); border-style: dashed; background: transparent; cursor: not-allowed; }
+.cr-box.is-active { box-shadow: 0 0 0 2px var(--cr-left); }
+.cr-box.is-approx { border-style: dashed; opacity: .75; }         /* the map was cut against an earlier render */
+.cr-right .cr-box { border-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 14%, transparent); cursor: default; }
+/* HIGHLIGHTS OFF (the owner's button, 2026-09-30): the boxes are unpainted, never removed — every hit area stays and the
+   one under the pointer shows itself; the active citation keeps a hairline so the stepper still has a place */
+.cr-page.is-noboxes .cr-box { border-color: transparent; background: transparent; box-shadow: none; }
+.cr-page.is-noboxes .cr-box.is-active { box-shadow: 0 0 0 1px color-mix(in srgb, var(--cr-left) 45%, transparent); }
+.cr-page.is-noboxes .cr-box:hover { border-color: var(--cr-left); background: color-mix(in srgb, var(--cr-left) 18%, transparent); }
+.cr-page.is-noboxes .cr-right .cr-box:hover { border-color: var(--cr-right); background: color-mix(in srgb, var(--cr-right) 18%, transparent); }
+
+@media (prefers-reduced-motion: reduce) { .cr-btn:active { transform: none; } .cr-chev { transition: none; } }
