@@ -198,7 +198,7 @@
       "local": true
     },
     {
-      "slug": "the-rule-not-the-creature",
+      "slug": "a-rule-of-the-people",
       "collection": "the-corporation",
       "title": "A Rule of the People",
       "subtitle": "Why a Corporation Holds No Constitutional Right of Its Own",
@@ -207,7 +207,7 @@
       "blurb": "A corporation is not a being the law made but a rule the people made: a sovereign's permission that a set of natural persons may act under one name, with two incidents no private agreement can create because each binds strangers, the separation of the body's debts from its members' and the body's survival through every change of them. A name in a rule holds no right against the rule's makers.",
       "featured": true,
       "year": "2026",
-      "body": "/content/works/the-rule-not-the-creature.md",
+      "body": "/content/works/a-rule-of-the-people.md",
       "local": true
     }
   ]

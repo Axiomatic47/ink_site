@@ -124,8 +124,8 @@ const REVIEWS = [
     lane: join(LIB, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'Pinned Citation Extracts'),
   },
   {
-    slug: 'the-rule-not-the-creature',
-    id: 'rule-not-the-creature', // article 16's lane by drafter 11297e7a, 2026-11-05 — beside the article, no BOOK/ folder
+    slug: 'a-rule-of-the-people',
+    id: 'rule-of-the-people', // article 16's lane by drafter 11297e7a, 2026-11-05 — beside the article, no BOOK/ folder
     book: join(LIB, '2_Academic Articles', '16_The Rule Not the Creature', 'THE_RULE_NOT_THE_CREATURE.md'),
     lane: join(LIB, '2_Academic Articles', '16_The Rule Not the Creature', 'Pinned Citation Extracts'),
   },

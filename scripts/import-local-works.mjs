@@ -81,7 +81,7 @@ const LOCAL = [
   {
     // owner 2026-11-05 (via drafter 11297e7a, the lane send of 19:43 CST): article 16 in review mode — the
     // first ARTICLE on the site, its lane beside it (no BOOK/ folder), its footnotes continuous [^1]…[^449]
-    slug: 'the-rule-not-the-creature',
+    slug: 'a-rule-of-the-people',
     collection: 'the-corporation',
     title: 'A Rule of the People',
     subtitle: 'Why a Corporation Holds No Constitutional Right of Its Own',
