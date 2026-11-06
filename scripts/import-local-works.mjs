@@ -31,6 +31,8 @@ const LOCAL_COLLECTIONS = [
   // owner 2026-09-14: the Immunity collection leads the articles page
   { slug: 'immunity', title: 'Immunity', date: '2026-09-14', featured: true, local: true, lead: true },
   { slug: 'holy-seed', title: 'The Holy Seed', date: '2026-09-15', featured: true, local: true },
+  // owner 2026-11-05 (the drafter's pane, 08:0x CST): article 16 in review mode, "published to my website in the same manner"
+  { slug: 'the-corporation', title: 'The Corporation', date: '2026-11-05', featured: true, local: true },
 ];
 const LOCAL = [
   {
@@ -75,6 +77,20 @@ const LOCAL = [
     blurb: 'Ezra 9:2 calls the returned exiles "the holy seed" and says they have mingled it with the peoples of the lands. The phrase occurs nowhere else in the Hebrew Bible in that sense, and within a generation of its first use the community at Jerusalem had put away its foreign wives and their children and had begun to keep its membership by written pedigree. This book asks where the idiom and the programme came from.',
     featured: true,
     src: join(LIBRARY, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'THE_HOLY_SEED.md'),
+  },
+  {
+    // owner 2026-11-05 (via drafter 11297e7a, the lane send of 19:43 CST): article 16 in review mode — the
+    // first ARTICLE on the site, its lane beside it (no BOOK/ folder), its footnotes continuous [^1]…[^449]
+    slug: 'the-rule-not-the-creature',
+    collection: 'the-corporation',
+    title: 'A Rule of the People',
+    subtitle: 'Why a Corporation Holds No Constitutional Right of Its Own',
+    date: '2026-11-05',
+    venue: 'Article · working draft',
+    // the article's own words (its Abstract, first two sentences)
+    blurb: "A corporation is not a being the law made but a rule the people made: a sovereign's permission that a set of natural persons may act under one name, with two incidents no private agreement can create because each binds strangers, the separation of the body's debts from its members' and the body's survival through every change of them. A name in a rule holds no right against the rule's makers.",
+    featured: true,
+    src: join(LIBRARY, '2_Academic Articles', '16_The Rule Not the Creature', 'THE_RULE_NOT_THE_CREATURE.md'),
   },
 ];
 

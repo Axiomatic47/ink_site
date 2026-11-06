@@ -1,0 +1,16 @@
+{
+ "slug": "the-rule-not-the-creature",
+ "book": "THE_RULE_NOT_THE_CREATURE.md",
+ "versions": [
+  {
+   "version": 1,
+   "date": "2026-11-05",
+   "text": "5c6ea7fd2e7290885ccadfc18d60febb5d82649e434f2c1e88803c7bf86fcb9f",
+   "pdf": "108551e1149e376ad7d9dfb3aa728c49e39b863cd3d9360652572bb01ab6a0db",
+   "book_commit": "5f366b1fd329ef38bee948b634d1ffbcd9f0e097",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-05_1959.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's first call to the finish route, job 8c07c1df7451, read whole by export_read.py at 19:59:17 CST 5 Nov 2026)",
+   "lane_state": "third (the lane opened at the first; re-anchored on the frozen render copy at the third)",
+   "note": "Version 1 (5 November 2026). The article's text of 4 November 2026 (the O110 queue's last row at 9a15bef0, the date line conformed at 5f366b1f), rendered by the Studio's autobuild worker on 5 November 2026 (the worker's build of 16:00 anchored the lane's first two states; the entry re-anchored before its first import on the loop's first build of 19:59, the same text); the first review-mode state of the article."
+  }
+ ]
+}
