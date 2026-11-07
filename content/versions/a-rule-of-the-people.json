@@ -11,6 +11,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-05_1959.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's first call to the finish route, job 8c07c1df7451, read whole by export_read.py at 19:59:17 CST 5 Nov 2026)",
    "lane_state": "third (the lane opened at the first; re-anchored on the frozen render copy at the third)",
    "note": "Version 1 (5 November 2026). The article's text of 4 November 2026 (the O110 queue's last row at 9a15bef0, the date line conformed at 5f366b1f), rendered by the Studio's autobuild worker on 5 November 2026 (the worker's build of 16:00 anchored the lane's first two states; the entry re-anchored before its first import on the loop's first build of 19:59, the same text); the first review-mode state of the article."
+  },
+  {
+   "version": 2,
+   "date": "2026-11-06",
+   "text": "1fe8e140954f1f1290742b2cf89e0146df87d5110f6d1198c810bfe55c25413f",
+   "pdf": "a679d18651157407f3d52210f69aeb8fb78a7f2cd4a979aca62ca750eea40f7d",
+   "book_commit": "268a222e7c04aa18eb8ade8d1ba74ee962f3e6fa",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-06_1735.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route after the citation-form pass, job 74638ff6a72c, 80.9 s, read whole by export_read.py at 17:35:18 CST 6 Nov 2026)",
+   "lane_state": "sixth (the slug conformed to the title form at the fifth; the citation-form pass and the volume 270 row at the sixth)",
+   "note": "Version 2 (6 November 2026). The citation-form pass of 6 November 2026 on the owner's word: eighteen footnotes (six rows approved one by one in the edit-review flow, twelve direct fixes with one answer each from the shelf) at research_library 268a222e; the article's prose unchanged; rendered by the Studio's autobuild worker on the seat's call. The slug moved to the title form, a-rule-of-the-people, on the owner's word of the same afternoon."
   }
  ]
 }
