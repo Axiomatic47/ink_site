@@ -30,6 +30,7 @@ REVIEWS = {
     'the-subjects-unanswered-plea': ('immunity-book', os.path.join(LIB, '2_Academic Articles', '11_Immunity and Standing Doctrine Geneology', 'BOOK', 'Pinned Citation Extracts')),
     'a-restorative-reading-of-genesis-1-3': ('genesis-1-3', os.path.join(LIB, '2_Academic Articles', '14_Restorative Reading of Genesis 1-3', 'BOOK', 'Pinned Citation Extracts')),
     'the-holy-seed': ('holy-seed', os.path.join(LIB, '2_Academic Articles', '13_Fall of Babylon and Jewish Identity', 'BOOK', 'Pinned Citation Extracts')),
+    'a-rule-of-the-people': ('rule-of-the-people', os.path.join(LIB, '2_Academic Articles', '16_The Rule Not the Creature', 'Pinned Citation Extracts')),
 }
 
 
