@@ -21,6 +21,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-06_1735.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route after the citation-form pass, job 74638ff6a72c, 80.9 s, read whole by export_read.py at 17:35:18 CST 6 Nov 2026)",
    "lane_state": "sixth (the slug conformed to the title form at the fifth; the citation-form pass and the volume 270 row at the sixth)",
    "note": "Version 2 (6 November 2026). The citation-form pass of 6 November 2026 on the owner's word: eighteen footnotes (six rows approved one by one in the edit-review flow, twelve direct fixes with one answer each from the shelf) at research_library 268a222e; the article's prose unchanged; rendered by the Studio's autobuild worker on the seat's call. The slug moved to the title form, a-rule-of-the-people, on the owner's word of the same afternoon."
+  },
+  {
+   "version": 3,
+   "date": "2026-11-09",
+   "text": "2a4bb42b3efa288ea02a3c02c301d1bfad6a823577fa9e04f4196ae2b41d360e",
+   "pdf": "f6cd39d98db7dd3338c0dab528855d69d5c2e46a34b19ae55f4b144438fbab5d",
+   "book_commit": "977865a6b795472bf89187aa96fdc179a438b299",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-09_1545.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route after the phantasm pass, job 1bbf9d5377b3, the PDF-only pass over the staged copy because the owner held the docx open in Word, 1048.8 s, read whole by export_read.py at 15:45:06 CST 9 Nov 2026; 232 pages)",
+   "lane_state": "eighth (the parser's continuations and asides at the seventh; the phantasm pass and the new render at the eighth)",
+   "note": "Version 3 (9 November 2026). The removal test run on the article's own word: three rows approved one by one in the edit-review flow on the owner's idea of 9 November 2026 (the phantasm strike in Section IX.A's fourth point, with Johnson's 1755 definition read from vol. II leaf 345 and the word recorded as the author's; the generalization closing that paragraph, a rule of language and not of judicial construction alone; a one-sentence pointer in Section VII.B) at research_library 977865a6; the footnotes unchanged at 449; rendered by the Studio's autobuild worker on the seat's call. The docx finish is still owed to the operative docx until the owner closes it in Word; the PDF is the staged copy's and was read whole."
   }
  ]
 }
