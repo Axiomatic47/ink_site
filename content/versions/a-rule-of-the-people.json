@@ -31,6 +31,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-09_1545.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route after the phantasm pass, job 1bbf9d5377b3, the PDF-only pass over the staged copy because the owner held the docx open in Word, 1048.8 s, read whole by export_read.py at 15:45:06 CST 9 Nov 2026; 232 pages)",
    "lane_state": "eighth (the parser's continuations and asides at the seventh; the phantasm pass and the new render at the eighth)",
    "note": "Version 3 (9 November 2026). The removal test run on the article's own word: three rows approved one by one in the edit-review flow on the owner's idea of 9 November 2026 (the phantasm strike in Section IX.A's fourth point, with Johnson's 1755 definition read from vol. II leaf 345 and the word recorded as the author's; the generalization closing that paragraph, a rule of language and not of judicial construction alone; a one-sentence pointer in Section VII.B) at research_library 977865a6; the footnotes unchanged at 449; rendered by the Studio's autobuild worker on the seat's call. The docx finish is still owed to the operative docx until the owner closes it in Word; the PDF is the staged copy's and was read whole."
+  },
+  {
+   "version": 4,
+   "date": "2026-11-09",
+   "text": "42c91312d56a98d57d3261ddc7670292d335cff44e1316ec9ba6d3a76bd408b9",
+   "pdf": "94a4f8d0a85c63bdf16b633223759f65981e7d2abc7ce0ce64d80458f8502ed8",
+   "book_commit": "b4e4fedb543614d96151084f78d382a276acba73",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-09_1930.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route, job 25ffa032d463, the full finish with the Word pass on the operative docx, 43.8 s, read whole by export_read.py at 19:30:15 CST 9 Nov 2026; 232 pages)",
+   "lane_state": "ninth (the phantasm pass at the eighth; the attribution rows, the Date line and the WANTED list at the ninth)",
+   "note": "Version 4 (9 November 2026). Three rows on the owner's words of 19:1x CST 9 Nov 2026 at research_library b4e4fedb: the attribution of the word phantasm conformed in the abstract and Section IX.F (the definition Johnson's, the word the author's), and the Date line rewritten as 'Pre-publishing Edition, November 2026' in the immunity book's form, the versioning removed; WANTED_SOURCES_NOT_HELD_2026-11-09.md lists the nineteen cited works the shelf does not hold. The footnotes unchanged at 449; the index unchanged from the seventh state."
   }
  ]
 }
