@@ -61,6 +61,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-11_2211.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route, 22:11 CST 11 Nov 2026; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages)",
    "lane_state": "thirteenth (the drafts and the shelf wording at the twelfth; the owner's rulings on the 25 no-source units and n. 22's quotation at the thirteenth)",
    "note": "Version 6 (11 November 2026). One quotation conformed to its page: n. 22 quotes Black's Law Dictionary 976 (9th ed. 2009), s.v. legal correlative, and had dropped two words; the page reads 'This duty exists even if the person infringing the right does not know of it' (research_library 87bf22ca; read on the shelf's Ninth, pdf 1005). The footnotes unchanged at 449. Version 5 was never imported to the sites: the sites go from version 4 to version 6."
+  },
+  {
+   "version": 7,
+   "date": "2026-11-12",
+   "text": "d621fb66635e91a102374b71b6d561fab11b1237d57d1a07820cccd5844feed0",
+   "pdf": "bf6d1a812017ec613c9356e58d582e636eddb28d75e5964455b046812254d802",
+   "book_commit": "1da904ace6165adf884682f3485ba0315b463677",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-12_0233.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export of 02:33 CST 12 Nov 2026; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages)",
+   "lane_state": "fourteenth (the owner's italic in the introduction and n. 2's emphasis note; no spec change)",
+   "note": "Version 7 (12 November 2026). The author italicised 'as contrasted with a natural person' in the introduction's quotation of Black's Dictionary of Law (1891), s.v. Ens legis, and n. 2 now says '(emphasis added in the text)' (research_library 1da904ac). The footnotes unchanged at 449."
   }
  ]
 }
