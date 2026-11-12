@@ -41,6 +41,26 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-09_1930.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route, job 25ffa032d463, the full finish with the Word pass on the operative docx, 43.8 s, read whole by export_read.py at 19:30:15 CST 9 Nov 2026; 232 pages)",
    "lane_state": "ninth (the phantasm pass at the eighth; the attribution rows, the Date line and the WANTED list at the ninth)",
    "note": "Version 4 (9 November 2026). Three rows on the owner's words of 19:1x CST 9 Nov 2026 at research_library b4e4fedb: the attribution of the word phantasm conformed in the abstract and Section IX.F (the definition Johnson's, the word the author's), and the Date line rewritten as 'Pre-publishing Edition, November 2026' in the immunity book's form, the versioning removed; WANTED_SOURCES_NOT_HELD_2026-11-09.md lists the nineteen cited works the shelf does not hold. The footnotes unchanged at 449; the index unchanged from the seventh state."
+  },
+  {
+   "version": 5,
+   "date": "2026-11-11",
+   "text": "6dfd485812392ee27682262885e40c2213a450cab805f1b50a627c45c49c9b75",
+   "pdf": "0156ad18b97c8f66eaa2f5a73bed52ef8c0d18956b49cdc95279233b4c9daf15",
+   "book_commit": "e7d0b371c0ab26d14572c2ab2f02d990835cd0fa",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-11_2102.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the owner's own rebuild and export from the Studio at 21:02 CST 11 Nov 2026, 'rebuilt and exported article 16' in the drafter's pane; read whole by export_read.py against the markdown and the docx at 21:06 CST, the report beside the render; 232 pages)",
+   "lane_state": "twelfth (seven WANTED works at the eleventh; the three drafts rowed and the shelf wording removed at the twelfth)",
+   "note": "Version 5 (11 November 2026). The article no longer speaks of the shelf: on the owner's answer in the Studio (ask 20261111_1833: the wording belongs in administrative notes only) and the wording picked in the drafter's pane ('the copy read'), notes 218 and 237 were reworded in three approved rows (research_library a8edba69) and the 48 other uses in 41 notes and one body sentence in a batch of 43 same-pattern swaps and five approved rows (e7d0b371). The footnotes unchanged at 449. Pollman, Coates and Volokh are linked to the drafts held, labelled as drafts, on the owner's ruling of the same ask."
+  },
+  {
+   "version": 6,
+   "date": "2026-11-11",
+   "text": "9779f80714b74d504d50d463e46733b0e5bc6bd52c734d6bce3caf4d7374995c",
+   "pdf": "8fc97077f689ad59c4e431084bfb22bf512f35ace9164a792fa8618bc0d513e1",
+   "book_commit": "87bf22ca34726e65357ef5c836a876a1ec98ec1f",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-11_2211.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export on the seat's call to the finish route, 22:11 CST 11 Nov 2026; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages)",
+   "lane_state": "thirteenth (the drafts and the shelf wording at the twelfth; the owner's rulings on the 25 no-source units and n. 22's quotation at the thirteenth)",
+   "note": "Version 6 (11 November 2026). One quotation conformed to its page: n. 22 quotes Black's Law Dictionary 976 (9th ed. 2009), s.v. legal correlative, and had dropped two words; the page reads 'This duty exists even if the person infringing the right does not know of it' (research_library 87bf22ca; read on the shelf's Ninth, pdf 1005). The footnotes unchanged at 449. Version 5 was never imported to the sites: the sites go from version 4 to version 6."
   }
  ]
 }
