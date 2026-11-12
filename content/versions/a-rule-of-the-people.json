@@ -71,6 +71,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-12_0233.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export of 02:33 CST 12 Nov 2026; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages)",
    "lane_state": "fourteenth (the owner's italic in the introduction and n. 2's emphasis note; no spec change)",
    "note": "Version 7 (12 November 2026). The author italicised 'as contrasted with a natural person' in the introduction's quotation of Black's Dictionary of Law (1891), s.v. Ens legis, and n. 2 now says '(emphasis added in the text)' (research_library 1da904ac). The footnotes unchanged at 449."
+  },
+  {
+   "version": 8,
+   "date": "2026-11-12",
+   "text": "9779f80714b74d504d50d463e46733b0e5bc6bd52c734d6bce3caf4d7374995c",
+   "pdf": "a72d3f69324ca480eadca834a831d269bfa8f907b2e7ab7a8da2da2874b5dd52",
+   "book_commit": "ac02c1fdbfc70fa20553223149f5b7d81fbf1f5f",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-12_0639.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export of 06:39 CST 12 Nov 2026 on the seat's call to the finish route, no Word session open; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages; its layout text and its fonts equal version 6's render on every page)",
+   "lane_state": "fifteenth (the owner's Word tests taken back; no spec change)",
+   "note": "Version 8 (12 November 2026). Version 7 carried four tests the author made in Word that morning: an italic in the introduction's quotation of Black's 1891 dictionary with a note of added emphasis in n. 2, the heading 'I. Introduction' in another font, and the first two paragraphs of the introduction centred and right-aligned. All four are taken back on the author's word (research_library ac02c1fd). The text is version 6's, byte for byte; the footnotes unchanged at 449."
   }
  ]
 }
