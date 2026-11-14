@@ -52,12 +52,14 @@
       "slug": "madisonian-test",
       "collection": "codified-democratic-order",
       "title": "The Madisonian Separation of Powers Objective Compliance Test",
+      "subtitle": "Recovering Constitutional Structure Through Textual Analysis",
       "date": "",
       "year": "2025",
-      "venue": "Independent research",
-      "blurb": "Recovers Madison's actual framework and derives a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years (1872–2021) at a 100% correspondence rate.",
+      "venue": "Article · working draft",
+      "blurb": "For 239 years the United States has lacked an objective legal definition of a separation-of-powers violation. This Article recovers what Madison actually wrote: he used “distribution”, not “separation”; “balance” and “check” are sequential operations, not synonyms; and non-delegation is not a separate doctrine. From that framework it derives a six-step compliance test any court can apply without policy judgment.",
       "featured": false,
-      "pdf": "/works/madisonian-separation-of-powers-test.pdf"
+      "body": "/content/works/madisonian-test.md",
+      "local": true
     },
     {
       "slug": "means-not-views-the-constitutional-distinction-between-radic",
