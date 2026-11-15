@@ -129,6 +129,12 @@ const REVIEWS = [
     book: join(LIB, '2_Academic Articles', '16_The Rule Not the Creature', 'THE_RULE_NOT_THE_CREATURE.md'),
     lane: join(LIB, '2_Academic Articles', '16_The Rule Not the Creature', 'Pinned Citation Extracts'),
   },
+  {
+    slug: 'madisonian-test',
+    id: 'madisonian-test', // the Madisonian article's lane by drafter 3364fdc4, 2026-11-14 — beside the article, no BOOK/ folder; slug and id as lawsofexistence.com's
+    book: join(LIB, '2_Academic Articles', '2_Madisonian Separation of Powers Test Article', 'DRAFT_Madisonian_Separation_of_Powers_Test.md'),
+    lane: join(LIB, '2_Academic Articles', '2_Madisonian Separation of Powers Test Article', 'Pinned Citation Extracts'),
+  },
 ];
 
 const PUBLISHABLE = new Set(['public-domain']);

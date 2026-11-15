@@ -92,6 +92,25 @@ const LOCAL = [
     featured: true,
     src: join(LIBRARY, '2_Academic Articles', '16_The Rule Not the Creature', 'THE_RULE_NOT_THE_CREATURE.md'),
   },
+  {
+    // owner 2026-09-16 (via drafter 60f85bca: the fourth title in review mode; lawsofexistence.com's importer has
+    // carried the entry since), imported 2026-11-14 when drafter 3364fdc4's lane reached the article (research_library
+    // 8a01d593). The article was on this site already at this slug, as the PDF lawsofexistence.com publishes
+    // (scripts/import-loe-articles.mjs, SLUG_ALIAS); as a `local` work its text comes from the library beside its
+    // lane and that importer skips the slug. It stays in its collection, and the card keeps the year alone
+    // (owner 2026-09-13: 2025, no day-level date), so `date` is empty and `year` is given.
+    slug: 'madisonian-test',
+    collection: 'codified-democratic-order',
+    title: 'The Madisonian Separation of Powers Objective Compliance Test',
+    subtitle: 'Recovering Constitutional Structure Through Textual Analysis',
+    date: '',
+    year: '2025',
+    venue: 'Article · working draft',
+    // the article's own words (its Abstract, first paragraphs; the card's copy on lawsofexistence.com)
+    blurb: 'For 239 years the United States has lacked an objective legal definition of a separation-of-powers violation. This Article recovers what Madison actually wrote: he used “distribution”, not “separation”; “balance” and “check” are sequential operations, not synonyms; and non-delegation is not a separate doctrine. From that framework it derives a six-step compliance test any court can apply without policy judgment.',
+    featured: false,
+    src: join(LIBRARY, '2_Academic Articles', '2_Madisonian Separation of Powers Test Article', 'DRAFT_Madisonian_Separation_of_Powers_Test.md'),
+  },
 ];
 
 const stripLeadingTitle = (md) => {
@@ -115,7 +134,7 @@ for (const w of LOCAL) {
   if (!existsSync(w.src)) { console.error(`import-local-works: source missing: ${w.src}`); process.exitCode = 1; continue; }
   const md = readFileSync(w.src, 'utf8');
   writeFileSync(join(OUT_MD, `${w.slug}.md`), stripLeadingTitle(md).trimEnd() + '\n');
-  const entry = { ...w, year: w.date.slice(0, 4), body: `/content/works/${w.slug}.md`, local: true };
+  const entry = { ...w, year: w.year || w.date.slice(0, 4), body: `/content/works/${w.slug}.md`, local: true };
   delete entry.src; // the owner's filesystem path stays out of the public JSON
   const i = data.works.findIndex((x) => x.slug === w.slug);
   if (i >= 0) data.works[i] = entry; else data.works.push(entry);
