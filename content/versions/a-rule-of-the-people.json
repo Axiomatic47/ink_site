@@ -81,6 +81,16 @@
    "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-12_0639.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export of 06:39 CST 12 Nov 2026 on the seat's call to the finish route, no Word session open; read whole by export_read.py against the markdown and the docx, the report beside the render; 232 pages; its layout text and its fonts equal version 6's render on every page)",
    "lane_state": "fifteenth (the owner's Word tests taken back; no spec change)",
    "note": "Version 8 (12 November 2026). Version 7 carried four tests the author made in Word that morning: an italic in the introduction's quotation of Black's 1891 dictionary with a note of added emphasis in n. 2, the heading 'I. Introduction' in another font, and the first two paragraphs of the introduction centred and right-aligned. All four are taken back on the author's word (research_library ac02c1fd). The text is version 6's, byte for byte; the footnotes unchanged at 449."
+  },
+  {
+   "version": 9,
+   "date": "2026-11-15",
+   "text": "2a84bf0278481fb0e1dcddbfdb26aeee3d4519dd2f5f373c66b4cb531a02b5c1",
+   "pdf": "9c2518d8727e30973367049d7f1998283b33a4fcc04957fdeae232e165583b0b",
+   "book_commit": "db234b29b78e9618a1d477b2fe24fecf17012580",
+   "render": "_WEB/THE_RULE_NOT_THE_CREATURE_render_word_2026-11-15_1653.pdf (the frozen copy of docx/THE_RULE_NOT_THE_CREATURE.pdf: the Studio autobuild worker's export of 16:53 CST 15 Nov 2026 on the seat's call to the finish route, no Word session open; read whole by export_read.py against the markdown and the docx, the report beside the render; 233 pages; the format gate normal on pp. 7-8)",
+   "lane_state": "seventeenth (the Conclusion, the plain-form paragraph, the roadmap sentence, the author's italic; no spec change)",
+   "note": "Version 9 (15 November 2026). The article gains its conclusion: Section X, 'Conclusion: The First Description', four paragraphs between Section IX and Appendix A. Section IX.A gains a paragraph that states the fault in its plain form ('The fault has a plain form ...'). The Introduction's roadmap now names Section X. One sentence of the Griswold passage in Section VIII is set in italics by the author: 'Where there is no privacy there is no liberty, by identity rather than by emanation.' No footnote is added, removed or moved; the footnotes stand at 449."
   }
  ]
 }
